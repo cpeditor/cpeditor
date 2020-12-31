@@ -37,10 +37,10 @@ class SettingsManager
     static void loadSettings(const QString &path);
     static void saveSettings(const QString &path);
 
-    static QVariant get(QString key, bool alwaysDefault = false);
+    static QVariant get(QString const &key, bool alwaysDefault = false);
     static bool contains(const QString &key, bool includingDefault = false);
-    static void set(const QString &key, QVariant value);
-    static void remove(QStringList keys);
+    static void set(const QString &key, QVariant const &value);
+    static void remove(QStringList const &keys);
     static void reset();
 
     /**

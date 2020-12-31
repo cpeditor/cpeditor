@@ -156,8 +156,10 @@ void TestCaseEdit::startAnimation()
 
 void TestCaseEdit::onCustomContextMenuRequested(const QPoint &pos)
 {
-    auto menu = createStandardContextMenu();
+    auto *menu = createStandardContextMenu();
+
     menu->addSeparator();
+
     menu->addAction(QApplication::style()->standardIcon(QStyle::SP_FileIcon), tr("Save to file"), [this] {
         LOG_INFO("Saving test case to file");
         QString fileName =
@@ -165,6 +167,7 @@ void TestCaseEdit::onCustomContextMenuRequested(const QPoint &pos)
         if (!fileName.isEmpty())
             Util::saveFile(fileName, toPlainText(), tr("Save test case to file"), true, log);
     });
+
     if (role != Output)
     {
         menu->addAction(QApplication::style()->standardIcon(QStyle::SP_DialogOpenButton), tr("Load From File"), [this] {
@@ -182,6 +185,16 @@ void TestCaseEdit::onCustomContextMenuRequested(const QPoint &pos)
                     modifyText(res);
             });
     }
+
+    if (role == Expected)
+    {
+        menu->addAction(QApplication::style()->standardIcon(QStyle::SP_ArrowForward), tr("Copy Output to Expected"),
+                        [this] {
+                            LOG_INFO("Copy Output to Expected");
+                            emit requestCopyOutputToExpected();
+                        });
+    }
+
     menu->popup(mapToGlobal(pos));
 }
 

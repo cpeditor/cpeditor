@@ -15,27 +15,36 @@
  *
  */
 
-#ifndef TRANSLATOR_HPP
-#define TRANSLATOR_HPP
+#ifndef SINGLETON_HPP
+#define SINGLETON_HPP
 
-#include <QObject>
+#include <type_traits>
 
-class QTranslator;
-
-namespace Core
+namespace Util
 {
-class Translator : public QObject
+
+template <typename T, typename D = T> class Singleton
 {
-    Q_OBJECT
+    static_assert(std::is_base_of<T, D>::value, "T should be a base type for D");
+    friend D;
 
   public:
-    static void setLocale();
+    static T &instance()
+    {
+        static D inst;
+        return inst;
+    }
 
-    static QString langSuffix();
+    Singleton(const Singleton &) = delete;
+    Singleton(Singleton &&) = delete;
+    Singleton &operator=(const Singleton &) = delete;
+    Singleton &operator=(Singleton &&) = delete;
 
   private:
-    static QTranslator *translator;
+    Singleton() = default;
+    ~Singleton() = default;
 };
-} // namespace Core
 
-#endif // TRANSLATOR_HPP
+} // namespace Util
+
+#endif // SINGLETON_HPP

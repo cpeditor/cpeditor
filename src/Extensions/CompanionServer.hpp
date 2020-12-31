@@ -58,7 +58,7 @@ class CompanionServer : public QObject
     void setMessageLogger(MessageLogger *log);
 
     void updatePort(int port);
-    ~CompanionServer();
+    ~CompanionServer() override;
 
   signals:
     void onRequestArrived(const CompanionData &data);

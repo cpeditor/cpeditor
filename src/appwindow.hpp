@@ -79,7 +79,7 @@ class AppWindow : public QMainWindow
 
   private slots:
     // UI Slots
-    void on_actionSupportMe_triggered();
+    void on_actionSupportUs_triggered();
 
     void on_actionManual_triggered();
 
@@ -199,9 +199,9 @@ class AppWindow : public QMainWindow
 
     void onSettingsApplied(const QString &pagePath);
 
-    void onSplitterMoved(int, int);
+    void onSplitterMoved();
 
-    void onRightSplitterMoved(int, int);
+    void onRightSplitterMoved();
 
     void onIncomingCompanionRequest(const Extensions::CompanionData &);
 
@@ -222,7 +222,7 @@ class AppWindow : public QMainWindow
 
     Telemetry::UpdateChecker *updateChecker = nullptr;
     PreferencesWindow *preferencesWindow = nullptr;
-    Extensions::CompanionServer *server;
+    Extensions::CompanionServer *server = nullptr;
     FindReplaceDialog *findReplaceDialog = nullptr;
     QSystemTrayIcon *trayIcon = nullptr;
     QMenu *trayIconMenu = nullptr;

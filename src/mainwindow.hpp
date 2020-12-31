@@ -60,15 +60,15 @@ class MainWindow : public QMainWindow
   public:
     struct EditorStatus
     {
-        bool isLanguageSet;
+        bool isLanguageSet{};
         QString filePath, savedText, problemURL, editorText, language, customCompileCommand;
-        int editorCursor, editorAnchor, horizontalScrollBarValue, verticalScrollbarValue, untitledIndex, checkerIndex,
-            customTimeLimit;
+        int editorCursor{}, editorAnchor{}, horizontalScrollBarValue{}, verticalScrollbarValue{}, untitledIndex{},
+            checkerIndex{}, customTimeLimit{};
         QStringList input, expected, customCheckers;
-        QVariantList testcasesIsShow;
+        QVariantList testcasesIsShow; // This can't be renamed to "isChecked" because that's not compatible
         QVariantList testCaseSplitterStates;
 
-        EditorStatus(){};
+        EditorStatus() = default;
 
         explicit EditorStatus(const QMap<QString, QVariant> &status);
 
@@ -244,8 +244,9 @@ class MainWindow : public QMainWindow
     void loadFile(const QString &loadPath);
     bool saveFile(SaveMode mode, const QString &head, bool safe);
     void performCompileAndRunDiagonistics();
-    QString getRunnerHead(int index);
+    static QString getRunnerHead(int index);
     QString compileCommand() const;
     int timeLimit() const;
+    void updateCompileAndRunButtons() const;
 };
 #endif // MAINWINDOW_HPP

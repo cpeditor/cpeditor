@@ -32,7 +32,8 @@ void SettingsUpdater::updateSetting(QSettings &setting)
 
     auto addKey = [&](const QString &key) {
         if (keys.contains(key))
-            qFatal("Duplicate key in the settings: %s", key.toStdString().c_str());
+            qFatal("Duplicate key in the settings: %s", // NOLINT: C-Style varargs should not be called.
+                   key.toStdString().c_str());
         keys.insert(key);
     };
 

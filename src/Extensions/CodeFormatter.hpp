@@ -18,9 +18,9 @@
 #ifndef CODEFORMATTER_HPP
 #define CODEFORMATTER_HPP
 
-#include "CodeEditor/CodeEditor.hpp"
 #include <QObject>
 
+class CodeEditor;
 class MessageLogger;
 class QTextCursor;
 
@@ -90,12 +90,54 @@ class CodeFormatter : public QObject
      */
     QVariant getSetting(const QString &key) const;
 
+  private:
+    CodeEditor *m_editor;
+    QString m_lang;
+    bool m_selectionOnly;
+    bool m_logOnNoChange;
+    int m_cursorPos, m_cursorLine, m_cursorCol, m_anchorPos, m_anchorLine, m_anchorCol;
+
   protected:
-    CodeEditor *editor;
-    QString lang;
-    bool selectionOnly;
-    bool logOnNoChange;
-    int cursorPos, cursorLine, cursorCol, anchorPos, anchorLine, anchorCol;
+    CodeEditor *editor() const
+    {
+        return m_editor;
+    }
+    QString lang() const
+    {
+        return m_lang;
+    }
+    bool selectionOnly() const
+    {
+        return m_selectionOnly;
+    }
+    bool logOnNoChange() const
+    {
+        return m_logOnNoChange;
+    }
+    int cursorPos() const
+    {
+        return m_cursorPos;
+    }
+    int cursorLine() const
+    {
+        return m_cursorLine;
+    }
+    int cursorCol() const
+    {
+        return m_cursorCol;
+    }
+    int anchorPos() const
+    {
+        return m_anchorPos;
+    }
+    int anchorLine() const
+    {
+        return m_anchorLine;
+    }
+    int anchorCol() const
+    {
+        return m_anchorCol;
+    }
 
   private:
     MessageLogger *log = nullptr;

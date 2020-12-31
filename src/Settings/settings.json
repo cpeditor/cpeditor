@@ -847,19 +847,19 @@
         "name": "LSP/Use Linting C++",
         "desc": "Use Linting with Language Server",
         "type": "bool",
-        "tip": "Show Error, Warning, Information and Hints in Code Editor for C++ Langauge"
+        "tip": "Show Error, Warning, Information and Hints in Code Editor for C++ Language"
     },
     {
         "name": "LSP/Use Linting Java",
         "desc": "Use Linting with Language Server",
         "type": "bool",
-        "tip": "Show Error, Warning, Information and Hints in Code Editor for Java Langauge"
+        "tip": "Show Error, Warning, Information and Hints in Code Editor for Java Language"
     },
     {
         "name": "LSP/Use Linting Python",
         "desc": "Use Linting with Language Server",
         "type": "bool",
-        "tip": "Show Error, Warning, Information and Hints in Code Editor for Python Langauge"
+        "tip": "Show Error, Warning, Information and Hints in Code Editor for Python Language"
     },
     {
         "name": "LSP/Use Autocomplete C++",
@@ -1032,7 +1032,7 @@
         "default": "system",
         "param": "QStringList { \"system\", \"English\", \"Русский\", \"简体中文\" }",
         "tip": "The language displayed in the UI.",
-        "onApply": "Core::Translator::setLocale(widget->getVariant().toString()); QMessageBox::warning(parent, tr(\"Change Locale\"), tr(\"You need to restart the application to completely apply the locale change.\"));"
+        "onApply": "Core::Translator::setLocale(); QMessageBox::warning(parent, tr(\"Change Locale\"), tr(\"You need to restart the application to completely apply the locale change.\"));"
     },
     {
         "name": "UI Style",

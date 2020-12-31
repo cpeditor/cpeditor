@@ -16,6 +16,7 @@
  */
 
 #include "Extensions/YAPFormatter.hpp"
+#include "CodeEditor/CodeEditor.hpp"
 #include <QTextBlock>
 #include <QTextCursor>
 #include <QTextDocument>
@@ -41,7 +42,7 @@ QStringList YAPFormatter::arguments() const
 
 QStringList YAPFormatter::rangeArgs() const
 {
-    return {QString("-l %1-%2").arg(qMin(cursorLine, anchorLine) + 1).arg(qMax(cursorLine, anchorLine) + 1)};
+    return {QString("-l %1-%2").arg(qMin(cursorLine(), anchorLine()) + 1).arg(qMax(cursorLine(), anchorLine()) + 1)};
 }
 
 QString YAPFormatter::styleFileName() const
@@ -54,33 +55,33 @@ QString YAPFormatter::newSource(const QString &out) const
     return out;
 }
 
-QTextCursor YAPFormatter::newCursor(const QString &out, const QStringList &) const
+QTextCursor YAPFormatter::newCursor(const QString &out, const QStringList & /*args*/) const
 {
-    auto cursor = editor->textCursor();
+    auto cursor = editor()->textCursor();
 
     auto setCol = [this, &cursor](QTextCursor::MoveMode mode, int col) {
         cursor.movePosition(QTextCursor::NextCharacter, mode,
-                            qMin(col, editor->document()->findBlockByNumber(cursor.blockNumber()).length() - 1));
+                            qMin(col, editor()->document()->findBlockByNumber(cursor.blockNumber()).length() - 1));
     };
 
     cursor.movePosition(QTextCursor::Start);
-    cursor.movePosition(QTextCursor::NextBlock, QTextCursor::MoveAnchor, anchorLine);
-    setCol(QTextCursor::MoveAnchor, anchorCol);
+    cursor.movePosition(QTextCursor::NextBlock, QTextCursor::MoveAnchor, anchorLine());
+    setCol(QTextCursor::MoveAnchor, anchorCol());
 
-    if (cursorPos == anchorPos)
+    if (cursorPos() == anchorPos())
         return cursor;
 
-    if (anchorLine <= cursorLine)
+    if (anchorLine() <= cursorLine())
     {
-        cursor.movePosition(QTextCursor::NextBlock, QTextCursor::KeepAnchor, cursorLine - anchorLine);
+        cursor.movePosition(QTextCursor::NextBlock, QTextCursor::KeepAnchor, cursorLine() - anchorLine());
     }
     else
     {
-        cursor.movePosition(QTextCursor::PreviousBlock, QTextCursor::KeepAnchor, anchorLine - cursorLine);
+        cursor.movePosition(QTextCursor::PreviousBlock, QTextCursor::KeepAnchor, anchorLine() - cursorLine());
         cursor.movePosition(QTextCursor::StartOfBlock, QTextCursor::KeepAnchor);
     }
 
-    setCol(QTextCursor::KeepAnchor, cursorCol);
+    setCol(QTextCursor::KeepAnchor, cursorCol());
 
     return cursor;
 }

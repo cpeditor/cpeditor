@@ -69,8 +69,8 @@ class TestCases : public QWidget
     QString checkerText() const;
     Core::Checker::CheckerType checkerType() const;
 
-    void setShow(int index, bool show);
-    bool isShow(int index) const;
+    void setChecked(int index, bool checked);
+    bool isChecked(int index) const;
 
     void loadFromSavedFiles(const QString &filePath);
     void saveToFiles(const QString &filePath, bool safe);

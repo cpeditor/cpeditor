@@ -29,11 +29,12 @@ class SettingsInfo
     Q_DECLARE_TR_FUNCTIONS(SettingsInfo)
 
   public:
-    struct SettingInfo
+    class SettingInfo
     {
+      public:
         QString name, desc, untrDesc, type, ui, tip, untrTip;
-        bool requireAllDepends; // false for one of the depends, true for all depends
-        bool immediatelyApply;
+        bool requireAllDepends{}; // false for one of the depends, true for all depends
+        bool immediatelyApply{};
         std::function<void(SettingInfo *, ValueWidget *, QWidget *)> onApply;
         QList<QPair<QString, std::function<bool(const QVariant &)>>> depends;
         QList<QString> old; // the old keys of this setting

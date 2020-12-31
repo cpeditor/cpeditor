@@ -38,10 +38,15 @@ class QFile;
  * WTF: what a terrible failure, used when it's considered impossible to happen
  */
 
-#define LOG_INFO(stream) Core::Log::log("INFO ", __func__, __LINE__, __FILE__) << stream << Qt::endl;
-#define LOG_WARN(stream) Core::Log::log("WARN ", __func__, __LINE__, __FILE__) << stream << Qt::endl;
-#define LOG_ERR(stream) Core::Log::log("ERROR", __func__, __LINE__, __FILE__) << stream << Qt::endl;
-#define LOG_WTF(stream) Core::Log::log(" WTF ", __func__, __LINE__, __FILE__) << stream << Qt::endl;
+/*
+ * These NOLINT are placed because macro arguments should be brace enclosed to prevent strange issues. Since, we want a
+ * pure string replacement, we cannot put braces, and hence the no lint.
+ */
+
+#define LOG_INFO(stream) Core::Log::log("INFO ", __func__, __LINE__, __FILE__) << stream << Qt::endl; // NOLINT
+#define LOG_WARN(stream) Core::Log::log("WARN ", __func__, __LINE__, __FILE__) << stream << Qt::endl; // NOLINT
+#define LOG_ERR(stream) Core::Log::log("ERROR", __func__, __LINE__, __FILE__) << stream << Qt::endl;  // NOLINT
+#define LOG_WTF(stream) Core::Log::log(" WTF ", __func__, __LINE__, __FILE__) << stream << Qt::endl;  // NOLINT
 
 #define LOG_INFO_IF(cond, stream)                                                                                      \
     if (cond)                                                                                                          \
@@ -70,7 +75,8 @@ class QFile;
 #ifdef QT_DEBUG
 #define LOG_DEV(stream)                                                                                                \
     {                                                                                                                  \
-        qDebug() << "File: [" __FILE__ "] Func: [" << __func__ << "] Line: [" << __LINE__ << "] " << stream;           \
+        qDebug() << "File: [" __FILE__ "] Func: [" << __func__ << "] Line: [" << __LINE__ << "] "                      \
+                 << stream; /* NOLINT */                                                                               \
         LOG_WARN(stream);                                                                                              \
     }
 #else
@@ -87,11 +93,11 @@ class Log
   public:
     /**
      * @brief initialize the event logger
-     * @param instanceCount the instance ID provided by SingleApplication, to distinct processes from each other
-     * @param dumpToStderr whether to print the logs into stderr or not
+     * @param instance the instance ID provided by SingleApplication, to distinct processes from each other
+     * @param dumptoStderr whether to print the logs into stderr or not
      * @note this should be called only once before logging anything
      */
-    static void init(int instanceCount, bool dumpToStderr = false);
+    static void init(int instance, bool dumptoStderr = false);
 
     /**
      * @brief clear old logs
@@ -104,7 +110,7 @@ class Log
      */
     static void revealInFileManager();
 
-    static QTextStream &log(const QString &priority, QString funcName, int lineNumber, QString fileName);
+    static QTextStream &log(const QString &priority, QString funcName, int line, QString fileName);
 
   private:
     static QString dateTimeStamp();
@@ -113,11 +119,12 @@ class Log
     static QTextStream logStream; // the text stream for logging, writes to logFile
     static QFile logFile;         // the device for logging, a file or stderr
 
-    static int NUMBER_OF_LOGS_TO_KEEP;     // Number of log files to keep in Temporary directory
-    static QString LOG_FILE_NAME;          // Base Name of the log file
-    static QString LOG_DIR_NAME;           // Directory inside Temp where log files will be stored
-    static int MAXIMUM_FUNCTION_NAME_SIZE; // Maximum size of function name, it is used to determine spacing in log file
-    static int MAXIMUM_FILE_NAME_SIZE;     // Maximum size of file name, it is used to determine spacing in log file
+    const static int NUMBER_OF_LOGS_TO_KEEP; // Number of log files to keep in Temporary directory
+    const static QString LOG_FILE_NAME;      // Base Name of the log file
+    const static QString LOG_DIR_NAME;       // Directory inside Temp where log files will be stored
+    const static int
+        MAXIMUM_FUNCTION_NAME_SIZE; // Maximum size of function name, it is used to determine spacing in log file
+    const static int MAXIMUM_FILE_NAME_SIZE; // Maximum size of file name, it is used to determine spacing in log file
 };
 
 } // namespace Core

@@ -49,7 +49,7 @@ class UpdateChecker : public QObject
     explicit UpdateChecker();
     void checkUpdate(bool silent);
     void closeAll();
-    ~UpdateChecker();
+    ~UpdateChecker() override;
 
   private slots:
     void cancelCheckUpdate();
@@ -69,7 +69,7 @@ class UpdateChecker : public QObject
     };
 
     void updateProxy();
-    UpdateMetaInformation toMetaInformation(const QJsonDocument &release);
+    static UpdateMetaInformation toMetaInformation(const QJsonDocument &release);
 
     Widgets::UpdateProgressDialog *progress = nullptr;
     Widgets::UpdatePresenter *presenter = nullptr;

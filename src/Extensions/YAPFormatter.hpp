@@ -31,17 +31,17 @@ class YAPFormatter : public CodeFormatter
                           MessageLogger *log, QObject *parent = nullptr);
 
   protected:
-    virtual QString settingKey() const override;
+    QString settingKey() const override;
 
-    virtual QStringList arguments() const override;
+    QStringList arguments() const override;
 
-    virtual QStringList rangeArgs() const override;
+    QStringList rangeArgs() const override;
 
-    virtual QString styleFileName() const override;
+    QString styleFileName() const override;
 
-    virtual QString newSource(const QString &out) const override;
+    QString newSource(const QString &out) const override;
 
-    virtual QTextCursor newCursor(const QString &out, const QStringList &) const override;
+    QTextCursor newCursor(const QString &out, const QStringList & /*args*/) const override;
 };
 
 } // namespace Extensions

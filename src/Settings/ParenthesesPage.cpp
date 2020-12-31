@@ -29,12 +29,12 @@
 #include <QStackedWidget>
 #include <QVBoxLayout>
 
-ParenthesisWidget::ParenthesisWidget(const QString &language, QChar leftParenthesis, QChar rightParenthesis,
+ParenthesisWidget::ParenthesisWidget(QString language, QChar leftParenthesis, QChar rightParenthesis,
                                      Qt::CheckState autoComplete, Qt::CheckState autoRemove, Qt::CheckState tabJumpOut,
                                      QWidget *parent)
-    : QWidget(parent), lang(language), left(leftParenthesis), right(rightParenthesis)
+    : QWidget(parent), lang(std::move(language)), left(leftParenthesis), right(rightParenthesis)
 {
-    auto mainLayout = new QVBoxLayout(this);
+    auto *mainLayout = new QVBoxLayout(this);
 
     nameLabel = new QLabel(tr("Parenthesis: %1").arg(parenthesis()));
     auto labelFont = font();
@@ -44,12 +44,12 @@ ParenthesisWidget::ParenthesisWidget(const QString &language, QChar leftParenthe
 
     mainLayout->addSpacing(20);
 
-    auto stretchLayout = new QHBoxLayout();
+    auto *stretchLayout = new QHBoxLayout();
     mainLayout->addLayout(stretchLayout);
 
     stretchLayout->addStretch();
 
-    auto checkBoxesLayout = new QVBoxLayout();
+    auto *checkBoxesLayout = new QVBoxLayout();
     stretchLayout->addLayout(checkBoxesLayout);
 
     auto addOption = [this, checkBoxesLayout](QCheckBox *&checkBox, const QString &name, Qt::CheckState state) {
@@ -95,7 +95,7 @@ ParenthesesPage::ParenthesesPage(const QString &language, QWidget *parent) : Pre
     leftWidget = new QWidget();
     splitter->addWidget(leftWidget);
 
-    auto leftLayout = new QVBoxLayout(leftWidget);
+    auto *leftLayout = new QVBoxLayout(leftWidget);
 
     listWidget = new QListWidget();
     connect(listWidget, &QListWidget::itemActivated, this,
@@ -103,7 +103,7 @@ ParenthesesPage::ParenthesesPage(const QString &language, QWidget *parent) : Pre
     connect(listWidget, &QListWidget::itemClicked, this, [this](QListWidgetItem *item) { switchToParenthesis(item); });
     leftLayout->addWidget(listWidget);
 
-    auto buttonsLayout = new QHBoxLayout();
+    auto *buttonsLayout = new QHBoxLayout();
     leftLayout->addLayout(buttonsLayout);
 
     addButton = new QPushButton(tr("Add"));
@@ -120,20 +120,20 @@ ParenthesesPage::ParenthesesPage(const QString &language, QWidget *parent) : Pre
     stackedWidget = new QStackedWidget();
     splitter->addWidget(stackedWidget);
 
-    auto noParenthesisWidget = new QWidget();
+    auto *noParenthesisWidget = new QWidget();
     stackedWidget->addWidget(noParenthesisWidget);
     stackedWidget->setCurrentWidget(noParenthesisWidget);
 
-    auto noParenthesisLayout = new QVBoxLayout(noParenthesisWidget);
+    auto *noParenthesisLayout = new QVBoxLayout(noParenthesisWidget);
 
     noParenthesisLayout->addStretch();
 
-    auto noParenthesisStretchLayout = new QHBoxLayout();
+    auto *noParenthesisStretchLayout = new QHBoxLayout();
     noParenthesisLayout->addLayout(noParenthesisStretchLayout);
 
     noParenthesisStretchLayout->addStretch();
 
-    auto noParenthesisLabel = new QLabel(tr("No Parenthesis Selected"));
+    auto *noParenthesisLabel = new QLabel(tr("No Parenthesis Selected"));
     noParenthesisStretchLayout->addWidget(noParenthesisLabel);
 
     noParenthesisStretchLayout->addStretch();
@@ -204,7 +204,7 @@ void ParenthesesPage::switchToParenthesis(QListWidgetItem *item)
 void ParenthesesPage::addParenthesis(QChar left, QChar right, Qt::CheckState autoComplete, Qt::CheckState autoRemove,
                                      Qt::CheckState tabJumpOut)
 {
-    auto parenthesis = new ParenthesisWidget(lang, left, right, autoComplete, autoRemove, tabJumpOut, this);
+    auto *parenthesis = new ParenthesisWidget(lang, left, right, autoComplete, autoRemove, tabJumpOut, this);
     connect(parenthesis, &ParenthesisWidget::changed, this, &ParenthesesPage::updateButtons);
     stackedWidget->addWidget(parenthesis);
     listWidget->addItem(parenthesis->parenthesis());
@@ -215,10 +215,10 @@ void ParenthesesPage::addParenthesis(QChar left, QChar right, Qt::CheckState aut
 void ParenthesesPage::deleteParenthesis(int index)
 {
     Q_ASSERT(index > 0 && index < stackedWidget->count());
-    auto widget = stackedWidget->widget(index);
+    auto *widget = stackedWidget->widget(index);
     stackedWidget->removeWidget(widget);
     delete widget;
-    auto item = listWidget->item(index - 1);
+    auto *item = listWidget->item(index - 1);
     delete item;
     updateButtons();
 }
@@ -253,7 +253,7 @@ void ParenthesesPage::loadList(const QVariantList &list)
 {
     while (stackedWidget->count() > 1)
         deleteParenthesis(1);
-    for (auto var : list)
+    for (auto const &var : list)
     {
         auto li = var.toList();
         if (li.length() != 5)

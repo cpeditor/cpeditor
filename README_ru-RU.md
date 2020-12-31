@@ -10,12 +10,14 @@ CP Editor - это легкий кросс-платформенный редак
 
 [Возможности](https://cpeditor.org/ru) | [Документация](https://cpeditor.org/ru/docs/) | [Список изменений](CHANGELOG.md) | [Сотрудничество](CONTRIBUTING_ru-RU.md) | [FAQ](https://cpeditor.org/ru/docs/faq/) | [English](README.md) | [中文](README_zh-CN.md)
 
+![demo](assets/demo.gif)
+
 ---
 
+[![Open Collective](https://opencollective.com/cpeditor/tiers/support-us.svg?avatarHeight=60)](https://opencollective.com/cpeditor#section-contribute)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-49-orange.svg)](#all-contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-50-orange.svg)](#all-contributors)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ce0f297f31f74485b0d340949d08d605)](https://www.codacy.com/gh/cpeditor/cpeditor)
 [![Все релизы GitHub](https://img.shields.io/github/downloads/cpeditor/cpeditor/total?label=downloads%40all)](https://github.com/cpeditor/cpeditor/releases)
 [![Slack Workspace](https://img.shields.io/badge/join-slack-success)](https://join.slack.com/t/cpeditor/shared_invite/zt-ekfy0zb5-SrOi8SIox8oq61oRonBynw)
 [![Группа в Телеграм](https://img.shields.io/badge/join-telegram%20chat-success)](https://t.me/cpeditor)
@@ -29,18 +31,19 @@ CP Editor - это легкий кросс-платформенный редак
 
 ## Начало
 
-- [Релизы](https://github.com/cpeditor/cpeditor/releases)
-- [Установка](https://cpeditor.org/ru/docs/installation/)
-- [Начало](https://cpeditor.org/ru/docs/setup/)
-- [Параметры](https://cpeditor.org/ru/docs/preferences)
-- [подсказки](https://cpeditor.org/ru/docs/tips/)
+-   [Релизы](https://github.com/cpeditor/cpeditor/releases)
+-   [Установка](https://cpeditor.org/ru/docs/installation/)
+-   [Начало](https://cpeditor.org/ru/docs/setup/)
+-   [Параметры](https://cpeditor.org/ru/docs/preferences)
+-   [подсказки](https://cpeditor.org/ru/docs/tips/)
 
 ## Сотрудничество
 
-- [Открыть вопрос](https://github.com/cpeditor/cpeditor/issues/new/choose)
-- [Правила внесения вклада](CONTRIBUTING_ru-RU.md)
-- [Good first issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
-- [Help wanted issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
+-   [Открыть вопрос](https://github.com/cpeditor/cpeditor/issues/new/choose)
+-   [Правила внесения вклада](CONTRIBUTING_ru-RU.md)
+-   [Good first issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
+-   [Help wanted issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
+-   [Support us financially](DONATE_ru-RU.md)
 
 ## Получить помощь
 
@@ -236,6 +239,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center">
       <a href="https://github.com/jaysampartak"><img src="https://avatars2.githubusercontent.com/u/40232849?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/jaysampartak"><sub><b>jaysampartak</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3Ajaysampartak" title="Bug reports">🐛</a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/andreaemonti"><img src="https://avatars3.githubusercontent.com/u/20700531?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/andreaemonti"><sub><b>Andrea E. Monti</b></sub></a><br /><a href="#ideas-andreaemonti" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
   </tr>
 </table>

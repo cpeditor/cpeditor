@@ -19,6 +19,7 @@ if(WIN32)
   set(GUI_TYPE WIN32)
 endif()
 
+find_package(Qt5 COMPONENTS Core REQUIRED)
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt5 COMPONENTS Network REQUIRED)
 find_package(Qt5 COMPONENTS LinguistTools REQUIRED)
@@ -35,7 +36,11 @@ add_subdirectory(third_party/lsp-cpp)
 
 add_subdirectory(third_party/qhttp)
 
+add_library(diff_match_patch
+	third_party/diff_match_patch/diff_match_patch.cpp)
+
 option(PORTABLE_VERSION "Build the portable version" Off)
+option(USE_CLANG_TIDY "Use clang-tidy to lint the files" Off)
 
 if(${PORTABLE_VERSION})
   message(STATUS "Will build the portable version")
@@ -87,9 +92,9 @@ configure_file(cmake/version.hpp.in ${CMAKE_BINARY_DIR}/generated/version.hpp)
 configure_file(cmake/portable.hpp.in ${CMAKE_BINARY_DIR}/generated/portable.hpp)
 
 add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMAKE_BINARY_DIR}/generated/SettingsInfo.cpp
-                   COMMAND ${Python3_EXECUTABLE} ${PROJECT_SOURCE_DIR}/tools/genSettings.py ${PROJECT_SOURCE_DIR}/src/Settings/settings.json
+                   COMMAND ${Python3_EXECUTABLE} ${PROJECT_SOURCE_DIR}/src/Settings/genSettings.py ${PROJECT_SOURCE_DIR}/src/Settings/settings.json
                    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-                   DEPENDS ${PROJECT_SOURCE_DIR}/src/Settings/settings.json ${PROJECT_SOURCE_DIR}/tools/genSettings.py)
+                   DEPENDS ${PROJECT_SOURCE_DIR}/src/Settings/settings.json ${PROJECT_SOURCE_DIR}/src/Settings/genSettings.py)
 
 set(TSS ${CMAKE_SOURCE_DIR}/translations/zh_CN.ts ${CMAKE_SOURCE_DIR}/translations/ru_RU.ts)
 
@@ -100,6 +105,11 @@ qt5_add_translation(QMFILES ${TSS})
 file(COPY ${CMAKE_SOURCE_DIR}/translations/translations.qrc DESTINATION ${CMAKE_BINARY_DIR}/translations)
 
 set_property(SOURCE ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMAKE_BINARY_DIR}/generated/SettingsInfo.cpp PROPERTY SKIP_AUTOGEN ON)
+
+if(USE_CLANG_TIDY)
+	set(CMAKE_CXX_CLANG_TIDY "clang-tidy")
+	message(STATUS "clang-tidy checks will be performed")
+endif()
 
 add_executable(cpeditor
     ${GUI_TYPE}
@@ -125,6 +135,8 @@ add_executable(cpeditor
     src/Core/SessionManager.hpp
     src/Core/StyleManager.cpp
     src/Core/StyleManager.hpp
+    src/Core/TestCasesCopyPaster.cpp
+    src/Core/TestCasesCopyPaster.hpp
     src/Core/Translator.cpp
     src/Core/Translator.hpp
 
@@ -179,6 +191,7 @@ add_executable(cpeditor
 
     src/Util/FileUtil.cpp
     src/Util/FileUtil.hpp
+    src/Util/Singleton.hpp
     src/Util/Util.cpp
     src/Util/Util.hpp
 
@@ -207,9 +220,6 @@ add_executable(cpeditor
 
     src/main.cpp
 
-    third_party/diff_match_patch/diff_match_patch.h
-    third_party/diff_match_patch/diff_match_patch.cpp
-
     ui/mainwindow.ui
     ui/appwindow.ui
 
@@ -224,11 +234,6 @@ add_executable(cpeditor
 
 include_directories("generated/")
 include_directories("src/")
-include_directories("third_party/diff_match_patch")
-include_directories("third_party/lsp-cpp/include")
-include_directories("third_party/QtFindReplaceDialog")
-include_directories("third_party/qhttp/src")
-include_directories("third_party/testlib")
 
 target_link_libraries(cpeditor PRIVATE LSPClient)
 target_link_libraries(cpeditor PRIVATE Qt5::Network)
@@ -237,6 +242,8 @@ target_link_libraries(cpeditor PRIVATE QtFindReplaceDialog)
 target_link_libraries(cpeditor PRIVATE SingleApplication)
 target_link_libraries(cpeditor PRIVATE QHttp)
 target_link_libraries(cpeditor PRIVATE KF5::SyntaxHighlighting)
+target_link_libraries(diff_match_patch PRIVATE Qt5::Core)
+target_link_libraries(cpeditor PRIVATE diff_match_patch)
 
 if(MSVC)
   target_compile_options(cpeditor PUBLIC "/utf-8")
@@ -258,3 +265,5 @@ if(UNIX AND NOT APPLE)
   install(FILES .ci/linux/cpeditor.desktop DESTINATION share/applications)
   install(FILES resources/icon.png DESTINATION share/icons/hicolor/512x512/apps RENAME cpeditor.png)
 endif()
+
+

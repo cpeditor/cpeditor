@@ -32,11 +32,11 @@ UpdatePresenter::UpdatePresenter()
     textEdit->setReadOnly(true);
 
     hint = new QLabel(this);
-    auto mainLayout = new QVBoxLayout(this);
-    auto subLayout = new QHBoxLayout();
+    auto *mainLayout = new QVBoxLayout(this);
+    auto *subLayout = new QHBoxLayout();
 
-    auto downloadButton = new QPushButton(tr("Download"), this);
-    auto cancelButton = new QPushButton(tr("Close"), this);
+    auto *downloadButton = new QPushButton(tr("Download"), this);
+    auto *cancelButton = new QPushButton(tr("Close"), this);
 
     connect(cancelButton, &QPushButton::clicked, this, &UpdatePresenter::close);
     connect(downloadButton, &QPushButton::clicked, this,

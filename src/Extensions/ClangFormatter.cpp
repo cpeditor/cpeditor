@@ -41,13 +41,13 @@ QString ClangFormatter::settingKey() const
 
 QStringList ClangFormatter::arguments() const
 {
-    return {"--style=file", QString("--cursor=%1").arg(anchorPos)};
+    return {"--style=file", QString("--cursor=%1").arg(anchorPos())};
 }
 
 QStringList ClangFormatter::rangeArgs() const
 {
-    return {QString("--offset=%1").arg(qMin(cursorPos, anchorPos)),
-            QString("--length=%1").arg(qAbs(cursorPos - anchorPos))};
+    return {QString("--offset=%1").arg(qMin(cursorPos(), anchorPos())),
+            QString("--length=%1").arg(qAbs(cursorPos() - anchorPos()))};
 }
 
 QString ClangFormatter::styleFileName() const
@@ -62,10 +62,10 @@ QString ClangFormatter::newSource(const QString &out) const
 
 QTextCursor ClangFormatter::newCursor(const QString &out, const QStringList &args) const
 {
-    auto cursor = editor->textCursor();
+    auto cursor = editor()->textCursor();
     cursor.setPosition(newCursorPos(out));
 
-    if (cursorPos != anchorPos)
+    if (cursorPos() != anchorPos())
     {
         // change the `--cursor` argument and format again to get the position of the other end of the selection
 
@@ -74,7 +74,7 @@ QTextCursor ClangFormatter::newCursor(const QString &out, const QStringList &arg
         for (const auto &arg : qAsConst(args))
             if (!arg.startsWith("--cursor"))
                 newArgs.append(arg);
-        newArgs.append(QString("--cursor=%1").arg(cursorPos));
+        newArgs.append(QString("--cursor=%1").arg(cursorPos()));
 
         auto res = runProcess(newArgs);
         cursor.setPosition(newCursorPos(res), QTextCursor::KeepAnchor);
@@ -83,7 +83,7 @@ QTextCursor ClangFormatter::newCursor(const QString &out, const QStringList &arg
     return cursor;
 }
 
-int ClangFormatter::newCursorPos(const QString &out) const
+int ClangFormatter::newCursorPos(const QString &out) const // NOLINT: method 'newCursorPos' can be made static
 {
     auto json = QJsonDocument::fromJson(out.left(out.indexOf('\n')).toUtf8());
     return json["Cursor"].toInt();

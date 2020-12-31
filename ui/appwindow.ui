@@ -131,7 +131,7 @@
     <addaction name="actionAboutQt"/>
     <addaction name="actionBuildInfo"/>
     <addaction name="actionCheckForUpdates"/>
-    <addaction name="actionSupportMe"/>
+    <addaction name="actionSupportUs"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
@@ -441,9 +441,9 @@
     <string>Check for updates</string>
    </property>
   </action>
-  <action name="actionSupportMe">
+  <action name="actionSupportUs">
    <property name="text">
-    <string>Support me</string>
+    <string>Support us</string>
    </property>
   </action>
   <action name="actionEditorMode">

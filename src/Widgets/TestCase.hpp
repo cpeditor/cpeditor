@@ -48,8 +48,8 @@ class TestCase : public QWidget
         UNKNOWN
     };
 
-    explicit TestCase(int index, MessageLogger *logger, QWidget *parent = nullptr, const QString &input = QString(),
-                      const QString &expected = QString());
+    explicit TestCase(int index, MessageLogger *logger, QWidget *parent = nullptr, const QString &in = QString(),
+                      const QString &exp = QString());
     void setInput(const QString &text);
     void setOutput(const QString &text);
     void setExpected(const QString &text);
@@ -57,22 +57,23 @@ class TestCase : public QWidget
     QString input() const;
     QString output() const;
     QString expected() const;
+    bool isEmpty() const;
     void setID(int index);
     void setVerdict(Verdict verdict);
     Verdict verdict() const;
-    void setShow(bool show);
-    bool isShow() const;
+    void setChecked(bool checked);
+    bool isChecked() const;
     void setTestCaseEditFont(const QFont &font);
     void updateHeight();
     QList<int> splitterSizes() const;
-    void restoreSplitterSizes(const QList<int> &state);
+    void restoreSplitterSizes(const QList<int> &sizes);
 
   signals:
     void deleted(TestCase *widget);
     void requestRun(int index);
 
   private slots:
-    void onShowCheckBoxToggled(bool checked);
+    void onCheckBoxToggled(bool checked);
     void onRunButtonClicked();
     void onDiffButtonClicked();
     void onDelButtonClicked();
@@ -83,7 +84,7 @@ class TestCase : public QWidget
     QSplitter *splitter = nullptr;
     QWidget *inputWidget = nullptr, *outputWidget = nullptr, *expectedWidget = nullptr;
     QVBoxLayout *inputLayout = nullptr, *outputLayout = nullptr, *expectedLayout = nullptr;
-    QCheckBox *showCheckBox = nullptr;
+    QCheckBox *checkBox = nullptr;
     QLabel *inputLabel = nullptr, *outputLabel = nullptr, *expectedLabel = nullptr;
     QPushButton *runButton = nullptr, *diffButton = nullptr, *delButton = nullptr;
     TestCaseEdit *inputEdit = nullptr, *outputEdit = nullptr, *expectedEdit = nullptr;

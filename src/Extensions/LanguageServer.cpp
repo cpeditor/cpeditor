@@ -19,7 +19,7 @@
 #include "Core/MessageLogger.hpp"
 #include "Settings/SettingsManager.hpp"
 #include "Util/Util.hpp"
-#include <LSPClient.hpp>
+#include "third_party/lsp-cpp/include/LSPClient.hpp"
 #include <QDir>
 #include <QFileInfo>
 #include <QJsonArray>
@@ -28,7 +28,7 @@
 namespace Extensions
 {
 
-LanguageServer::LanguageServer(QString lang)
+LanguageServer::LanguageServer(QString const &lang)
 {
     LOG_INFO(INFO_OF(lang));
     this->language = lang;
@@ -50,7 +50,7 @@ LanguageServer::~LanguageServer()
     }
 }
 
-void LanguageServer::openDocument(QString path, CodeEditor *editor, MessageLogger *log)
+void LanguageServer::openDocument(QString const &path, CodeEditor *editor, MessageLogger *log)
 {
     if (isDocumentOpen())
     {
@@ -145,9 +145,9 @@ void LanguageServer::updateSettings()
         LOG_INFO("Recreated Language server Process");
         if (m_editor != nullptr)
         {
-            auto tmpEditor = m_editor;
+            auto *tmpEditor = m_editor;
             auto tmpPath = openFile;
-            auto tmpLog = logger;
+            auto *tmpLog = logger;
             if (isDocumentOpen())
                 closeDocument();
             openDocument(tmpPath, tmpEditor, tmpLog);
@@ -156,12 +156,12 @@ void LanguageServer::updateSettings()
     }
 }
 
-void LanguageServer::updatePath(QString newPath)
+void LanguageServer::updatePath(QString const &newPath)
 {
     if (lsp == nullptr || (openFile == newPath))
         return;
-    auto tmpLogger = logger;
-    auto tmpEditor = m_editor;
+    auto *tmpLogger = logger;
+    auto *tmpEditor = m_editor;
     closeDocument();
     openDocument(newPath, tmpEditor, tmpLogger);
 }
@@ -175,8 +175,7 @@ bool LanguageServer::shouldCreateClient()
 
 void LanguageServer::createClient()
 {
-    if (lsp)
-        delete lsp;
+    delete lsp;
     auto program = SettingsManager::get("LSP/Path " + language).toString();
     auto args = QProcess::splitCommand(SettingsManager::get("LSP/Args " + language).toString().trimmed());
     lsp = new LSPClient(program, args);
@@ -217,7 +216,7 @@ CodeEditor::SeverityLevel LanguageServer::lspSeverity(int in)
     return CodeEditor::SeverityLevel::Error;
 }
 
-void LanguageServer::initializeLSP(QString filePath)
+void LanguageServer::initializeLSP(QString const &filePath)
 {
     QFileInfo info(filePath);
     std::string uri = "file://" + info.absoluteDir().absolutePath().toStdString();
@@ -226,7 +225,7 @@ void LanguageServer::initializeLSP(QString filePath)
 }
 // ---------------------------- LSP SLOTS ------------------------
 
-void LanguageServer::onLSPServerNotificationArrived(QString method, QJsonObject param)
+void LanguageServer::onLSPServerNotificationArrived(QString const &method, QJsonObject const &param)
 {
     if (method == "textDocument/publishDiagnostics" && m_editor != nullptr) // Linting
     {
@@ -240,7 +239,8 @@ void LanguageServer::onLSPServerNotificationArrived(QString method, QJsonObject 
             auto beg = e.toObject()["range"].toObject()["start"].toObject();
             auto end = e.toObject()["range"].toObject()["end"].toObject();
 
-            QPair<int, int> start, stop;
+            QPair<int, int> start;
+            QPair<int, int> stop;
 
             start.first = beg["line"].toInt() + 1;
             start.second = beg["character"].toInt();
@@ -254,19 +254,22 @@ void LanguageServer::onLSPServerNotificationArrived(QString method, QJsonObject 
     }
 }
 
-void LanguageServer::onLSPServerResponseArrived(QJsonObject method, QJsonObject param)
+void LanguageServer::onLSPServerResponseArrived(QJsonObject const &method, // NOLINT: It can be made static.
+                                                QJsonObject const &param)
 {
     LOG_INFO("Response from Server has arrived");
 }
 
-void LanguageServer::onLSPServerRequestArrived(QString method, QJsonObject param, QJsonObject id)
+void LanguageServer::onLSPServerRequestArrived(QString const &method, // NOLINT: It can be made static.
+                                               QJsonObject const &param, QJsonObject const &id)
 {
     LOG_INFO("Request from Sever has arrived. " << INFO_OF(method));
 }
 
-void LanguageServer::onLSPServerErrorArrived(QJsonObject id, QJsonObject error)
+void LanguageServer::onLSPServerErrorArrived(QJsonObject const &id, QJsonObject const &error)
 {
-    QString ID, ERR;
+    QString ID;
+    QString ERR;
     ID = QJsonDocument::fromVariant(id.toVariantMap()).toJson();
     ERR = QJsonDocument::fromVariant(error.toVariantMap()).toJson();
 
@@ -274,11 +277,11 @@ void LanguageServer::onLSPServerErrorArrived(QJsonObject id, QJsonObject error)
     LOG_ERR("ERR is \n" << ERR);
 
     if (logger != nullptr)
-        logger->error(tr("Langauge Server [%1]").arg(language),
+        logger->error(tr("Language Server [%1]").arg(language),
                       tr("Language server sent an error. Please check log for details."));
 }
 
-void LanguageServer::onLSPServerProcessError(QProcess::ProcessError error)
+void LanguageServer::onLSPServerProcessError(QProcess::ProcessError const &error)
 {
     LOG_WARN_IF(error == QProcess::Crashed, "LSP Process errored out " << INFO_OF(error));
     LOG_ERR_IF(error != QProcess::Crashed, "LSP Process errored out " << INFO_OF(error));
@@ -287,7 +290,7 @@ void LanguageServer::onLSPServerProcessError(QProcess::ProcessError error)
     switch (error)
     {
     case QProcess::FailedToStart:
-        logger->error(tr("Langauge Server [%1]").arg(language),
+        logger->error(tr("Language Server [%1]").arg(language),
                       tr("Failed to start LSP Process. Have you set the path to the Language Server program at %1?")
                           .arg(SettingsManager::getPathText("LSP/Path " + language)),
                       false);
@@ -295,16 +298,16 @@ void LanguageServer::onLSPServerProcessError(QProcess::ProcessError error)
     case QProcess::Crashed:
         break;
     case QProcess::Timedout:
-        logger->error(tr("Langauge Server [%1]").arg(language), tr("LSP Process timed out"));
+        logger->error(tr("Language Server [%1]").arg(language), tr("LSP Process timed out"));
         break;
     case QProcess::ReadError:
-        logger->error(tr("Langauge Server [%1]").arg(language), tr("LSP Process Read Error"));
+        logger->error(tr("Language Server [%1]").arg(language), tr("LSP Process Read Error"));
         break;
     case QProcess::WriteError:
-        logger->error(tr("Langauge Server [%1]").arg(language), tr("LSP Process Write Error"));
+        logger->error(tr("Language Server [%1]").arg(language), tr("LSP Process Write Error"));
         break;
     case QProcess::UnknownError:
-        logger->error(tr("Langauge Server [%1]").arg(language), tr("An unknown error has occurred in LSP Process"));
+        logger->error(tr("Language Server [%1]").arg(language), tr("An unknown error has occurred in LSP Process"));
         break;
     }
 }
@@ -315,7 +318,7 @@ void LanguageServer::onLSPServerProcessFinished(int exitCode, QProcess::ExitStat
     LOG_WARN_IF(exitCode != 0, "LSP Finished with exit code " << exitCode << INFO_OF(language) << INFO_OF(status));
 }
 
-void LanguageServer::onLSPServerNewStderr(const QString &content)
+void LanguageServer::onLSPServerNewStderr(const QString &content) // NOLINT: It can be made static
 {
     LOG_INFO(content);
 }
