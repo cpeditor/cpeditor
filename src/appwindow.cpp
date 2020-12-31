@@ -176,7 +176,7 @@ void AppWindow::finishConstruction()
             dialog->setTextFormat(Qt::MarkdownText);
             dialog->setText(tr(R"(Hey, there! Would you mind:
 -   [Give us a star on GitHub](https://github.com/cpeditor/cpeditor/stargazers)
--   [Support us on Open Collective](https://opencollective.com/cpeditor)
+-   [Financially support us](https://github.com/cpeditor/cpeditor/blob/master/DONATE.md)
 -   Share CP Editor with your friends
 
 Or, [provide some suggestions](https://github.com/cpeditor/cpeditor/issues/new/choose) to help us do better.)"));

@@ -478,16 +478,11 @@ Git commit hash: %3
     <message>
         <source>Hey, there! Would you mind:
 -   [Give us a star on GitHub](https://github.com/cpeditor/cpeditor/stargazers)
--   [Support us on Open Collective](https://opencollective.com/cpeditor)
+-   [Financially support us](https://github.com/cpeditor/cpeditor/blob/master/DONATE.md)
 -   Share CP Editor with your friends
 
 Or, [provide some suggestions](https://github.com/cpeditor/cpeditor/issues/new/choose) to help us do better.</source>
-        <translation>Привет! Не соизволите ли вы:
--   [Поставить нам звездочку на GitHub](https://github.com/cpeditor/cpeditor/stargazers)
--   [Поддержать нас на Open Collective](https://opencollective.com/cpeditor)
--   Поделиться CP Editor&apos;ом со своими друзьями
-
-Или [предложить советы](https://github.com/cpeditor/cpeditor/issues/new/choose), чтобы сделать нас лучше.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
