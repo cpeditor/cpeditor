@@ -1039,7 +1039,7 @@
         "default": "system",
         "param": "QStringList { \"system\", \"English\", \"Русский\", \"简体中文\" }",
         "tip": "The language displayed in the UI.",
-        "onApply": "Core::Translator::setLocale(widget->getVariant().toString()); QMessageBox::warning(parent, tr(\"Change Locale\"), tr(\"You need to restart the application to completely apply the locale change.\"));"
+        "onApply": "Core::Translator::setLocale(); QMessageBox::warning(parent, tr(\"Change Locale\"), tr(\"You need to restart the application to completely apply the locale change.\"));"
     },
     {
         "name": "UI Style",

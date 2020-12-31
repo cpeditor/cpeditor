@@ -151,7 +151,7 @@ int main(int argc, char *argv[])
 
     SettingsInfo::updateSettingInfo(); // generate an English version, so that we can use SettingsHelper
     SettingsManager::init();
-    Core::Translator::setLocale(SettingsHelper::getLocale());
+    Core::Translator::setLocale();
 
     auto args = parser.positionalArguments();
 
