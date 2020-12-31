@@ -47,7 +47,7 @@ class Compiler : public QObject
      * @brief destruct a compiler
      * @note the compilation process will be killed if it's running
      */
-    ~Compiler();
+    ~Compiler() override;
 
     /**
      * @brief start the compilation

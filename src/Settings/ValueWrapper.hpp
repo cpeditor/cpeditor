@@ -27,7 +27,7 @@ class ValueWidget : public QObject
 
   public:
     ValueWidget() = default;
-    virtual ~ValueWidget() = default;
+    ~ValueWidget() override = default;
     virtual QWidget *coreWidget() = 0;
     virtual QVariant getVariant() = 0;
     virtual void setVariant(QVariant value) = 0;
@@ -41,23 +41,22 @@ class ValueWidget : public QObject
 
 template <typename Type> struct Wrapper : public ValueWidget
 {
-    virtual ~Wrapper() override
+    ~Wrapper() override
     {
-        if (widget)
-            delete widget;
+        delete widget;
     }
-    virtual QWidget *coreWidget() override
+    QWidget *coreWidget() override
     {
         return widget;
     }
     virtual void init(QWidget *parent, QVariant param) = 0;
     virtual Type get() = 0;
     virtual void set(Type b) = 0;
-    virtual QVariant getVariant() override
+    QVariant getVariant() override
     {
         return QVariant(get());
     }
-    virtual void setVariant(QVariant value) override
+    void setVariant(QVariant value) override
     {
         set(value.value<Type>());
     }
@@ -67,23 +66,22 @@ template <typename Type> struct Wrapper : public ValueWidget
 
 template <> struct Wrapper<bool> : public ValueWidget
 {
-    virtual ~Wrapper() override
+    ~Wrapper() override
     {
-        if (widget)
-            delete widget;
+        delete widget;
     }
-    virtual QWidget *coreWidget() override
+    QWidget *coreWidget() override
     {
         return widget;
     }
     virtual void init(QString name, QWidget *parent, QVariant param) = 0;
     virtual bool get() = 0;
     virtual void set(bool b) = 0;
-    virtual QVariant getVariant() override
+    QVariant getVariant() override
     {
         return QVariant(get());
     }
-    virtual void setVariant(QVariant value) override
+    void setVariant(QVariant value) override
     {
         set(value.toBool());
     }
@@ -93,84 +91,84 @@ template <> struct Wrapper<bool> : public ValueWidget
 
 struct CheckBoxWrapper : public Wrapper<bool>
 {
-    virtual void init(QString name, QWidget *parent, QVariant param = QVariant()) override;
-    virtual bool get() override;
-    virtual void set(bool b) override;
+    void init(QString name, QWidget *parent, QVariant param = QVariant()) override;
+    bool get() override;
+    void set(bool b) override;
 };
 
 struct LineEditWrapper : public Wrapper<QString>
 {
-    virtual void init(QWidget *parent, QVariant param = QVariant()) override;
-    virtual QString get() override;
-    virtual void set(QString s) override;
+    void init(QWidget *parent, QVariant param = QVariant()) override;
+    QString get() override;
+    void set(QString s) override;
 };
 
 struct PlainTextEditWrapper : public Wrapper<QString>
 {
-    virtual void init(QWidget *parent, QVariant param = QVariant()) override;
-    virtual QString get() override;
-    virtual void set(QString s) override;
+    void init(QWidget *parent, QVariant param = QVariant()) override;
+    QString get() override;
+    void set(QString s) override;
 };
 
 struct ComboBoxWrapper : public Wrapper<QString>
 {
-    virtual void init(QWidget *parent, QVariant param = QVariant()) override;
-    virtual QString get() override;
-    virtual void set(QString s) override;
+    void init(QWidget *parent, QVariant param = QVariant()) override;
+    QString get() override;
+    void set(QString s) override;
 };
 
 struct PathItemWrapper : public Wrapper<QString>
 {
-    virtual void init(QWidget *parent, QVariant param = QVariant()) override;
-    virtual QString get() override;
-    virtual void set(QString s) override;
+    void init(QWidget *parent, QVariant param = QVariant()) override;
+    QString get() override;
+    void set(QString s) override;
 };
 
 struct ShortcutItemWrapper : public Wrapper<QString>
 {
-    virtual void init(QWidget *parent, QVariant param = QVariant()) override;
-    virtual QString get() override;
-    virtual void set(QString s) override;
+    void init(QWidget *parent, QVariant param = QVariant()) override;
+    QString get() override;
+    void set(QString s) override;
 };
 
 struct CodecBoxWrapper : public ComboBoxWrapper
 {
-    virtual void init(QWidget *parent, QVariant param = QVariant()) override;
+    void init(QWidget *parent, QVariant param = QVariant()) override;
 };
 
 struct SpinBoxWrapper : public Wrapper<int>
 {
-    virtual void init(QWidget *parent, QVariant param = QVariant()) override;
-    virtual int get() override;
-    virtual void set(int i) override;
+    void init(QWidget *parent, QVariant param = QVariant()) override;
+    int get() override;
+    void set(int i) override;
 };
 
 struct ScrollBarWrapper : public Wrapper<int>
 {
-    virtual void init(QWidget *parent, QVariant param = QVariant()) override;
-    virtual int get() override;
-    virtual void set(int i) override;
+    void init(QWidget *parent, QVariant param = QVariant()) override;
+    int get() override;
+    void set(int i) override;
 };
 
 struct SliderWrapper : public Wrapper<int>
 {
-    virtual void init(QWidget *parent, QVariant param = QVariant()) override;
-    virtual int get() override;
-    virtual void set(int i) override;
+    void init(QWidget *parent, QVariant param = QVariant()) override;
+    int get() override;
+    void set(int i) override;
 };
 
 struct FontItemWrapper : public Wrapper<QFont>
 {
-    virtual void init(QWidget *parent, QVariant param = QVariant()) override;
-    virtual QFont get() override;
-    virtual void set(QFont f) override;
+    void init(QWidget *parent, QVariant param = QVariant()) override;
+    QFont get() override;
+    void set(QFont f) override;
 };
 
 struct StringListsItemWrapper : public Wrapper<QVariantList>
 {
-    virtual void init(QWidget *parent, QVariant param = QVariant()) override;
-    virtual QVariantList get() override;
-    virtual void set(QVariantList sl) override;
+    void init(QWidget *parent, QVariant param = QVariant()) override;
+    QVariantList get() override;
+    void set(QVariantList sl) override;
 };
 
 Wrapper<bool> *createBoolWrapper(QString type);

@@ -35,13 +35,14 @@ template <typename T, typename D = T> class Singleton
         return inst;
     }
 
-  private:
-    Singleton() = default;
-    ~Singleton() = default;
     Singleton(const Singleton &) = delete;
     Singleton(Singleton &&) = delete;
     Singleton &operator=(const Singleton &) = delete;
     Singleton &operator=(Singleton &&) = delete;
+
+  private:
+    Singleton() = default;
+    ~Singleton() = default;
 };
 
 } // namespace Util

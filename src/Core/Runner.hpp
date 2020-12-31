@@ -48,7 +48,7 @@ class Runner : public QObject
      * @brief descruct the runner
      * @note the process will be killed if it's still running
      */
-    ~Runner();
+    ~Runner() override;
 
     /**
      * @brief run a program on a given input
