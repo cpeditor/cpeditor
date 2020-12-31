@@ -68,7 +68,6 @@ class MainWindow : public QMainWindow
         QVariantList testCaseSplitterStates;
 
         EditorStatus() = default;
-        ;
 
         explicit EditorStatus(const QMap<QString, QVariant> &status);
 
