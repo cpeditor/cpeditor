@@ -1,65 +1,55 @@
-> Внимание! Данный перевод может быть устаревшим и не соответствовать полноценному переводу актуальной версии документа на английском языке. [Здесь](CONTRIBUTING.md) вы можетет прочитать оригинал этой страницы (на английском).
+## Your first contribution
 
-## Добро пожаловать!
+-   [How to contribute to an open source project on GitHub](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github)
+-   [Build CP Editor from source](https://cpeditor.org/docs/installation/build-from-source/)
+-   [Qt docs](https://doc.qt.io/)
+-   [Discover issues](https://github.com/cpeditor/cpeditor/contribute)
 
-Хотите помочь CP Editor? Потрясающе, не стесняйтесь и читайте следующие разделы, чтобы знать, как работать и где получить помощь. Ваш вклад имеет большое значение. CP Editor становится все лучше и лучше благодаря таким людям, как Вы. :smile:
+## Before writing codes
 
-## Какого рода вклады мы ищем?
+If there isn't an issue opening for what you are going to work on, please open an issue before writing codes for a pull request, for these reasons:
 
-- Если Вам нравится CP Editor, поставте звезду этому проекту и расскажите о нем друзьям.
-- Сообщить об ошибках или предложить новые фитчи можно [открыв вопрос](https://github.com/cpeditor/cpeditor/issues/new/choose). Пожалуйста, следуйте шаблонам отчетов об ошибках и предоставьте подробную информацию. Это поможет разработчикам найти причину ошибки или быстрее ввести новую фитчу.
-- Помогите другим людям в issues/pull requests/[Телеграм группе](https://t.me/cpeditor)/ на других платформах.
-- Пишите туториалы и блоги о том, как использовать CP Editor.
-- Улучшайте документацию, включая Markdown-файлы и комментарии в исходном коде.
-- Создававйте новые функции и решайте существующие проблемы.
+1.  You may get help from others.
+2.  Others can know you are working on it, this will save possible duplicate works.
+3.  You will be notified if this feature is not going to be accepted, or the "bug" is actually not a bug, etc., thus saving your time.
 
-## Ваш первый вклад
+## Contributing rules
 
-**Работаете в своём первом Pull Request?** Вы можете узнать, как это сделать из этой *бесплатной* серии [How to Contribute to an Open Source Project on GitHub](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github) (или в [Как правильно внести свою лепту в Open Source проект: простые подсказки](https://habr.com/ru/post/275219/)). Вкратце, Вы должны сделать форк этого репозитория, отредактировать код на своем форке, открыть pull request, когда Вы закончите, дождаться отзывов и применить предложения от других участников.
+-   Remember that the goal is to build an editor for competitive programmers, not for developers.
+-   Do one thing in a pull request. If you want to add multiple features/fix multiple bugs and they are not relevant, open multiple pull requests. You may need to create multiple branches to open multiple pull requests, you can learn git branching [here](https://learngitbranching.js.org/).
+-   Add new features on the master branch, and fix bugs on the latest active (master, beta and stable) branch which has the bug. See also [the versioning rule](VERSIONING.md).
+-   Please write [clear commit messages](https://chris.beams.io/posts/git-commit/). It's also recommended to write [Conventional Commits](https://www.conventionalcommits.org/). Since we are [squashing and merging pull requests](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/about-pull-request-merges#squash-and-merge-your-pull-request-commits), the commit messages in a pull request is not so important, while the title of the pull request or the message of the only commit in a pull request is more crucial.
+-   Use Clang Format and [`.clang-format`](.clang-format) to format your codes. If the codes without your modifications are changed after formatting, try updating your `clang-format`.
+-   Don't remove features unless it's necessary. Add an option to disable some feature instead.
+-   Keep the settings file backward compatible all the time.
+-   Everyone should obey the [Code of Conduct](CODE_OF_CONDUCT.md) in order to build a harassment-free community.
 
-**Впервые в разработке?** Существует большая разница между промышленным и спортивном программированием, но это не так уж и трудно. Первое, что Вы должны знать - это Объектно-Ориентированное Программирование (ООП). Вам нужно знать, как работают классы в C++, что нужно поместить определения классов в `.h`/`.hpp`, а поставить выполнение функции - в `.cpp` файлы. Хорошим примером может служить исходный код CP Editor. Искать в Google/Яндекс то, что Вы хотите реализовать, тоже полезно. Скопируйте и измените исходные коды, если Вы хотите реализовать что-то похожее на существующие функции. Если Вы ищете IDE для разработки, то [VS Code](https://code.visualstudio.com/) - достойный выбор.
+## Documentation
 
+The documentation are hosted at [cpeditor.github.io](https://github.com/cpeditor/cpeditor.github.io). You can read [its contributing guidelines](https://github.com/cpeditor/cpeditor.github.io/blob/hugo/CONTRIBUTING.md) for more information.
 
-**Впервые в Qt?** Не бойтесь, Qt  - это просто. Сначала вы должны установить Qt >= 5.15 и CMake >= 3.5. Пользователи Linux могут установить их с помощью пакетного менеджера в вашей системе. Пользователи Windows могут скачать Qt [здесь](https://www.qt.io/download), также рекомендовано использовать [Visual Studio](https://visualstudio.microsoft.com/) и скачать плагин CMake. Прочитайте [сборку из исходного кода](https://cpeditor.org/ru/docs/installation/build-from-source/), чтобы узнать, как делать build. Прочтите [документы Qt](https://doc.qt.io/) о том, как использовать встроенные виджеты Qt, как проектировать пользовательский интерфейс и как использовать [сигналы и слоты](https://doc.qt.io/qt-5/signalsandslots.html). Обычно Вам не нужно использовать стандартное пространство имен std. Используйте `QString` вместо `std::string`.
+## Translations
 
-**Не знаете, с чего начать?** Вы можете начать с просмотра списка [issues](https://github.com/cpeditor/cpeditor/issues) и найдите то, что Вас интересует. [Good first issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22), возможно, Вам подойдет. Спрашивайте в [Телеграм группе](https://t.me/cpeditor) или под issues, если у вас есть какие-либо вопросы.
+The translations are in the [translations](translations) directory. It's recommended to use Qt Linguist to edit them. However, if you only want to fix a typo, you can use whatever text editor you like. In Qt Linguist, when a translation is finished, press <kbd>Ctrl + Enter</kbd> to mark it as finished and go to the next unfinished translation. If a text doesn't need translation, for example, "C++", you can leave the translation empty and mark it as finished. You should fix all warnings in Qt Linguist.
 
-## Прежде чем писать код
+If you want to add a new language, you can ask the developers for help. For example, you can open an issue for the language you want (it will be better if you can contribute the translations, after we finish the preparation for you).
 
-Пожалуйста, откройте issue и опишите функцию/ошибку, как обычную задачу. Расскажите о том, какое у Вас решение и как Вы планируете его реализовать. Это нужно делать потому что:
+If you want to go a step further: The translated strings are wrapped in `tr()` in the source codes. When the codes are changed, you can run [updateTranslation.sh](tools/updateTranslation.sh) or [updateTranslation.bat](tools/updateTranslation.bat) to update the translations. You can read [Qt Linguist Manual](https://doc.qt.io/qt-5/qtlinguist-index.html) if you are interested in it.
 
-1. Вы можете получить помощь от других участников и улучшить свое решение.
-2. Другие могут знать, над чем Вы работаете. Это позволит сэкономить возможные дубликаты работ.
-3. Вы будете уведомлены, если эта функция не будет принята, или "ошибка" на самом деле не является ошибкой и т.д., экономя ваше время.
+## The settings system
 
-## Правила внесения вклада
+The basic structure of the settings system is:
 
-- Помните, что цель состоит в том, чтобы создать редактор для спортивных программистов, а не для разработчиков.
-- Сделайте однин pull request для решения одной задачи. Если вы хотите добавить несколько функций/исправить несколько ошибок, но они не являются важными, откройте несколько pull request-ов. Возможно, Вам потребуется создать несколько ветвей, чтобы открыть несколько pull request-ов, Вы можете изучить ветвление git [здесь](https://learngitbranching.js.org/).
-- Добавьте новые функции в ветвь master и исправьте ошибку в последней активной ветви (master, beta и stable), в которой есть эта ошибка.  
-- Пожалуйста, напишите [сообщения к правке](https://chris.beams.io/posts/git-commit/). Также рекомендуется написать [обычные правки](https://www.conventionalcommits.org/ru). Вы можете использовать [commitizen/cz-cli](https://github.com/commitizen/cz-cli) чтобы написать сообщения к правке. Однако правила необязательны, главное, чтобы и другие, и вы сами в будущем понимали, что было изменено и почему эти изменения сделаны.
-- Используйте Clang Format 9 (введите `clang-format --version` чтобы проверить свою версию, Вам может потребоваться указать путь к исполняемому файлу clang-format для вашей IDE (например, версия clang-format по умолчанию в коде VS может быть clang-format-6) и к файлу `.clang-format` в корневом каталоге, чтобы форматировать код.
-- Не удаляйте функции, если в этом нет необходимости. Вместо этого добавьте опцию отключения какой-либо функции.
-- Все время поддерживайте обратную совместимость файла настроек.
-- Стоит поддерживать программу под Windows, Linux и Mac OS.
-- Следует поддерживать как светлые, так и темные системные темы.
- - Все должны подчиняться правилам [Code of Conduct](CODE_OF_CONDUCT.md) для того чтобы построить сообщество, свободное от притеснений.
+1.  The information of the settings are stored in [settings.json](src/Settings/settings.json).
+2.  `settings.json` is translated to `SettingsHelper.hpp` and `SettingsInfo.cpp` by [genSettings.py](src/Settings/genSettings.py).
+3.  Settings are displayed in [PreferencesWindow](src/Settings/PreferencesWindow.hpp) and separated into several [PreferencesPage](src/Settings/PreferencesPage.hpp)s. Most of the settings are displayed in [PreferencesPageTemplate](src/Settings/PreferencesPageTemplate.hpp) which uses `SettingsInfo` to generate the page.
+4.  In other parts of CP Editor, you can get the settings via the functions in `SettingsHelper.hpp` or use [SettingsManager](src/Settings/SettingsManager.hpp) to manage the settings. The purpose of `SettingsHelper.hpp` is to enable auto-complete during development and reduce the chance of misspelling the name of a setting. `SettingsManager` is usually used in cases where the name of the setting is a viarable, for example: `SettingsManager::get(QString("%1/Compile Command").arg(language)).toString()`.
 
-## FAQ
+To learn how to add/modify settings, you can refer to other settings or read the [documentation](src/Settings/README.md). Basically, you need to modify [settings.json](src/Settings/settings.json) and the part starts with `AddPageHelper(this)` in [PreferencesWindow.cpp](src/Settings/PreferencesWindow.cpp).
 
-- Могу ли я сделать все корректно, если я новичок?
-  - Все когда-то были новичками. Не волнуйтесь, наши крутые участники помогут вам, когда вы столкнетесь с трудностями. Если Вы :heart: open source и будете стараться, у Вас все получится.
-- Нужно ли мне знать CMake?
-  - Нет, нужно только знать, как делается [сборка из исходного кода](https://cpeditor.org/ru/docs/installation/build-from-source/).
-- Как добавить настройку?
-  - Вы должны добавить пользовательский интерфейс в `ui/preferencewindow.ui`, добавить set/get функции в `include/Settings/SettingsManager.hpp` и `src/Settings/SettingsManager.cpp`, добавить код в `applySettingsToui`, `extractSettingsFromui` и `isUnsavedChanges` в `src/preferencewindow.cpp`. Копипастинг очень полезен.
-- Некоторые файлы отсутствуют при компиляции.
-  - Если тесты CI пройдены, то из-за того, что обновляются подмодули. Вы можете выполнить следующие команды:
+## Tips
 
-    ```sh
-    git add .
-    git reset --hard
-    git submodule update --init
-    ```
-
-    Вы также можете попробовать `git rm` все подмодули, а затем установить их снова. Можно даже удалить репозиторий на вашем диске и клонировать его снова.
+-   Reuse codes when possible, even if the implementation is short and easy.
+-   Use [DefaultFileManager](src/Settings/DefaultPathManager.hpp) when asking the user to choose a path. (With a few exceptions, including choosing a path in the preferences window, where the path is already saved in the settings.)
+-   Check the stderr when testing. The stderr contains warnings from Qt and `qDebug()` in the codes, which is a quick way to catch common mistakes.
+-   Use `git submodule update --init --recursive` to update submodules.
