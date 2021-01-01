@@ -63,17 +63,6 @@ Open a discussion if:
 -   You are not sure what the exact feature you want is.
 -   You are not sure whether the problem you are facing is a bug of CP Editor or a fault on the user side.
 
-## Hall of Fame
-
-[![](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/images/0)](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/links/0)
-[![](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/images/1)](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/links/1)
-[![](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/images/2)](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/links/2)
-[![](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/images/3)](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/links/3)
-[![](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/images/4)](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/links/4)
-[![](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/images/5)](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/links/5)
-[![](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/images/6)](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/links/6)
-[![](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/images/7)](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/links/7)
-
 ## All Contributors
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
