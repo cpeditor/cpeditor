@@ -7,7 +7,7 @@
 
 ## Before writing codes
 
-If there isn't an issue opening for what you are going to work on, please open an issue before writing codes for a pull request, for these reasons:
+If there isn't an open issue for what you are going to work on, please open an issue before writing codes for a pull request, for these reasons:
 
 1.  You may get help from others.
 2.  Others can know you are working on it, this will save possible duplicate works.
@@ -20,13 +20,13 @@ If there isn't an issue opening for what you are going to work on, please open a
 -   Add new features on the master branch, and fix bugs on the latest active (master, beta and stable) branch which has the bug. See also [the versioning rule](VERSIONING.md).
 -   Please write [clear commit messages](https://chris.beams.io/posts/git-commit/). It's also recommended to write [Conventional Commits](https://www.conventionalcommits.org/). Since we are [squashing and merging pull requests](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/about-pull-request-merges#squash-and-merge-your-pull-request-commits), the commit messages in a pull request is not so important, while the title of the pull request or the message of the only commit in a pull request is more crucial.
 -   Use Clang Format and [`.clang-format`](.clang-format) to format your codes. If the codes without your modifications are changed after formatting, try updating your `clang-format`.
--   Don't remove features unless it's necessary. Add an option to disable some feature instead.
+-   Don't remove features unless it's necessary. Add an option to disable them instead.
 -   Keep the settings file backward compatible all the time.
 -   Everyone should obey the [Code of Conduct](CODE_OF_CONDUCT.md) in order to build a harassment-free community.
 
 ## Documentation
 
-The documentation are hosted at [cpeditor.github.io](https://github.com/cpeditor/cpeditor.github.io). You can read [its contributing guidelines](https://github.com/cpeditor/cpeditor.github.io/blob/hugo/CONTRIBUTING.md) for more information.
+The documentation is hosted at [cpeditor.github.io](https://github.com/cpeditor/cpeditor.github.io). You can read [its contributing guidelines](https://github.com/cpeditor/cpeditor.github.io/blob/hugo/CONTRIBUTING.md) for more information.
 
 ## Translations
 
