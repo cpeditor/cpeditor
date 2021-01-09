@@ -33,7 +33,7 @@ class LanguageServer : public QObject
 
   public:
     explicit LanguageServer(QString const &lang);
-    ~LanguageServer();
+    ~LanguageServer() override;
 
     void openDocument(QString const &path, QCodeEditor *editor, MessageLogger *log);
     void closeDocument();

@@ -14,13 +14,8 @@ It makes your competitive coding life easier :grin: by automating many things fo
 
 [![Open Collective](https://opencollective.com/cpeditor/tiers/support-us.svg?avatarHeight=60)](https://opencollective.com/cpeditor#section-contribute)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-49-orange.svg)](#all-contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-50-orange.svg)](#all-contributors)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ce0f297f31f74485b0d340949d08d605)](https://www.codacy.com/gh/cpeditor/cpeditor)
-[![GitHub All Releases](https://img.shields.io/github/downloads/cpeditor/cpeditor/total?label=downloads%40all)](https://github.com/cpeditor/cpeditor/releases)
-[![Slack Workspace](https://img.shields.io/badge/join-slack-success)](https://join.slack.com/t/cpeditor/shared_invite/zt-ekfy0zb5-SrOi8SIox8oq61oRonBynw)
-[![Telegram Group](https://img.shields.io/badge/join-telegram%20chat-success)](https://t.me/cpeditor)
-[![Help wanted issues](https://img.shields.io/github/issues/cpeditor/cpeditor/help%20wanted)](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
 
 |  type  |                           branch                           |                                                                                                       build                                                                                                        |                                                                   downloads                                                                    |                                                         AUR                                                         |
 | :----: | :--------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------: |
@@ -30,42 +25,43 @@ It makes your competitive coding life easier :grin: by automating many things fo
 
 ## Get Started
 
-- [Releases](https://github.com/cpeditor/cpeditor/releases)
-- [Installation](https://cpeditor.org/docs/installation/)
-- [Get Started](https://cpeditor.org/docs/setup/)
-- [Preferences](https://cpeditor.org/docs/preferences)
-- [Tips](https://cpeditor.org/docs/tips/)
+-   [Releases](https://github.com/cpeditor/cpeditor/releases)
+-   [Installation](https://cpeditor.org/docs/installation/)
+-   [Get Started](https://cpeditor.org/docs/setup/)
+-   [Preferences](https://cpeditor.org/docs/preferences)
+-   [Tips](https://cpeditor.org/docs/tips/)
 
 ## Contributing
 
-- [Open an issue](https://github.com/cpeditor/cpeditor/issues/new/choose)
-- [Contributing Guidelines](CONTRIBUTING.md)
-- [Good first issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
-- [Help wanted issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
-- [Contribute on Open Collective](https://opencollective.com/cpeditor#section-contribute)
+-   [Open an issue](https://github.com/cpeditor/cpeditor/issues/new/choose)
+-   [Contributing Guidelines](CONTRIBUTING.md)
+-   [Good first issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
+-   [Help wanted issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
+-   [Support us financially](DONATE.md)
 
 ## Get help
 
-1. Try searching the [documentation](https://cpeditor.org/docs) first. Also go through the menus and preferences to see if there are what you are looking for.
-2. Ask Google first if it's not very editor-related. (e.g. How to install Clang Format? What does this compilation error mean?)
-3. Search in the [Issues](https://github.com/cpeditor/cpeditor/issues) and make sure your bug report/feature request is not duplicated.
-4. Please follow the issue template and provide detailed information, it will help us to give you better feedback.
-5. If it's a feature request or bug report rather than a question, please open an issue instead of asking on Telegram or Slack so that it can be tracked easier.
+-   Read the [Documentation](https://cpeditor.org/docs) first.
+-   Read the [changelog](https://github.com/cpeditor/cpeditor/blob/master/CHANGELOG.md) to see if a feature is added / a bug is fixed.
+-   Feel free to ask any questions in [Discussions](https://github.com/cpeditor/cpeditor/discussions). Make sure to upvote the answer and mark the thread as resolved if it helped you.
 
-- [Open an issue](https://github.com/cpeditor/cpeditor/issues/new/choose)
-- [Ask on Telegram](https://t.me/cpeditor)
-- [Ask on Slack](https://join.slack.com/t/cpeditor/shared_invite/zt-ekfy0zb5-SrOi8SIox8oq61oRonBynw)
+## Issues or Discussions?
 
-## Hall of Fame
+If you are not sure to open an [issue](https://github.com/cpeditor/cpeditor/issues) or a [discussion](https://github.com/cpeditor/cpeditor/discussions), **open a [discussion](https://github.com/cpeditor/cpeditor/discussions)**.
 
-[![](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/images/0)](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/links/0)
-[![](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/images/1)](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/links/1)
-[![](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/images/2)](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/links/2)
-[![](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/images/3)](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/links/3)
-[![](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/images/4)](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/links/4)
-[![](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/images/5)](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/links/5)
-[![](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/images/6)](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/links/6)
-[![](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/images/7)](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/links/7)
+The general rule is: an issue is what can be closed/resolved by a pull request.
+
+More specifically, open an issue if:
+
+-   You are sure what feature you are requesting for.
+-   You are sure the problem you are facing is a bug of CP Editor, not a fault on the user side.
+
+Open a discussion if:
+
+-   You want to ask a question.
+-   You want to discuss with others.
+-   You are not sure what the exact feature you want is.
+-   You are not sure whether the problem you are facing is a bug of CP Editor or a fault on the user side.
 
 ## All Contributors
 
@@ -238,6 +234,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center">
       <a href="https://github.com/jaysampartak"><img src="https://avatars2.githubusercontent.com/u/40232849?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/jaysampartak"><sub><b>jaysampartak</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3Ajaysampartak" title="Bug reports">🐛</a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/andreaemonti"><img src="https://avatars3.githubusercontent.com/u/20700531?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/andreaemonti"><sub><b>Andrea E. Monti</b></sub></a><br /><a href="#ideas-andreaemonti" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
   </tr>
 </table>

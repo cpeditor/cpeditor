@@ -49,7 +49,7 @@ class UpdateChecker : public QObject
     explicit UpdateChecker();
     void checkUpdate(bool silent);
     void closeAll();
-    ~UpdateChecker();
+    ~UpdateChecker() override;
 
   private slots:
     void cancelCheckUpdate();

@@ -29,6 +29,7 @@ To compensate for the loss of Control key in Vim Emulation, we provide custom co
 ### Improved
 
 -   Now unfinished checks will be cancelled at the new execution. (#635)
+-   Now the "Compile" and "Compile and Run" buttons are hidden for Python. (#710)
 
 ## v6.7
 

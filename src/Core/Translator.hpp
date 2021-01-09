@@ -29,7 +29,9 @@ class Translator : public QObject
     Q_OBJECT
 
   public:
-    static void setLocale(const QString &language);
+    static void setLocale();
+
+    static QString langSuffix();
 
   private:
     static QTranslator *translator;

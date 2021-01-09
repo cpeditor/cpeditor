@@ -637,16 +637,7 @@ void MainWindow::applySettings(const QString &pagePath)
     if (pageChanged("Appearance/General"))
     {
         testcases->updateHeights();
-        if (SettingsHelper::isShowCompileAndRunOnly())
-        {
-            ui->compile->hide();
-            ui->runOnly->hide();
-        }
-        else
-        {
-            ui->compile->show();
-            ui->runOnly->show();
-        }
+        updateCompileAndRunButtons();
     }
 
     if (pageChanged("Appearance/Font"))
@@ -762,6 +753,7 @@ void MainWindow::setLanguage(const QString &lang)
     Util::applySettingsToEditor(editor, language);
     customCompileCommand.clear();
     ui->changeLanguageButton->setText(language);
+    updateCompileAndRunButtons();
     isLanguageSet = true;
     emit editorLanguageChanged(this);
 }
@@ -1311,6 +1303,31 @@ int MainWindow::timeLimit() const
     if (customTimeLimit == -1)
         return SettingsHelper::getDefaultTimeLimit();
     return customTimeLimit;
+}
+
+void MainWindow::updateCompileAndRunButtons() const
+{
+    if (language == "Python")
+    {
+        ui->runOnly->show();
+        ui->compile->hide();
+        ui->run->hide();
+    }
+    else
+    {
+        if (SettingsHelper::isShowCompileAndRunOnly())
+        {
+            ui->run->show();
+            ui->runOnly->hide();
+            ui->compile->hide();
+        }
+        else
+        {
+            ui->run->show();
+            ui->runOnly->show();
+            ui->compile->show();
+        }
+    }
 }
 
 // -------------------- COMPILER SLOTS ---------------------------

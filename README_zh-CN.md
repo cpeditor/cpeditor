@@ -16,13 +16,8 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
 
 [![Open Collective](https://opencollective.com/cpeditor/tiers/support-us.svg?avatarHeight=60)](https://opencollective.com/cpeditor#section-contribute)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-49-orange.svg)](#all-contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-50-orange.svg)](#all-contributors)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ce0f297f31f74485b0d340949d08d605)](https://www.codacy.com/gh/cpeditor/cpeditor)
-[![GitHub All Releases](https://img.shields.io/github/downloads/cpeditor/cpeditor/total?label=downloads%40all)](https://github.com/cpeditor/cpeditor/releases)
-[![Slack Workspace](https://img.shields.io/badge/join-slack-success)](https://join.slack.com/t/cpeditor/shared_invite/zt-ekfy0zb5-SrOi8SIox8oq61oRonBynw)
-[![QQ Group](https://img.shields.io/badge/join-QQ%20chat-success)](https://jq.qq.com/?_wv=1027&k=50eq8yF)
-[![Help wanted issues](https://img.shields.io/github/issues/cpeditor/cpeditor/help%20wanted)](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
 
 |  类型  |                            分支                            |                                                                                                        构建                                                                                                        |                                                                     下载量                                                                     |                                                         AUR                                                         |
 | :----: | :--------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------: |
@@ -32,50 +27,47 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
 
 ## 开始使用
 
-- [发行版](https://github.com/cpeditor/cpeditor/releases) ([Gitee 镜像](https://gitee.com/ouuan/cpeditor/releases))
-- [安装](https://cpeditor.org/zh/docs/installation/)
-- [开始使用](https://cpeditor.org/zh/docs/setup/)
-- [设置](https://cpeditor.org/zh/docs/preferences)
-- [使用提示](https://cpeditor.org/zh/docs/tips/)
+-   [发行版](https://github.com/cpeditor/cpeditor/releases) ([Gitee 镜像](https://gitee.com/ouuan/cpeditor/releases))
+-   [安装](https://cpeditor.org/zh/docs/installation/)
+-   [开始使用](https://cpeditor.org/zh/docs/setup/)
+-   [设置](https://cpeditor.org/zh/docs/preferences)
+-   [使用提示](https://cpeditor.org/zh/docs/tips/)
 
 ## 做出贡献
 
-- [提 issue](https://github.com/cpeditor/cpeditor/issues/new/choose)
-- [贡献指南](CONTRIBUTING_zh-CN.md)
-- [适合新手解决的 issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
-- [需要帮助的 issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
-- [在 Open Collective 捐赠](https://opencollective.com/cpeditor#section-contribute)
+-   [提 issue](https://github.com/cpeditor/cpeditor/issues/new/choose)
+-   [贡献指南](CONTRIBUTING_zh-CN.md)
+-   [适合新手解决的 issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
+-   [需要帮助的 issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
+-   [在经济上支持我们](DONATE_zh-CN.md)
 
 ## 获取帮助
 
-1. 请首先尝试在 [文档](https://cpeditor.org/zh/docs) 中进行搜索，并看看主菜单和设置中有没有能帮到你的。
-2. 如果你要问的问题和 CP Editor 本身不太相关，请尝试通过百度来解决问题（例如：如何安装 Clang Format？这个编译错误是什么意思？）。
-3. 在 [Issues](https://github.com/cpeditor/cpeditor/issues) 中搜索，确保你是第一个发现这个问题/提出这个请求的。
-4. 在提 issue 时，请务必遵守模板，提供详细的信息，这有助于更快地获得更加令您满意的答复。
-5. 如果您要报告 bug / 请求新特性，而非询问如何使用，请提 issue 而非在 QQ 群中或 Slack 上提问。
+-   首先，阅读[文档](https://cpeditor.org/docs).
+-   阅读[更新日志](https://github.com/cpeditor/cpeditor/blob/master/CHANGELOG.md)来获知是否添加了某一功能 / 修复了某一 bug。
+-   你可以在 [Discussions](https://github.com/cpeditor/cpeditor/discussions) 中问任何问题（请使用英文）。当你的问题得到了解决，请 upvote 令你满意的回答并将这个 discussion 标记为 resovled。
 
-- [提 issue](https://github.com/cpeditor/cpeditor/issues/new/choose)
-- [在 QQ 群中提问](https://jq.qq.com/?_wv=1027&k=50eq8yF) (1081647997)
-- [在 Slack 上提问](https://join.slack.com/t/cpeditor/shared_invite/zt-ekfy0zb5-SrOi8SIox8oq61oRonBynw)
+## Issues 还是 Discussions?
 
-## 关于中文
+如果你不清楚应该开一个 [issue](https://github.com/cpeditor/cpeditor/issues) 还是 [discussion](https://github.com/cpeditor/cpeditor/discussions)，**开一个 [discussion](https://github.com/cpeditor/cpeditor/discussions)**。
 
-这是一个面向全世界的项目，在 Issues / Pull Requests 中请尽量使用英文。如果对自己的英语没有信心 / 觉得中文更加方便的话，可以在使用中文的同时附上一份 Google/百度翻译。尽量不要机翻，如果是纯机翻请附上原文，防止翻译错误导致理解出现偏差。提交信息（commit messages）的标题必须使用英文，内容则同 Issues / Pull Requests。
+基本规则是：一个 issue 能够被一个 pull request 关闭/解决。
+
+更具体地，开一个 issue，如果：
+
+-   你清楚地知道你想要什么功能。
+-   你确认你遇到的问题是 CP Editor 的 bug，而不是用户的问题。
+
+开一个 discussion，如果：
+
+-   你想要提一个问题。
+-   你想要与其他人进行讨论。
+-   你不确定你的想要的功能具体是什么。
+-   你不确定你遇到的问题是 CP Editor 的 bug 还是用户的问题。
 
 ## 关于 Gitee
 
 本项目同时在 [GitHub](https://github.com/cpeditor/cpeditor) 和 [Gitee](https://gitee.com/ouuan/cpeditor) 上进行托管，其中 Gitee 仓库仅作为镜像使用，不保证总是与 GitHub 仓库同步，不开放 Issues / Pull Requests，如有需要请移步 [GitHub](https://github.com/cpeditor/cpeditor)，也可以进入 [QQ 群](https://jq.qq.com/?_wv=1027&k=50eq8yF) (1081647997) 来交流讨论。
-
-## Hall of Fame
-
-[![](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/images/0)](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/links/0)
-[![](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/images/1)](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/links/1)
-[![](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/images/2)](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/links/2)
-[![](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/images/3)](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/links/3)
-[![](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/images/4)](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/links/4)
-[![](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/images/5)](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/links/5)
-[![](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/images/6)](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/links/6)
-[![](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/images/7)](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/links/7)
 
 ## All Contributors
 
@@ -248,6 +240,9 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
   <tr>
     <td align="center">
       <a href="https://github.com/jaysampartak"><img src="https://avatars2.githubusercontent.com/u/40232849?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/jaysampartak"><sub><b>jaysampartak</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3Ajaysampartak" title="Bug reports">🐛</a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/andreaemonti"><img src="https://avatars3.githubusercontent.com/u/20700531?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/andreaemonti"><sub><b>Andrea E. Monti</b></sub></a><br /><a href="#ideas-andreaemonti" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
   </tr>
 </table>

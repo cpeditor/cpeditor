@@ -83,7 +83,7 @@ class Checker : public QObject
      * @brief destruct a checker
      * @note Tt kills the running compiler and checker, removes the temporary directory.
      */
-    ~Checker();
+    ~Checker() override;
 
     /**
      * @brief prepare for checking
