@@ -36,7 +36,7 @@ If you want to add a new language, you can ask the developers for help. For exam
 
 If you want to go a step further: The translated strings are wrapped in `tr()` in the source codes. When the codes are changed, you can run [updateTranslation.sh](tools/updateTranslation.sh) or [updateTranslation.bat](tools/updateTranslation.bat) to update the translations. You can read [Qt Linguist Manual](https://doc.qt.io/qt-5/qtlinguist-index.html) if you are interested in it.
 
-## The Settings system
+## The settings system
 
 The basic structure of the settings system is:
 
