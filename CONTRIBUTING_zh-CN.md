@@ -19,7 +19,7 @@
 -   一个 PR 只干一件事。如果你需要添加多个 feature / 修复多个 bug，并且它们之间没有什么关联，请开多个 PR。你可能需要开多个分支来提交多个 PR，你可以在 [这里](https://learngitbranching.js.org/) 学习如何在不同的分支上工作。
 -   请在 master 分支上添加特性，在最早的含有该 bug 的活动分支（master, beta 和 stable）上修复 bug。参阅[版本规则](VERSIONING.md)。
 -   请撰写 [清晰的 commit messages](https://chris.beams.io/posts/git-commit/)。推荐遵循 [Conventional Commits](https://www.conventionalcommits.org/zh-hans) 规范。因为我们使用 [Squash and merge](https://docs.github.com/cn/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/about-pull-request-merges#压缩与合并拉取请求提交)，一个 PR 中的 commit messages 没有那么重要，而 PR 的标题，或者是仅有一个 commit 的 PR 的 commit message 则比较重要。
--   请使用 Clang Format 以及 [`.clang-format`](.clang-format) 格式化代码。如果未经修改的仓库中代码在格式化后发生了改动，请尝试更新你的 Clang Format 版本。
+-   请使用 Clang Format 以及 [`.clang-format`](.clang-format) 格式化代码。如果在格式化过程中发生了错误，请尝试将你的 `clang-format` 更新到[最新版本](https://releases.llvm.org/download.html)。
 -   尽量不要移除已有的 feature，而应增加一个启用/禁用的选项。
 -   永远保证设置文件的向下兼容性。
 -   请遵守[行为准则](CODE_OF_CONDUCT.md)。
