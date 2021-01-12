@@ -369,11 +369,11 @@ void CodeEditor::wheelEvent(QWheelEvent *e)
 
 void CodeEditor::updateBottomMargin()
 {
-    auto* doc = document();
+    auto *doc = document();
     if (doc->blockCount() > 1)
     {
         // calling QTextFrame::setFrameFormat with an empty document makes the application crash
-        auto* rf = doc->rootFrame();
+        auto *rf = doc->rootFrame();
         auto format = rf->frameFormat();
         int documentMargin = doc->documentMargin();
         int bottomMargin = SettingsHelper::isExtraBottomMargin()
@@ -400,7 +400,7 @@ void CodeEditor::highlightOccurrences()
                 .match(text)
                 .captured() == text)
         {
-            auto* doc = document();
+            auto *doc = document();
             cursor = doc->find(text, 0, QTextDocument::FindWholeWords | QTextDocument::FindCaseSensitively);
             while (!cursor.isNull())
             {
