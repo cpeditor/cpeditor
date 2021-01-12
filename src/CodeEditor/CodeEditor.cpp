@@ -116,7 +116,7 @@ void CodeEditor::applySettings(const QString &lang)
 
     auto list = SettingsManager::get(language + "/Parentheses").toList();
 
-    for (auto var : list)
+    for (auto const &var : list)
     {
         auto li = var.toList();
         if (li.length() != 5)
@@ -193,7 +193,7 @@ void CodeEditor::sidebarPaintEvent(QPaintEvent *event)
     auto block = firstVisibleBlock();
     auto blockNumber = block.blockNumber();
     int top = blockBoundingGeometry(block).translated(contentOffset()).top();
-    int bottom = top + blockBoundingRect(block).height();
+    int bottom = top + static_cast<int>(blockBoundingRect(block).height());
     const int currentBlockNumber = textCursor().blockNumber();
 
     const auto foldingMarkerSize = fontMetrics().lineSpacing();
@@ -237,7 +237,7 @@ void CodeEditor::sidebarPaintEvent(QPaintEvent *event)
 
         block = block.next();
         top = bottom;
-        bottom = top + blockBoundingRect(block).height();
+        bottom = top + static_cast<int>(blockBoundingRect(block).height());
         ++blockNumber;
     }
 }
@@ -264,14 +264,14 @@ QTextBlock CodeEditor::blockAtPosition(int y) const
         return QTextBlock();
 
     int top = blockBoundingGeometry(block).translated(contentOffset()).top();
-    int bottom = top + blockBoundingRect(block).height();
+    int bottom = top + static_cast<int>(blockBoundingRect(block).height());
     do
     {
         if (top <= y && y <= bottom)
             return block;
         block = block.next();
         top = bottom;
-        bottom = top + blockBoundingRect(block).height();
+        bottom = top + static_cast<int>(blockBoundingRect(block).height());
     } while (block.isValid());
     return QTextBlock();
 }
@@ -281,7 +281,7 @@ bool CodeEditor::isFoldable(const QTextBlock &block) const
     return highlighter->startsFoldingRegion(block);
 }
 
-bool CodeEditor::isFolded(const QTextBlock &block) const
+bool CodeEditor::isFolded(const QTextBlock &block)
 {
     if (!block.isValid())
         return false;
@@ -369,11 +369,11 @@ void CodeEditor::wheelEvent(QWheelEvent *e)
 
 void CodeEditor::updateBottomMargin()
 {
-    auto doc = document();
+    auto* doc = document();
     if (doc->blockCount() > 1)
     {
         // calling QTextFrame::setFrameFormat with an empty document makes the application crash
-        auto rf = doc->rootFrame();
+        auto* rf = doc->rootFrame();
         auto format = rf->frameFormat();
         int documentMargin = doc->documentMargin();
         int bottomMargin = SettingsHelper::isExtraBottomMargin()
@@ -400,7 +400,7 @@ void CodeEditor::highlightOccurrences()
                 .match(text)
                 .captured() == text)
         {
-            auto doc = document();
+            auto* doc = document();
             cursor = doc->find(text, 0, QTextDocument::FindWholeWords | QTextDocument::FindCaseSensitively);
             while (!cursor.isNull())
             {
@@ -590,7 +590,8 @@ void CodeEditor::toggleBlockComment()
     int endPos = cursor.selectionEnd();
     bool cursorAtEnd = cursor.position() == endPos;
     auto text = cursor.selectedText();
-    int pos1, pos2;
+    int pos1 = 0;
+    int pos2 = 0;
     if (text.indexOf(commentStart) == 0 && text.length() >= commentStart.length() + commentEnd.length() &&
         text.lastIndexOf(commentEnd) + commentEnd.length() == text.length())
     {
@@ -626,7 +627,7 @@ void CodeEditor::highlightParentheses()
 
     for (auto &p : parentheses)
     {
-        int direction;
+        int direction = 0;
 
         QChar counterSymbol;
         QChar activeSymbol;
@@ -763,7 +764,8 @@ void CodeEditor::keyPressEvent(QKeyEvent *e)
             keyPressEvent(&pureEnter);
             return;
         }
-        else if (e->modifiers() == (Qt::ControlModifier | Qt::ShiftModifier))
+
+        if (e->modifiers() == (Qt::ControlModifier | Qt::ShiftModifier))
         {
             if (textCursor().blockNumber() == 0)
             {
@@ -780,7 +782,7 @@ void CodeEditor::keyPressEvent(QKeyEvent *e)
             }
             return;
         }
-        else if (e->modifiers() == Qt::ShiftModifier)
+        if (e->modifiers() == Qt::ShiftModifier)
         {
             keyPressEvent(&pureEnter);
             return;
@@ -873,7 +875,8 @@ void CodeEditor::keyPressEvent(QKeyEvent *e)
             !m_tabReplace.isEmpty())
         {
             auto cursor = textCursor();
-            int realColumn = 0, newIndentLength = 0;
+            int realColumn = 0;
+            int newIndentLength = 0;
             for (int i = 0; i < cursor.columnNumber(); ++i)
             {
                 if (indentationSpaces[i] != '\t')
@@ -1000,7 +1003,7 @@ void CodeEditor::squiggle(SeverityLevel level, QPair<int, int> start, QPair<int,
     if (stop < start)
         return;
 
-    SquiggleInformation info(start, stop, tooltipMessage);
+    SquiggleInformation info(start, stop, std::move(tooltipMessage));
     squiggles.push_back(info);
 
     auto cursor = textCursor();
@@ -1088,7 +1091,8 @@ bool CodeEditor::removeInEachLineOfSelection(const QRegularExpression &regex, bo
     int lineEnd = cursor.blockNumber();
     QString newText;
     QTextStream stream(&newText);
-    int deleteTotal = 0, deleteFirst = 0;
+    int deleteTotal = 0;
+    int deleteFirst = 0;
     for (int i = lineStart; i <= lineEnd; ++i)
     {
         auto line = lines[i];

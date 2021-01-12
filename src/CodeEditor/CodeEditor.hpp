@@ -208,7 +208,7 @@ class CodeEditor : public QPlainTextEdit
 
     bool isFoldable(const QTextBlock &block) const;
 
-    bool isFolded(const QTextBlock &block) const;
+    static bool isFolded(const QTextBlock &block);
 
     void toggleFold(const QTextBlock &block);
 
