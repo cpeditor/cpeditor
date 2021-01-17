@@ -3,7 +3,7 @@ name: "CI: Build Test"
 on: [push, pull_request]
 
 env:
-  QT_VERSION: 5.15.1
+  QT_VERSION: 5.15.2
   CMAKE_VERSION: 3.18.2
   NINJA_VERSION: 1.10.1
   CCACHE_VERSION: 3.7.7

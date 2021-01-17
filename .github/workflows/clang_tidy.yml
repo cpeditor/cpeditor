@@ -3,7 +3,7 @@ name: "Clang-Tidy Check"
 on: [pull_request]
 
 env:
-  QT_VERSION: 5.15.1
+  QT_VERSION: 5.15.2
 
 jobs:
   build:
