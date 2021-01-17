@@ -116,7 +116,7 @@ void SettingsManager::init()
 
 void SettingsManager::deinit()
 {
-    saveSettings(Util::configFilePath(configFileLocations[0]));
+    saveSettings(QString());
 
     delete cur;
     delete def;
@@ -155,9 +155,11 @@ void SettingsManager::loadSettings(const QString &path)
 
 void SettingsManager::saveSettings(const QString &path)
 {
-    LOG_INFO("Start saving settings to " + path);
+    const auto savePath = path.isEmpty() ? Util::configFilePath(configFileLocations[0]) : path;
 
-    QSettings setting(path, QSettings::IniFormat);
+    LOG_INFO("Start saving settings to " + savePath);
+
+    QSettings setting(savePath, QSettings::IniFormat);
     setting.clear(); // Otherwise SettingsManager::remove won't work
     save(setting, "", SettingsInfo::getSettings());
 
@@ -166,7 +168,7 @@ void SettingsManager::saveSettings(const QString &path)
 
     setting.sync();
 
-    LOG_INFO("Settings have been saved to " + path);
+    LOG_INFO("Settings have been saved to " + savePath);
 }
 
 QVariant SettingsManager::get(QString const &key, bool alwaysDefault)
