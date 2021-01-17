@@ -1090,6 +1090,8 @@ void AppWindow::onSettingsApplied(const QString &pagePath)
     {
         DefaultPathManager::fromVariantList(SettingsHelper::getDefaultPathNamesAndPaths());
     }
+
+    SettingsManager::saveSettings(QString());
 }
 
 void AppWindow::onIncomingCompanionRequest(const Extensions::CompanionData &data)
