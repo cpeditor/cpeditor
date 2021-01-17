@@ -45,7 +45,7 @@ jobs:
 
       - name: Restore Qt from cache
         id: cache-qt
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
           path: ../Qt
           key: Qt-${{ matrix.config.os }}-${{ env.QT_VERSION }}
@@ -108,7 +108,7 @@ jobs:
           message("::set-output name=timestamp::${current_date}")
 
       - name: Restore ccache cache files
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
           path: .ccache
           key: ${{ matrix.config.os }}-${{ env.QT_VERSION }}-ccache-${{ steps.ccache_cache_timestamp.outputs.timestamp }}
