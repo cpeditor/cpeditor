@@ -5,6 +5,7 @@
 ; MyRootOut = directory where you ran windeployqt
 ; MyAppVersion = App Version
 ; MyProjectRoot = Source root
+; Arch = x86 or x64
 
 #define MyAppName "CP Editor"
 #define MyAppPublisher "Ashar Khan <coder3101>"
@@ -27,7 +28,7 @@ UsedUserAreasWarning=no
 LicenseFile={#MyProjectRoot}\LICENSE
 PrivilegesRequiredOverridesAllowed=dialog
 OutputDir={#MyProjectRoot}
-OutputBaseFilename=cpeditor-{#MyAppVersion}-x64-setup
+OutputBaseFilename=cpeditor-{#MyAppVersion}-{#Arch}-setup
 SetupIconFile={#MyProjectRoot}\assets\icon.ico
 Compression=lzma
 SolidCompression=yes
@@ -50,7 +51,7 @@ Source: "{#MyOutRoot}\styles\*"; DestDir: "{app}\styles\"; Flags: ignoreversion 
 Source: "{#MyOutRoot}\*.dll"; DestDir: "{app}"; Flags: ignoreversion
 
 ; VC++ redistributable runtime. Extracted by VC2019RedistNeedsInstall(), if needed.
-Source: "{#MyOutRoot}\Redist\vc_redist.x64.exe"; DestDir: {tmp}; Flags: dontcopy
+Source: "{#MyOutRoot}\Redist\vc_redist.{#Arch}.exe"; DestDir: {tmp}; Flags: dontcopy
 
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
@@ -61,7 +62,7 @@ Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\{#MyAppName}"; Fil
 
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
-Filename: "{tmp}\vc_redist.x64.exe"; StatusMsg: "Installing VC2019 redist..."; Parameters: "/quiet /norestart"; Check: VC2019RedistNeedsInstall ; Flags: waituntilterminated
+Filename: "{tmp}\vc_redist.{#Arch}.exe"; StatusMsg: "Installing VC2019 redist..."; Parameters: "/quiet /norestart"; Check: VC2019RedistNeedsInstall ; Flags: waituntilterminated
 
 [Code]
 function VC2019RedistNeedsInstall: Boolean;
@@ -69,7 +70,7 @@ var
   Version: String;
   ExpectedVersion: String;
 begin
-  if (RegQueryStringValue(HKEY_LOCAL_MACHINE, 'SOFTWARE\Microsoft\VisualStudio\14.0\VC\Runtimes\x64', 'Version', Version)) then
+  if (RegQueryStringValue(HKEY_LOCAL_MACHINE, 'SOFTWARE\Microsoft\VisualStudio\14.0\VC\Runtimes\{#Arch}', 'Version', Version)) then
   begin
     ExpectedVersion := 'v{#VC_REDIST_VERSION}.03'
     Log('VC Redist Version check : found ' + Version);
@@ -83,6 +84,6 @@ begin
   end;
   if (Result) then
   begin
-    ExtractTemporaryFile('vc_redist.x64.exe');
+    ExtractTemporaryFile('vc_redist.{#Arch}.exe');
   end;
 end;
