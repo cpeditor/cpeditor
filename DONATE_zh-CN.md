@@ -6,4 +6,4 @@
 
 -   [微信打赏](https://ouuan.github.io/about#donate)：
 
-    ![赞赏码](resources/wechat-donate.png)
+    ![赞赏码](resources/donate/wechat-donate.png)

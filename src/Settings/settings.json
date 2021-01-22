@@ -1223,5 +1223,15 @@
         "default": true,
         "immediatelyApply": true,
         "tip": "Show only monospaced fonts when choosing a font"
+    },
+    {
+        "name": "Total Usage Time",
+        "type": "int",
+        "notr": true
+    },
+    {
+        "name": "Promotion Dialog Shown",
+        "type": "bool",
+        "notr": true
     }
 ]

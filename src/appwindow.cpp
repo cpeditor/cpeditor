@@ -33,6 +33,7 @@
 #include "Telemetry/UpdateChecker.hpp"
 #include "Util/FileUtil.hpp"
 #include "Util/Util.hpp"
+#include "Widgets/SupportUsDialog.hpp"
 #include "generated/SettingsHelper.hpp"
 #include "generated/portable.hpp"
 #include "generated/version.hpp"
@@ -159,12 +160,24 @@ void AppWindow::finishConstruction()
         setWindowOpacity(1);
 #endif
 
-    if (SettingsHelper::isFirstTimeUser())
-    {
-        LOG_INFO("Is first-time user");
-        preferencesWindow->display();
-        SettingsHelper::setFirstTimeUser(false);
-    }
+    // The window needs time to make its geometry stable. We wait it to display the new dialogs in correct positions
+    QTimer::singleShot(200, [this] {
+        if (SettingsHelper::isFirstTimeUser())
+        {
+            LOG_INFO("Is first-time user");
+            preferencesWindow->display();
+            SettingsHelper::setFirstTimeUser(false);
+        }
+        else if (!SettingsHelper::isPromotionDialogShown() &&
+                 SettingsHelper::getTotalUsageTime() >= 10 * 60 * 60) // 10 hours or above
+        {
+            LOG_INFO("Show promotion dialog");
+            auto *dialog = new SupportUsDialog(this);
+            dialog->open();
+            dialog->move(geometry().center().x() - dialog->width() / 2, geometry().center().y() - dialog->height() / 2);
+            SettingsHelper::setPromotionDialogShown(true);
+        }
+    });
 }
 
 AppWindow::~AppWindow()
@@ -578,13 +591,7 @@ int AppWindow::getNewUntitledIndex()
 
 void AppWindow::on_actionSupportUs_triggered() // NOLINT: It can be made static
 {
-    auto *dialog = new QMessageBox(this);
-    dialog->setTextFormat(Qt::MarkdownText);
-    dialog->setAttribute(Qt::WA_DeleteOnClose);
-    dialog->setModal(true);
-    dialog->setWindowTitle(tr("Support us"));
-    dialog->setText(
-        Util::readFile(QString(":/DONATE%1.md").arg(Core::Translator::langSuffix())).replace("resources/", ":/"));
+    auto *dialog = new SupportUsDialog(this);
     dialog->show();
 }
 
