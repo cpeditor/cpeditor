@@ -33,6 +33,7 @@
 #include "Telemetry/UpdateChecker.hpp"
 #include "Util/FileUtil.hpp"
 #include "Util/Util.hpp"
+#include "Widgets/SupportUsDialog.hpp"
 #include "generated/SettingsHelper.hpp"
 #include "generated/portable.hpp"
 #include "generated/version.hpp"
@@ -171,18 +172,7 @@ void AppWindow::finishConstruction()
                  SettingsHelper::getTotalUsageTime() >= 10 * 60 * 60) // 10 hours or above
         {
             LOG_INFO("Show promotion dialog");
-            auto *dialog = new QMessageBox(this);
-            dialog->setWindowTitle(tr("Like CP Editor?"));
-            dialog->setTextFormat(Qt::MarkdownText);
-            dialog->setText(tr(R"(Hey, there! Would you mind:
--   [Give us a star on GitHub](https://github.com/cpeditor/cpeditor/stargazers)
--   [Financially support us](https://github.com/cpeditor/cpeditor/blob/master/DONATE.md)
--   Share CP Editor with your friends
-
-Or, [provide some suggestions](https://github.com/cpeditor/cpeditor/issues/new/choose) to help us do better.)"));
-            dialog->setIconPixmap(windowIcon().pixmap(64, 64));
-            dialog->setModal(true);
-            dialog->setAttribute(Qt::WA_DeleteOnClose);
+            auto *dialog = new SupportUsDialog(this);
             dialog->open();
             dialog->move(geometry().center().x() - dialog->width() / 2, geometry().center().y() - dialog->height() / 2);
             SettingsHelper::setPromotionDialogShown(true);
@@ -601,13 +591,7 @@ int AppWindow::getNewUntitledIndex()
 
 void AppWindow::on_actionSupportUs_triggered() // NOLINT: It can be made static
 {
-    auto *dialog = new QMessageBox(this);
-    dialog->setTextFormat(Qt::MarkdownText);
-    dialog->setAttribute(Qt::WA_DeleteOnClose);
-    dialog->setModal(true);
-    dialog->setWindowTitle(tr("Support us"));
-    dialog->setText(
-        Util::readFile(QString(":/DONATE%1.md").arg(Core::Translator::langSuffix())).replace("resources/", ":/"));
+    auto *dialog = new SupportUsDialog(this);
     dialog->show();
 }
 

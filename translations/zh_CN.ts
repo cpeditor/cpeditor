@@ -471,24 +471,6 @@ git 提交编号: %3
         <source>Support us</source>
         <translation>支持我们</translation>
     </message>
-    <message>
-        <source>Like CP Editor?</source>
-        <translation>喜欢 CP Editor 吗？</translation>
-    </message>
-    <message>
-        <source>Hey, there! Would you mind:
--   [Give us a star on GitHub](https://github.com/cpeditor/cpeditor/stargazers)
--   [Financially support us](https://github.com/cpeditor/cpeditor/blob/master/DONATE.md)
--   Share CP Editor with your friends
-
-Or, [provide some suggestions](https://github.com/cpeditor/cpeditor/issues/new/choose) to help us do better.</source>
-        <translation>嘿！你是否介意：
--   [在 GitHub 上给我们一个 star](https://github.com/cpeditor/cpeditor/stargazers)
--   [在经济上支持我们](https://github.com/cpeditor/cpeditor/blob/master/DONATE_zh-CN.md)
--   与朋友们分享 CP Editor
-
-或者，[提供一些建议](https://github.com/cpeditor/cpeditor/issues/new/choose) 以使我们做得更好。</translation>
-    </message>
 </context>
 <context>
     <name>CodeSnippetsPage</name>
@@ -2640,6 +2622,41 @@ You can learn about it by running `yapf --style-help`.</source>
     <message>
         <source>Move the current row down (Ctrl+Shift+Down)</source>
         <translation>将当前行下移一行（Ctrl+Shift+↓）</translation>
+    </message>
+</context>
+<context>
+    <name>SupportUsDialog</name>
+    <message>
+        <source>Like CP Editor?</source>
+        <translation>喜欢 CP Editor 吗？</translation>
+    </message>
+    <message>
+        <source>Thank you for using CP Editor! To support us, you can:</source>
+        <translation>感谢您使用 CP Editor！你可以用下列方式支持我们：</translation>
+    </message>
+    <message>
+        <source>Give us a star on GitHub</source>
+        <translation>在 GitHub 上给我们一个 star</translation>
+    </message>
+    <message>
+        <source>Share CP Editor with your friends</source>
+        <translation>向你的朋友们分享 CP Editor</translation>
+    </message>
+    <message>
+        <source>Financially support us</source>
+        <translation>在经济上支持我们</translation>
+    </message>
+    <message>
+        <source>Or, [provide some suggestions](https://github.com/cpeditor/cpeditor/issues/new/choose) to help us do better.</source>
+        <translation>或者，[提供一些建议](https://github.com/cpeditor/cpeditor/issues/new/choose)以使我们做得更好。</translation>
+    </message>
+    <message>
+        <source>Donate</source>
+        <translation>捐赠</translation>
+    </message>
+    <message>
+        <source>I&apos;m using @cpeditor_, an IDE specially designed for competitive programmers, which is awesome!</source>
+        <translation>我正在使用 @cpeditor_，一款为算法竞赛量身定制的 IDE，它非常好用！</translation>
     </message>
 </context>
 <context>

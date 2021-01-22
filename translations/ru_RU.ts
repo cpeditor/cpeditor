@@ -471,19 +471,6 @@ Git commit hash: %3
         <source>Support us</source>
         <translation>Поддержи нас</translation>
     </message>
-    <message>
-        <source>Like CP Editor?</source>
-        <translation>Нравится CP Editor?</translation>
-    </message>
-    <message>
-        <source>Hey, there! Would you mind:
--   [Give us a star on GitHub](https://github.com/cpeditor/cpeditor/stargazers)
--   [Financially support us](https://github.com/cpeditor/cpeditor/blob/master/DONATE.md)
--   Share CP Editor with your friends
-
-Or, [provide some suggestions](https://github.com/cpeditor/cpeditor/issues/new/choose) to help us do better.</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>CodeSnippetsPage</name>
@@ -2643,6 +2630,41 @@ You can learn about it by running `yapf --style-help`.</source>
     <message>
         <source>Move the current row down (Ctrl+Shift+Down)</source>
         <translation>Переместите текущий ряд вниз (Ctrl+Shift+Down)</translation>
+    </message>
+</context>
+<context>
+    <name>SupportUsDialog</name>
+    <message>
+        <source>Like CP Editor?</source>
+        <translation type="unfinished">Нравится CP Editor?</translation>
+    </message>
+    <message>
+        <source>Thank you for using CP Editor! To support us, you can:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Give us a star on GitHub</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Share CP Editor with your friends</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Financially support us</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Or, [provide some suggestions](https://github.com/cpeditor/cpeditor/issues/new/choose) to help us do better.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Donate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>I&apos;m using @cpeditor_, an IDE specially designed for competitive programmers, which is awesome!</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
