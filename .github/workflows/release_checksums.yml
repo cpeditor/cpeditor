@@ -26,7 +26,7 @@ jobs:
           fi
 
       - name: Download assets
-        uses: hecrj/download-release-action@ef523a9
+        uses: hecrj/download-release-action@ef523a951deebec6b821266175f7547906d87073
         with:
           output: downloads
 
