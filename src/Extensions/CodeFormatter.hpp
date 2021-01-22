@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com>
+ * Copyright (C) 2019-2021 Ashar Khan <ashar786khan@gmail.com>
  *
  * This file is part of CP Editor.
  *
@@ -90,12 +90,54 @@ class CodeFormatter : public QObject
      */
     QVariant getSetting(const QString &key) const;
 
+  private:
+    QCodeEditor *m_editor;
+    QString m_lang;
+    bool m_selectionOnly;
+    bool m_logOnNoChange;
+    int m_cursorPos, m_cursorLine, m_cursorCol, m_anchorPos, m_anchorLine, m_anchorCol;
+
   protected:
-    QCodeEditor *editor;
-    QString lang;
-    bool selectionOnly;
-    bool logOnNoChange;
-    int cursorPos, cursorLine, cursorCol, anchorPos, anchorLine, anchorCol;
+    QCodeEditor *editor() const
+    {
+        return m_editor;
+    }
+    QString lang() const
+    {
+        return m_lang;
+    }
+    bool selectionOnly() const
+    {
+        return m_selectionOnly;
+    }
+    bool logOnNoChange() const
+    {
+        return m_logOnNoChange;
+    }
+    int cursorPos() const
+    {
+        return m_cursorPos;
+    }
+    int cursorLine() const
+    {
+        return m_cursorLine;
+    }
+    int cursorCol() const
+    {
+        return m_cursorCol;
+    }
+    int anchorPos() const
+    {
+        return m_anchorPos;
+    }
+    int anchorLine() const
+    {
+        return m_anchorLine;
+    }
+    int anchorCol() const
+    {
+        return m_anchorCol;
+    }
 
   private:
     MessageLogger *log = nullptr;

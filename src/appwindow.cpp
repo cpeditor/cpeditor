@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com>
+ * Copyright (C) 2019-2021 Ashar Khan <ashar786khan@gmail.com>
  *
  * This file is part of CP Editor.
  *
@@ -630,7 +630,7 @@ void AppWindow::on_actionAbout_triggered()
            "programming, unlike other editors/IDEs which are mainly for developers. It helps you focus on "
            "your algorithm and automates the compilation, executing and testing. It even fetches test "
            "cases for you from different platforms and submits solutions to Codeforces!</p>"
-           "<p>Copyright (C) 2019-2020 Ashar Khan &lt;ashar786khan@gmail.com&gt;</p>"
+           "<p>Copyright (C) 2019-2021 Ashar Khan &lt;ashar786khan@gmail.com&gt;</p>"
            "<p>This is free software; see the source for copying conditions. There is NO warranty; not "
            "even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. The source code for CP Editor is "
            "available at <a href=\"https://github.com/cpeditor/cpeditor\"> "
@@ -1113,6 +1113,8 @@ void AppWindow::onSettingsApplied(const QString &pagePath)
     {
         DefaultPathManager::fromVariantList(SettingsHelper::getDefaultPathNamesAndPaths());
     }
+
+    SettingsManager::saveSettings(QString());
 }
 
 void AppWindow::onIncomingCompanionRequest(const Extensions::CompanionData &data)

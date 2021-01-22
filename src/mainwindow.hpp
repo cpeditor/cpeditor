@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com>
+ * Copyright (C) 2019-2021 Ashar Khan <ashar786khan@gmail.com>
  *
  * This file is part of CP Editor.
  *
@@ -59,15 +59,15 @@ class MainWindow : public QMainWindow
   public:
     struct EditorStatus
     {
-        bool isLanguageSet;
+        bool isLanguageSet{};
         QString filePath, savedText, problemURL, editorText, language, customCompileCommand;
-        int editorCursor, editorAnchor, horizontalScrollBarValue, verticalScrollbarValue, untitledIndex, checkerIndex,
-            customTimeLimit;
+        int editorCursor{}, editorAnchor{}, horizontalScrollBarValue{}, verticalScrollbarValue{}, untitledIndex{},
+            checkerIndex{}, customTimeLimit{};
         QStringList input, expected, customCheckers;
         QVariantList testcasesIsShow; // This can't be renamed to "isChecked" because that's not compatible
         QVariantList testCaseSplitterStates;
 
-        EditorStatus(){};
+        EditorStatus() = default;
 
         explicit EditorStatus(const QMap<QString, QVariant> &status);
 

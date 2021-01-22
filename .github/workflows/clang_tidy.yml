@@ -3,7 +3,7 @@ name: "Clang-Tidy Check"
 on: [pull_request]
 
 env:
-  QT_VERSION: 5.15.1
+  QT_VERSION: 5.15.2
 
 jobs:
   build:
@@ -22,14 +22,9 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Install Python 3.7
-        uses: actions/setup-python@v1
-        with:
-          python-version: 3.7
-
       - name: Restore Qt from cache
         id: cache-qt
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
           path: ../Qt
           key: Qt-${{ matrix.os }}-${{ env.QT_VERSION }}

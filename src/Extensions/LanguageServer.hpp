@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com>
+ * Copyright (C) 2019-2021 Ashar Khan <ashar786khan@gmail.com>
  *
  * This file is part of CP Editor.
  *
@@ -33,7 +33,7 @@ class LanguageServer : public QObject
 
   public:
     explicit LanguageServer(QString const &lang);
-    ~LanguageServer();
+    ~LanguageServer() override;
 
     void openDocument(QString const &path, QCodeEditor *editor, MessageLogger *log);
     void closeDocument();

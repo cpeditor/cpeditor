@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com>
+ * Copyright (C) 2019-2021 Ashar Khan <ashar786khan@gmail.com>
  *
  * This file is part of CP Editor.
  *
@@ -30,7 +30,7 @@ class SignalHandler : public QObject
 
   public:
     explicit SignalHandler(int mask = DEFAULT_SIGNALS);
-    virtual ~SignalHandler();
+    ~SignalHandler() override;
 
     enum SIGNALS
     {

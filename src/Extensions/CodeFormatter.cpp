@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com>
+ * Copyright (C) 2019-2021 Ashar Khan <ashar786khan@gmail.com>
  *
  * This file is part of CP Editor.
  *
@@ -29,20 +29,21 @@ namespace Extensions
 
 CodeFormatter::CodeFormatter(QCodeEditor *editor, const QString &lang, bool selectionOnly, bool logOnNoChange,
                              MessageLogger *log, QObject *parent)
-    : QObject(parent), editor(editor), lang(lang), selectionOnly(selectionOnly), logOnNoChange(logOnNoChange), log(log)
+    : QObject(parent), m_editor(editor), m_lang(lang), m_selectionOnly(selectionOnly), m_logOnNoChange(logOnNoChange),
+      log(log)
 {
     LOG_INFO(INFO_OF(lang) << INFO_OF(selectionOnly) << INFO_OF(logOnNoChange));
 
     auto cursor = editor->textCursor();
-    cursorPos = cursor.position();
-    cursorLine = cursor.blockNumber();
-    cursorCol = cursor.columnNumber();
-    anchorPos = cursor.anchor();
-    cursor.setPosition(anchorPos);
-    anchorLine = cursor.blockNumber();
-    anchorCol = cursor.columnNumber();
+    m_cursorPos = cursor.position();
+    m_cursorLine = cursor.blockNumber();
+    m_cursorCol = cursor.columnNumber();
+    m_anchorPos = cursor.anchor();
+    cursor.setPosition(m_anchorPos);
+    m_anchorLine = cursor.blockNumber();
+    m_anchorCol = cursor.columnNumber();
 
-    LOG_INFO(INFO_OF(cursorPos) << INFO_OF(cursorLine) << INFO_OF(anchorPos) << INFO_OF(anchorLine));
+    LOG_INFO(INFO_OF(m_cursorPos) << INFO_OF(m_cursorLine) << INFO_OF(m_anchorPos) << INFO_OF(m_anchorLine));
 }
 
 void CodeFormatter::format() const
@@ -59,10 +60,10 @@ void CodeFormatter::format() const
         return;
     }
 
-    auto tmpPath = tmpDir.filePath(Util::fileNameWithSuffix("tmp", lang));
+    auto tmpPath = tmpDir.filePath(Util::fileNameWithSuffix("tmp", m_lang));
     args.append(tmpPath);
 
-    if (!Util::saveFile(tmpPath, editor->toPlainText(), tr("Formatter"), true, log))
+    if (!Util::saveFile(tmpPath, m_editor->toPlainText(), tr("Formatter"), true, log))
         return;
 
     if (!Util::saveFile(tmpDir.filePath(styleFileName()), getSetting("Style").toString(), tr("Formatter"), true, log))
@@ -74,18 +75,18 @@ void CodeFormatter::format() const
 
     auto source = newSource(res);
 
-    if (source == editor->toPlainText())
+    if (source == m_editor->toPlainText())
     {
-        if (logOnNoChange)
+        if (m_logOnNoChange)
             log->info(tr("Formatter"), tr("Formatting completed"));
         return;
     }
 
-    auto cursor = editor->textCursor();
+    auto cursor = m_editor->textCursor();
     cursor.select(QTextCursor::Document);
     cursor.insertText(source);
 
-    editor->setTextCursor(newCursor(res, args));
+    m_editor->setTextCursor(newCursor(res, args));
 
     log->info(tr("Formatter"), tr("Formatting completed"));
 }
@@ -142,7 +143,7 @@ QString CodeFormatter::runProcess(const QStringList &args) const
 
 bool CodeFormatter::formatSelectionOnly() const
 {
-    return selectionOnly && cursorPos != anchorPos;
+    return m_selectionOnly && m_cursorPos != m_anchorPos;
 }
 
 QVariant CodeFormatter::getSetting(const QString &key) const
