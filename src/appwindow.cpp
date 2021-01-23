@@ -597,8 +597,7 @@ void AppWindow::on_actionSupportUs_triggered() // NOLINT: It can be made static
 
 void AppWindow::on_actionManual_triggered() // NOLINT: method can be made static
 {
-    QDesktopServices::openUrl(
-        QUrl(tr("https://cpeditor.org/%1/docs").arg(MINOR_VERSION)).adjusted(QUrl::NormalizePathSegments));
+    QDesktopServices::openUrl(Util::websiteLink("docs"));
 }
 
 void AppWindow::on_actionReportIssues_triggered() // NOLINT: method can be made static

@@ -36,9 +36,9 @@
 #include <QTreeWidget>
 #include <QVBoxLayout>
 
-AddPageHelper &AddPageHelper::page(const QString &key, const QString &trkey, const QStringList &content)
+AddPageHelper &AddPageHelper::page(const QString &key, const QString &trkey, const QStringList &content, bool alignTop)
 {
-    return page(key, trkey, new PreferencesPageTemplate(content));
+    return page(key, trkey, new PreferencesPageTemplate(content, pathFor(key), trPathFor(trkey), alignTop, window));
 }
 
 AddPageHelper &AddPageHelper::page(const QString &key, const QString &trkey, PreferencesPage *newpage)
@@ -54,7 +54,7 @@ AddPageHelper &AddPageHelper::page(const QString &key, const QString &trkey, Pre
     {
         currentItem = new QTreeWidgetItem({trkey});
         tree->addTopLevelItem(currentItem);
-        newpage->setPath(key, trkey);
+        newpage->setPath(pathFor(key), trPathFor(trkey));
         newpage->setTitle(trkey);
         window->addPage(currentItem, newpage, content);
     }
@@ -62,7 +62,7 @@ AddPageHelper &AddPageHelper::page(const QString &key, const QString &trkey, Pre
     {
         auto *item = new QTreeWidgetItem({trkey});
         currentItem->addChild(item);
-        newpage->setPath((currentPath + QStringList(key)).join('/'), (currentTrPath + QStringList(trkey)).join('/'));
+        newpage->setPath(pathFor(key), trPathFor(trkey));
         if (key == "@")
             newpage->setTitle(currentItem->text(0));
         else
@@ -107,6 +107,16 @@ void AddPageHelper::ensureAtTop() const
 bool AddPageHelper::atTop() const
 {
     return currentPath.isEmpty();
+}
+
+QString AddPageHelper::pathFor(const QString &key)
+{
+    return (currentPath + QStringList(key)).join('/');
+}
+
+QString AddPageHelper::trPathFor(const QString &trkey)
+{
+    return (currentTrPath + QStringList(trkey)).join('/');
 }
 
 AddPageHelper::AddPageHelper(PreferencesWindow *w) : window(w), tree(window->menuTree)
@@ -240,19 +250,18 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
         .dir(TRKEY("Extensions"))
             .dir(TRKEY("Code Formatting"))
                 .page(TRKEY("General"), {"Format On Manual Save", "Format On Auto Save"})
-                .page(TRKEY("Clang Format"), new PreferencesPageTemplate({"Clang Format/Program", "Clang Format/Arguments", "Clang Format/Style"}, false))
-                .page(TRKEY("YAPF"), new PreferencesPageTemplate({"YAPF/Program", "YAPF/Arguments", "YAPF/Style"}, false))
+                .page(TRKEY("Clang Format"), {"Clang Format/Program", "Clang Format/Arguments", "Clang Format/Style"}, false)
+                .page(TRKEY("YAPF"), {"YAPF/Program", "YAPF/Arguments", "YAPF/Style"}, false)
             .end()
             .dir(TRKEY("Language Server"))
                 .page("C++ Server", tr("%1 Server").arg(tr("C++")), {"LSP/Use Linting C++", "LSP/Delay C++", "LSP/Path C++", "LSP/Args C++"})
                 .page("Java Server", tr("%1 Server").arg(tr("Java")), {"LSP/Use Linting Java", "LSP/Delay Java", "LSP/Path Java", "LSP/Args Java"})
                 .page("Python Server", tr("%1 Server").arg(tr("Python")), {"LSP/Use Linting Python", "LSP/Delay Python", "LSP/Path Python", "LSP/Args Python"})
             .end()
-            .page(TRKEY("Competitive Companion"), new PreferencesPageTemplate({"Competitive Companion/Enable",
-                "Competitive Companion/Open New Tab", "Competitive Companion/Set Time Limit For Tab",
-                "Competitive Companion/Connection Port",
+            .page(TRKEY("Competitive Companion"), {"Competitive Companion/Enable", "Competitive Companion/Open New Tab",
+                "Competitive Companion/Set Time Limit For Tab", "Competitive Companion/Connection Port",
                 "Competitive Companion/Head Comments", "Competitive Companion/Head Comments Time Format",
-                "Competitive Companion/Head Comments Powered By CP Editor"}, false))
+                "Competitive Companion/Head Comments Powered By CP Editor"}, false)
             .page(TRKEY("CF Tool"), {"CF/Path", "CF/Show Toast Messages"})
         .end()
         .dir(TRKEY("File Path"))

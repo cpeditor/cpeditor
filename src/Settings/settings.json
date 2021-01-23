@@ -571,7 +571,7 @@
     },
     {
         "name": "Competitive Companion/Head Comments",
-        "desc": "Head Comments",
+        "desc": "Content of the head comments",
         "type": "QString",
         "ui": "QPlainTextEdit",
         "default": "Problem: ${json.name}\nContest: ${json.group}\nURL: ${json.url}\nMemory Limit: ${json.memoryLimit} MB\nTime Limit: ${json.timeLimit} ms",
@@ -1087,6 +1087,7 @@
         "desc": "Enable Proxy",
         "type": "bool",
         "default": "true",
+        "docAnchor": "network-proxy",
         "tip": "Enable proxy for checking updates"
     },
     {
@@ -1101,6 +1102,7 @@
                 "name": "Proxy/Enabled"
             }
         ],
+        "docAnchor": "network-proxy",
         "tip": "The type of the proxy. \"System\" for using the system proxy."
     },
     {
@@ -1117,6 +1119,7 @@
                 "check": "return var.toString() != \"System\";"
             }
         ],
+        "docAnchor": "network-proxy",
         "tip": "The host name of the proxy, e.g. 127.0.0.1"
     },
     {
@@ -1134,6 +1137,7 @@
                 "check": "return var.toString() != \"System\";"
             }
         ],
+        "docAnchor": "network-proxy",
         "tip": "The port of the proxy, e.g. 1080"
     },
     {
@@ -1149,6 +1153,7 @@
                 "check": "return var.toString() != \"System\";"
             }
         ],
+        "docAnchor": "network-proxy",
         "tip": "The user of the proxy server. It can be empty if the proxy server doesn't require authentication."
     },
     {
@@ -1164,6 +1169,7 @@
                 "check": "return var.toString() != \"System\";"
             }
         ],
+        "docAnchor": "network-proxy",
         "tip": "The password of the proxy server. It can be empty if the proxy server doesn't require authentication."
     },
     {

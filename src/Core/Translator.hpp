@@ -33,7 +33,11 @@ class Translator : public QObject
 
     static QString langSuffix();
 
+    static QString langCode();
+
   private:
+    static QString langName();
+
     static QTranslator *translator;
 };
 } // namespace Core

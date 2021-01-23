@@ -47,7 +47,7 @@ class AddPageHelper
   public:
     explicit AddPageHelper(PreferencesWindow *w);
 
-    AddPageHelper &page(const QString &key, const QString &trkey, const QStringList &content);
+    AddPageHelper &page(const QString &key, const QString &trkey, const QStringList &content, bool alignTop = true);
     AddPageHelper &page(const QString &key, const QString &trkey, PreferencesPage *newpage);
     AddPageHelper &page(const QString &key, const QString &trkey, PreferencesPage *newpage, const QStringList &content);
 
@@ -59,6 +59,9 @@ class AddPageHelper
 
   private:
     bool atTop() const;
+
+    QString pathFor(const QString &key);
+    QString trPathFor(const QString &trkey);
 
     PreferencesWindow *window;
     QTreeWidget *tree;

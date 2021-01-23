@@ -20,17 +20,31 @@
 #include "Settings/SettingsInfo.hpp"
 #include "Settings/SettingsManager.hpp"
 #include "Settings/ValueWrapper.hpp"
+#include "Util/Util.hpp"
 #include <QCheckBox>
 
-PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, bool alignTop, QWidget *parent)
+PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, const QString &path, const QString &trPath,
+                                                 bool alignTop, QWidget *parent)
     : PreferencesGridPage(alignTop, parent), options(std::move(opts))
 {
+    PreferencesPage::setPath(path, trPath);
+
+    const QString &docsLinkPrefix =
+        Util::websiteLink("docs/preferences/" + Util::sanitizeAnchorName(path.split('/').first()));
+
     for (const QString &name : options)
     {
         auto si = SettingsInfo::findSetting(name);
 
         if (name != si.name)
             LOG_DEV("Unknown option: " << name);
+
+        SettingsManager::setPath(name, path + "/" + SettingsInfo::findSetting(name).untrDesc,
+                                 trPath + "/" + SettingsInfo::findSetting(name).desc);
+
+        const auto docsLinkText = QString(" <a href='%1#%2'>(?)</a>")
+                                      .arg(docsLinkPrefix)
+                                      .arg(si.docAnchor.isEmpty() ? Util::sanitizeAnchorName(si.desc) : si.docAnchor);
 
         ValueWidget *widget = nullptr;
 
@@ -43,7 +57,7 @@ PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, bool alignTop
         else if (si.type == "bool")
         {
             Wrapper<bool> *wrapper = createBoolWrapper(si.ui);
-            wrapper->init(si.desc, this, si.param);
+            wrapper->init(si.desc + docsLinkText, this, si.param);
             widget = wrapper;
         }
         else if (si.type == "int")
@@ -70,7 +84,7 @@ PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, bool alignTop
         }
 
         Q_ASSERT(widget != nullptr);
-        addRow(widget, name, si.tip, si.type == "bool" ? QString() : si.desc);
+        addRow(widget, name, si.tip, si.type == "bool" ? QString() : si.desc + docsLinkText);
         widgets.push_back(widget);
 
         if (si.immediatelyApply)
@@ -79,7 +93,7 @@ PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, bool alignTop
                 widget, &ValueWidget::valueChanged, this,
                 [=] {
                     SettingsManager::set(si.name, widget->getVariant());
-                    emit settingsApplied(path());
+                    emit settingsApplied(PreferencesPage::path());
                 },
                 Qt::DirectConnection); // PreferencesPage::registerWidget uses Qt::QueuedConnection
         }
@@ -122,14 +136,6 @@ QStringList PreferencesPageTemplate::content()
         }
     }
     return ret;
-}
-
-void PreferencesPageTemplate::setPath(const QString &path, const QString &trPath)
-{
-    PreferencesPage::setPath(path, trPath);
-    for (const QString &name : options)
-        SettingsManager::setPath(name, path + "/" + SettingsInfo::findSetting(name).untrDesc,
-                                 trPath + "/" + SettingsInfo::findSetting(name).desc);
 }
 
 bool PreferencesPageTemplate::areSettingsChanged()

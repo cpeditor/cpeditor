@@ -197,6 +197,8 @@ add_executable(cpeditor
     src/Widgets/ContestDialog.hpp
     src/Widgets/DiffViewer.cpp
     src/Widgets/DiffViewer.hpp
+    src/Widgets/RichTextCheckBox.cpp
+    src/Widgets/RichTextCheckBox.hpp
     src/Widgets/SupportUsDialog.cpp
     src/Widgets/SupportUsDialog.hpp
     src/Widgets/TestCase.cpp
