@@ -71,7 +71,7 @@ HoverCheckBox::HoverCheckBox(QWidget *parent) : QCheckBox(parent)
     isHover = false;
 }
 
-void HoverCheckBox::paintEvent(QPaintEvent *)
+void HoverCheckBox::paintEvent(QPaintEvent * /*unused*/)
 {
     QStylePainter p(this);
     QStyleOptionButton opt;
@@ -112,14 +112,14 @@ void HoverCheckBox::clearStates()
     update();
 }
 
-RichTextCheckBox::RichTextCheckBox(QString text, QWidget *parent) : QWidget(parent)
+RichTextCheckBox::RichTextCheckBox(const QString &text, QWidget *parent) : QWidget(parent)
 {
     setMouseTracking(true);
     checkBox = new HoverCheckBox();
     label = new ClickableLabel();
     label->setTextFormat(Qt::RichText);
     label->setText(text);
-    QHBoxLayout *layout = new QHBoxLayout(this);
+    auto *layout = new QHBoxLayout(this);
     layout->setMargin(0);
     layout->addWidget(checkBox);
     layout->addWidget(label);
@@ -175,12 +175,12 @@ void RichTextCheckBox::setChecked(bool value)
     checkBox->setChecked(value);
 }
 
-void RichTextCheckBox::enterEvent(QEvent * /*event*/)
+void RichTextCheckBox::enterEvent(QEvent * /*unused*/)
 {
     checkBox->setHover();
 }
 
-void RichTextCheckBox::leaveEvent(QEvent * /*event*/)
+void RichTextCheckBox::leaveEvent(QEvent * /*unused*/)
 {
     checkBox->clearStates();
 }

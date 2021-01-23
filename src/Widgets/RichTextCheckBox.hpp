@@ -29,9 +29,9 @@ class ClickableLabel : public QLabel
 
   public:
     explicit ClickableLabel(QWidget *parent = nullptr);
-    void mouseReleaseEvent(QMouseEvent *);
-    void mousePressEvent(QMouseEvent *);
-    void mouseMoveEvent(QMouseEvent *);
+    void mouseReleaseEvent(QMouseEvent *event) override;
+    void mousePressEvent(QMouseEvent *event) override;
+    void mouseMoveEvent(QMouseEvent *event) override;
 
   signals:
     void released();
@@ -50,7 +50,7 @@ class HoverCheckBox : public QCheckBox
     explicit HoverCheckBox(QWidget *parent = nullptr);
 
   private:
-    virtual void paintEvent(QPaintEvent *);
+    void paintEvent(QPaintEvent * /*unused*/) override;
     bool isHover;
     bool isPressed;
 
@@ -66,7 +66,7 @@ class RichTextCheckBox : public QWidget
     Q_OBJECT
 
   public:
-    explicit RichTextCheckBox(QString text, QWidget *parent = nullptr);
+    explicit RichTextCheckBox(const QString &text, QWidget *parent = nullptr);
     QCheckBox *getCheckBox();
     QString text() const;
     QString plainText() const;
@@ -77,8 +77,8 @@ class RichTextCheckBox : public QWidget
   private:
     HoverCheckBox *checkBox;
     ClickableLabel *label;
-    virtual void enterEvent(QEvent *);
-    virtual void leaveEvent(QEvent *);
+    void enterEvent(QEvent * /*unused*/) override;
+    void leaveEvent(QEvent * /*unused*/) override;
 
   signals:
     void toggled(bool);
