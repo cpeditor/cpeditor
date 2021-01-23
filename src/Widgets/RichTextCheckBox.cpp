@@ -68,7 +68,6 @@ void ClickableLabel::mouseMoveEvent(QMouseEvent *event)
 
 HoverCheckBox::HoverCheckBox(QWidget *parent) : QCheckBox(parent)
 {
-    isHover = false;
 }
 
 void HoverCheckBox::paintEvent(QPaintEvent * /*unused*/)

@@ -39,7 +39,7 @@ class ClickableLabel : public QLabel
     void left();
 
   private:
-    std::atomic_bool linkClicked;
+    std::atomic_bool linkClicked{false};
 };
 
 class HoverCheckBox : public QCheckBox
@@ -49,16 +49,17 @@ class HoverCheckBox : public QCheckBox
   public:
     explicit HoverCheckBox(QWidget *parent = nullptr);
 
-  private:
-    void paintEvent(QPaintEvent * /*unused*/) override;
-    bool isHover;
-    bool isPressed;
-
   public slots:
     void setHover();
     void setPressed();
     void clearPressed();
     void clearStates();
+
+  private:
+    void paintEvent(QPaintEvent * /*unused*/) override;
+
+    std::atomic_bool isHover{false};
+    std::atomic_bool isPressed{false};
 };
 
 class RichTextCheckBox : public QWidget
@@ -74,12 +75,6 @@ class RichTextCheckBox : public QWidget
     bool isChecked() const;
     void clearStates();
 
-  private:
-    HoverCheckBox *checkBox;
-    ClickableLabel *label;
-    void enterEvent(QEvent * /*unused*/) override;
-    void leaveEvent(QEvent * /*unused*/) override;
-
   signals:
     void toggled(bool);
     void clicked();
@@ -87,6 +82,13 @@ class RichTextCheckBox : public QWidget
   public slots:
     void setChecked(bool);
     void setCheckState(Qt::CheckState state);
+
+  private:
+    void enterEvent(QEvent * /*unused*/) override;
+    void leaveEvent(QEvent * /*unused*/) override;
+
+    HoverCheckBox *checkBox = nullptr;
+    ClickableLabel *label = nullptr;
 };
 
 #endif // RICHTEXTCHECKBOX_HPP
