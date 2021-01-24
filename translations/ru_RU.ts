@@ -460,10 +460,6 @@ Git commit hash: %3
         <translation>Установить лими времени</translation>
     </message>
     <message>
-        <source>https://cpeditor.org/%1/docs</source>
-        <translation>https://cpeditor.org/%1/ru/docs</translation>
-    </message>
-    <message>
         <source>Full Screen</source>
         <translation>Полный экран</translation>
     </message>
@@ -1305,10 +1301,6 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <source>You can read the &lt;a href=&quot;%1&quot;&gt;documentation&lt;/a&gt; or go through the settings for more information.</source>
         <translation>Вы можете почитать &lt;a href=&quot;%1&quot;&gt;документация&lt;/a&gt; или просмотреть настройки для более подробной информации.</translation>
-    </message>
-    <message>
-        <source>https://cpeditor.org/%1/docs</source>
-        <translation>https://cpeditor.org/%1/ru/docs</translation>
     </message>
     <message>
         <source>Appearance Settings</source>
@@ -2446,10 +2438,6 @@ Consult your terminal emulator for the suitable arguments.</source>
 Уточните аргументы, доступные для вашего эмулятора терминала.</translation>
     </message>
     <message>
-        <source>Head Comments</source>
-        <translation>Комментарии в шапке</translation>
-    </message>
-    <message>
         <source>Save Test Case To A File</source>
         <translation>Сохранить тесткейс в файл</translation>
     </message>
@@ -2580,6 +2568,40 @@ You can learn about it by running `yapf --style-help`.</source>
     <message>
         <source>Format the code when auto-saving it.</source>
         <translation>Форматировать код, когда он автоматически сохраняется.</translation>
+    </message>
+    <message>
+        <source>Content of the head comments</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>network-proxy</source>
+        <comment>the anchor of Enable Proxy on the corresponding page of https://cpeditor.org/docs/preferences</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>network-proxy</source>
+        <comment>the anchor of Type on the corresponding page of https://cpeditor.org/docs/preferences</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>network-proxy</source>
+        <comment>the anchor of Host Name on the corresponding page of https://cpeditor.org/docs/preferences</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>network-proxy</source>
+        <comment>the anchor of Port on the corresponding page of https://cpeditor.org/docs/preferences</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>network-proxy</source>
+        <comment>the anchor of User on the corresponding page of https://cpeditor.org/docs/preferences</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>network-proxy</source>
+        <comment>the anchor of Password on the corresponding page of https://cpeditor.org/docs/preferences</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

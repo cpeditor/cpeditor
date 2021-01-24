@@ -27,6 +27,8 @@ const static QMap<QString, QString> locales = {{"简体中文", "zh_CN"}, {"Ру
 
 const static QMap<QString, QString> suffixes = {{"zh_CN", "_zh-CN"}, {"ru_RU", "_ru-RU"}};
 
+const static QMap<QString, QString> code = {{"zh_CN", "zh"}, {"ru_RU", "ru"}};
+
 QTranslator *Translator::translator = nullptr;
 
 void Translator::setLocale()
@@ -62,10 +64,20 @@ void Translator::setLocale()
 
 QString Translator::langSuffix()
 {
+    return suffixes[langName()];
+}
+
+QString Translator::langCode()
+{
+    return code[langName()];
+}
+
+QString Translator::langName()
+{
     const auto language = SettingsHelper::getLocale();
 
     if (language == "system")
-        return suffixes[QLocale::system().name()];
-    return suffixes[locales[language]];
+        return QLocale::system().name();
+    return locales[language];
 }
 } // namespace Core

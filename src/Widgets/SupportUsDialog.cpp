@@ -25,7 +25,7 @@
 #include <QTextBrowser>
 #include <QVBoxLayout>
 
-SupportUsDialog::SupportUsDialog(QWidget *parent)
+SupportUsDialog::SupportUsDialog(QWidget *parent) : QDialog(parent)
 {
     setModal(true);
     setAttribute(Qt::WA_DeleteOnClose);

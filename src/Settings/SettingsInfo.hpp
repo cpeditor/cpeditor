@@ -32,7 +32,14 @@ class SettingsInfo
     class SettingInfo
     {
       public:
-        QString name, desc, untrDesc, type, ui, tip, untrTip;
+        QString name;             // key
+        QString desc;             // translated description
+        QString untrDesc;         // untranslated description
+        QString type;             // int, bool, QString, etc.
+        QString ui;               // type of the widget
+        QString tip;              // translated tooltips
+        QString untrTip;          // untranslated tooltips
+        QString docAnchor;        // the anchor of the documentation
         bool requireAllDepends{}; // false for one of the depends, true for all depends
         bool immediatelyApply{};
         std::function<void(SettingInfo *, ValueWidget *, QWidget *)> onApply;

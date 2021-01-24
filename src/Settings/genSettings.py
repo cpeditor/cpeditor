@@ -53,6 +53,11 @@ def writeInfo(f, obj, lst):
         ui = t.get("ui", "")
         tip = t.get("tip", "")
         trtip = t.get("trtip", f"tr({json.dumps(tip)})")
+        docAnchor = t.get("docAnchor", "")
+        if docAnchor == "":
+            docAnchor = json.dumps("")
+        else:
+            docAnchor = f"tr({json.dumps(docAnchor)}, {json.dumps(f'the anchor of {desc} on the corresponding page of https://cpeditor.org/docs/preferences')})"
         requireAllDepends = t.get("requireAllDepends", True)
         immediatelyApply = t.get("immediatelyApply", False)
         onApply = f'[](SettingInfo *info, ValueWidget *widget, QWidget *parent){{ {t.get("onApply", "")} }}'
@@ -75,7 +80,7 @@ def writeInfo(f, obj, lst):
         dependsString += "}"
         old = t.get("old", [])
         f.write(
-            f"    {lst}.append(SettingInfo {{{json.dumps(name)}, {trdesc}, {json.dumps(desc)}, \"{tempname}\", \"{ui}\", {trtip}, {json.dumps(tip)}, {json.dumps(requireAllDepends)}, {json.dumps(immediatelyApply)}, {onApply}, {dependsString}, {{{json.dumps(old)[1:-1]}}}, ")
+            f"    {lst}.append(SettingInfo {{{json.dumps(name)}, {trdesc}, {json.dumps(desc)}, \"{tempname}\", \"{ui}\", {trtip}, {json.dumps(tip)}, {docAnchor}, {json.dumps(requireAllDepends)}, {json.dumps(immediatelyApply)}, {onApply}, {dependsString}, {{{json.dumps(old)[1:-1]}}}, ")
         if typename != "Object":
             if "default" in t:
                 if typename == "QString":

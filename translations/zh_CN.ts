@@ -460,10 +460,6 @@ git 提交编号: %3
         <translation>设置时间限制</translation>
     </message>
     <message>
-        <source>https://cpeditor.org/%1/docs</source>
-        <translation>https://cpeditor.org/%1/zh/docs</translation>
-    </message>
-    <message>
         <source>Full Screen</source>
         <translation>全屏</translation>
     </message>
@@ -1305,10 +1301,6 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <source>You can read the &lt;a href=&quot;%1&quot;&gt;documentation&lt;/a&gt; or go through the settings for more information.</source>
         <translation>你可以阅读 &lt;a href=&quot;%1&quot;&gt;文档&lt;/a&gt; 或在设置中浏览以获取更多信息。</translation>
-    </message>
-    <message>
-        <source>https://cpeditor.org/%1/docs</source>
-        <translation>https://cpeditor.org/%1/zh/docs</translation>
     </message>
     <message>
         <source>Appearance Settings</source>
@@ -2439,10 +2431,6 @@ Consult your terminal emulator for the suitable arguments.</source>
 请自行查阅适用于你所使用的终端模拟器的参数。</translation>
     </message>
     <message>
-        <source>Head Comments</source>
-        <translation>头部注释</translation>
-    </message>
-    <message>
         <source>Save Test Case To A File</source>
         <translation>将测试用例保存到文件</translation>
     </message>
@@ -2572,6 +2560,40 @@ You can learn about it by running `yapf --style-help`.</source>
     <message>
         <source>Format the code when auto-saving it.</source>
         <translation>自动保存时格式化代码。</translation>
+    </message>
+    <message>
+        <source>Content of the head comments</source>
+        <translation>头部注释的内容</translation>
+    </message>
+    <message>
+        <source>network-proxy</source>
+        <comment>the anchor of Enable Proxy on the corresponding page of https://cpeditor.org/docs/preferences</comment>
+        <translation>网络代理</translation>
+    </message>
+    <message>
+        <source>network-proxy</source>
+        <comment>the anchor of Type on the corresponding page of https://cpeditor.org/docs/preferences</comment>
+        <translation>网络代理</translation>
+    </message>
+    <message>
+        <source>network-proxy</source>
+        <comment>the anchor of Host Name on the corresponding page of https://cpeditor.org/docs/preferences</comment>
+        <translation>网络代理</translation>
+    </message>
+    <message>
+        <source>network-proxy</source>
+        <comment>the anchor of Port on the corresponding page of https://cpeditor.org/docs/preferences</comment>
+        <translation>网络代理</translation>
+    </message>
+    <message>
+        <source>network-proxy</source>
+        <comment>the anchor of User on the corresponding page of https://cpeditor.org/docs/preferences</comment>
+        <translation>网络代理</translation>
+    </message>
+    <message>
+        <source>network-proxy</source>
+        <comment>the anchor of Password on the corresponding page of https://cpeditor.org/docs/preferences</comment>
+        <translation>网络代理</translation>
     </message>
 </context>
 <context>

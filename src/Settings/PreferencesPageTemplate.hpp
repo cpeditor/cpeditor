@@ -25,11 +25,10 @@ class PreferencesPageTemplate : public PreferencesGridPage
     Q_OBJECT
 
   public:
-    explicit PreferencesPageTemplate(QStringList opts, bool alignTop = true, QWidget *parent = nullptr);
+    explicit PreferencesPageTemplate(QStringList opts, const QString &path, const QString &trPath, bool alignTop = true,
+                                     QWidget *parent = nullptr);
 
     QStringList content() override;
-
-    void setPath(const QString &path, const QString &trPath) override;
 
   private:
     bool areSettingsChanged() override;

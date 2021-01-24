@@ -17,6 +17,9 @@
 
 #include "Util/Util.hpp"
 #include "Core/EventLogger.hpp"
+#include "Core/Translator.hpp"
+#include "generated/version.hpp"
+#include <QUrl>
 #include <QWidget>
 
 namespace Util
@@ -28,6 +31,17 @@ void showWidgetOnTop(QWidget *widget)
     widget->setWindowState((widget->windowState() & ~Qt::WindowMinimized) | Qt::WindowActive);
     widget->activateWindow();
     widget->raise();
+}
+
+QString sanitizeAnchorName(const QString &str)
+{
+    return str.trimmed().remove('+').toLower().replace(' ', '-');
+}
+
+QString websiteLink(const QString &path)
+{
+    return QUrl(QString("https://cpeditor.org/%1/%2/%3").arg(MINOR_VERSION).arg(Core::Translator::langCode()).arg(path))
+        .url(QUrl::NormalizePathSegments);
 }
 
 } // namespace Util
