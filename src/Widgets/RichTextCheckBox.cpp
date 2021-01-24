@@ -18,6 +18,7 @@
 // https://www.qtcentre.org/threads/60455-SOLVED-Issues-with-displaying-rich-text-for-a-QCheckBox?p=268211#post268211
 
 #include "Widgets/RichTextCheckBox.hpp"
+#include "Core/EventLogger.hpp"
 #include <QDesktopServices>
 #include <QHBoxLayout>
 #include <QMouseEvent>
@@ -31,6 +32,7 @@ ClickableLabel::ClickableLabel(QWidget *parent) : QLabel(parent)
         this, &QLabel::linkActivated, this,
         [this](const QString &link) {
             linkClicked = true;
+            LOG_INFO(INFO_OF(link));
             QDesktopServices::openUrl(link);
         },
         Qt::DirectConnection);
@@ -40,8 +42,7 @@ void ClickableLabel::mouseReleaseEvent(QMouseEvent *event)
 {
     linkClicked = false;
     QLabel::mouseReleaseEvent(event);
-    if (!linkClicked && contentsRect().contains(event->pos()) &&
-        (event->buttons() == Qt::LeftButton || event->button() == Qt::LeftButton))
+    if (!linkClicked && (event->buttons() == Qt::LeftButton || event->button() == Qt::LeftButton))
     {
         emit released();
     }
@@ -50,7 +51,7 @@ void ClickableLabel::mouseReleaseEvent(QMouseEvent *event)
 void ClickableLabel::mousePressEvent(QMouseEvent *event)
 {
     QLabel::mousePressEvent(event);
-    if ((event->buttons() == Qt::LeftButton || event->button() == Qt::LeftButton))
+    if (event->buttons() == Qt::LeftButton || event->button() == Qt::LeftButton)
     {
         emit pressed();
     }
@@ -59,8 +60,7 @@ void ClickableLabel::mousePressEvent(QMouseEvent *event)
 void ClickableLabel::mouseMoveEvent(QMouseEvent *event)
 {
     QLabel::mouseMoveEvent(event);
-    if (contentsRect().contains(event->pos()) &&
-        (event->buttons() == Qt::LeftButton || event->button() == Qt::LeftButton))
+    if (event->buttons() == Qt::LeftButton || event->button() == Qt::LeftButton)
     {
         emit left();
     }
@@ -68,6 +68,7 @@ void ClickableLabel::mouseMoveEvent(QMouseEvent *event)
 
 HoverCheckBox::HoverCheckBox(QWidget *parent) : QCheckBox(parent)
 {
+    setStyleSheet("QCheckBox{spacing:4px;}");
 }
 
 void HoverCheckBox::paintEvent(QPaintEvent * /*unused*/)
@@ -119,7 +120,8 @@ RichTextCheckBox::RichTextCheckBox(const QString &text, QWidget *parent) : QWidg
     label->setTextFormat(Qt::RichText);
     label->setText(text);
     auto *layout = new QHBoxLayout(this);
-    layout->setMargin(0);
+    layout->setContentsMargins(0, 0, 0, 0);
+    layout->setSpacing(0);
     layout->addWidget(checkBox);
     layout->addWidget(label);
     layout->setAlignment(Qt::AlignLeft);

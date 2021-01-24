@@ -29,7 +29,7 @@ PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, const QString
 {
     PreferencesPage::setPath(path, trPath);
 
-    const QString &docsLinkPrefix =
+    const QString docsLinkPrefix =
         Util::websiteLink("docs/preferences/" + Util::sanitizeAnchorName(path.split('/').first()));
 
     for (const QString &name : options)
