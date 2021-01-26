@@ -1,29 +1,27 @@
-> 本页面由 [英文版本](README.md) 翻译而来，内容可能有所过时。
+<div align="center">
 
-# CP Editor
+<img src=assets/icon.ico width="128">
 
-<img src=assets/icon.ico height="80" width="80">
+**CP Editor - 提升你的算法竞赛编程体验！**
 
-CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法竞赛设计。
+[![downloads](https://img.shields.io/github/downloads/cpeditor/cpeditor/total)](https://github.com/cpeditor/cpeditor/releases)
+[![All Contributors](https://img.shields.io/github/all-contributors/cpeditor/cpeditor)](#all-contributors)
+[![Open Collective backers and sponsors](https://img.shields.io/opencollective/all/cpeditor?label=open%20collective)](https://opencollective.com/cpeditor/)
+[![license](https://img.shields.io/github/license/cpeditor/cpeditor)](LICENSE)
 
-它可以让你刷题/打比赛更加轻松 :grin: 因为它自动化了很多算法竞赛中的流程。
+**[特性](https://cpeditor.org/zh) · [文档](https://cpeditor.org/zh/docs) · [更新日志](CHANGELOG.md) · [贡献指南](CONTRIBUTING_zh-CN.md) · [FAQ](https://cpeditor.org/zh/docs/faq/)**
 
-[特性](https://cpeditor.org/zh) | [文档](https://cpeditor.org/zh/docs/) | [更新日志](CHANGELOG.md) | [贡献指南](CONTRIBUTING_zh-CN.md) | [FAQ](https://cpeditor.org/zh/docs/faq/) | [English](README.md) | [Русский](README_ru-RU.md)
+[English](README.md) · [Русский](README_ru-RU.md)
 
 ![demo](assets/demo.gif)
-
----
-
-[![Open Collective](https://opencollective.com/cpeditor/tiers/support-us.svg?avatarHeight=60)](https://opencollective.com/cpeditor#section-contribute)
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-50-orange.svg)](#all-contributors)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 |  类型  |                            分支                            |                                                                                                        构建                                                                                                        |                                                                     下载量                                                                     |                                                         AUR                                                         |
 | :----: | :--------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------: |
 | alpha  | [master](https://github.com/cpeditor/cpeditor/tree/master) | [![GitHub Workflow Status](https://github.com/cpeditor/cpeditor/workflows/CI:%20Build%20Test/badge.svg?branch=master&event=push)](https://github.com/cpeditor/cpeditor/actions?query=event%3Apush+branch%3Amaster) |                                                                       -                                                                        | [![AUR version](https://img.shields.io/aur/version/cpeditor-git)](https://aur.archlinux.org/packages/cpeditor-git/) |
 |  beta  |   [v6.7](https://github.com/cpeditor/cpeditor/tree/v6.7)   |   [![GitHub Workflow Status](https://github.com/cpeditor/cpeditor/workflows/CI:%20Build%20Test/badge.svg?branch=v6.7&event=push)](https://github.com/cpeditor/cpeditor/actions?query=event%3Apush+branch%3Av6.7)   | [![Downloads](https://img.shields.io/github/downloads/cpeditor/cpeditor/6.7.1/total)](https://github.com/cpeditor/cpeditor/releases/tag/6.7.1) |                                                          -                                                          |
 | stable |   [v6.6](https://github.com/cpeditor/cpeditor/tree/v6.6)   |   [![GitHub Workflow Status](https://github.com/cpeditor/cpeditor/workflows/CI:%20Build%20Test/badge.svg?branch=v6.6&event=push)](https://github.com/cpeditor/cpeditor/actions?query=event%3Apush+branch%3Av6.6)   | [![Downloads](https://img.shields.io/github/downloads/cpeditor/cpeditor/6.6.5/total)](https://github.com/cpeditor/cpeditor/releases/tag/6.6.5) |     [![AUR version](https://img.shields.io/aur/version/cpeditor)](https://aur.archlinux.org/packages/cpeditor/)     |
+
+</div>
 
 ## 开始使用
 
@@ -33,13 +31,17 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
 -   [设置](https://cpeditor.org/zh/docs/preferences)
 -   [使用提示](https://cpeditor.org/zh/docs/tips/)
 
+## 捐赠
+
+-   [如何捐赠](DONATE_zh-CN.md)
+-   [捐赠者列表](DONATORS.md)
+
 ## 做出贡献
 
 -   [提 issue](https://github.com/cpeditor/cpeditor/issues/new/choose)
 -   [贡献指南](CONTRIBUTING_zh-CN.md)
 -   [适合新手解决的 issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
 -   [需要帮助的 issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
--   [在经济上支持我们](DONATE_zh-CN.md)
 
 ## 获取帮助
 
@@ -253,7 +255,6 @@ CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法
 
 本项目使用 [all-contributors](https://github.com/all-contributors/all-contributors)，欢迎各种形式的贡献！
 
-许可证
-----
+### 许可证
 
-[GNU General Public License Version 3.0](https://github.com/cpeditor/cpeditor/blob/master/LICENSE)
+[GNU General Public License Version 3.0](LICENSE)
