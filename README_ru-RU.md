@@ -6,7 +6,7 @@
 
 [![downloads](https://img.shields.io/github/downloads/cpeditor/cpeditor/total)](https://github.com/cpeditor/cpeditor/releases)
 [![All Contributors](https://img.shields.io/github/all-contributors/cpeditor/cpeditor)](#all-contributors)
-[![Open Collective backers and sponsors](https://img.shields.io/opencollective/all/cpeditor?label=open%20collective)](https://opencollective.com/cpeditor/)
+[![GitHub Sponsors](https://img.shields.io/github/sponsors/cpeditor?label=github%20sponsors)](https://github.com/sponsors/cpeditor)
 [![license](https://img.shields.io/github/license/cpeditor/cpeditor)](LICENSE)
 
 **[Возможности](https://cpeditor.org/ru) · [Документация](https://cpeditor.org/ru/docs/) · [Список изменений](CHANGELOG.md) · [Сотрудничество](CONTRIBUTING_ru-RU.md) · [FAQ](https://cpeditor.org/ru/docs/faq/)**
