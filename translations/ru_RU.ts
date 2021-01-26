@@ -1776,7 +1776,7 @@ This can be overridden for each parenthesis in each language.</source>
         <translation>Сохранять тесткейса при нажатии на &quot;Сохранить&quot;</translation>
     </message>
     <message>
-        <source>Save the testcases on the disk when saving a file, and load the saved testcases when opening a file.</source>
+        <source>Save the test cases on the disk when saving a file, and load the saved test cases when opening a file.</source>
         <translation>Сохраните тесткейсы на диске при сохранении файла и загрузите сохраненные тескейсы при открытии файла.</translation>
     </message>
     <message>
@@ -1800,7 +1800,7 @@ This can be overridden for each parenthesis in each language.</source>
         <translation>Включить Competitive Companion</translation>
     </message>
     <message>
-        <source>Receive data sent by Competitive Companion and load the example testcases.</source>
+        <source>Receive data sent by Competitive Companion and load the example test cases.</source>
         <translation>Получать данные с Competitive Companion и загружать примеры тесткейсов.</translation>
     </message>
     <message>
@@ -1950,7 +1950,7 @@ A source file won&apos;t be opened if it&apos;s too long.</source>
         <translation>Показывать ошибки, предупреждения, информацию и подсказки в редакторе кода для языка Python</translation>
     </message>
     <message>
-        <source>Use auto complete with Language Server</source>
+        <source>Use auto-complete with Language Server</source>
         <translation>Используйте автозавершение с языковым сервером</translation>
     </message>
     <message>
@@ -1962,7 +1962,7 @@ A source file won&apos;t be opened if it&apos;s too long.</source>
         <translation>Задержка операции Linting в мс</translation>
     </message>
     <message>
-        <source>Delay in linting in miliseconds after last modification to code</source>
+        <source>Delay in linting in milliseconds after last modification to code</source>
         <translation>Задержка в операции Linting (мс) после модификации кода</translation>
     </message>
     <message>
@@ -2148,7 +2148,7 @@ from Competitive Companion again, the old file will be opened.</source>
         <translation>Проверить свой ответ на тестовых примерах с пустым выводом</translation>
     </message>
     <message>
-        <source>Check your answer even if your output or the expected the output is empty.</source>
+        <source>Check your answer even if your output or the expected output is empty.</source>
         <translation>Проверить свой ответ, даже если ваш вывод или ответ пуст.</translation>
     </message>
     <message>
@@ -2165,8 +2165,8 @@ from Competitive Companion again, the old file will be opened.</source>
     </message>
     <message>
         <source>After the last modification: the timer will be reset after a modification to the code.
-After the first modification: the timer will start after a modification, if at that time the timer is not running.
-Without modification: auto-save happens with an constant inverval no matter there are modifications or not.</source>
+After the first modification: the timer will start after a modification if at that time the timer is not running.
+Without modification: auto-save happens with a constant interval no matter there are modifications or not.</source>
         <translation>После последней модификации: таймер будет сброшен после модификации кода.
 После первой модификации: таймер запустится после модификации, если в это время таймер не работает.
 Без модификации: автоматическое сохранение происходит с постоянным интервалом независимо от того, есть модификации или нет.</translation>
@@ -2218,7 +2218,7 @@ kill the application with SIGKILL which could not be handled by the application.
         <translation>Включить прокси для проверки обновлений</translation>
     </message>
     <message>
-        <source>The host name of the proxy, e.g. 127.0.0.1</source>
+        <source>The hostname of the proxy, e.g. 127.0.0.1</source>
         <translation>Название хоста прокси, например 127.0.0.1</translation>
     </message>
     <message>
@@ -2471,7 +2471,7 @@ https://doc.qt.io/qt-5/qtime.html#toString</translation>
     </message>
     <message>
         <source>Add a line saying &quot;Powered By CP Editor&quot; in the head comments.
-This doesn&apos;t cost you anyting, but helps more people to know CP Editor.</source>
+This doesn&apos;t cost you anything, but helps more people to know CP Editor.</source>
         <translation>Добавить строку &quot;Powered By CP Editor&quot; в комментарии шапки
 Это ничего Вам не стоит, но помогает многим людям узнавать о CP Editor.</translation>
     </message>
