@@ -32,7 +32,7 @@ The documentation is hosted at [cpeditor.github.io](https://github.com/cpeditor/
 
 The translations are in the [translations](translations) directory. It's recommended to use Qt Linguist to edit them. However, if you only want to fix a typo, you can use whatever text editor you like. In Qt Linguist, when a translation is finished, press <kbd>Ctrl + Enter</kbd> to mark it as finished and go to the next unfinished translation. If a text doesn't need translation, for example, "C++", you can leave the translation empty and mark it as finished. You should fix all warnings in Qt Linguist.
 
-If you want to add a new language, you can ask the developers for help. For example, you can open an issue for the language you want (it will be better if you can contribute the translations, after we finish the preparation for you).
+If you want to add a new language, you can ask the developers for help. For example, you can open an issue for the language you want (it will be better if you can contribute the translations after we finish the preparation for you).
 
 If you want to go a step further: The translated strings are wrapped in `tr()` in the source codes. When the codes are changed, you can run [updateTranslation.sh](tools/updateTranslation.sh) or [updateTranslation.bat](tools/updateTranslation.bat) to update the translations. You can read [Qt Linguist Manual](https://doc.qt.io/qt-5/qtlinguist-index.html) if you are interested in it.
 
@@ -43,7 +43,7 @@ The basic structure of the settings system is:
 1.  The information of the settings are stored in [settings.json](src/Settings/settings.json).
 2.  `settings.json` is translated to `SettingsHelper.hpp` and `SettingsInfo.cpp` by [genSettings.py](src/Settings/genSettings.py).
 3.  Settings are displayed in [PreferencesWindow](src/Settings/PreferencesWindow.hpp) and separated into several [PreferencesPage](src/Settings/PreferencesPage.hpp)s. Most of the settings are displayed in [PreferencesPageTemplate](src/Settings/PreferencesPageTemplate.hpp) which uses `SettingsInfo` to generate the page.
-4.  In other parts of CP Editor, you can get the settings via the functions in `SettingsHelper.hpp` or use [SettingsManager](src/Settings/SettingsManager.hpp) to manage the settings. The purpose of `SettingsHelper.hpp` is to enable auto-complete during development and reduce the chance of misspelling the name of a setting. `SettingsManager` is usually used in cases where the name of the setting is a viarable, for example: `SettingsManager::get(QString("%1/Compile Command").arg(language)).toString()`.
+4.  In other parts of CP Editor, you can get the settings via the functions in `SettingsHelper.hpp` or use [SettingsManager](src/Settings/SettingsManager.hpp) to manage the settings. The purpose of `SettingsHelper.hpp` is to enable auto-complete during development and reduce the chance of misspelling the name of a setting. `SettingsManager` is usually used in cases where the name of the setting is a variable, for example: `SettingsManager::get(QString("%1/Compile Command").arg(language)).toString()`.
 
 To learn how to add/modify settings, you can refer to other settings or read the [documentation](src/Settings/README.md). Basically, you need to modify [settings.json](src/Settings/settings.json) and the part starts with `AddPageHelper(this)` in [PreferencesWindow.cpp](src/Settings/PreferencesWindow.cpp).
 
