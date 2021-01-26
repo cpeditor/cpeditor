@@ -1,6 +1,6 @@
 ## Your first contribution
 
--   [How to contribute to an open source project on GitHub](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github)
+-   [How to contribute to an open source project on GitHub](https://app.egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github)
 -   [Build CP Editor from source](https://cpeditor.org/docs/installation/build-from-source/)
 -   [Qt docs](https://doc.qt.io/)
 -   [Discover issues](https://github.com/cpeditor/cpeditor/contribute)

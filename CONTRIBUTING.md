@@ -1,6 +1,6 @@
 ## Your first contribution
 
--   [How to contribute to an open source project on GitHub](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github)
+-   [How to contribute to an open source project on GitHub](https://app.egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github)
 -   [Build CP Editor from source](https://cpeditor.org/docs/installation/build-from-source/)
 -   [Qt docs](https://doc.qt.io/)
 -   [Discover issues](https://github.com/cpeditor/cpeditor/contribute)
@@ -32,7 +32,7 @@ The documentation is hosted at [cpeditor.github.io](https://github.com/cpeditor/
 
 The translations are in the [translations](translations) directory. It's recommended to use Qt Linguist to edit them. However, if you only want to fix a typo, you can use whatever text editor you like. In Qt Linguist, when a translation is finished, press <kbd>Ctrl + Enter</kbd> to mark it as finished and go to the next unfinished translation. If a text doesn't need translation, for example, "C++", you can leave the translation empty and mark it as finished. You should fix all warnings in Qt Linguist.
 
-If you want to add a new language, you can ask the developers for help. For example, you can open an issue for the language you want (it will be better if you can contribute the translations, after we finish the preparation for you).
+If you want to add a new language, you can ask the developers for help. For example, you can open an issue for the language you want (it will be better if you can contribute the translations after we finish the preparation for you).
 
 If you want to go a step further: The translated strings are wrapped in `tr()` in the source codes. When the codes are changed, you can run [updateTranslation.sh](tools/updateTranslation.sh) or [updateTranslation.bat](tools/updateTranslation.bat) to update the translations. You can read [Qt Linguist Manual](https://doc.qt.io/qt-5/qtlinguist-index.html) if you are interested in it.
 

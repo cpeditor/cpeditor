@@ -26,7 +26,7 @@ On the master branch, we make all changes including new features and bug fixes.
 
 On the version branches, we fix bugs only, no new features will be added. Releases are made on version branches only.
 
-When fixing a bug, it should be fixed on the oldest one of the three active branches (stable > beta > master) which contains the bug, and then get merged in to the later branches. Version branches shouldn't be ahead of the master branch, so we should create a merge commit and merge the version branch into master instead of squash and merge.
+When fixing a bug, it should be fixed on the oldest one of the three active branches (stable > beta > master) which contains the bug, and then get merged into the later branches. Version branches shouldn't be ahead of the master branch, so we should create a merge commit and merge the version branch into master instead of squash and merge.
 
 Code-unrelated changes (e.g. issue template changes, CI changes) apply to the master branch only if it's not necessary to apply to other branches.
 
@@ -38,7 +38,7 @@ We make new releases in these cases:
 2. We make stable releases whenever a bug is fixed on the stable branch.
 3. We make pre-releases when a critical bug is fixed on the beta branch.
 
-We don't change a pre-release into a stable release. If no bugs are found, we can make a stable release which is exactly the same as the pre-release.
+We don't change a pre-release into a stable release. If no bugs are found, we can make a stable release that is exactly the same as the pre-release.
 
 ### Changelogs
 
@@ -115,7 +115,7 @@ Suppose you are releasing `2.3.7` and `2.4.1`:
 
 1.  In [the documentation repo](https://github.com/cpeditor/cpeditor.github.io), create a new branch `v2.4` based on `hugo` (the default branch).
 2.  Create a new branch `v2.4` based on master.
-3.  Checkout to `v2.3`. Change [STABLE_VERSION](.ci/STABLE_VERSION) to `2.3.`. Do the first 4 steps to [make a new stable release](#the-complete-workflow-to-make-a-new-stable-release), and also the step 5 but the content of the changelog is all changelogs from `2.3.1` to `2.3.7`.
+3.  Checkout to `v2.3`. Change [STABLE_VERSION](.ci/STABLE_VERSION) to `2.3.`. Do the first 4 steps to [make a new stable release](#the-complete-workflow-to-make-a-new-stable-release). Also do step 5 but the content of the changelog is all changelogs from `2.3.1` to `2.3.7`.
 4.  Merge `v2.3` into `v2.4`. Do the first 5 steps to [make a new beta release](#the-complete-workflow-to-make-a-new-beta-release).
 5.  Create a new branch `merge-2.3.7-2.4.1` based on master. Merge `v2.4` into `merge-2.3.7-2.4.1`. Set the version in [CMakeLists.txt](CMakeLists.txt) to `2.5.0`. Rename `## 2.4.1 (Beta)` in [CHANGELOG.md](CHANGELOG.md) to `## v2.4`. Update the version badges in [README.md](README.md). Create a PR merging `merge-2.3.7-2.4.1` into master.
 
