@@ -6,7 +6,7 @@
 
 [![downloads](https://img.shields.io/github/downloads/cpeditor/cpeditor/total)](https://github.com/cpeditor/cpeditor/releases)
 [![All Contributors](https://img.shields.io/github/all-contributors/cpeditor/cpeditor)](#all-contributors)
-[![Open Collective backers and sponsors](https://img.shields.io/opencollective/all/cpeditor?label=open%20collective)](https://opencollective.com/cpeditor/)
+[![GitHub Sponsors](https://img.shields.io/github/sponsors/cpeditor?label=github%20sponsors)](https://github.com/sponsors/cpeditor)
 [![license](https://img.shields.io/github/license/cpeditor/cpeditor)](LICENSE)
 
 **[特性](https://cpeditor.org/zh) · [文档](https://cpeditor.org/zh/docs) · [更新日志](CHANGELOG.md) · [贡献指南](CONTRIBUTING_zh-CN.md) · [FAQ](https://cpeditor.org/zh/docs/faq/)**
