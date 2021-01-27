@@ -1772,7 +1772,7 @@ This can be overridden for each parenthesis in each language.</source>
         <translation>保存文件时保存测试用例</translation>
     </message>
     <message>
-        <source>Save the testcases on the disk when saving a file, and load the saved testcases when opening a file.</source>
+        <source>Save the test cases on the disk when saving a file, and load the saved test cases when opening a file.</source>
         <translation>在保存文件时一并保存测试用例，在加载时一并加载。</translation>
     </message>
     <message>
@@ -1796,7 +1796,7 @@ This can be overridden for each parenthesis in each language.</source>
         <translation>启用 Competitive Companion</translation>
     </message>
     <message>
-        <source>Receive data sent by Competitive Companion and load the example testcases.</source>
+        <source>Receive data sent by Competitive Companion and load the example test cases.</source>
         <translation>接受 Competitive Companion 发送的数据并加载测试数据。</translation>
     </message>
     <message>
@@ -1946,7 +1946,7 @@ A source file won&apos;t be opened if it&apos;s too long.</source>
         <translation>在编辑器中为 Python 显示错误、警告、信息和提示</translation>
     </message>
     <message>
-        <source>Use auto complete with Language Server</source>
+        <source>Use auto-complete with Language Server</source>
         <translation>使用 Language Server 的自动补全</translation>
     </message>
     <message>
@@ -1958,7 +1958,7 @@ A source file won&apos;t be opened if it&apos;s too long.</source>
         <translation>提示延迟（毫秒）</translation>
     </message>
     <message>
-        <source>Delay in linting in miliseconds after last modification to code</source>
+        <source>Delay in linting in milliseconds after last modification to code</source>
         <translation>最后一次修改后，延迟进行提示的时间间隔</translation>
     </message>
     <message>
@@ -2145,7 +2145,7 @@ from Competitive Companion again, the old file will be opened.</source>
         <translation>在输出为空的测试点上检查输出的正确性</translation>
     </message>
     <message>
-        <source>Check your answer even if your output or the expected the output is empty.</source>
+        <source>Check your answer even if your output or the expected output is empty.</source>
         <translation>即使你的输出或答案的输出为空，依然检查输出的正确性。</translation>
     </message>
     <message>
@@ -2162,8 +2162,8 @@ from Competitive Companion again, the old file will be opened.</source>
     </message>
     <message>
         <source>After the last modification: the timer will be reset after a modification to the code.
-After the first modification: the timer will start after a modification, if at that time the timer is not running.
-Without modification: auto-save happens with an constant inverval no matter there are modifications or not.</source>
+After the first modification: the timer will start after a modification if at that time the timer is not running.
+Without modification: auto-save happens with a constant interval no matter there are modifications or not.</source>
         <translation>After the last modification: 计时器会在修改代码后重置。
 After the first modification: 在修改代码时，若计时器未在运行，则计时器会开始运行。
 Without modification: 以恒定的时间间隔自动保存，无论是否进行了修改。</translation>
@@ -2214,7 +2214,7 @@ kill the application with SIGKILL which could not be handled by the application.
         <translation>检查更新时启用代理</translation>
     </message>
     <message>
-        <source>The host name of the proxy, e.g. 127.0.0.1</source>
+        <source>The hostname of the proxy, e.g. 127.0.0.1</source>
         <translation>代理的主机名，例如：127.0.0.1</translation>
     </message>
     <message>
@@ -2464,7 +2464,7 @@ https://doc.qt.io/qt-5/qtime.html#toString</translation>
     </message>
     <message>
         <source>Add a line saying &quot;Powered By CP Editor&quot; in the head comments.
-This doesn&apos;t cost you anyting, but helps more people to know CP Editor.</source>
+This doesn&apos;t cost you anything, but helps more people to know CP Editor.</source>
         <translation>在头部注释中添加一行 &quot;Powered By CP Editor&quot;。
 这可以在不花费任何代价的情况下让更多的人知道 CP Editor。</translation>
     </message>
