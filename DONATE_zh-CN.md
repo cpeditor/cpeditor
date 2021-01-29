@@ -1,4 +1,4 @@
-如果你觉得 CP Editor 还不错，你可以捐赠以帮助我们购买 cpeditor.org 域名并在 CP Editor 上花费更多的时间。
+CP Editor 是自由软件，但我们不提供免费的劳动。我们提供给你的是[使用 CP Editor 的自由](https://www.gnu.org/philosophy/free-sw.html)。因此，你的捐赠是一份很大的贡献：它可以帮助我们花更多的时间来维护 CP Editor，并且我们需要金钱以购买 cpeditor.org 域名。
 
 -   [GitHub Sponsors](https://github.com/sponsors/cpeditor)：每月捐赠
 -   [Open Collective](https://opencollective.com/cpeditor)：一次性捐赠
