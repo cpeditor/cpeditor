@@ -2574,8 +2574,6 @@ You can learn about it by running `yapf --style-help`.</source>
         <translation>自动保存时格式化代码。</translation>
     </message>
     <message>
-        <source>Submit Solution</source>
-        <translation>提交代码</translation>
         <source>Content of the head comments</source>
         <translation>头部注释的内容</translation>
     </message>
@@ -2608,6 +2606,10 @@ You can learn about it by running `yapf --style-help`.</source>
         <source>network-proxy</source>
         <comment>the anchor of Password on the corresponding page of https://cpeditor.org/docs/preferences</comment>
         <translation>网络代理</translation>
+    </message>
+    <message>
+        <source>Submit Solution</source>
+        <translation>提交代码</translation>
     </message>
 </context>
 <context>

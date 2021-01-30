@@ -2582,8 +2582,6 @@ You can learn about it by running `yapf --style-help`.</source>
         <translation>Форматировать код, когда он автоматически сохраняется.</translation>
     </message>
     <message>
-        <source>Submit Solution</source>
-        <translation>Отправить решение</translation>
         <source>Content of the head comments</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2616,6 +2614,10 @@ You can learn about it by running `yapf --style-help`.</source>
         <source>network-proxy</source>
         <comment>the anchor of Password on the corresponding page of https://cpeditor.org/docs/preferences</comment>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Submit Solution</source>
+        <translation>Отправить решение</translation>
     </message>
 </context>
 <context>
