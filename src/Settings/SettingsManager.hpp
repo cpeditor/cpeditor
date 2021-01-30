@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com>
+ * Copyright (C) 2019-2021 Ashar Khan <ashar786khan@gmail.com>
  *
  * This file is part of CP Editor.
  *
@@ -35,6 +35,11 @@ class SettingsManager
     static void generateDefaultSettings();
 
     static void loadSettings(const QString &path);
+
+    /**
+     * @brief save settings to the given path
+     * @param path the path to save at; if empty, save at the default path
+     */
     static void saveSettings(const QString &path);
 
     static QVariant get(QString const &key, bool alwaysDefault = false);
@@ -44,7 +49,7 @@ class SettingsManager
     static void reset();
 
     /**
-     * @breif set the path of a setting in the preferences window
+     * @brief set the path of a setting in the preferences window
      * @param key the name of the setting
      * @param path The path to the setting, in the form "X/Y/Z/<desc>". The <desc> shouldn't contain slashes.
      * @param trPath the translation of the path, in the form "X->Y->Z-><trdesc>"
@@ -71,6 +76,7 @@ class SettingsManager
     static QMap<QString, QString> *settingTrPath;
     static QMap<QString, QString> *pathSetting;
     static QMap<QString, QWidget *> *settingWidget;
+    static long long startTime;
 };
 
 #endif // SETTINGSMANAGER_HPP

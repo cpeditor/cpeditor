@@ -471,7 +471,7 @@
                 "name": "Auto Save"
             }
         ],
-        "tip": "After the last modification: the timer will be reset after a modification to the code.\nAfter the first modification: the timer will start after a modification, if at that time the timer is not running.\nWithout modification: auto-save happens with an constant inverval no matter there are modifications or not."
+        "tip": "After the last modification: the timer will be reset after a modification to the code.\nAfter the first modification: the timer will start after a modification if at that time the timer is not running.\nWithout modification: auto-save happens with a constant interval no matter there are modifications or not."
     },
     {
         "name": "Wrap Text",
@@ -500,7 +500,7 @@
         "name": "Save Tests",
         "desc": "Save Testcases on Save",
         "type": "bool",
-        "tip": "Save the testcases on the disk when saving a file, and load the saved testcases when opening a file."
+        "tip": "Save the test cases on the disk when saving a file, and load the saved test cases when opening a file."
     },
     {
         "name": "Maximized Window",
@@ -558,7 +558,7 @@
         "desc": "Enable Competitive Companion",
         "type": "bool",
         "default": true,
-        "tip": "Receive data sent by Competitive Companion and load the example testcases.",
+        "tip": "Receive data sent by Competitive Companion and load the example test cases.",
         "old": [
             "competitive_use"
         ]
@@ -607,7 +607,7 @@
     },
     {
         "name": "Competitive Companion/Head Comments",
-        "desc": "Head Comments",
+        "desc": "Content of the head comments",
         "type": "QString",
         "ui": "QPlainTextEdit",
         "default": "Problem: ${json.name}\nContest: ${json.group}\nURL: ${json.url}\nMemory Limit: ${json.memoryLimit} MB\nTime Limit: ${json.timeLimit} ms",
@@ -640,7 +640,7 @@
                 "name": "Competitive Companion/Enable"
             }
         ],
-        "tip": "Add a line saying \"Powered By CP Editor\" in the head comments.\nThis doesn't cost you anyting, but helps more people to know CP Editor."
+        "tip": "Add a line saying \"Powered By CP Editor\" in the head comments.\nThis doesn't cost you anything, but helps more people to know CP Editor."
     },
     {
         "name": "Hotkey/Format",
@@ -906,19 +906,19 @@
     },
     {
         "name": "LSP/Use Autocomplete C++",
-        "desc": "Use auto complete with Language Server",
+        "desc": "Use auto-complete with Language Server",
         "type": "bool",
         "tip": "Use autocomplete results from Language server"
     },
     {
         "name": "LSP/Use Autocomplete Java",
-        "desc": "Use auto complete with Language Server",
+        "desc": "Use auto-complete with Language Server",
         "type": "bool",
         "tip": "Use autocomplete results from Language server"
     },
     {
         "name": "LSP/Use Autocomplete Python",
-        "desc": "Use auto complete with Language Server",
+        "desc": "Use auto-complete with Language Server",
         "type": "bool",
         "tip": "Use autocomplete results from Language server"
     },
@@ -933,7 +933,7 @@
                 "name": "LSP/Use Linting C++"
             }
         ],
-        "tip": "Delay in linting in miliseconds after last modification to code"
+        "tip": "Delay in linting in milliseconds after last modification to code"
     },
     {
         "name": "LSP/Delay Java",
@@ -946,7 +946,7 @@
                 "name": "LSP/Use Linting Java"
             }
         ],
-        "tip": "Delay in linting in miliseconds after last modification to code"
+        "tip": "Delay in linting in milliseconds after last modification to code"
     },
     {
         "name": "LSP/Delay Python",
@@ -959,7 +959,7 @@
                 "name": "LSP/Use Linting Python"
             }
         ],
-        "tip": "Delay in linting in miliseconds after last modification to code"
+        "tip": "Delay in linting in milliseconds after last modification to code"
     },
     {
         "name": "LSP/Args C++",
@@ -1109,7 +1109,7 @@
         "name": "Check On Testcases With Empty Output",
         "desc": "Check your answer on test cases with empty output",
         "type": "bool",
-        "tip": "Check your answer even if your output or the expected the output is empty."
+        "tip": "Check your answer even if your output or the expected output is empty."
     },
     {
         "name": "Test Case Maximum Height",
@@ -1123,6 +1123,7 @@
         "desc": "Enable Proxy",
         "type": "bool",
         "default": "true",
+        "docAnchor": "network-proxy",
         "tip": "Enable proxy for checking updates"
     },
     {
@@ -1137,6 +1138,7 @@
                 "name": "Proxy/Enabled"
             }
         ],
+        "docAnchor": "network-proxy",
         "tip": "The type of the proxy. \"System\" for using the system proxy."
     },
     {
@@ -1153,7 +1155,8 @@
                 "check": "return var.toString() != \"System\";"
             }
         ],
-        "tip": "The host name of the proxy, e.g. 127.0.0.1"
+        "docAnchor": "network-proxy",
+        "tip": "The hostname of the proxy, e.g. 127.0.0.1"
     },
     {
         "name": "Proxy/Port",
@@ -1170,6 +1173,7 @@
                 "check": "return var.toString() != \"System\";"
             }
         ],
+        "docAnchor": "network-proxy",
         "tip": "The port of the proxy, e.g. 1080"
     },
     {
@@ -1185,6 +1189,7 @@
                 "check": "return var.toString() != \"System\";"
             }
         ],
+        "docAnchor": "network-proxy",
         "tip": "The user of the proxy server. It can be empty if the proxy server doesn't require authentication."
     },
     {
@@ -1200,6 +1205,7 @@
                 "check": "return var.toString() != \"System\";"
             }
         ],
+        "docAnchor": "network-proxy",
         "tip": "The password of the proxy server. It can be empty if the proxy server doesn't require authentication."
     },
     {
@@ -1290,5 +1296,15 @@
         "default": true,
         "immediatelyApply": true,
         "tip": "Show only monospaced fonts when choosing a font"
+    },
+    {
+        "name": "Total Usage Time",
+        "type": "int",
+        "notr": true
+    },
+    {
+        "name": "Promotion Dialog Shown",
+        "type": "bool",
+        "notr": true
     }
 ]

@@ -24,8 +24,8 @@
         <translation>关于 CP Editor %1</translation>
     </message>
     <message>
-        <source>&lt;p&gt;&lt;b&gt;CP Editor&lt;/b&gt; is a native Qt-based code editor. It&apos;s specially designed for competitive programming, unlike other editors/IDEs which are mainly for developers. It helps you focus on your algorithm and automates the compilation, executing and testing. It even fetches test cases for you from different platforms and submits solutions to Codeforces!&lt;/p&gt;&lt;p&gt;Copyright (C) 2019-2020 Ashar Khan &amp;lt;ashar786khan@gmail.com&amp;gt;&lt;/p&gt;&lt;p&gt;This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. The source code for CP Editor is available at &lt;a href=&quot;https://github.com/cpeditor/cpeditor&quot;&gt; https://github.com/cpeditor/cpeditor&lt;/a&gt;.&lt;/p&gt;</source>
-        <translation>&lt;p&gt;&lt;b&gt;CP Editor&lt;/b&gt; 是一个基于 Qt 的原生态 IDE。它专为算法竞赛设计，不像其它 IDE 主要是为了开发设计。它可以帮助你自动化编译、运行、测试，从而让你专注于算法设计。它甚至可以从各种算法竞赛网站上获取样例，将代码提交到 Codeforces 上！&lt;/p&gt;&lt;p&gt;Copyright (C) 2019-2020 Ashar Khan &amp;lt;ashar786khan@gmail.com&amp;gt;&lt;/p&gt;&lt;p&gt;本程序是自由软件；请参看源代码的版权声明。本软件没有任何担保；包括没有适销性和某一专用目的下的适用性担保。CP Editor 的代码可以在 &lt;a href=&quot;https://github.com/cpeditor/cpeditor&quot;&gt; https://github.com/cpeditor/cpeditor&lt;/a&gt; 获取。&lt;/p&gt;</translation>
+        <source>&lt;p&gt;&lt;b&gt;CP Editor&lt;/b&gt; is a native Qt-based code editor. It&apos;s specially designed for competitive programming, unlike other editors/IDEs which are mainly for developers. It helps you focus on your algorithm and automates the compilation, executing and testing. It even fetches test cases for you from different platforms and submits solutions to Codeforces!&lt;/p&gt;&lt;p&gt;Copyright (C) 2019-2021 Ashar Khan &amp;lt;ashar786khan@gmail.com&amp;gt;&lt;/p&gt;&lt;p&gt;This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. The source code for CP Editor is available at &lt;a href=&quot;https://github.com/cpeditor/cpeditor&quot;&gt; https://github.com/cpeditor/cpeditor&lt;/a&gt;.&lt;/p&gt;</source>
+        <translation>&lt;p&gt;&lt;b&gt;CP Editor&lt;/b&gt; 是一个基于 Qt 的原生态 IDE。它专为算法竞赛设计，不像其它 IDE 主要是为了开发设计。它可以帮助你自动化编译、运行、测试，从而让你专注于算法设计。它甚至可以从各种算法竞赛网站上获取样例，将代码提交到 Codeforces 上！&lt;/p&gt;&lt;p&gt;Copyright (C) 2019-2021 Ashar Khan &amp;lt;ashar786khan@gmail.com&amp;gt;&lt;/p&gt;&lt;p&gt;本程序是自由软件；请参看源代码的版权声明。本软件没有任何担保；包括没有适销性和某一专用目的下的适用性担保。CP Editor 的代码可以在 &lt;a href=&quot;https://github.com/cpeditor/cpeditor&quot;&gt; https://github.com/cpeditor/cpeditor&lt;/a&gt; 获取。&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Open Files</source>
@@ -458,10 +458,6 @@ git 提交编号: %3
     <message>
         <source>Set Time Limit</source>
         <translation>设置时间限制</translation>
-    </message>
-    <message>
-        <source>https://cpeditor.org/%1/docs</source>
-        <translation>https://cpeditor.org/%1/zh/docs</translation>
     </message>
     <message>
         <source>Full Screen</source>
@@ -1333,10 +1329,6 @@ If it&apos;s partially checked, the global setting in Code Editing will be used.
         <translation>你可以阅读 &lt;a href=&quot;%1&quot;&gt;文档&lt;/a&gt; 或在设置中浏览以获取更多信息。</translation>
     </message>
     <message>
-        <source>https://cpeditor.org/%1/docs</source>
-        <translation>https://cpeditor.org/%1/zh/docs</translation>
-    </message>
-    <message>
         <source>Appearance Settings</source>
         <translation>外观设置</translation>
     </message>
@@ -1806,7 +1798,7 @@ This can be overridden for each parenthesis in each language.</source>
         <translation>保存文件时保存测试用例</translation>
     </message>
     <message>
-        <source>Save the testcases on the disk when saving a file, and load the saved testcases when opening a file.</source>
+        <source>Save the test cases on the disk when saving a file, and load the saved test cases when opening a file.</source>
         <translation>在保存文件时一并保存测试用例，在加载时一并加载。</translation>
     </message>
     <message>
@@ -1830,7 +1822,7 @@ This can be overridden for each parenthesis in each language.</source>
         <translation>启用 Competitive Companion</translation>
     </message>
     <message>
-        <source>Receive data sent by Competitive Companion and load the example testcases.</source>
+        <source>Receive data sent by Competitive Companion and load the example test cases.</source>
         <translation>接受 Competitive Companion 发送的数据并加载测试数据。</translation>
     </message>
     <message>
@@ -1980,7 +1972,7 @@ A source file won&apos;t be opened if it&apos;s too long.</source>
         <translation>在编辑器中为 Python 显示错误、警告、信息和提示</translation>
     </message>
     <message>
-        <source>Use auto complete with Language Server</source>
+        <source>Use auto-complete with Language Server</source>
         <translation>使用 Language Server 的自动补全</translation>
     </message>
     <message>
@@ -1992,7 +1984,7 @@ A source file won&apos;t be opened if it&apos;s too long.</source>
         <translation>提示延迟（毫秒）</translation>
     </message>
     <message>
-        <source>Delay in linting in miliseconds after last modification to code</source>
+        <source>Delay in linting in milliseconds after last modification to code</source>
         <translation>最后一次修改后，延迟进行提示的时间间隔</translation>
     </message>
     <message>
@@ -2179,7 +2171,7 @@ from Competitive Companion again, the old file will be opened.</source>
         <translation>在输出为空的测试点上检查输出的正确性</translation>
     </message>
     <message>
-        <source>Check your answer even if your output or the expected the output is empty.</source>
+        <source>Check your answer even if your output or the expected output is empty.</source>
         <translation>即使你的输出或答案的输出为空，依然检查输出的正确性。</translation>
     </message>
     <message>
@@ -2196,8 +2188,8 @@ from Competitive Companion again, the old file will be opened.</source>
     </message>
     <message>
         <source>After the last modification: the timer will be reset after a modification to the code.
-After the first modification: the timer will start after a modification, if at that time the timer is not running.
-Without modification: auto-save happens with an constant inverval no matter there are modifications or not.</source>
+After the first modification: the timer will start after a modification if at that time the timer is not running.
+Without modification: auto-save happens with a constant interval no matter there are modifications or not.</source>
         <translation>After the last modification: 计时器会在修改代码后重置。
 After the first modification: 在修改代码时，若计时器未在运行，则计时器会开始运行。
 Without modification: 以恒定的时间间隔自动保存，无论是否进行了修改。</translation>
@@ -2248,7 +2240,7 @@ kill the application with SIGKILL which could not be handled by the application.
         <translation>检查更新时启用代理</translation>
     </message>
     <message>
-        <source>The host name of the proxy, e.g. 127.0.0.1</source>
+        <source>The hostname of the proxy, e.g. 127.0.0.1</source>
         <translation>代理的主机名，例如：127.0.0.1</translation>
     </message>
     <message>
@@ -2465,10 +2457,6 @@ Consult your terminal emulator for the suitable arguments.</source>
 请自行查阅适用于你所使用的终端模拟器的参数。</translation>
     </message>
     <message>
-        <source>Head Comments</source>
-        <translation>头部注释</translation>
-    </message>
-    <message>
         <source>Save Test Case To A File</source>
         <translation>将测试用例保存到文件</translation>
     </message>
@@ -2502,7 +2490,7 @@ https://doc.qt.io/qt-5/qtime.html#toString</translation>
     </message>
     <message>
         <source>Add a line saying &quot;Powered By CP Editor&quot; in the head comments.
-This doesn&apos;t cost you anyting, but helps more people to know CP Editor.</source>
+This doesn&apos;t cost you anything, but helps more people to know CP Editor.</source>
         <translation>在头部注释中添加一行 &quot;Powered By CP Editor&quot;。
 这可以在不花费任何代价的情况下让更多的人知道 CP Editor。</translation>
     </message>
@@ -2625,6 +2613,40 @@ You can learn about it by running `yapf --style-help`.</source>
         <source>Format the code when auto-saving it.</source>
         <translation>自动保存时格式化代码。</translation>
     </message>
+    <message>
+        <source>Content of the head comments</source>
+        <translation>头部注释的内容</translation>
+    </message>
+    <message>
+        <source>network-proxy</source>
+        <comment>the anchor of Enable Proxy on the corresponding page of https://cpeditor.org/docs/preferences</comment>
+        <translation>网络代理</translation>
+    </message>
+    <message>
+        <source>network-proxy</source>
+        <comment>the anchor of Type on the corresponding page of https://cpeditor.org/docs/preferences</comment>
+        <translation>网络代理</translation>
+    </message>
+    <message>
+        <source>network-proxy</source>
+        <comment>the anchor of Host Name on the corresponding page of https://cpeditor.org/docs/preferences</comment>
+        <translation>网络代理</translation>
+    </message>
+    <message>
+        <source>network-proxy</source>
+        <comment>the anchor of Port on the corresponding page of https://cpeditor.org/docs/preferences</comment>
+        <translation>网络代理</translation>
+    </message>
+    <message>
+        <source>network-proxy</source>
+        <comment>the anchor of User on the corresponding page of https://cpeditor.org/docs/preferences</comment>
+        <translation>网络代理</translation>
+    </message>
+    <message>
+        <source>network-proxy</source>
+        <comment>the anchor of Password on the corresponding page of https://cpeditor.org/docs/preferences</comment>
+        <translation>网络代理</translation>
+    </message>
 </context>
 <context>
     <name>ShortcutItem</name>
@@ -2674,6 +2696,41 @@ You can learn about it by running `yapf --style-help`.</source>
     <message>
         <source>Move the current row down (Ctrl+Shift+Down)</source>
         <translation>将当前行下移一行（Ctrl+Shift+↓）</translation>
+    </message>
+</context>
+<context>
+    <name>SupportUsDialog</name>
+    <message>
+        <source>Like CP Editor?</source>
+        <translation>喜欢 CP Editor 吗？</translation>
+    </message>
+    <message>
+        <source>Thank you for using CP Editor! To support us, you can:</source>
+        <translation>感谢您使用 CP Editor！你可以用下列方式支持我们：</translation>
+    </message>
+    <message>
+        <source>Give us a star on GitHub</source>
+        <translation>在 GitHub 上给我们一个 star</translation>
+    </message>
+    <message>
+        <source>Share CP Editor with your friends</source>
+        <translation>向你的朋友们分享 CP Editor</translation>
+    </message>
+    <message>
+        <source>Financially support us</source>
+        <translation>在经济上支持我们</translation>
+    </message>
+    <message>
+        <source>Or, [provide some suggestions](https://github.com/cpeditor/cpeditor/issues/new/choose) to help us do better.</source>
+        <translation>或者，[提供一些建议](https://github.com/cpeditor/cpeditor/issues/new/choose)以使我们做得更好。</translation>
+    </message>
+    <message>
+        <source>Donate</source>
+        <translation>捐赠</translation>
+    </message>
+    <message>
+        <source>I&apos;m using @cpeditor_, an IDE specially designed for competitive programmers, which is awesome!</source>
+        <translation>我正在使用 @cpeditor_，一款为算法竞赛量身定制的 IDE，它非常好用！</translation>
     </message>
 </context>
 <context>

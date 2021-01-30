@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com>
+ * Copyright (C) 2019-2021 Ashar Khan <ashar786khan@gmail.com>
  *
  * This file is part of CP Editor.
  *
@@ -18,7 +18,7 @@
 #include "Settings/PreferencesHomePage.hpp"
 #include "Core/EventLogger.hpp"
 #include "Settings/PreferencesWindow.hpp"
-#include "generated/version.hpp"
+#include "Util/Util.hpp"
 #include <QLabel>
 #include <QPixmap>
 #include <QPushButton>
@@ -66,10 +66,9 @@ void PreferencesHomePage::init()
     layout->addSpacing(20);
 
     // add manual label
-    auto *manualLabel = new QLabel(
-        tr("You can read the <a href=\"%1\">documentation</a> or go "
-           "through the settings for more information.")
-            .arg(QUrl(tr("https://cpeditor.org/%1/docs").arg(MINOR_VERSION)).url(QUrl::NormalizePathSegments)));
+    auto *manualLabel = new QLabel(tr("You can read the <a href=\"%1\">documentation</a> or go "
+                                      "through the settings for more information.")
+                                       .arg(Util::websiteLink("docs")));
     manualLabel->setOpenExternalLinks(true);
     layout->addWidget(manualLabel);
     layout->setAlignment(manualLabel, Qt::AlignCenter);

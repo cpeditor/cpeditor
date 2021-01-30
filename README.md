@@ -1,27 +1,27 @@
-# CP Editor
+<div align="center">
 
-<img src=assets/icon.ico height="80" width="80">
+<img src=assets/icon.ico width="128">
 
-CP Editor is a Qt-based, lightweight and cross-platform code editor specially designed for competitive programming.
+**CP Editor - Boost your competitive programming experience!**
 
-It makes your competitive coding life easier :grin: by automating many things for you.
+[![downloads](https://img.shields.io/github/downloads/cpeditor/cpeditor/total)](https://github.com/cpeditor/cpeditor/releases)
+[![All Contributors](https://img.shields.io/github/all-contributors/cpeditor/cpeditor)](#all-contributors)
+[![GitHub Sponsors](https://img.shields.io/github/sponsors/cpeditor?label=github%20sponsors)](https://github.com/sponsors/cpeditor)
+[![license](https://img.shields.io/github/license/cpeditor/cpeditor)](LICENSE)
 
-[Features](https://cpeditor.org) | [Documentation](https://cpeditor.org/docs) | [Changelog](CHANGELOG.md) | [Contributing](CONTRIBUTING.md) | [FAQ](https://cpeditor.org/docs/faq/) | [中文](README_zh-CN.md) | [Русский](README_ru-RU.md)
+**[Features](https://cpeditor.org) · [Documentation](https://cpeditor.org/docs) · [Changelog](CHANGELOG.md) · [Contributing](CONTRIBUTING.md) · [FAQ](https://cpeditor.org/docs/faq/)**
+
+[中文](README_zh-CN.md) · [Русский](README_ru-RU.md)
 
 ![demo](assets/demo.gif)
-
----
-
-[![Open Collective](https://opencollective.com/cpeditor/tiers/support-us.svg?avatarHeight=60)](https://opencollective.com/cpeditor#section-contribute)
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-50-orange.svg)](#all-contributors)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 |  type  |                           branch                           |                                                                                                       build                                                                                                        |                                                                   downloads                                                                    |                                                         AUR                                                         |
 | :----: | :--------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------: |
 | alpha  | [master](https://github.com/cpeditor/cpeditor/tree/master) | [![GitHub Workflow Status](https://github.com/cpeditor/cpeditor/workflows/CI:%20Build%20Test/badge.svg?branch=master&event=push)](https://github.com/cpeditor/cpeditor/actions?query=event%3Apush+branch%3Amaster) |                                                                       -                                                                        | [![AUR version](https://img.shields.io/aur/version/cpeditor-git)](https://aur.archlinux.org/packages/cpeditor-git/) |
 |  beta  |   [v6.7](https://github.com/cpeditor/cpeditor/tree/v6.7)   |   [![GitHub Workflow Status](https://github.com/cpeditor/cpeditor/workflows/CI:%20Build%20Test/badge.svg?branch=v6.7&event=push)](https://github.com/cpeditor/cpeditor/actions?query=event%3Apush+branch%3Av6.7)   | [![Downloads](https://img.shields.io/github/downloads/cpeditor/cpeditor/6.7.1/total)](https://github.com/cpeditor/cpeditor/releases/tag/6.7.1) |                                                          -                                                          |
 | stable |   [v6.6](https://github.com/cpeditor/cpeditor/tree/v6.6)   |   [![GitHub Workflow Status](https://github.com/cpeditor/cpeditor/workflows/CI:%20Build%20Test/badge.svg?branch=v6.6&event=push)](https://github.com/cpeditor/cpeditor/actions?query=event%3Apush+branch%3Av6.6)   | [![Downloads](https://img.shields.io/github/downloads/cpeditor/cpeditor/6.6.5/total)](https://github.com/cpeditor/cpeditor/releases/tag/6.6.5) |     [![AUR version](https://img.shields.io/aur/version/cpeditor)](https://aur.archlinux.org/packages/cpeditor/)     |
+
+</div>
 
 ## Get Started
 
@@ -31,13 +31,17 @@ It makes your competitive coding life easier :grin: by automating many things fo
 -   [Preferences](https://cpeditor.org/docs/preferences)
 -   [Tips](https://cpeditor.org/docs/tips/)
 
+## Donate
+
+-   [How to donate](DONATE.md)
+-   [Donators list](DONATORS.md)
+
 ## Contributing
 
 -   [Open an issue](https://github.com/cpeditor/cpeditor/issues/new/choose)
 -   [Contributing Guidelines](CONTRIBUTING.md)
 -   [Good first issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
 -   [Help wanted issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
--   [Support us financially](DONATE.md)
 
 ## Get help
 
@@ -53,7 +57,7 @@ The general rule is: an issue is what can be closed/resolved by a pull request.
 
 More specifically, open an issue if:
 
--   You are sure what feature you are requesting for.
+-   You are sure what feature you are requesting.
 -   You are sure the problem you are facing is a bug of CP Editor, not a fault on the user side.
 
 Open a discussion if:
@@ -247,7 +251,6 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
 
-License
-----
+## License
 
-[GNU General Public License Version 3.0](https://github.com/cpeditor/cpeditor/blob/master/LICENSE)
+[GNU General Public License Version 3.0](LICENSE)

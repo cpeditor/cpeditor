@@ -24,8 +24,8 @@
         <translation>О CP Editor %1</translation>
     </message>
     <message>
-        <source>&lt;p&gt;&lt;b&gt;CP Editor&lt;/b&gt; is a native Qt-based code editor. It&apos;s specially designed for competitive programming, unlike other editors/IDEs which are mainly for developers. It helps you focus on your algorithm and automates the compilation, executing and testing. It even fetches test cases for you from different platforms and submits solutions to Codeforces!&lt;/p&gt;&lt;p&gt;Copyright (C) 2019-2020 Ashar Khan &amp;lt;ashar786khan@gmail.com&amp;gt;&lt;/p&gt;&lt;p&gt;This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. The source code for CP Editor is available at &lt;a href=&quot;https://github.com/cpeditor/cpeditor&quot;&gt; https://github.com/cpeditor/cpeditor&lt;/a&gt;.&lt;/p&gt;</source>
-        <translation>&lt;p&gt;&lt;b&gt;CP Editor&lt;/b&gt; - редактор кода, созданный на Qt. Дизайн CP Editor специально рассчитан на спортивное программирование, в отличии от других редакторов/IDE, который больше подходят разработчикам. Наш редакатор кода помогает сфокусироваться на построении алгоритма, автодополняя, запуская и тестируя его. Он также может использовать тест-кейсы разных платформ и отправлять решения на Codeforces!&lt;/p&gt;&lt;p&gt;Copyright (C) 2019-2020 Ashar Khan &amp;lt;ashar786khan@gmail.com&amp;gt;&lt;/p&gt;&lt;p&gt;Это свободно распространяемое программное обеспечение. Условия копирования приведены в исходных текстах. Без гарантии каких-либо качеств, включая коммерческую ценность и применимость для каких-либо целей. Исходный код CP Editor доступен на &lt;a href=&quot;https://github.com/cpeditor/cpeditor&quot;&gt; https://github.com/cpeditor/cpeditor&lt;/a&gt;.&lt;/p&gt;</translation>
+        <source>&lt;p&gt;&lt;b&gt;CP Editor&lt;/b&gt; is a native Qt-based code editor. It&apos;s specially designed for competitive programming, unlike other editors/IDEs which are mainly for developers. It helps you focus on your algorithm and automates the compilation, executing and testing. It even fetches test cases for you from different platforms and submits solutions to Codeforces!&lt;/p&gt;&lt;p&gt;Copyright (C) 2019-2021 Ashar Khan &amp;lt;ashar786khan@gmail.com&amp;gt;&lt;/p&gt;&lt;p&gt;This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. The source code for CP Editor is available at &lt;a href=&quot;https://github.com/cpeditor/cpeditor&quot;&gt; https://github.com/cpeditor/cpeditor&lt;/a&gt;.&lt;/p&gt;</source>
+        <translation>&lt;p&gt;&lt;b&gt;CP Editor&lt;/b&gt; - редактор кода, созданный на Qt. Дизайн CP Editor специально рассчитан на спортивное программирование, в отличии от других редакторов/IDE, который больше подходят разработчикам. Наш редакатор кода помогает сфокусироваться на построении алгоритма, автодополняя, запуская и тестируя его. Он также может использовать тест-кейсы разных платформ и отправлять решения на Codeforces!&lt;/p&gt;&lt;p&gt;Copyright (C) 2019-2021 Ashar Khan &amp;lt;ashar786khan@gmail.com&amp;gt;&lt;/p&gt;&lt;p&gt;Это свободно распространяемое программное обеспечение. Условия копирования приведены в исходных текстах. Без гарантии каких-либо качеств, включая коммерческую ценность и применимость для каких-либо целей. Исходный код CP Editor доступен на &lt;a href=&quot;https://github.com/cpeditor/cpeditor&quot;&gt; https://github.com/cpeditor/cpeditor&lt;/a&gt;.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Open Files</source>
@@ -458,10 +458,6 @@ Git commit hash: %3
     <message>
         <source>Set Time Limit</source>
         <translation>Установить лими времени</translation>
-    </message>
-    <message>
-        <source>https://cpeditor.org/%1/docs</source>
-        <translation>https://cpeditor.org/%1/ru/docs</translation>
     </message>
     <message>
         <source>Full Screen</source>
@@ -1334,10 +1330,6 @@ If it&apos;s partially checked, the global setting in Code Editing will be used.
         <translation>Вы можете почитать &lt;a href=&quot;%1&quot;&gt;документация&lt;/a&gt; или просмотреть настройки для более подробной информации.</translation>
     </message>
     <message>
-        <source>https://cpeditor.org/%1/docs</source>
-        <translation>https://cpeditor.org/%1/ru/docs</translation>
-    </message>
-    <message>
         <source>Appearance Settings</source>
         <translation>Настройки внешнего вида</translation>
     </message>
@@ -1811,7 +1803,7 @@ This can be overridden for each parenthesis in each language.</source>
         <translation>Сохранять тесткейса при нажатии на &quot;Сохранить&quot;</translation>
     </message>
     <message>
-        <source>Save the testcases on the disk when saving a file, and load the saved testcases when opening a file.</source>
+        <source>Save the test cases on the disk when saving a file, and load the saved test cases when opening a file.</source>
         <translation>Сохраните тесткейсы на диске при сохранении файла и загрузите сохраненные тескейсы при открытии файла.</translation>
     </message>
     <message>
@@ -1835,7 +1827,7 @@ This can be overridden for each parenthesis in each language.</source>
         <translation>Включить Competitive Companion</translation>
     </message>
     <message>
-        <source>Receive data sent by Competitive Companion and load the example testcases.</source>
+        <source>Receive data sent by Competitive Companion and load the example test cases.</source>
         <translation>Получать данные с Competitive Companion и загружать примеры тесткейсов.</translation>
     </message>
     <message>
@@ -1985,7 +1977,7 @@ A source file won&apos;t be opened if it&apos;s too long.</source>
         <translation>Показывать ошибки, предупреждения, информацию и подсказки в редакторе кода для языка Python</translation>
     </message>
     <message>
-        <source>Use auto complete with Language Server</source>
+        <source>Use auto-complete with Language Server</source>
         <translation>Используйте автозавершение с языковым сервером</translation>
     </message>
     <message>
@@ -1997,7 +1989,7 @@ A source file won&apos;t be opened if it&apos;s too long.</source>
         <translation>Задержка операции Linting в мс</translation>
     </message>
     <message>
-        <source>Delay in linting in miliseconds after last modification to code</source>
+        <source>Delay in linting in milliseconds after last modification to code</source>
         <translation>Задержка в операции Linting (мс) после модификации кода</translation>
     </message>
     <message>
@@ -2183,7 +2175,7 @@ from Competitive Companion again, the old file will be opened.</source>
         <translation>Проверить свой ответ на тестовых примерах с пустым выводом</translation>
     </message>
     <message>
-        <source>Check your answer even if your output or the expected the output is empty.</source>
+        <source>Check your answer even if your output or the expected output is empty.</source>
         <translation>Проверить свой ответ, даже если ваш вывод или ответ пуст.</translation>
     </message>
     <message>
@@ -2200,8 +2192,8 @@ from Competitive Companion again, the old file will be opened.</source>
     </message>
     <message>
         <source>After the last modification: the timer will be reset after a modification to the code.
-After the first modification: the timer will start after a modification, if at that time the timer is not running.
-Without modification: auto-save happens with an constant inverval no matter there are modifications or not.</source>
+After the first modification: the timer will start after a modification if at that time the timer is not running.
+Without modification: auto-save happens with a constant interval no matter there are modifications or not.</source>
         <translation>После последней модификации: таймер будет сброшен после модификации кода.
 После первой модификации: таймер запустится после модификации, если в это время таймер не работает.
 Без модификации: автоматическое сохранение происходит с постоянным интервалом независимо от того, есть модификации или нет.</translation>
@@ -2253,7 +2245,7 @@ kill the application with SIGKILL which could not be handled by the application.
         <translation>Включить прокси для проверки обновлений</translation>
     </message>
     <message>
-        <source>The host name of the proxy, e.g. 127.0.0.1</source>
+        <source>The hostname of the proxy, e.g. 127.0.0.1</source>
         <translation>Название хоста прокси, например 127.0.0.1</translation>
     </message>
     <message>
@@ -2473,10 +2465,6 @@ Consult your terminal emulator for the suitable arguments.</source>
 Уточните аргументы, доступные для вашего эмулятора терминала.</translation>
     </message>
     <message>
-        <source>Head Comments</source>
-        <translation>Комментарии в шапке</translation>
-    </message>
-    <message>
         <source>Save Test Case To A File</source>
         <translation>Сохранить тесткейс в файл</translation>
     </message>
@@ -2510,7 +2498,7 @@ https://doc.qt.io/qt-5/qtime.html#toString</translation>
     </message>
     <message>
         <source>Add a line saying &quot;Powered By CP Editor&quot; in the head comments.
-This doesn&apos;t cost you anyting, but helps more people to know CP Editor.</source>
+This doesn&apos;t cost you anything, but helps more people to know CP Editor.</source>
         <translation>Добавить строку &quot;Powered By CP Editor&quot; в комментарии шапки
 Это ничего Вам не стоит, но помогает многим людям узнавать о CP Editor.</translation>
     </message>
@@ -2635,6 +2623,40 @@ You can learn about it by running `yapf --style-help`.</source>
         <source>Format the code when auto-saving it.</source>
         <translation>Форматировать код, когда он автоматически сохраняется.</translation>
     </message>
+    <message>
+        <source>Content of the head comments</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>network-proxy</source>
+        <comment>the anchor of Enable Proxy on the corresponding page of https://cpeditor.org/docs/preferences</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>network-proxy</source>
+        <comment>the anchor of Type on the corresponding page of https://cpeditor.org/docs/preferences</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>network-proxy</source>
+        <comment>the anchor of Host Name on the corresponding page of https://cpeditor.org/docs/preferences</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>network-proxy</source>
+        <comment>the anchor of Port on the corresponding page of https://cpeditor.org/docs/preferences</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>network-proxy</source>
+        <comment>the anchor of User on the corresponding page of https://cpeditor.org/docs/preferences</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>network-proxy</source>
+        <comment>the anchor of Password on the corresponding page of https://cpeditor.org/docs/preferences</comment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ShortcutItem</name>
@@ -2684,6 +2706,41 @@ You can learn about it by running `yapf --style-help`.</source>
     <message>
         <source>Move the current row down (Ctrl+Shift+Down)</source>
         <translation>Переместите текущий ряд вниз (Ctrl+Shift+Down)</translation>
+    </message>
+</context>
+<context>
+    <name>SupportUsDialog</name>
+    <message>
+        <source>Like CP Editor?</source>
+        <translation type="unfinished">Нравится CP Editor?</translation>
+    </message>
+    <message>
+        <source>Thank you for using CP Editor! To support us, you can:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Give us a star on GitHub</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Share CP Editor with your friends</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Financially support us</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Or, [provide some suggestions](https://github.com/cpeditor/cpeditor/issues/new/choose) to help us do better.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Donate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>I&apos;m using @cpeditor_, an IDE specially designed for competitive programmers, which is awesome!</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -6,58 +6,71 @@ on:
       - "*"
 
 env:
-  QT_VERSION: 5.15.1
+  QT_VERSION: 5.15.2
 
 jobs:
   release:
-    name: "release on ${{ matrix.config.os }} with portable ${{ matrix.config.portable-option }}"
+    name: "release on ${{ matrix.config.os }} ${{ matrix.config.arch }} with portable ${{ matrix.config.portable-option }}"
     runs-on: "${{ matrix.config.os }}"
     strategy:
       fail-fast: false
       matrix:
         config:
-          - { os: "ubuntu-16.04", portable-option: "Off" }
-          - {
-              os: "windows-latest",
-              portable-option: "Off",
-              portable-name: "-setup.exe",
-            }
-          - {
-              os: "windows-latest",
-              portable-option: "On",
-              portable-name: "-portable.zip",
-            }
-          - { os: "macos-latest", portable-option: "Off" }
+          - os: "ubuntu-16.04"
+            portable-option: "Off"
+          - os: "macos-latest"
+            portable-option: "Off"
+          - os: "windows-latest"
+            arch: x64
+            platform: x64
+            qtarch: win64_msvc2019_64
+            portable-option: "Off"
+            portable-name: "-setup.exe"
+          - os: "windows-latest"
+            arch: x64
+            platform: x64
+            qtarch: win64_msvc2019_64
+            portable-option: "On"
+            portable-name: "-portable.zip"
+          - os: "windows-latest"
+            arch: x86
+            platform: Win32
+            qtarch: win32_msvc2019
+            portable-option: "Off"
+            portable-name: "-setup.exe"
+          - os: "windows-latest"
+            arch: x86
+            platform: Win32
+            qtarch: win32_msvc2019
+            portable-option: "On"
+            portable-name: "-portable.zip"
 
     steps:
       - uses: actions/checkout@v2
         with:
           submodules: recursive
 
-      - name: Install Python 3.7
-        uses: actions/setup-python@v1
-        with:
-          python-version: 3.7
-
-      - name: Restore Qt from cache
-        id: cache-qt
-        uses: actions/cache@v1
-        with:
-          path: ../Qt
-          key: Qt-${{ matrix.config.os }}-${{ env.QT_VERSION }}
-
       - name: Set up Qt environment
         uses: jurplel/install-qt-action@v2
         with:
-          cached: ${{ steps.cache-qt.outputs.cache-hit }}
           version: ${{ env.QT_VERSION }}
+          arch: ${{ matrix.config.qtarch }}
 
-      - name: Build
+      - name: Build on Windows
+        if: matrix.config.os == 'windows-latest'
+        run: |
+          mkdir build
+          cd build
+          cmake .. -A ${{ matrix.config.platform }} -DPORTABLE_VERSION=${{ matrix.config.portable-option }}
+          cmake --build . --config Release -j4
+
+      - name: Build on Linux/macOS
+        if: matrix.config.os != 'windows-latest'
         run: |
           mkdir build
           cd build
           cmake .. -DCMAKE_BUILD_TYPE=Release -DPORTABLE_VERSION=${{ matrix.config.portable-option }}
-          cmake --build . --config Release -j2
+          cmake --build . --config Release -j4
 
       - name: Get the version
         id: get_version
@@ -208,17 +221,17 @@ jobs:
         shell: bash
         run: |
           mkdir build/out/Redist
-          cp "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Redist/MSVC/$VC_REDIST_VERSION/vc_redist.x64.exe" build/out/Redist
-          iscc .ci/win/win-setup.iss -DMyAppVersion=${{ steps.get_version.outputs.VERSION }} -DMyProjectRoot=$(pwd) -DMyOutRoot=$(pwd)/build/out -DVC_REDIST_VERSION=$VC_REDIST_VERSION
-          mv cpeditor-${{ steps.get_version.outputs.VERSION }}-x64-setup.exe cpeditor-${{ steps.get_version.outputs.VERSION }}-windows-x64${{ matrix.config.portable-name }}
+          cp "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Redist/MSVC/$VC_REDIST_VERSION/vc_redist.${{ matrix.config.arch }}.exe" build/out/Redist
+          iscc .ci/win/win-setup.iss -DArch=${{ matrix.config.arch }} -DMyAppVersion=${{ steps.get_version.outputs.VERSION }} -DMyProjectRoot=$(pwd) -DMyOutRoot=$(pwd)/build/out -DVC_REDIST_VERSION=$VC_REDIST_VERSION
+          mv cpeditor-${{ steps.get_version.outputs.VERSION }}-${{ matrix.config.arch }}-setup.exe cpeditor-${{ steps.get_version.outputs.VERSION }}-windows-${{ matrix.config.arch }}${{ matrix.config.portable-name }}
 
       - name: Pack to portable on Windows
         if: startsWith(matrix.config.os, 'windows') && matrix.config.portable-option == 'On'
         shell: bash
         run: |
-          cp "C:/Program Files (x86)/Microsoft Visual Studio"/2019/Enterprise/VC/Redist/MSVC/$VC_REDIST_VERSION/x64/Microsoft.*.CRT/*.dll build/out
+          cp "C:/Program Files (x86)/Microsoft Visual Studio"/2019/Enterprise/VC/Redist/MSVC/$VC_REDIST_VERSION/${{ matrix.config.arch }}/Microsoft.*.CRT/*.dll build/out
           cd build/out
-          7z a ../../cpeditor-${{ steps.get_version.outputs.VERSION }}-windows-x64${{ matrix.config.portable-name }} ./*
+          7z a ../../cpeditor-${{ steps.get_version.outputs.VERSION }}-windows-${{ matrix.config.arch }}${{ matrix.config.portable-name }} ./*
 
       - name: Release on Windows
         if: startsWith(matrix.config.os, 'windows')
@@ -226,7 +239,7 @@ jobs:
         with:
           draft: true
           prerelease: ${{ steps.get_version.outputs.ISBETA }}
-          files: cpeditor-${{ steps.get_version.outputs.VERSION }}-windows-x64${{ matrix.config.portable-name }}
+          files: cpeditor-${{ steps.get_version.outputs.VERSION }}-windows-${{ matrix.config.arch }}${{ matrix.config.portable-name }}
           name: CP Editor ${{ steps.get_version.outputs.VERSION }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

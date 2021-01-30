@@ -1,6 +1,6 @@
 ## 你的第一次贡献
 
--   [如何在 GitHub 上为开源项目做贡献](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github)
+-   [如何在 GitHub 上为开源项目做贡献](https://app.egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github)
 -   [从源代码构建 CP Editor](https://cpeditor.org/zh/docs/installation/build-from-source/)
 -   [Qt 文档](https://doc.qt.io/)
 -   [探索 issues](https://github.com/cpeditor/cpeditor/contribute)

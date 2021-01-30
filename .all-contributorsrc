@@ -493,7 +493,6 @@
     }
   ],
   "contributorsPerLine": 6,
-  "badgeTemplate": "[![All Contributors](https://img.shields.io/badge/all_contributors-<%= contributors.length %>-orange.svg)](#all-contributors)",
   "contributorTemplate": "\n      <a href=\"https://github.com/<%= contributor.login %>\"><img src=\"<%= contributor.avatar_url %>\" width=\"<%= options.imageSize %>px;\" alt=\"\"/></a><br /><a href=\"<%= contributor.profile %>\"><sub><b><%= contributor.name %></b></sub></a><br /><%= contributions %>\n    ",
   "projectName": "cpeditor",
   "projectOwner": "cpeditor",
