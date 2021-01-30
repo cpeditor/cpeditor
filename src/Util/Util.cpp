@@ -19,6 +19,7 @@
 #include "Core/EventLogger.hpp"
 #include "Core/Translator.hpp"
 #include "generated/version.hpp"
+#include <QRegularExpression>
 #include <QUrl>
 #include <QWidget>
 
@@ -35,7 +36,10 @@ void showWidgetOnTop(QWidget *widget)
 
 QString sanitizeAnchorName(const QString &str)
 {
-    return str.trimmed().remove('+').toLower().replace(' ', '-');
+    return str.trimmed()
+        .remove(QRegularExpression(R"([!"\#$%&'()*+,\-./:;<=>?@\[\\\]^_‘{|}~]|，|（|）|。)"))
+        .toLower()
+        .replace(' ', '-');
 }
 
 QString websiteLink(const QString &path)
