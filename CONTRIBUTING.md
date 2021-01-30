@@ -1,62 +1,55 @@
-## Welcome!
+## Your first contribution
 
-You are here to help CP Editor? Awesome, feel free and read the following sections in order to know how to work on something and where to get help from. Your contribution matters a lot, CP Editor is getting better and better because of people like you. :smile:
+-   [How to contribute to an open source project on GitHub](https://app.egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github)
+-   [Build CP Editor from source](https://cpeditor.org/docs/installation/build-from-source/)
+-   [Qt docs](https://doc.qt.io/)
+-   [Discover issues](https://github.com/cpeditor/cpeditor/contribute)
 
-## What kinds of contributions are we looking for?
+## Before writing codes
 
-- If you like CP Editor, star this project and share it with your friends.
-- Report bugs or request new features by [opening issues](https://github.com/cpeditor/cpeditor/issues/new/choose). Please follow the issue templates and provide detailed information, this will help the developers to find the reason of the bug and understand what feature you are requesting for exactly.
-- Help other people in issues/pull requests/[Telegram group](https://t.me/cpeditor)/other platforms if you are able to help them.
-- Write tutorials and blogs on how to use CP Editor.
-- Improve documentation, including the Markdown files and the comments in the codes.
-- Write codes for new features or bug fixes.
+If there isn't an open issue for what you are going to work on, please open an issue before writing codes for a pull request, for these reasons:
 
-## Your First Contribution
-
-**Working on your first Pull Request?** You can learn how from this *free* series [How to Contribute to an Open Source Project on GitHub](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github). Basically, you have to fork this repository, write codes on your fork, open a pull request when you are finished, wait for reviews and apply suggestions from the maintainers.
-
-**First time to developing?** There's a big difference between developing and competitive programming, but it's not hard. The first thing you should know is Object-Oriented Programming. Basically, you need to know how classes work in C++, and you should know it's a rule to put the class definitions in the `.h`/`.hpp` files, and put the implementation of the functions in the `.cpp` files. The source code of the CP Editor is a good example. Google for what you want to implement is usually helpful. Copy and modify the source codes if you want to implement something similar to an existing feature. If you are looking for an IDE for developing, [VS Code](https://code.visualstudio.com/) is probably a good choice.
-
-**First time to Qt?** Don't be afraid, Qt is not hard to get started. You have to install Qt>=5.15 and CMake>=3.5 first. Linux users may install them using the package manager on your system. Windows users may download Qt [here](https://www.qt.io/download) and it's recommended to use [Visual Studio](https://visualstudio.microsoft.com/) and install the CMake plugin. Read the [build from source](https://cpeditor.org/docs/installation/build-from-source/) section to learn how to build. Read the [Qt docs](https://doc.qt.io/) on how to use Qt built-in widgets, how to design the UI and how to use the [signals and slots](https://doc.qt.io/qt-5/signalsandslots.html). Usually, you don't need anything from the std namespace, for example, use `QString` instead of `std::string`.
-
-**Don't know where to start?** You can start by looking through the [issues](https://github.com/cpeditor/cpeditor/issues) and find one you are interested in. The [good first issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) may be suitable for you. Ask in the [Telegram group](https://t.me/cpeditor) or under the issues if you have any questions.
-
-## Before Writing Codes
-
-Please open an issue (describe the feature/bug like normal issues, and say that you are going to work on it, probably with a draft on how you would like to implement it) before writing codes for a pull request, for these reasons:
-
-1. You may get help from others.
-2. Others can know you are working on it, this will save possible duplicate works.
-3. You will be notified if this feature is not going to be accepted, or the "bug" is actually not a bug, etc., thus saving your time.
+1.  You may get help from others.
+2.  Others can know you are working on it, this will save possible duplicate works.
+3.  You will be notified if this feature is not going to be accepted, or the "bug" is actually not a bug, etc., thus saving your time.
 
 ## Contributing rules
 
-- Remember that the goal is to build an editor for competitive programmers, not for developers.
-- Do one thing in a pull request. If you want to add multiple features/fix multiple bugs and they are not relevant, open multiple pull requests. You may need to create multiple branches to open multiple pull requests, you can learn git branching [here](https://learngitbranching.js.org/).
-- Add new features on the master branch, and fix bug on the latest active (master, beta and stable) branch which has the bug.
-- Please write [clear commit messages](https://chris.beams.io/posts/git-commit/). It's also recommended to write [Conventional Commits](https://www.conventionalcommits.org/). You can use [commitizen/cz-cli](https://github.com/commitizen/cz-cli) to write commit messages. However, the rules are optional, the key is that, others and yourself in the future should understand what has been changed and why these changes are made.
-- Use Clang Format 9 (use `clang-format --version` to check your version, you may need to set the clang-format binary path for your IDE, for example, the default version of clang-format in VS Code may be clang-format-6) and `.clang-format` in the root directory to format your codes.
-- Don't remove features unless it's necessary. Add an option to disable some feature instead.
-- Keep the settings file backward compatible all the time.
-- Windows, Linux and Mac OS should be supported.
-- Both light/dark system themes should be supported.
-- Everyone should obey the [Code of Conduct](CODE_OF_CONDUCT.md) in order to build a harassment-free community.
+-   Remember that the goal is to build an editor for competitive programmers, not for developers.
+-   Do one thing in a pull request. If you want to add multiple features/fix multiple bugs and they are not relevant, open multiple pull requests. You may need to create multiple branches to open multiple pull requests, you can learn git branching [here](https://learngitbranching.js.org/).
+-   Add new features on the master branch, and fix bugs on the latest active (master, beta and stable) branch which has the bug. See also [the versioning rule](VERSIONING.md).
+-   Please write [clear commit messages](https://chris.beams.io/posts/git-commit/). It's also recommended to write [Conventional Commits](https://www.conventionalcommits.org/). Since we are [squashing and merging pull requests](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/about-pull-request-merges#squash-and-merge-your-pull-request-commits), the commit messages in a pull request is not so important, while the title of the pull request or the message of the only commit in a pull request is more crucial.
+-   Use Clang Format and [`.clang-format`](.clang-format) to format your codes. If anything wrong happens during formatting, try updating your `clang-format` to [the latest version](https://releases.llvm.org/download.html).
+-   Don't remove features unless it's necessary. Add an option to disable them instead.
+-   Keep the settings file backward compatible all the time.
+-   Everyone should obey the [Code of Conduct](CODE_OF_CONDUCT.md) in order to build a harassment-free community.
 
-## FAQ
+## Documentation
 
-- Can I do it well if I've just started?
-  - Everyone knows nothing at the beginning. Don't worry, our cool contributors will help you when you meet difficulties. If you :heart: open source and keep trying, everything will be better and better.
-- Do I need to learn about CMake?
-  - No, you only need to know how to [build from source](https://cpeditor.org/docs/installation/build-from-source/).
-- How to add a setting?
-  - You only have to edit [settings.json](src/Settings/settings.json) and [PreferencesWindow.cpp](src/Settings/PreferencesWindow.cpp). You can refer to other settings.
-- Some files are missing when compiling.
-  -  If the CI tests are passed, it's probably because the submodules are updated. You can run the following commands:
-  
-    ```sh
-    git add .
-    git reset --hard
-    git submodule update --init
-    ```
+The documentation is hosted at [cpeditor.github.io](https://github.com/cpeditor/cpeditor.github.io). You can read [its contributing guidelines](https://github.com/cpeditor/cpeditor.github.io/blob/hugo/CONTRIBUTING.md) for more information.
 
-    You can also try `git rm` all submodules and then init them again, or even delete the repo on your disk and clone again.
+## Translations
+
+The translations are in the [translations](translations) directory. It's recommended to use Qt Linguist to edit them. However, if you only want to fix a typo, you can use whatever text editor you like. In Qt Linguist, when a translation is finished, press <kbd>Ctrl + Enter</kbd> to mark it as finished and go to the next unfinished translation. If a text doesn't need translation, for example, "C++", you can leave the translation empty and mark it as finished. You should fix all warnings in Qt Linguist.
+
+If you want to add a new language, you can ask the developers for help. For example, you can open an issue for the language you want (it will be better if you can contribute the translations after we finish the preparation for you).
+
+If you want to go a step further: The translated strings are wrapped in `tr()` in the source codes. When the codes are changed, you can run [updateTranslation.sh](tools/updateTranslation.sh) or [updateTranslation.bat](tools/updateTranslation.bat) to update the translations. You can read [Qt Linguist Manual](https://doc.qt.io/qt-5/qtlinguist-index.html) if you are interested in it.
+
+## The settings system
+
+The basic structure of the settings system is:
+
+1.  The information of the settings are stored in [settings.json](src/Settings/settings.json).
+2.  `settings.json` is translated to `SettingsHelper.hpp` and `SettingsInfo.cpp` by [genSettings.py](src/Settings/genSettings.py).
+3.  Settings are displayed in [PreferencesWindow](src/Settings/PreferencesWindow.hpp) and separated into several [PreferencesPage](src/Settings/PreferencesPage.hpp)s. Most of the settings are displayed in [PreferencesPageTemplate](src/Settings/PreferencesPageTemplate.hpp) which uses `SettingsInfo` to generate the page.
+4.  In other parts of CP Editor, you can get the settings via the functions in `SettingsHelper.hpp` or use [SettingsManager](src/Settings/SettingsManager.hpp) to manage the settings. The purpose of `SettingsHelper.hpp` is to enable auto-complete during development and reduce the chance of misspelling the name of a setting. `SettingsManager` is usually used in cases where the name of the setting is a variable, for example: `SettingsManager::get(QString("%1/Compile Command").arg(language)).toString()`.
+
+To learn how to add/modify settings, you can refer to other settings or read the [documentation](src/Settings/README.md). Basically, you need to modify [settings.json](src/Settings/settings.json) and the part starts with `AddPageHelper(this)` in [PreferencesWindow.cpp](src/Settings/PreferencesWindow.cpp).
+
+## Tips
+
+-   Reuse codes when possible, even if the implementation is short and easy.
+-   Use [DefaultFileManager](src/Settings/DefaultPathManager.hpp) when asking the user to choose a path. (With a few exceptions, including choosing a path in the preferences window, where the path is already saved in the settings.)
+-   Check the stderr when testing. The stderr contains warnings from Qt and `qDebug()` in the codes, which is a quick way to catch common mistakes.
+-   Use `git submodule update --init --recursive` to update submodules.

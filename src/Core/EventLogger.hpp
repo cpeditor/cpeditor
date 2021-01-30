@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com>
+ * Copyright (C) 2019-2021 Ashar Khan <ashar786khan@gmail.com>
  *
  * This file is part of CP Editor.
  *
@@ -38,10 +38,15 @@ class QFile;
  * WTF: what a terrible failure, used when it's considered impossible to happen
  */
 
-#define LOG_INFO(stream) Core::Log::log("INFO ", __func__, __LINE__, __FILE__) << stream << Qt::endl;
-#define LOG_WARN(stream) Core::Log::log("WARN ", __func__, __LINE__, __FILE__) << stream << Qt::endl;
-#define LOG_ERR(stream) Core::Log::log("ERROR", __func__, __LINE__, __FILE__) << stream << Qt::endl;
-#define LOG_WTF(stream) Core::Log::log(" WTF ", __func__, __LINE__, __FILE__) << stream << Qt::endl;
+/*
+ * These NOLINT are placed because macro arguments should be brace enclosed to prevent strange issues. Since, we want a
+ * pure string replacement, we cannot put braces, and hence the no lint.
+ */
+
+#define LOG_INFO(stream) Core::Log::log("INFO ", __func__, __LINE__, __FILE__) << stream << Qt::endl; // NOLINT
+#define LOG_WARN(stream) Core::Log::log("WARN ", __func__, __LINE__, __FILE__) << stream << Qt::endl; // NOLINT
+#define LOG_ERR(stream) Core::Log::log("ERROR", __func__, __LINE__, __FILE__) << stream << Qt::endl;  // NOLINT
+#define LOG_WTF(stream) Core::Log::log(" WTF ", __func__, __LINE__, __FILE__) << stream << Qt::endl;  // NOLINT
 
 #define LOG_INFO_IF(cond, stream)                                                                                      \
     if (cond)                                                                                                          \
@@ -70,7 +75,8 @@ class QFile;
 #ifdef QT_DEBUG
 #define LOG_DEV(stream)                                                                                                \
     {                                                                                                                  \
-        qDebug() << "File: [" __FILE__ "] Func: [" << __func__ << "] Line: [" << __LINE__ << "] " << stream;           \
+        qDebug() << "File: [" __FILE__ "] Func: [" << __func__ << "] Line: [" << __LINE__ << "] "                      \
+                 << stream; /* NOLINT */                                                                               \
         LOG_WARN(stream);                                                                                              \
     }
 #else

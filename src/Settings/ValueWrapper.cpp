@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com>
+ * Copyright (C) 2019-2021 Ashar Khan <ashar786khan@gmail.com>
  *
  * This file is part of CP Editor.
  *
@@ -18,7 +18,7 @@
 #include "Settings/ValueWrapper.hpp"
 
 // bool
-#include <QCheckBox>
+#include "Widgets/RichTextCheckBox.hpp"
 
 // QString
 #include "Settings/PathItem.hpp"
@@ -46,19 +46,19 @@ void ValueWidget::emitSignal()
 
 void CheckBoxWrapper::init(QString name, QWidget *parent, QVariant /*param*/)
 {
-    auto *item = new QCheckBox(name, parent);
-    connect(item, &QCheckBox::toggled, this, &ValueWidget::emitSignal);
+    auto *item = new RichTextCheckBox(name, parent);
+    connect(item, &RichTextCheckBox::toggled, this, &ValueWidget::emitSignal);
     widget = item;
 }
 
 bool CheckBoxWrapper::get()
 {
-    return qobject_cast<QCheckBox *>(widget)->isChecked();
+    return qobject_cast<RichTextCheckBox *>(widget)->isChecked();
 }
 
 void CheckBoxWrapper::set(bool b)
 {
-    qobject_cast<QCheckBox *>(widget)->setChecked(b);
+    qobject_cast<RichTextCheckBox *>(widget)->setChecked(b);
 }
 
 void LineEditWrapper::init(QWidget *parent, QVariant /*param*/)

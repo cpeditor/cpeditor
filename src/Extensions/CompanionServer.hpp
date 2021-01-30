@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com>
+ * Copyright (C) 2019-2021 Ashar Khan <ashar786khan@gmail.com>
  *
  * This file is part of CP Editor.
  *
@@ -58,7 +58,7 @@ class CompanionServer : public QObject
     void setMessageLogger(MessageLogger *log);
 
     void updatePort(int port);
-    ~CompanionServer();
+    ~CompanionServer() override;
 
   signals:
     void onRequestArrived(const CompanionData &data);

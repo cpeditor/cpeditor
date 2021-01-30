@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com>
+ * Copyright (C) 2019-2021 Ashar Khan <ashar786khan@gmail.com>
  *
  * This file is part of CP Editor.
  *
@@ -151,7 +151,7 @@ int main(int argc, char *argv[])
 
     SettingsInfo::updateSettingInfo(); // generate an English version, so that we can use SettingsHelper
     SettingsManager::init();
-    Core::Translator::setLocale(SettingsHelper::getLocale());
+    Core::Translator::setLocale();
 
     auto args = parser.positionalArguments();
 

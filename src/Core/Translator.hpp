@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com>
+ * Copyright (C) 2019-2021 Ashar Khan <ashar786khan@gmail.com>
  *
  * This file is part of CP Editor.
  *
@@ -29,9 +29,15 @@ class Translator : public QObject
     Q_OBJECT
 
   public:
-    static void setLocale(const QString &language);
+    static void setLocale();
+
+    static QString langSuffix();
+
+    static QString langCode();
 
   private:
+    static QString langName();
+
     static QTranslator *translator;
 };
 } // namespace Core

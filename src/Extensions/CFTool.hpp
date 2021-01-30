@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com>
+ * Copyright (C) 2019-2021 Ashar Khan <ashar786khan@gmail.com>
  *
  * This file is part of CP Editor.
  *
@@ -31,7 +31,7 @@ class CFTool : public QObject
 
   public:
     CFTool(const QString &path, MessageLogger *logger);
-    ~CFTool();
+    ~CFTool() override;
     void submit(const QString &filePath, const QString &url);
     static bool check(const QString &path);
     void updatePath(const QString &p);

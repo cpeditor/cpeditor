@@ -10,6 +10,9 @@
 -   Added Submit option in Actions menu.(#681)
 -   In test cases, you can copy the output to the expected. (#688)
 -   Copy test cases between different tabs. (#688)
+-   Now settings are saved to disk as soon as new settings are applied. (#590 and #722)
+-   x86 release for 32-bit Windows. (#719 and #723)
+-   Open documentation links in the preferences window. (#733)
 
 ### Fixed
 
@@ -24,6 +27,7 @@
 ### Improved
 
 -   Now unfinished checks will be cancelled at the new execution. (#635)
+-   Now the "Compile" and "Compile and Run" buttons are hidden for Python. (#710)
 
 ## v6.7
 

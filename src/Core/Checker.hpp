@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com>
+ * Copyright (C) 2019-2021 Ashar Khan <ashar786khan@gmail.com>
  *
  * This file is part of CP Editor.
  *
@@ -83,7 +83,7 @@ class Checker : public QObject
      * @brief destruct a checker
      * @note Tt kills the running compiler and checker, removes the temporary directory.
      */
-    ~Checker();
+    ~Checker() override;
 
     /**
      * @brief prepare for checking
