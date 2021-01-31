@@ -24,6 +24,7 @@
 #include "generated/version.hpp"
 #include <QJsonArray>
 #include <QJsonDocument>
+#include <QVersionNumber>
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkProxy>
 #include <QtNetwork/QNetworkReply>
@@ -128,22 +129,21 @@ void UpdateChecker::managerFinished(QNetworkReply *reply)
     QString jsonReply = reply->readAll();
     QJsonDocument doc = QJsonDocument::fromJson(jsonReply.toUtf8());
 
-    QVector<QPair<Version, UpdateMetaInformation>> releases;
+    QVector<QPair<QVersionNumber, UpdateMetaInformation>> releases;
 
     for (auto const &e : doc.array().toVariantList())
     {
         auto json = QJsonDocument::fromVariant(e);
         auto info = toMetaInformation(json);
-        Version version(info.version);
-        LOG_INFO(INFO_OF(info.version) << INFO_OF(version.valid));
-        if (version.valid)
+        const auto version = QVersionNumber::fromString(info.version);
+        LOG_INFO(INFO_OF(info.version) << INFO_OF(version.isNull()));
+        if (!version.isNull())
             releases.push_back(qMakePair(version, info));
     }
 
     std::sort(releases.begin(), releases.end(),
-              [](const QPair<Version, UpdateMetaInformation> &lhs, const QPair<Version, UpdateMetaInformation> &rhs) {
-                  return lhs.first < rhs.first;
-              });
+              [](const QPair<QVersionNumber, UpdateMetaInformation> &lhs,
+                 const QPair<QVersionNumber, UpdateMetaInformation> &rhs) { return lhs.first < rhs.first; });
 
     while (!SettingsHelper::isBeta() && !releases.isEmpty() && releases.last().second.preview)
         releases.pop_back();
@@ -156,7 +156,7 @@ void UpdateChecker::managerFinished(QNetworkReply *reply)
 
     auto latestVersion = releases.last().first;
     auto latestInfo = releases.last().second;
-    Version currentVersion(APP_VERSION);
+    const auto currentVersion = QVersionNumber::fromString(APP_VERSION);
 
     if (currentVersion < latestVersion)
     {
@@ -178,14 +178,16 @@ void UpdateChecker::managerFinished(QNetworkReply *reply)
             {
                 do
                 {
-                    if (version.major == latestVersion.major && version.minor == latestVersion.minor)
+                    if (version.majorVersion() == latestVersion.majorVersion() &&
+                        version.minorVersion() == latestVersion.minorVersion())
                     {
                         if (!latestInfo.preview && release.second.preview)
                         {
                             break;
                         }
                     }
-                    else if (version.major == last.major && version.minor == last.minor)
+                    else if (version.majorVersion() == last.majorVersion() &&
+                             version.minorVersion() == last.minorVersion())
                     {
                         break;
                     }
@@ -241,45 +243,5 @@ void UpdateChecker::updateProxy()
         proxy.setPassword(SettingsHelper::getProxyPassword());
         manager->setProxy(proxy);
     }
-}
-
-UpdateChecker::Version::Version(const QString &version)
-{
-    auto splitted = version.split('.');
-
-    valid = true;
-
-    do
-    {
-        if (splitted.length() != 3)
-        {
-            valid = false;
-            break;
-        }
-
-        major = splitted[0].toInt(&valid);
-        if (!valid)
-            break;
-
-        minor = splitted[1].toInt(&valid);
-        if (!valid)
-            break;
-
-        patch = splitted[2].toInt(&valid);
-        if (!valid)
-            break;
-    } while (false);
-
-    if (!valid)
-        major = minor = patch = 0;
-}
-
-bool UpdateChecker::Version::operator<(const Version &rhs) const
-{
-    if (major != rhs.major)
-        return major < rhs.major;
-    if (minor != rhs.minor)
-        return minor < rhs.minor;
-    return patch < rhs.patch;
 }
 } // namespace Telemetry
