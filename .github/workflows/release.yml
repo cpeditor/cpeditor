@@ -21,10 +21,8 @@ jobs:
         config:
           - os: "ubuntu-16.04"
             portable-option: "Off"
-            winlibs: false
           - os: "macos-latest"
             portable-option: "Off"
-            winlibs: false
           - os: "windows-latest"
             arch: x64
             platform: x64
