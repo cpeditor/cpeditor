@@ -7,25 +7,28 @@ on:
 
 env:
   QT_VERSION: 5.15.2
-  WINLIBS_GCC: 10.2.0
-  WINLIBS_LLVM: 11.0.0
-  WINLIBS_MINGW: 8.0.0-r6b
 
 jobs:
-  gen-params:
+  get-winlibs-versions:
     runs-on: ubuntu-latest
     steps:
-      - name: Generate params
-        id: gen
+      - name: Get Winlibs versions
+        id: get
         run: |
-          echo "::set-output name=winlibs-gcc::$WINLIBS_GCC"
+          tag=$(curl https://api.github.com/repos/brechtsanders/winlibs_mingw/releases/latest | jq -r .tag_name)
+          echo "::set-output name=tag-name::$tag"
+          echo "::set-output name=gcc-version::$(echo $tag | cut -d'-' -f 1)"
+          echo "::set-output name=mingw-version::$(echo $tag | cut -d'-' -f 3-)"
     outputs:
-      winlibs-gcc: ${{ steps.gen.outputs.winlibs-gcc }}
+      tag-name: ${{ steps.gen.outputs.tag-name }}
+      gcc-version: ${{ steps.gen.outputs.gcc-version }}
+      mingw-version: ${{ steps.gen.outputs.mingw-version }}
 
   release:
     name: "OS: ${{ matrix.config.os }} Arch: ${{ matrix.config.arch }} Portable: ${{ matrix.config.portable-option }} Winlibs: ${{ matrix.config.winlibs }}"
     runs-on: "${{ matrix.config.os }}"
-    needs: gen-params
+    needs:
+      - get-winlibs-versions
     strategy:
       fail-fast: false
       matrix:
@@ -67,7 +70,7 @@ jobs:
             platform: x64
             qtarch: win64_msvc2019_64
             portable-option: "Off"
-            filename-suffix: "setup-with-gcc-${{ needs.gen-params.outputs.winlibs-gcc }}.exe"
+            filename-suffix: "setup-with-gcc-${{ needs.get-winlibs-versions.outputs.gcc-version }}.exe"
             winlibs: true
             winlibs-arch: x86_64-posix-seh
             mingw-arch: mingw64
@@ -76,7 +79,7 @@ jobs:
             platform: x64
             qtarch: win64_msvc2019_64
             portable-option: "On"
-            filename-suffix: "portable-with-gcc-${{ needs.gen-params.outputs.winlibs-gcc }}.zip"
+            filename-suffix: "portable-with-gcc-${{ needs.get-winlibs-versions.outputs.gcc-version }}.zip"
             winlibs: true
             winlibs-arch: x86_64-posix-seh
             mingw-arch: mingw64
@@ -85,7 +88,7 @@ jobs:
             platform: Win32
             qtarch: win32_msvc2019
             portable-option: "Off"
-            filename-suffix: "setup-with-gcc-${{ needs.gen-params.outputs.winlibs-gcc }}.exe"
+            filename-suffix: "setup-with-gcc-${{ needs.get-winlibs-versions.outputs.gcc-version }}.exe"
             winlibs: true
             winlibs-arch: i686-posix-dwarf
             mingw-arch: mingw32
@@ -94,7 +97,7 @@ jobs:
             platform: Win32
             qtarch: win32_msvc2019
             portable-option: "On"
-            filename-suffix: "portable-with-gcc-${{ needs.gen-params.outputs.winlibs-gcc }}.zip"
+            filename-suffix: "portable-with-gcc-${{ needs.get-winlibs-versions.outputs.gcc-version }}.zip"
             winlibs: true
             winlibs-arch: i686-posix-dwarf
             mingw-arch: mingw32
@@ -270,20 +273,18 @@ jobs:
           cd "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Redist/MSVC"
           echo "VC_REDIST_VERSION=$(ls -dr *.* | head -n1)" >> $GITHUB_ENV
 
-      - name: "[Windows] Get Winlibs tag and asset name"
+      - name: "[Windows] Get Winlibs asset name"
         if: startsWith(matrix.config.os, 'windows') && matrix.config.winlibs
         id: winlibs
         shell: bash
-        run: |
-          echo "::set-output name=tag::${WINLIBS_GCC}-${WINLIBS_LLVM}-${WINLIBS_MINGW}"
-          echo "::set-output name=asset::winlibs-${{ matrix.config.winlibs-arch }}-gcc-${WINLIBS_GCC}-mingw-w64-${WINLIBS_MINGW}.7z"
+        run: echo "::set-output name=asset::winlibs-${{ matrix.config.winlibs-arch }}-gcc-${{ needs.get-winlibs-versions.outputs.gcc-version }}-mingw-w64-${{ needs.get-winlibs-versions.outputs.mingw-version }}.7z"
 
       - name: "[Windows] Download Winlibs"
         if: startsWith(matrix.config.os, 'windows') && matrix.config.winlibs
         uses: robinraju/release-downloader@v1
         with:
           repository: brechtsanders/winlibs_mingw
-          tag: ${{ steps.winlibs.outputs.tag }}
+          tag: ${{ needs.get-winlibs-versions.outputs.tag-name }}
           fileName: ${{ steps.winlibs.outputs.asset }}
 
       - name: "[Windows] Extract Winlibs"
