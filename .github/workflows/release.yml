@@ -12,9 +12,20 @@ env:
   WINLIBS_MINGW: 8.0.0-r6b
 
 jobs:
+  gen-params:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate params
+        id: gen
+        run: |
+          echo "::set-output name=winlibs-gcc::$WINLIBS_GCC"
+    outputs:
+      winlibs-gcc: ${{ steps.gen.outputs.winlibs-gcc }}
+
   release:
     name: "OS: ${{ matrix.config.os }} Arch: ${{ matrix.config.arch }} Portable: ${{ matrix.config.portable-option }} Winlibs: ${{ matrix.config.winlibs }}"
     runs-on: "${{ matrix.config.os }}"
+    needs: gen-params
     strategy:
       fail-fast: false
       matrix:
@@ -56,7 +67,7 @@ jobs:
             platform: x64
             qtarch: win64_msvc2019_64
             portable-option: "Off"
-            filename-suffix: "setup-with-gcc-${{ env.WINLIBS_GCC }}.exe"
+            filename-suffix: "setup-with-gcc-${{ needs.gen-params.outputs.winlibs-gcc }}.exe"
             winlibs: true
             winlibs-arch: x86_64-posix-seh
             mingw-arch: mingw64
@@ -65,7 +76,7 @@ jobs:
             platform: x64
             qtarch: win64_msvc2019_64
             portable-option: "On"
-            filename-suffix: "portable-with-gcc-${{ env.WINLIBS_GCC }}.zip"
+            filename-suffix: "portable-with-gcc-${{ needs.gen-params.outputs.winlibs-gcc }}.zip"
             winlibs: true
             winlibs-arch: x86_64-posix-seh
             mingw-arch: mingw64
@@ -74,7 +85,7 @@ jobs:
             platform: Win32
             qtarch: win32_msvc2019
             portable-option: "Off"
-            filename-suffix: "setup-with-gcc-${{ env.WINLIBS_GCC }}.exe"
+            filename-suffix: "setup-with-gcc-${{ needs.gen-params.outputs.winlibs-gcc }}.exe"
             winlibs: true
             winlibs-arch: i686-posix-dwarf
             mingw-arch: mingw32
@@ -83,7 +94,7 @@ jobs:
             platform: Win32
             qtarch: win32_msvc2019
             portable-option: "On"
-            filename-suffix: "portable-with-gcc-${{ env.WINLIBS_GCC }}.zip"
+            filename-suffix: "portable-with-gcc-${{ needs.gen-params.outputs.winlibs-gcc }}.zip"
             winlibs: true
             winlibs-arch: i686-posix-dwarf
             mingw-arch: mingw32
