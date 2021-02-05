@@ -20,9 +20,9 @@ jobs:
           echo "::set-output name=gcc-version::$(echo $tag | cut -d'-' -f 1)"
           echo "::set-output name=mingw-version::$(echo $tag | cut -d'-' -f 3-)"
     outputs:
-      tag-name: ${{ steps.gen.outputs.tag-name }}
-      gcc-version: ${{ steps.gen.outputs.gcc-version }}
-      mingw-version: ${{ steps.gen.outputs.mingw-version }}
+      tag-name: ${{ steps.get.outputs.tag-name }}
+      gcc-version: ${{ steps.get.outputs.gcc-version }}
+      mingw-version: ${{ steps.get.outputs.mingw-version }}
 
   release:
     name: "OS: ${{ matrix.config.os }} Arch: ${{ matrix.config.arch }} Portable: ${{ matrix.config.portable-option }} Winlibs: ${{ matrix.config.winlibs }}"
