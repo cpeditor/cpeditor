@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+## 6.7.2
+
+This version is the same as 6.7.1, but it's considered stable now.
+
 ## 6.7.1 (Beta)
 
 ### Added
