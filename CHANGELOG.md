@@ -1,5 +1,21 @@
 ## UNRELEASED
 
+### Added
+
+-   Now you can set shortcut for submitting solution. (#201 and #681)
+-   Added Submit option in Actions menu.(#681)
+
+### Fixed
+
+-   Fixed an issue where some URL was not being parsed by CF Tool. (#679 and #681) 
+
+### Changed
+
+-   Use of CF tool lower than 1.0 has been deprecated. We recommend you to update to 1.0 or above because in next release we will remove its support completely.
+
+### Improved
+
+
 ## v6.8
 
 ### Added
@@ -8,8 +24,6 @@
 -   Format python codes by YAPF. (#652)
 -   Now you can open the corresponding preferences page via a link when asked to check the setting in the message logger. (#659)
 -   Now you can toggle fullscreen mode by pressing F11 or clicking View->Full Screen. (#642, #660 and #670)
--   Now you can set shortcut for submitting solution. (#201 and #681)
--   Added Submit option in Actions menu.(#681)
 -   In test cases, you can copy the output to the expected. (#688)
 -   Copy test cases between different tabs. (#688)
 -   Now settings are saved to disk as soon as new settings are applied. (#590 and #722)
@@ -20,7 +34,6 @@
 ### Fixed
 
 -   Fixed an issue that in some rare cases CP Editor could not get full data from Competitive Companion. (#345 and #624) 
--   Fixed an issue where some URL was not being parsed by CF Tool. (#679 and #681) 
 
 ### Changed
 
