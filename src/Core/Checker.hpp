@@ -174,6 +174,19 @@ class Checker : public QObject
         QString input, output, expected;
     };
 
+    // copied from testlib.h, see #746 for why not include testlib.h
+    enum TResult
+    {
+        _ok = 0,
+        _wa = 1,
+        _pe = 2,
+        _fail = 3,
+        _dirt = 4,
+        _points = 5,
+        _unexpected_eof = 8,
+        _partially = 16
+    };
+
     CheckerType checkerType;         // the type of the checker
     QString checkerPath;             // the file path to the custom checker
     QTemporaryDir *tmpDir = nullptr; // the temp directory to save the I/O files, testlib.h and the compiled checker

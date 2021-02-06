@@ -56,18 +56,6 @@ class UpdateChecker : public QObject
     void managerFinished(QNetworkReply *reply);
 
   private:
-    struct Version
-    {
-        bool valid;
-        int major;
-        int minor;
-        int patch;
-
-        Version(const QString &version);
-
-        bool operator<(const Version &rhs) const;
-    };
-
     void updateProxy();
     static UpdateMetaInformation toMetaInformation(const QJsonDocument &release);
 

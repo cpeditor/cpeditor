@@ -21,10 +21,9 @@
 #include "Core/MessageLogger.hpp"
 #include "Core/Runner.hpp"
 #include "Util/FileUtil.hpp"
-#include "third_party/testlib/testlib.h"
+#include "generated/SettingsHelper.hpp"
 #include <QFile>
 #include <QTemporaryDir>
-#include <generated/SettingsHelper.hpp>
 
 namespace Core
 {

@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+## v6.8
+
 ### Added
 
 -   Now you can opt-in non-monospaced fonts when choosing a font in the Preferences. (#217 and #625)
@@ -13,6 +15,7 @@
 -   Now settings are saved to disk as soon as new settings are applied. (#590 and #722)
 -   x86 release for 32-bit Windows. (#719 and #723)
 -   Open documentation links in the preferences window. (#733)
+-   Releases with [WinLibs GCC](https://winlibs.com) for Windows. (#749)
 
 ### Fixed
 
