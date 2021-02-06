@@ -33,6 +33,7 @@ UpdateProgressDialog::UpdateProgressDialog()
 
     information = new QLabel(this);
     information->setWordWrap(true);
+    information->setOpenExternalLinks(true);
 
     cancelUpdate = new QPushButton(tr("Cancel"), this);
     cancelUpdate->setToolTip(tr("Close this dialog and abort the update check"));

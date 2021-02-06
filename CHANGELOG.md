@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+### Fixed
+
+-   Now the link in the update checker is clickable.
+
 ## 6.8.1 (Beta)
 
 ### Added
