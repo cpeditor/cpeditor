@@ -702,20 +702,8 @@ Press any key to exit</source>
         <translation></translation>
     </message>
     <message>
-        <source>CF Tool was killed</source>
-        <translation>CF Tool 已被终止</translation>
-    </message>
-    <message>
-        <source>Failed to get the version of CF Tool. Have you set the correct path to CF Tool in Preferences?</source>
-        <translation>未能成功获取 CF Tool 版本。你在设置中填写的 CF Tool 路径是否正确？</translation>
-    </message>
-    <message>
         <source>CF Tool has started</source>
         <translation>CF Tool 已启动</translation>
-    </message>
-    <message>
-        <source>Failed to start CF Tool in 2 seconds. Have you set the correct path to CF Tool in Preferences?</source>
-        <translation>未能成功在两秒内启动 CF Tool。你在设置中填写的 CF Tool 路径是否正确？</translation>
     </message>
     <message>
         <source>CF Tool failed</source>
@@ -730,16 +718,28 @@ Press any key to exit</source>
         <translation>比赛 %1 题目 %2</translation>
     </message>
     <message>
-        <source>You are using CF Tool %1. Please update to CF Tool 1.0 or above.</source>
-        <translation>你在使用 CF Tool %1。请升级到 CF Tool 1.0 或更高版本。</translation>
-    </message>
-    <message>
-        <source>Failed to parse URL [%1]. Updating CF Tool to 1.0 or above might fix.</source>
-        <translation>未能成功解析 URL [%1]。更新 CF Tool 至 1.0 或更高版本可能可以解决问题。</translation>
-    </message>
-    <message>
         <source>The problem code was 0. It has been changed to A. If the actual problem code is not this, please set the problem code manually in the right-click menu of the current tab.</source>
         <translation>题目代码原本是 0。现在它被修改成了 A。如果实际的题目代码不是 A，请在本标签页的右键菜单中手动修改题目代码。</translation>
+    </message>
+    <message>
+        <source>A CF Tool Instance was running. It has been killed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You need to install CF Tool to submit your code to Codeforces. If already installed, you can add it in the PATH environment variable or check your settings at %1.</source>
+        <translation type="unfinished">你需要安装 CF Tool 以将代码提交到 Codeforces。如果你已经安装了，你可以将它添加到 PATH 环境变量中，或者检查 %1 处的设置。</translation>
+    </message>
+    <message>
+        <source>You are using CF Tool %1. It is recommened to update to CF Tool 1.0 or above as next cpeditor will not support this version.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to parse URL [%1]. Please use CF tool 1.0 or higher.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to start CF Tool in 2 seconds.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1186,10 +1186,6 @@ Do you want to reload it?</source>
     <message>
         <source>Custom time limit for this tab: (ms)</source>
         <translation>这个标签页的自定义时间限制：(毫秒)</translation>
-    </message>
-    <message>
-        <source>You need to install CF Tool to submit your code to Codeforces. If already installed, you can add it in the PATH environment variable or check your settings at %1.</source>
-        <translation>你需要安装 CF Tool 以将代码提交到 Codeforces。如果你已经安装了，你可以将它添加到 PATH 环境变量中，或者检查 %1 处的设置。</translation>
     </message>
     <message>
         <source>Failed to start compilation: %1</source>
