@@ -91,8 +91,7 @@ void CFTool::submit(const QString &filePath, const QString &url)
         }
         else
         {
-            log->error(tr("CF Tool"),
-                       tr("Failed to parse URL [%1]. Please use CF tool 1.0 or higher.").arg(url));
+            log->error(tr("CF Tool"), tr("Failed to parse URL [%1]. Please use CF tool 1.0 or higher.").arg(url));
             return;
         }
     }
