@@ -891,6 +891,8 @@ void AppWindow::onTabChanged(int index)
 
     reAttachLanguageServer(tmp);
 
+    ui->actionSubmit->setEnabled(tmp->canSubmitSolution());
+
     findReplaceDialog->setTextEdit(tmp->getEditor());
 
     setWindowTitle(tmp->getCompleteTitle() + " - CP Editor");
@@ -1572,6 +1574,6 @@ void AppWindow::onCompileOrRunTriggered()
 
 void AppWindow::on_actionSubmit_triggered()
 {
-    if (currentWindow())
+    if (currentWindow() && currentWindow()->canSubmitSolution())
         currentWindow()->submitSolution();
 }

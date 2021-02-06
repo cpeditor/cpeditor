@@ -246,17 +246,7 @@ void MainWindow::saveTests(bool safe)
 
 void MainWindow::setSubmitButton(bool visible)
 {
-    ui->submitButton->show();
-
-    if (!Extensions::CFTool::check(cftoolPath))
-    {
-        ui->submitButton->setEnabled(false);
-        log->error(tr("CF Tool"),
-                   tr("You need to install CF Tool to submit your code to Codeforces. If already installed, you can "
-                      "add it in the PATH environment variable or check your settings at %1.")
-                       .arg(SettingsHelper::pathOfCFPath()),
-                   false);
-    }
+    ui->submitButton->setVisible(visible);
 }
 
 int MainWindow::getUntitledIndex() const
@@ -563,7 +553,6 @@ void MainWindow::applySettings(const QString &pagePath)
 
     if (pageChanged("Extensions/CF Tool"))
     {
-        ui->submitButton->setEnabled(Extensions::CFTool::check(SettingsHelper::getCFPath()));
         cftool->updatePath(SettingsHelper::getCFPath());
     }
 
@@ -700,7 +689,7 @@ void MainWindow::submitSolution()
 
 bool MainWindow::canSubmitSolution() const
 {
-    return ui->submitButton->isVisible() && ui->submitButton->isEnabled();
+    return ui->submitButton->isVisible();
 }
 
 void MainWindow::formatSource(bool selectionOnly, bool logOnNoChange)

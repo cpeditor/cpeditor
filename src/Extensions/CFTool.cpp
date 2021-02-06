@@ -27,7 +27,7 @@
 namespace Extensions
 {
 
-CFTool::CFTool(const QString &path, MessageLogger *logger) : CFToolPath(path)
+CFTool::CFTool(const QString &path, MessageLogger *logger) : path(path)
 {
     LOG_INFO(INFO_OF(path))
     log = logger;
@@ -35,46 +35,48 @@ CFTool::CFTool(const QString &path, MessageLogger *logger) : CFToolPath(path)
 
 CFTool::~CFTool()
 {
-    delete CFToolProcess;
+    delete process;
 }
 
 void CFTool::submit(const QString &filePath, const QString &url)
 {
-    if (CFToolProcess != nullptr)
+    if (process && process->state() == QProcess::Running)
     {
-        if (CFToolProcess->state() == QProcess::Running)
-        {
-            LOG_WARN("CF Tool was already running, forcefully killing it now");
-            CFToolProcess->kill();
-            delete CFToolProcess;
-            log->error(tr("CF Tool"), tr("CF Tool was killed"));
-        }
-        else
-            delete CFToolProcess;
-        CFToolProcess = nullptr;
+        LOG_WARN("CF Tool was already running, forcefully killing it now");
+        process->kill();
+        log->warn(tr("CF Tool"), tr("A CF Tool Instance was running. It has been killed"));
     }
+
+    delete process;
+    process = nullptr;
 
     LOG_INFO(INFO_OF(filePath) << INFO_OF(url));
 
     auto version = getCFToolVersion();
+
     if (version.isEmpty())
     {
-
-        log->error(
-            tr("CF Tool"),
-            tr("Failed to get the version of CF Tool. Have you set the correct path to CF Tool in Preferences?"));
+        log->error(tr("CF Tool"),
+                   tr("You need to install CF Tool to submit your code to Codeforces. If already installed, you can "
+                      "add it in the PATH environment variable or check your settings at %1.")
+                       .arg(SettingsHelper::pathOfCFPath()),
+                   false);
         return;
     }
 
     lastStatus = "Unknown"; // No tr here. We don't know what we'll get from network. Maybe a array for mapping.
-    CFToolProcess = new QProcess();
-    CFToolProcess->setProgram(CFToolPath);
+    process = new QProcess();
+    process->setProgram(path);
 
     bool wasProblemCodeChanged = false;
 
+    // @coder3101: Please delete this branch when CFTool < 1.0 is no longer supported.
+    // BRANCH Begin
     if (version.split('.')[0] == "0")
     {
-        log->warn(tr("CF Tool"), tr("You are using CF Tool %1. Please update to CF Tool 1.0 or above.").arg(version));
+        log->warn(tr("CF Tool"), tr("You are using CF Tool %1. It is recommened to update to CF Tool 1.0 or above as "
+                                    "next cpeditor will not support this version.")
+                                     .arg(version));
 
         if (parseCfUrl(url, problemContestId, problemCode))
         {
@@ -85,25 +87,25 @@ void CFTool::submit(const QString &filePath, const QString &url)
                 wasProblemCodeChanged = true;
             }
 
-            CFToolProcess->setArguments({"submit", problemContestId, problemCode, filePath});
+            process->setArguments({"submit", problemContestId, problemCode, filePath});
         }
         else
         {
             log->error(tr("CF Tool"),
-                       tr("Failed to parse URL [%1]. Updating CF Tool to 1.0 or above might fix.").arg(url));
+                       tr("Failed to parse URL [%1]. Please use CF tool 1.0 or higher.").arg(url));
             return;
         }
     }
     else
+    // BRANCH end
     {
-
         QString convertedUrl = url;
         if (url.endsWith("0"))
         {
             wasProblemCodeChanged = true;
             convertedUrl = url.mid(0, url.size() - 1) + "A";
         }
-        CFToolProcess->setArguments({"submit", "-f", filePath, convertedUrl});
+        process->setArguments({"submit", "-f", filePath, convertedUrl});
     }
 
     if (wasProblemCodeChanged)
@@ -113,41 +115,31 @@ void CFTool::submit(const QString &filePath, const QString &url)
                      "please set the problem code manually in the right-click menu of the current tab."));
     }
 
-    LOG_INFO(INFO_OF(CFToolProcess->arguments().join(' ')));
+    LOG_INFO(INFO_OF(process->arguments().join(' ')));
 
-    connect(CFToolProcess, &QProcess::readyReadStandardOutput, this, &CFTool::onReadReady);
-    connect(CFToolProcess, qOverload<int, QProcess::ExitStatus>(&QProcess::finished), this, &CFTool::onFinished);
-    CFToolProcess->start();
-    bool started = CFToolProcess->waitForStarted(2000);
+    connect(process, &QProcess::readyReadStandardOutput, this, &CFTool::onReadReady);
+    connect(process, qOverload<int, QProcess::ExitStatus>(&QProcess::finished), this, &CFTool::onFinished);
+    process->start();
+    bool started = process->waitForStarted(2000);
+
     if (started)
     {
         log->info(tr("CF Tool"), tr("CF Tool has started"));
     }
     else
     {
-        CFToolProcess->kill();
-        log->error(
-            tr("CF Tool"),
-            tr("Failed to start CF Tool in 2 seconds. Have you set the correct path to CF Tool in Preferences?"));
+        process->kill();
+        log->error(tr("CF Tool"), tr("Failed to start CF Tool in 2 seconds."));
     }
-}
-
-bool CFTool::check(const QString &path)
-{
-    LOG_INFO(INFO_OF(path));
-    QProcess checkProcess;
-    checkProcess.start(path, {"--version"});
-    bool finished = checkProcess.waitForFinished(2000);
-    LOG_INFO(BOOL_INFO_OF(finished) << INFO_OF(checkProcess.exitCode()) << INFO_OF(checkProcess.exitStatus()));
-    return finished && checkProcess.exitCode() == 0;
 }
 
 void CFTool::updatePath(const QString &p)
 {
     LOG_INFO(INFO_OF(p));
-    CFToolPath = p;
+    path = p;
 }
 
+// @coder3101: Please move this function to Util when CFTool < 1.0 is no longer supported.
 bool CFTool::parseCfUrl(const QString &url, QString &contestId, QString &problemCode)
 {
     LOG_INFO(INFO_OF(url));
@@ -172,7 +164,7 @@ bool CFTool::parseCfUrl(const QString &url, QString &contestId, QString &problem
 
 void CFTool::onReadReady()
 {
-    QString response = CFToolProcess->readAll();
+    QString response = process->readAll();
     response.remove(QRegularExpression("\x1b\\[.. "));
     if (response.contains("status: "))
     {
@@ -204,7 +196,7 @@ void CFTool::onFinished(int exitCode, QProcess::ExitStatus e)
         showToastMessage(tr("CF Tool failed"));
         log->error(tr("CF Tool"), tr("CF Tool finished with non-zero exit code %1").arg(exitCode));
     }
-    QString err = CFToolProcess->readAllStandardError();
+    QString err = process->readAllStandardError();
     if (!err.trimmed().isEmpty())
         log->error(tr("CF Tool"), err);
 }
@@ -218,7 +210,7 @@ void CFTool::showToastMessage(const QString &message)
 QString CFTool::getCFToolVersion() const
 {
     QProcess process;
-    process.start(CFToolPath, {"--version"});
+    process.start(path, {"--version"});
     if (!process.waitForFinished(2000))
     {
         LOG_WARN("CF Tool didn't finish after 2 second");
