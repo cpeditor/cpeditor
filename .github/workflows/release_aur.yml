@@ -4,26 +4,40 @@ on:
   release:
     types:
       - published
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version number to release"
+        required: true
 
 jobs:
   aur:
     name: "Release AUR package"
-    runs-on: "ubuntu-16.04"
+    runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Get the version
+      - name: Get version
         id: get_version
         run: |
-          VERSION=${GITHUB_REF/refs\/tags\//}
-          echo ::set-output name=VERSION::$VERSION
+          case "${{ github.event_name }}" in
+            release) VERSION=${{ github.event.release.tag_name }};;
+            workflow_dispatch) VERSION=${{ github.event.inputs.version }};;
+          esac
+
+          echo ::set-output name=version::$VERSION
           read STABLE_VERSION < .ci/STABLE_VERSION
           if [ "${VERSION:0:${#STABLE_VERSION}}" == "$STABLE_VERSION" ]; then
             echo ::set-output name=ISSTABLE::true
           else
             echo ::set-output name=ISSTABLE::false
           fi
+
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ steps.get_version.outputs.version }}
+
+      - name: Get the version
+        run: |
 
       - name: Install SSH key
         if: steps.get_version.outputs.ISSTABLE == 'true'
@@ -41,24 +55,24 @@ jobs:
       - name: Update files
         if: steps.get_version.outputs.ISSTABLE == 'true'
         run: |
-          wget -c https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.VERSION }}/cpeditor-${{ steps.get_version.outputs.VERSION }}-full-source.tar.gz
-          sha256sum=$(shasum -a 256 cpeditor-${{ steps.get_version.outputs.VERSION }}-full-source.tar.gz | cut -d ' ' -f 1)
+          wget -c https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.version }}/cpeditor-${{ steps.get_version.outputs.version }}-full-source.tar.gz
+          sha256sum=$(shasum -a 256 cpeditor-${{ steps.get_version.outputs.version }}-full-source.tar.gz | cut -d ' ' -f 1)
           cd cpeditor
           cp ../.ci/aur/stable/PKGBUILD .
           cp ../.ci/aur/stable/.SRCINFO .
-          sed -i "s/@PROJECT_VERSION@/${{ steps.get_version.outputs.VERSION }}/" PKGBUILD .SRCINFO
-          sed -i "s/SKIP/${sha256sum}/" PKGBUILD .SRCINFO
+          sed -i "s/@PROJECT_VERSION@/${{ steps.get_version.outputs.version }}/g" PKGBUILD .SRCINFO
+          sed -i "s/SKIP/${sha256sum}/g" PKGBUILD .SRCINFO
 
       - name: Check PKGBUILD
         if: steps.get_version.outputs.ISSTABLE == 'true'
-        uses: 2m/arch-pkgbuild-builder@master
+        uses: 2m/arch-pkgbuild-builder@v1.16
         with:
           target: "pkgbuild"
           pkgname: "cpeditor"
 
       - name: "Check .SRCINFO"
         if: steps.get_version.outputs.ISSTABLE == 'true'
-        uses: 2m/arch-pkgbuild-builder@master
+        uses: 2m/arch-pkgbuild-builder@v1.16
         with:
           target: "srcinfo"
           pkgname: "cpeditor"
@@ -69,6 +83,5 @@ jobs:
           cd cpeditor
           git config --global user.email "ashar786khan@gmail.com"
           git config --global user.name "coder3101"
-          git add .
-          git commit -m "Update from CI: ${GITHUB_REF/refs\/tags\//}"
+          git commit -am "Update from CI: ${GITHUB_REF/refs\/tags\//}"
           git push -u origin master

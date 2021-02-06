@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+## v6.8
+
 ### Added
 
 -   Now you can opt-in non-monospaced fonts when choosing a font in the Preferences. (#217 and #625)
