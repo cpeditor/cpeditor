@@ -4,10 +4,10 @@
 
 **CP Editor - Boost your competitive programming experience!**
 
-[![downloads](https://img.shields.io/github/downloads/cpeditor/cpeditor/total)](https://github.com/cpeditor/cpeditor/releases)
-[![All Contributors](https://img.shields.io/github/all-contributors/cpeditor/cpeditor)](#all-contributors)
-[![GitHub Sponsors](https://img.shields.io/github/sponsors/cpeditor?label=github%20sponsors)](https://github.com/sponsors/cpeditor)
-[![license](https://img.shields.io/github/license/cpeditor/cpeditor)](LICENSE)
+[![downloads](https://img.shields.io/github/downloads/cpeditor/cpeditor/total?style=for-the-badge)](https://github.com/cpeditor/cpeditor/releases)
+[![All Contributors](https://img.shields.io/github/all-contributors/cpeditor/cpeditor?style=for-the-badge)](#all-contributors)
+[![GitHub Sponsors](https://img.shields.io/github/sponsors/cpeditor?style=for-the-badge)](https://github.com/sponsors/cpeditor)
+<a href="https://www.producthunt.com/posts/cp-editor" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=283643&theme=dark" alt="Product Hunt" height="28"/></a>
 
 **[Возможности](https://cpeditor.org/ru) · [Документация](https://cpeditor.org/ru/docs/) · [Список изменений](CHANGELOG.md) · [Сотрудничество](CONTRIBUTING_ru-RU.md) · [FAQ](https://cpeditor.org/ru/docs/faq/)**
 
