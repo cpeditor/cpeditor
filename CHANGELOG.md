@@ -1,6 +1,6 @@
 ## UNRELEASED
 
-## 6.8.1 (Beta)
+## v6.8
 
 ### Added
 
