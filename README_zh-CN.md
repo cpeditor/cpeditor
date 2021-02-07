@@ -38,34 +38,17 @@
 
 ## 做出贡献
 
--   [提 issue](https://github.com/cpeditor/cpeditor/issues/new/choose)
 -   [贡献指南](CONTRIBUTING_zh-CN.md)
 -   [适合新手解决的 issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
 -   [需要帮助的 issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
 
-## 获取帮助
+## 反馈
 
--   首先，阅读[文档](https://cpeditor.org/docs).
--   阅读[更新日志](https://github.com/cpeditor/cpeditor/blob/master/CHANGELOG.md)来获知是否添加了某一功能 / 修复了某一 bug。
--   你可以在 [Discussions](https://github.com/cpeditor/cpeditor/discussions) 中问任何问题（请使用英文）。当你的问题得到了解决，请 upvote 令你满意的回答并将这个 discussion 标记为 resovled。
-
-## Issues 还是 Discussions?
-
-如果你不清楚应该开一个 [issue](https://github.com/cpeditor/cpeditor/issues) 还是 [discussion](https://github.com/cpeditor/cpeditor/discussions)，**开一个 [discussion](https://github.com/cpeditor/cpeditor/discussions)**。
-
-基本规则是：一个 issue 能够被一个 pull request 关闭/解决。
-
-更具体地，开一个 issue，如果：
-
--   你清楚地知道你想要什么功能。
--   你确认你遇到的问题是 CP Editor 的 bug，而不是用户的问题。
-
-开一个 discussion，如果：
-
--   你想要提一个问题。
--   你想要与其他人进行讨论。
--   你不确定你的想要的功能具体是什么。
--   你不确定你遇到的问题是 CP Editor 的 bug 还是用户的问题。
+-   提问：开一个 Q&A 类别的 [新讨论](https://github.com/cpeditor/cpeditor/discussions/new)。请在得到答复后将最有用的回答 Mark as Answer。
+-   提供想法：开一个 Ideas 类别的 [新讨论](https://github.com/cpeditor/cpeditor/discussions/new)。
+-   正式的功能请求/bug 报告：[开一个 issue](https://github.com/cpeditor/cpeditor/issues/new/choose)，带有详细的描述以及尽可能多的信息。
+-   [表达感谢](https://github.com/cpeditor/cpeditor/discussions/755)
+-   [随意吐槽](https://github.com/cpeditor/cpeditor/discussions/760)
 
 ## 关于 Gitee
 
