@@ -38,7 +38,6 @@
 
 ## 做出贡献
 
--   [提 issue](https://github.com/cpeditor/cpeditor/issues/new/choose)
 -   [贡献指南](CONTRIBUTING_zh-CN.md)
 -   [适合新手解决的 issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
 -   [需要帮助的 issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
