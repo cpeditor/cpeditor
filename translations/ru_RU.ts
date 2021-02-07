@@ -2586,7 +2586,7 @@ You can learn about it by running `yapf --style-help`.</source>
     <message>
         <source>network-proxy</source>
         <comment>the anchor of Host Name on the corresponding page of https://cpeditor.org/docs/preferences</comment>
-        <translation></translation>
+        <translation>прокси сети</translation>
     </message>
     <message>
         <source>network-proxy</source>
@@ -2596,12 +2596,12 @@ You can learn about it by running `yapf --style-help`.</source>
     <message>
         <source>network-proxy</source>
         <comment>the anchor of User on the corresponding page of https://cpeditor.org/docs/preferences</comment>
-        <translation></translation>
+        <translation>прокси сети</translation>
     </message>
     <message>
         <source>network-proxy</source>
         <comment>the anchor of Password on the corresponding page of https://cpeditor.org/docs/preferences</comment>
-        <translation></translation>
+        <translation>прокси сети</translation>
     </message>
 </context>
 <context>
