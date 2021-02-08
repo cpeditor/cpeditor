@@ -50,6 +50,12 @@
 -   [Say thanks](https://github.com/cpeditor/cpeditor/discussions/755)
 -   [Make complaints](https://github.com/cpeditor/cpeditor/discussions/760)
 
+## Packaging Status
+
+[![Packaging status](https://repology.org/badge/vertical-allrepos/cpeditor.svg)](https://repology.org/project/cpeditor/versions)
+
+Package maintainers can contact us if any help is needed. For example, we may add some scripts in our CI/CD workflow.
+
 ## All Contributors
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):

@@ -50,6 +50,14 @@
 -   [表达感谢](https://github.com/cpeditor/cpeditor/discussions/755)
 -   [随意吐槽](https://github.com/cpeditor/cpeditor/discussions/760)
 
+## 打包情况
+
+[![Packaging status](https://repology.org/badge/vertical-allrepos/cpeditor.svg)](https://repology.org/project/cpeditor/versions)
+
+如果需要帮助，软件包维护者可以联系我们。例如，我们可以在我们的 CI/CD 工作流中加入一些脚本。
+
+Package maintainers can contact us if any help on packaging is needed. For example, we may add scripts in our CI workflow.
+
 ## 关于 Gitee
 
 本项目同时在 [GitHub](https://github.com/cpeditor/cpeditor) 和 [Gitee](https://gitee.com/ouuan/cpeditor) 上进行托管，其中 Gitee 仓库仅作为镜像使用，不保证总是与 GitHub 仓库同步，不开放 Issues / Pull Requests，如有需要请移步 [GitHub](https://github.com/cpeditor/cpeditor)，也可以进入 [QQ 群](https://jq.qq.com/?_wv=1027&k=50eq8yF) (1081647997) 来交流讨论。
