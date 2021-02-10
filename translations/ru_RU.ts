@@ -2625,37 +2625,37 @@ You can learn about it by running `yapf --style-help`.</source>
     </message>
     <message>
         <source>Content of the head comments</source>
-        <translation type="unfinished"></translation>
+        <translation>Содержание заголовков комменатриев</translation>
     </message>
     <message>
         <source>network-proxy</source>
         <comment>the anchor of Enable Proxy on the corresponding page of https://cpeditor.org/docs/preferences</comment>
-        <translation type="unfinished"></translation>
+        <translation>прокси сети</translation>
     </message>
     <message>
         <source>network-proxy</source>
         <comment>the anchor of Type on the corresponding page of https://cpeditor.org/docs/preferences</comment>
-        <translation type="unfinished"></translation>
+        <translation>прокси сети</translation>
     </message>
     <message>
         <source>network-proxy</source>
         <comment>the anchor of Host Name on the corresponding page of https://cpeditor.org/docs/preferences</comment>
-        <translation type="unfinished"></translation>
+        <translation>прокси сети</translation>
     </message>
     <message>
         <source>network-proxy</source>
         <comment>the anchor of Port on the corresponding page of https://cpeditor.org/docs/preferences</comment>
-        <translation type="unfinished"></translation>
+        <translation>прокси сети</translation>
     </message>
     <message>
         <source>network-proxy</source>
         <comment>the anchor of User on the corresponding page of https://cpeditor.org/docs/preferences</comment>
-        <translation type="unfinished"></translation>
+        <translation>прокси сети</translation>
     </message>
     <message>
         <source>network-proxy</source>
         <comment>the anchor of Password on the corresponding page of https://cpeditor.org/docs/preferences</comment>
-        <translation type="unfinished"></translation>
+        <translation>прокси сети</translation>
     </message>
 </context>
 <context>
@@ -2712,35 +2712,35 @@ You can learn about it by running `yapf --style-help`.</source>
     <name>SupportUsDialog</name>
     <message>
         <source>Like CP Editor?</source>
-        <translation type="unfinished">Нравится CP Editor?</translation>
+        <translation>Нравится CP Editor?</translation>
     </message>
     <message>
         <source>Thank you for using CP Editor! To support us, you can:</source>
-        <translation type="unfinished"></translation>
+        <translation>Спасибо Вам за использование CP Editor! Для того чтобы поддержать нас, Вы можете:</translation>
     </message>
     <message>
         <source>Give us a star on GitHub</source>
-        <translation type="unfinished"></translation>
+        <translation>Дать нам звезду на GitHub</translation>
     </message>
     <message>
         <source>Share CP Editor with your friends</source>
-        <translation type="unfinished"></translation>
+        <translation>Поделиться информацией о CP Editor cо своими друзьями</translation>
     </message>
     <message>
         <source>Financially support us</source>
-        <translation type="unfinished"></translation>
+        <translation>Поддержать нас финансово</translation>
     </message>
     <message>
         <source>Or, [provide some suggestions](https://github.com/cpeditor/cpeditor/issues/new/choose) to help us do better.</source>
-        <translation type="unfinished"></translation>
+        <translation>Или [дать немного советов](https://github.com/cpeditor/cpeditor/issues/new/choose) чтобы помочь нам быть лучше.</translation>
     </message>
     <message>
         <source>Donate</source>
-        <translation type="unfinished"></translation>
+        <translation>Пожертвовать</translation>
     </message>
     <message>
         <source>I&apos;m using @cpeditor_, an IDE specially designed for competitive programmers, which is awesome!</source>
-        <translation type="unfinished"></translation>
+        <translation>Я использую @cpeditor_ — специальная IDE для спортивного программирования и она отлична!</translation>
     </message>
 </context>
 <context>

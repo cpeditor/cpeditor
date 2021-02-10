@@ -1,8 +1,10 @@
 ## UNRELEASED
 
-Vim Emulation has been added to the Code Editor. Almost all vim commands are supported, a complete list of supported commands could be found [here](https://cpeditor.org/docs/general/vim-commands/#supported-features). In vim, the Control key is widely used in normal mode. In order to correctly emulate vim, all Control Keys are intercepted by Code Editor instead of the application resulting in some shortcuts not working. Specifically, a shortcut that starts and `Ctrl+X+Y`, `X` being any key except `Alt` or `Shift` will be intercepted by Code Editor. Hence **popular shortcuts like `Ctrl+O`, `Ctrl+N` will not work with Vim emulation**.
+### Vim Emulation
 
-To compensate for the loss of Control key in Vim Emulation, we provide custom commands which perform various tasks in CP Editor. For instance, To open a new tab you can run `open` or `opn` (shorthand) command. Similarly to run third testcase you can issue `run 3` command. The complete list of all the custom commands could be found [here](https://cpeditor.org/docs/general/vim-commands/#custom-vim-commands)
+Now you can enable Vim Emulation in Preferences/Code Editing.
+
+## v6.8
 
 ### Added
 
@@ -18,6 +20,7 @@ To compensate for the loss of Control key in Vim Emulation, we provide custom co
 -   Now settings are saved to disk as soon as new settings are applied. (#590 and #722)
 -   x86 release for 32-bit Windows. (#719 and #723)
 -   Open documentation links in the preferences window. (#733)
+-   Releases with [WinLibs GCC](https://winlibs.com) for Windows. (#749)
 
 ### Fixed
 

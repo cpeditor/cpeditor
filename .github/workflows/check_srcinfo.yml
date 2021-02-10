@@ -12,12 +12,12 @@ jobs:
           cp .ci/aur/stable cpeditor -r
           cp .ci/aur/git cpeditor-git -r
       - name: "Check .SRCINFO of cpeditor"
-        uses: 2m/arch-pkgbuild-builder@master
+        uses: 2m/arch-pkgbuild-builder@v1.16
         with:
           target: "srcinfo"
           pkgname: "cpeditor"
       - name: "Check .SRCINFO of cpeditor-git"
-        uses: 2m/arch-pkgbuild-builder@master
+        uses: 2m/arch-pkgbuild-builder@v1.16
         with:
           target: "srcinfo"
           pkgname: "cpeditor-git"
