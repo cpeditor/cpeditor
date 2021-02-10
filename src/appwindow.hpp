@@ -259,7 +259,7 @@ class AppWindow : public QMainWindow
     MainWindow *currentWindow();
     MainWindow *windowAt(int index);
     int indexOfWindow(MainWindow *window);
-    int totalTabs() const;
+    int tabCount() const;
 
     friend class Core::SessionManager;
     friend class Core::FakeVimCommand;

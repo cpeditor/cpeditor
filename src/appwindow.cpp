@@ -151,7 +151,7 @@ AppWindow::AppWindow(bool cpp, bool java, bool python, bool noHotExit, int numbe
 
 void AppWindow::finishConstruction()
 {
-    if (ui->tabWidget->count() == 0)
+    if (tabCount() == 0)
         openTab("");
 
 #ifdef Q_OS_WIN
@@ -184,7 +184,7 @@ AppWindow::~AppWindow()
 {
     LOG_INFO("Destruction started");
     saveSettings();
-    while (ui->tabWidget->count())
+    while (tabCount())
     {
         auto *tmp = ui->tabWidget->widget(0);
         ui->tabWidget->removeTab(0);
@@ -414,9 +414,8 @@ void AppWindow::openTab(MainWindow *window)
             [this](QString const &head, QString const &body) { trayIcon->showMessage(head, body); });
     connect(window, &MainWindow::compileOrRunTriggered, this, &AppWindow::onCompileOrRunTriggered);
 
-    ui->tabWidget->setCurrentIndex(ui->tabWidget->addTab(window, window->getTabTitle(false, true)));
+    setTabAt(ui->tabWidget->addTab(window, window->getTabTitle(false, true)));
 
-    window->getEditor()->setFocus();
     onEditorFileChanged();
 }
 
@@ -426,12 +425,12 @@ void AppWindow::openTab(const QString &path, const QString &lang)
     if (!path.isEmpty())
     {
         auto fileInfo = QFileInfo(path);
-        for (int t = 0; t < ui->tabWidget->count(); t++)
+        for (int t = 0; t < tabCount(); t++)
         {
             auto tPath = qobject_cast<MainWindow *>(ui->tabWidget->widget(t))->getFilePath();
             if (path == tPath || (fileInfo.exists() && fileInfo == QFileInfo(tPath)))
             {
-                ui->tabWidget->setCurrentIndex(t);
+                setTabAt(t);
                 return;
             }
         }
@@ -439,21 +438,25 @@ void AppWindow::openTab(const QString &path, const QString &lang)
 
     auto *newWindow = new MainWindow(path, getNewUntitledIndex(), this);
 
-    QString langFromFile = SettingsHelper::getDefaultLanguage();
-
-    auto suffix = QFileInfo(path).suffix();
-
-    if (Util::cppSuffix.contains(suffix))
-        langFromFile = "C++";
-    else if (Util::javaSuffix.contains(suffix))
-        langFromFile = "Java";
-    else if (Util::pythonSuffix.contains(suffix))
-        langFromFile = "Python";
-
-    if (lang.isEmpty())
-        newWindow->setLanguage(langFromFile);
-    else
+    if (!lang.isEmpty())
+    {
         newWindow->setLanguage(lang);
+    }
+    else
+    {
+        QString langFromFile = SettingsHelper::getDefaultLanguage();
+
+        const auto suffix = QFileInfo(path).suffix();
+
+        if (Util::cppSuffix.contains(suffix))
+            langFromFile = "C++";
+        else if (Util::javaSuffix.contains(suffix))
+            langFromFile = "Java";
+        else if (Util::pythonSuffix.contains(suffix))
+            langFromFile = "Python";
+
+        newWindow->setLanguage(langFromFile);
+    }
 
     openTab(newWindow);
 }
@@ -569,7 +572,7 @@ bool AppWindow::quit()
     {
         LOG_INFO("quit() called without hotExit");
         on_actionCloseAll_triggered();
-        if (ui->tabWidget->count() >= 1)
+        if (tabCount() >= 1)
         {
             LOG_INFO("Closing is cancelled");
             return false;
@@ -587,7 +590,7 @@ int AppWindow::getNewUntitledIndex()
 {
     int index = 0;
     QSet<int> vis;
-    for (int t = 0; t < ui->tabWidget->count(); ++t)
+    for (int t = 0; t < tabCount(); ++t)
     {
         auto *tmp = windowAt(t);
         if (tmp->isUntitled() && tmp->getProblemURL().isEmpty())
@@ -711,7 +714,7 @@ void AppWindow::on_actionSaveAs_triggered()
 
 void AppWindow::on_actionSaveAll_triggered()
 {
-    for (int t = 0; t < ui->tabWidget->count(); ++t)
+    for (int t = 0; t < tabCount(); ++t)
     {
         auto *tmp = windowAt(t);
         if (!tmp->save(true, tr("Save All")))
@@ -728,7 +731,7 @@ void AppWindow::on_actionCloseCurrent_triggered()
 
 void AppWindow::on_actionCloseAll_triggered()
 {
-    for (int t = 0; t < ui->tabWidget->count(); t++)
+    for (int t = 0; t < tabCount(); t++)
     {
         if (closeTab(t))
             --t;
@@ -739,7 +742,7 @@ void AppWindow::on_actionCloseAll_triggered()
 
 void AppWindow::on_actionCloseSaved_triggered()
 {
-    for (int t = 0; t < ui->tabWidget->count(); t++)
+    for (int t = 0; t < tabCount(); t++)
         if (!windowAt(t)->isTextChanged() && closeTab(t))
             --t;
 }
@@ -914,6 +917,7 @@ void AppWindow::onTabChanged(int index)
         connect(tmp->getSplitter(), &QSplitter::splitterMoved, this, &AppWindow::onSplitterMoved);
     activeRightSplitterMoveConnection =
         connect(tmp->getRightSplitter(), &QSplitter::splitterMoved, this, &AppWindow::onRightSplitterMoved);
+
     tmp->getEditor()->setFocus();
 }
 
@@ -923,7 +927,7 @@ void AppWindow::onEditorFileChanged()
     {
         QMap<QString, QVector<int>> tabsByName;
 
-        for (int t = 0; t < ui->tabWidget->count(); ++t)
+        for (int t = 0; t < tabCount(); ++t)
         {
             tabsByName[windowAt(t)->getTabTitle(false, false)].push_back(t);
         }
@@ -961,7 +965,7 @@ void AppWindow::onEditorFileChanged()
 
 void AppWindow::onEditorTextChanged(MainWindow *window)
 {
-    int index = ui->tabWidget->indexOf(window);
+    int index = indexOfWindow(window);
     if (index != -1)
     {
         auto title = ui->tabWidget->tabText(index);
@@ -1040,7 +1044,7 @@ void AppWindow::onSettingsApplied(const QString &pagePath)
 {
     LOG_INFO("Apply settings for " << INFO_OF(pagePath));
 
-    for (int i = 0; i < ui->tabWidget->count(); ++i)
+    for (int i = 0; i < tabCount(); ++i)
     {
         windowAt(i)->applySettings(pagePath);
         onEditorTextChanged(windowAt(i));
@@ -1113,11 +1117,11 @@ void AppWindow::onIncomingCompanionRequest(const Extensions::CompanionData &data
 {
     LOG_INFO("Request from competitive companion arrived");
 
-    for (int i = 0; i < ui->tabWidget->count(); ++i)
+    for (int i = 0; i < tabCount(); ++i)
     {
         if (windowAt(i)->getProblemURL() == data.url)
         {
-            ui->tabWidget->setCurrentIndex(i);
+            setTabAt(i);
             currentWindow()->applyCompanion(data);
             return;
         }
@@ -1371,9 +1375,9 @@ void AppWindow::on_actionToggleBlockComment_triggered()
 
 void AppWindow::onConfirmTriggered(MainWindow *widget)
 {
-    int index = ui->tabWidget->indexOf(widget);
+    int index = indexOfWindow(widget);
     if (index != -1)
-        ui->tabWidget->setCurrentIndex(index);
+        setTabAt(index);
 }
 
 void AppWindow::onTabContextMenuRequested(const QPoint &pos)
@@ -1391,19 +1395,19 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
         tabMenu->addAction(tr("Close"), [index, this] { closeTab(index); });
 
         tabMenu->addAction(tr("Close Others"), [window, this] {
-            for (int i = 0; i < ui->tabWidget->count(); ++i)
+            for (int i = 0; i < tabCount(); ++i)
                 if (windowAt(i) != window && closeTab(i))
                     --i;
         });
 
         tabMenu->addAction(tr("Close to the Left"), [window, this] {
-            for (int i = 0; i < ui->tabWidget->count() && windowAt(i) != window; ++i)
+            for (int i = 0; i < tabCount() && windowAt(i) != window; ++i)
                 if (closeTab(i))
                     --i;
         });
 
         tabMenu->addAction(tr("Close to the Right"), [index, this] {
-            for (int i = index + 1; i < ui->tabWidget->count(); ++i)
+            for (int i = index + 1; i < tabCount(); ++i)
                 if (closeTab(i))
                     --i;
         });
@@ -1547,7 +1551,7 @@ int AppWindow::indexOfWindow(MainWindow *window)
     return ui->tabWidget->indexOf(window);
 }
 
-int AppWindow::totalTabs() const
+int AppWindow::tabCount() const
 {
     return ui->tabWidget->count();
 }

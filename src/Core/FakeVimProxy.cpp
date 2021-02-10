@@ -561,14 +561,14 @@ void FakeVimProxy::connectSignals(FakeVim::Internal::FakeVimHandler *handler, QW
     });
 
     handler->tabNextRequested.connect([appWindow, mainWindow] {
-        auto total = appWindow->totalTabs();
+        auto total = appWindow->tabCount();
         auto curr = appWindow->indexOfWindow(mainWindow);
         int next = (curr + 1) % total;
         if (next != curr)
             appWindow->setTabAt(next);
     });
     handler->tabPreviousRequested.connect([appWindow, mainWindow] {
-        auto total = appWindow->totalTabs();
+        auto total = appWindow->tabCount();
         auto curr = appWindow->indexOfWindow(mainWindow);
         int last = curr ? curr - 1 : total - 1;
         if (last != curr)
