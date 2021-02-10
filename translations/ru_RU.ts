@@ -741,6 +741,10 @@ Press any key to exit</source>
         <source>Failed to start CF Tool in 2 seconds.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Contest URL %1</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Extensions::CodeFormatter</name>
