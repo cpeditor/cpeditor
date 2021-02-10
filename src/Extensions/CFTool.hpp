@@ -34,8 +34,6 @@ class CFTool : public QObject
     ~CFTool() override;
     void submit(const QString &filePath, const QString &url);
     void updatePath(const QString &p);
-    // @coder3101: Move this function declaration to Util when CP Editor no longer supports CF < 1.0
-    static bool parseCfUrl(const QString &url, QString &contestId, QString &problemCode);
 
   signals:
     void requestToastMessage(const QString &head, const QString &body);
@@ -45,7 +43,7 @@ class CFTool : public QObject
     void onFinished(int exitCode, QProcess::ExitStatus);
 
   private:
-    QString problemContestId, problemCode, lastStatus;
+    QString lastStatus, lastUrl;
     QProcess *process = nullptr;
     MessageLogger *log;
     QString path;

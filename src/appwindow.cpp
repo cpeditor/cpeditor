@@ -1454,7 +1454,7 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
         tabMenu->addAction(tr("Set Codeforces URL"), [window, this] {
             QString contestId;
             QString problemCode;
-            Extensions::CFTool::parseCfUrl(window->getProblemURL(), contestId, problemCode);
+            Util::parseCfUrl(window->getProblemURL(), contestId, problemCode);
             bool ok = false;
             contestId = QInputDialog::getText(this, tr("Set CF URL"), tr("Enter the contest ID:"), QLineEdit::Normal,
                                               contestId, &ok);

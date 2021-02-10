@@ -18,6 +18,7 @@
 #include "Extensions/CFTool.hpp"
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
+#include "Util/Util.hpp"
 #include "generated/SettingsHelper.hpp"
 #include <QFileInfo>
 #include <QProcess>
@@ -65,6 +66,7 @@ void CFTool::submit(const QString &filePath, const QString &url)
     }
 
     lastStatus = "Unknown"; // No tr here. We don't know what we'll get from network. Maybe a array for mapping.
+    lastUrl = url;
     process = new QProcess();
     process->setProgram(path);
 
@@ -72,13 +74,15 @@ void CFTool::submit(const QString &filePath, const QString &url)
 
     // @coder3101: Please delete this branch when CFTool < 1.0 is no longer supported.
     // BRANCH Begin
+    QString problemContestId;
+    QString problemCode;
     if (version.split('.')[0] == "0")
     {
         log->warn(tr("CF Tool"), tr("You are using CF Tool %1. It is recommened to update to CF Tool 1.0 or above as "
                                     "next cpeditor will not support this version.")
                                      .arg(version));
 
-        if (parseCfUrl(url, problemContestId, problemCode))
+        if (Util::parseCfUrl(url, problemContestId, problemCode))
         {
 
             if (problemCode == "0")
@@ -138,29 +142,6 @@ void CFTool::updatePath(const QString &p)
     path = p;
 }
 
-// @coder3101: Please move this function to Util when CFTool < 1.0 is no longer supported.
-bool CFTool::parseCfUrl(const QString &url, QString &contestId, QString &problemCode)
-{
-    LOG_INFO(INFO_OF(url));
-    auto match =
-        QRegularExpression(".*://codeforces.com/(?:gym|contest)/([1-9][0-9]*)/problem/(0|[A-Z][1-9]?)").match(url);
-    if (match.hasMatch())
-    {
-        contestId = match.captured(1);
-        problemCode = match.captured(2);
-        return true;
-    }
-    match = QRegularExpression(".*://codeforces.com/problemset/problem/([1-9][0-9]*)/([A-Z][1-9]?)").match(url);
-    if (match.hasMatch())
-    {
-        contestId = match.captured(1);
-        problemCode = match.captured(2);
-        return true;
-    }
-
-    return false;
-}
-
 void CFTool::onReadReady()
 {
     QString response = process->readAll();
@@ -203,7 +184,17 @@ void CFTool::onFinished(int exitCode, QProcess::ExitStatus e)
 void CFTool::showToastMessage(const QString &message)
 {
     if (SettingsHelper::isCFShowToastMessages())
-        emit requestToastMessage(tr("Contest %1 Problem %2").arg(problemContestId).arg(problemCode), message);
+    {
+        QString problemContestId;
+        QString problemCode;
+        if (Util::parseCfUrl(lastUrl, problemContestId, problemCode))
+            emit requestToastMessage(tr("Contest %1 Problem %2").arg(problemContestId).arg(problemCode), message);
+        else
+        {
+            emit requestToastMessage(tr("Contest URL %1").arg(lastUrl), message);
+            LOG_WARN("Failed to parse CF URL " << lastUrl);
+        }
+    }
 }
 
 QString CFTool::getCFToolVersion() const
