@@ -38,34 +38,23 @@
 
 ## Contributing
 
--   [Open an issue](https://github.com/cpeditor/cpeditor/issues/new/choose)
 -   [Contributing Guidelines](CONTRIBUTING.md)
 -   [Good first issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
 -   [Help wanted issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
 
-## Get help
+## Feedback
 
--   Read the [Documentation](https://cpeditor.org/docs) first.
--   Read the [changelog](https://github.com/cpeditor/cpeditor/blob/master/CHANGELOG.md) to see if a feature is added / a bug is fixed.
--   Feel free to ask any questions in [Discussions](https://github.com/cpeditor/cpeditor/discussions). Make sure to upvote the answer and mark the thread as resolved if it helped you.
+-   Ask questions: [Open a new discussion](https://github.com/cpeditor/cpeditor/discussions/new) in the Q&A category. Please Mark as Answer when you get a helpful reply.
+-   Provide ideas: [Open a new discussion](https://github.com/cpeditor/cpeditor/discussions/new) in the Ideas category.
+-   Formal features request/bug report: [Open an issue](https://github.com/cpeditor/cpeditor/issues/new/choose) with a detailed description and as much information as possible.
+-   [Say thanks](https://github.com/cpeditor/cpeditor/discussions/755)
+-   [Make complaints](https://github.com/cpeditor/cpeditor/discussions/760)
 
-## Issues or Discussions?
+## Packaging Status
 
-If you are not sure to open an [issue](https://github.com/cpeditor/cpeditor/issues) or a [discussion](https://github.com/cpeditor/cpeditor/discussions), **open a [discussion](https://github.com/cpeditor/cpeditor/discussions)**.
+[![Packaging status](https://repology.org/badge/vertical-allrepos/cpeditor.svg)](https://repology.org/project/cpeditor/versions)
 
-The general rule is: an issue is what can be closed/resolved by a pull request.
-
-More specifically, open an issue if:
-
--   You are sure what feature you are requesting.
--   You are sure the problem you are facing is a bug of CP Editor, not a fault on the user side.
-
-Open a discussion if:
-
--   You want to ask a question.
--   You want to discuss with others.
--   You are not sure what the exact feature you want is.
--   You are not sure whether the problem you are facing is a bug of CP Editor or a fault on the user side.
+Package maintainers can contact us if any help is needed. For example, we may add some scripts in our CI/CD workflow.
 
 ## All Contributors
 
