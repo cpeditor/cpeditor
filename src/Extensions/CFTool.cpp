@@ -72,7 +72,7 @@ void CFTool::submit(const QString &filePath, const QString &url)
 
     bool wasProblemCodeChanged = false;
 
-    // @coder3101: Please delete this branch when CFTool < 1.0 is no longer supported.
+    // @coder3101: Please delete this branch and wasProblemCodeChanged, when CFTool < 1.0 is unsupported.
     // BRANCH Begin
     QString problemContestId;
     QString problemCode;
@@ -106,7 +106,7 @@ void CFTool::submit(const QString &filePath, const QString &url)
         if (url.endsWith("0"))
         {
             wasProblemCodeChanged = true;
-            convertedUrl = url.mid(0, url.size() - 1) + "A";
+            lastUrl = convertedUrl = url.mid(0, url.size() - 1) + "A";
         }
         process->setArguments({"submit", "-f", filePath, convertedUrl});
     }

@@ -891,7 +891,7 @@ void AppWindow::onTabChanged(int index)
 
     reAttachLanguageServer(tmp);
 
-    ui->actionSubmit->setEnabled(tmp->canSubmitSolution());
+    ui->actionSubmit->setVisible(tmp->canSubmitSolution());
 
     findReplaceDialog->setTextEdit(tmp->getEditor());
 
