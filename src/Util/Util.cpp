@@ -48,7 +48,6 @@ QString websiteLink(const QString &path)
         .url(QUrl::NormalizePathSegments);
 }
 
-
 bool parseCfUrl(const QString &url, QString &contestId, QString &problemCode)
 {
     LOG_INFO(INFO_OF(url));
