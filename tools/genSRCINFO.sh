@@ -1,6 +1,8 @@
 #!/bin/bash
 
-cd .ci/aur/stable
-makepkg --printsrcinfo > .SRCINFO
+set -euo pipefail
+
+cd "$(dirname "$0")"/../.ci/aur/stable
+makepkg --printsrcinfo >.SRCINFO
 cd ../git
-makepkg --printsrcinfo > .SRCINFO
+makepkg --printsrcinfo >.SRCINFO
