@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+## Fixed
+
+-   Fix that the Find/Replace dialog is not floating in i3-wm. (#767)
+
 ## v6.8
 
 ### Added
