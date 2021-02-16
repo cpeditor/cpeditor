@@ -3,7 +3,7 @@ name: "CI: Build Test"
 on: [push, pull_request]
 
 env:
-  QT_VERSION: 5.15.1
+  QT_VERSION: 5.15.2
   CMAKE_VERSION: 3.18.2
   NINJA_VERSION: 1.10.1
   CCACHE_VERSION: 3.7.7
@@ -37,11 +37,6 @@ jobs:
         with:
           submodules: recursive
           fetch-depth: 0
-
-      - name: Install Python 3.7
-        uses: actions/setup-python@v1
-        with:
-          python-version: 3.7
 
       - name: Restore Qt from cache
         id: cache-qt

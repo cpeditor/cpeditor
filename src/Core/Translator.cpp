@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com>
+ * Copyright (C) 2019-2021 Ashar Khan <ashar786khan@gmail.com>
  *
  * This file is part of CP Editor.
  *
@@ -26,6 +26,8 @@ namespace Core
 const static QMap<QString, QString> locales = {{"简体中文", "zh_CN"}, {"Русский", "ru_RU"}};
 
 const static QMap<QString, QString> suffixes = {{"zh_CN", "_zh-CN"}, {"ru_RU", "_ru-RU"}};
+
+const static QMap<QString, QString> code = {{"zh_CN", "zh"}, {"ru_RU", "ru"}};
 
 QTranslator *Translator::translator = nullptr;
 
@@ -62,10 +64,20 @@ void Translator::setLocale()
 
 QString Translator::langSuffix()
 {
+    return suffixes[langName()];
+}
+
+QString Translator::langCode()
+{
+    return code[langName()];
+}
+
+QString Translator::langName()
+{
     const auto language = SettingsHelper::getLocale();
 
     if (language == "system")
-        return suffixes[QLocale::system().name()];
-    return suffixes[locales[language]];
+        return QLocale::system().name();
+    return locales[language];
 }
 } // namespace Core

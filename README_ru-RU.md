@@ -1,33 +1,27 @@
-> Внимание! Данный перевод может быть устаревшим и не соответствовать полноценному переводу актуальной версии документа на английском языке. [Здесь](README.md) вы можетет прочитать оригинал этой страницы (на английском).
+<div align="center">
 
-# CP Editor
+<img src=assets/icon.ico width="128">
 
-<img src=assets/icon.ico height="80" width="80">
+**CP Editor - Boost your competitive programming experience!**
 
-CP Editor - это легкий кросс-платформенный редактор кода на базе Qt, специально разработанный для спортивного программирования.
+[![downloads](https://img.shields.io/github/downloads/cpeditor/cpeditor/total?style=for-the-badge)](https://github.com/cpeditor/cpeditor/releases)
+[![All Contributors](https://img.shields.io/github/all-contributors/cpeditor/cpeditor?style=for-the-badge)](#all-contributors)
+[![GitHub Sponsors](https://img.shields.io/github/sponsors/cpeditor?style=for-the-badge)](https://github.com/sponsors/cpeditor)
+<a href="https://www.producthunt.com/posts/cp-editor" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=283643&theme=dark" alt="Product Hunt" height="28"/></a>
 
-Этот редактор облегчает жизнь спортивного прораммиста :grin: автоматизируя многие вещи.
+**[Возможности](https://cpeditor.org/ru) · [Документация](https://cpeditor.org/ru/docs/) · [Список изменений](CHANGELOG.md) · [Сотрудничество](CONTRIBUTING_ru-RU.md) · [FAQ](https://cpeditor.org/ru/docs/faq/)**
 
-[Возможности](https://cpeditor.org/ru) | [Документация](https://cpeditor.org/ru/docs/) | [Список изменений](CHANGELOG.md) | [Сотрудничество](CONTRIBUTING_ru-RU.md) | [FAQ](https://cpeditor.org/ru/docs/faq/) | [English](README.md) | [中文](README_zh-CN.md)
+[English](README.md) · [中文](README_zh-CN.md)
 
 ![demo](assets/demo.gif)
-
----
-
-[![Open Collective](https://opencollective.com/cpeditor/tiers/support-us.svg?avatarHeight=60)](https://opencollective.com/cpeditor#section-contribute)
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-50-orange.svg)](#all-contributors)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
-[![Все релизы GitHub](https://img.shields.io/github/downloads/cpeditor/cpeditor/total?label=downloads%40all)](https://github.com/cpeditor/cpeditor/releases)
-[![Slack Workspace](https://img.shields.io/badge/join-slack-success)](https://join.slack.com/t/cpeditor/shared_invite/zt-ekfy0zb5-SrOi8SIox8oq61oRonBynw)
-[![Группа в Телеграм](https://img.shields.io/badge/join-telegram%20chat-success)](https://t.me/cpeditor)
-[![Помощь в отлове багов](https://img.shields.io/github/issues/cpeditor/cpeditor/help%20wanted)](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
 
 |  type  |                           branch                           |                                                                                                       build                                                                                                        |                                                                   downloads                                                                    |                                                         AUR                                                         |
 | :----: | :--------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------: |
 | alpha  | [master](https://github.com/cpeditor/cpeditor/tree/master) | [![GitHub Workflow Status](https://github.com/cpeditor/cpeditor/workflows/CI:%20Build%20Test/badge.svg?branch=master&event=push)](https://github.com/cpeditor/cpeditor/actions?query=event%3Apush+branch%3Amaster) |                                                                       -                                                                        | [![AUR version](https://img.shields.io/aur/version/cpeditor-git)](https://aur.archlinux.org/packages/cpeditor-git/) |
-|  beta  |   [v6.7](https://github.com/cpeditor/cpeditor/tree/v6.7)   |   [![GitHub Workflow Status](https://github.com/cpeditor/cpeditor/workflows/CI:%20Build%20Test/badge.svg?branch=v6.7&event=push)](https://github.com/cpeditor/cpeditor/actions?query=event%3Apush+branch%3Av6.7)   | [![Downloads](https://img.shields.io/github/downloads/cpeditor/cpeditor/6.7.1/total)](https://github.com/cpeditor/cpeditor/releases/tag/6.7.1) |                                                          -                                                          |
-| stable |   [v6.6](https://github.com/cpeditor/cpeditor/tree/v6.6)   |   [![GitHub Workflow Status](https://github.com/cpeditor/cpeditor/workflows/CI:%20Build%20Test/badge.svg?branch=v6.6&event=push)](https://github.com/cpeditor/cpeditor/actions?query=event%3Apush+branch%3Av6.6)   | [![Downloads](https://img.shields.io/github/downloads/cpeditor/cpeditor/6.6.5/total)](https://github.com/cpeditor/cpeditor/releases/tag/6.6.5) |     [![AUR version](https://img.shields.io/aur/version/cpeditor)](https://aur.archlinux.org/packages/cpeditor/)     |
+|  beta  |   [v6.8](https://github.com/cpeditor/cpeditor/tree/v6.8)   |   [![GitHub Workflow Status](https://github.com/cpeditor/cpeditor/workflows/CI:%20Build%20Test/badge.svg?branch=v6.8&event=push)](https://github.com/cpeditor/cpeditor/actions?query=event%3Apush+branch%3Av6.8)   | [![Downloads](https://img.shields.io/github/downloads/cpeditor/cpeditor/6.8.1/total)](https://github.com/cpeditor/cpeditor/releases/tag/6.8.1) |                                                          -                                                          |
+| stable |   [v6.7](https://github.com/cpeditor/cpeditor/tree/v6.7)   |   [![GitHub Workflow Status](https://github.com/cpeditor/cpeditor/workflows/CI:%20Build%20Test/badge.svg?branch=v6.7&event=push)](https://github.com/cpeditor/cpeditor/actions?query=event%3Apush+branch%3Av6.7)   | [![Downloads](https://img.shields.io/github/downloads/cpeditor/cpeditor/6.7.2/total)](https://github.com/cpeditor/cpeditor/releases/tag/6.7.2) |     [![AUR version](https://img.shields.io/aur/version/cpeditor)](https://aur.archlinux.org/packages/cpeditor/)     |
+
+</div>
 
 ## Начало
 
@@ -37,36 +31,30 @@ CP Editor - это легкий кросс-платформенный редак
 -   [Параметры](https://cpeditor.org/ru/docs/preferences)
 -   [подсказки](https://cpeditor.org/ru/docs/tips/)
 
+## Donate
+
+-   [How to donate](DONATE_ru-RU.md)
+-   [Donators list](DONATORS.md)
+
 ## Сотрудничество
 
--   [Открыть вопрос](https://github.com/cpeditor/cpeditor/issues/new/choose)
 -   [Правила внесения вклада](CONTRIBUTING_ru-RU.md)
 -   [Good first issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
 -   [Help wanted issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
--   [Support us financially](DONATE_ru-RU.md)
 
-## Получить помощь
+## Feedback
 
-1. Прочитайте в первую очередь [документация](https://cpeditor.org/ru/docs/), кроме того, просмотрите меню и настройки, чтобы узнать, есть ли то, что вы ищете.
-2. Сначала поищите в Google или Яндекс. Может проблема не связана с редактором? Например, "как установить ClangFormat?" или "что такое ошибка компиляции?"
-3. Поищите в [Issues](https://github.com/cpeditor/cpeditor/issues) и убедитесь, что такой ошибки/запроса функции еще не было.
-4. Пожалуйста, следуйте шаблону вопроса и предоставьте подробную информацию, т.к. это поможет нам дать наиболее качественный ответ на ваш вопрос.
-5. Если это запрос функции или сообщение об ошибке, а не вопрос, пожалуйста, создайте тему в [Issues](https://github.com/cpeditor/cpeditor/issues) для более быстрого баг-трекинга, а не спрашивайте в Telegram.
+-   Ask questions: [Open a new discussion](https://github.com/cpeditor/cpeditor/discussions/new) in the Q&A category. Please Mark as Answer when you get a helpful reply.
+-   Provide ideas: [Open a new discussion](https://github.com/cpeditor/cpeditor/discussions/new) in the Ideas category.
+-   Formal features request/bug report: [Open an issue](https://github.com/cpeditor/cpeditor/issues/new/choose) with a detailed description and as much information as possible.
+-   [Say thanks](https://github.com/cpeditor/cpeditor/discussions/755)
+-   [Make complaints](https://github.com/cpeditor/cpeditor/discussions/760)
 
-- [Открыть вопрос](https://github.com/cpeditor/cpeditor/issues/new/choose)
-- [Спросить в Telegram](https://t.me/cpeditor)
-- [Спросить в Slack](https://join.slack.com/t/cpeditor/shared_invite/zt-ekfy0zb5-SrOi8SIox8oq61oRonBynw)
+## Packaging Status
 
-## Hall of Fame
+[![Packaging status](https://repology.org/badge/vertical-allrepos/cpeditor.svg)](https://repology.org/project/cpeditor/versions)
 
-[![](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/images/0)](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/links/0)
-[![](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/images/1)](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/links/1)
-[![](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/images/2)](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/links/2)
-[![](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/images/3)](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/links/3)
-[![](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/images/4)](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/links/4)
-[![](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/images/5)](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/links/5)
-[![](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/images/6)](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/links/6)
-[![](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/images/7)](https://sourcerer.io/fame/ouuan/cpeditor/cpeditor/links/7)
+Package maintainers can contact us if any help is needed. For example, we may add some scripts in our CI/CD workflow.
 
 ## All Contributors
 
@@ -252,7 +240,6 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
 
-Лицензия
-----
+### Лицензия
 
-[GNU General Public License Version 3.0](https://github.com/cpeditor/cpeditor/blob/master/LICENSE)
+[GNU General Public License Version 3.0](LICENSE)

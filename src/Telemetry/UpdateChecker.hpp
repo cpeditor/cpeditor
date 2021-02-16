@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com>
+ * Copyright (C) 2019-2021 Ashar Khan <ashar786khan@gmail.com>
  *
  * This file is part of CP Editor.
  *
@@ -56,18 +56,6 @@ class UpdateChecker : public QObject
     void managerFinished(QNetworkReply *reply);
 
   private:
-    struct Version
-    {
-        bool valid;
-        int major;
-        int minor;
-        int patch;
-
-        Version(const QString &version);
-
-        bool operator<(const Version &rhs) const;
-    };
-
     void updateProxy();
     static UpdateMetaInformation toMetaInformation(const QJsonDocument &release);
 

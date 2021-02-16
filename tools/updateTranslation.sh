@@ -1,5 +1,9 @@
 #!/bin/bash
 
+set -eo pipefail
+
+cd "$(dirname "$0")"/..
+
 if [[ $1 == 'r' ]]; then
 	LOCATIONS=relative
 elif [[ $1 == 'a' ]]; then

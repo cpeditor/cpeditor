@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com>
+ * Copyright (C) 2019-2021 Ashar Khan <ashar786khan@gmail.com>
  *
  * This file is part of CP Editor.
  *
@@ -21,6 +21,7 @@
 #include "Settings/SettingsUpdater.hpp"
 #include "Util/FileUtil.hpp"
 #include "generated/portable.hpp"
+#include <QDateTime>
 #include <QFile>
 #include <QFont>
 #include <QRect>
@@ -32,6 +33,7 @@ QMap<QString, QString> *SettingsManager::settingPath = nullptr;
 QMap<QString, QString> *SettingsManager::settingTrPath = nullptr;
 QMap<QString, QString> *SettingsManager::pathSetting = nullptr;
 QMap<QString, QWidget *> *SettingsManager::settingWidget = nullptr;
+long long SettingsManager::startTime = 0;
 
 const static QStringList configFileLocations = {
 #ifdef PORTABLE_VERSION
@@ -107,6 +109,8 @@ void SettingsManager::init()
     pathSetting = new QMap<QString, QString>();
     settingWidget = new QMap<QString, QWidget *>();
 
+    startTime = QDateTime::currentSecsSinceEpoch();
+
     generateDefaultSettings();
 
     QString path = Util::firstExistingConfigPath(configFileLocations);
@@ -116,7 +120,9 @@ void SettingsManager::init()
 
 void SettingsManager::deinit()
 {
-    saveSettings(Util::configFilePath(configFileLocations[0]));
+    set("Total Usage Time", get("Total Usage Time").toInt() + QDateTime::currentSecsSinceEpoch() - startTime);
+
+    saveSettings(QString());
 
     delete cur;
     delete def;
@@ -155,9 +161,11 @@ void SettingsManager::loadSettings(const QString &path)
 
 void SettingsManager::saveSettings(const QString &path)
 {
-    LOG_INFO("Start saving settings to " + path);
+    const auto savePath = path.isEmpty() ? Util::configFilePath(configFileLocations[0]) : path;
 
-    QSettings setting(path, QSettings::IniFormat);
+    LOG_INFO("Start saving settings to " + savePath);
+
+    QSettings setting(savePath, QSettings::IniFormat);
     setting.clear(); // Otherwise SettingsManager::remove won't work
     save(setting, "", SettingsInfo::getSettings());
 
@@ -166,7 +174,7 @@ void SettingsManager::saveSettings(const QString &path)
 
     setting.sync();
 
-    LOG_INFO("Settings have been saved to " + path);
+    LOG_INFO("Settings have been saved to " + savePath);
 }
 
 QVariant SettingsManager::get(QString const &key, bool alwaysDefault)

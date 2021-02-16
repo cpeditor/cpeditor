@@ -1,5 +1,11 @@
 ## UNRELEASED
 
+## Fixed
+
+-   Fix that the Find/Replace dialog is not floating in i3-wm. (#767)
+
+## v6.8
+
 ### Added
 
 -   Now you can opt-in non-monospaced fonts when choosing a font in the Preferences. (#217 and #625)
@@ -8,6 +14,10 @@
 -   Now you can toggle fullscreen mode by pressing F11 or clicking View->Full Screen. (#642, #660 and #670)
 -   In test cases, you can copy the output to the expected. (#688)
 -   Copy test cases between different tabs. (#688)
+-   Now settings are saved to disk as soon as new settings are applied. (#590 and #722)
+-   x86 release for 32-bit Windows. (#719 and #723)
+-   Open documentation links in the preferences window. (#733)
+-   Releases with [WinLibs GCC](https://winlibs.com) for Windows. (#749)
 
 ### Fixed
 

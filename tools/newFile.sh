@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euo pipefail
+
 if (($# != 1)); then
   echo 'newFile.sh <file name>
 
@@ -7,10 +9,8 @@ e.g. newFile.sh Core/Compiler'
   exit 1
 fi
 
-set -e
-
 head="/*
- * Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com>
+ * Copyright (C) 2019-2021 Ashar Khan <ashar786khan@gmail.com>
  *
  * This file is part of CP Editor.
  *
@@ -32,13 +32,15 @@ filename=${1#$filepath/}
 define=${filename}_hpp
 DEFINE=${define^^}
 
+cd "$(dirname "$0")"/..
+
 mkdir -p "src/$filepath"
 
 echo "$head
 #ifndef $DEFINE
 #define $DEFINE
 
-#endif // $DEFINE" > "src/$1.hpp"
+#endif // $DEFINE" >"src/$1.hpp"
 
 echo "$head
-#include \"$1.hpp\"" > "src/$1.cpp"
+#include \"$1.hpp\"" >"src/$1.cpp"

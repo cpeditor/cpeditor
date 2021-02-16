@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com>
+ * Copyright (C) 2019-2021 Ashar Khan <ashar786khan@gmail.com>
  *
  * This file is part of CP Editor.
  *
@@ -21,10 +21,9 @@
 #include "Core/MessageLogger.hpp"
 #include "Core/Runner.hpp"
 #include "Util/FileUtil.hpp"
-#include "third_party/testlib/testlib.h"
+#include "generated/SettingsHelper.hpp"
 #include <QFile>
 #include <QTemporaryDir>
-#include <generated/SettingsHelper.hpp>
 
 namespace Core
 {

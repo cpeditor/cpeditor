@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com>
+ * Copyright (C) 2019-2021 Ashar Khan <ashar786khan@gmail.com>
  *
  * This file is part of CP Editor.
  *
@@ -18,12 +18,16 @@
 #ifndef UTIL_HPP
 #define UTIL_HPP
 
-class QWidget;
+#include <QMetaType>
 
 namespace Util
 {
 
 void showWidgetOnTop(QWidget *widget);
+
+QString sanitizeAnchorName(const QString &str);
+
+QString websiteLink(const QString &path = QString());
 
 } // namespace Util
 

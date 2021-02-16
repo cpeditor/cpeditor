@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com>
+ * Copyright (C) 2019-2021 Ashar Khan <ashar786khan@gmail.com>
  *
  * This file is part of CP Editor.
  *
@@ -172,6 +172,19 @@ class Checker : public QObject
     {
         int index;
         QString input, output, expected;
+    };
+
+    // copied from testlib.h, see #746 for why not include testlib.h
+    enum TResult
+    {
+        _ok = 0,
+        _wa = 1,
+        _pe = 2,
+        _fail = 3,
+        _dirt = 4,
+        _points = 5,
+        _unexpected_eof = 8,
+        _partially = 16
     };
 
     CheckerType checkerType;         // the type of the checker

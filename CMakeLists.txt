@@ -4,7 +4,7 @@ if(APPLE)
   set(CMAKE_OSX_DEPLOYMENT_TARGET "10.14" CACHE STRING "Minimum OS X deployment version")
 endif()
 
-project(cpeditor LANGUAGES CXX VERSION 6.8.0)
+project(cpeditor LANGUAGES CXX VERSION 6.9.0)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -199,6 +199,10 @@ add_executable(cpeditor
     src/Widgets/ContestDialog.hpp
     src/Widgets/DiffViewer.cpp
     src/Widgets/DiffViewer.hpp
+    src/Widgets/RichTextCheckBox.cpp
+    src/Widgets/RichTextCheckBox.hpp
+    src/Widgets/SupportUsDialog.cpp
+    src/Widgets/SupportUsDialog.hpp
     src/Widgets/TestCase.cpp
     src/Widgets/TestCase.hpp
     src/Widgets/TestCaseEdit.cpp

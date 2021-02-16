@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com>
+ * Copyright (C) 2019-2021 Ashar Khan <ashar786khan@gmail.com>
  *
  * This file is part of CP Editor.
  *
@@ -17,15 +17,17 @@
 
 #include "Core/EventLogger.hpp"
 #include "Util/FileUtil.hpp"
+#include "generated/portable.hpp"
+#include "generated/version.hpp"
 #include <QDateTime>
 #include <QDesktopServices>
 #include <QDir>
 #include <QFile>
+#include <QLibraryInfo>
 #include <QProcess>
 #include <QStandardPaths>
 #include <QSysInfo>
 #include <QUrl>
-#include <generated/version.hpp>
 
 namespace Core
 {
@@ -93,14 +95,23 @@ void Log::platformInformation()
     LOG_INFO(INFO_OF(QSysInfo::kernelType()));
     LOG_INFO(INFO_OF(QSysInfo::kernelVersion()));
     LOG_INFO(INFO_OF(QSysInfo::prettyProductName()));
-    LOG_INFO(INFO_OF(QSysInfo::machineHostName()));
-    LOG_INFO(INFO_OF(QSysInfo::machineUniqueId()));
     LOG_INFO(INFO_OF(QSysInfo::productType()));
     LOG_INFO(INFO_OF(QSysInfo::productVersion()));
+    LOG_INFO(INFO_OF(QLibraryInfo::version().toString()));
 
     LOG_INFO(INFO_OF(APP_VERSION));
     LOG_INFO(INFO_OF(DISPLAY_VERSION));
     LOG_INFO(INFO_OF(GIT_COMMIT_HASH));
+#ifdef PORTABLE_VERSION
+    LOG_INFO("Portable Version");
+#else
+    LOG_INFO("Setup Version");
+#endif
+#ifdef QT_DEBUG
+    LOG_INFO("Debug Build");
+#else
+    LOG_INFO("Release Build");
+#endif
     LOG_INFO(INFO_OF(__DATE__));
     LOG_INFO(INFO_OF(__TIME__));
 }

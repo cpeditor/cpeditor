@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com>
+ * Copyright (C) 2019-2021 Ashar Khan <ashar786khan@gmail.com>
  *
  * This file is part of CP Editor.
  *
@@ -51,6 +51,7 @@ void PreferencesGridPage::addRow(ValueWidget *widget, const QString &key, const 
     else
     {
         auto *label = new QLabel(tr(labelText.toUtf8()), this);
+        label->setOpenExternalLinks(true);
         if (!tip.isEmpty())
             label->setToolTip(tr(tip.toUtf8()));
         gridLayout->addWidget(label, row, 0);

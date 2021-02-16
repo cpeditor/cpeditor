@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019-2020 Ashar Khan <ashar786khan@gmail.com>
+ * Copyright (C) 2019-2021 Ashar Khan <ashar786khan@gmail.com>
  *
  * This file is part of CP Editor.
  *
@@ -32,6 +32,7 @@
 #include "Telemetry/UpdateChecker.hpp"
 #include "Util/FileUtil.hpp"
 #include "Util/Util.hpp"
+#include "Widgets/SupportUsDialog.hpp"
 #include "generated/SettingsHelper.hpp"
 #include "generated/portable.hpp"
 #include "generated/version.hpp"
@@ -158,12 +159,24 @@ void AppWindow::finishConstruction()
         setWindowOpacity(1);
 #endif
 
-    if (SettingsHelper::isFirstTimeUser())
-    {
-        LOG_INFO("Is first-time user");
-        preferencesWindow->display();
-        SettingsHelper::setFirstTimeUser(false);
-    }
+    // The window needs time to make its geometry stable. We wait it to display the new dialogs in correct positions
+    QTimer::singleShot(200, [this] {
+        if (SettingsHelper::isFirstTimeUser())
+        {
+            LOG_INFO("Is first-time user");
+            preferencesWindow->display();
+            SettingsHelper::setFirstTimeUser(false);
+        }
+        else if (!SettingsHelper::isPromotionDialogShown() &&
+                 SettingsHelper::getTotalUsageTime() >= 10 * 60 * 60) // 10 hours or above
+        {
+            LOG_INFO("Show promotion dialog");
+            auto *dialog = new SupportUsDialog(this);
+            dialog->open();
+            dialog->move(geometry().center().x() - dialog->width() / 2, geometry().center().y() - dialog->height() / 2);
+            SettingsHelper::setPromotionDialogShown(true);
+        }
+    });
 }
 
 AppWindow::~AppWindow()
@@ -263,7 +276,7 @@ void AppWindow::allocate()
 
     findReplaceDialog = new FindReplaceDialog(this);
     findReplaceDialog->setModal(false);
-    findReplaceDialog->setWindowFlags(Qt::Window | Qt::WindowMinimizeButtonHint | Qt::WindowMaximizeButtonHint |
+    findReplaceDialog->setWindowFlags(Qt::Dialog | Qt::WindowMinimizeButtonHint | Qt::WindowMaximizeButtonHint |
                                       Qt::WindowCloseButtonHint);
 
     lspTimerCpp->setInterval(SettingsHelper::getLSPDelayCpp());
@@ -576,20 +589,13 @@ int AppWindow::getNewUntitledIndex()
 
 void AppWindow::on_actionSupportUs_triggered() // NOLINT: It can be made static
 {
-    auto *dialog = new QMessageBox(this);
-    dialog->setTextFormat(Qt::MarkdownText);
-    dialog->setAttribute(Qt::WA_DeleteOnClose);
-    dialog->setModal(true);
-    dialog->setWindowTitle(tr("Support us"));
-    dialog->setText(
-        Util::readFile(QString(":/DONATE%1.md").arg(Core::Translator::langSuffix())).replace("resources/", ":/"));
+    auto *dialog = new SupportUsDialog(this);
     dialog->show();
 }
 
 void AppWindow::on_actionManual_triggered() // NOLINT: method can be made static
 {
-    QDesktopServices::openUrl(
-        QUrl(tr("https://cpeditor.org/%1/docs").arg(MINOR_VERSION)).adjusted(QUrl::NormalizePathSegments));
+    QDesktopServices::openUrl(Util::websiteLink("docs"));
 }
 
 void AppWindow::on_actionReportIssues_triggered() // NOLINT: method can be made static
@@ -605,7 +611,7 @@ void AppWindow::on_actionAbout_triggered()
            "programming, unlike other editors/IDEs which are mainly for developers. It helps you focus on "
            "your algorithm and automates the compilation, executing and testing. It even fetches test "
            "cases for you from different platforms and submits solutions to Codeforces!</p>"
-           "<p>Copyright (C) 2019-2020 Ashar Khan &lt;ashar786khan@gmail.com&gt;</p>"
+           "<p>Copyright (C) 2019-2021 Ashar Khan &lt;ashar786khan@gmail.com&gt;</p>"
            "<p>This is free software; see the source for copying conditions. There is NO warranty; not "
            "even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. The source code for CP Editor is "
            "available at <a href=\"https://github.com/cpeditor/cpeditor\"> "
@@ -1088,6 +1094,8 @@ void AppWindow::onSettingsApplied(const QString &pagePath)
     {
         DefaultPathManager::fromVariantList(SettingsHelper::getDefaultPathNamesAndPaths());
     }
+
+    SettingsManager::saveSettings(QString());
 }
 
 void AppWindow::onIncomingCompanionRequest(const Extensions::CompanionData &data)
