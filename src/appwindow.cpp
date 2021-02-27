@@ -278,7 +278,7 @@ void AppWindow::allocate()
 
     findReplaceDialog = new FindReplaceDialog(this);
     findReplaceDialog->setModal(false);
-    findReplaceDialog->setWindowFlags(Qt::Window | Qt::WindowMinimizeButtonHint | Qt::WindowMaximizeButtonHint |
+    findReplaceDialog->setWindowFlags(Qt::Dialog | Qt::WindowMinimizeButtonHint | Qt::WindowMaximizeButtonHint |
                                       Qt::WindowCloseButtonHint);
 
     lspTimerCpp->setInterval(SettingsHelper::getLSPDelayCpp());
