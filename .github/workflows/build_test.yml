@@ -14,7 +14,7 @@ jobs:
       matrix:
         config:
           - os: windows-latest
-            binary: Debug/cpeditor.exe
+            binary: Release/cpeditor.exe
           - os: ubuntu-latest
             binary: cpeditor
           - os: macos-latest
