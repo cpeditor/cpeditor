@@ -9,8 +9,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: Copy Files
         run: |
-          cp .ci/aur/stable cpeditor -r
-          cp .ci/aur/git cpeditor-git -r
+          cp dist/aur/stable cpeditor -r
+          cp dist/aur/git cpeditor-git -r
       - name: "Check .SRCINFO of cpeditor"
         uses: 2m/arch-pkgbuild-builder@v1.16
         with:
