@@ -8,7 +8,7 @@ env:
   QT_VERSION: 5.15.2
 
 jobs:
-  check:
+  check-translations:
     runs-on: ubuntu-latest
 
     steps:
