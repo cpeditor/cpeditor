@@ -40,14 +40,14 @@ jobs:
           version: ${{ env.QT_VERSION }}
 
       - name: "[Linux] Download clang-tidy"
-        if: startsWith(matrix.os, 'ubuntu')
+        if: startsWith(matrix.config.os, 'ubuntu')
         run: |
           sudo apt-get update
           sudo apt-get install clang-tidy-9
           sudo ln -s "$(which clang-tidy-9)" "/usr/local/bin/clang-tidy"
 
       - name: "[macOS] Download clang-tidy"
-        if: startsWith(matrix.os, 'macos')
+        if: startsWith(matrix.config.os, 'macos')
         run: |
           brew install llvm
           ln -s "$(brew --prefix llvm)/bin/clang-tidy" "/usr/local/bin/clang-tidy"
