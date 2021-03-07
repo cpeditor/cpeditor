@@ -39,8 +39,8 @@ jobs:
           git fetch --tags
           VERSION=$(git describe --long --tags --abbrev=8 | sed 's/\([^-]*-g\)/r\1/;s/-/./g')
           echo ::set-output name=VERSION::$VERSION
-          cp .ci/aur/git/PKGBUILD cpeditor-git
-          cp .ci/aur/git/.SRCINFO cpeditor-git
+          cp dist/aur/git/PKGBUILD cpeditor-git
+          cp dist/aur/git/.SRCINFO cpeditor-git
           sed -i "s/@PROJECT_VERSION@/$VERSION/g" cpeditor-git/PKGBUILD cpeditor-git/.SRCINFO
 
       - name: Check PKGBUILD
