@@ -256,7 +256,7 @@ if(APPLE)
     PROPERTIES
     MACOSX_BUNDLE TRUE
     MACOSX_BUNDLE_INFO_PLIST ${CMAKE_SOURCE_DIR}/cmake/Info.plist.in
-    RESOURCE ".ci/mac/cpeditor.icns"
+    RESOURCE "dist/mac/cpeditor.icns"
   )
 endif()
 
@@ -264,7 +264,7 @@ if(UNIX AND NOT APPLE)
   install(TARGETS cpeditor
           RUNTIME DESTINATION bin
           LIBRARY DESTINATION lib)
-  install(FILES .ci/linux/cpeditor.desktop DESTINATION share/applications)
+  install(FILES dist/linux/cpeditor.desktop DESTINATION share/applications)
   install(FILES resources/icon.png DESTINATION share/icons/hicolor/512x512/apps RENAME cpeditor.png)
 endif()
 
