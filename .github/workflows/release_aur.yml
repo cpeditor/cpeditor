@@ -29,7 +29,7 @@ jobs:
           esac
 
           echo ::set-output name=version::$VERSION
-          read STABLE_VERSION < .ci/STABLE_VERSION
+          read STABLE_VERSION < dist/STABLE_VERSION
           if [ "${VERSION:0:${#STABLE_VERSION}}" == "$STABLE_VERSION" ]; then
             echo ::set-output name=ISSTABLE::true
           else
@@ -56,8 +56,8 @@ jobs:
           wget -c https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.version }}/cpeditor-${{ steps.get_version.outputs.version }}-full-source.tar.gz
           sha256sum=$(shasum -a 256 cpeditor-${{ steps.get_version.outputs.version }}-full-source.tar.gz | cut -d ' ' -f 1)
           cd cpeditor
-          cp ../.ci/aur/stable/PKGBUILD .
-          cp ../.ci/aur/stable/.SRCINFO .
+          cp ../dist/aur/stable/PKGBUILD .
+          cp ../dist/aur/stable/.SRCINFO .
           sed -i "s/@PROJECT_VERSION@/${{ steps.get_version.outputs.version }}/g" PKGBUILD .SRCINFO
           sed -i "s/SKIP/${sha256sum}/g" PKGBUILD .SRCINFO
 

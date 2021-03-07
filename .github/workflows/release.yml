@@ -135,7 +135,7 @@ jobs:
         run: |
           VERSION=${GITHUB_REF/refs\/tags\//}
           echo ::set-output name=VERSION::$VERSION
-          read STABLE_VERSION < .ci/STABLE_VERSION
+          read STABLE_VERSION < dist/STABLE_VERSION
           if [ "${VERSION:0:${#STABLE_VERSION}}" == "$STABLE_VERSION" ]; then
             echo ::set-output name=ISBETA::false
           else
@@ -150,7 +150,7 @@ jobs:
           wget -c "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
           chmod a+x linuxdeployqt*.AppImage
           export VERSION=${{ steps.get_version.outputs.VERSION }}
-          cp ../.ci/linux/cpeditor.desktop default.desktop
+          cp ../dist/linux/cpeditor.desktop default.desktop
           cp ../resources/icon.png cpeditor.png
           ./linuxdeployqt*.AppImage ./cpeditor -appimage -qmake=../../Qt/${{ env.QT_VERSION }}/gcc_64/bin/qmake
           mv CP_Editor-${{steps.get_version.outputs.VERSION }}-x86_64.AppImage cpeditor-${{ steps.get_version.outputs.VERSION }}-linux-x86_64.AppImage
@@ -177,10 +177,10 @@ jobs:
           cd ${pkgname}/usr/share/
 
           mkdir applications/
-          cp ${{ github.workspace }}/.ci/linux/cpeditor.desktop ./applications
+          cp ${{ github.workspace }}/dist/linux/cpeditor.desktop ./applications
 
           mkdir -p cpeditor/bin/
-          cp ${{ github.workspace }}/.ci/DEB/cpeditor.sh ./cpeditor/
+          cp ${{ github.workspace }}/dist/DEB/cpeditor.sh ./cpeditor/
           cp -r ${{ github.workspace }}/build/plugins/ ./cpeditor
           cp ${{ github.workspace }}/build/cpeditor ./cpeditor/bin/
 
@@ -197,7 +197,7 @@ jobs:
           cp ${{ github.workspace }}/build/lib/* ./lib/cpeditor
 
           cd ..
-          cp -r ${{ github.workspace }}/.ci/DEB/DEBIAN .
+          cp -r ${{ github.workspace }}/dist/DEB/DEBIAN .
           wget -c "http://archive.ubuntu.com/ubuntu/pool/universe/h/hashdeep/md5deep_4.4-4_all.deb"
           wget -c "http://archive.ubuntu.com/ubuntu/pool/universe/h/hashdeep/hashdeep_4.4-4_amd64.deb"
           sudo apt install ./*.deb
@@ -249,7 +249,7 @@ jobs:
         run: |
           cd build
           ../../Qt/*/*/bin/macdeployqt cpeditor.app
-          cp ../.ci/mac/cpeditor.icns cpeditor.app/Contents/Resources
+          cp ../dist/mac/cpeditor.icns cpeditor.app/Contents/Resources
           hdiutil create -volname cpeditor-${{ steps.get_version.outputs.VERSION }}-x64 -srcfolder cpeditor.app -ov -format UDZO cpeditor-${{ steps.get_version.outputs.VERSION }}-macos-x64.dmg
 
       - name: "[macOS] Release"
@@ -298,7 +298,7 @@ jobs:
         run: |
           mkdir build/out/Redist
           cp "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Redist/MSVC/$VC_REDIST_VERSION/vc_redist.${{ matrix.config.arch }}.exe" build/out/Redist
-          iscc .ci/win/win-setup.iss \
+          iscc dist/win/win-setup.iss \
             -DArch=${{ matrix.config.arch }} \
             $([[ "${{ matrix.config.winlibs }}" == "true" ]] && echo '-DGccDir=${{ matrix.config.mingw-arch }}' || echo '') \
             -DMyAppVersion=${{ steps.get_version.outputs.VERSION }} \
