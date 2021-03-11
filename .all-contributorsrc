@@ -490,6 +490,15 @@
       "contributions": [
         "ideas"
       ]
+    },
+    {
+      "login": "tiger2005",
+      "name": "tiger2005",
+      "avatar_url": "https://avatars.githubusercontent.com/u/41613797?v=4",
+      "profile": "https://github.com/tiger2005",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 6,
