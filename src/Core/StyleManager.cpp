@@ -144,7 +144,7 @@ QPalette StyleManager::darkFusionPalette()
     darkPalette.setColor(QPalette::BrightText, Qt::red);
     darkPalette.setColor(QPalette::Link, QColor(42, 130, 218));
     darkPalette.setColor(QPalette::Highlight, QColor(42, 130, 218));
-    darkPalette.setColor(QPalette::HighlightedText, Qt::black);
+    darkPalette.setColor(QPalette::HighlightedText, Qt::white);
     darkPalette.setColor(QPalette::Disabled, QPalette::HighlightedText, disabledColor);
 
     return darkPalette;
