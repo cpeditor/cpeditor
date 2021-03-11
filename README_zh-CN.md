@@ -237,11 +237,15 @@ Package maintainers can contact us if any help on packaging is needed. For examp
     <td align="center">
       <a href="https://github.com/andreaemonti"><img src="https://avatars3.githubusercontent.com/u/20700531?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/andreaemonti"><sub><b>Andrea E. Monti</b></sub></a><br /><a href="#ideas-andreaemonti" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
+    <td align="center">
+      <a href="https://github.com/tiger2005"><img src="https://avatars.githubusercontent.com/u/41613797?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/tiger2005"><sub><b>tiger2005</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3Atiger2005" title="Bug reports">🐛</a>
+    </td>
   </tr>
 </table>
 
-<!-- markdownlint-enable -->
+<!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 本项目使用 [all-contributors](https://github.com/all-contributors/all-contributors)，欢迎各种形式的贡献！
