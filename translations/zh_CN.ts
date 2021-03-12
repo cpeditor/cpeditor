@@ -1524,6 +1524,14 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation>制表符的宽度或缩进的空格个数</translation>
     </message>
     <message>
+        <source>Cursor Width</source>
+        <translation>光标宽度</translation>
+    </message>
+    <message>
+        <source>The width of the cursor in pixels</source>
+        <translation>光标的像素宽度</translation>
+    </message>
+    <message>
         <source>Editor Font</source>
         <translation>编辑器字体</translation>
     </message>

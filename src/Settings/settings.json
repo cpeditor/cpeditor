@@ -10,6 +10,13 @@
         ]
     },
     {
+        "name": "Cursor Width",
+        "type": "int",
+        "default": 1,
+        "param": "QVariantList {1,10}",
+        "tip": "The width of the cursor in pixels"
+    },
+    {
         "name": "Geometry",
         "type": "QRect",
         "notr": true
