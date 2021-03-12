@@ -78,6 +78,11 @@ MainWindow::MainWindow(int index, AppWindow *parent)
     connect(
         autoSaveTimer, &QTimer::timeout, autoSaveTimer, [this] { saveFile(AutoSave, tr("Auto Save"), false); },
         Qt::DirectConnection);
+
+    cftool = new Extensions::CFTool(cftoolPath, log);
+    ui->submitButton->hide();
+    connect(cftool, &Extensions::CFTool::requestToastMessage, this, &MainWindow::requestToastMessage);
+
     applySettings("");
     QTimer::singleShot(0, [this] { setLanguage(language); }); // See issue #187 for more information
 }
@@ -239,47 +244,9 @@ void MainWindow::saveTests(bool safe)
         testcases->saveToFiles(filePath, safe);
 }
 
-void MainWindow::setCFToolUI()
+void MainWindow::setSubmitButton(bool visible)
 {
-    if (submitToCodeforces == nullptr)
-    {
-        submitToCodeforces = new QPushButton(tr("Submit"), this);
-        cftool = new Extensions::CFTool(cftoolPath, log);
-        connect(cftool, &Extensions::CFTool::requestToastMessage, this, &MainWindow::requestToastMessage);
-        ui->compileAndRunButtons->addWidget(submitToCodeforces);
-        connect(submitToCodeforces, &QPushButton::clicked, this, [this] {
-            emit confirmTriggered(this);
-            auto response = QMessageBox::warning(
-                this, tr("Sure to submit"),
-                tr("Are you sure you want to submit this solution to Codeforces?\n\n URL: %1\n Language: %2")
-                    .arg(problemURL, language),
-                QMessageBox::Yes | QMessageBox::No);
-
-            if (response == QMessageBox::Yes)
-            {
-                auto path = tmpPath();
-                if (path.isEmpty())
-                {
-                    QMessageBox::warning(this, tr("CF Tool"),
-                                         tr("Failed to save the temp file, and the solution is not submitted."));
-                }
-                else
-                {
-                    log->clear();
-                    cftool->submit(tmpPath(), problemURL);
-                }
-            }
-        });
-    }
-    if (!Extensions::CFTool::check(cftoolPath))
-    {
-        submitToCodeforces->setEnabled(false);
-        log->error(tr("CF Tool"),
-                   tr("You need to install CF Tool to submit your code to Codeforces. If already installed, you can "
-                      "add it in the PATH environment variable or check your settings at %1.")
-                       .arg(SettingsHelper::pathOfCFPath()),
-                   false);
-    }
+    ui->submitButton->setVisible(visible);
 }
 
 int MainWindow::getUntitledIndex() const
@@ -376,7 +343,9 @@ void MainWindow::setProblemURL(const QString &url)
     problemURL = url;
     FileProblemBinder::set(filePath, url);
     if (problemURL.contains("codeforces.com"))
-        setCFToolUI();
+        setSubmitButton(true);
+    else
+        setSubmitButton(false);
     emit editorFileChanged();
 }
 
@@ -584,14 +553,7 @@ void MainWindow::applySettings(const QString &pagePath)
 
     if (pageChanged("Extensions/CF Tool"))
     {
-        cftoolPath = SettingsHelper::getCFPath();
-
-        if (cftool != nullptr && Extensions::CFTool::check(cftoolPath))
-        {
-            cftool->updatePath(cftoolPath);
-            if (submitToCodeforces != nullptr)
-                submitToCodeforces->setEnabled(true);
-        }
+        cftool->updatePath(SettingsHelper::getCFPath());
     }
 
     if (pageChanged("Code Edit") || pagePath.startsWith("Appearance/") ||
@@ -661,6 +623,12 @@ void MainWindow::on_run_clicked()
     compileAndRun();
 }
 
+void MainWindow::on_submitButton_clicked()
+{
+    LOG_INFO("Submit button clicked");
+    submitSolution();
+}
+
 void MainWindow::compileOnly()
 {
     LOG_INFO("Requesting Compile Only");
@@ -685,6 +653,43 @@ void MainWindow::compileAndRun()
     afterCompile = Run;
     log->clear();
     compile();
+}
+
+void MainWindow::submitSolution()
+{
+    if (!canSubmitSolution())
+    {
+        log->warn(tr("Submit"),
+                  tr("You can't submit this because the problem URL is not recognized as a Codeforces URL."));
+        return;
+    }
+
+    emit confirmTriggered(this);
+    auto response = QMessageBox::warning(
+        this, tr("Sure to submit"),
+        tr("Are you sure you want to submit this solution to Codeforces?\n\n URL: %1\n Language: %2")
+            .arg(problemURL, language),
+        QMessageBox::Yes | QMessageBox::No);
+
+    if (response == QMessageBox::Yes)
+    {
+        auto path = tmpPath();
+        if (path.isEmpty())
+        {
+            QMessageBox::warning(this, tr("CF Tool"),
+                                 tr("Failed to save the temp file, and the solution is not submitted."));
+        }
+        else
+        {
+            log->clear();
+            cftool->submit(tmpPath(), problemURL);
+        }
+    }
+}
+
+bool MainWindow::canSubmitSolution() const
+{
+    return ui->submitButton->isVisible();
 }
 
 void MainWindow::formatSource(bool selectionOnly, bool logOnNoChange)

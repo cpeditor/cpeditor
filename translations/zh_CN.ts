@@ -467,6 +467,10 @@ git 提交编号: %3
         <source>Support us</source>
         <translation>支持我们</translation>
     </message>
+    <message>
+        <source>Submit Solution</source>
+        <translation>提交代码</translation>
+    </message>
 </context>
 <context>
     <name>CodeSnippetsPage</name>
@@ -698,28 +702,8 @@ Press any key to exit</source>
         <translation></translation>
     </message>
     <message>
-        <source>CF Tool was killed</source>
-        <translation>CF Tool 已被终止</translation>
-    </message>
-    <message>
-        <source>The problem code is 0, now use A automatically. If the actual problem code is not A, please set the problem code manually in the right-click menu of the current tab.</source>
-        <translation>题目编号为 0，将自动使用 A 作为题目编号。如果题目的实际编号不是 A，请在当前标签页的右键菜单中手动设置。</translation>
-    </message>
-    <message>
-        <source>Failed to get the version of CF Tool. Have you set the correct path to CF Tool in Preferences?</source>
-        <translation>未能成功获取 CF Tool 版本。你在设置中填写的 CF Tool 路径是否正确？</translation>
-    </message>
-    <message>
         <source>CF Tool has started</source>
         <translation>CF Tool 已启动</translation>
-    </message>
-    <message>
-        <source>Failed to start CF Tool in 2 seconds. Have you set the correct path to CF Tool in Preferences?</source>
-        <translation>未能成功在两秒内启动 CF Tool。你在设置中填写的 CF Tool 路径是否正确？</translation>
-    </message>
-    <message>
-        <source>Failed to parse the URL [%1]</source>
-        <translation>未能成功解析链接 [%1]</translation>
     </message>
     <message>
         <source>CF Tool failed</source>
@@ -732,6 +716,34 @@ Press any key to exit</source>
     <message>
         <source>Contest %1 Problem %2</source>
         <translation>比赛 %1 题目 %2</translation>
+    </message>
+    <message>
+        <source>The problem code was 0. It has been changed to A. If the actual problem code is not this, please set the problem code manually in the right-click menu of the current tab.</source>
+        <translation>题目代码原本是 0。现在它被修改成了 A。如果实际的题目代码不是 A，请在本标签页的右键菜单中手动修改题目代码。</translation>
+    </message>
+    <message>
+        <source>A CF Tool Instance was running. It has been killed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You need to install CF Tool to submit your code to Codeforces. If already installed, you can add it in the PATH environment variable or check your settings at %1.</source>
+        <translation type="unfinished">你需要安装 CF Tool 以将代码提交到 Codeforces。如果你已经安装了，你可以将它添加到 PATH 环境变量中，或者检查 %1 处的设置。</translation>
+    </message>
+    <message>
+        <source>You are using CF Tool %1. It is recommened to update to CF Tool 1.0 or above as next cpeditor will not support this version.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to parse URL [%1]. Please use CF tool 1.0 or higher.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to start CF Tool in 2 seconds.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Contest URL %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1180,12 +1192,12 @@ Do you want to reload it?</source>
         <translation>这个标签页的自定义时间限制：(毫秒)</translation>
     </message>
     <message>
-        <source>You need to install CF Tool to submit your code to Codeforces. If already installed, you can add it in the PATH environment variable or check your settings at %1.</source>
-        <translation>你需要安装 CF Tool 以将代码提交到 Codeforces。如果你已经安装了，你可以将它添加到 PATH 环境变量中，或者检查 %1 处的设置。</translation>
-    </message>
-    <message>
         <source>Failed to start compilation: %1</source>
         <translation>未能开始编译：%1</translation>
+    </message>
+    <message>
+        <source>You can&apos;t submit this because the problem URL is not recognized as a Codeforces URL.</source>
+        <translation>你不能提交这份代码，因为题目链接没有被识别为 Codeforces 链接。</translation>
     </message>
 </context>
 <context>
@@ -2594,6 +2606,10 @@ You can learn about it by running `yapf --style-help`.</source>
         <source>network-proxy</source>
         <comment>the anchor of Password on the corresponding page of https://cpeditor.org/docs/preferences</comment>
         <translation>网络代理</translation>
+    </message>
+    <message>
+        <source>Submit Solution</source>
+        <translation>提交代码</translation>
     </message>
 </context>
 <context>

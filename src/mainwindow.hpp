@@ -105,6 +105,8 @@ class MainWindow : public QMainWindow
     void compileOnly();
     void runOnly();
     void compileAndRun();
+    void submitSolution();
+    bool canSubmitSolution() const;
     void formatSource(bool selectionOnly, bool logOnNoChange);
 
     void applyCompanion(const Extensions::CompanionData &data);
@@ -165,6 +167,8 @@ class MainWindow : public QMainWindow
 
     void on_run_clicked();
 
+    void on_submitButton_clicked();
+
     void on_clearMessagesButton_clicked();
 
     void on_changeLanguageButton_clicked();
@@ -220,7 +224,6 @@ class MainWindow : public QMainWindow
     std::atomic<bool> reloading;
     std::atomic<bool> killingProcesses;
 
-    QPushButton *submitToCodeforces = nullptr;
     Extensions::CFTool *cftool = nullptr;
 
     Widgets::TestCases *testcases = nullptr;
@@ -236,7 +239,7 @@ class MainWindow : public QMainWindow
     void run(int index);
     void loadTests();
     void saveTests(bool safe);
-    void setCFToolUI();
+    void setSubmitButton(bool visible);
     void setFilePath(QString path, bool updateBinder = true);
     void setText(const QString &text, bool keep = false);
     void updateWatcher();

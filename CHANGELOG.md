@@ -1,8 +1,18 @@
 ## UNRELEASED
 
+### Added
+
+-   Now you can set shortcut for submitting solution. (#201 and #681)
+-   Added Submit option in Actions menu.(#681)
+
+### Changed
+
+-   Use of CF tool lower than 1.0 has been deprecated. We recommend you to update to 1.0 or above because in next release we will remove its support completely.
+
 ## Fixed
 
 -   Fix that the Find/Replace dialog is not floating in i3-wm. (#767)
+-   Fixed an issue where some URL was not being parsed by CF Tool. (#679 and #681) 
 
 ## v6.8
 

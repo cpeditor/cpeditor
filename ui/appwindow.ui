@@ -45,7 +45,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -93,6 +93,7 @@
     <addaction name="separator"/>
     <addaction name="actionFormatCode"/>
     <addaction name="actionUseSnippets"/>
+    <addaction name="actionSubmit"/>
    </widget>
    <widget class="QMenu" name="menuView">
     <property name="title">
@@ -489,6 +490,14 @@
   <action name="actionClearLogs">
    <property name="text">
     <string>Delete Log Files</string>
+   </property>
+  </action>
+  <action name="actionSubmit">
+   <property name="text">
+    <string>Submit Solution</string>
+   </property>
+   <property name="shortcut">
+    <string notr="true">Ctrl+Alt+S</string>
    </property>
   </action>
  </widget>

@@ -467,6 +467,10 @@ Git commit hash: %3
         <source>Support us</source>
         <translation>Поддержи нас</translation>
     </message>
+    <message>
+        <source>Submit Solution</source>
+        <translation>Отправить решение</translation>
+    </message>
 </context>
 <context>
     <name>CodeSnippetsPage</name>
@@ -698,28 +702,8 @@ Press any key to exit</source>
         <translation>CF Tool</translation>
     </message>
     <message>
-        <source>CF Tool was killed</source>
-        <translation>Процесс CF Tool был убит</translation>
-    </message>
-    <message>
-        <source>The problem code is 0, now use A automatically. If the actual problem code is not A, please set the problem code manually in the right-click menu of the current tab.</source>
-        <translation>Код задачи - 0, поэтому используется код A автоматически. Если код задачи не А, пожалуйста, установите код вручную в подменю (правая кнопка мыши) текущей вкладки.</translation>
-    </message>
-    <message>
-        <source>Failed to get the version of CF Tool. Have you set the correct path to CF Tool in Preferences?</source>
-        <translation>Ошибки при получении версии CF Tool. Установлен корректный путь к CF Tool в параметрах?</translation>
-    </message>
-    <message>
         <source>CF Tool has started</source>
         <translation>CF Tool запущен</translation>
-    </message>
-    <message>
-        <source>Failed to start CF Tool in 2 seconds. Have you set the correct path to CF Tool in Preferences?</source>
-        <translation>Ошибки при получении версии CF Tool в течении 2-х секунд. Установлен корректный путь к CF Tool в параметрах?</translation>
-    </message>
-    <message>
-        <source>Failed to parse the URL [%1]</source>
-        <translation>Ошибка в получении URL [%1]</translation>
     </message>
     <message>
         <source>CF Tool failed</source>
@@ -732,6 +716,34 @@ Press any key to exit</source>
     <message>
         <source>Contest %1 Problem %2</source>
         <translation>Соревнование %1 Задача %2</translation>
+    </message>
+    <message>
+        <source>The problem code was 0. It has been changed to A. If the actual problem code is not this, please set the problem code manually in the right-click menu of the current tab.</source>
+        <translation>Код задачи - 0, но он был изменен на A. Если код текущей задачи иной, пожалуйста утсановите код задачи вручную, при помощи клика правой кнопки мыши по текущей вкладке.</translation>
+    </message>
+    <message>
+        <source>A CF Tool Instance was running. It has been killed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You need to install CF Tool to submit your code to Codeforces. If already installed, you can add it in the PATH environment variable or check your settings at %1.</source>
+        <translation type="unfinished">Вам необходимо устанвоить CF Tool для отправки Вашего кода на Codeforces. Если он уже установлен, вы можете добавить его в переменную среды PATH или проверить Ваши настройки в %1.</translation>
+    </message>
+    <message>
+        <source>You are using CF Tool %1. It is recommened to update to CF Tool 1.0 or above as next cpeditor will not support this version.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to parse URL [%1]. Please use CF tool 1.0 or higher.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to start CF Tool in 2 seconds.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Contest URL %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1180,12 +1192,12 @@ Do you want to reload it?</source>
         <translation>Нестандартный лимит времени для этой вкладки: (в мс)</translation>
     </message>
     <message>
-        <source>You need to install CF Tool to submit your code to Codeforces. If already installed, you can add it in the PATH environment variable or check your settings at %1.</source>
-        <translation>Вам необходимо устанвоить CF Tool для отправки Вашего кода на Codeforces. Если он уже установлен, вы можете добавить его в переменную среды PATH или проверить Ваши настройки в %1.</translation>
-    </message>
-    <message>
         <source>Failed to start compilation: %1</source>
         <translation>Ошибка старта компиляции: %1</translation>
+    </message>
+    <message>
+        <source>You can&apos;t submit this because the problem URL is not recognized as a Codeforces URL.</source>
+        <translation>Вы не можете отправить это, потому что URL задачи не распознан как URL Codeforces.</translation>
     </message>
 </context>
 <context>
@@ -2602,6 +2614,10 @@ You can learn about it by running `yapf --style-help`.</source>
         <source>network-proxy</source>
         <comment>the anchor of Password on the corresponding page of https://cpeditor.org/docs/preferences</comment>
         <translation>прокси сети</translation>
+    </message>
+    <message>
+        <source>Submit Solution</source>
+        <translation>Отправить решение</translation>
     </message>
 </context>
 <context>

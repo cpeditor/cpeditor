@@ -366,6 +366,11 @@ void AppWindow::maybeSetHotkeys()
         hotkeyObjects.push_back(
             new QShortcut(SettingsHelper::getHotkeySnippets(), this, [this] { on_actionUseSnippets_triggered(); }));
     }
+    if (!SettingsHelper::getHotkeySubmit().isEmpty())
+    {
+        hotkeyObjects.push_back(
+            new QShortcut(SettingsHelper::getHotkeySubmit(), this, [this] { on_actionSubmit_triggered(); }));
+    }
 
     hotkeyObjects.push_back(new QShortcut(Qt::Key_Escape, this, [this] { ui->actionFullScreen->setChecked(false); }));
 }
@@ -885,6 +890,8 @@ void AppWindow::onTabChanged(int index)
     auto *tmp = windowAt(index);
 
     reAttachLanguageServer(tmp);
+
+    ui->actionSubmit->setVisible(tmp->canSubmitSolution());
 
     findReplaceDialog->setTextEdit(tmp->getEditor());
 
@@ -1447,7 +1454,7 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
         tabMenu->addAction(tr("Set Codeforces URL"), [window, this] {
             QString contestId;
             QString problemCode;
-            Extensions::CFTool::parseCfUrl(window->getProblemURL(), contestId, problemCode);
+            Util::parseCfUrl(window->getProblemURL(), contestId, problemCode);
             bool ok = false;
             contestId = QInputDialog::getText(this, tr("Set CF URL"), tr("Enter the contest ID:"), QLineEdit::Normal,
                                               contestId, &ok);
@@ -1563,4 +1570,10 @@ void AppWindow::onCompileOrRunTriggered()
 {
     if (ui->actionEditorMode->isChecked())
         on_actionSplitMode_triggered();
+}
+
+void AppWindow::on_actionSubmit_triggered()
+{
+    if (currentWindow() && currentWindow()->canSubmitSolution())
+        currentWindow()->submitSolution();
 }

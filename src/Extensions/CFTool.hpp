@@ -33,9 +33,7 @@ class CFTool : public QObject
     CFTool(const QString &path, MessageLogger *logger);
     ~CFTool() override;
     void submit(const QString &filePath, const QString &url);
-    static bool check(const QString &path);
     void updatePath(const QString &p);
-    static bool parseCfUrl(const QString &url, QString &contestId, QString &problemCode);
 
   signals:
     void requestToastMessage(const QString &head, const QString &body);
@@ -45,10 +43,10 @@ class CFTool : public QObject
     void onFinished(int exitCode, QProcess::ExitStatus);
 
   private:
-    QString problemContestId, problemCode, lastStatus;
-    QProcess *CFToolProcess = nullptr;
+    QString lastStatus, lastUrl;
+    QProcess *process = nullptr;
     MessageLogger *log;
-    QString CFToolPath;
+    QString path;
 
     void showToastMessage(const QString &message);
     QString getCFToolVersion() const;

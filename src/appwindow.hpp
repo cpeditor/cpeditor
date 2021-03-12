@@ -207,6 +207,8 @@ class AppWindow : public QMainWindow
 
     void onViewModeToggle();
 
+    void on_actionSubmit_triggered();
+
   private:
     Ui::AppWindow *ui;
     MessageLogger *activeLogger = nullptr;

@@ -29,6 +29,8 @@ QString sanitizeAnchorName(const QString &str);
 
 QString websiteLink(const QString &path = QString());
 
+bool parseCfUrl(const QString &url, QString &contestId, QString &problemCode);
+
 } // namespace Util
 
 #endif // UTIL_HPP
