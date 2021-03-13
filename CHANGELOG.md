@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+## Added
+
+-   Now accepted testcases can be auto-unchecked. (#734)
+
 ## Fixed
 
 -   Fix that the Find/Replace dialog is not floating in i3-wm. (#767)

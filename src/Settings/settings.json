@@ -1239,5 +1239,11 @@
         "name": "Promotion Dialog Shown",
         "type": "bool",
         "notr": true
+    },
+    {
+        "name": "Auto Uncheck Accepted Testcases",
+        "desc": "Auto uncheck accepted testcases",
+        "type": "bool",
+        "default": "false"
     }
 ]

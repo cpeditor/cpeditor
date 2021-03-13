@@ -522,6 +522,8 @@ void TestCases::setVerdict(int index, TestCase::Verdict verdict)
     {
         testcases[index]->setVerdict(verdict);
         updateVerdicts();
+		if (verdict == TestCase::AC && SettingsHelper::isAutoUncheckAcceptedTestcases())
+			testcases[index]->setChecked(false);
     }
 }
 
