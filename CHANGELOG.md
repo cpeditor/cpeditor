@@ -3,6 +3,7 @@
 ### Added
 
 -   Configurable text cursor width. (#781 and #795)
+-   Now accepted testcases can be auto-unchecked. (#734 and #797)
 
 ### Fixed
 

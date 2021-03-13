@@ -1481,10 +1481,6 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation>Сохранении сессиии</translation>
     </message>
     <message>
-        <source>Empty Test Cases</source>
-        <translation>Пустые тесткейсы</translation>
-    </message>
-    <message>
         <source>Network Proxy</source>
         <translation>Прокси сети</translation>
     </message>
@@ -1511,6 +1507,10 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <source>Code Formatting</source>
         <translation>Форматирование кода</translation>
+    </message>
+    <message>
+        <source>Test Cases</source>
+        <translation type="unfinished">Тесткейсы</translation>
     </message>
 </context>
 <context>
@@ -2610,6 +2610,10 @@ You can learn about it by running `yapf --style-help`.</source>
         <source>network-proxy</source>
         <comment>the anchor of Password on the corresponding page of https://cpeditor.org/docs/preferences</comment>
         <translation>прокси сети</translation>
+    </message>
+    <message>
+        <source>Auto uncheck accepted testcases</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
