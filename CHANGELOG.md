@@ -2,7 +2,7 @@
 
 ## Added
 
--   Now accepted testcases can be auto-unchecked. (#734)
+-   Now accepted testcases can be auto-unchecked. (#734 and #797)
 
 ## Fixed
 
