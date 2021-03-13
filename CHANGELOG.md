@@ -1,6 +1,10 @@
 ## UNRELEASED
 
-## Fixed
+### Added
+
+-   Configurable text cursor width. (#781 and #795)
+
+### Fixed
 
 -   Fix that the Find/Replace dialog is not floating in i3-wm. (#767)
 -   Fix text selection color when Dark Fusion is selected. (#788)

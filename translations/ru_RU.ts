@@ -1524,6 +1524,14 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation>Ширина символов вкладки или количество пробелов на конце</translation>
     </message>
     <message>
+        <source>Cursor Width</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>The width of the cursor in pixels</source>
+        <translation></translation>
+    </message>
+    <message>
         <source>Editor Font</source>
         <translation>Шрифт редактора</translation>
     </message>
