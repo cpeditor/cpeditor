@@ -254,9 +254,9 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
                 .page(TRKEY("YAPF"), {"YAPF/Program", "YAPF/Arguments", "YAPF/Style"}, false)
             .end()
             .dir(TRKEY("Language Server"))
-                .page("C++ Server", tr("%1 Server").arg(tr("C++")), {"LSP/Use Linting C++", "LSP/Delay C++", "LSP/Path C++", "LSP/Args C++"})
-                .page("Java Server", tr("%1 Server").arg(tr("Java")), {"LSP/Use Linting Java", "LSP/Delay Java", "LSP/Path Java", "LSP/Args Java"})
-                .page("Python Server", tr("%1 Server").arg(tr("Python")), {"LSP/Use Linting Python", "LSP/Delay Python", "LSP/Path Python", "LSP/Args Python"})
+                .page("C++ Server", tr("%1 Server").arg(tr("C++")), {"LSP/Use Autocomplete C++", "LSP/Use Linting C++", "LSP/Delay C++", "LSP/Path C++", "LSP/Args C++"})
+                .page("Java Server", tr("%1 Server").arg(tr("Java")), {"LSP/Use Autocomplete Java", "LSP/Use Linting Java", "LSP/Delay Java", "LSP/Path Java", "LSP/Args Java"})
+                .page("Python Server", tr("%1 Server").arg(tr("Python")), {"LSP/Use Autocomplete Python", "LSP/Use Linting Python", "LSP/Delay Python", "LSP/Path Python", "LSP/Args Python"})
             .end()
             .page(TRKEY("Competitive Companion"), {"Competitive Companion/Enable", "Competitive Companion/Open New Tab",
                 "Competitive Companion/Set Time Limit For Tab", "Competitive Companion/Connection Port",

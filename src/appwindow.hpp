@@ -41,6 +41,7 @@ namespace Extensions
 class CompanionServer;
 struct CompanionData;
 class LanguageServer;
+class LSPCompleter;
 } // namespace Extensions
 
 namespace Telemetry
@@ -230,6 +231,7 @@ class AppWindow : public QMainWindow
     Extensions::LanguageServer *cppServer = nullptr;
     Extensions::LanguageServer *javaServer = nullptr;
     Extensions::LanguageServer *pythonServer = nullptr;
+    Extensions::LSPCompleter *lspCompleter = nullptr;
 
     explicit AppWindow(bool noHotExit, QWidget *parent = nullptr);
     void finishConstruction();

@@ -17,6 +17,7 @@
 #include "LanguageServer.hpp"
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
+#include "Extensions/LSPCompleter.hpp"
 #include "Settings/SettingsManager.hpp"
 #include "Util/Util.hpp"
 #include "third_party/lsp-cpp/include/LSPClient.hpp"
@@ -24,6 +25,8 @@
 #include <QFileInfo>
 #include <QJsonArray>
 #include <QJsonDocument>
+
+#include <QDebug>
 
 namespace Extensions
 {
@@ -114,6 +117,25 @@ void LanguageServer::requestLinting()
 
     std::string uri = "file://" + openFile.toStdString();
     lsp->didChange(uri, changes, true);
+}
+
+void LanguageServer::requestCompletion(int lineNumber, int characterNumber, LSPCompleter *completer)
+{
+    if (m_editor == nullptr || !isDocumentOpen())
+        return;
+
+    CompletionContext context;
+    Position pos;
+    this->completer = completer;
+
+    pos.line = lineNumber;
+    pos.character = characterNumber;
+    context.triggerKind = CompletionTriggerKind::Invoked;
+    std::string s;
+    context.triggerCharacter = s; // Take a reference, need to pass a empty character
+    std::string uri = "file://" + openFile.toStdString();
+
+    lsp->completion(uri, pos, context);
 }
 
 bool LanguageServer::isDocumentOpen() const
@@ -257,7 +279,26 @@ void LanguageServer::onLSPServerNotificationArrived(QString const &method, QJson
 void LanguageServer::onLSPServerResponseArrived(QJsonObject const &method, // NOLINT: It can be made static.
                                                 QJsonObject const &param)
 {
-    LOG_INFO("Response from Server has arrived");
+    auto parameters = QJsonDocument::fromVariant(param.toVariantMap());
+    if (parameters.isObject() && param.keys().contains("items") &&
+        param.keys().contains("isIncomplete")) // Completion list
+    {
+        completer->clearCompletion();
+        QStringList list;
+        QJsonArray arr = parameters["items"].toArray();
+        for (auto e : arr)
+        {
+            auto obj = e.toObject();
+            auto kind = obj["kind"].toInt();
+            auto label = obj["label"].toString();
+
+            qDebug() << "Kind: " << kind << "->" << label;
+            list.append(label.trimmed());
+        }
+
+        qDebug() << "Completion end";
+        completer->addCompletion(list);
+    }
 }
 
 void LanguageServer::onLSPServerRequestArrived(QString const &method, // NOLINT: It can be made static.
@@ -275,6 +316,9 @@ void LanguageServer::onLSPServerErrorArrived(QJsonObject const &id, QJsonObject 
 
     LOG_ERR("ID is \n" << ID);
     LOG_ERR("ERR is \n" << ERR);
+
+    qDebug() << id;
+    qDebug() << error;
 
     if (logger != nullptr)
         logger->error(tr("Language Server [%1]").arg(language),

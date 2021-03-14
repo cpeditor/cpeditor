@@ -19,14 +19,15 @@
 #define LANGUAGE_SERVER_H
 
 #include <QCodeEditor>
-#include <QJsonObject>
 #include <QProcess>
 
 class MessageLogger;
 class LSPClient;
+class QJsonObject;
 
 namespace Extensions
 {
+class LSPCompleter;
 class LanguageServer : public QObject
 {
     Q_OBJECT
@@ -38,6 +39,7 @@ class LanguageServer : public QObject
     void openDocument(QString const &path, QCodeEditor *editor, MessageLogger *log);
     void closeDocument();
     void requestLinting();
+    void requestCompletion(int lineNumber, int characterNumber, LSPCompleter *completer);
 
     bool isDocumentOpen() const;
 
@@ -64,6 +66,7 @@ class LanguageServer : public QObject
     QCodeEditor *m_editor = nullptr;
     MessageLogger *logger = nullptr;
     LSPClient *lsp = nullptr;
+    LSPCompleter *completer = nullptr;
     bool isInitialized = false;
     QString language;
     QString openFile;

@@ -26,6 +26,7 @@
 #include "Extensions/CFTool.hpp"
 #include "Extensions/CompanionServer.hpp"
 #include "Extensions/EditorTheme.hpp"
+#include "Extensions/LSPCompleter.hpp"
 #include "Extensions/LanguageServer.hpp"
 #include "Settings/DefaultPathManager.hpp"
 #include "Settings/FileProblemBinder.hpp"
@@ -49,6 +50,7 @@
 #include <QShortcut>
 #include <QSplitter>
 #include <QTabBar>
+#include <QTextCursor>
 #include <QTimer>
 #include <QUrl>
 #include <findreplacedialog.h>
@@ -275,6 +277,7 @@ void AppWindow::allocate()
     cppServer = new Extensions::LanguageServer("C++");
     javaServer = new Extensions::LanguageServer("Java");
     pythonServer = new Extensions::LanguageServer("Python");
+    lspCompleter = new Extensions::LSPCompleter(this);
 
     findReplaceDialog = new FindReplaceDialog(this);
     findReplaceDialog->setModal(false);
@@ -947,6 +950,7 @@ void AppWindow::onEditorFileChanged()
         }
 
         setWindowTitle(currentWindow()->getCompleteTitle() + " - CP Editor");
+        currentWindow()->getEditor()->setCompleter(lspCompleter);
     }
 }
 
@@ -955,6 +959,9 @@ void AppWindow::onEditorTextChanged(MainWindow *window)
     int index = ui->tabWidget->indexOf(window);
     if (index != -1)
     {
+        QTextCursor cursor = window->getEditor()->textCursor();
+        int lineNumber = cursor.blockNumber();
+        int charNumber = cursor.positionInBlock();
         auto title = ui->tabWidget->tabText(index);
         // assume the clean title doesn't end with " *"
         if (title.endsWith(" *"))
@@ -964,11 +971,23 @@ void AppWindow::onEditorTextChanged(MainWindow *window)
         ui->tabWidget->setTabText(index, title);
 
         if (window->getLanguage() == "C++")
+        {
             lspTimerCpp->start();
+            if (SettingsHelper::isLSPUseAutocompleteCpp())
+                cppServer->requestCompletion(lineNumber, charNumber, lspCompleter);
+        }
         else if (window->getLanguage() == "Java")
+        {
             lspTimerJava->start();
+            if (SettingsHelper::isLSPUseAutocompleteJava())
+                javaServer->requestCompletion(lineNumber, charNumber, lspCompleter);
+        }
         else
+        {
             lspTimerPython->start();
+            if (SettingsHelper::isLSPUseAutocompletePython())
+                pythonServer->requestCompletion(lineNumber, charNumber, lspCompleter);
+        }
     }
 }
 

@@ -148,6 +148,8 @@ add_executable(cpeditor
     src/Extensions/EditorTheme.hpp
     src/Extensions/LanguageServer.cpp
     src/Extensions/LanguageServer.hpp
+    src/Extensions/LSPCompleter.cpp
+    src/Extensions/LSPCompleter.hpp
 
     src/Settings/CodeSnippetsPage.cpp
     src/Settings/CodeSnippetsPage.hpp
