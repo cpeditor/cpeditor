@@ -1173,8 +1173,8 @@
   },
   {
     "name": "Auto Uncheck Accepted Testcases",
-    "desc": "Auto uncheck accepted testcases",
     "type": "bool",
-    "default": "false"
+    "default": "false",
+    "tip": "Automatically uncheck test cases when they are accepted."
   }
 ]
