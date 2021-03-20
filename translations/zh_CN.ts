@@ -2604,8 +2604,12 @@ You can learn about it by running `yapf --style-help`.</source>
         <translation>网络代理</translation>
     </message>
     <message>
-        <source>Auto uncheck accepted testcases</source>
-        <translation>自动取消选择已通过测试用例</translation>
+        <source>Auto Uncheck Accepted Testcases</source>
+        <translation>自动取消选中已通过的测试点</translation>
+    </message>
+    <message>
+        <source>Automatically uncheck test cases when they get accepted.</source>
+        <translation>在测试点通过测试时自动取消选中。</translation>
     </message>
 </context>
 <context>

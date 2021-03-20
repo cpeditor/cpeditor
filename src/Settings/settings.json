@@ -1175,6 +1175,6 @@
     "name": "Auto Uncheck Accepted Testcases",
     "type": "bool",
     "default": "false",
-    "tip": "Automatically uncheck test cases when they are accepted."
+    "tip": "Automatically uncheck test cases when they get accepted."
   }
 ]
