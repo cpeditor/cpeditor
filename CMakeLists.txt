@@ -43,6 +43,9 @@ add_library(diff_match_patch
 option(PORTABLE_VERSION "Build the portable version" Off)
 option(USE_CLANG_TIDY "Use clang-tidy to lint the files" Off)
 
+string(TIMESTAMP BUILD_DATE "%Y-%m-%d")
+message(STATUS "Makefile generated on ${BUILD_DATE}")
+
 if(${PORTABLE_VERSION})
   message(STATUS "Will build the portable version")
 else()
@@ -91,6 +94,7 @@ message(STATUS "Minor version: ${MINOR_VERSION}")
 
 configure_file(cmake/version.hpp.in ${CMAKE_BINARY_DIR}/generated/version.hpp)
 configure_file(cmake/portable.hpp.in ${CMAKE_BINARY_DIR}/generated/portable.hpp)
+configure_file(cmake/cpeditor.appdata.xml.in ${PROJECT_SOURCE_DIR}/dist/linux/cpeditor.appdata.xml)
 
 add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMAKE_BINARY_DIR}/generated/SettingsInfo.cpp
                    COMMAND ${Python3_EXECUTABLE} ${PROJECT_SOURCE_DIR}/src/Settings/genSettings.py ${PROJECT_SOURCE_DIR}/src/Settings/settings.json
@@ -266,6 +270,7 @@ if(UNIX AND NOT APPLE)
           LIBRARY DESTINATION lib)
   install(FILES dist/linux/cpeditor.desktop DESTINATION share/applications)
   install(FILES resources/icon.png DESTINATION share/icons/hicolor/512x512/apps RENAME cpeditor.png)
+  install(FILES dist/linux/cpeditor.appdata.xml DESTINATION share/metainfo)
 endif()
 
 
