@@ -30,6 +30,9 @@ ui_*.h
 Makefile*
 *build-*
 
+# metainfo files
+*.appdata.xml
+
 # Qt unit tests
 target_wrapper.*
 
