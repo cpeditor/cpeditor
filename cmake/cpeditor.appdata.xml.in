@@ -13,7 +13,7 @@
   <url type="homepage">https://cpeditor.org</url>
   <url type="bugtracker">https://github.com/cpeditor/cpeditor/issues</url>
   <url type="help">https://github.com/cpeditor/cpeditor/discussions</url>
-  <url type="donation">https://opencollective.com/cpeditor</url>
+  <url type="donation">https://github.com/cpeditor/cpeditor/blob/master/DONATE.md</url>
   <update_contact>officialcpeditor@gmail.com</update_contact>
   <project_group>CP Editor</project_group>
   <project_license>GPL-3.0+</project_license>
