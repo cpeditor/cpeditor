@@ -4,7 +4,7 @@ None.
 
 ## Open Collective
 
-None.
+- [GoMage](https://www.gomage.com/)
 
 ## WeChat
 
