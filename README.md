@@ -34,7 +34,7 @@
 ## Donate
 
 -   [How to donate](DONATE.md)
--   [Donators list](DONATORS.md)
+-   [Donor list](DONORS.md)
 
 ## Contributing
 
