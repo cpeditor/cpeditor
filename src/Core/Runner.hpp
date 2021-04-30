@@ -92,7 +92,7 @@ class Runner : public QObject
      * @param timeUsed the time between the execution started and finished
      * @param tle whether the time limit is exceeded
      */
-    void runFinished(int index, const QString &out, const QString &err, int exitCode, int timeUsed, bool tle);
+    void runFinished(int index, const QString &out, const QString &err, int exitCode, qint64 timeUsed, bool tle);
 
     /**
      * @brief failed to start the execution
