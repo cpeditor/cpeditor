@@ -41,7 +41,7 @@ const int Log::MAXIMUM_FILE_NAME_SIZE = 30;
 const QString Log::LOG_DIR_NAME = "cpeditorLogFiles";
 const QString Log::LOG_FILE_NAME = "cpeditor";
 
-void Log::init(int instance, bool dumptoStderr)
+void Log::init(unsigned int instance, bool dumptoStderr)
 {
     logStream.setDevice(&logFile);
     if (!dumptoStderr)
