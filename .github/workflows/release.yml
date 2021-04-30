@@ -18,7 +18,7 @@ jobs:
           tag=$(curl https://api.github.com/repos/brechtsanders/winlibs_mingw/releases/latest | jq -r .tag_name)
           echo "::set-output name=tag-name::$tag"
           echo "::set-output name=gcc-version::$(echo $tag | cut -d'-' -f 1)"
-          echo "::set-output name=mingw-version::$(echo $tag | cut -d'-' -f 3-)"
+          echo "::set-output name=mingw-version::$(echo $tag | rev | cut -d'-' -f -2 | rev)"
     outputs:
       tag-name: ${{ steps.get.outputs.tag-name }}
       gcc-version: ${{ steps.get.outputs.gcc-version }}
@@ -33,7 +33,7 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - os: "ubuntu-16.04"
+          - os: "ubuntu-18.04"
             portable-option: "Off"
           - os: "macos-latest"
             portable-option: "Off"
