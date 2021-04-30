@@ -1385,7 +1385,8 @@ void MainWindow::onRunStarted(int index)
     log->info(getRunnerHead(index), tr("Execution has started"));
 }
 
-void MainWindow::onRunFinished(int index, const QString &out, const QString &err, int exitCode, int timeUsed, bool tle)
+void MainWindow::onRunFinished(int index, const QString &out, const QString &err, int exitCode, qint64 timeUsed,
+                               bool tle)
 {
     auto head = getRunnerHead(index);
 

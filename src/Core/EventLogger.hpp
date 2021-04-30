@@ -97,7 +97,7 @@ class Log
      * @param dumptoStderr whether to print the logs into stderr or not
      * @note this should be called only once before logging anything
      */
-    static void init(int instance, bool dumptoStderr = false);
+    static void init(unsigned int instance, bool dumptoStderr = false);
 
     /**
      * @brief clear old logs

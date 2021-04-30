@@ -87,7 +87,7 @@ void SessionManager::restoreSession(const QString &path)
     auto oldSize = app->size();
     app->setUpdatesEnabled(false);
 
-    for (auto const &tab : tabs)
+    for (auto &&tab : tabs)
     {
         if (progressDialog.wasCanceled())
             break;
