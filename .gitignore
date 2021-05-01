@@ -66,3 +66,6 @@ compile_commands.json
 
 # Translations
 resources/translations/*.qm
+
+# NeoVim LSP
+.cache/
