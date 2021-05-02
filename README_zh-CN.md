@@ -34,7 +34,7 @@
 ## 捐赠
 
 -   [如何捐赠](DONATE_zh-CN.md)
--   [捐赠者列表](DONATORS.md)
+-   [捐赠者列表](DONORS.md)
 
 ## 做出贡献
 

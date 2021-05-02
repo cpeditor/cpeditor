@@ -145,7 +145,7 @@ class MainWindow : public QMainWindow
     void onCompilationKilled();
 
     void onRunStarted(int index);
-    void onRunFinished(int index, const QString &out, const QString &err, int exitCode, int timeUsed, bool tle);
+    void onRunFinished(int index, const QString &out, const QString &err, int exitCode, qint64 timeUsed, bool tle);
     void onFailedToStartRun(int index, const QString &error);
     void onRunOutputLimitExceeded(int index, const QString &type);
     void onRunKilled(int index);

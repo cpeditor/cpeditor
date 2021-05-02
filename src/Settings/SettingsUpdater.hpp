@@ -20,8 +20,9 @@
 
 class QSettings;
 
-struct SettingsUpdater
+class SettingsUpdater
 {
+  public:
     static void updateSetting(QSettings &setting);
 };
 

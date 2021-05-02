@@ -57,7 +57,7 @@ PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, const QString
         else if (si.type == "bool")
         {
             Wrapper<bool> *wrapper = createBoolWrapper(si.ui);
-            wrapper->init(si.desc + docsLinkText, this, si.param);
+            wrapper->init(this, si.desc + docsLinkText);
             widget = wrapper;
         }
         else if (si.type == "int")

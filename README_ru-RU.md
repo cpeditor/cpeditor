@@ -34,7 +34,7 @@
 ## Donate
 
 -   [How to donate](DONATE_ru-RU.md)
--   [Donators list](DONATORS.md)
+-   [Donor list](DONORS.md)
 
 ## Сотрудничество
 
