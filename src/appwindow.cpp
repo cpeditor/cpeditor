@@ -366,8 +366,6 @@ void AppWindow::maybeSetHotkeys()
         hotkeyObjects.push_back(
             new QShortcut(SettingsHelper::getHotkeySnippets(), this, [this] { on_actionUseSnippets_triggered(); }));
     }
-
-    hotkeyObjects.push_back(new QShortcut(Qt::Key_Escape, this, [this] { ui->actionFullScreen->setChecked(false); }));
 }
 
 bool AppWindow::closeTab(int index)
@@ -1302,6 +1300,12 @@ void AppWindow::on_actionFullScreen_toggled(bool checked)
     auto state = windowState();
     state.setFlag(Qt::WindowFullScreen, checked);
     setWindowState(state);
+    if (!SettingsHelper::isOnFullScreenDialogShown())
+    {
+        QMessageBox::information(this, tr("How to exit full-screen"),
+                                 tr("Press the F11 key on your computer's keyboard to exit full-screen mode."));
+        SettingsHelper::setOnFullScreenDialogShown(true);
+    }
 }
 
 void AppWindow::on_actionIndent_triggered()
