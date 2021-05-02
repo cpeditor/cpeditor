@@ -2612,11 +2612,7 @@ You can learn about it by running `yapf --style-help`.</source>
         <translation>прокси сети</translation>
     </message>
     <message>
-        <source>Auto Uncheck Accepted Testcases</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Automatically uncheck test cases when they get accepted.</source>
+        <source>Auto uncheck accepted testcases</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
