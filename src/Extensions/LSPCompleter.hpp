@@ -30,6 +30,7 @@ class LSPCompleter : public QCompleter
     explicit LSPCompleter(QObject *parent = nullptr);
     void clearCompletion();
     void addCompletion(QStringList const &item);
+    void addTriggerCharacter(QString character);
 
   private:
     QStringListModel *model = nullptr;

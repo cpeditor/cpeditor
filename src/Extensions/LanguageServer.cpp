@@ -280,6 +280,26 @@ void LanguageServer::onLSPServerResponseArrived(QJsonObject const &method, // NO
                                                 QJsonObject const &param)
 {
     auto parameters = QJsonDocument::fromVariant(param.toVariantMap());
+    if (parameters.isObject() && param.keys().contains("capabilities"))
+    {
+        QJsonObject capabilities = parameters["capabilities"].toObject();
+        if (capabilities.keys().contains("completionProvider"))
+        {
+            QJsonObject completionProvider = capabilities["completionProvider"].toObject();
+            if (completionProvider.keys().contains("triggerCharacters"))
+            {
+                auto chars = completionProvider["triggerCharacters"].toArray();
+                for (auto character : chars)
+                    completer->addTriggerCharacter(character.toString())
+
+            } // else this language does not have trigger characters
+        }
+        else
+        {
+            LOG_WARN("LSP Program does not supports completion");
+        }
+    }
+    qDebug().noquote().nospace() << parameters.toJson();
     if (parameters.isObject() && param.keys().contains("items") &&
         param.keys().contains("isIncomplete")) // Completion list
     {
