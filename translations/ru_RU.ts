@@ -472,7 +472,7 @@ Git commit hash: %3
         <translation></translation>
     </message>
     <message>
-        <source>Press the F11 key on your computer&apos;s keyboard to exit full-screen mode.</source>
+        <source>Press F11 key to exit full-screen mode.</source>
         <translation></translation>
     </message>
 </context>

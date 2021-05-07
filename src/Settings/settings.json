@@ -1178,7 +1178,7 @@
     "tip": "Automatically uncheck test cases when they get accepted."
   },
   {
-    "name": "On Full Screen Dialog Shown",
+    "name": "Full Screen Dialog Shown",
     "type": "bool",
     "default": false,
     "notr": true

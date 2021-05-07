@@ -1300,11 +1300,10 @@ void AppWindow::on_actionFullScreen_toggled(bool checked)
     auto state = windowState();
     state.setFlag(Qt::WindowFullScreen, checked);
     setWindowState(state);
-    if (!SettingsHelper::isOnFullScreenDialogShown())
+    if (!SettingsHelper::isFullScreenDialogShown())
     {
-        QMessageBox::information(this, tr("How to exit full-screen"),
-                                 tr("Press the F11 key on your computer's keyboard to exit full-screen mode."));
-        SettingsHelper::setOnFullScreenDialogShown(true);
+        QMessageBox::information(this, tr("How to exit full-screen"), tr("Press F11 key to exit full-screen mode."));
+        SettingsHelper::setFullScreenDialogShown(true);
     }
 }
 
