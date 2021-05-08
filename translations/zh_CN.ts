@@ -467,6 +467,14 @@ git 提交编号: %3
         <source>Support us</source>
         <translation>支持我们</translation>
     </message>
+    <message>
+        <source>How to exit full-screen</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Press F11 key to exit full-screen mode.</source>
+        <translation></translation>
+    </message>
 </context>
 <context>
     <name>CodeSnippetsPage</name>

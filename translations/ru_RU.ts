@@ -467,6 +467,14 @@ Git commit hash: %3
         <source>Support us</source>
         <translation>Поддержи нас</translation>
     </message>
+    <message>
+        <source>How to exit full-screen</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Press F11 key to exit full-screen mode.</source>
+        <translation></translation>
+    </message>
 </context>
 <context>
     <name>CodeSnippetsPage</name>

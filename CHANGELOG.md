@@ -2,6 +2,7 @@
 
 ### Added
 
+-   Show dialog on full screen for first time. (#786)
 -   Configurable text cursor width. (#781 and #795)
 -   Now accepted testcases can be auto-unchecked. (#734 and #797)
 
