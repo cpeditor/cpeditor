@@ -469,11 +469,11 @@ git 提交编号: %3
     </message>
     <message>
         <source>How to exit full-screen</source>
-        <translation></translation>
+        <translation>如何退出全屏模式</translation>
     </message>
     <message>
         <source>Press F11 key to exit full-screen mode.</source>
-        <translation></translation>
+        <translation>按下 F11 以退出全屏模式。</translation>
     </message>
 </context>
 <context>

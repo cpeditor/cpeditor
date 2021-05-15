@@ -469,11 +469,11 @@ Git commit hash: %3
     </message>
     <message>
         <source>How to exit full-screen</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Press F11 key to exit full-screen mode.</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
