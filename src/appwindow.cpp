@@ -242,6 +242,15 @@ void AppWindow::dropEvent(QDropEvent *event)
     openPaths(paths);
 }
 
+void AppWindow::changeEvent(QEvent *event)
+{
+    if (event->type() == QEvent::WindowStateChange)
+    {
+        ui->actionFullScreen->setChecked(windowState().testFlag(Qt::WindowFullScreen));
+    }
+    QMainWindow::changeEvent(event);
+}
+
 /******************** PRIVATE METHODS ********************/
 void AppWindow::setConnections()
 {

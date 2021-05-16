@@ -64,11 +64,13 @@ class AppWindow : public QMainWindow
                        QWidget *parent = nullptr);
     ~AppWindow() override;
 
+    PreferencesWindow *getPreferencesWindow() const;
+
+  protected:
     void closeEvent(QCloseEvent *event) override;
     void dropEvent(QDropEvent *event) override;
     void dragEnterEvent(QDragEnterEvent *event) override;
-
-    PreferencesWindow *getPreferencesWindow() const;
+    void changeEvent(QEvent *event) override;
 
   public slots:
     void onReceivedMessage(quint32 instanceId, QByteArray message);
