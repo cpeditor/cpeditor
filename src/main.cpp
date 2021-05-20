@@ -49,7 +49,11 @@ int main(int argc, char *argv[])
     SingleApplication::setApplicationName("CP Editor");
     SingleApplication::setApplicationVersion(DISPLAY_VERSION);
     QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
+#ifdef Q_OS_MAC
+    QApplication::setWindowIcon(QIcon(":/macos-icon.png"));
+#else
     QApplication::setWindowIcon(QIcon(":/icon.png"));
+#endif
 
 #ifdef Q_OS_WIN
     AllowSetForegroundWindow(ASFW_ANY); // #657
