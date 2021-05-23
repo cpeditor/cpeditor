@@ -499,6 +499,16 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "swift-zym",
+      "name": "Yiming Zhang",
+      "avatar_url": "https://avatars.githubusercontent.com/u/61449077?v=4",
+      "profile": "https://183154.blog.luogu.org",
+      "contributions": [
+        "code",
+        "design"
+      ]
     }
   ],
   "contributorsPerLine": 6,
