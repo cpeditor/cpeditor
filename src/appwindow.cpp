@@ -84,7 +84,11 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
     Core::StyleManager::setDefault();
 
     QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
+#ifdef Q_OS_MAC
+    setWindowIcon(QIcon(":/macos-icon.png"));
+#else
     setWindowIcon(QIcon(":/icon.png"));
+#endif
 
 #ifdef Q_OS_WIN
     // setWindowOpacity(0.99) when opacity should be 100 is a workaround for a strange issue on Windows

@@ -116,6 +116,11 @@ if(USE_CLANG_TIDY)
 	message(STATUS "clang-tidy checks will be performed")
 endif()
 
+set(RESOURCES resources/resources.qrc)
+if(APPLE)
+  list(APPEND RESOURCES resources/macos-resources.qrc)
+endif()
+
 add_executable(cpeditor
     ${GUI_TYPE}
 
@@ -235,7 +240,7 @@ add_executable(cpeditor
     ${CMAKE_BINARY_DIR}/generated/SettingsInfo.cpp
 
     ${CMAKE_BINARY_DIR}/translations/translations.qrc
-    resources/resources.qrc
+    ${RESOURCES}
     assets/appicon.rc)
 
 include_directories("generated/")
