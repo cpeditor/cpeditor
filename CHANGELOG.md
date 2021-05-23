@@ -6,6 +6,7 @@
 -   Configurable text cursor width. (#781 and #795)
 -   Now accepted testcases can be auto-unchecked. (#734 and #797)
 -   Update icon for macOS. (#838)
+-   Press Esc key to cance selected text. (#786)
 
 ### Fixed
 
