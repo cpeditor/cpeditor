@@ -1,7 +1,6 @@
 <RCC>
     <qresource>
         <file>icon.png</file>
-        <file>macos-icon.png</file>
         <file>../DONATE.md</file>
         <file>../DONATE_zh-CN.md</file>
         <file>../DONATE_ru-RU.md</file>
