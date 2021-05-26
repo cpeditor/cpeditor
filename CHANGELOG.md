@@ -6,12 +6,15 @@
 -   Configurable text cursor width. (#781 and #795)
 -   Now accepted testcases can be auto-unchecked. (#734 and #797)
 -   Update icon for macOS. (#838)
--   Press Esc key to cancel selected text. (#786)
 
 ### Fixed
 
 -   Fix that the Find/Replace dialog is not floating in i3-wm. (#767)
 -   Fix text selection color when Dark Fusion is selected. (#788)
+
+## Changed
+
+-   Esc key now cancels selected text, F11 can be used to enter/exit full screen mode. (#786)
 
 ## v6.8
 
