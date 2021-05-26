@@ -69,3 +69,6 @@ resources/translations/*.qm
 
 # NeoVim LSP
 .cache/
+
+# macOS
+.DS_Store
