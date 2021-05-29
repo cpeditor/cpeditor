@@ -11,6 +11,11 @@
 
 -   Fix that the Find/Replace dialog is not floating in i3-wm. (#767)
 -   Fix text selection color when Dark Fusion is selected. (#788)
+-   Now entering/exiting the full-screen mode outside of CP Editor (via the OS/DE/WM) is correctly handled. (#833)
+
+## Changed
+
+-   Esc key, which was used to exit full-screen mode, now cancels text selection. Now you can use F11 to enter/exit the full-screen mode. (#786)
 
 ## v6.8
 
