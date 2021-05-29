@@ -14,7 +14,7 @@
 
 ## Changed
 
--   Esc key now cancels selected text, F11 can be used to enter/exit full screen mode. (#786)
+-   Esc key, which was used to exit full-screen mode, now cancels text selection. Now you can use F11 to enter/exit the full-screen mode. (#786)
 
 ## v6.8
 
