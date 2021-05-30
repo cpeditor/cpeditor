@@ -509,6 +509,15 @@
         "code",
         "design"
       ]
+    },
+    {
+      "login": "tusqasi",
+      "name": "tusqasi",
+      "avatar_url": "https://avatars.githubusercontent.com/u/24749908?v=4",
+      "profile": "https://github.com/tusqasi",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 6,
