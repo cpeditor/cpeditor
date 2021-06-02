@@ -23,7 +23,7 @@ bool Application::event(QEvent *event)
 {
     if (event->type() == QEvent::FileOpen)
     {
-        QFileOpenEvent *openEvent = static_cast<QFileOpenEvent *>(event);
+        auto *openEvent = static_cast<QFileOpenEvent *>(event);
         auto file = openEvent->file();
         LOG_INFO("Open file : " << file);
         auto widgets = QApplication::topLevelWidgets();
