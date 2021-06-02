@@ -18,7 +18,6 @@
 #ifndef APPLICATION_HPP
 #define APPLICATION_HPP
 
-#include <QApplication>
 #include <QFileOpenEvent>
 #include <singleapplication.h>
 
