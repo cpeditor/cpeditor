@@ -243,6 +243,9 @@ Package maintainers can contact us if any help on packaging is needed. For examp
     <td align="center">
       <a href="https://github.com/swift-zym"><img src="https://avatars.githubusercontent.com/u/61449077?v=4" width="100px;" alt=""/></a><br /><a href="https://183154.blog.luogu.org"><sub><b>Yiming Zhang</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/commits?author=swift-zym" title="Code">💻</a> <a href="#design-swift-zym" title="Design">🎨</a>
     </td>
+    <td align="center">
+      <a href="https://github.com/tusqasi"><img src="https://avatars.githubusercontent.com/u/24749908?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/tusqasi"><sub><b>tusqasi</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3Atusqasi" title="Bug reports">🐛</a>
+    </td>
   </tr>
 </table>
 
