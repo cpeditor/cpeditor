@@ -1,0 +1,41 @@
+/*
+ * Copyright (C) 2019-2021 Ashar Khan <ashar786khan@gmail.com>
+ *
+ * This file is part of CP Editor.
+ *
+ * CP Editor is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * I will not be responsible if CP Editor behaves in unexpected way and
+ * causes your ratings to go down and or lose any important contest.
+ *
+ * Believe Software is "Software" and it isn't immune to bugs.
+ *
+ */
+
+#include "application.hpp"
+#include "Core/EventLogger.hpp"
+#include "appwindow.hpp"
+
+bool Application::event(QEvent *event)
+{
+    if (event->type() == QEvent::FileOpen)
+    {
+        QFileOpenEvent *openEvent = static_cast<QFileOpenEvent *>(event);
+        auto file = openEvent->file();
+        LOG_INFO("Open file : " << file);
+        auto widgets = QApplication::topLevelWidgets();
+        for (auto *widget : widgets)
+        {
+            auto *appWindow = qobject_cast<AppWindow *>(widget);
+            if (appWindow)
+            {
+                appWindow->openTab(file);
+                break;
+            }
+        }
+    }
+    return QApplication::event(event);
+}

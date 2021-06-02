@@ -57,6 +57,8 @@ class AppWindow : public QMainWindow
 {
     Q_OBJECT
 
+    friend class Application;
+
   public:
     explicit AppWindow(int depth, bool cpp, bool java, bool python, bool noHotExit, const QStringList &paths,
                        QWidget *parent = nullptr);

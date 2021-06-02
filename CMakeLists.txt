@@ -225,6 +225,8 @@ add_executable(cpeditor
     src/appwindow.hpp
     src/mainwindow.cpp
     src/mainwindow.hpp
+    src/application.cpp
+    src/application.hpp
 
     src/SignalHandler.cpp
     src/SignalHandler.hpp
@@ -266,6 +268,9 @@ if(APPLE)
     MACOSX_BUNDLE TRUE
     MACOSX_BUNDLE_INFO_PLIST ${CMAKE_SOURCE_DIR}/cmake/Info.plist.in
     RESOURCE "dist/mac/cpeditor.icns"
+    RESOURCE "dist/mac/cppfile.icns"
+    RESOURCE "dist/mac/pythonfile.icns"
+    RESOURCE "dist/mac/javafile.icns"
   )
 endif()
 
