@@ -19,6 +19,10 @@
 #include "Core/EventLogger.hpp"
 #include "appwindow.hpp"
 
+Application::Application(int &argc, char **argv) : SingleApplication(argc, argv, true)
+{
+}
+
 bool Application::event(QEvent *event)
 {
     if (event->type() == QEvent::FileOpen)

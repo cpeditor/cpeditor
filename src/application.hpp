@@ -24,9 +24,7 @@
 class Application : public SingleApplication
 {
   public:
-    Application(int &argc, char **argv) : SingleApplication(argc, argv, true)
-    {
-    }
+    Application(int &argc, char **argv);
 
   protected:
     bool event(QEvent *event) override;
