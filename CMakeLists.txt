@@ -268,9 +268,6 @@ if(APPLE)
     MACOSX_BUNDLE TRUE
     MACOSX_BUNDLE_INFO_PLIST ${CMAKE_SOURCE_DIR}/cmake/Info.plist.in
     RESOURCE "dist/mac/cpeditor.icns"
-    RESOURCE "dist/mac/cppfile.icns"
-    RESOURCE "dist/mac/pythonfile.icns"
-    RESOURCE "dist/mac/javafile.icns"
   )
 endif()
 

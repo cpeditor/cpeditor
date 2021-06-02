@@ -28,6 +28,7 @@ class Application : public SingleApplication
     Application(int &argc, char **argv) : SingleApplication(argc, argv, true)
     {
     }
+
   protected:
     bool event(QEvent *event) override;
 };
