@@ -29,7 +29,7 @@ bool Application::event(QEvent *event)
     {
         auto *openEvent = static_cast<QFileOpenEvent *>(event);
         auto file = openEvent->file();
-        LOG_INFO("Open file : " << file);
+        LOG_INFO("Opening file : " << file);
         auto widgets = QApplication::topLevelWidgets();
         for (auto *widget : widgets)
         {
