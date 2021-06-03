@@ -24,7 +24,7 @@
 class Application : public SingleApplication
 {
   public:
-    Application(int &argc, char **argv);
+    Application(int argc, char **argv);
 
   protected:
 #ifdef Q_OS_MAC

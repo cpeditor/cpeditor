@@ -19,7 +19,7 @@
 #include "Core/EventLogger.hpp"
 #include "appwindow.hpp"
 
-Application::Application(int &argc, char **argv) : SingleApplication(argc, argv, true)
+Application::Application(int argc, char **argv) : SingleApplication(argc, argv, true)
 {
 }
 
