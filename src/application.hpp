@@ -27,6 +27,8 @@ class Application : public SingleApplication
     Application(int &argc, char **argv);
 
   protected:
+#ifdef Q_OS_MAC
     bool event(QEvent *event) override;
+#endif
 };
 #endif // APPLICATION_HPP

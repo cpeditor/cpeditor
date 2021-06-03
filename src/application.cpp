@@ -23,6 +23,7 @@ Application::Application(int &argc, char **argv) : SingleApplication(argc, argv,
 {
 }
 
+#ifdef Q_OS_MAC
 bool Application::event(QEvent *event)
 {
     if (event->type() == QEvent::FileOpen)
@@ -43,3 +44,4 @@ bool Application::event(QEvent *event)
     }
     return QApplication::event(event);
 }
+#endif

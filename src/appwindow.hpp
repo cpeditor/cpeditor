@@ -57,8 +57,6 @@ class AppWindow : public QMainWindow
 {
     Q_OBJECT
 
-    friend class Application;
-
   public:
     explicit AppWindow(int depth, bool cpp, bool java, bool python, bool noHotExit, const QStringList &paths,
                        QWidget *parent = nullptr);
@@ -67,6 +65,8 @@ class AppWindow : public QMainWindow
     ~AppWindow() override;
 
     PreferencesWindow *getPreferencesWindow() const;
+
+    void openTab(const QString &path);
 
   protected:
     void closeEvent(QCloseEvent *event) override;
@@ -246,7 +246,6 @@ class AppWindow : public QMainWindow
     void maybeSetHotkeys();
     bool closeTab(int index);
     void openTab(MainWindow *window);
-    void openTab(const QString &path);
     void openTab(const MainWindow::EditorStatus &status, bool duplicate = false);
     void openTabs(const QStringList &paths);
     void openPaths(const QStringList &paths, bool cpp = true, bool java = true, bool python = true, int depth = -1);
