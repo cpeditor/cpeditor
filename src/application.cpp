@@ -20,7 +20,7 @@
 #include "appwindow.hpp"
 #include <QFileOpenEvent>
 
-Application::Application(int argc, char **argv) : SingleApplication(argc, argv, true)
+Application::Application(int &argc, char **argv) : SingleApplication(argc, argv, true)
 {
 }
 

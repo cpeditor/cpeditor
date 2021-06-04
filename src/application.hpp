@@ -25,7 +25,7 @@ class Application : public SingleApplication
     Q_OBJECT
 
   public:
-    explicit Application(int argc, char **argv);
+    explicit Application(int &argc, char **argv);
 
   protected:
     bool event(QEvent *event) override;
