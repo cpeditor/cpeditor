@@ -29,7 +29,7 @@ bool Application::event(QEvent *event)
 #ifdef Q_OS_MAC
     if (event->type() == QEvent::FileOpen)
     {
-        const auto *openEvent = qobject_cast<QFileOpenEvent *>(event);
+        const auto *openEvent = static_cast<QFileOpenEvent *>(event);
         const auto file = openEvent->file();
         LOG_INFO("Opening file : " << file);
         emit requestOpenFile(file);
