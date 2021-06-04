@@ -26,7 +26,6 @@ Application::Application(int &argc, char **argv) : SingleApplication(argc, argv,
 
 bool Application::event(QEvent *event)
 {
-#ifdef Q_OS_MAC
     if (event->type() == QEvent::FileOpen)
     {
         const auto *openEvent = static_cast<QFileOpenEvent *>(event);
@@ -34,6 +33,5 @@ bool Application::event(QEvent *event)
         LOG_INFO("Opening file : " << file);
         emit requestOpenFile(file);
     }
-#endif
     return QApplication::event(event);
 }
