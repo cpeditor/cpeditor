@@ -41,11 +41,11 @@
             <array>
                 <string>cpp</string>
                 <string>c++</string>
-                <string>cxx<string>
-                <string>cc<string>
-                <string>c<string>
-                <string>h<string>
-                <string>hpp<string>
+                <string>cxx</string>
+                <string>cc</string>
+                <string>c</string>
+                <string>h</string>
+                <string>hpp</string>
             </array>
             <key>CFBundleTypeRole</key>
             <string>Editor</string>
