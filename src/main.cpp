@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
     SingleApplication::setApplicationName("CP Editor");
     SingleApplication::setApplicationVersion(DISPLAY_VERSION);
     QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     QApplication::setWindowIcon(QIcon(":/macos-icon.png"));
 #else
     QApplication::setWindowIcon(QIcon(":/icon.png"));
