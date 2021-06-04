@@ -34,6 +34,7 @@
 #include "Util/FileUtil.hpp"
 #include "Util/Util.hpp"
 #include "Widgets/SupportUsDialog.hpp"
+#include "application.hpp"
 #include "generated/SettingsHelper.hpp"
 #include "generated/portable.hpp"
 #include "generated/version.hpp"
@@ -213,41 +214,6 @@ AppWindow::~AppWindow()
     LOG_INFO("Destruction finished");
 }
 
-void AppWindow::openTab(const QString &path)
-{
-    LOG_INFO("OpenTab Path is " << path);
-    if (!path.isEmpty())
-    {
-        auto fileInfo = QFileInfo(path);
-        for (int t = 0; t < ui->tabWidget->count(); t++)
-        {
-            auto tPath = qobject_cast<MainWindow *>(ui->tabWidget->widget(t))->getFilePath();
-            if (path == tPath || (fileInfo.exists() && fileInfo == QFileInfo(tPath)))
-            {
-                ui->tabWidget->setCurrentIndex(t);
-                return;
-            }
-        }
-    }
-
-    auto *newWindow = new MainWindow(path, getNewUntitledIndex(), this);
-
-    QString lang = SettingsHelper::getDefaultLanguage();
-
-    auto suffix = QFileInfo(path).suffix();
-
-    if (Util::cppSuffix.contains(suffix))
-        lang = "C++";
-    else if (Util::javaSuffix.contains(suffix))
-        lang = "Java";
-    else if (Util::pythonSuffix.contains(suffix))
-        lang = "Python";
-
-    newWindow->setLanguage(lang);
-
-    openTab(newWindow);
-}
-
 /******************* PUBLIC METHODS ***********************/
 
 void AppWindow::closeEvent(QCloseEvent *event)
@@ -308,6 +274,9 @@ void AppWindow::setConnections()
 
     connect(trayIcon, &QSystemTrayIcon::activated, this, &AppWindow::onTrayIconActivated);
     connect(trayIcon, &QSystemTrayIcon::messageClicked, this, &AppWindow::showOnTop);
+
+    connect(qobject_cast<Application *>(qApp), &Application::requestOpenFile, this,
+            qOverload<const QString &>(&AppWindow::openTab));
 }
 
 void AppWindow::allocate()
@@ -1173,6 +1142,41 @@ void AppWindow::onRightSplitterMoved()
 {
     auto *splitter = currentWindow()->getRightSplitter();
     SettingsHelper::setRightSplitterSize(splitter->saveState());
+}
+
+void AppWindow::openTab(const QString &path)
+{
+    LOG_INFO("OpenTab Path is " << path);
+    if (!path.isEmpty())
+    {
+        auto fileInfo = QFileInfo(path);
+        for (int t = 0; t < ui->tabWidget->count(); t++)
+        {
+            auto tPath = qobject_cast<MainWindow *>(ui->tabWidget->widget(t))->getFilePath();
+            if (path == tPath || (fileInfo.exists() && fileInfo == QFileInfo(tPath)))
+            {
+                ui->tabWidget->setCurrentIndex(t);
+                return;
+            }
+        }
+    }
+
+    auto *newWindow = new MainWindow(path, getNewUntitledIndex(), this);
+
+    QString lang = SettingsHelper::getDefaultLanguage();
+
+    auto suffix = QFileInfo(path).suffix();
+
+    if (Util::cppSuffix.contains(suffix))
+        lang = "C++";
+    else if (Util::javaSuffix.contains(suffix))
+        lang = "Java";
+    else if (Util::pythonSuffix.contains(suffix))
+        lang = "Python";
+
+    newWindow->setLanguage(lang);
+
+    openTab(newWindow);
 }
 
 /************************* ACTIONS ************************/

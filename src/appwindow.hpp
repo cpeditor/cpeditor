@@ -66,8 +66,6 @@ class AppWindow : public QMainWindow
 
     PreferencesWindow *getPreferencesWindow() const;
 
-    void openTab(const QString &path);
-
   protected:
     void closeEvent(QCloseEvent *event) override;
     void dropEvent(QDropEvent *event) override;
@@ -210,6 +208,8 @@ class AppWindow : public QMainWindow
     void onIncomingCompanionRequest(const Extensions::CompanionData &);
 
     void onViewModeToggle();
+
+    void openTab(const QString &path);
 
   private:
     Ui::AppWindow *ui;

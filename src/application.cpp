@@ -18,30 +18,22 @@
 #include "application.hpp"
 #include "Core/EventLogger.hpp"
 #include "appwindow.hpp"
+#include <QFileOpenEvent>
 
 Application::Application(int argc, char **argv) : SingleApplication(argc, argv, true)
 {
 }
 
-#ifdef Q_OS_MAC
 bool Application::event(QEvent *event)
 {
+#ifdef Q_OS_MAC
     if (event->type() == QEvent::FileOpen)
     {
-        auto *openEvent = static_cast<QFileOpenEvent *>(event);
-        auto file = openEvent->file();
+        const auto *openEvent = qobject_cast<QFileOpenEvent *>(event);
+        const auto file = openEvent->file();
         LOG_INFO("Opening file : " << file);
-        auto widgets = QApplication::topLevelWidgets();
-        for (auto *widget : widgets)
-        {
-            auto *appWindow = qobject_cast<AppWindow *>(widget);
-            if (appWindow)
-            {
-                appWindow->openTab(file);
-                break;
-            }
-        }
+        emit requestOpenFile(file);
     }
+#endif
     return QApplication::event(event);
 }
-#endif

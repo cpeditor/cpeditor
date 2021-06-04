@@ -36,7 +36,6 @@
 #include <QProgressDialog>
 #include <QTextStream>
 #include <iostream>
-#include <singleapplication.h>
 
 #ifdef Q_OS_WIN
 #include <windows.h>

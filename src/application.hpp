@@ -18,17 +18,20 @@
 #ifndef APPLICATION_HPP
 #define APPLICATION_HPP
 
-#include <QFileOpenEvent>
 #include <singleapplication.h>
 
 class Application : public SingleApplication
 {
+    Q_OBJECT
+
   public:
-    Application(int argc, char **argv);
+    explicit Application(int argc, char **argv);
 
   protected:
-#ifdef Q_OS_MAC
     bool event(QEvent *event) override;
-#endif
+
+  signals:
+    void requestOpenFile(const QString &path);
 };
+
 #endif // APPLICATION_HPP
