@@ -84,7 +84,7 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
     Core::StyleManager::setDefault();
 
     QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     setWindowIcon(QIcon(":/macos-icon.png"));
 #else
     setWindowIcon(QIcon(":/icon.png"));
