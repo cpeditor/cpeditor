@@ -24,7 +24,7 @@ class MessageLogger;
 
 namespace Util
 {
-const static QStringList cppSuffix = {"cpp", "hpp", "h", "cc", "cxx", "c"};
+const static QStringList cppSuffix = {"cpp", "cc", "cxx", "c++", "c", "hpp", "h"};
 const static QStringList javaSuffix = {"java"};
 const static QStringList pythonSuffix = {"py", "py3"};
 #ifdef Q_OS_WIN

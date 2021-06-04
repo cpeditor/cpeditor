@@ -43,6 +43,9 @@
                 <string>c++</string>
                 <string>cxx<string>
                 <string>cc<string>
+                <string>c<string>
+                <string>h<string>
+                <string>hpp<string>
             </array>
             <key>CFBundleTypeRole</key>
             <string>Editor</string>
@@ -51,6 +54,7 @@
             <key>CFBundleTypeExtensions</key>
             <array>
                 <string>py</string>
+                <string>py3</string>
             </array>
             <key>CFBundleTypeRole</key>
             <string>Editor</string>
