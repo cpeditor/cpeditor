@@ -20,6 +20,7 @@
 #include "Settings/SettingsInfo.hpp"
 #include "SignalHandler.hpp"
 #include "Util/Util.hpp"
+#include "application.hpp"
 #include "appwindow.hpp"
 #include "generated/SettingsHelper.hpp"
 #include "generated/version.hpp"
@@ -35,7 +36,6 @@
 #include <QProgressDialog>
 #include <QTextStream>
 #include <iostream>
-#include <singleapplication.h>
 
 #ifdef Q_OS_WIN
 #include <windows.h>
@@ -45,7 +45,7 @@
 
 int main(int argc, char *argv[])
 {
-    SingleApplication app(argc, argv, true);
+    Application app(argc, argv);
     SingleApplication::setApplicationName("CP Editor");
     SingleApplication::setApplicationVersion(DISPLAY_VERSION);
     QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
