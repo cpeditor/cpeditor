@@ -29,6 +29,20 @@ class SettingsInfo
     Q_DECLARE_TR_FUNCTIONS(SettingsInfo)
 
   public:
+    class SettingInfo;
+
+    struct SettingIter {
+        const SettingInfo *info;
+        QString pre;
+
+        SettingIter() = default;
+        SettingIter(const SettingInfo *i) : info(i) {}
+        SettingIter &child(QString key, QString name);
+        QString key() const {
+          return pre + info->key();
+        }
+    };
+
     class SettingInfo
     {
       public:
@@ -42,7 +56,7 @@ class SettingsInfo
         QString docAnchor;        // the anchor of the documentation
         bool requireAllDepends{}; // false for one of the depends, true for all depends
         bool immediatelyApply{};
-        std::function<void(SettingInfo *, ValueWidget *, QWidget *)> onApply;
+        std::function<void(const SettingInfo *, ValueWidget *, QWidget *)> onApply;
         QList<QPair<QString, std::function<bool(const QVariant &)>>> depends;
         QList<QString> old; // the old keys of this setting
         QVariant def;
@@ -53,27 +67,65 @@ class SettingsInfo
         {
             return name.toLower().replace("c++", "cpp").replace(' ', '_');
         }
+        int findChild(QString name) const
+        {
+            for (int i = 0; i < child.size(); i++) {
+                if (child[i].name == name) {
+                    return i;
+                }
+            }
+            return -1;
+        }
     };
 
     static void updateSettingInfo();
 
-    static SettingInfo findSetting(const QString &name, const QList<SettingInfo> &infos = settings)
+    static const SettingInfo &findSetting(const QString &name)
     {
+        return findSetting(name, getSettings());
+    }
+
+    static const SettingInfo &findSetting(const QString &name, const QList<SettingInfo> &infos)
+    {
+        static SettingInfo empty;
         for (const SettingInfo &si : infos)
             if (si.name == name)
                 return si;
-        return SettingInfo();
+        return empty;
     }
 
-    static QList<SettingInfo> getSettings()
+    static const QList<SettingInfo> &getSettings()
     {
-        return settings;
+        return fakeRoot.child;
+    }
+
+    static SettingIter beginIter(const QString &name) {
+        return SettingIter(&findSetting(name, getSettings()));
+    }
+
+    static SettingIter fakeRootIter() { // This fake root has not type. Only used for it's child.
+        return SettingIter(&fakeRoot);
     }
 
   private:
-    static QList<SettingInfo> settings;
+    static SettingInfo fakeRoot;
+    static QList<SettingInfo> &settings;
 
     friend class SettingsUpdater;
 };
+
+inline SettingsInfo::SettingIter &SettingsInfo::SettingIter::child(QString key, QString name) {
+    if (!info || info->type != "Object") {
+        throw "Getting child on a value";
+    }
+    for (const auto &c : info->child) {
+        if (c.name == name) {
+            info = &c;
+            pre = QString("%1%2%3").arg(pre, key, key != "" ? "/" : "");
+            return *this;
+        }
+    }
+    throw "Getting a child which is not exist";
+}
 
 #endif // SETTINGSINFO_HPP

@@ -60,7 +60,7 @@ def writeInfo(f, obj, lst):
             docAnchor = f"tr({json.dumps(docAnchor)}, {json.dumps(f'the anchor of {desc} on the corresponding page of https://cpeditor.org/docs/preferences')})"
         requireAllDepends = t.get("requireAllDepends", True)
         immediatelyApply = t.get("immediatelyApply", False)
-        onApply = f'[](SettingInfo *info, ValueWidget *widget, QWidget *parent){{ {t.get("onApply", "")} }}'
+        onApply = f'[](const SettingInfo *info, ValueWidget *widget, QWidget *parent){{ {t.get("onApply", "")} }}'
         depends = t.get("depends", [])
         if typename == "Object":
             f.write(f"    QList<SettingInfo> LIST{key};\n")
@@ -201,7 +201,8 @@ namespace SettingsHelper
 #include <QMessageBox>
 #include <QRect>
 
-QList<SettingsInfo::SettingInfo> SettingsInfo::settings;
+SettingsInfo::SettingInfo SettingsInfo::fakeRoot = { "@ROOT@" };
+QList<SettingsInfo::SettingInfo> &SettingsInfo::settings = SettingsInfo::fakeRoot.child;
 
 void SettingsInfo::updateSettingInfo()
 {

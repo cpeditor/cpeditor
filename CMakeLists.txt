@@ -191,6 +191,9 @@ add_executable(cpeditor
     src/Settings/ValueWrapper.cpp
     src/Settings/ValueWrapper.hpp
 
+    src/Settings/SettingWidget.cpp
+    src/Settings/SettingWidget.hpp
+
     src/Telemetry/UpdateChecker.cpp
     src/Telemetry/UpdateChecker.hpp
 
