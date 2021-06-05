@@ -202,13 +202,17 @@ int main(int argc, char *argv[])
             TOJSON(python);
             TOJSON(number);
             TOJSON(path);
-            if (app.sendMessage("AAAAAAAAAAAAAAAAAAAANOLOSTDATA" + QJsonDocument(json).toJson()))
+            if (app.sendMessage("AAAAAAAAAAAAAAAAAAAANOLOSTDATA" + QJsonDocument(json).toJson(), 20000))
             {
                 LOG_INFO("This is secondary application. Sending to primary instance the binary data : " +
                          QJsonDocument(json).toJson(QJsonDocument::Compact));
                 cerr << "There is already a CP Editor running. New tabs are opened there.\n";
                 return 0;
             }
+            LOG_ERR("Failed to sendMessage");
+            cerr << "The open-file request timeouts. Please kill the old CP Editor instance if it's still running but "
+                    "has no response.\n";
+            return 1;
         }
 
         LOG_INFO("Launching the new Appwindow with args: " << BOOL_INFO_OF(cpp) << BOOL_INFO_OF(java)
@@ -253,13 +257,17 @@ int main(int argc, char *argv[])
         TOJSON(java);
         TOJSON(python);
         json["paths"] = QJsonArray::fromStringList(args);
-        if (app.sendMessage("AAAAAAAAAAAAAAAAAAAANOLOSTDATA" + QJsonDocument(json).toJson()))
+        if (app.sendMessage("AAAAAAAAAAAAAAAAAAAANOLOSTDATA" + QJsonDocument(json).toJson(), 20000))
         {
             LOG_INFO("This is secondary application. Sending to primary instance the data : "
                      << QJsonDocument(json).toJson(QJsonDocument::Compact));
             cerr << "There is already a CP Editor running. New tabs are opened there.\n";
             return 0;
         }
+        LOG_ERR("Failed to sendMessage");
+        cerr << "The open-file request timeouts. Please kill the old CP Editor instance if it's still running but "
+                "has no response.\n";
+        return 1;
     }
     LOG_INFO("Launching the new Appwindow with args: " << INFO_OF(depth) << BOOL_INFO_OF(cpp) << BOOL_INFO_OF(java)
                                                        << BOOL_INFO_OF(python) << BOOL_INFO_OF(noHotExit)
