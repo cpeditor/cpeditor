@@ -31,15 +31,19 @@ class SettingsInfo
   public:
     class SettingInfo;
 
-    struct SettingIter {
+    struct SettingIter
+    {
         const SettingInfo *info;
         QString pre;
 
         SettingIter() = default;
-        SettingIter(const SettingInfo *i) : info(i) {}
+        SettingIter(const SettingInfo *i) : info(i)
+        {
+        }
         SettingIter &child(QString key, QString name);
-        QString key() const {
-          return pre + info->key();
+        QString key() const
+        {
+            return pre + info->key();
         }
     };
 
@@ -69,8 +73,10 @@ class SettingsInfo
         }
         int findChild(QString name) const
         {
-            for (int i = 0; i < child.size(); i++) {
-                if (child[i].name == name) {
+            for (int i = 0; i < child.size(); i++)
+            {
+                if (child[i].name == name)
+                {
                     return i;
                 }
             }
@@ -99,11 +105,13 @@ class SettingsInfo
         return fakeRoot.child;
     }
 
-    static SettingIter beginIter(const QString &name) {
+    static SettingIter beginIter(const QString &name)
+    {
         return SettingIter(&findSetting(name, getSettings()));
     }
 
-    static SettingIter fakeRootIter() { // This fake root has not type. Only used for it's child.
+    static SettingIter fakeRootIter()
+    { // This fake root has not type. Only used for it's child.
         return SettingIter(&fakeRoot);
     }
 
@@ -114,12 +122,16 @@ class SettingsInfo
     friend class SettingsUpdater;
 };
 
-inline SettingsInfo::SettingIter &SettingsInfo::SettingIter::child(QString key, QString name) {
-    if (!info || info->type != "Object") {
+inline SettingsInfo::SettingIter &SettingsInfo::SettingIter::child(QString key, QString name)
+{
+    if (!info || info->type != "Object")
+    {
         throw "Getting child on a value";
     }
-    for (const auto &c : info->child) {
-        if (c.name == name) {
+    for (const auto &c : info->child)
+    {
+        if (c.name == name)
+        {
             info = &c;
             pre = QString("%1%2%3").arg(pre, key, key != "" ? "/" : "");
             return *this;
