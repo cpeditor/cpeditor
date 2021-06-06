@@ -49,6 +49,7 @@ QString websiteLink(const QString &path)
         .url(QUrl::NormalizePathSegments);
 }
 
+#ifdef Q_OS_WIN
 void associateFile(const QString &appPath, const QString &ext)
 {
     QString baseUrl("HKEY_CURRENT_USER\\Software\\Classes");
@@ -59,5 +60,6 @@ void associateFile(const QString &appPath, const QString &ext)
     settingClasses.setValue("/" + ext + "/OpenWithProgIds/" + className, "");
     settingClasses.sync();
 }
+#endif
 
 } // namespace Util
