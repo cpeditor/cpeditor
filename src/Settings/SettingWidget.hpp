@@ -190,8 +190,8 @@ struct MapWrapper : public WrapperTemplate<QMap<QString, QVariant>, QSplitter>
     virtual void enable(bool enabled = true) override;
 
   public slots:
-    void reload();
-    void select(QString key);
+    void reload() const;
+    void select(const QString &key);
     void update();
 
   public:

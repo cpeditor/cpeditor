@@ -41,7 +41,7 @@ class QScrollArea;
 class QVBoxLayout;
 namespace WIP
 {
-class SettingBase;
+struct SettingBase;
 }
 
 class PreferencesPage : public QWidget

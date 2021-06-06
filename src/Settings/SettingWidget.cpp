@@ -10,7 +10,7 @@ namespace WIP
 
 void SettingBase::checkout(int pos, QString key)
 {
-    iter.pre[pos] = key;
+    iter.pre[pos] = std::move(key);
 }
 
 void SettingBase::setdef()
@@ -53,7 +53,7 @@ void CheckBoxWrapper::set(const bool &v)
     widget->setChecked(v);
 }
 
-void LineEditWrapper::init(QWidget *parent, QVariant)
+void LineEditWrapper::init(QWidget *parent, QVariant param)
 {
     widget = new QLineEdit(parent);
     widget->setMinimumWidth(400);
@@ -70,7 +70,7 @@ void LineEditWrapper::set(const QString &v)
     widget->setText(v);
 }
 
-void PlainTextEditWrapper::init(QWidget *parent, QVariant)
+void PlainTextEditWrapper::init(QWidget *parent, QVariant param)
 {
     widget = new QPlainTextEdit(parent);
     widget->setMinimumWidth(400);
@@ -250,10 +250,10 @@ void StringListsItemWrapper::set(const QVariantList &v)
     widget->setStringLists(v);
 }
 
-static SettingBase *createWrapper(SettingsInfo::SettingIter iter, QWidget *widget, QString desc)
+static SettingBase *createWrapper(const SettingsInfo::SettingIter &iter, QWidget *widget, const QString &desc)
 {
     const auto &info = *iter.info;
-    SettingBase *wrap;
+    SettingBase *wrap = nullptr;
     if (info.type == "bool")
     {
         if (info.ui == "QCheckBox" || info.ui.isEmpty())
@@ -317,7 +317,7 @@ static SettingBase *createWrapper(SettingsInfo::SettingIter iter, QWidget *widge
 void SettingsWrapper::init(QWidget *parent, QVariant param)
 {
     widget = new QWidget(parent);
-    auto layout = new QFormLayout(widget);
+    auto *layout = new QFormLayout(widget);
     widget->setLayout(layout);
     if (!param.isNull())
     {
@@ -415,14 +415,7 @@ void SettingsWrapper::apply()
 
 bool SettingsWrapper::changed() const
 {
-    for (const auto &name : entries)
-    {
-        if (wraps[name]->changed())
-        {
-            return true;
-        }
-    }
-    return false;
+    return std::any_of(entries.begin(), entries.end(), [this](const QString &name) { return wraps[name]->changed(); });
 }
 
 void SettingsWrapper::reload()
@@ -455,8 +448,8 @@ void MapWrapper::init(QWidget *parent, QVariant param)
     cur = "";
     widget = new QSplitter(parent);
 
-    auto leftWidget = new QWidget(widget);
-    auto leftLayout = new QVBoxLayout(leftWidget);
+    auto *leftWidget = new QWidget(widget);
+    auto *leftLayout = new QVBoxLayout(leftWidget);
     leftWidget->setLayout(leftLayout);
 
     list = new QListWidget(widget);
@@ -498,14 +491,14 @@ void MapWrapper::enable(bool enabled)
     }
 }
 
-void MapWrapper::reload()
+void MapWrapper::reload() const
 {
     list->clear();
     list->addItems(data.keys());
     right->enable(false);
 }
 
-void MapWrapper::select(QString key)
+void MapWrapper::select(const QString &key)
 {
     cur = key;
     right->checkout(iter.pre.length() + 1, key);
