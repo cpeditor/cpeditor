@@ -58,16 +58,6 @@ void SettingsManager::load(QSettings &setting, const QString &prefix, const QLis
             }
             setting.endGroup();
         }
-        else if (si.type.startsWith("QMap:"))
-        {
-            QString final = si.type.mid(5);
-            setting.beginGroup(si.key());
-            for (const QString &key : setting.childKeys())
-            {
-                set(QString("%1%2/%3").arg(prefix, si.name, key), setting.value(key));
-            }
-            setting.endGroup();
-        }
         else if (setting.contains(si.key()) && setting.value(si.key()).isValid())
             set(si.name, setting.value(si.key()));
     }
@@ -85,10 +75,6 @@ void SettingsManager::save(QSettings &setting, const QString &prefix, const QLis
                 save(setting, QString("%1%2/").arg(head, k), si.child);
             }
         }
-        else if (si.type.startsWith("QMap:"))
-            for (const QString &key : itemUnder(QString("%1%2/").arg(prefix, si.name)))
-                setting.setValue(QString("%1%2/%3").arg(prefix, si.key(), key),
-                                 get(QString("%1%2/%3").arg(prefix, si.name, key)));
         else
             setting.setValue(QString("%1%2").arg(prefix, si.key()), get(si.name));
 }

@@ -56,7 +56,7 @@ void CheckBoxWrapper::set(const bool &v)
 void LineEditWrapper::init(QWidget *parent, QVariant)
 {
     widget = new QLineEdit(parent);
-    item->setMinimumWidth(400);
+    widget->setMinimumWidth(400);
     connect(widget, &QLineEdit::textChanged, this, &SettingBase::valueChanged);
 }
 
@@ -73,8 +73,8 @@ void LineEditWrapper::set(const QString &v)
 void PlainTextEditWrapper::init(QWidget *parent, QVariant)
 {
     widget = new QPlainTextEdit(parent);
-    item->setMinimumWidth(400);
-    item->setWordWrapMode(QTextOption::NoWrap);
+    widget->setMinimumWidth(400);
+    widget->setWordWrapMode(QTextOption::NoWrap);
     connect(widget, &QPlainTextEdit::textChanged, this, &SettingBase::valueChanged);
 }
 
@@ -256,7 +256,6 @@ static SettingBase *createWrapper(SettingsInfo::SettingIter iter, QWidget *widge
     SettingBase *wrap;
     if (info.type == "bool")
     {
-        SettingTemplate<bool> *w;
         if (info.ui == "QCheckBox" || info.ui.isEmpty())
             wrap = new CheckBoxWrapper;
         else
@@ -292,16 +291,15 @@ static SettingBase *createWrapper(SettingsInfo::SettingIter iter, QWidget *widge
     }
     else if (info.type == "QFont")
     {
-
-        if (info.type.isEmpty() || info.type == "FontItem")
+        if (info.ui.isEmpty() || info.ui == "FontItem")
             wrap = new FontItemWrapper();
         else
             Q_UNREACHABLE();
     }
     else if (info.type == "QVariantList")
     {
-        if (info.type.isEmpty() || info.type == "StringListsItem")
-            return new StringListsItemWrapper();
+        if (info.ui.isEmpty() || info.ui == "StringListsItem")
+            wrap = new StringListsItemWrapper();
         else
             Q_UNREACHABLE();
     }
@@ -342,9 +340,10 @@ void SettingsWrapper::init(QWidget *parent, QVariant param)
     for (const auto &name : entries)
     {
         auto siter = iter;
-        siter.child("/", name);
+        siter.child("", name);
         QString desc = siter.info->desc; // TODO: add doc anchor
         SettingBase *wrap = createWrapper(siter, widget, desc);
+        connect(wrap, &SettingBase::valueChanged, this, &SettingsWrapper::update);
         wrap->enable(false);
         wraps[name] = wrap;
         if (siter.info->type == "bool")
@@ -367,7 +366,7 @@ void SettingsWrapper::set(const QMap<QString, QVariant> &v)
 {
     data = v;
     reload();
-    transSig();
+    emit valueChanged();
 }
 
 void SettingsWrapper::enable(bool enabled)
@@ -387,20 +386,68 @@ void SettingsWrapper::checkout(int pos, QString key)
     }
 }
 
+void SettingsWrapper::setdef()
+{
+    for (const auto &name : entries)
+    {
+        wraps[name]->setdef();
+    }
+    update();
+}
+
+void SettingsWrapper::reset()
+{
+    for (const auto &name : entries)
+    {
+        wraps[name]->reset();
+    }
+    update();
+}
+
+void SettingsWrapper::apply()
+{
+    for (const auto &name : entries)
+    {
+        wraps[name]->apply();
+    }
+    update();
+}
+
+bool SettingsWrapper::changed() const
+{
+    for (const auto &name : entries)
+    {
+        if (wraps[name]->changed())
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
 void SettingsWrapper::reload()
 {
     for (const auto &name : entries)
     {
-        auto wrap = wraps[name];
-        disconnect(w);
         wraps[name]->setV(data[name]);
-        connect(w, &SettingBase::valueChanged, this, &SettingsWrapper::transSig);
     }
 }
 
-void SettingsWrapper::transSig()
+void SettingsWrapper::update()
 {
-    emit valueChanged();
+    bool updated = false;
+    for (const auto &name : entries)
+    {
+        auto &od = data[name];
+        auto nw = wraps[name]->getV();
+        if (od != nw)
+        {
+            od = nw;
+            updated = true;
+        }
+    }
+    if (updated)
+        emit valueChanged();
 }
 
 void MapWrapper::init(QWidget *parent, QVariant param)
@@ -436,7 +483,7 @@ void MapWrapper::set(const QMap<QString, QVariant> &v)
 {
     data = v;
     reload();
-    transSig();
+    emit valueChanged();
 }
 
 void MapWrapper::enable(bool enabled)
@@ -458,11 +505,6 @@ void MapWrapper::reload()
     right->enable(false);
 }
 
-void MapWrapper::transSig()
-{
-    emit valueChanged();
-}
-
 void MapWrapper::select(QString key)
 {
     cur = key;
@@ -473,12 +515,12 @@ void MapWrapper::select(QString key)
 
 void MapWrapper::update()
 {
-    auto od = data[cur];
-    auto nwrap = right->getV();
+    auto &od = data[cur];
+    auto nw = right->getV();
     if (od != nw)
     {
-        data[cur] = nw;
-        transSig();
+        od = nw;
+        emit valueChanged();
     }
 }
 

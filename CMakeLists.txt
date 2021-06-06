@@ -170,14 +170,12 @@ add_executable(cpeditor
     src/Settings/ParenthesesPage.hpp
     src/Settings/PathItem.cpp
     src/Settings/PathItem.hpp
-    src/Settings/PreferencesGridPage.cpp
-    src/Settings/PreferencesGridPage.hpp
     src/Settings/PreferencesHomePage.cpp
     src/Settings/PreferencesHomePage.hpp
     src/Settings/PreferencesPage.cpp
     src/Settings/PreferencesPage.hpp
-    src/Settings/PreferencesPageTemplate.cpp
-    src/Settings/PreferencesPageTemplate.hpp
+    src/Settings/PreferencesTemplate.cpp
+    src/Settings/PreferencesTemplate.hpp
     src/Settings/PreferencesWindow.cpp
     src/Settings/PreferencesWindow.hpp
     src/Settings/SettingsManager.cpp
@@ -188,8 +186,6 @@ add_executable(cpeditor
     src/Settings/ShortcutItem.hpp
     src/Settings/StringListsItem.cpp
     src/Settings/StringListsItem.hpp
-    src/Settings/ValueWrapper.cpp
-    src/Settings/ValueWrapper.hpp
 
     src/Settings/SettingWidget.cpp
     src/Settings/SettingWidget.hpp

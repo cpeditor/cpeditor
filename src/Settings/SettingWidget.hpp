@@ -36,10 +36,10 @@ struct SettingBase : public QObject
     }
     virtual void checkout(int pos, QString key);
 
-    void setdef();
-    void reset();
-    void apply();
-    bool changed() const;
+    virtual void setdef();
+    virtual void reset();
+    virtual void apply();
+    virtual bool changed() const;
 
   signals:
     void valueChanged();
@@ -164,10 +164,14 @@ struct SettingsWrapper : public WrapperTemplate<QMap<QString, QVariant>, QWidget
     virtual void enable(bool enabled = true) override;
     virtual void checkout(int pos, QString key) override;
 
-    void reload();
+    virtual void setdef() override;
+    virtual void reset() override;
+    virtual void apply() override;
+    virtual bool changed() const override;
 
   public slots:
-    void transSig();
+    void reload();
+    void update();
 
   public:
     QStringList entries;
@@ -185,10 +189,8 @@ struct MapWrapper : public WrapperTemplate<QMap<QString, QVariant>, QSplitter>
     virtual void set(const QMap<QString, QVariant> &v) override;
     virtual void enable(bool enabled = true) override;
 
-    void reload();
-
   public slots:
-    void transSig();
+    void reload();
     void select(QString key);
     void update();
 

@@ -21,7 +21,7 @@
 #include "Settings/DefaultPathManager.hpp"
 #include "Settings/ParenthesesPage.hpp"
 #include "Settings/PreferencesHomePage.hpp"
-#include "Settings/PreferencesPageTemplate.hpp"
+#include "Settings/PreferencesTemplate.hpp"
 #include "Util/Util.hpp"
 #include "generated/SettingsHelper.hpp"
 #include <QApplication>
@@ -38,7 +38,7 @@
 
 AddPageHelper &AddPageHelper::page(const QString &key, const QString &trkey, const QStringList &content, bool alignTop)
 {
-    return page(key, trkey, new PreferencesPageTemplate(content, pathFor(key), trPathFor(trkey), alignTop, window));
+    return page(key, trkey, new PreferencesTemplate(content, pathFor(key), trPathFor(trkey), alignTop, window));
 }
 
 AddPageHelper &AddPageHelper::page(const QString &key, const QString &trkey, PreferencesPage *newpage)

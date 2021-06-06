@@ -193,7 +193,7 @@ namespace SettingsHelper
 #include <QMessageBox>
 #include <QRect>
 
-SettingsInfo::SettingInfo SettingsInfo::fakeRoot = { "@ROOT@" };
+SettingsInfo::SettingInfo SettingsInfo::fakeRoot = { "@ROOT@", "", "", "Object" };
 QList<SettingsInfo::SettingInfo> &SettingsInfo::settings = SettingsInfo::fakeRoot.child;
 
 void SettingsInfo::updateSettingInfo()

@@ -43,7 +43,9 @@ class SettingsInfo
         SettingIter &child(QString key, QString name);
         QString key() const
         {
-            return (QStringList{pre.join("/"), info->key()}).join("/");
+            auto p = pre;
+            p.append(info->name);
+            return p.join("/");
         }
     };
 
