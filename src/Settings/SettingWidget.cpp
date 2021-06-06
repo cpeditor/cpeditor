@@ -1,11 +1,8 @@
-#include "SettingWidget.hpp"
-#include "SettingsManager.hpp"
-#include "Widgets/RichTextCheckBox.hpp"
+#include "Settings/SettingWidget.hpp"
+#include "Settings/SettingsManager.hpp"
 #include <QFormLayout>
 #include <QHBoxLayout>
-#include <QLineEdit>
-#include <QListWidget>
-#include <QSplitter>
+#include <QTextCodec>
 #include <QVBoxLayout>
 
 namespace WIP
@@ -56,14 +53,10 @@ void CheckBoxWrapper::set(const bool &v)
     widget->setChecked(v);
 }
 
-void CheckBoxWrapper::enable(bool enabled)
-{
-    widget->setEnabled(enabled);
-}
-
 void LineEditWrapper::init(QWidget *parent, QVariant)
 {
     widget = new QLineEdit(parent);
+    item->setMinimumWidth(400);
     connect(widget, &QLineEdit::textChanged, this, &SettingBase::valueChanged);
 }
 
@@ -77,9 +70,184 @@ void LineEditWrapper::set(const QString &v)
     widget->setText(v);
 }
 
-void LineEditWrapper::enable(bool enabled)
+void PlainTextEditWrapper::init(QWidget *parent, QVariant)
 {
-    widget->setEnabled(enabled);
+    widget = new QPlainTextEdit(parent);
+    item->setMinimumWidth(400);
+    item->setWordWrapMode(QTextOption::NoWrap);
+    connect(widget, &QPlainTextEdit::textChanged, this, &SettingBase::valueChanged);
+}
+
+QString PlainTextEditWrapper::get() const
+{
+    return widget->toPlainText();
+}
+
+void PlainTextEditWrapper::set(const QString &v)
+{
+    widget->setPlainText(v);
+}
+
+void ComboBoxWrapper::init(QWidget *parent, QVariant param)
+{
+    widget = new QComboBox(parent);
+    widget->addItems(param.toStringList());
+    connect(widget, &QComboBox::currentTextChanged, this, &SettingBase::valueChanged);
+}
+
+QString ComboBoxWrapper::get() const
+{
+    return widget->currentText();
+}
+
+void ComboBoxWrapper::set(const QString &v)
+{
+    widget->setCurrentText(v);
+}
+
+void PathItemWrapper::init(QWidget *parent, QVariant param)
+{
+    widget = new PathItem(PathItem::Type(param.toInt()), parent);
+    connect(widget->getLineEdit(), &QLineEdit::textChanged, this, &SettingBase::valueChanged);
+}
+
+QString PathItemWrapper::get() const
+{
+    return widget->getLineEdit()->text();
+}
+
+void PathItemWrapper::set(const QString &v)
+{
+    widget->getLineEdit()->setText(v);
+}
+
+void ShortcutItemWrapper::init(QWidget *parent, QVariant param)
+{
+    widget = new ShortcutItem(parent);
+    connect(widget, &ShortcutItem::shortcutChanged, this, &SettingBase::valueChanged);
+}
+
+QString ShortcutItemWrapper::get() const
+{
+    return widget->getShortcut();
+}
+
+void ShortcutItemWrapper::set(const QString &v)
+{
+    widget->setShortcut(v);
+}
+
+void CodecBoxWrapper::init(QWidget *parent, QVariant param)
+{
+    QStringList names;
+    for (const auto &mib : QTextCodec::availableMibs())
+    {
+        names.push_back(QString::fromLocal8Bit(QTextCodec::codecForMib(mib)->name()));
+    }
+    names.sort(Qt::CaseInsensitive);
+    names.removeDuplicates();
+    ComboBoxWrapper::init(parent, names);
+}
+
+void SpinBoxWrapper::init(QWidget *parent, QVariant param)
+{
+    widget = new QSpinBox(parent);
+    if (!param.isNull())
+    {
+        QVariantList il = param.toList();
+        widget->setRange(il[0].toInt(), il[1].toInt());
+        if (il.length() >= 3)
+            widget->setSingleStep(il[2].toInt());
+    }
+    connect(widget, QOverload<int>::of(&QSpinBox::valueChanged), this, &SettingBase::valueChanged);
+}
+
+int SpinBoxWrapper::get() const
+{
+    return widget->value();
+}
+
+void SpinBoxWrapper::set(const int &v)
+{
+    widget->setValue(v);
+}
+
+void ScrollBarWrapper::init(QWidget *parent, QVariant param)
+{
+    widget = new QScrollBar(Qt::Horizontal, parent);
+    if (!param.isNull())
+    {
+        QVariantList il = param.toList();
+        widget->setRange(il[0].toInt(), il[1].toInt());
+        if (il.length() >= 3)
+            widget->setSingleStep(il[2].toInt());
+    }
+    connect(widget, &QScrollBar::valueChanged, this, &SettingBase::valueChanged);
+}
+
+int ScrollBarWrapper::get() const
+{
+    return widget->value();
+}
+
+void ScrollBarWrapper::set(const int &v)
+{
+    widget->setValue(v);
+}
+
+void SliderWrapper::init(QWidget *parent, QVariant param)
+{
+    widget = new QSlider(Qt::Horizontal, parent);
+    if (!param.isNull())
+    {
+        QVariantList il = param.toList();
+        widget->setRange(il[0].toInt(), il[1].toInt());
+        if (il.length() >= 3)
+            widget->setSingleStep(il[2].toInt());
+    }
+    connect(widget, &QSlider::valueChanged, this, &SettingBase::valueChanged);
+}
+
+int SliderWrapper::get() const
+{
+    return widget->value();
+}
+
+void SliderWrapper::set(const int &v)
+{
+    widget->setValue(v);
+}
+
+void FontItemWrapper::init(QWidget *parent, QVariant param)
+{
+    widget = new FontItem(parent, param);
+    connect(widget, &FontItem::fontChanged, this, &SettingBase::valueChanged);
+}
+
+QFont FontItemWrapper::get() const
+{
+    return widget->getFont();
+}
+
+void FontItemWrapper::set(const QFont &v)
+{
+    widget->setFont(v);
+}
+
+void StringListsItemWrapper::init(QWidget *parent, QVariant param)
+{
+    widget = new StringListsItem(param.toList(), parent);
+    connect(widget, &StringListsItem::valueChanged, this, &SettingBase::valueChanged);
+}
+
+QVariantList StringListsItemWrapper::get() const
+{
+    return widget->getStringLists();
+}
+
+void StringListsItemWrapper::set(const QVariantList &v)
+{
+    widget->setStringLists(v);
 }
 
 static SettingBase *createWrapper(SettingsInfo::SettingIter iter, QWidget *widget, QString desc)
@@ -90,20 +258,61 @@ static SettingBase *createWrapper(SettingsInfo::SettingIter iter, QWidget *widge
     {
         SettingTemplate<bool> *w;
         if (info.ui == "QCheckBox" || info.ui.isEmpty())
-        {
-            w = new CheckBoxWrapper;
-            w->iter = iter;
-            w->init(widget, desc);
-        }
-        wrap = w;
+            wrap = new CheckBoxWrapper;
+        else
+            Q_UNREACHABLE();
+    }
+    else if (info.type == "QString")
+    {
+        if (info.ui.isEmpty() || info.ui == "QLineEdit")
+            wrap = new LineEditWrapper();
+        else if (info.ui == "QPlainTextEdit")
+            wrap = new PlainTextEditWrapper();
+        else if (info.ui == "QComboBox")
+            wrap = new ComboBoxWrapper();
+        else if (info.ui == "PathItem")
+            wrap = new PathItemWrapper();
+        else if (info.ui == "ShortcutItem")
+            wrap = new ShortcutItemWrapper();
+        else if (info.ui == "CodecBox")
+            wrap = new CodecBoxWrapper();
+        else
+            Q_UNREACHABLE();
+    }
+    else if (info.type == "int")
+    {
+        if (info.ui.isEmpty() || info.ui == "QSpinBox")
+            wrap = new SpinBoxWrapper();
+        else if (info.ui == "QScrollBar")
+            wrap = new ScrollBarWrapper();
+        else if (info.ui == "QSlider")
+            wrap = new SliderWrapper();
+        else
+            Q_UNREACHABLE();
+    }
+    else if (info.type == "QFont")
+    {
+
+        if (info.type.isEmpty() || info.type == "FontItem")
+            wrap = new FontItemWrapper();
+        else
+            Q_UNREACHABLE();
+    }
+    else if (info.type == "QVariantList")
+    {
+        if (info.type.isEmpty() || info.type == "StringListsItem")
+            return new StringListsItemWrapper();
+        else
+            Q_UNREACHABLE();
     }
     else if (info.type == "Object")
     {
-        MapWrapper *w = new MapWrapper;
-        w->iter = iter;
-        w->init(widget);
-        wrap = w;
+        wrap = new MapWrapper;
     }
+    else
+        Q_UNREACHABLE();
+    wrap->iter = iter;
+    wrap->init(widget, info.type == "bool" ? desc : info.param);
     return wrap;
 }
 
@@ -182,7 +391,7 @@ void SettingsWrapper::reload()
 {
     for (const auto &name : entries)
     {
-        auto w = wraps[name];
+        auto wrap = wraps[name];
         disconnect(w);
         wraps[name]->setV(data[name]);
         connect(w, &SettingBase::valueChanged, this, &SettingsWrapper::transSig);
@@ -265,7 +474,7 @@ void MapWrapper::select(QString key)
 void MapWrapper::update()
 {
     auto od = data[cur];
-    auto nw = right->getV();
+    auto nwrap = right->getV();
     if (od != nw)
     {
         data[cur] = nw;
