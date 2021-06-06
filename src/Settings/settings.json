@@ -1182,5 +1182,11 @@
     "type": "bool",
     "default": false,
     "notr": true
+  },
+  {
+    "name": "File Associated",
+    "type": "bool",
+    "default": false,
+    "notr": true
   }
 ]

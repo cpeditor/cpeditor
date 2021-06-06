@@ -20,6 +20,7 @@
 #include "Core/Translator.hpp"
 #include "generated/version.hpp"
 #include <QRegularExpression>
+#include <QSettings>
 #include <QUrl>
 #include <QWidget>
 
@@ -46,6 +47,16 @@ QString websiteLink(const QString &path)
 {
     return QUrl(QString("https://cpeditor.org/%1/%2/%3").arg(MINOR_VERSION).arg(Core::Translator::langCode()).arg(path))
         .url(QUrl::NormalizePathSegments);
+}
+
+void associateFile(QString appPath, QString ext)
+{
+    QString baseUrl("HKEY_CURRENT_USER\\Software\\Classes"), className(ext);
+    QSettings settingClasses(baseUrl, QSettings::NativeFormat);
+    settingClasses.setValue("/" + className + "/Shell/Open/Command/.", "\"" + appPath + "\" \"%1\"");
+    settingClasses.setValue("/" + className + "/DefaultIcon/.", appPath + ",0");
+    settingClasses.setValue("/" + ext + "/OpenWithProgIds/" + className, "");
+    settingClasses.sync();
 }
 
 } // namespace Util

@@ -279,6 +279,19 @@ int main(int argc, char *argv[])
     LOG_INFO("Showing the application window and beginning the event loop");
 
     w.show();
+
+#ifdef Q_OS_WIN
+    if (SettingsHelper::isFileAssociated())
+    {
+        SettingsHelper::setFileAssociated(true);
+        QStringList exts = {".cpp", ".c++", ".cxx", ".cc", ".c", ".h", ".hpp", ".py", ".py3", ".java"};
+        for (QString ext : exts)
+        {
+            Util::associateFile(programName, ext);
+        }
+    }
+#endif
+
     return SingleApplication::exec();
 }
 
