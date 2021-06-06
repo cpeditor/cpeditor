@@ -986,9 +986,15 @@
     "sub": [
       {
         "name": "Snippet",
-        "plural": "Snippets",
-        "type": "QMap",
-        "final": "QString",
+        "type": "Object",
+        "sub": [
+          {
+            "name": "Code",
+            "type": "QString",
+            "ui": "QPlainTextEdit",
+            "notr": true
+          }
+        ],
         "notr": true
       }
     ],

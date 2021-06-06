@@ -67,11 +67,11 @@ void SettingsUpdater::updateSetting(QSettings &setting)
         {
             setting.beginGroup(lang);
             auto obj = SettingsHelper::getLanguageConfig(lang == "Cpp" ? "C++" : lang);
-            QStringList used = obj.getSnippets();
+            QStringList used = obj.querySnippet();
             for (const QString &key : setting.childKeys())
             {
                 if (!used.contains(key))
-                    obj.setSnippet(key, setting.value(key).toString());
+                    obj.getSnippet(key).setCode(setting.value(key).toString());
             }
             setting.endGroup();
         }
