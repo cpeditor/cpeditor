@@ -49,7 +49,7 @@ QString websiteLink(const QString &path)
         .url(QUrl::NormalizePathSegments);
 }
 
-void associateFile(QString &appPath, QString &ext)
+void associateFile(const QString &appPath, const QString &ext)
 {
     QString baseUrl("HKEY_CURRENT_USER\\Software\\Classes");
     QString className("cpeditor." + ext);

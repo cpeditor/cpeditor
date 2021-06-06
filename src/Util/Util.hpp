@@ -29,7 +29,7 @@ QString sanitizeAnchorName(const QString &str);
 
 QString websiteLink(const QString &path = QString());
 
-void associateFile(QString &appPath, &QString ext);
+void associateFile(const QString &appPath, const QString &ext);
 
 } // namespace Util
 
