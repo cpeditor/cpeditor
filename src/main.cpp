@@ -281,7 +281,7 @@ int main(int argc, char *argv[])
     w.show();
 
 #ifdef Q_OS_WIN
-    if (SettingsHelper::isFileAssociated())
+    if (!SettingsHelper::isFileAssociated())
     {
         SettingsHelper::setFileAssociated(true);
         QStringList exts = {".cpp", ".c++", ".cxx", ".cc", ".c", ".h", ".hpp", ".py", ".py3", ".java"};
