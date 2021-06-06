@@ -318,10 +318,12 @@ void SettingsWrapper::init(QWidget *parent, QVariant param)
 {
     widget = new QWidget(parent);
     auto *layout = new QFormLayout(widget);
+    layout->setMargin(0);
     widget->setLayout(layout);
-    if (!param.isNull())
+    auto filt = param.toStringList();
+    if (filt.length() > 0)
     {
-        for (const auto &s : param.toStringList())
+        for (const auto &s : filt)
         {
             if (iter.info->findChild(s) != -1)
             {
@@ -340,7 +342,7 @@ void SettingsWrapper::init(QWidget *parent, QVariant param)
     for (const auto &name : entries)
     {
         auto siter = iter;
-        siter.child("", name);
+        siter.child(key, name);
         QString desc = siter.info->desc; // TODO: add doc anchor
         SettingBase *wrap = createWrapper(siter, widget, desc);
         connect(wrap, &SettingBase::valueChanged, this, &SettingsWrapper::update);
@@ -374,15 +376,6 @@ void SettingsWrapper::enable(bool enabled)
     for (const auto &name : entries)
     {
         wraps[name]->enable(enabled);
-    }
-}
-
-void SettingsWrapper::checkout(int pos, QString key)
-{
-    SettingBase::checkout(pos, key);
-    for (const auto &name : entries)
-    {
-        wraps[name]->checkout(pos, key);
     }
 }
 
@@ -452,19 +445,23 @@ void MapWrapper::init(QWidget *parent, QVariant param)
     auto *leftLayout = new QVBoxLayout(leftWidget);
     leftWidget->setLayout(leftLayout);
 
-    list = new QListWidget(widget);
+    list = new QListWidget(leftWidget);
+    if (!param.isNull())
+    {
+        auto cfg = param.toMap();
+        if (cfg.contains("filter"))
+            filt = cfg["filter"].toStringList();
+    }
     leftLayout->addWidget(list);
 
     widget->addWidget(leftWidget);
 
-    right = new SettingsWrapper;
-    right->iter = iter;
-    right->init(widget, param);
+    right = new QWidget(widget);
+    auto *rightLayout = new QVBoxLayout(right);
+    rightLayout->setMargin(0);
+    right->setLayout(rightLayout);
 
-    widget->addWidget(right->rootWidget());
-
-    connect(list, &QListWidget::currentTextChanged, this, &MapWrapper::select);
-    connect(right, &SettingsWrapper::valueChanged, this, &MapWrapper::update);
+    connect(list, &QListWidget::currentTextChanged, this, &MapWrapper::show);
 }
 
 QMap<QString, QVariant> MapWrapper::get() const
@@ -483,38 +480,123 @@ void MapWrapper::enable(bool enabled)
 {
     if (enabled)
     {
-        right->enable(cur != "");
+        list->setEnabled(true);
+        if (cur != "")
+        {
+            rights[cur]->enable(true);
+        }
     }
     else
     {
-        right->enable(false);
+        list->setEnabled(false);
+        show("");
     }
 }
 
-void MapWrapper::reload() const
+void MapWrapper::setdef()
 {
-    list->clear();
-    list->addItems(data.keys());
-    right->enable(false);
+    set(QMap<QString, QVariant>());
 }
 
-void MapWrapper::select(const QString &key)
+void MapWrapper::reset()
 {
+    list->clear();
+    delete right->layout();
+    auto *rightLayout = new QVBoxLayout(right);
+    rightLayout->setMargin(0);
+    right->setLayout(rightLayout);
+    SettingsManager::itemUnder(iter.key() + "/");
+    for (const auto &name : SettingsManager::itemUnder(iter.key() + "/"))
+    {
+        add(name);
+        rights[name]->reset();
+    }
+    data.clear();
+    update();
+    show("");
+}
+
+void MapWrapper::apply()
+{
+    for (const auto &name : data.keys())
+    {
+        rights[name]->apply();
+    }
+}
+
+bool MapWrapper::changed() const
+{
+    if (data.keys() != SettingsManager::itemUnder(iter.key() + "/"))
+    {
+        return true;
+    }
+    for (const auto &name : data.keys())
+    {
+        if (rights[name]->changed())
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+void MapWrapper::add(QString key)
+{
+    list->addItem(key);
+    auto *panel = new SettingsWrapper;
+    panel->iter = iter;
+    panel->setKey(key);
+    panel->init(widget, filt);
+    rights[key] = panel;
+    right->layout()->addWidget(panel->rootWidget());
+    connect(panel, &SettingsWrapper::valueChanged, this, &MapWrapper::update);
+    panel->rootWidget()->setVisible(false);
+    panel->enable(true);
+}
+
+void MapWrapper::show(QString key)
+{
+    if (cur != "")
+    {
+        rights[cur]->rootWidget()->setVisible(false);
+    }
+    if (key != "")
+    {
+        rights[key]->rootWidget()->setVisible(true);
+    }
     cur = key;
-    right->checkout(iter.pre.length() + 1, key);
-    right->set(data[key].toMap());
-    right->enable(true);
+}
+
+void MapWrapper::reload()
+{
+    list->clear();
+    delete right->layout();
+    auto *rightLayout = new QVBoxLayout(right);
+    rightLayout->setMargin(0);
+    right->setLayout(rightLayout);
+    for (const auto &name : data.keys())
+    {
+        add(name);
+        rights[name]->reload();
+    }
+    show("");
 }
 
 void MapWrapper::update()
 {
-    auto &od = data[cur];
-    auto nw = right->getV();
-    if (od != nw)
+    bool updated = false;
+    for (const auto &name : rights.keys())
     {
-        od = nw;
-        emit valueChanged();
+        auto &od = data[name];
+        auto nw = rights[name]->getV();
+        if (od != nw)
+        {
+            od = nw;
+            updated = true;
+        }
     }
+    if (updated)
+        emit valueChanged();
 }
 
 } // namespace WIP

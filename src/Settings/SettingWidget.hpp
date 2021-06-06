@@ -162,19 +162,23 @@ struct SettingsWrapper : public WrapperTemplate<QMap<QString, QVariant>, QWidget
     virtual QMap<QString, QVariant> get() const override;
     virtual void set(const QMap<QString, QVariant> &v) override;
     virtual void enable(bool enabled = true) override;
-    virtual void checkout(int pos, QString key) override;
 
     virtual void setdef() override;
     virtual void reset() override;
     virtual void apply() override;
     virtual bool changed() const override;
 
+    void setKey(QString k = "")
+    {
+        key = k;
+    }
   public slots:
     void reload();
     void update();
 
   public:
     QStringList entries;
+    QString key;
     QMap<QString, QVariant> data;
     QMap<QString, SettingBase *> wraps;
 };
@@ -189,15 +193,24 @@ struct MapWrapper : public WrapperTemplate<QMap<QString, QVariant>, QSplitter>
     virtual void set(const QMap<QString, QVariant> &v) override;
     virtual void enable(bool enabled = true) override;
 
+    virtual void setdef() override;
+    virtual void reset() override;
+    virtual void apply() override;
+    virtual bool changed() const override;
+
+    void add(QString key);
+    void show(QString key);
+
   public slots:
-    void reload() const;
-    void select(const QString &key);
+    void reload();
     void update();
 
   public:
     QString cur;
+    QStringList filt;
     QListWidget *list;
-    SettingsWrapper *right;
+    QWidget *right;
+    QMap<QString, SettingsWrapper *> rights;
     QMap<QString, QVariant> data;
 };
 

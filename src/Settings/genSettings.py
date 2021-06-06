@@ -23,15 +23,15 @@ def writeHelper(f, obj, pre, indent):
             f.write(f"{ids}inline QStringList query{key}() {{ return SettingsManager::itemUnder(QStringList {{{pre} {json.dumps(name)}}}.join('/') + '/'); }}\n")
         else:
             f.write(
-                f"{ids}inline void set{key}({typename} value) {{ SettingsManager::set({json.dumps(name)}, value); }}\n")
+                f"{ids}inline void set{key}({typename} value) {{ SettingsManager::set(QStringList {{{pre} {json.dumps(name)}}}.join('/'), value); }}\n")
             if typename == "bool":
                 f.write(
-                    f"{ids}inline bool is{key}() {{ return SettingsManager::get({json.dumps(name)}).toBool(); }}\n")
+                    f"{ids}inline bool is{key}() {{ return SettingsManager::get(QStringList {{{pre} {json.dumps(name)}}}.join('/')).toBool(); }}\n")
             else:
                 f.write(
-                    f"{ids}inline {typename} get{key}() {{ return SettingsManager::get({json.dumps(name)}).value<{typename}>(); }}\n")
+                    f"{ids}inline {typename} get{key}() {{ return SettingsManager::get(QStringList {{{pre} {json.dumps(name)}}}.join('/')).value<{typename}>(); }}\n")
         f.write(
-            f"{ids}inline QString pathOf{key}(bool parent = false) {{ return SettingsManager::getPathText({json.dumps(name)}, parent); }}\n")
+            f"{ids}inline QString pathOf{key}(bool parent = false) {{ return SettingsManager::getPathText(QStringList {{{pre} {json.dumps(name)}}}.join('/'), parent); }}\n")
 
 
 def writeInfo(f, obj, lst):
@@ -63,9 +63,6 @@ def writeInfo(f, obj, lst):
                     trdesc = f"tr({json.dumps(desc.replace(lang, '%1'))}).arg(\"{lang}\")"
                     break
         tempname = typename
-        if typename == "QMap":
-            final = t["final"]
-            tempname = f"QMap:{final}"
         dependsString = "{"
         for depend in depends:
             dependsString += f"{{{json.dumps(depend.get('name', ''))}, [](const QVariant &var) {{ {depend.get('check', 'return var.toBool();')} }}}}, "

@@ -59,7 +59,7 @@ void SettingsManager::load(QSettings &setting, const QString &prefix, const QLis
             setting.endGroup();
         }
         else if (setting.contains(si.key()) && setting.value(si.key()).isValid())
-            set(si.name, setting.value(si.key()));
+            set(prefix + si.name, setting.value(si.key()));
     }
 }
 
@@ -76,7 +76,7 @@ void SettingsManager::save(QSettings &setting, const QString &prefix, const QLis
             }
         }
         else
-            setting.setValue(QString("%1%2").arg(prefix, si.key()), get(si.name));
+            setting.setValue(QString("%1%2").arg(prefix, si.key()), get(prefix + si.name));
 }
 
 void SettingsManager::init()

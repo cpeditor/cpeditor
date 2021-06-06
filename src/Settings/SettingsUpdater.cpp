@@ -115,4 +115,10 @@ void SettingsUpdater::updateSetting(QSettings &setting)
                         .replace("Drakula", "Dracula")
                         .replace("Solarised", "Solarized");
     SettingsManager::set("Editor Theme", theme);
+
+    setting.beginGroup("Language Config");
+    setting.setValue("C++", 1);
+    setting.setValue("Java", 1);
+    setting.setValue("Python", 1);
+    setting.endGroup();
 }

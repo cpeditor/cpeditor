@@ -134,12 +134,12 @@ inline SettingsInfo::SettingIter &SettingsInfo::SettingIter::child(QString key, 
     {
         if (c.name == name)
         {
-            info = &c;
             if (key != "")
             {
-                pre.push_back(name);
+                pre.push_back(info->name);
                 pre.push_back(key);
             }
+            info = &c;
             return *this;
         }
     }
