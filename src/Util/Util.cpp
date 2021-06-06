@@ -51,7 +51,8 @@ QString websiteLink(const QString &path)
 
 void associateFile(QString &appPath, QString &ext)
 {
-    QString baseUrl("HKEY_CURRENT_USER\\Software\\Classes"), className(ext);
+    QString baseUrl("HKEY_CURRENT_USER\\Software\\Classes");
+    QString className("cpeditor." + ext);
     QSettings settingClasses(baseUrl, QSettings::NativeFormat);
     settingClasses.setValue("/" + className + "/Shell/Open/Command/.", R"(")" + appPath + R"(" "%1")");
     settingClasses.setValue("/" + className + "/DefaultIcon/.", appPath + ",0");
