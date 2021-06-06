@@ -49,11 +49,11 @@ QString websiteLink(const QString &path)
         .url(QUrl::NormalizePathSegments);
 }
 
-void associateFile(QString appPath, QString ext)
+void associateFile(QString &appPath, QString &ext)
 {
     QString baseUrl("HKEY_CURRENT_USER\\Software\\Classes"), className(ext);
     QSettings settingClasses(baseUrl, QSettings::NativeFormat);
-    settingClasses.setValue("/" + className + "/Shell/Open/Command/.", "\"" + appPath + "\" \"%1\"");
+    settingClasses.setValue("/" + className + "/Shell/Open/Command/.", R"(")" + appPath + R"(" "%1")");
     settingClasses.setValue("/" + className + "/DefaultIcon/.", appPath + ",0");
     settingClasses.setValue("/" + ext + "/OpenWithProgIds/" + className, "");
     settingClasses.sync();
