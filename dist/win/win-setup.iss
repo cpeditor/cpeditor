@@ -109,15 +109,15 @@ end;
 #endif
 
 [Registry]
-Root: HKCR; Subkey: ".cpp"; ValueType: string; ValueName: ""; ValueData: "{#MyAppName}" ;Flags: noerror uninsdeletevalue;
-Root: HKCR; Subkey: ".c++"; ValueType: string; ValueName: ""; ValueData: "{#MyAppName}" ;Flags: noerror uninsdeletevalue;
-Root: HKCR; Subkey: ".cxx"; ValueType: string; ValueName: ""; ValueData: "{#MyAppName}" ;Flags: noerror uninsdeletevalue;
-Root: HKCR; Subkey: ".cc"; ValueType: string; ValueName: ""; ValueData: "{#MyAppName}" ;Flags: noerror uninsdeletevalue;
-Root: HKCR; Subkey: ".c"; ValueType: string; ValueName: ""; ValueData: "{#MyAppName}" ;Flags: noerror uninsdeletevalue;
-Root: HKCR; Subkey: ".h"; ValueType: string; ValueName: ""; ValueData: "{#MyAppName}" ;Flags: noerror uninsdeletevalue;
-Root: HKCR; Subkey: ".hpp"; ValueType: string; ValueName: ""; ValueData: "{#MyAppName}" ;Flags: noerror uninsdeletevalue;
-Root: HKCR; Subkey: ".py"; ValueType: string; ValueName: ""; ValueData: "{#MyAppName}" ;Flags: noerror uninsdeletevalue;
-Root: HKCR; Subkey: ".py3"; ValueType: string; ValueName: ""; ValueData: "{#MyAppName}" ;Flags: noerror uninsdeletevalue;
-Root: HKCR; Subkey: ".java"; ValueType: string; ValueName: ""; ValueData: "{#MyAppName}" ;Flags: noerror uninsdeletevalue;
-Root: HKCR; Subkey: "{#MyAppName}\DefaultIcon"; ValueType: string; ValueName: "{app}\{#MyAppExeName},1"; Flags: noerror uninsdeletevalue;
-Root: HKCR; Subkey: "{#MyAppName}\shell\open\command"; ValueType: string; ValueName: "";  ValueData: """{app}\{#MyAppExeName}"" ""%1""" ;Flags: noerr
+Root: HKCR; Subkey: ".cpp"; ValueType: string; ValueName: ""; ValueData: "{#MyAppName}";
+Root: HKCR; Subkey: ".c++"; ValueType: string; ValueName: ""; ValueData: "{#MyAppName}";
+Root: HKCR; Subkey: ".cxx"; ValueType: string; ValueName: ""; ValueData: "{#MyAppName}";
+Root: HKCR; Subkey: ".cc"; ValueType: string; ValueName: ""; ValueData: "{#MyAppName}";
+Root: HKCR; Subkey: ".c"; ValueType: string; ValueName: ""; ValueData: "{#MyAppName}";
+Root: HKCR; Subkey: ".h"; ValueType: string; ValueName: ""; ValueData: "{#MyAppName}";
+Root: HKCR; Subkey: ".hpp"; ValueType: string; ValueName: ""; ValueData: "{#MyAppName}";
+Root: HKCR; Subkey: ".py"; ValueType: string; ValueName: ""; ValueData: "{#MyAppName}";
+Root: HKCR; Subkey: ".py3"; ValueType: string; ValueName: ""; ValueData: "{#MyAppName}";
+Root: HKCR; Subkey: ".java"; ValueType: string; ValueName: ""; ValueData: "{#MyAppName}";
+Root: HKCR; Subkey: "{#MyAppName}\DefaultIcon"; ValueType: string; ValueName: "{app}\{#MyAppExeName},1";
+Root: HKCR; Subkey: "{#MyAppName}\shell\open\command"; ValueType: string; ValueName: "";  ValueData: """{app}\{#MyAppExeName}"" ""%1""";
