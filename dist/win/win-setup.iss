@@ -27,7 +27,6 @@ DefaultDirName={autopf}\cpeditor
 DisableProgramGroupPage=yes
 UsedUserAreasWarning=no
 LicenseFile={#MyProjectRoot}\LICENSE
-PrivilegesRequiredOverridesAllowed=dialog
 OutputDir={#MyProjectRoot}
 OutputBaseFilename=cpeditor-setup
 SetupIconFile={#MyProjectRoot}\assets\icon.ico
