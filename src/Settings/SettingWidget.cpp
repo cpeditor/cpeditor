@@ -2,6 +2,8 @@
 #include "Settings/SettingsManager.hpp"
 #include <QFormLayout>
 #include <QHBoxLayout>
+#include <QInputDialog>
+#include <QMessageBox>
 #include <QTextCodec>
 #include <QVBoxLayout>
 
@@ -454,6 +456,19 @@ void MapWrapper::init(QWidget *parent, QVariant param)
     }
     leftLayout->addWidget(list);
 
+    auto *btnLayout = new QHBoxLayout(leftWidget);
+
+    btnadd = new QPushButton(tr("Add"), leftWidget);
+    btnLayout->addWidget(btnadd);
+    connect(btnadd, &QPushButton::clicked, this, &MapWrapper::reqAdd);
+
+    btndel = new QPushButton(tr("Del"), leftWidget);
+    btnLayout->addWidget(btndel);
+    connect(btndel, &QPushButton::clicked, this, &MapWrapper::reqDel);
+    btndel->setEnabled(false);
+
+    leftLayout->addLayout(btnLayout);
+
     widget->addWidget(leftWidget);
 
     right = new QWidget(widget);
@@ -518,9 +533,18 @@ void MapWrapper::reset()
 
 void MapWrapper::apply()
 {
+    auto odl = SettingsManager::itemUnder(iter.key() + '/');
+    QSet<QString> ods(odl.begin(), odl.end());
     for (const auto &name : data.keys())
     {
         rights[name]->apply();
+        ods.remove(name);
+    }
+    for (const auto &name : ods)
+    {
+        SettingsManager::remove(SettingsManager::keyStartsWith(iter.key() + '/' + name + '/'));
+        delete rights[name];
+        rights.remove(name);
     }
 }
 
@@ -554,6 +578,23 @@ void MapWrapper::add(QString key)
     panel->enable(true);
 }
 
+void MapWrapper::del(QString key)
+{
+    show("");
+    for (int i = 0; i < list->count(); i++)
+    {
+        if (list->item(i)->text() == key)
+        {
+            rights[key]->deleteLater();
+            rights.remove(key);
+            delete list->takeItem(i);
+            data.remove(key);
+            emit valueChanged();
+            break;
+        }
+    }
+}
+
 void MapWrapper::show(QString key)
 {
     if (cur != "")
@@ -564,6 +605,7 @@ void MapWrapper::show(QString key)
     {
         rights[key]->rootWidget()->setVisible(true);
     }
+    btndel->setEnabled(key != "");
     cur = key;
 }
 
@@ -597,6 +639,23 @@ void MapWrapper::update()
     }
     if (updated)
         emit valueChanged();
+}
+
+void MapWrapper::reqAdd()
+{
+    bool ok;
+    QString key = QInputDialog::getText(rootWidget(), tr("Add"), tr("New key"), QLineEdit::Normal, "", &ok);
+    if (rights.contains(key))
+    {
+        QMessageBox::warning(rootWidget(), "Add failed", QString(tr("The key %1 already exists")).arg(key));
+        return;
+    }
+    add(key);
+}
+
+void MapWrapper::reqDel()
+{
+    del(list->currentItem()->text());
 }
 
 } // namespace WIP

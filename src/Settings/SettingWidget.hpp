@@ -199,15 +199,20 @@ struct MapWrapper : public WrapperTemplate<QMap<QString, QVariant>, QSplitter>
     virtual bool changed() const override;
 
     void add(QString key);
+    void del(QString key);
     void show(QString key);
 
   public slots:
     void reload();
     void update();
+    void reqAdd();
+    void reqDel();
 
   public:
     QString cur;
     QStringList filt;
+    QPushButton *btnadd;
+    QPushButton *btndel;
     QListWidget *list;
     QWidget *right;
     QMap<QString, SettingsWrapper *> rights;
