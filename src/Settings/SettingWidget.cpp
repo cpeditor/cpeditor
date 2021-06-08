@@ -580,11 +580,25 @@ void MapWrapper::add(QString key)
 
 void MapWrapper::del(QString key)
 {
-    show("");
     for (int i = 0; i < list->count(); i++)
     {
         if (list->item(i)->text() == key)
         {
+            if (list->count() > 1)
+            {
+                if (i == 0)
+                {
+                    show(list->item(1)->text());
+                }
+                else
+                {
+                    show(list->item(i - 1)->text());
+                }
+            }
+            else
+            {
+                show("");
+            }
             rights[key]->deleteLater();
             rights.remove(key);
             delete list->takeItem(i);
@@ -597,13 +611,17 @@ void MapWrapper::del(QString key)
 
 void MapWrapper::show(QString key)
 {
-    if (cur != "")
+    if (cur == key)
     {
-        rights[cur]->rootWidget()->setVisible(false);
+        return;
     }
     if (key != "")
     {
         rights[key]->rootWidget()->setVisible(true);
+    }
+    if (cur != "")
+    {
+        rights[cur]->rootWidget()->setVisible(false);
     }
     btndel->setEnabled(key != "");
     cur = key;
@@ -645,12 +663,15 @@ void MapWrapper::reqAdd()
 {
     bool ok;
     QString key = QInputDialog::getText(rootWidget(), tr("Add"), tr("New key"), QLineEdit::Normal, "", &ok);
+    if (!ok)
+        return;
     if (rights.contains(key))
     {
         QMessageBox::warning(rootWidget(), "Add failed", QString(tr("The key %1 already exists")).arg(key));
         return;
     }
-    add(key);
+    if (key != "")
+        add(key);
 }
 
 void MapWrapper::reqDel()

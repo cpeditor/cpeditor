@@ -985,6 +985,24 @@
     "type": "Object",
     "sub": [
       {
+        "name": "Parentheses",
+        "type": "Object",
+        "sub": [
+          {
+            "name": "Auto Complete",
+            "type": "bool"
+          },
+          {
+            "name": "Auto Remove",
+            "type": "bool"
+          },
+          {
+            "name": "Tab Jump Out",
+            "type": "bool"
+          }
+        ]
+      },
+      {
         "name": "Snippet",
         "type": "Object",
         "sub": [
