@@ -112,6 +112,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <a href="https://github.com/ChungZH"><img src="https://avatars0.githubusercontent.com/u/42088872?v=4" width="100px;" alt=""/></a><br /><a href="https://chungzh.cc/"><sub><b>Flex Zhong</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/commits?author=ChungZH" title="Code">💻</a>
     </td>
     <td align="center">
+      <a href="https://github.com/swift-zym"><img src="https://avatars.githubusercontent.com/u/61449077?v=4" width="100px;" alt=""/></a><br /><a href="https://183154.blog.luogu.org"><sub><b>Yiming Zhang</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/commits?author=swift-zym" title="Code">💻</a> <a href="#design-swift-zym" title="Design">🎨</a> <a href="#ideas-swift-zym" title="Ideas, Planning, & Feedback">🤔</a>
+    </td>
+    <td align="center">
       <a href="https://github.com/Ravenclaw-OIer"><img src="https://avatars2.githubusercontent.com/u/44526586?v=4" width="100px;" alt=""/></a><br /><a href="http://ravenclaw-oier.github.io"><sub><b>Ravenclaw-OIer</b></sub></a><br /><a href="#ideas-Ravenclaw-OIer" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/cpeditor/cpeditor/issues?q=author%3ARavenclaw-OIer" title="Bug reports">🐛</a> <a href="https://github.com/cpeditor/cpeditor/commits?author=Ravenclaw-OIer" title="Documentation">📖</a>
     </td>
     <td align="center">
@@ -120,11 +123,11 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center">
       <a href="https://github.com/nikhil-sarda"><img src="https://avatars1.githubusercontent.com/u/51774873?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/nikhil-sarda"><sub><b>Nikhil Sarda</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3Anikhil-sarda" title="Bug reports">🐛</a>
     </td>
+  </tr>
+  <tr>
     <td align="center">
       <a href="https://github.com/Arthur-QQ"><img src="https://avatars0.githubusercontent.com/u/30394349?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/Arthur-QQ"><sub><b>Arthur-QQ</b></sub></a><br /><a href="#ideas-Arthur-QQ" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/cpeditor/cpeditor/issues?q=author%3AArthur-QQ" title="Bug reports">🐛</a>
     </td>
-  </tr>
-  <tr>
     <td align="center">
       <a href="https://github.com/Brijesh1in"><img src="https://avatars3.githubusercontent.com/u/33791137?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/Brijesh1in"><sub><b>Brijesh1in</b></sub></a><br /><a href="#ideas-Brijesh1in" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/cpeditor/cpeditor/issues?q=author%3ABrijesh1in" title="Bug reports">🐛</a>
     </td>
@@ -140,11 +143,11 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center">
       <a href="https://github.com/Exile-2k4"><img src="https://avatars2.githubusercontent.com/u/40086604?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/Exile-2k4"><sub><b>Nguyễn Hoàng Dương</b></sub></a><br /><a href="#ideas-Exile-2k4" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
+  </tr>
+  <tr>
     <td align="center">
       <a href="https://github.com/GoBigorGoHome"><img src="https://avatars3.githubusercontent.com/u/9896288?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/GoBigorGoHome"><sub><b>Pat</b></sub></a><br /><a href="#ideas-GoBigorGoHome" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
-  </tr>
-  <tr>
     <td align="center">
       <a href="https://github.com/GoToCoding"><img src="https://avatars3.githubusercontent.com/u/16542586?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/GoToCoding"><sub><b>Ruzal Ibragimov</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3AGoToCoding" title="Bug reports">🐛</a>
     </td>
@@ -160,11 +163,11 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center">
       <a href="https://github.com/Wandoka"><img src="https://avatars2.githubusercontent.com/u/26433142?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/Wandoka"><sub><b>Wandoka</b></sub></a><br /><a href="#ideas-Wandoka" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
+  </tr>
+  <tr>
     <td align="center">
       <a href="https://github.com/ahmfuad"><img src="https://avatars3.githubusercontent.com/u/42442668?v=4" width="100px;" alt=""/></a><br /><a href="http://www.agamiramra.com"><sub><b>A. H. M Fuad</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3Aahmfuad" title="Bug reports">🐛</a>
     </td>
-  </tr>
-  <tr>
     <td align="center">
       <a href="https://github.com/ankur314"><img src="https://avatars2.githubusercontent.com/u/37039680?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/ankur314"><sub><b>Ankur Ojha</b></sub></a><br /><a href="#ideas-ankur314" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
@@ -180,11 +183,11 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center">
       <a href="https://github.com/rng70"><img src="https://avatars2.githubusercontent.com/u/45529910?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/rng70"><sub><b>Al Arafat Tanin</b></sub></a><br /><a href="#ideas-rng70" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
+  </tr>
+  <tr>
     <td align="center">
       <a href="https://github.com/s6059r"><img src="https://avatars0.githubusercontent.com/u/58967102?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/s6059r"><sub><b>Siddharth Singh</b></sub></a><br /><a href="#ideas-s6059r" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
-  </tr>
-  <tr>
     <td align="center">
       <a href="https://github.com/samael042"><img src="https://avatars3.githubusercontent.com/u/44134245?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/samael042"><sub><b>samael042</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3Asamael042" title="Bug reports">🐛</a>
     </td>
@@ -200,11 +203,11 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center">
       <a href="https://github.com/lakshits11"><img src="https://avatars2.githubusercontent.com/u/54276661?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/lakshits11"><sub><b>lakshits11</b></sub></a><br /><a href="#ideas-lakshits11" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
+  </tr>
+  <tr>
     <td align="center">
       <a href="https://github.com/sahilkhan03"><img src="https://avatars2.githubusercontent.com/u/45485428?v=4" width="100px;" alt=""/></a><br /><a href="http://sahilkhan.me"><sub><b>Md. Sahil Khan</b></sub></a><br /><a href="#ideas-sahilkhan03" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
-  </tr>
-  <tr>
     <td align="center">
       <a href="https://github.com/AbhayAravinda"><img src="https://avatars1.githubusercontent.com/u/33093450?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/AbhayAravinda"><sub><b>AbhayAravinda</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3AAbhayAravinda" title="Bug reports">🐛</a>
     </td>
@@ -220,11 +223,11 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center">
       <a href="https://github.com/Gourav-raj"><img src="https://avatars1.githubusercontent.com/u/50336197?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/Gourav-raj"><sub><b>GOURAV RAJ</b></sub></a><br /><a href="#ideas-Gourav-raj" title="Ideas, Planning, & Feedback">🤔</a>
     </td>
+  </tr>
+  <tr>
     <td align="center">
       <a href="https://github.com/thebrave"><img src="https://avatars0.githubusercontent.com/u/2398126?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/thebrave"><sub><b>Jean Berniolles</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/commits?author=thebrave" title="Code">💻</a>
     </td>
-  </tr>
-  <tr>
     <td align="center">
       <a href="https://github.com/jaysampartak"><img src="https://avatars2.githubusercontent.com/u/40232849?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/jaysampartak"><sub><b>jaysampartak</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3Ajaysampartak" title="Bug reports">🐛</a>
     </td>
@@ -235,10 +238,10 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <a href="https://github.com/tiger2005"><img src="https://avatars.githubusercontent.com/u/41613797?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/tiger2005"><sub><b>tiger2005</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3Atiger2005" title="Bug reports">🐛</a>
     </td>
     <td align="center">
-      <a href="https://github.com/swift-zym"><img src="https://avatars.githubusercontent.com/u/61449077?v=4" width="100px;" alt=""/></a><br /><a href="https://183154.blog.luogu.org"><sub><b>Yiming Zhang</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/commits?author=swift-zym" title="Code">💻</a> <a href="#design-swift-zym" title="Design">🎨</a> <a href="#ideas-swift-zym" title="Ideas, Planning, & Feedback">🤔</a>
+      <a href="https://github.com/tusqasi"><img src="https://avatars.githubusercontent.com/u/24749908?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/tusqasi"><sub><b>tusqasi</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3Atusqasi" title="Bug reports">🐛</a>
     </td>
     <td align="center">
-      <a href="https://github.com/tusqasi"><img src="https://avatars.githubusercontent.com/u/24749908?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/tusqasi"><sub><b>tusqasi</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3Atusqasi" title="Bug reports">🐛</a>
+      <a href="https://github.com/rbruno95"><img src="https://avatars.githubusercontent.com/u/48922045?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/rbruno95"><sub><b>Bruno</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3Arbruno95" title="Bug reports">🐛</a>
     </td>
   </tr>
 </table>
