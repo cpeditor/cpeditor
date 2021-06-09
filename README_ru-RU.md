@@ -58,7 +58,7 @@ Package maintainers can contact us if any help is needed. For example, we may ad
 
 ## All Contributors
 
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+Thanks go to these wonderful people: (if we forget to add you as a contributor, you can [add by yourself](https://allcontributors.org/docs/ru/bot/usage))
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->

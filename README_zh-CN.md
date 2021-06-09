@@ -64,7 +64,7 @@ Package maintainers can contact us if any help on packaging is needed. For examp
 
 ## All Contributors
 
-感谢下面这些人的贡献：（[emoji key](https://allcontributors.org/docs/en/emoji-key)）
+感谢下面这些人的贡献：（如果我们忘记将你添加为贡献者，你可以[自行添加](https://allcontributors.org/docs/zh-cn/bot/usage)）
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
