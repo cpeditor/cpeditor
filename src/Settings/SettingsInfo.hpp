@@ -47,6 +47,10 @@ class SettingsInfo
             p.append(info->name);
             return p.join("/");
         }
+        const SettingInfo *operator->() const
+        {
+            return info;
+        }
     };
 
     class SettingInfo

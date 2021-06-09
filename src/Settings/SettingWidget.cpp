@@ -1,5 +1,6 @@
 #include "Settings/SettingWidget.hpp"
 #include "Settings/SettingsManager.hpp"
+#include "Util/Util.hpp"
 #include <QFormLayout>
 #include <QHBoxLayout>
 #include <QInputDialog>
@@ -17,7 +18,7 @@ void SettingBase::checkout(int pos, QString key)
 
 void SettingBase::setdef()
 {
-    setV(iter.info->def);
+    setV(iter->def);
 }
 
 void SettingBase::reset()
@@ -30,7 +31,7 @@ void SettingBase::apply()
     if (changed())
     {
         SettingsManager::set(iter.key(), getV());
-        iter.info->onApply(iter.info, nullptr, rootWidget()); // TODO: pass in other things maybe
+        iter->onApply(iter.info, nullptr, rootWidget()); // TODO: pass in other things maybe
     }
 }
 
@@ -319,6 +320,10 @@ static SettingBase *createWrapper(const SettingsInfo::SettingIter &iter, QWidget
 void SettingsWrapper::init(QWidget *parent, QVariant param)
 {
     widget = new QWidget(parent);
+
+    const QString docsLinkPrefix =
+        Util::websiteLink("docs/preferences/" + Util::sanitizeAnchorName(path.split('/').first()));
+
     auto *layout = new QFormLayout(widget);
     layout->setMargin(0);
     widget->setLayout(layout);
@@ -327,7 +332,7 @@ void SettingsWrapper::init(QWidget *parent, QVariant param)
     {
         for (const auto &s : filt)
         {
-            if (iter.info->findChild(s) != -1)
+            if (iter->findChild(s) != -1)
             {
                 entries.push_back(s);
             }
@@ -335,7 +340,7 @@ void SettingsWrapper::init(QWidget *parent, QVariant param)
     }
     else
     {
-        for (const auto &i : iter.info->child)
+        for (const auto &i : iter->child)
         {
             entries.push_back(i.name);
         }
@@ -345,18 +350,29 @@ void SettingsWrapper::init(QWidget *parent, QVariant param)
     {
         auto siter = iter;
         siter.child(key, name);
-        QString desc = siter.info->desc; // TODO: add doc anchor
+        QString desc = siter->desc; // TODO: add doc anchor
         SettingBase *wrap = createWrapper(siter, widget, desc);
+        wrap->path = path + '/' + siter->name;
+        wrap->trPath = trPath + '/' + siter->desc;
+        SettingsManager::setPath(siter->name, path + "/" + siter->untrDesc, path + "/" + siter->desc);
         connect(wrap, &SettingBase::valueChanged, this, &SettingsWrapper::update);
         wrap->enable(false);
         wraps[name] = wrap;
-        if (siter.info->type == "bool")
+        const auto docsLinkText =
+            QString("<a href='%1#%2'>(?)</a>")
+                .arg(docsLinkPrefix)
+                .arg(siter->docAnchor.isEmpty() ? Util::sanitizeAnchorName(siter->desc) : siter->docAnchor);
+        auto *label = new QLabel;
+        label->setOpenExternalLinks(true);
+        if (siter->type == "bool")
         {
-            layout->addRow("", wrap->rootWidget());
+            label->setText(docsLinkText);
+            layout->addRow(label, wrap->rootWidget());
         }
         else
         {
-            layout->addRow(desc, wrap->rootWidget());
+            label->setText(desc + " " + docsLinkText);
+            layout->addRow(label, wrap->rootWidget());
         }
     }
 }
@@ -570,6 +586,8 @@ void MapWrapper::add(QString key)
     auto *panel = new SettingsWrapper;
     panel->iter = iter;
     panel->setKey(key);
+    panel->path = path + "/" + iter->name;
+    panel->trPath = trPath + "/" + iter->desc;
     panel->init(widget, filt);
     rights[key] = panel;
     right->layout()->addWidget(panel->rootWidget());

@@ -24,6 +24,7 @@ struct SettingBase : public QObject
     Q_OBJECT
 
   public:
+    QString path, trPath;
     SettingsInfo::SettingIter iter;
 
     virtual QVariant getV() const = 0;

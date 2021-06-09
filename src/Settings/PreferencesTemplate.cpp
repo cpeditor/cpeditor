@@ -29,6 +29,8 @@ PreferencesTemplate::PreferencesTemplate(QStringList opts, const QString &path, 
     PreferencesPage::setPath(path, trPath);
 
     panel = new WIP::SettingsWrapper;
+    panel->path = path;
+    panel->trPath = trPath;
     panel->iter = SettingsInfo::fakeRootIter();
     panel->init(this, options);
     makeUITheSameAsSettings();
