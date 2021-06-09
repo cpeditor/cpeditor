@@ -352,6 +352,7 @@ void SettingsWrapper::init(QWidget *parent, QVariant param)
         siter.child(key, name);
         QString desc = siter->desc; // TODO: add doc anchor
         SettingBase *wrap = createWrapper(siter, widget, desc);
+        wrap->parent = this;
         wrap->path = path + '/' + siter->name;
         wrap->trPath = trPath + '/' + siter->desc;
         SettingsManager::setPath(siter->name, path + "/" + siter->untrDesc, path + "/" + siter->desc);
@@ -375,6 +376,17 @@ void SettingsWrapper::init(QWidget *parent, QVariant param)
             layout->addRow(label, wrap->rootWidget());
         }
     }
+    for (const auto &name : entries)
+    {
+        auto *wrap = wraps[name];
+        if (wrap->iter->depends.isEmpty())
+            continue;
+        for (const auto &dep : wrap->iter->depends)
+        {
+            auto *base = locate(dep.first);
+            connect(base, &SettingBase::valueChanged, this, [this, name]() { this->check(name); });
+        }
+    }
 }
 
 QMap<QString, QVariant> SettingsWrapper::get() const
@@ -389,11 +401,21 @@ void SettingsWrapper::set(const QMap<QString, QVariant> &v)
     emit valueChanged();
 }
 
-void SettingsWrapper::enable(bool enabled)
+void SettingsWrapper::enable(bool e)
 {
+    if (enabled == e)
+        return;
+    enabled = e;
     for (const auto &name : entries)
     {
         wraps[name]->enable(enabled);
+    }
+    if (enabled)
+    {
+        for (const auto &name : entries)
+        {
+            check(name);
+        }
     }
 }
 
@@ -429,6 +451,24 @@ bool SettingsWrapper::changed() const
     return std::any_of(entries.begin(), entries.end(), [this](const QString &name) { return wraps[name]->changed(); });
 }
 
+SettingBase *SettingsWrapper::locate(QString name)
+{
+    if (wraps.contains(name))
+    {
+        return wraps[name];
+    }
+    if (parent)
+    {
+        MapWrapper *mp = dynamic_cast<MapWrapper *>(parent);
+        SettingsWrapper *st = dynamic_cast<SettingsWrapper *>(mp ? mp->parent : 0);
+        return st ? st->locate(name) : 0;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
 void SettingsWrapper::reload()
 {
     for (const auto &name : entries)
@@ -452,6 +492,41 @@ void SettingsWrapper::update()
     }
     if (updated)
         emit valueChanged();
+}
+
+void SettingsWrapper::check(QString name)
+{
+    auto *wrap = wraps[name];
+    if (wrap->iter->depends.isEmpty())
+        return;
+    for (const auto &dep : wrap->iter->depends)
+    {
+        auto *base = locate(dep.first);
+        if (dep.second(base->getV()))
+        {
+            if (!wrap->iter->requireAllDepends)
+            {
+                wrap->enable(enabled);
+                return;
+            }
+        }
+        else
+        {
+            if (wrap->iter->requireAllDepends)
+            {
+                wrap->enable(false);
+                return;
+            }
+        }
+    }
+    if (wrap->iter->requireAllDepends)
+    {
+        wrap->enable(true);
+    }
+    else
+    {
+        wrap->enable(false);
+    }
 }
 
 void MapWrapper::init(QWidget *parent, QVariant param)
@@ -584,6 +659,7 @@ void MapWrapper::add(QString key)
 {
     list->addItem(key);
     auto *panel = new SettingsWrapper;
+    panel->parent = this;
     panel->iter = iter;
     panel->setKey(key);
     panel->path = path + "/" + iter->name;

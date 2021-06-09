@@ -24,6 +24,7 @@ struct SettingBase : public QObject
     Q_OBJECT
 
   public:
+    SettingBase *parent = 0;
     QString path, trPath;
     SettingsInfo::SettingIter iter;
 
@@ -169,6 +170,8 @@ struct SettingsWrapper : public WrapperTemplate<QMap<QString, QVariant>, QWidget
     virtual void apply() override;
     virtual bool changed() const override;
 
+    SettingBase *locate(QString name);
+
     void setKey(QString k = "")
     {
         key = k;
@@ -176,8 +179,10 @@ struct SettingsWrapper : public WrapperTemplate<QMap<QString, QVariant>, QWidget
   public slots:
     void reload();
     void update();
+    void check(QString name);
 
   public:
+    bool enabled = false;
     QStringList entries;
     QString key;
     QMap<QString, QVariant> data;
