@@ -451,7 +451,7 @@ bool SettingsWrapper::changed() const
     return std::any_of(entries.begin(), entries.end(), [this](const QString &name) { return wraps[name]->changed(); });
 }
 
-SettingBase *SettingsWrapper::locate(QString name)
+SettingBase *SettingsWrapper::locate(const QString &name)
 {
     if (wraps.contains(name))
     {
@@ -459,14 +459,11 @@ SettingBase *SettingsWrapper::locate(QString name)
     }
     if (parent)
     {
-        MapWrapper *mp = dynamic_cast<MapWrapper *>(parent);
-        SettingsWrapper *st = dynamic_cast<SettingsWrapper *>(mp ? mp->parent : 0);
-        return st ? st->locate(name) : 0;
+        auto *mp = dynamic_cast<MapWrapper *>(parent);
+        auto *st = dynamic_cast<SettingsWrapper *>(mp ? mp->parent : nullptr);
+        return st ? st->locate(name) : nullptr;
     }
-    else
-    {
-        return 0;
-    }
+    return nullptr;
 }
 
 void SettingsWrapper::reload()
@@ -494,7 +491,7 @@ void SettingsWrapper::update()
         emit valueChanged();
 }
 
-void SettingsWrapper::check(QString name)
+void SettingsWrapper::check(const QString &name)
 {
     auto *wrap = wraps[name];
     if (wrap->iter->depends.isEmpty())
@@ -547,7 +544,7 @@ void MapWrapper::init(QWidget *parent, QVariant param)
     }
     leftLayout->addWidget(list);
 
-    auto *btnLayout = new QHBoxLayout(leftWidget);
+    auto *btnLayout = new QHBoxLayout;
 
     btnadd = new QPushButton(tr("Add"), leftWidget);
     btnLayout->addWidget(btnadd);
@@ -606,11 +603,7 @@ void MapWrapper::setdef()
 
 void MapWrapper::reset()
 {
-    list->clear();
-    delete right->layout();
-    auto *rightLayout = new QVBoxLayout(right);
-    rightLayout->setMargin(0);
-    right->setLayout(rightLayout);
+    resetLayout();
     SettingsManager::itemUnder(iter.key() + "/");
     for (const auto &name : SettingsManager::itemUnder(iter.key() + "/"))
     {
@@ -645,17 +638,12 @@ bool MapWrapper::changed() const
     {
         return true;
     }
-    for (const auto &name : data.keys())
-    {
-        if (rights[name]->changed())
-        {
-            return true;
-        }
-    }
-    return false;
+    const auto &keys = data.keys();
+    return std::any_of(keys.begin(), keys.end(),
+                       [this](const QString &name) -> bool { return rights[name]->changed(); });
 }
 
-void MapWrapper::add(QString key)
+void MapWrapper::add(const QString &key)
 {
     list->addItem(key);
     auto *panel = new SettingsWrapper;
@@ -672,7 +660,7 @@ void MapWrapper::add(QString key)
     panel->enable(true);
 }
 
-void MapWrapper::del(QString key)
+void MapWrapper::del(const QString &key)
 {
     for (int i = 0; i < list->count(); i++)
     {
@@ -703,7 +691,7 @@ void MapWrapper::del(QString key)
     }
 }
 
-void MapWrapper::show(QString key)
+void MapWrapper::show(const QString &key)
 {
     if (cur == key)
     {
@@ -721,13 +709,18 @@ void MapWrapper::show(QString key)
     cur = key;
 }
 
-void MapWrapper::reload()
+void MapWrapper::resetLayout()
 {
     list->clear();
-    delete right->layout();
+    QWidget().setLayout(right->layout());
     auto *rightLayout = new QVBoxLayout(right);
     rightLayout->setMargin(0);
     right->setLayout(rightLayout);
+}
+
+void MapWrapper::reload()
+{
+    resetLayout();
     for (const auto &name : data.keys())
     {
         add(name);
@@ -755,7 +748,7 @@ void MapWrapper::update()
 
 void MapWrapper::reqAdd()
 {
-    bool ok;
+    bool ok = false;
     QString key = QInputDialog::getText(rootWidget(), tr("Add"), tr("New key"), QLineEdit::Normal, "", &ok);
     if (!ok)
         return;

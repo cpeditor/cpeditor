@@ -170,7 +170,7 @@ struct SettingsWrapper : public WrapperTemplate<QMap<QString, QVariant>, QWidget
     virtual void apply() override;
     virtual bool changed() const override;
 
-    SettingBase *locate(QString name);
+    SettingBase *locate(const QString &name);
 
     void setKey(QString k = "")
     {
@@ -179,7 +179,7 @@ struct SettingsWrapper : public WrapperTemplate<QMap<QString, QVariant>, QWidget
   public slots:
     void reload();
     void update();
-    void check(QString name);
+    void check(const QString &name);
 
   public:
     bool enabled = false;
@@ -204,9 +204,11 @@ struct MapWrapper : public WrapperTemplate<QMap<QString, QVariant>, QSplitter>
     virtual void apply() override;
     virtual bool changed() const override;
 
-    void add(QString key);
-    void del(QString key);
-    void show(QString key);
+    void add(const QString &key);
+    void del(const QString &key);
+    void show(const QString &key);
+
+    void resetLayout();
 
   public slots:
     void reload();
