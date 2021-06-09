@@ -112,7 +112,7 @@ Package maintainers can contact us if any help on packaging is needed. For examp
   </tr>
   <tr>
     <td align="center">
-      <a href="https://github.com/sonulohani"><img src="https://avatars1.githubusercontent.com/u/2958681?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/sonulohani"><sub><b>Sonu Lohani</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3Asonulohani" title="Bug reports">🐛</a> <a href="https://github.com/cpeditor/cpeditor/commits?author=sonulohani" title="Code">💻</a> <a href="#ideas-sonulohani" title="Ideas, Planning, & Feedback">🤔</a>
+      <a href="https://github.com/sonulohani"><img src="https://avatars1.githubusercontent.com/u/2958681?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/sonulohani"><sub><b>Sonu Lohani</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3Asonulohani" title="Bug reports">🐛</a> <a href="https://github.com/cpeditor/cpeditor/commits?author=sonulohani" title="Code">💻</a> <a href="#ideas-sonulohani" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/cpeditor/cpeditor/pulls?q=is%3Apr+reviewed-by%3Asonulohani" title="Reviewed Pull Requests">👀</a>
     </td>
     <td align="center">
       <a href="https://github.com/ChungZH"><img src="https://avatars0.githubusercontent.com/u/42088872?v=4" width="100px;" alt=""/></a><br /><a href="https://chungzh.cc/"><sub><b>Flex Zhong</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/commits?author=ChungZH" title="Code">💻</a>
