@@ -604,8 +604,7 @@ void MapWrapper::setdef()
 void MapWrapper::reset()
 {
     resetLayout();
-    SettingsManager::itemUnder(iter.key() + "/");
-    for (const auto &name : SettingsManager::itemUnder(iter.key() + "/"))
+    for (const auto &name : SettingsManager::get(iter.key() + '@').toStringList())
     {
         add(name);
         rights[name]->reset();
@@ -617,7 +616,7 @@ void MapWrapper::reset()
 
 void MapWrapper::apply()
 {
-    auto odl = SettingsManager::itemUnder(iter.key() + '/');
+    auto odl = SettingsManager::get(iter.key() + '@').toStringList();
     QSet<QString> ods(odl.begin(), odl.end());
     for (const auto &name : data.keys())
     {
@@ -627,14 +626,18 @@ void MapWrapper::apply()
     for (const auto &name : ods)
     {
         SettingsManager::remove(SettingsManager::keyStartsWith(iter.key() + '/' + name + '/'));
-        delete rights[name];
-        rights.remove(name);
+        if (rights.contains(name))
+        {
+            delete rights[name];
+            rights.remove(name);
+        }
     }
+    SettingsManager::set(iter.key() + '@', QVariant(data.keys()));
 }
 
 bool MapWrapper::changed() const
 {
-    if (data.keys() != SettingsManager::itemUnder(iter.key() + "/"))
+    if (data.keys() != SettingsManager::get(iter.key() + '@').toStringList())
     {
         return true;
     }
@@ -658,6 +661,7 @@ void MapWrapper::add(const QString &key)
     connect(panel, &SettingsWrapper::valueChanged, this, &MapWrapper::update);
     panel->rootWidget()->setVisible(false);
     panel->enable(true);
+    update();
 }
 
 void MapWrapper::del(const QString &key)

@@ -49,8 +49,10 @@ void SettingsManager::load(QSettings &setting, const QString &prefix, const QLis
     {
         if (si.type == "Object")
         {
+            QStringList keys = setting.value(si.name + '@', setting.childGroups()).toStringList();
             setting.beginGroup(si.name);
-            for (const QString &sub : setting.childGroups())
+            set(prefix + si.name + '@', keys);
+            for (const QString &sub : keys)
             {
                 setting.beginGroup(sub);
                 load(setting, QString("%1%2/%3/").arg(prefix, si.name, sub), si.child);
@@ -68,11 +70,12 @@ void SettingsManager::save(QSettings &setting, const QString &prefix, const QLis
     for (const auto &si : infos)
         if (si.type == "Object")
         {
-            QString head = QString("%1%2/").arg(prefix, si.name);
-            QStringList keys = itemUnder(head);
+            QString head = QString("%1%2").arg(prefix, si.name);
+            QStringList keys = get(head + '@').toStringList();
+            setting.setValue(head + '@', keys);
             for (const QString &k : keys)
             {
-                save(setting, QString("%1%2/").arg(head, k), si.child);
+                save(setting, QString("%1/%2/").arg(head, k), si.child);
             }
         }
         else
