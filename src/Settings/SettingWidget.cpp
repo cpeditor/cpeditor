@@ -526,6 +526,42 @@ void SettingsWrapper::check(const QString &name)
     }
 }
 
+void MapWrapper::KeyCheck::init(const QVariant &cfg)
+{
+    for (const auto &r : cfg.toList())
+    {
+        auto m = r.toMap();
+        rules.push_back(Rule(m["regex"].toString(), m["message"].toString()));
+        if (m.contains("invert") && m["invert"].toBool())
+            rules.back().invert = true;
+    }
+}
+
+bool MapWrapper::KeyCheck::check(const QString &key, QString &msg) const
+{
+    for (const auto &rule : rules)
+    {
+        QRegularExpression r(rule.regex);
+        if (r.match(key).hasMatch())
+        {
+            if (rule.invert)
+            {
+                msg = rule.message;
+                return false;
+            }
+        }
+        else
+        {
+            if (!rule.invert)
+            {
+                msg = rule.message;
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
 void MapWrapper::init(QWidget *parent, QVariant param)
 {
     cur = "";
@@ -541,6 +577,10 @@ void MapWrapper::init(QWidget *parent, QVariant param)
         auto cfg = param.toMap();
         if (cfg.contains("filter"))
             filt = cfg["filter"].toStringList();
+        if (cfg.contains("restrict"))
+            rstrc = cfg["restrict"].toStringList();
+        if (cfg.contains("check"))
+            check.init(cfg["check"]);
     }
     leftLayout->addWidget(list);
 
@@ -713,7 +753,7 @@ void MapWrapper::show(const QString &key)
     cur = key;
 }
 
-void MapWrapper::resetLayout()
+void MapWrapper::resetLayout() const
 {
     list->clear();
     QWidget().setLayout(right->layout());
@@ -752,13 +792,35 @@ void MapWrapper::update()
 
 void MapWrapper::reqAdd()
 {
+    QString key;
     bool ok = false;
-    QString key = QInputDialog::getText(rootWidget(), tr("Add"), tr("New key"), QLineEdit::Normal, "", &ok);
+    if (rstrc.isEmpty())
+    {
+        key = QInputDialog::getText(rootWidget(), tr("Add"), tr("New key"), QLineEdit::Normal, "", &ok);
+    }
+    else
+    {
+        QStringList items = rstrc;
+        items.erase(std::remove_if(items.begin(), items.end(), [this](const QString &r) { return rights.contains(r); }),
+                    items.end());
+        if (items.isEmpty())
+        {
+            QMessageBox::warning(rootWidget(), "Add failed", "All possible keys have been added.");
+            return;
+        }
+        key = QInputDialog::getItem(rootWidget(), tr("Add"), tr("Select key"), items, 0, false, &ok);
+    }
     if (!ok)
         return;
     if (rights.contains(key))
     {
         QMessageBox::warning(rootWidget(), "Add failed", QString(tr("The key %1 already exists")).arg(key));
+        return;
+    }
+    QString message;
+    if (!check.check(key, message))
+    {
+        QMessageBox::warning(rootWidget(), "Add failed", message);
         return;
     }
     if (key != "")

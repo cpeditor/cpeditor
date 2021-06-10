@@ -194,6 +194,22 @@ struct MapWrapper : public WrapperTemplate<QMap<QString, QVariant>, QSplitter>
     Q_OBJECT
 
   public:
+    struct KeyCheck
+    {
+        struct Rule
+        {
+            QString regex;
+            QString message;
+            bool invert = false;
+            Rule(const QString &r, const QString &m) : regex(r), message(m)
+            {
+            }
+        };
+        QList<Rule> rules;
+        void init(const QVariant &cfg);
+        bool check(const QString &key, QString &msg) const;
+    };
+
     virtual void init(QWidget *parent, QVariant param = QVariant()) override;
     virtual QMap<QString, QVariant> get() const override;
     virtual void set(const QMap<QString, QVariant> &v) override;
@@ -208,7 +224,7 @@ struct MapWrapper : public WrapperTemplate<QMap<QString, QVariant>, QSplitter>
     void del(const QString &key);
     void show(const QString &key);
 
-    void resetLayout();
+    void resetLayout() const;
 
   public slots:
     void reload();
@@ -219,6 +235,8 @@ struct MapWrapper : public WrapperTemplate<QMap<QString, QVariant>, QSplitter>
   public:
     QString cur;
     QStringList filt;
+    QStringList rstrc;
+    KeyCheck check;
     QPushButton *btnadd;
     QPushButton *btndel;
     QListWidget *list;

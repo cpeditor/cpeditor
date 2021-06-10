@@ -3,7 +3,7 @@
     "name": "Tab Width",
     "type": "int",
     "default": 4,
-    "param": "QVariantList {1,16}",
+    "param": [1,16],
     "tip": "The width of the tab character, or the number of spaces of an indent",
     "old": ["tab_stop"]
   },
@@ -11,7 +11,7 @@
     "name": "Cursor Width",
     "type": "int",
     "default": 1,
-    "param": "QVariantList {1,10}",
+    "param": [1,10],
     "tip": "The width of the cursor in pixels"
   },
   {
@@ -23,7 +23,7 @@
     "name": "Editor Font",
     "type": "QFont",
     "default": "[](){ QFont font = QFontDatabase::systemFont(QFontDatabase::FixedFont); font.setStyleHint(QFont::TypeWriter); return font; }()",
-    "param": "true",
+    "param": true,
     "tip": "The font of the code editor",
     "old": ["font"]
   },
@@ -36,7 +36,7 @@
     "name": "Custom Application Font",
     "type": "QFont",
     "default": "QFontDatabase::systemFont(QFontDatabase::GeneralFont)",
-    "param": "false",
+    "param": false,
     "depends": [
       {
         "name": "Use Custom Application Font"
@@ -49,7 +49,9 @@
     "type": "QString",
     "default": "C++",
     "ui": "QComboBox",
-    "param": "QStringList {\"C++\", \"Java\", \"Python\"}",
+    "param": [
+      "C++", "Java", "Python"
+    ],
     "tip": "The default language used when opening new tabs"
   },
   {
@@ -57,7 +59,7 @@
     "type": "QString",
     "default": "clang-format",
     "ui": "PathItem",
-    "param": "PathItem::Executable",
+    "param": "#PathItem::Executable",
     "tip": "The path to the Clang Format executable file",
     "old": ["clang_format_binary", "clang_format/path"]
   },
@@ -79,7 +81,7 @@
     "type": "QString",
     "default": "python",
     "ui": "PathItem",
-    "param": "PathItem::Executable",
+    "param": "#PathItem::Executable",
     "tip": "The program of YAPF. It could be `yapf` (which doesn't need arguments) or `python` (which needs `-m yapf` as the arguments)."
   },
   {
@@ -117,7 +119,7 @@
     "name": "C++/Template Path",
     "type": "QString",
     "ui": "PathItem",
-    "param": "PathItem::CppSource",
+    "param": "#PathItem::CppSource",
     "tip": "The template used when creating a new C++ file",
     "old": ["template_cpp"]
   },
@@ -138,7 +140,9 @@
     "type": "QString",
     "default": "end",
     "ui": "QComboBox",
-    "param": "QStringList {\"start\", \"end\"}",
+    "param": [
+      "start", "end"
+    ],
     "depends": [
       {
         "name": "C++/Template Path",
@@ -151,7 +155,7 @@
     "name": "C++/Template Cursor Position Offset Characters",
     "type": "int",
     "default": 4,
-    "param": "QVariantList {-1000000, 1000000}",
+    "param": [-1000000, 1000000],
     "depends": [
       {
         "name": "C++/Template Path",
@@ -190,7 +194,7 @@
     "name": "Java/Template Path",
     "type": "QString",
     "ui": "PathItem",
-    "param": "PathItem::JavaSource",
+    "param": "#PathItem::JavaSource",
     "tip": "The template used when creating a new Java file",
     "old": ["template_java"]
   },
@@ -244,7 +248,9 @@
     "type": "QString",
     "default": "end",
     "ui": "QComboBox",
-    "param": "QStringList {\"start\", \"end\"}",
+    "param": [
+      "start", "end"
+    ],
     "depends": [
       {
         "name": "Java/Template Path",
@@ -256,7 +262,7 @@
   {
     "name": "Java/Template Cursor Position Offset Characters",
     "type": "int",
-    "param": "QVariantList {-1000000, 1000000}",
+    "param": [-1000000, 1000000],
     "depends": [
       {
         "name": "Java/Template Path",
@@ -275,7 +281,7 @@
     "name": "Python/Template Path",
     "type": "QString",
     "ui": "PathItem",
-    "param": "PathItem::PythonSource",
+    "param": "#PathItem::PythonSource",
     "tip": "The template used when creating a new Python file",
     "old": ["template_python"]
   },
@@ -295,7 +301,9 @@
     "type": "QString",
     "default": "end",
     "ui": "QComboBox",
-    "param": "QStringList {\"start\", \"end\"}",
+    "param": [
+      "start", "end"
+    ],
     "depends": [
       {
         "name": "Python/Template Path",
@@ -307,7 +315,7 @@
   {
     "name": "Python/Template Cursor Position Offset Characters",
     "type": "int",
-    "param": "QVariantList {-1000000, 1000000}",
+    "param": [-1000000, 1000000],
     "depends": [
       {
         "name": "Python/Template Path",
@@ -340,7 +348,9 @@
     "type": "QString",
     "default": "Light",
     "ui": "QComboBox",
-    "param": "QStringList {\"Light\", \"Dracula\", \"Monokai\", \"Solarized\", \"Solarized Dark\"}",
+    "param": [
+      "Light", "Dracula", "Monokai", "Solarized", "Solarized Dark"
+    ],
     "tip": "The syntax highlight theme of the code editor"
   },
   {
@@ -394,7 +404,7 @@
     "desc": "Auto Save Interval (ms)",
     "type": "int",
     "default": 1000,
-    "param": "QVariantList {100, 36000000, 1000}",
+    "param": [100, 36000000, 1000],
     "depends": [
       {
         "name": "Auto Save"
@@ -406,7 +416,9 @@
     "name": "Auto Save Interval Type",
     "type": "QString",
     "ui": "QComboBox",
-    "param": "QStringList { \"After the last modification\", \"After the first modification\", \"Without modification\" }",
+    "param": [
+      "After the last modification", "After the first modification", "Without modification"
+    ],
     "default": "After the last modification",
     "depends": [
       {
@@ -456,7 +468,7 @@
     "name": "Opacity",
     "type": "int",
     "default": 100,
-    "param": "QVariantList {60,100}",
+    "param": [60,100],
     "ui": "QSlider",
     "tip": "The opacity of the main window",
     "old": ["transparency"]
@@ -492,7 +504,7 @@
     "desc": "Connection Port",
     "type": "int",
     "default": 10045,
-    "param": "QVariantList {1024,49151}",
+    "param": [1024,49151],
     "depends": [
       {
         "name": "Competitive Companion/Enable"
@@ -635,7 +647,7 @@
     "desc": "Auto-save Session Interval",
     "type": "int",
     "default": 20000,
-    "param": "QVariantList {1000, 36000000, 1000}",
+    "param": [1000, 36000000, 1000],
     "depends": [
       {
         "name": "Hot Exit/Enable"
@@ -657,7 +669,7 @@
     "type": "QString",
     "default": "cf",
     "ui": "PathItem",
-    "param": "PathItem::Executable",
+    "param": "#PathItem::Executable",
     "tip": "The path to the CF Tool executable file",
     "old": ["cf_path"]
   },
@@ -690,7 +702,7 @@
     "desc": "Default Time Limit (ms)",
     "type": "int",
     "default": 5000,
-    "param": "QVariantList {1,3600000,1000}",
+    "param": [1,3600000,1000],
     "tip": "The default time limit when executing the program.\nThe program will be killed if it doesn't terminate in the time limit.",
     "old": ["time_limit"]
   },
@@ -698,42 +710,42 @@
     "name": "Output Length Limit",
     "type": "int",
     "default": 500000,
-    "param": "QVariantList {2,1000000000}",
+    "param": [2,1000000000],
     "tip": "The maximum number of characters in the output of the program.\nThe program will be killed if either of its stdout or stderr is too long."
   },
   {
     "name": "Output Display Length Limit",
     "type": "int",
     "default": 50000,
-    "param": "QVariantList {2,100000000}",
+    "param": [2,100000000],
     "tip": "The maximum number of characters to be displayed for the output of the program.\nIf the output is too long, it will be elided."
   },
   {
     "name": "Message Length Limit",
     "type": "int",
     "default": 20000,
-    "param": "QVariantList {500,100000000}",
+    "param": [500,100000000],
     "tip": "The maximum number of characters in each message in the top-right corner of the main window.\nThe message will be elided if it's too long."
   },
   {
     "name": "HTML Diff Viewer Length Limit",
     "type": "int",
     "default": 50000,
-    "param": "QVariantList {2,100000000}",
+    "param": [2,100000000],
     "tip": "The maximum number of characters in the HTML Diff Viewer.\nThe Diff Viewer will fall back to plain text if either of the output or the expected output is too long."
   },
   {
     "name": "Open File Length Limit",
     "type": "int",
     "default": 20000,
-    "param": "QVariantList {2,100000000}",
+    "param": [2,100000000],
     "tip": "The maximum number of characters in a source file to open.\nA source file won't be opened if it's too long."
   },
   {
     "name": "Display Test Case Length Limit",
     "type": "int",
     "default": 500000,
-    "param": "QVariantList {2,1000000000}",
+    "param": [2,1000000000],
     "tip": "The maximum number of characters in a test case to be displayed.\nA test case will be elided and read-only if it's too long.",
     "old": ["load_test_case_file_length_limit", "load_test_case_length_limit"]
   },
@@ -743,7 +755,7 @@
     "desc": "Path to LSP executable",
     "default": "clangd",
     "type": "QString",
-    "param": "PathItem::Executable",
+    "param": "#PathItem::Executable",
     "requireAllDepends": false,
     "depends": [
       {
@@ -757,7 +769,7 @@
     "ui": "PathItem",
     "desc": "Path to LSP executable",
     "type": "QString",
-    "param": "PathItem::Executable",
+    "param": "#PathItem::Executable",
     "requireAllDepends": false,
     "depends": [
       {
@@ -772,7 +784,7 @@
     "desc": "Path to LSP executable",
     "default": "python",
     "type": "QString",
-    "param": "PathItem::Executable",
+    "param": "#PathItem::Executable",
     "requireAllDepends": false,
     "depends": [
       {
@@ -822,7 +834,7 @@
     "type": "int",
     "desc": "Delay in Linting (ms)",
     "default": 2000,
-    "param": "QVariantList {10, 3600000, 1000}",
+    "param": [10, 3600000, 1000],
     "depends": [
       {
         "name": "LSP/Use Linting C++"
@@ -835,7 +847,7 @@
     "type": "int",
     "desc": "Delay in Linting (ms)",
     "default": 2000,
-    "param": "QVariantList {10, 3600000, 1000}",
+    "param": [10, 3600000, 1000],
     "depends": [
       {
         "name": "LSP/Use Linting Java"
@@ -848,7 +860,7 @@
     "type": "int",
     "desc": "Delay in Linting (ms)",
     "default": 2000,
-    "param": "QVariantList {10, 3600000, 1000}",
+    "param": [10, 3600000, 1000],
     "depends": [
       {
         "name": "LSP/Use Linting Python"
@@ -897,7 +909,14 @@
     "name": "Testcases Matching Rules",
     "type": "QVariantList",
     "default": "QVariantList { QStringList {\"(.*)\\\\.in\", \"\\\\1.ans\"}, QStringList {\"(.*)\\\\.in\", \"\\\\1.out\"}}",
-    "param": "QVariantList { QStringList {tr(\"Input Regex\"), tr(\"The regular expression which matches the whole input file name\")}, QStringList {tr(\"Answer Replace\"), tr(\"The replace expression for the answer file name.\\nYou can use \\\"\\\\1\\\" for the first captured group.\")}}",
+    "param": [
+      [
+        "@tr(\"Input Regex\")", "@tr(\"The regular expression which matches the whole input file name\")"
+      ],
+      [
+        "@tr(\"Answer Replace\")", "@tr(\"The replace expression for the answer file name.\\nYou can use \\\"\\\\1\\\" for the first captured group.\")"
+      ]
+    ],
     "tip": "Pairs of regular expressions used when adding pairs of test cases from files.\nEach pair of regular expressions represents a test case."
   },
   {
@@ -916,14 +935,21 @@
     "name": "Default File Paths For Problem URLs",
     "type": "QVariantList",
     "default": "QVariantList {}",
-    "param": "QVariantList { QStringList { tr(\"Problem URL\"), tr(\"The regular expression which matches a part of the problem URL\")}, QStringList {tr(\"File Path\"), tr(\"The replace expression for the file path, without file name suffix.\\nYou can use \\\"\\\\1\\\" for the first captured group.\")}}",
+    "param": [
+      [
+        "@tr(\"Problem URL\")", "@tr(\"The regular expression which matches a part of the problem URL\")"
+      ],
+      [
+        "@tr(\"File Path\")", "@tr(\"The replace expression for the file path, without file name suffix.\\nYou can use \\\"\\\\1\\\" for the first captured group.\")"
+      ]
+    ],
     "tip": "The default file path used when saving a new file while the problem URL is set"
   },
   {
     "name": "Test Cases Font",
     "type": "QFont",
     "default": "[](){ QFont font = QFontDatabase::systemFont(QFontDatabase::FixedFont); font.setStyleHint(QFont::TypeWriter); return font; }()",
-    "param": "true",
+    "param": true,
     "tip": "The font of test cases"
   },
   {
@@ -936,7 +962,7 @@
     "name": "Message Logger Font",
     "type": "QFont",
     "default": "[](){ QFont font = QFontDatabase::systemFont(QFontDatabase::FixedFont); font.setStyleHint(QFont::TypeWriter); return font; }()",
-    "param": "true",
+    "param": true,
     "tip": "The font of the message logger"
   },
   {
@@ -968,7 +994,9 @@
     "type": "QString",
     "ui": "QComboBox",
     "default": "system",
-    "param": "QStringList { \"system\", \"English\", \"Русский\", \"简体中文\" }",
+    "param": [
+      "system", "English", "Русский", "简体中文"
+    ],
     "tip": "The language displayed in the UI.",
     "onApply": "Core::Translator::setLocale(); QMessageBox::warning(parent, tr(\"Change Locale\"), tr(\"You need to restart the application to completely apply the locale change.\"));"
   },
@@ -977,16 +1005,27 @@
     "type": "QString",
     "ui": "QComboBox",
     "default": "default",
-    "param": "Core::StyleManager::styleList()",
+    "param": "#Core::StyleManager::styleList()",
     "tip": "The style of the whole application."
   },
   {
     "name": "Language Config",
     "type": "Object",
+    "param": {
+      "restrict": [
+        "C++", "Java", "Python"
+      ]
+    },
     "sub": [
       {
         "name": "Parentheses",
         "type": "Object",
+        "param": {
+          "check": [{
+            "regex": "R\"(^\\S{2}$)\"",
+            "message": "@tr(\"Parentheses sequence should contains exactly two character.\")"
+          }]
+        },
         "sub": [
           {
             "name": "Auto Complete",
@@ -1034,7 +1073,7 @@
     "name": "Test Case Maximum Height",
     "type": "int",
     "default": 300,
-    "param": "QVariantList {30, 2000}",
+    "param": [30, 2000],
     "tip": "The maximum height of a test case without a scrollbar in pixels."
   },
   {
@@ -1051,7 +1090,9 @@
     "type": "QString",
     "default": "System",
     "ui": "QComboBox",
-    "param": "QStringList { \"System\", \"Http\", \"Socks5\" }",
+    "param": [
+      "System", "Http", "Socks5"
+    ],
     "depends": [
       {
         "name": "Proxy/Enabled"
@@ -1082,7 +1123,7 @@
     "desc": "Port",
     "type": "int",
     "default": 1080,
-    "param": "QVariantList {1024,49151}",
+    "param": [1024,49151],
     "depends": [
       {
         "name": "Proxy/Enabled"
@@ -1144,7 +1185,14 @@
   {
     "name": "Default Path/Names And Paths",
     "type": "QVariantList",
-    "param": "QVariantList { QStringList { tr(\"Name\"), tr(\"The name of a default path\") }, QStringList { tr(\"Path\"), tr(\"The path of a default path\") } }",
+    "param": [
+      [
+        "@tr(\"Name\")", "@tr(\"The name of a default path\")"
+      ],
+      [
+        "@tr(\"Path\")", "@tr(\"The path of a default path\")"
+      ]
+    ],
     "tip": "A list of default paths.\nThey can be used in actions' corresponding default paths by using ${<default path name>} as a place holder.\nThey can be either manually set or automatically changed after choosing a path for an action."
   },
   {

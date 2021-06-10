@@ -33,6 +33,43 @@ def writeHelper(f, obj, pre, indent):
         f.write(
             f"{ids}inline QString pathOf{key}(bool parent = false) {{ return SettingsManager::getPathText(QStringList {{{pre} {json.dumps(name)}}}.join('/'), parent); }}\n")
 
+# "hello" -> "hello"
+# tr("123") -> "@tr(\"123\")"
+# QFont() -> "#QFont()"
+# "#hello" -> "%#hello"
+
+def parseParam(obj):
+    if type(obj) == str:
+        if len(obj) > 0:
+            if obj[0] == "@":
+                return obj[1:], True
+            elif obj[0] == "#":
+                return obj[1:], False
+            elif obj[0] == "%":
+                return json.dumps(obj[1:]), True
+        return json.dumps(obj), True
+    elif type(obj) == dict:
+        ret = "QMap<QString, QVariant>{"
+        for k in obj:
+            ret = ret + f"{{{json.dumps(k)},{parseParam(obj[k])[0]}}},"
+        ret = ret + "}"
+        return ret, False
+    elif type(obj) == list:
+        allstr = True
+        ret = "{"
+        for k in obj:
+            r, t = parseParam(k)
+            ret = ret + f"{r},"
+            if not t:
+                allstr = False
+        if allstr:
+            ret = "QStringList" + ret + "}"
+        else:
+            ret = "QList<QVariant>" + ret + "}"
+        return ret, False
+    elif type(obj) == bool:
+        return str.lower(str(obj)), False
+    return str(obj), False
 
 def writeInfo(f, obj, lst):
     for t in obj:
@@ -92,7 +129,7 @@ def writeInfo(f, obj, lst):
                     f.write(typename + '()')
         else:
             f.write('QVariant()')
-        f.write(f', {t.get("param", "QVariant()")}')
+        f.write(f', {parseParam(t.get("param", "#QVariant()"))[0]}')
         if typename == "Object":
             f.write(f", LIST{key}")
         f.write("});\n")
