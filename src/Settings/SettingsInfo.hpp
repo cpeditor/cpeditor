@@ -22,8 +22,6 @@
 #include <QVariant>
 #include <functional>
 
-class ValueWidget;
-
 class SettingsInfo
 {
     Q_DECLARE_TR_FUNCTIONS(SettingsInfo)
@@ -56,17 +54,17 @@ class SettingsInfo
     class SettingInfo
     {
       public:
-        QString name;             // key
-        QString desc;             // translated description
-        QString untrDesc;         // untranslated description
-        QString type;             // int, bool, QString, etc.
-        QString ui;               // type of the widget
-        QString tip;              // translated tooltips
-        QString untrTip;          // untranslated tooltips
-        QString docAnchor;        // the anchor of the documentation
-        bool requireAllDepends{}; // false for one of the depends, true for all depends
-        bool immediatelyApply{};
-        std::function<void(const SettingInfo *, ValueWidget *, QWidget *)> onApply;
+        QString name;           // key
+        QString desc;           // translated description
+        QString untrDesc;       // untranslated description
+        QString type;           // int, bool, QString, etc.
+        QString ui;             // type of the widget
+        QString tip;            // translated tooltips
+        QString untrTip;        // untranslated tooltips
+        QString docAnchor;      // the anchor of the documentation
+        bool requireAllDepends; // false for one of the depends, true for all depends
+        bool immediatelyApply;
+        QMap<QString, std::function<QVariant(QVariant)>> methods;
         QList<QPair<QString, std::function<bool(const QVariant &)>>> depends;
         QList<QString> old; // the old keys of this setting
         QVariant def;
@@ -87,6 +85,34 @@ class SettingsInfo
                 }
             }
             return -1;
+        }
+        template <typename... Extra> QVariant call(const QString &name, const Extra &... extra) const
+        {
+            if (!methods.contains(name))
+            {
+                return QVariant();
+            }
+            QMap<QString, QVariant> arg;
+            return _call(methods[name], arg, extra...);
+        }
+
+      private:
+        template <typename... Extra>
+        QVariant _call(std::function<QVariant(QVariant)> func, QMap<QString, QVariant> &arg, const QString &key,
+                       const QVariant &value, const Extra &... extra) const
+        {
+            arg[key] = value;
+            return _call(func, arg, extra...);
+        }
+        QVariant _call(std::function<QVariant(QVariant)> func, QMap<QString, QVariant> &arg, const QString &key,
+                       const QVariant &value) const
+        {
+            arg[key] = value;
+            return func(arg);
+        }
+        QVariant _call(std::function<QVariant(QVariant)> func, QMap<QString, QVariant> &arg) const
+        {
+            return func(arg);
         }
     };
 

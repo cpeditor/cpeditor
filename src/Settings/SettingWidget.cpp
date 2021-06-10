@@ -31,7 +31,9 @@ void SettingBase::apply()
     if (changed())
     {
         SettingsManager::set(iter.key(), getV());
-        iter->onApply(iter.info, nullptr, rootWidget()); // TODO: pass in other things maybe
+        QVariant vp;
+        vp.setValue(rootWidget());
+        iter.info->call("onApply", "parent", vp);
     }
 }
 
@@ -314,6 +316,8 @@ static SettingBase *createWrapper(const SettingsInfo::SettingIter &iter, QWidget
         Q_UNREACHABLE();
     wrap->iter = iter;
     wrap->init(widget, info.type == "bool" ? desc : info.param);
+    if (iter->immediatelyApply)
+        QObject::connect(wrap, &SettingBase::valueChanged, wrap, &SettingBase::apply);
     return wrap;
 }
 

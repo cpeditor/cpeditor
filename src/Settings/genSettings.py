@@ -89,7 +89,15 @@ def writeInfo(f, obj, lst):
             docAnchor = f"tr({json.dumps(docAnchor)}, {json.dumps(f'the anchor of {desc} on the corresponding page of https://cpeditor.org/docs/preferences')})"
         requireAllDepends = t.get("requireAllDepends", True)
         immediatelyApply = t.get("immediatelyApply", False)
-        onApply = f'[](const SettingInfo *info, ValueWidget *widget, QWidget *parent){{ {t.get("onApply", "")} }}'
+        methods = "QMap<QString, std::function<QVariant(QVariant)>>{"
+        for fn in t.get("methods", []):
+            func = t["methods"][fn]
+            predef = ""
+            for v in func.get("param", {}):
+                vt = func["param"][v]
+                predef = predef + f"auto {v}(__[{json.dumps(v)}].value<{vt}>());"
+            methods = methods + f"{{{json.dumps(fn)},[](QVariant _)->QVariant{{auto __=_.toMap();{predef}do{{{func['code']}}}while(0);return QVariant();}}}}"
+        methods = methods + "}"
         depends = t.get("depends", [])
         if typename == "Object":
             f.write(f"    QList<SettingInfo> LIST{key};\n")
@@ -106,7 +114,7 @@ def writeInfo(f, obj, lst):
         dependsString += "}"
         old = t.get("old", [])
         f.write(
-            f"    {lst}.append(SettingInfo {{{json.dumps(name)}, {trdesc}, {json.dumps(desc)}, \"{tempname}\", \"{ui}\", {trtip}, {json.dumps(tip)}, {docAnchor}, {json.dumps(requireAllDepends)}, {json.dumps(immediatelyApply)}, {onApply}, {dependsString}, {{{json.dumps(old)[1:-1]}}}, ")
+            f"    {lst}.append(SettingInfo {{{json.dumps(name)}, {trdesc}, {json.dumps(desc)}, \"{tempname}\", \"{ui}\", {trtip}, {json.dumps(tip)}, {docAnchor}, {json.dumps(requireAllDepends)}, {json.dumps(immediatelyApply)}, {methods}, {dependsString}, {{{json.dumps(old)[1:-1]}}}, ")
         if typename != "Object":
             if "default" in t:
                 if typename == "QString":

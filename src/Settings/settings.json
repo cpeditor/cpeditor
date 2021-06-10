@@ -998,7 +998,14 @@
       "system", "English", "Русский", "简体中文"
     ],
     "tip": "The language displayed in the UI.",
-    "onApply": "Core::Translator::setLocale(); QMessageBox::warning(parent, tr(\"Change Locale\"), tr(\"You need to restart the application to completely apply the locale change.\"));"
+    "methods": {
+      "onApply": {
+        "param": {
+          "parent": "QWidget*"
+        },
+        "code": "QMessageBox::warning(parent, tr(\"Change Locale\"), tr(\"You need to restart the application to completely apply the locale change.\"));"
+      }
+    }
   },
   {
     "name": "UI Style",
@@ -1022,7 +1029,7 @@
         "type": "Object",
         "param": {
           "check": [{
-            "regex": "R\"(^\\S{2}$)\"",
+            "regex": "@R\"(^\\S{2}$)\"",
             "message": "@tr(\"Parentheses sequence should contains exactly two character.\")"
           }]
         },
