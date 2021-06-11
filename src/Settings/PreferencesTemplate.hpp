@@ -39,7 +39,7 @@ class PreferencesTemplate : public PreferencesPage
 
   private:
     QStringList options;
-    WIP::SettingsWrapper *panel;
+    SettingsWrapper *panel;
 };
 
 #endif // PREFERENCESPAGETEMPLATE_HPP

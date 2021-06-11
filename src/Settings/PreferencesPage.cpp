@@ -146,11 +146,10 @@ void PreferencesPage::addItem(QLayoutItem *item)
     settingsLayout->addItem(item);
 }
 
-void PreferencesPage::registerWidget(const QString &key, WIP::SettingBase *widget) const
+void PreferencesPage::registerWidget(const QString &key, SettingBase *widget) const
 {
     // PreferencesPageTemplate::PreferencesPageTemplate uses Qt::DirectConnection
-    QObject::connect(widget, &WIP::SettingBase::valueChanged, this, &PreferencesPage::updateButtons,
-                     Qt::QueuedConnection);
+    QObject::connect(widget, &SettingBase::valueChanged, this, &PreferencesPage::updateButtons, Qt::QueuedConnection);
 
     SettingsManager::setWidget(key, widget->rootWidget());
 }

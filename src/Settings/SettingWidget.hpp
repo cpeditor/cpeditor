@@ -16,9 +16,6 @@
 #include <QSpinBox>
 #include <QSplitter>
 
-namespace WIP
-{
-
 struct SettingBase : public QObject
 {
     Q_OBJECT
@@ -244,7 +241,5 @@ struct MapWrapper : public WrapperTemplate<QMap<QString, QVariant>, QSplitter>
     QMap<QString, SettingsWrapper *> rights;
     QMap<QString, QVariant> data;
 };
-
-} // namespace WIP
 
 #endif

@@ -39,10 +39,8 @@ class QLayoutItem;
 class QPushButton;
 class QScrollArea;
 class QVBoxLayout;
-namespace WIP
-{
+
 struct SettingBase;
-}
 
 class PreferencesPage : public QWidget
 {
@@ -152,7 +150,7 @@ class PreferencesPage : public QWidget
      */
     void addItem(QLayoutItem *item);
 
-    void registerWidget(const QString &key, WIP::SettingBase *widget) const;
+    void registerWidget(const QString &key, SettingBase *widget) const;
 
   protected slots:
     /**

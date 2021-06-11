@@ -1,0 +1,6 @@
+#ifndef SETTINGSMETHODS_HPP
+#define SETTINGSMETHODS_HPP
+
+
+
+#endif

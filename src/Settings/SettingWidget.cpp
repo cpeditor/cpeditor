@@ -8,9 +8,6 @@
 #include <QTextCodec>
 #include <QVBoxLayout>
 
-namespace WIP
-{
-
 void SettingBase::checkout(int pos, QString key)
 {
     iter.pre[pos] = std::move(key);
@@ -835,5 +832,3 @@ void MapWrapper::reqDel()
 {
     del(list->currentItem()->text());
 }
-
-} // namespace WIP
