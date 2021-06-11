@@ -1,9 +1,11 @@
 #include "Settings/SettingWidget.hpp"
 #include "Settings/SettingsManager.hpp"
 #include "Util/Util.hpp"
+#include <QAction>
 #include <QFormLayout>
 #include <QHBoxLayout>
 #include <QInputDialog>
+#include <QMenu>
 #include <QMessageBox>
 #include <QTextCodec>
 #include <QVBoxLayout>
@@ -563,9 +565,46 @@ bool MapWrapper::KeyCheck::check(const QString &key, QString &msg) const
     return true;
 }
 
+#include <QDebug>
+
+void MapWrapper::Actions::init(const QVariant &cfg)
+{
+    for (const auto &a : cfg.toList())
+    {
+        auto am = a.toMap();
+        const auto &nm = am["name"].toString();
+        const auto &mth = am["method"].toString();
+        if (!parent->iter->methods.contains(mth))
+        {
+            continue;
+        }
+        data.push_back(std::make_pair(nm, mth));
+    }
+}
+
+void MapWrapper::Actions::genMenu(QMenu *menu) const
+{
+    QVariant p;
+    p.setValue(parent);
+    for (const auto &d : data)
+    {
+        QAction *act = new QAction(d.first);
+        auto f = [this, &d, p, act]() {
+            act->setEnabled(parent->iter->call(d.second, "widget", p, "valid", true).toBool());
+        };
+        QObject::connect(parent, &MapWrapper::valueChanged, f);
+        QObject::connect(parent, &MapWrapper::curChanged, f);
+        QObject::connect(act, &QAction::triggered,
+                         [this, &d, p]() { parent->iter->call(d.second, "widget", p, "valid", false); });
+        f();
+        menu->addAction(act);
+    }
+}
+
 void MapWrapper::init(QWidget *parent, QVariant param)
 {
-    cur = "";
+    action.parent = this;
+
     widget = new QSplitter(parent);
 
     auto *leftWidget = new QWidget(widget);
@@ -582,6 +621,8 @@ void MapWrapper::init(QWidget *parent, QVariant param)
             rstrc = cfg["restrict"].toStringList();
         if (cfg.contains("check"))
             check.init(cfg["check"]);
+        if (cfg.contains("action"))
+            action.init(cfg["action"]);
     }
     leftLayout->addWidget(list);
 
@@ -595,6 +636,15 @@ void MapWrapper::init(QWidget *parent, QVariant param)
     btnLayout->addWidget(btndel);
     connect(btndel, &QPushButton::clicked, this, &MapWrapper::reqDel);
     btndel->setEnabled(false);
+
+    if (action.hasMore())
+    {
+        btnmre = new QPushButton(tr("More..."), leftWidget);
+        QMenu *menu = new QMenu;
+        action.genMenu(menu);
+        btnmre->setMenu(menu);
+        btnLayout->addWidget(btnmre);
+    }
 
     leftLayout->addLayout(btnLayout);
 
@@ -687,6 +737,43 @@ bool MapWrapper::changed() const
                        [this](const QString &name) -> bool { return rights[name]->changed(); });
 }
 
+QString MapWrapper::askKey(const QString &suggest) const
+{
+    QString key;
+    bool ok = false;
+    if (rstrc.isEmpty())
+    {
+        key = QInputDialog::getText(rootWidget(), tr("Add"), tr("New key"), QLineEdit::Normal, suggest, &ok);
+    }
+    else
+    {
+        QStringList items = rstrc;
+        items.erase(std::remove_if(items.begin(), items.end(), [this](const QString &r) { return rights.contains(r); }),
+                    items.end());
+        if (items.isEmpty())
+        {
+            QMessageBox::warning(rootWidget(), tr("Add failed"), tr("All possible keys have been added."));
+            return QString();
+        }
+        auto idx = items.indexOf(suggest);
+        key = QInputDialog::getItem(rootWidget(), tr("Add"), tr("Select key"), items, std::max(idx, 0), false, &ok);
+    }
+    if (!ok)
+        return QString();
+    if (rights.contains(key))
+    {
+        QMessageBox::warning(rootWidget(), tr("Add failed"), QString(tr("The key %1 already exists")).arg(key));
+        return QString();
+    }
+    QString message;
+    if (!check.check(key, message))
+    {
+        QMessageBox::warning(rootWidget(), tr("Add failed"), message);
+        return QString();
+    }
+    return key;
+}
+
 void MapWrapper::add(const QString &key)
 {
     list->addItem(key);
@@ -752,6 +839,19 @@ void MapWrapper::show(const QString &key)
     }
     btndel->setEnabled(key != "");
     cur = key;
+    emit curChanged(cur);
+}
+
+QStringList MapWrapper::keys() const
+{
+    return rights.keys();
+}
+
+SettingsWrapper *MapWrapper::getSub(const QString &key) const
+{
+    if (rights.contains(key))
+        return rights[key];
+    return nullptr;
 }
 
 void MapWrapper::resetLayout() const
@@ -793,37 +893,7 @@ void MapWrapper::update()
 
 void MapWrapper::reqAdd()
 {
-    QString key;
-    bool ok = false;
-    if (rstrc.isEmpty())
-    {
-        key = QInputDialog::getText(rootWidget(), tr("Add"), tr("New key"), QLineEdit::Normal, "", &ok);
-    }
-    else
-    {
-        QStringList items = rstrc;
-        items.erase(std::remove_if(items.begin(), items.end(), [this](const QString &r) { return rights.contains(r); }),
-                    items.end());
-        if (items.isEmpty())
-        {
-            QMessageBox::warning(rootWidget(), "Add failed", "All possible keys have been added.");
-            return;
-        }
-        key = QInputDialog::getItem(rootWidget(), tr("Add"), tr("Select key"), items, 0, false, &ok);
-    }
-    if (!ok)
-        return;
-    if (rights.contains(key))
-    {
-        QMessageBox::warning(rootWidget(), "Add failed", QString(tr("The key %1 already exists")).arg(key));
-        return;
-    }
-    QString message;
-    if (!check.check(key, message))
-    {
-        QMessageBox::warning(rootWidget(), "Add failed", message);
-        return;
-    }
+    auto key = askKey();
     if (key != "")
         add(key);
 }

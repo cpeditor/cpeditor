@@ -96,7 +96,7 @@ def writeInfo(f, obj, lst):
             for v in func.get("param", {}):
                 vt = func["param"][v]
                 predef = predef + f"auto {v}(__[{json.dumps(v)}].value<{vt}>());"
-            methods = methods + f"{{{json.dumps(fn)},[](QVariant _)->QVariant{{auto __=_.toMap();{predef}do{{{func['code']}}}while(0);return QVariant();}}}}"
+            methods = methods + f"{{{json.dumps(fn)},[](const QVariant &_)->QVariant{{auto __=_.toMap();{predef}do{{{func['code']}}}while(false);return QVariant();}}}},"
         methods = methods + "}"
         depends = t.get("depends", [])
         if typename == "Object":
@@ -230,7 +230,8 @@ namespace SettingsHelper
 #include "Core/StyleManager.hpp"
 #include "Core/Translator.hpp"
 #include "Settings/PathItem.hpp"
-#include "Settings/ValueWrapper.hpp"
+#include "Settings/SettingWidget.hpp"
+#include "Settings/SettingsMethods.hpp"
 #include <QFontDatabase>
 #include <QMessageBox>
 #include <QRect>

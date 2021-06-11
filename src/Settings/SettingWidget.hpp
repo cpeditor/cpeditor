@@ -207,6 +207,19 @@ struct MapWrapper : public WrapperTemplate<QMap<QString, QVariant>, QSplitter>
         bool check(const QString &key, QString &msg) const;
     };
 
+    struct Actions
+    {
+        QList<std::pair<QString, QString>> data;
+        MapWrapper *parent;
+
+        void init(const QVariant &cfg);
+        bool hasMore() const
+        {
+            return data.length() > 0;
+        }
+        void genMenu(QMenu *menu) const;
+    };
+
     virtual void init(QWidget *parent, QVariant param = QVariant()) override;
     virtual QMap<QString, QVariant> get() const override;
     virtual void set(const QMap<QString, QVariant> &v) override;
@@ -217,9 +230,12 @@ struct MapWrapper : public WrapperTemplate<QMap<QString, QVariant>, QSplitter>
     virtual void apply() override;
     virtual bool changed() const override;
 
+    QString askKey(const QString &suggest = "") const;
     void add(const QString &key);
     void del(const QString &key);
     void show(const QString &key);
+    QStringList keys() const;
+    SettingsWrapper *getSub(const QString &key) const;
 
     void resetLayout() const;
 
@@ -229,13 +245,18 @@ struct MapWrapper : public WrapperTemplate<QMap<QString, QVariant>, QSplitter>
     void reqAdd();
     void reqDel();
 
+  signals:
+    void curChanged(QString cur);
+
   public:
     QString cur;
     QStringList filt;
     QStringList rstrc;
     KeyCheck check;
+    Actions action;
     QPushButton *btnadd;
     QPushButton *btndel;
+    QPushButton *btnmre;
     QListWidget *list;
     QWidget *right;
     QMap<QString, SettingsWrapper *> rights;

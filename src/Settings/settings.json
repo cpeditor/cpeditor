@@ -1051,12 +1051,39 @@
       {
         "name": "Snippet",
         "type": "Object",
+        "methods": {
+          "loadsnippet": {
+            "param": {
+              "widget": "MapWrapper*",
+              "valid": "bool"
+            },
+            "code": "return SettingsMethods::loadSnippet(widget, valid);"
+          },
+          "extractsnippet": {
+            "param": {
+              "widget": "MapWrapper*",
+              "valid": "bool"
+            },
+            "code": "return SettingsMethods::extractSnippet(widget, valid);"
+          }
+        },
+        "param": {
+          "action": [
+            {
+              "name": "@tr(\"Load Snippet From File\")",
+              "method": "loadsnippet"
+            },
+            {
+              "name": "@tr(\"Extract Snippet To File\")",
+              "method": "extractsnippet"
+            }
+          ]
+        },
         "sub": [
           {
             "name": "Code",
             "type": "QString",
-            "ui": "QPlainTextEdit",
-            "notr": true
+            "ui": "QPlainTextEdit"
           }
         ],
         "notr": true
