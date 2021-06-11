@@ -41,9 +41,17 @@ bool SettingBase::changed() const
     return getV() != SettingsManager::get(iter.key());
 }
 
+QString SettingBase::docLink() const
+{
+    auto prefix = Util::websiteLink("docs/preferences/" + Util::sanitizeAnchorName(path.split('/').first()));
+    return QString("<a href='%1#%2'>(?)</a>")
+        .arg(prefix)
+        .arg(iter->docAnchor.isEmpty() ? Util::sanitizeAnchorName(iter->desc) : iter->docAnchor);
+}
+
 void CheckBoxWrapper::init(QWidget *parent, QVariant param)
 {
-    widget = new RichTextCheckBox(param.toString(), parent);
+    widget = new RichTextCheckBox(param.toString() + docLink(), parent);
     connect(widget, &RichTextCheckBox::toggled, this, &SettingBase::valueChanged);
 }
 
@@ -324,9 +332,6 @@ void SettingsWrapper::init(QWidget *parent, QVariant param)
 {
     widget = new QWidget(parent);
 
-    const QString docsLinkPrefix =
-        Util::websiteLink("docs/preferences/" + Util::sanitizeAnchorName(path.split('/').first()));
-
     auto *layout = new QFormLayout(widget);
     layout->setMargin(0);
     widget->setLayout(layout);
@@ -353,7 +358,7 @@ void SettingsWrapper::init(QWidget *parent, QVariant param)
     {
         auto siter = iter;
         siter.child(key, name);
-        QString desc = siter->desc; // TODO: add doc anchor
+        QString desc = siter->desc;
         SettingBase *wrap = createWrapper(siter, widget, desc);
         wrap->parent = this;
         wrap->path = path + '/' + siter->name;
@@ -362,20 +367,15 @@ void SettingsWrapper::init(QWidget *parent, QVariant param)
         connect(wrap, &SettingBase::valueChanged, this, &SettingsWrapper::update);
         wrap->enable(false);
         wraps[name] = wrap;
-        const auto docsLinkText =
-            QString("<a href='%1#%2'>(?)</a>")
-                .arg(docsLinkPrefix)
-                .arg(siter->docAnchor.isEmpty() ? Util::sanitizeAnchorName(siter->desc) : siter->docAnchor);
         auto *label = new QLabel;
         label->setOpenExternalLinks(true);
-        if (siter->type == "bool")
+        if (siter->type == "bool" || siter->type == "Object")
         {
-            label->setText(docsLinkText);
             layout->addRow(label, wrap->rootWidget());
         }
         else
         {
-            label->setText(desc + " " + docsLinkText);
+            label->setText(desc + " " + wrap->docLink());
             layout->addRow(label, wrap->rootWidget());
         }
     }
@@ -565,8 +565,6 @@ bool MapWrapper::KeyCheck::check(const QString &key, QString &msg) const
     return true;
 }
 
-#include <QDebug>
-
 void MapWrapper::Actions::init(const QVariant &cfg)
 {
     for (const auto &a : cfg.toList())
@@ -588,7 +586,7 @@ void MapWrapper::Actions::genMenu(QMenu *menu) const
     p.setValue(parent);
     for (const auto &d : data)
     {
-        QAction *act = new QAction(d.first);
+        auto *act = new QAction(d.first);
         auto f = [this, &d, p, act]() {
             act->setEnabled(parent->iter->call(d.second, "widget", p, "valid", true).toBool());
         };
@@ -609,7 +607,13 @@ void MapWrapper::init(QWidget *parent, QVariant param)
 
     auto *leftWidget = new QWidget(widget);
     auto *leftLayout = new QVBoxLayout(leftWidget);
+    leftLayout->setMargin(0);
     leftWidget->setLayout(leftLayout);
+
+    auto *name = new QLabel;
+    name->setText(iter->desc + " " + docLink());
+    name->setOpenExternalLinks(true);
+    leftLayout->addWidget(name);
 
     list = new QListWidget(leftWidget);
     if (!param.isNull())
@@ -640,7 +644,7 @@ void MapWrapper::init(QWidget *parent, QVariant param)
     if (action.hasMore())
     {
         btnmre = new QPushButton(tr("More..."), leftWidget);
-        QMenu *menu = new QMenu;
+        auto *menu = new QMenu;
         action.genMenu(menu);
         btnmre->setMenu(menu);
         btnLayout->addWidget(btnmre);

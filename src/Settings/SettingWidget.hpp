@@ -40,6 +40,8 @@ struct SettingBase : public QObject
     virtual void apply();
     virtual bool changed() const;
 
+    QString docLink() const;
+
   signals:
     void valueChanged();
 };
