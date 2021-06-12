@@ -27,6 +27,7 @@ DefaultDirName={autopf}\cpeditor
 DisableProgramGroupPage=yes
 UsedUserAreasWarning=no
 LicenseFile={#MyProjectRoot}\LICENSE
+PrivilegesRequiredOverridesAllowed=dialog
 OutputDir={#MyProjectRoot}
 OutputBaseFilename=cpeditor-setup
 SetupIconFile={#MyProjectRoot}\assets\icon.ico
@@ -108,15 +109,15 @@ end;
 #endif
 
 [Registry]
-Root: HKCR; Subkey: ".cpp\OpenWithProgIds"; ValueType: none;  ValueName: "{#MyAppName}"; Flags: uninsdeletekey
-Root: HKCR; Subkey: ".c++\OpenWithProgIds"; ValueType: none;  ValueName: "{#MyAppName}"; Flags: uninsdeletekey
-Root: HKCR; Subkey: ".cxx\OpenWithProgIds"; ValueType: none;  ValueName: "{#MyAppName}"; Flags: uninsdeletekey
-Root: HKCR; Subkey: ".cc\OpenWithProgIds"; ValueType: none;  ValueName: "{#MyAppName}"; Flags: uninsdeletekey
-Root: HKCR; Subkey: ".c\OpenWithProgIds"; ValueType: none;  ValueName: "{#MyAppName}"; Flags: uninsdeletekey
-Root: HKCR; Subkey: ".h\OpenWithProgIds"; ValueType: none;  ValueName: "{#MyAppName}"; Flags: uninsdeletekey
-Root: HKCR; Subkey: ".hpp\OpenWithProgIds"; ValueType: none;  ValueName: "{#MyAppName}"; Flags: uninsdeletekey
-Root: HKCR; Subkey: ".py\OpenWithProgIds"; ValueType: none;  ValueName: "{#MyAppName}"; Flags: uninsdeletekey
-Root: HKCR; Subkey: ".py3\OpenWithProgIds"; ValueType: none;  ValueName: "{#MyAppName}"; Flags: uninsdeletekey
-Root: HKCR; Subkey: ".java\OpenWithProgIds"; ValueType: none;  ValueName: "{#MyAppName}"; Flags: uninsdeletekey
-Root: HKCR; Subkey: "{#MyAppName}\DefaultIcon"; ValueType: string; ValueName: "{app}\{#MyAppExeName},1"; Flags: uninsdeletekey
-Root: HKCR; Subkey: "{#MyAppName}\shell\open\command"; ValueType: string; ValueName: "";  ValueData: """{app}\{#MyAppExeName}"" ""%1"""; Flags: uninsdeletekey
+Root: HKA; Subkey: "Software\Classes\.cpp\OpenWithProgIds"; ValueType: string;  ValueName: "{#MyAppName}"; Flags: uninsdeletekey
+Root: HKA; Subkey: "Software\Classes\.c++\OpenWithProgIds"; ValueType: string;  ValueName: "{#MyAppName}"; Flags: uninsdeletekey
+Root: HKA; Subkey: "Software\Classes\.cxx\OpenWithProgIds"; ValueType: string;  ValueName: "{#MyAppName}"; Flags: uninsdeletekey
+Root: HKA; Subkey: "Software\Classes\.cc\OpenWithProgIds"; ValueType: string;  ValueName: "{#MyAppName}"; Flags: uninsdeletekey
+Root: HKA; Subkey: "Software\Classes\.c\OpenWithProgIds"; ValueType: string;  ValueName: "{#MyAppName}"; Flags: uninsdeletekey
+Root: HKA; Subkey: "Software\Classes\.h\OpenWithProgIds"; ValueType: string;  ValueName: "{#MyAppName}"; Flags: uninsdeletekey
+Root: HKA; Subkey: "Software\Classes\.hpp\OpenWithProgIds"; ValueType: string;  ValueName: "{#MyAppName}"; Flags: uninsdeletekey
+Root: HKA; Subkey: "Software\Classes\.py\OpenWithProgIds"; ValueType: string;  ValueName: "{#MyAppName}"; Flags: uninsdeletekey
+Root: HKA; Subkey: "Software\Classes\.py3\OpenWithProgIds"; ValueType: string;  ValueName: "{#MyAppName}"; Flags: uninsdeletekey
+Root: HKA; Subkey: "Software\Classes\.java\OpenWithProgIds"; ValueType: string;  ValueName: "{#MyAppName}"; Flags: uninsdeletekey
+Root: HKA; Subkey: "{#MyAppName}\DefaultIcon"; ValueType: string; ValueName: "{app}\{#MyAppExeName},1"; Flags: uninsdeletekey
+Root: HKA; Subkey: "{#MyAppName}\shell\open\command"; ValueType: string; ValueName: "";  ValueData: """{app}\{#MyAppExeName}"" ""%1"""; Flags: uninsdeletekey
