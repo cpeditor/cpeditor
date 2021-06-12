@@ -14,3 +14,4 @@ Terminal=false
 StartupNotify=true
 Encoding=UTF-8
 Categories=Development;TextEditor;Qt;
+MimeType=text/x-c++hdr;text/x-c++src;text/x-chdr;text/x-csrc;text/x-java;text/x-python;

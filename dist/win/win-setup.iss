@@ -107,3 +107,17 @@ begin
     EnvRemovePath(ExpandConstant('{app}') +'\{#GccDir}\bin');
 end;
 #endif
+
+[Registry]
+Root: HKA; Subkey: "Software\Classes\.cpp\OpenWithProgIds"; ValueType: string;  ValueName: "{#MyAppName}"; Flags: uninsdeletekey
+Root: HKA; Subkey: "Software\Classes\.c++\OpenWithProgIds"; ValueType: string;  ValueName: "{#MyAppName}"; Flags: uninsdeletekey
+Root: HKA; Subkey: "Software\Classes\.cxx\OpenWithProgIds"; ValueType: string;  ValueName: "{#MyAppName}"; Flags: uninsdeletekey
+Root: HKA; Subkey: "Software\Classes\.cc\OpenWithProgIds"; ValueType: string;  ValueName: "{#MyAppName}"; Flags: uninsdeletekey
+Root: HKA; Subkey: "Software\Classes\.c\OpenWithProgIds"; ValueType: string;  ValueName: "{#MyAppName}"; Flags: uninsdeletekey
+Root: HKA; Subkey: "Software\Classes\.h\OpenWithProgIds"; ValueType: string;  ValueName: "{#MyAppName}"; Flags: uninsdeletekey
+Root: HKA; Subkey: "Software\Classes\.hpp\OpenWithProgIds"; ValueType: string;  ValueName: "{#MyAppName}"; Flags: uninsdeletekey
+Root: HKA; Subkey: "Software\Classes\.py\OpenWithProgIds"; ValueType: string;  ValueName: "{#MyAppName}"; Flags: uninsdeletekey
+Root: HKA; Subkey: "Software\Classes\.py3\OpenWithProgIds"; ValueType: string;  ValueName: "{#MyAppName}"; Flags: uninsdeletekey
+Root: HKA; Subkey: "Software\Classes\.java\OpenWithProgIds"; ValueType: string;  ValueName: "{#MyAppName}"; Flags: uninsdeletekey
+Root: HKA; Subkey: "Software\Classes\{#MyAppName}\DefaultIcon"; ValueType: string; ValueName: "{app}\{#MyAppExeName},1"; Flags: uninsdeletekey
+Root: HKA; Subkey: "Software\Classes\{#MyAppName}\shell\open\command"; ValueType: string; ValueName: "";  ValueData: """{app}\{#MyAppExeName}"" ""%1"""; Flags: uninsdeletekey

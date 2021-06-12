@@ -6,7 +6,7 @@
 -   Configurable text cursor width. (#781 and #795)
 -   Now accepted testcases can be auto-unchecked. (#734 and #797)
 -   Update icon for macOS. (#838)
--   On macOS, now you can click on source files to open them via CP Editor. (#846 and #849)
+-   Now you can click on source files to open them via CP Editor. (#846,#849,#855 and #860)
 
 ### Fixed
 
