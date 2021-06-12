@@ -108,15 +108,15 @@ end;
 #endif
 
 [Registry]
-Root: HKCR; Subkey: ".cpp\OpenWithProgIds\{#MyAppName}"; Flags: uninsdeletekey
-Root: HKCR; Subkey: ".c++\OpenWithProgIds\{#MyAppName}"; Flags: uninsdeletekey
-Root: HKCR; Subkey: ".cxx\OpenWithProgIds\{#MyAppName}"; Flags: uninsdeletekey
-Root: HKCR; Subkey: ".cc\OpenWithProgIds\{#MyAppName}"; Flags: uninsdeletekey
-Root: HKCR; Subkey: ".c\OpenWithProgIds\{#MyAppName}"; Flags: uninsdeletekey
-Root: HKCR; Subkey: ".h\OpenWithProgIds\{#MyAppName}"; Flags: uninsdeletekey
-Root: HKCR; Subkey: ".hpp\OpenWithProgIds\{#MyAppName}"; Flags: uninsdeletekey
-Root: HKCR; Subkey: ".py\OpenWithProgIds\{#MyAppName}"; Flags: uninsdeletekey
-Root: HKCR; Subkey: ".py3\OpenWithProgIds\{#MyAppName}"; Flags: uninsdeletekey
-Root: HKCR; Subkey: ".java\OpenWithProgIds\{#MyAppName}"; Flags: uninsdeletekey
+Root: HKCR; Subkey: ".cpp\OpenWithProgIds"; ValueType: none;  ValueName: "{#MyAppName}"; Flags: uninsdeletekey
+Root: HKCR; Subkey: ".c++\OpenWithProgIds"; ValueType: none;  ValueName: "{#MyAppName}"; Flags: uninsdeletekey
+Root: HKCR; Subkey: ".cxx\OpenWithProgIds"; ValueType: none;  ValueName: "{#MyAppName}"; Flags: uninsdeletekey
+Root: HKCR; Subkey: ".cc\OpenWithProgIds"; ValueType: none;  ValueName: "{#MyAppName}"; Flags: uninsdeletekey
+Root: HKCR; Subkey: ".c\OpenWithProgIds"; ValueType: none;  ValueName: "{#MyAppName}"; Flags: uninsdeletekey
+Root: HKCR; Subkey: ".h\OpenWithProgIds"; ValueType: none;  ValueName: "{#MyAppName}"; Flags: uninsdeletekey
+Root: HKCR; Subkey: ".hpp\OpenWithProgIds"; ValueType: none;  ValueName: "{#MyAppName}"; Flags: uninsdeletekey
+Root: HKCR; Subkey: ".py\OpenWithProgIds"; ValueType: none;  ValueName: "{#MyAppName}"; Flags: uninsdeletekey
+Root: HKCR; Subkey: ".py3\OpenWithProgIds"; ValueType: none;  ValueName: "{#MyAppName}"; Flags: uninsdeletekey
+Root: HKCR; Subkey: ".java\OpenWithProgIds"; ValueType: none;  ValueName: "{#MyAppName}"; Flags: uninsdeletekey
 Root: HKCR; Subkey: "{#MyAppName}\DefaultIcon"; ValueType: string; ValueName: "{app}\{#MyAppExeName},1"; Flags: uninsdeletekey
 Root: HKCR; Subkey: "{#MyAppName}\shell\open\command"; ValueType: string; ValueName: "";  ValueData: """{app}\{#MyAppExeName}"" ""%1"""; Flags: uninsdeletekey
