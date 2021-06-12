@@ -643,7 +643,7 @@ void MapWrapper::init(QWidget *parent, QVariant param)
 
     if (action.hasMore())
     {
-        btnmre = new QPushButton(tr("More..."), leftWidget);
+        btnmre = new QPushButton(tr("More"), leftWidget);
         auto *menu = new QMenu;
         action.genMenu(menu);
         btnmre->setMenu(menu);
@@ -747,7 +747,8 @@ QString MapWrapper::askKey(const QString &suggest) const
     bool ok = false;
     if (rstrc.isEmpty())
     {
-        key = QInputDialog::getText(rootWidget(), tr("Add"), tr("New key"), QLineEdit::Normal, suggest, &ok);
+        key = QInputDialog::getText(rootWidget(), tr("Add %1").arg(iter->desc), tr("Add %1").arg(iter->desc),
+                                    QLineEdit::Normal, suggest, &ok);
     }
     else
     {
@@ -756,17 +757,19 @@ QString MapWrapper::askKey(const QString &suggest) const
                     items.end());
         if (items.isEmpty())
         {
-            QMessageBox::warning(rootWidget(), tr("Add failed"), tr("All possible keys have been added."));
+            QMessageBox::warning(rootWidget(), tr("Add failed"), tr("All possible names have been used."));
             return QString();
         }
         auto idx = items.indexOf(suggest);
-        key = QInputDialog::getItem(rootWidget(), tr("Add"), tr("Select key"), items, std::max(idx, 0), false, &ok);
+        key = QInputDialog::getItem(rootWidget(), tr("Add %1").arg(iter->desc), tr("Select %1").arg(iter->desc), items,
+                                    std::max(idx, 0), false, &ok);
     }
     if (!ok)
         return QString();
     if (rights.contains(key))
     {
-        QMessageBox::warning(rootWidget(), tr("Add failed"), QString(tr("The key %1 already exists")).arg(key));
+        QMessageBox::warning(rootWidget(), tr("Add failed"),
+                             QString(tr(" %1 already exists")).arg(iter->desc).arg(key));
         return QString();
     }
     QString message;

@@ -1197,6 +1197,41 @@ Do you want to reload it?</source>
     </message>
 </context>
 <context>
+    <name>MapWrapper</name>
+    <message>
+        <source>Add</source>
+        <translation>添加</translation>
+    </message>
+    <message>
+        <source>Del</source>
+        <translation>删除</translation>
+    </message>
+    <message>
+        <source>More</source>
+        <translation>更多</translation>
+    </message>
+    <message>
+        <source>Add %1</source>
+        <translation>添加%1</translation>
+    </message>
+    <message>
+        <source>Add failed</source>
+        <translation>添加失败</translation>
+    </message>
+    <message>
+        <source>All possible names have been used.</source>
+        <translation>所有可能的名称均已被使用。</translation>
+    </message>
+    <message>
+        <source>Select %1</source>
+        <translation>选择%1</translation>
+    </message>
+    <message>
+        <source> %1 already exists</source>
+        <translation>%1已经存在</translation>
+    </message>
+</context>
+<context>
     <name>MessageLogger</name>
     <message>
         <source>
@@ -1519,6 +1554,10 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <source>Test Cases</source>
         <translation>测试用例</translation>
+    </message>
+    <message>
+        <source>TEST</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2618,6 +2657,61 @@ You can learn about it by running `yapf --style-help`.</source>
     <message>
         <source>Automatically uncheck test cases when they get accepted.</source>
         <translation>在测试点通过测试时自动取消选中。</translation>
+    </message>
+    <message>
+        <source>Auto Complete</source>
+        <translation>自动补全</translation>
+    </message>
+    <message>
+        <source>Auto Remove</source>
+        <translation>自动删除</translation>
+    </message>
+    <message>
+        <source>Tab Jump Out</source>
+        <translation>按 Tab 键跳出</translation>
+    </message>
+    <message>
+        <source>Parentheses</source>
+        <translation>括号</translation>
+    </message>
+    <message>
+        <source>Parentheses sequence should contains exactly two character.</source>
+        <translation>括号序列应该恰好两个字符。</translation>
+    </message>
+    <message>
+        <source>Code</source>
+        <translation>代码</translation>
+    </message>
+    <message>
+        <source>Load Snippet From File</source>
+        <translation>从文件中加载代码片段</translation>
+    </message>
+    <message>
+        <source>Extract Snippet To File</source>
+        <translation>导出代码片段到文件</translation>
+    </message>
+</context>
+<context>
+    <name>SettingsMethods</name>
+    <message>
+        <source>Load Snippets</source>
+        <translation>加载代码片段</translation>
+    </message>
+    <message>
+        <source>Failed to open [%1]. Do I have read permission?</source>
+        <translation>打开 [%1] 失败。你拥有读取权限吗？</translation>
+    </message>
+    <message>
+        <source>Extract Snippets</source>
+        <translation>导出代码片段</translation>
+    </message>
+    <message>
+        <source>Extract Snippets: %1</source>
+        <translation>导出代码片段：%1</translation>
+    </message>
+    <message>
+        <source>Failed to write to [%1]. Do I have write permission?</source>
+        <translation>写入 [%1] 失败。你拥有写入权限吗？</translation>
     </message>
 </context>
 <context>

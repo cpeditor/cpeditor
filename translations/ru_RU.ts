@@ -1197,6 +1197,41 @@ Do you want to reload it?</source>
     </message>
 </context>
 <context>
+    <name>MapWrapper</name>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished">Добавить</translation>
+    </message>
+    <message>
+        <source>Del</source>
+        <translation type="unfinished">Удалить</translation>
+    </message>
+    <message>
+        <source>More</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All possible names have been used.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> %1 already exists</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MessageLogger</name>
     <message>
         <source>
@@ -1519,6 +1554,10 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <source>Test Cases</source>
         <translation type="unfinished">Тесткейсы</translation>
+    </message>
+    <message>
+        <source>TEST</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2626,6 +2665,61 @@ You can learn about it by running `yapf --style-help`.</source>
     <message>
         <source>Automatically uncheck test cases when they get accepted.</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto Complete</source>
+        <translation type="unfinished">Автозавершение</translation>
+    </message>
+    <message>
+        <source>Auto Remove</source>
+        <translation type="unfinished">Автоудаление</translation>
+    </message>
+    <message>
+        <source>Tab Jump Out</source>
+        <translation type="unfinished">Tab Jump Out</translation>
+    </message>
+    <message>
+        <source>Parentheses</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Parentheses sequence should contains exactly two character.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Load Snippet From File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Extract Snippet To File</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SettingsMethods</name>
+    <message>
+        <source>Load Snippets</source>
+        <translation type="unfinished">Загрузить сниппет</translation>
+    </message>
+    <message>
+        <source>Failed to open [%1]. Do I have read permission?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Extract Snippets</source>
+        <translation type="unfinished">Дополнительные сниппеты</translation>
+    </message>
+    <message>
+        <source>Extract Snippets: %1</source>
+        <translation type="unfinished">Дополнительные сниппеты: %1</translation>
+    </message>
+    <message>
+        <source>Failed to write to [%1]. Do I have write permission?</source>
+        <translation type="unfinished">Не удалось записать изменения в файл [%1]. Предоставлен ли доступ к изменению фалйла?</translation>
     </message>
 </context>
 <context>
