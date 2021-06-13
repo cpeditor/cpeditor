@@ -615,6 +615,8 @@ void MapWrapper::init(QWidget *parent, QVariant param)
     name->setOpenExternalLinks(true);
     leftLayout->addWidget(name);
 
+    bool allowRename = false;
+
     list = new QListWidget(leftWidget);
     if (!param.isNull())
     {
@@ -627,6 +629,8 @@ void MapWrapper::init(QWidget *parent, QVariant param)
             check.init(cfg["check"]);
         if (cfg.contains("action"))
             action.init(cfg["action"]);
+        if (cfg.contains("rename"))
+            allowRename = cfg["rename"].toBool();
     }
     leftLayout->addWidget(list);
 
@@ -641,10 +645,22 @@ void MapWrapper::init(QWidget *parent, QVariant param)
     connect(btndel, &QPushButton::clicked, this, &MapWrapper::reqDel);
     btndel->setEnabled(false);
 
-    if (action.hasMore())
+    if (action.hasMore() || allowRename)
     {
         btnmre = new QPushButton(tr("More"), leftWidget);
         auto *menu = new QMenu;
+        if (allowRename)
+        {
+            auto *ren = new QAction(tr("rename"));
+            connect(this, &MapWrapper::curChanged, [ren](QString cur) { ren->setEnabled(cur != ""); });
+            connect(ren, &QAction::triggered, [this]() {
+                QString key = askKey(cur);
+                if (key.isEmpty())
+                    return;
+                rename(key);
+            });
+            menu->addAction(ren);
+        }
         action.genMenu(menu);
         btnmre->setMenu(menu);
         btnLayout->addWidget(btnmre);
@@ -769,7 +785,7 @@ QString MapWrapper::askKey(const QString &suggest) const
     if (rights.contains(key))
     {
         QMessageBox::warning(rootWidget(), tr("Add failed"),
-                             QString(tr(" %1 already exists")).arg(iter->desc).arg(key));
+                             QString(tr("%1 %2 already exists")).arg(iter->desc).arg(key));
         return QString();
     }
     QString message;
@@ -832,21 +848,27 @@ void MapWrapper::del(const QString &key)
 
 void MapWrapper::show(const QString &key)
 {
-    if (cur == key)
+    if (cur != "")
     {
-        return;
+        rights[cur]->rootWidget()->setVisible(false);
     }
     if (key != "")
     {
         rights[key]->rootWidget()->setVisible(true);
     }
-    if (cur != "")
-    {
-        rights[cur]->rootWidget()->setVisible(false);
-    }
     btndel->setEnabled(key != "");
     cur = key;
     emit curChanged(cur);
+}
+
+void MapWrapper::rename(const QString &target)
+{
+    if (cur == "")
+        return;
+    data[target] = data.take(cur);
+    reload();
+    show(target);
+    emit valueChanged();
 }
 
 QStringList MapWrapper::keys() const
@@ -873,16 +895,21 @@ void MapWrapper::resetLayout() const
 void MapWrapper::reload()
 {
     resetLayout();
+    updateDisabled = true;
     for (const auto &name : data.keys())
     {
         add(name);
-        rights[name]->reload();
+        rights[name]->setV(data[name]);
     }
+    updateDisabled = false;
+    cur = "";
     show("");
 }
 
 void MapWrapper::update()
 {
+    if (updateDisabled)
+        return;
     bool updated = false;
     for (const auto &name : rights.keys())
     {

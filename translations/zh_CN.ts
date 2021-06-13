@@ -1227,8 +1227,12 @@ Do you want to reload it?</source>
         <translation>选择%1</translation>
     </message>
     <message>
-        <source> %1 already exists</source>
-        <translation>%1已经存在</translation>
+        <source>%1 %2 already exists</source>
+        <translation>%1%2已经存在</translation>
+    </message>
+    <message>
+        <source>rename</source>
+        <translation>重命名</translation>
     </message>
 </context>
 <context>

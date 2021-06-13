@@ -236,6 +236,7 @@ struct MapWrapper : public WrapperTemplate<QMap<QString, QVariant>, QSplitter>
     void add(const QString &key);
     void del(const QString &key);
     void show(const QString &key);
+    void rename(const QString &target);
     QStringList keys() const;
     SettingsWrapper *getSub(const QString &key) const;
 
@@ -251,6 +252,7 @@ struct MapWrapper : public WrapperTemplate<QMap<QString, QVariant>, QSplitter>
     void curChanged(QString cur);
 
   public:
+    bool updateDisabled = false;
     QString cur;
     QStringList filt;
     QStringList rstrc;

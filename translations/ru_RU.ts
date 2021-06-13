@@ -1227,7 +1227,11 @@ Do you want to reload it?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source> %1 already exists</source>
+        <source>%1 %2 already exists</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>rename</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
