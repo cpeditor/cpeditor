@@ -2702,6 +2702,10 @@ You can learn about it by running `yapf --style-help`.</source>
         <source>Extract Snippet To File</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Snippet</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsMethods</name>

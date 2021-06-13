@@ -86,6 +86,28 @@ class SettingsInfo
             }
             return -1;
         }
+        QVariant buildChildDefault() const
+        {
+            if (type != "Object")
+                return QVariant();
+            QMap<QString, QVariant> ret;
+            for (const auto &si : child)
+            {
+                if (si.type == "Object")
+                {
+                    QMap<QString, QVariant> mp;
+                    auto d = si.buildChildDefault();
+                    for (const auto &k : si.def.toStringList())
+                    {
+                        mp[k] = d;
+                    }
+                    ret[si.name] = mp;
+                }
+                else
+                    ret[si.name] = si.def;
+            }
+            return ret;
+        }
         template <typename... Extra> QVariant call(const QString &name, const Extra &... extra) const
         {
             if (!methods.contains(name))

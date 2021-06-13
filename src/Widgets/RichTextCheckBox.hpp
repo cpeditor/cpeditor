@@ -78,6 +78,7 @@ class RichTextCheckBox : public QWidget
   signals:
     void toggled(bool);
     void clicked();
+    void stateChanged(int);
 
   public slots:
     void setChecked(bool);

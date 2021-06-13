@@ -2694,6 +2694,10 @@ You can learn about it by running `yapf --style-help`.</source>
         <source>Extract Snippet To File</source>
         <translation>导出代码片段到文件</translation>
     </message>
+    <message>
+        <source>Snippet</source>
+        <translation>代码片段</translation>
+    </message>
 </context>
 <context>
     <name>SettingsMethods</name>

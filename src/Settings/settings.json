@@ -22,7 +22,7 @@
   {
     "name": "Editor Font",
     "type": "QFont",
-    "default": "[](){ QFont font = QFontDatabase::systemFont(QFontDatabase::FixedFont); font.setStyleHint(QFont::TypeWriter); return font; }()",
+    "default": "#[](){ QFont font = QFontDatabase::systemFont(QFontDatabase::FixedFont); font.setStyleHint(QFont::TypeWriter); return font; }()",
     "param": true,
     "tip": "The font of the code editor",
     "old": ["font"]
@@ -35,7 +35,7 @@
   {
     "name": "Custom Application Font",
     "type": "QFont",
-    "default": "QFontDatabase::systemFont(QFontDatabase::GeneralFont)",
+    "default": "#QFontDatabase::systemFont(QFontDatabase::GeneralFont)",
     "param": false,
     "depends": [
       {
@@ -187,7 +187,7 @@
   {
     "name": "C++/Parentheses",
     "type": "QVariantList",
-    "default": "QVariantList { QVariantList {'(', ')', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'{', '}', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'[', ']', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'\"', '\"', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'\\'', '\\'', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked} }",
+    "default": "#QVariantList { QVariantList {'(', ')', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'{', '}', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'[', ']', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'\"', '\"', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'\\'', '\\'', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked} }",
     "notr": true
   },
   {
@@ -208,7 +208,6 @@
   {
     "name": "Java/Run Arguments",
     "type": "QString",
-    "default": "",
     "tip": "The runtime arguments when executing a Java program",
     "old": ["runtime_java"]
   },
@@ -274,7 +273,7 @@
   {
     "name": "Java/Parentheses",
     "type": "QVariantList",
-    "default": "QVariantList { QVariantList {'(', ')', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'{', '}', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'[', ']', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'\"', '\"', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'\\'', '\\'', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked} }",
+    "default": "#QVariantList { QVariantList {'(', ')', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'{', '}', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'[', ']', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'\"', '\"', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'\\'', '\\'', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked} }",
     "notr": true
   },
   {
@@ -340,7 +339,7 @@
   {
     "name": "Python/Parentheses",
     "type": "QVariantList",
-    "default": "QVariantList { QVariantList {'(', ')', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'{', '}', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'[', ']', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'\"', '\"', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'\\'', '\\'', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked} }",
+    "default": "#QVariantList { QVariantList {'(', ')', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'{', '}', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'[', ']', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'\"', '\"', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'\\'', '\\'', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked} }",
     "notr": true
   },
   {
@@ -677,7 +676,7 @@
     "name": "CF/Show Toast Messages",
     "desc": "Show toast messages for submission verdicts",
     "type": "bool",
-    "default": "true",
+    "default": true,
     "tip": "Show a toast message when the verdict of a submission is known. You can see the message outside of CP Editor."
   },
   {
@@ -908,7 +907,7 @@
   {
     "name": "Testcases Matching Rules",
     "type": "QVariantList",
-    "default": "QVariantList { QStringList {\"(.*)\\\\.in\", \"\\\\1.ans\"}, QStringList {\"(.*)\\\\.in\", \"\\\\1.out\"}}",
+    "default": "#QVariantList { QStringList {\"(.*)\\\\.in\", \"\\\\1.ans\"}, QStringList {\"(.*)\\\\.in\", \"\\\\1.out\"}}",
     "param": [
       [
         "@tr(\"Input Regex\")", "@tr(\"The regular expression which matches the whole input file name\")"
@@ -934,7 +933,7 @@
   {
     "name": "Default File Paths For Problem URLs",
     "type": "QVariantList",
-    "default": "QVariantList {}",
+    "default": "#QVariantList {}",
     "param": [
       [
         "@tr(\"Problem URL\")", "@tr(\"The regular expression which matches a part of the problem URL\")"
@@ -948,7 +947,7 @@
   {
     "name": "Test Cases Font",
     "type": "QFont",
-    "default": "[](){ QFont font = QFontDatabase::systemFont(QFontDatabase::FixedFont); font.setStyleHint(QFont::TypeWriter); return font; }()",
+    "default": "#[](){ QFont font = QFontDatabase::systemFont(QFontDatabase::FixedFont); font.setStyleHint(QFont::TypeWriter); return font; }()",
     "param": true,
     "tip": "The font of test cases"
   },
@@ -961,14 +960,14 @@
   {
     "name": "Message Logger Font",
     "type": "QFont",
-    "default": "[](){ QFont font = QFontDatabase::systemFont(QFontDatabase::FixedFont); font.setStyleHint(QFont::TypeWriter); return font; }()",
+    "default": "#[](){ QFont font = QFontDatabase::systemFont(QFontDatabase::FixedFont); font.setStyleHint(QFont::TypeWriter); return font; }()",
     "param": true,
     "tip": "The font of the message logger"
   },
   {
     "name": "Save File On Compilation",
     "type": "bool",
-    "default": "true",
+    "default": true,
     "tip": "Save the source file when compiling it. It won't be saved if the tab is untitled."
   },
   {
@@ -1023,6 +1022,9 @@
         "C++", "Java", "Python"
       ]
     },
+    "default": [
+      "C++", "Java", "Python"
+    ],
     "sub": [
       {
         "name": "Parentheses",
@@ -1033,18 +1035,31 @@
             "message": "@tr(\"Parentheses sequence should contains exactly two character.\")"
           }]
         },
+        "default": [
+          "[]",
+          "()",
+          "{}",
+          "\"\"",
+          "''"
+        ],
         "sub": [
           {
             "name": "Auto Complete",
-            "type": "bool"
+            "type": "int",
+            "ui": "RichTextCheckBox",
+            "default": "#Qt::PartiallyChecked"
           },
           {
             "name": "Auto Remove",
-            "type": "bool"
+            "type": "int",
+            "ui": "RichTextCheckBox",
+            "default": "#Qt::PartiallyChecked"
           },
           {
             "name": "Tab Jump Out",
-            "type": "bool"
+            "type": "int",
+            "ui": "RichTextCheckBox",
+            "default": "#Qt::PartiallyChecked"
           }
         ]
       },
@@ -1086,8 +1101,7 @@
             "type": "QString",
             "ui": "QPlainTextEdit"
           }
-        ],
-        "notr": true
+        ]
       }
     ],
     "notr": true
@@ -1115,7 +1129,7 @@
     "name": "Proxy/Enabled",
     "desc": "Enable Proxy",
     "type": "bool",
-    "default": "true",
+    "default": true,
     "docAnchor": "network-proxy",
     "tip": "Enable proxy for checking updates"
   },
@@ -1234,14 +1248,14 @@
     "name": "Auto Load External Changes If No Unsaved Modification",
     "desc": "Auto-load external file changes if there's no unsaved modification",
     "type": "bool",
-    "default": "true",
+    "default": true,
     "tip": "Automatically load file changes that are not made in CP Editor if there's no unsaved modification in CP Editor."
   },
   {
     "name": "Ask For Loading External Changes",
     "desc": "Ask whether to load external file changes",
     "type": "bool",
-    "default": "true",
+    "default": true,
     "trtip": "tr(\"When there are file changes that are not made in CP Editor and is not automatically loaded by\\n\\\"%1\\\", ask for whether to load the changes.\\nIf this is disabled, external file changes will be ignored unless they are loaded by\\n\\\"%1\\\".\").arg(tr(\"Auto-load external file changes if there's no unsaved modification\"))"
   },
   {
@@ -1281,13 +1295,11 @@
   {
     "name": "Auto Uncheck Accepted Testcases",
     "type": "bool",
-    "default": "false",
     "tip": "Automatically uncheck test cases when they get accepted."
   },
   {
     "name": "Full Screen Dialog Shown",
     "type": "bool",
-    "default": false,
     "notr": true
   }
 ]

@@ -118,28 +118,18 @@ def writeInfo(f, obj, lst):
         old = t.get("old", [])
         f.write(
             f"    {lst}.append(SettingInfo {{{json.dumps(name)}, {trdesc}, {json.dumps(desc)}, \"{tempname}\", \"{ui}\", {trtip}, {json.dumps(tip)}, {docAnchor}, {json.dumps(requireAllDepends)}, {json.dumps(immediatelyApply)}, {methods}, {dependsString}, {{{json.dumps(old)[1:-1]}}}, ")
-        if typename != "Object":
-            if "default" in t:
-                if typename == "QString":
-                    f.write(json.dumps(t["default"]))
-                else:
-                    if isinstance(t["default"], bool):
-                        f.write(str(t["default"]).lower())
-                    else:
-                        f.write(str(t["default"]))
+        if typename != "Object" and "default" not in t:
+            defs = {
+                'QString': '""',
+                'int': '0',
+                'bool': 'false'
+            }
+            if typename in defs:
+                f.write(defs[typename])
             else:
-                defs = {
-                    'QString': '""',
-                    'int': '0',
-                    'bool': 'false',
-                    'QMap': 'QVariantMap()'
-                }
-                if typename in defs:
-                    f.write(defs[typename])
-                else:
-                    f.write(typename + '()')
+                f.write(typename + '{}')
         else:
-            f.write('QVariant()')
+            f.write(parseParam(t.get("default", "#QStringList()"))[0])
         f.write(f', {parseParam(t.get("param", "#QVariant()"))[0]}')
         if typename == "Object":
             f.write(f", LIST{key}")

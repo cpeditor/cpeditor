@@ -79,6 +79,13 @@ struct CheckBoxWrapper : public WrapperTemplate<bool, RichTextCheckBox>
     virtual void set(const bool &v) override;
 };
 
+struct TristateCheckBoxWrapper : public WrapperTemplate<int, RichTextCheckBox>
+{
+    virtual void init(QWidget *parent, QVariant param = QVariant()) override;
+    virtual int get() const override;
+    virtual void set(const int &v) override;
+};
+
 struct LineEditWrapper : public WrapperTemplate<QString, QLineEdit>
 {
     virtual void init(QWidget *parent, QVariant param = QVariant()) override;
@@ -181,6 +188,7 @@ struct SettingsWrapper : public WrapperTemplate<QMap<QString, QVariant>, QWidget
     void check(const QString &name);
 
   public:
+    bool updateDisabled = false;
     bool enabled = false;
     QStringList entries;
     QString key;

@@ -51,7 +51,7 @@ QString SettingBase::docLink() const
 
 void CheckBoxWrapper::init(QWidget *parent, QVariant param)
 {
-    widget = new RichTextCheckBox(param.toString() + docLink(), parent);
+    widget = new RichTextCheckBox(iter->desc + docLink(), parent);
     connect(widget, &RichTextCheckBox::toggled, this, &SettingBase::valueChanged);
 }
 
@@ -63,6 +63,23 @@ bool CheckBoxWrapper::get() const
 void CheckBoxWrapper::set(const bool &v)
 {
     widget->setChecked(v);
+}
+
+void TristateCheckBoxWrapper::init(QWidget *parent, QVariant param)
+{
+    widget = new RichTextCheckBox(iter->desc + docLink(), parent);
+    widget->getCheckBox()->setTristate();
+    connect(widget, &RichTextCheckBox::stateChanged, this, &SettingBase::valueChanged);
+}
+
+int TristateCheckBoxWrapper::get() const
+{
+    return widget->checkState();
+}
+
+void TristateCheckBoxWrapper::set(const int &v)
+{
+    widget->setCheckState(static_cast<Qt::CheckState>(v));
 }
 
 void LineEditWrapper::init(QWidget *parent, QVariant param)
@@ -298,6 +315,8 @@ static SettingBase *createWrapper(const SettingsInfo::SettingIter &iter, QWidget
             wrap = new ScrollBarWrapper();
         else if (info.ui == "QSlider")
             wrap = new SliderWrapper();
+        else if (info.ui == "RichTextCheckBox")
+            wrap = new TristateCheckBoxWrapper();
         else
             Q_UNREACHABLE();
     }
@@ -322,7 +341,7 @@ static SettingBase *createWrapper(const SettingsInfo::SettingIter &iter, QWidget
     else
         Q_UNREACHABLE();
     wrap->iter = iter;
-    wrap->init(widget, info.type == "bool" ? desc : info.param);
+    wrap->init(widget, info.param);
     if (iter->immediatelyApply)
         QObject::connect(wrap, &SettingBase::valueChanged, wrap, &SettingBase::apply);
     return wrap;
@@ -369,7 +388,8 @@ void SettingsWrapper::init(QWidget *parent, QVariant param)
         wraps[name] = wrap;
         auto *label = new QLabel;
         label->setOpenExternalLinks(true);
-        if (siter->type == "bool" || siter->type == "Object")
+        if (siter->type == "bool" || siter->type == "Object" ||
+            (siter->type == "int" && siter->ui == "RichTextCheckBox"))
         {
             layout->addRow(label, wrap->rootWidget());
         }
@@ -471,14 +491,18 @@ SettingBase *SettingsWrapper::locate(const QString &name)
 
 void SettingsWrapper::reload()
 {
+    updateDisabled = true;
     for (const auto &name : entries)
     {
         wraps[name]->setV(data[name]);
     }
+    updateDisabled = false;
 }
 
 void SettingsWrapper::update()
 {
+    if (updateDisabled)
+        return;
     bool updated = false;
     for (const auto &name : entries)
     {
@@ -652,7 +676,7 @@ void MapWrapper::init(QWidget *parent, QVariant param)
         if (allowRename)
         {
             auto *ren = new QAction(tr("rename"));
-            connect(this, &MapWrapper::curChanged, [ren](QString cur) { ren->setEnabled(cur != ""); });
+            connect(this, &MapWrapper::curChanged, [ren](const QString &cur) { ren->setEnabled(cur != ""); });
             connect(ren, &QAction::triggered, [this]() {
                 QString key = askKey(cur);
                 if (key.isEmpty())
@@ -709,7 +733,10 @@ void MapWrapper::enable(bool enabled)
 
 void MapWrapper::setdef()
 {
-    set(QMap<QString, QVariant>());
+    QMap<QString, QVariant> def;
+    for (const auto &k : iter->def.toStringList())
+        def.insert(k, iter->buildChildDefault());
+    set(def);
 }
 
 void MapWrapper::reset()
