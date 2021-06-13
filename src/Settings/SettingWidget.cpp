@@ -279,7 +279,8 @@ void StringListsItemWrapper::set(const QVariantList &v)
     widget->setStringLists(v);
 }
 
-static SettingBase *createWrapper(const SettingsInfo::SettingIter &iter, QWidget *widget, const QString &desc)
+static SettingBase *createWrapper(const SettingsInfo::SettingIter &iter, QWidget *widget, const QString &desc,
+                                  const QString &path, const QString &trPath)
 {
     const auto &info = *iter.info;
     SettingBase *wrap = nullptr;
@@ -341,6 +342,8 @@ static SettingBase *createWrapper(const SettingsInfo::SettingIter &iter, QWidget
     else
         Q_UNREACHABLE();
     wrap->iter = iter;
+    wrap->path = path;
+    wrap->trPath = trPath;
     wrap->init(widget, info.param);
     if (iter->immediatelyApply)
         QObject::connect(wrap, &SettingBase::valueChanged, wrap, &SettingBase::apply);
@@ -378,10 +381,8 @@ void SettingsWrapper::init(QWidget *parent, QVariant param)
         auto siter = iter;
         siter.child(key, name);
         QString desc = siter->desc;
-        SettingBase *wrap = createWrapper(siter, widget, desc);
+        SettingBase *wrap = createWrapper(siter, widget, desc, path + '/' + siter->name, trPath + '/' + siter->desc);
         wrap->parent = this;
-        wrap->path = path + '/' + siter->name;
-        wrap->trPath = trPath + '/' + siter->desc;
         SettingsManager::setPath(siter->name, path + "/" + siter->untrDesc, path + "/" + siter->desc);
         connect(wrap, &SettingBase::valueChanged, this, &SettingsWrapper::update);
         wrap->enable(false);

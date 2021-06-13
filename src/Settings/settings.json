@@ -185,12 +185,6 @@
     "old": ["runtime_cpp"]
   },
   {
-    "name": "C++/Parentheses",
-    "type": "QVariantList",
-    "default": "#QVariantList { QVariantList {'(', ')', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'{', '}', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'[', ']', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'\"', '\"', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'\\'', '\\'', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked} }",
-    "notr": true
-  },
-  {
     "name": "Java/Template Path",
     "type": "QString",
     "ui": "PathItem",
@@ -271,12 +265,6 @@
     "tip": "The offset relative to the match of the regex in the number of characters, including white spaces."
   },
   {
-    "name": "Java/Parentheses",
-    "type": "QVariantList",
-    "default": "#QVariantList { QVariantList {'(', ')', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'{', '}', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'[', ']', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'\"', '\"', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'\\'', '\\'', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked} }",
-    "notr": true
-  },
-  {
     "name": "Python/Template Path",
     "type": "QString",
     "ui": "PathItem",
@@ -335,12 +323,6 @@
     "default": "python",
     "tip": "The command to start a Python program. It should NOT include the path to the source file.",
     "old": ["run_python"]
-  },
-  {
-    "name": "Python/Parentheses",
-    "type": "QVariantList",
-    "default": "#QVariantList { QVariantList {'(', ')', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'{', '}', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'[', ']', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'\"', '\"', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked}, QVariantList {'\\'', '\\'', Qt::PartiallyChecked, Qt::PartiallyChecked, Qt::PartiallyChecked} }",
-    "notr": true
   },
   {
     "name": "Editor Theme",
@@ -1103,8 +1085,7 @@
           }
         ]
       }
-    ],
-    "notr": true
+    ]
   },
   {
     "name": "Run On Empty Testcase",

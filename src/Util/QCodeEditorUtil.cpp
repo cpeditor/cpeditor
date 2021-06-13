@@ -75,20 +75,15 @@ void applySettingsToEditor(QCodeEditor *editor, const QString &language)
 
     QVector<QCodeEditor::Parenthesis> parentheses;
 
-    auto list = SettingsManager::get(language + "/Parentheses").toList();
+    auto list = SettingsHelper::getLanguageConfig(language).queryParentheses();
 
-    for (auto const &var : list)
+    for (const auto &key : list)
     {
-        auto li = var.toList();
-        if (li.length() != 5)
+        if (key.length() != 2)
         {
-            LOG_ERR(INFO_OF(li.length()));
+            LOG_ERR(INFO_OF(key.length()));
             continue;
         }
-
-        auto left = li[0].toChar();
-        auto right = li[1].toChar();
-
         auto getFlag = [](Qt::CheckState state, bool def) {
             switch (state)
             {
@@ -102,12 +97,15 @@ void applySettingsToEditor(QCodeEditor *editor, const QString &language)
                 Q_UNREACHABLE();
             }
         };
+        const auto &cfg = SettingsHelper::getLanguageConfig(language).getParentheses(key);
+        bool autoComplete =
+            getFlag(static_cast<Qt::CheckState>(cfg.getAutoComplete()), SettingsHelper::isAutoCompleteParentheses());
+        bool autoRemove =
+            getFlag(static_cast<Qt::CheckState>(cfg.getAutoRemove()), SettingsHelper::isAutoRemoveParentheses());
+        bool tabJumpOut =
+            getFlag(static_cast<Qt::CheckState>(cfg.getTabJumpOut()), SettingsHelper::isTabJumpOutParentheses());
 
-        bool autoComplete = getFlag(Qt::CheckState(li[2].toInt()), SettingsHelper::isAutoCompleteParentheses());
-        bool autoRemove = getFlag(Qt::CheckState(li[3].toInt()), SettingsHelper::isAutoRemoveParentheses());
-        bool tabJumpOut = getFlag(Qt::CheckState(li[4].toInt()), SettingsHelper::isTabJumpOutParentheses());
-
-        parentheses.push_back({left, right, autoComplete, autoRemove, tabJumpOut});
+        parentheses.push_back({key[0], key[1], autoComplete, autoRemove, tabJumpOut});
     }
 
     editor->setParentheses(parentheses);

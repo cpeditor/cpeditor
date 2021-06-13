@@ -17,9 +17,7 @@
 
 #include "Settings/PreferencesWindow.hpp"
 #include "Core/EventLogger.hpp"
-#include "Settings/CodeSnippetsPage.hpp"
 #include "Settings/DefaultPathManager.hpp"
-#include "Settings/ParenthesesPage.hpp"
 #include "Settings/PreferencesHomePage.hpp"
 #include "Settings/PreferencesTemplate.hpp"
 #include "Util/Util.hpp"
@@ -191,7 +189,7 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
         .page(TRKEY("Code Edit"),
               {"Tab Width", "Cursor Width", "Auto Indent", "Wrap Text", "Auto Complete Parentheses", "Auto Remove Parentheses",
                "Tab Jump Out Parentheses", "Replace Tabs"})
-        .page(TRKEY("TEST"), {"Language Config"})
+        .page(TRKEY("Language Config"), {"Language Config"})
         .dir(TRKEY("Language"))
             .page(TRKEY("General"), {"Default Language"})
             .dir(TRKEY("C++"))
@@ -200,11 +198,6 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
                 .page("C++ Template", tr("%1 Template").arg(tr("C++")),
                       {"C++/Template Path", "C++/Template Cursor Position Regex",
                        "C++/Template Cursor Position Offset Type", "C++/Template Cursor Position Offset Characters"})
-                .page("C++ Snippets", tr("%1 Snippets").arg(tr("C++")), new CodeSnippetsPage("C++"),
-                      {"C++ Snippets", "C++ Code Snippets", "Cpp Snippets", "Cpp Code Snippets"})
-                .page("C++ Parentheses", tr("%1 Parentheses").arg(tr("C++")), new ParenthesesPage("C++"),
-                      {"C++ Parentheses", "C++ Brackets", "C++ Braces", "C++ Auto Complete", "C++ Auto Remove",
-                       "C++ Tab Jump Out"})
             .end()
             .dir(TRKEY("Java"))
                 .page("Java Commands", tr("%1 Commands").arg(tr("Java")),
@@ -212,11 +205,6 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
                 .page("Java Template", tr("%1 Template").arg(tr("Java")),
                       {"Java/Template Path", "Java/Template Cursor Position Regex", "Java/Template Cursor Position Offset Type",
                        "Java/Template Cursor Position Offset Characters"})
-                .page("Java Snippets", tr("%1 Snippets").arg(tr("Java")), new CodeSnippetsPage("Java"),
-                      {"Java Snippets", "Java Code Snippets"})
-                .page("Java Parentheses", tr("%1 Parentheses").arg(tr("Java")), new ParenthesesPage("Java"),
-                      {"Java Parentheses", "Java Brackets", "Java Braces", "Java Auto Complete", "Java Auto Remove",
-                       "Java Tab Jump Out"})
             .end()
             .dir(TRKEY("Python"))
                 .page("Python Commands", tr("%1 Commands").arg(tr("Python")),
@@ -224,11 +212,6 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
                 .page("Python Template", tr("%1 Template").arg(tr("Python")),
                       {"Python/Template Path", "Python/Template Cursor Position Regex", "Python/Template Cursor Position Offset Type",
                       "Python/Template Cursor Position Offset Characters"})
-                .page("Python Snippets", tr("%1 Snippets").arg(tr("Python")), new CodeSnippetsPage("Python"),
-                      {"Python Snippets", "Python Code Snippets"})
-                .page("Python Parentheses", tr("%1 Parentheses").arg(tr("Python")), new ParenthesesPage("Python"),
-                      {"Python Parentheses", "Python Brackets", "Python Braces", "Python Auto Complete", "Python Auto Remove",
-                       "Python Tab Jump Out"})
             .end()
         .end()
         .dir(TRKEY("Appearance"))

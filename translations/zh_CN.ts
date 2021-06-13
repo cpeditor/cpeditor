@@ -1472,14 +1472,6 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation>%1 模板</translation>
     </message>
     <message>
-        <source>%1 Snippets</source>
-        <translation>%1 代码片段</translation>
-    </message>
-    <message>
-        <source>%1 Parentheses</source>
-        <translation>%1 括号</translation>
-    </message>
-    <message>
         <source>%1 Server</source>
         <translation></translation>
     </message>
@@ -1560,8 +1552,8 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation>测试用例</translation>
     </message>
     <message>
-        <source>TEST</source>
-        <translation type="unfinished"></translation>
+        <source>Language Config</source>
+        <translation>语言配置</translation>
     </message>
 </context>
 <context>
@@ -2697,6 +2689,10 @@ You can learn about it by running `yapf --style-help`.</source>
     <message>
         <source>Snippet</source>
         <translation>代码片段</translation>
+    </message>
+    <message>
+        <source>Language Config</source>
+        <translation>语言配置</translation>
     </message>
 </context>
 <context>

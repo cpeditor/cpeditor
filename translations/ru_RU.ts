@@ -1472,14 +1472,6 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation>%1 Шаблоны</translation>
     </message>
     <message>
-        <source>%1 Snippets</source>
-        <translation>%1 Сниппеты</translation>
-    </message>
-    <message>
-        <source>%1 Parentheses</source>
-        <translation>%1 Скобки</translation>
-    </message>
-    <message>
         <source>%1 Server</source>
         <translation>%1 Сервер</translation>
     </message>
@@ -1560,7 +1552,7 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation type="unfinished">Тесткейсы</translation>
     </message>
     <message>
-        <source>TEST</source>
+        <source>Language Config</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2704,6 +2696,10 @@ You can learn about it by running `yapf --style-help`.</source>
     </message>
     <message>
         <source>Snippet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Language Config</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

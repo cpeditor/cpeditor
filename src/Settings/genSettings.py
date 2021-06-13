@@ -7,6 +7,9 @@ import json
 
 def writeHelper(f, obj, pre, indent):
     ids = "    " * indent
+    cst = " const"
+    if indent == 1:
+        cst = ""
     for t in obj:
         name = t["name"]
         key = name.replace(" ", "").replace("/", "").replace("+", "p")
@@ -18,20 +21,20 @@ def writeHelper(f, obj, pre, indent):
             writeHelper(f, t["sub"], "pre, ", indent + 1)
             f.write(f"{ids}}};\n")
             f.write(
-                f"{ids}inline {key} get{key}(QString key) {{ return {key}(QStringList {{{pre} {json.dumps(name)}, key}}.join('/')); }}\n")
-            f.write(f"{ids}inline void remove{key}(QString key) {{ SettingsManager::remove(SettingsManager::keyStartsWith(QStringList {{{pre} {json.dumps(name)}, key}}.join('/'))); }}\n")
-            f.write(f"{ids}inline QStringList query{key}() {{ return SettingsManager::itemUnder(QStringList {{{pre} {json.dumps(name)}}}.join('/') + '/'); }}\n")
+                f"{ids}inline {key} get{key}(QString key){cst} {{ return {key}(QStringList {{{pre} {json.dumps(name)}, key}}.join('/')); }}\n")
+            f.write(f"{ids}inline void remove{key}(QString key){cst} {{ SettingsManager::remove(SettingsManager::keyStartsWith(QStringList {{{pre} {json.dumps(name)}, key}}.join('/'))); }}\n")
+            f.write(f"{ids}inline QStringList query{key}(){cst} {{ return SettingsManager::itemUnder(QStringList {{{pre} {json.dumps(name)}}}.join('/') + '/'); }}\n")
         else:
             f.write(
-                f"{ids}inline void set{key}({typename} value) {{ SettingsManager::set(QStringList {{{pre} {json.dumps(name)}}}.join('/'), value); }}\n")
+                f"{ids}inline void set{key}({typename} value){cst} {{ SettingsManager::set(QStringList {{{pre} {json.dumps(name)}}}.join('/'), value); }}\n")
             if typename == "bool":
                 f.write(
-                    f"{ids}inline bool is{key}() {{ return SettingsManager::get(QStringList {{{pre} {json.dumps(name)}}}.join('/')).toBool(); }}\n")
+                    f"{ids}inline bool is{key}(){cst} {{ return SettingsManager::get(QStringList {{{pre} {json.dumps(name)}}}.join('/')).toBool(); }}\n")
             else:
                 f.write(
-                    f"{ids}inline {typename} get{key}() {{ return SettingsManager::get(QStringList {{{pre} {json.dumps(name)}}}.join('/')).value<{typename}>(); }}\n")
+                    f"{ids}inline {typename} get{key}(){cst} {{ return SettingsManager::get(QStringList {{{pre} {json.dumps(name)}}}.join('/')).value<{typename}>(); }}\n")
         f.write(
-            f"{ids}inline QString pathOf{key}(bool parent = false) {{ return SettingsManager::getPathText(QStringList {{{pre} {json.dumps(name)}}}.join('/'), parent); }}\n")
+            f"{ids}inline QString pathOf{key}(bool parent = false){cst} {{ return SettingsManager::getPathText(QStringList {{{pre} {json.dumps(name)}}}.join('/'), parent); }}\n")
 
 # "hello" -> "hello"
 # tr("123") -> "@tr(\"123\")"

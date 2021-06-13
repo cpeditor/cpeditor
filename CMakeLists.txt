@@ -158,16 +158,12 @@ add_executable(cpeditor
     src/Extensions/LanguageServer.cpp
     src/Extensions/LanguageServer.hpp
 
-    src/Settings/CodeSnippetsPage.cpp
-    src/Settings/CodeSnippetsPage.hpp
     src/Settings/DefaultPathManager.cpp
     src/Settings/DefaultPathManager.hpp
     src/Settings/FileProblemBinder.cpp
     src/Settings/FileProblemBinder.hpp
     src/Settings/FontItem.cpp
     src/Settings/FontItem.hpp
-    src/Settings/ParenthesesPage.cpp
-    src/Settings/ParenthesesPage.hpp
     src/Settings/PathItem.cpp
     src/Settings/PathItem.hpp
     src/Settings/PreferencesHomePage.cpp
