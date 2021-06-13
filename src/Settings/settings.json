@@ -1029,19 +1029,22 @@
             "name": "Auto Complete",
             "type": "int",
             "ui": "RichTextCheckBox",
-            "default": "#Qt::PartiallyChecked"
+            "default": "#Qt::PartiallyChecked",
+            "tip": "Enable @0 for @1 in @3.\nIf it's partially checked, the global setting in Code Edit will be used."
           },
           {
             "name": "Auto Remove",
             "type": "int",
             "ui": "RichTextCheckBox",
-            "default": "#Qt::PartiallyChecked"
+            "default": "#Qt::PartiallyChecked",
+            "tip": "Enable @0 for @1 in @3.\nIf it's partially checked, the global setting in Code Edit will be used."
           },
           {
             "name": "Tab Jump Out",
             "type": "int",
             "ui": "RichTextCheckBox",
-            "default": "#Qt::PartiallyChecked"
+            "default": "#Qt::PartiallyChecked",
+            "tip": "Enable @0 for @1 in @3.\nIf it's partially checked, the global setting in Code Edit will be used."
           }
         ]
       },

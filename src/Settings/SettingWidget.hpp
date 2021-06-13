@@ -33,8 +33,6 @@ struct SettingBase : public QObject
     {
         rootWidget()->setEnabled(enabled);
     }
-    virtual void checkout(int pos, QString key);
-
     virtual void setdef();
     virtual void reset();
     virtual void apply();

@@ -10,11 +10,6 @@
 #include <QTextCodec>
 #include <QVBoxLayout>
 
-void SettingBase::checkout(int pos, QString key)
-{
-    iter.pre[pos] = std::move(key);
-}
-
 void SettingBase::setdef()
 {
     setV(iter->def);
@@ -52,6 +47,8 @@ QString SettingBase::docLink() const
 void CheckBoxWrapper::init(QWidget *parent, QVariant param)
 {
     widget = new RichTextCheckBox(iter->desc + docLink(), parent);
+    if (!iter->tip.isEmpty())
+        widget->setToolTip(iter.format(iter->tip));
     connect(widget, &RichTextCheckBox::toggled, this, &SettingBase::valueChanged);
 }
 
@@ -69,6 +66,8 @@ void TristateCheckBoxWrapper::init(QWidget *parent, QVariant param)
 {
     widget = new RichTextCheckBox(iter->desc + docLink(), parent);
     widget->getCheckBox()->setTristate();
+    if (!iter->tip.isEmpty())
+        widget->setToolTip(iter.format(iter->tip));
     connect(widget, &RichTextCheckBox::stateChanged, this, &SettingBase::valueChanged);
 }
 
@@ -397,6 +396,8 @@ void SettingsWrapper::init(QWidget *parent, QVariant param)
         else
         {
             label->setText(desc + " " + wrap->docLink());
+            if (!siter->tip.isEmpty())
+                label->setToolTip(siter.format(siter->tip));
             layout->addRow(label, wrap->rootWidget());
         }
     }
@@ -638,6 +639,8 @@ void MapWrapper::init(QWidget *parent, QVariant param)
     auto *name = new QLabel;
     name->setText(iter->desc + " " + docLink());
     name->setOpenExternalLinks(true);
+    if (!iter->tip.isEmpty())
+        name->setToolTip(iter.format(iter->tip));
     leftLayout->addWidget(name);
 
     bool allowRename = false;

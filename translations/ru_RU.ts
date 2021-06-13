@@ -2702,6 +2702,11 @@ You can learn about it by running `yapf --style-help`.</source>
         <source>Language Config</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Enable @0 for @1 in @3.
+If it&apos;s partially checked, the global setting in Code Edit will be used.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsMethods</name>

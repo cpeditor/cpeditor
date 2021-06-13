@@ -49,6 +49,7 @@ class SettingsInfo
         {
             return info;
         }
+        QString format(const QString &fmt) const;
     };
 
     class SettingInfo
@@ -86,28 +87,7 @@ class SettingsInfo
             }
             return -1;
         }
-        QVariant buildChildDefault() const
-        {
-            if (type != "Object")
-                return QVariant();
-            QMap<QString, QVariant> ret;
-            for (const auto &si : child)
-            {
-                if (si.type == "Object")
-                {
-                    QMap<QString, QVariant> mp;
-                    auto d = si.buildChildDefault();
-                    for (const auto &k : si.def.toStringList())
-                    {
-                        mp[k] = d;
-                    }
-                    ret[si.name] = mp;
-                }
-                else
-                    ret[si.name] = si.def;
-            }
-            return ret;
-        }
+        QVariant buildChildDefault() const;
         template <typename... Extra> QVariant call(const QString &name, const Extra &... extra) const
         {
             if (!methods.contains(name))
@@ -175,27 +155,5 @@ class SettingsInfo
 
     friend class SettingsUpdater;
 };
-
-inline SettingsInfo::SettingIter &SettingsInfo::SettingIter::child(QString key, QString name)
-{
-    if (!info || info->type != "Object")
-    {
-        throw "Getting child on a value";
-    }
-    for (const auto &c : info->child)
-    {
-        if (c.name == name)
-        {
-            if (key != "")
-            {
-                pre.push_back(info->name);
-                pre.push_back(key);
-            }
-            info = &c;
-            return *this;
-        }
-    }
-    throw "Getting a child which is not exist";
-}
 
 #endif // SETTINGSINFO_HPP

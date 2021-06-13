@@ -1212,7 +1212,7 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>Add %1</source>
-        <translation>添加%1</translation>
+        <translation>添加 %1</translation>
     </message>
     <message>
         <source>Add failed</source>
@@ -1224,11 +1224,11 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>Select %1</source>
-        <translation>选择%1</translation>
+        <translation>选择 %1</translation>
     </message>
     <message>
         <source>%1 %2 already exists</source>
-        <translation>%1%2已经存在</translation>
+        <translation>%1 %2 已经存在</translation>
     </message>
     <message>
         <source>rename</source>
@@ -2693,6 +2693,12 @@ You can learn about it by running `yapf --style-help`.</source>
     <message>
         <source>Language Config</source>
         <translation>语言配置</translation>
+    </message>
+    <message>
+        <source>Enable @0 for @1 in @3.
+If it&apos;s partially checked, the global setting in Code Edit will be used.</source>
+        <translation>在 @3 中为括号对 @1 启用 @0。
+如果复选框被部分选择，则会使用全局设置。</translation>
     </message>
 </context>
 <context>
