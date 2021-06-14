@@ -13,6 +13,7 @@
 -   Fix that the Find/Replace dialog is not floating in i3-wm. (#767)
 -   Fix text selection color when Dark Fusion is selected. (#788)
 -   Now entering/exiting the full-screen mode outside of CP Editor (via the OS/DE/WM) is correctly handled. (#833)
+-   Fix that Detached Execution doesn't work on Windows with clang++. (#872 and #873)
 
 ## Changed
 
