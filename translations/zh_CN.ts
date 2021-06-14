@@ -1468,10 +1468,6 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation>%1 命令</translation>
     </message>
     <message>
-        <source>%1 Template</source>
-        <translation>%1 模板</translation>
-    </message>
-    <message>
         <source>%1 Server</source>
         <translation></translation>
     </message>
@@ -1605,10 +1601,6 @@ You can learn about it at &lt;https://clang.llvm.org/docs/ClangFormatStyleOption
 你可以在 &lt;https://clang.llvm.org/docs/ClangFormatStyleOptions.html&gt; 上了解更多。</translation>
     </message>
     <message>
-        <source>The template used when creating a new C++ file</source>
-        <translation>新建 C++ 代码时所用模板的路径</translation>
-    </message>
-    <message>
         <source>The regular expression which matches a part of the code template.
 When opening a template, the position of the cursor is the position of the regex with an offset.
 The cursor will be at the end of the template if there&apos;s no match of the regex.</source>
@@ -1631,10 +1623,6 @@ The cursor will be at the end of the template if there&apos;s no match of the re
     <message>
         <source>The runtime arguments when executing a C++ program</source>
         <translation>执行 C++ 程序时提供的命令行参数</translation>
-    </message>
-    <message>
-        <source>The template used when creating a new Java file</source>
-        <translation>新建 Java 代码时所用模板的路径</translation>
     </message>
     <message>
         <source>The command used to compile Java.
@@ -1672,10 +1660,6 @@ You can use &quot;${filename}&quot; for the complete file name,
 你可以使用 &quot;${filename}&quot; 来代指完整的源文件名；
 使用 &quot;${basename}&quot; 来代指无后缀的源文件名；
 使用 &quot;${tmpdir}&quot; 或 &quot;${tempdir}&quot; 来代指临时目录的绝对路径。</translation>
-    </message>
-    <message>
-        <source>The template used when creating a new Python file</source>
-        <translation>新建 Python 代码时所用模板的路径</translation>
     </message>
     <message>
         <source>The runtime arguments when executing a Python program</source>
@@ -1745,22 +1729,6 @@ and move out of it when typing the right element of it.
 This can be overridden for each parenthesis in each language.</source>
         <translation>自动在输入左括号时添加右括号，在紧接着输入右括号时自动移出。
 此设置可以被各个语言的设置所覆盖。</translation>
-    </message>
-    <message>
-        <source>%1 Template Path</source>
-        <translation>%1 模板路径</translation>
-    </message>
-    <message>
-        <source>%1 Template Cursor Position Regex</source>
-        <translation>使用 %1 模板时光标初始位置定位使用的正则表达式</translation>
-    </message>
-    <message>
-        <source>%1 Template Cursor Position Offset Type</source>
-        <translation>使用 %1 模板时光标初始位置的偏移类型</translation>
-    </message>
-    <message>
-        <source>%1 Template Cursor Position Offset Characters</source>
-        <translation>使用 %1 模板时光标初始位置的偏移字符量</translation>
     </message>
     <message>
         <source>%1 Compile Command</source>
@@ -2699,6 +2667,30 @@ You can learn about it by running `yapf --style-help`.</source>
 If it&apos;s partially checked, the global setting in Code Edit will be used.</source>
         <translation>在 @3 中为括号对 @1 启用 @0。
 如果复选框被部分选择，则会使用全局设置。</translation>
+    </message>
+    <message>
+        <source>Template Path</source>
+        <translation>模板路径</translation>
+    </message>
+    <message>
+        <source>The template used when creating a new @1 file</source>
+        <translation>新建 @1 代码时所用模板的路径</translation>
+    </message>
+    <message>
+        <source>Template Cursor Position Regex</source>
+        <translation>使用模板时光标初始位置定位使用的正则表达式</translation>
+    </message>
+    <message>
+        <source>Template Cursor Position Offset Type</source>
+        <translation>使用模板时光标初始位置的偏移类型</translation>
+    </message>
+    <message>
+        <source>Template Cursor Position Offset Characters</source>
+        <translation>使用模板时光标初始位置的偏移字符量</translation>
+    </message>
+    <message>
+        <source>Template</source>
+        <translation>模板</translation>
     </message>
 </context>
 <context>

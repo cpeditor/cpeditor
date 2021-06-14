@@ -1468,10 +1468,6 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation>%1 Команды</translation>
     </message>
     <message>
-        <source>%1 Template</source>
-        <translation>%1 Шаблоны</translation>
-    </message>
-    <message>
         <source>%1 Server</source>
         <translation>%1 Сервер</translation>
     </message>
@@ -1605,10 +1601,6 @@ You can learn about it at &lt;https://clang.llvm.org/docs/ClangFormatStyleOption
 Больше информации на &lt;https://clang.llvm.org/docs/ClangFormatStyleOptions.html&gt;.</translation>
     </message>
     <message>
-        <source>The template used when creating a new C++ file</source>
-        <translation>Шаблон, используемый для создании нового C++ файла</translation>
-    </message>
-    <message>
         <source>The regular expression which matches a part of the code template.
 When opening a template, the position of the cursor is the position of the regex with an offset.
 The cursor will be at the end of the template if there&apos;s no match of the regex.</source>
@@ -1631,10 +1623,6 @@ The cursor will be at the end of the template if there&apos;s no match of the re
     <message>
         <source>The runtime arguments when executing a C++ program</source>
         <translation>Аргументы при выполнении программы на C++</translation>
-    </message>
-    <message>
-        <source>The template used when creating a new Java file</source>
-        <translation>Шаблон, используемый при создании нового файла Java</translation>
     </message>
     <message>
         <source>The command used to compile Java.
@@ -1673,10 +1661,6 @@ You can use &quot;${filename}&quot; for the complete file name,
 Вы можете использовать &quot;${filename}&quot; для полного имени файла,
 &quot;${basename}&quot; для базового имени файла без суффикса,
 &quot;${tmpdir}&quot; или &quot;${tempdir}&quot; для абсолютного пути к временному каталогу.</translation>
-    </message>
-    <message>
-        <source>The template used when creating a new Python file</source>
-        <translation>Шаблон, используемый при создании нового файла Python</translation>
     </message>
     <message>
         <source>The runtime arguments when executing a Python program</source>
@@ -1747,22 +1731,6 @@ This can be overridden for each parenthesis in each language.</source>
         <translation>Автоматически дополнить пару скобок при наборе левого элемента,
 и отступить при наборе нужного элемента.
 Это может быть переопределено для каждой скобки на каждом языке.</translation>
-    </message>
-    <message>
-        <source>%1 Template Path</source>
-        <translation>%1 Путь шаблона</translation>
-    </message>
-    <message>
-        <source>%1 Template Cursor Position Regex</source>
-        <translation>%1 Шаблон-регулярное выражение положения курсора</translation>
-    </message>
-    <message>
-        <source>%1 Template Cursor Position Offset Type</source>
-        <translation>%1 Шаблон типа отступа позиции курсора</translation>
-    </message>
-    <message>
-        <source>%1 Template Cursor Position Offset Characters</source>
-        <translation>%1 Шаблон символа отступа позиции курсора</translation>
     </message>
     <message>
         <source>%1 Compile Command</source>
@@ -2705,6 +2673,30 @@ You can learn about it by running `yapf --style-help`.</source>
     <message>
         <source>Enable @0 for @1 in @3.
 If it&apos;s partially checked, the global setting in Code Edit will be used.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Template Path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The template used when creating a new @1 file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Template Cursor Position Regex</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Template Cursor Position Offset Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Template Cursor Position Offset Characters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Template</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
