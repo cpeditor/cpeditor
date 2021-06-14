@@ -37,6 +37,7 @@ struct SettingBase : public QObject
     virtual void reset();
     virtual void apply();
     virtual bool changed() const;
+    virtual QStringList content() const;
 
     QString docLink() const;
 
@@ -173,6 +174,7 @@ struct SettingsWrapper : public WrapperTemplate<QMap<QString, QVariant>, QWidget
     virtual void reset() override;
     virtual void apply() override;
     virtual bool changed() const override;
+    virtual QStringList content() const override;
 
     SettingBase *locate(const QString &name);
 
@@ -237,6 +239,7 @@ struct MapWrapper : public WrapperTemplate<QMap<QString, QVariant>, QSplitter>
     virtual void reset() override;
     virtual void apply() override;
     virtual bool changed() const override;
+    virtual QStringList content() const override;
 
     QString askKey(const QString &suggest = "") const;
     void add(const QString &key);

@@ -43,22 +43,10 @@ PreferencesTemplate::PreferencesTemplate(QStringList opts, const QString &path, 
 
 QStringList PreferencesTemplate::content()
 {
-    QStringList ret = options;
-    for (auto const &opt : options)
-    {
-        auto si = SettingsInfo::findSetting(opt);
-        if (!si.desc.isEmpty())
-        {
-            ret += si.desc;
-            ret += si.untrDesc;
-        }
-        if (!si.tip.isEmpty())
-        {
-            ret += si.tip;
-            ret += si.untrTip;
-        }
-    }
-    return ret;
+    auto ctt = panel->content();
+    std::sort(ctt.begin(), ctt.end());
+    ctt.erase(std::unique(ctt.begin(), ctt.end()), ctt.end());
+    return ctt;
 }
 
 bool PreferencesTemplate::areSettingsChanged()

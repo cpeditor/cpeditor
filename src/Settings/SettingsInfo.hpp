@@ -32,13 +32,13 @@ class SettingsInfo
     struct SettingIter
     {
         const SettingInfo *info;
-        QStringList pre;
+        QStringList pre, trPre;
 
         SettingIter() = default;
         SettingIter(const SettingInfo *i) : info(i)
         {
         }
-        SettingIter &child(QString key, QString name);
+        SettingIter &child(const QString &key, const QString &name);
         QString key() const
         {
             auto p = pre;
@@ -49,7 +49,17 @@ class SettingsInfo
         {
             return info;
         }
-        QString format(const QString &fmt) const;
+        QString format(const QString &fmt) const
+        {
+            return _format(fmt, trPre);
+        }
+        QString formatuntr(const QString &fmt) const
+        {
+            return _format(fmt, pre);
+        }
+
+      private:
+        QString _format(const QString &fmt, const QStringList &p) const;
     };
 
     class SettingInfo
@@ -76,17 +86,7 @@ class SettingsInfo
         {
             return name.toLower().replace("c++", "cpp").replace(' ', '_');
         }
-        int findChild(QString name) const
-        {
-            for (int i = 0; i < child.size(); i++)
-            {
-                if (child[i].name == name)
-                {
-                    return i;
-                }
-            }
-            return -1;
-        }
+        int findChild(const QString &name) const;
         QVariant buildChildDefault() const;
         template <typename... Extra> QVariant call(const QString &name, const Extra &... extra) const
         {

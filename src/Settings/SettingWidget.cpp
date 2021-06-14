@@ -36,6 +36,22 @@ bool SettingBase::changed() const
     return getV() != SettingsManager::get(iter.key());
 }
 
+QStringList SettingBase::content() const
+{
+    QStringList ret;
+    if (!iter->desc.isEmpty())
+    {
+        ret += iter->desc;
+        ret += iter->untrDesc;
+    }
+    if (!iter->tip.isEmpty())
+    {
+        ret += iter.format(iter->tip);
+        ret += iter.formatuntr(iter->untrTip);
+    }
+    return ret;
+}
+
 QString SettingBase::docLink() const
 {
     auto prefix = Util::websiteLink("docs/preferences/" + Util::sanitizeAnchorName(path.split('/').first()));
@@ -476,6 +492,16 @@ bool SettingsWrapper::changed() const
     return std::any_of(entries.begin(), entries.end(), [this](const QString &name) { return wraps[name]->changed(); });
 }
 
+QStringList SettingsWrapper::content() const
+{
+    QStringList ret = SettingBase::content();
+    for (const auto &k : entries)
+    {
+        ret += wraps[k]->content();
+    }
+    return ret;
+}
+
 SettingBase *SettingsWrapper::locate(const QString &name)
 {
     if (wraps.contains(name))
@@ -786,6 +812,16 @@ bool MapWrapper::changed() const
     const auto &keys = data.keys();
     return std::any_of(keys.begin(), keys.end(),
                        [this](const QString &name) -> bool { return rights[name]->changed(); });
+}
+
+QStringList MapWrapper::content() const
+{
+    QStringList ret = SettingBase::content();
+    for (const auto &k : rights.keys())
+    {
+        ret += rights[k]->content();
+    }
+    return ret;
 }
 
 QString MapWrapper::askKey(const QString &suggest) const

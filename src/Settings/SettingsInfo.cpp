@@ -1,5 +1,17 @@
 #include "Settings/SettingsInfo.hpp"
 
+int SettingsInfo::SettingInfo::findChild(const QString &name) const
+{
+    for (int i = 0; i < child.size(); i++)
+    {
+        if (child[i].name == name)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+
 QVariant SettingsInfo::SettingInfo::buildChildDefault() const
 {
     if (type != "Object")
@@ -23,7 +35,7 @@ QVariant SettingsInfo::SettingInfo::buildChildDefault() const
     return ret;
 }
 
-SettingsInfo::SettingIter &SettingsInfo::SettingIter::child(QString key, QString name)
+SettingsInfo::SettingIter &SettingsInfo::SettingIter::child(const QString &key, const QString &name)
 {
     if (!info || info->type != "Object")
     {
@@ -37,6 +49,8 @@ SettingsInfo::SettingIter &SettingsInfo::SettingIter::child(QString key, QString
             {
                 pre.push_back(info->name);
                 pre.push_back(key);
+                trPre.push_back(info->desc);
+                trPre.push_back(key);
             }
             info = &c;
             return *this;
@@ -45,7 +59,7 @@ SettingsInfo::SettingIter &SettingsInfo::SettingIter::child(QString key, QString
     throw "Getting a child which is not exist";
 }
 
-QString SettingsInfo::SettingIter::format(const QString &fmt) const
+QString SettingsInfo::SettingIter::_format(const QString &fmt, const QStringList &p) const
 {
     QStringList res;
     int pos = 0;
@@ -77,7 +91,7 @@ QString SettingsInfo::SettingIter::format(const QString &fmt) const
             if (n == 0)
                 res.push_back(info->desc);
             else
-                res.push_back(pre[pre.size() - n]);
+                res.push_back(p[p.size() - n]);
             pos = idx + 2;
         }
     }
