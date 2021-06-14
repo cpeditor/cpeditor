@@ -369,13 +369,14 @@ void SettingsWrapper::init(QWidget *parent, QVariant param)
 {
     auto cfg = param.toMap();
     widget = new QWidget(parent);
-
+    auto hide = cfg["hide"].toMap();
     auto filt = cfg["filter"].toStringList();
     if (filt.length() > 0)
     {
         for (const auto &s : filt)
         {
-            if (iter->findChild(s) != -1)
+            if (iter->findChild(s) != -1 &&
+                (hide.isEmpty() || !hide.contains(s) || hide[s].toStringList().indexOf(key) == -1))
             {
                 entries.push_back(s);
             }
@@ -385,11 +386,12 @@ void SettingsWrapper::init(QWidget *parent, QVariant param)
     {
         for (const auto &i : iter->child)
         {
-            entries.push_back(i.name);
+            if (hide.isEmpty() || !hide.contains(i.name) || hide[i.name].toStringList().indexOf(key) == -1)
+                entries.push_back(i.name);
         }
     }
     bool hasGroup = cfg.contains("group");
-    QFormLayout *layout;
+    QFormLayout *layout = nullptr;
     QMap<QString, QFormLayout *> layouts;
     QMap<QString, QString> choose;
 
@@ -425,7 +427,7 @@ void SettingsWrapper::init(QWidget *parent, QVariant param)
     {
         auto siter = iter;
         siter.child(key, name);
-        QFormLayout *target;
+        QFormLayout *target = nullptr;
         if (hasGroup)
         {
             if (choose.contains(siter->name))

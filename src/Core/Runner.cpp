@@ -227,7 +227,7 @@ QString Runner::getCommand(const QString &tmpFilePath, const QString &sourceFile
         res = QString("%1 -classpath \"%2\" %3 %4")
                   .arg(runCommand)
                   .arg(Compiler::outputPath(tmpFilePath, sourceFilePath, "Java"))
-                  .arg(SettingsHelper::getJavaClassName())
+                  .arg(SettingsHelper::getLanguageConfig("Java").getClassName())
                   .arg(args);
     }
     else if (lang == "Python")

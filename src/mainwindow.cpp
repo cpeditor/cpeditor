@@ -205,9 +205,8 @@ void MainWindow::run(int index)
     connect(tmp, &Core::Runner::failedToStartRun, this, &MainWindow::onFailedToStartRun);
     connect(tmp, &Core::Runner::runOutputLimitExceeded, this, &MainWindow::onRunOutputLimitExceeded);
     connect(tmp, &Core::Runner::runKilled, this, &MainWindow::onRunKilled);
-    tmp->run(tmpPath(), filePath, language, SettingsManager::get(QString("%1/Run Command").arg(language)).toString(),
-             SettingsManager::get(QString("%1/Run Arguments").arg(language)).toString(), testcases->input(index),
-             timeLimit());
+    tmp->run(tmpPath(), filePath, language, SettingsHelper::getLanguageConfig(language).getRunCommand(),
+             SettingsHelper::getLanguageConfig(language).getRunArguments(), testcases->input(index), timeLimit());
     runner.push_back(tmp);
 }
 
@@ -1038,7 +1037,7 @@ QString MainWindow::tmpPath()
     if (language == "C++")
         name = "sol." + Util::cppSuffix.first();
     else if (language == "Java")
-        name = SettingsHelper::getJavaClassName() + "." + Util::javaSuffix.first();
+        name = SettingsHelper::getLanguageConfig("Java").getClassName() + "." + Util::javaSuffix.first();
     else if (language == "Python")
         name = "sol." + Util::pythonSuffix.first();
     else
@@ -1247,7 +1246,7 @@ void MainWindow::updateChecker()
     else
         checker = new Core::Checker(testcases->checkerType(), log, this);
     connect(checker, &Core::Checker::checkFinished, testcases, &Widgets::TestCases::setVerdict);
-    checker->prepare(SettingsManager::get(QString("C++/Compile Command")).toString());
+    checker->prepare(SettingsHelper::getLanguageConfig("C++").getCompileCommand());
 }
 
 QSplitter *MainWindow::getSplitter()
@@ -1263,7 +1262,7 @@ QSplitter *MainWindow::getRightSplitter()
 QString MainWindow::compileCommand() const
 {
     if (customCompileCommand.isEmpty())
-        return SettingsManager::get(QString("%1/Compile Command").arg(language)).toString();
+        return SettingsHelper::getLanguageConfig(language).getCompileCommand();
     return customCompileCommand;
 }
 
@@ -1339,8 +1338,8 @@ void MainWindow::onCompilationFinished(const QString &warning)
         connect(detachedRunner, &Core::Runner::failedToStartRun, this, &MainWindow::onFailedToStartRun);
         connect(detachedRunner, &Core::Runner::runKilled, this, &MainWindow::onRunKilled);
         detachedRunner->runDetached(tmpPath(), filePath, language,
-                                    SettingsManager::get(QString("%1/Run Command").arg(language)).toString(),
-                                    SettingsManager::get(QString("%1/Run Arguments").arg(language)).toString());
+                                    SettingsHelper::getLanguageConfig(language).getRunCommand(),
+                                    SettingsHelper::getLanguageConfig(language).getRunArguments());
     }
 }
 
@@ -1355,7 +1354,7 @@ void MainWindow::onCompilationErrorOccurred(const QString &error)
             log->warn(
                 tr("Compile Errors"),
                 tr("Have you set a proper name for the main class in your solution? If not, you can set it at %1.")
-                    .arg(SettingsHelper::pathOfJavaClassName()),
+                    .arg(SettingsHelper::getLanguageConfig("Java").pathOfClassName()),
                 false);
         }
     }

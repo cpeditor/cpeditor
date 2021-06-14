@@ -116,72 +116,6 @@
     "old": ["clang_format/format_on_auto_save"]
   },
   {
-    "name": "C++/Compile Command",
-    "type": "QString",
-    "default": "c++ -Wall",
-    "tip": "The command used to compile C++. It should NOT include the path to the source file or \"-o <output file>\".",
-    "old": ["compile_cpp"]
-  },
-  {
-    "name": "C++/Output Path",
-    "desc": "C++ Executable File Path",
-    "type": "QString",
-    "default": "${tmpdir}/${basename}",
-    "tip": "The path of the compiled executable file.\nIt's relative to the source file, or the temporary directory if the tab is untitled.\nNo \".exe\" is needed.\nYou can use \"${filename}\" for the complete file name,\n\"${basename}\" for the base file name without the suffix,\n\"${tmpdir}\" or \"${tempdir}\" for the absolute path of the temporary directory."
-  },
-  {
-    "name": "C++/Run Arguments",
-    "type": "QString",
-    "tip": "The runtime arguments when executing a C++ program",
-    "old": ["runtime_cpp"]
-  },
-  {
-    "name": "Java/Compile Command",
-    "type": "QString",
-    "default": "javac",
-    "tip": "The command used to compile Java.\nIt should NOT include the path to the source file or the path of the compiled class file.",
-    "old": ["compile_java"]
-  },
-  {
-    "name": "Java/Run Arguments",
-    "type": "QString",
-    "tip": "The runtime arguments when executing a Java program",
-    "old": ["runtime_java"]
-  },
-  {
-    "name": "Java/Run Command",
-    "type": "QString",
-    "default": "java",
-    "tip": "The command to start a Java program. It should NOT include \"-classpath <path> <class name>\".",
-    "old": ["run_java"]
-  },
-  {
-    "name": "Java/Class Name",
-    "type": "QString",
-    "default": "Main",
-    "tip": "The name of the main class of your solution."
-  },
-  {
-    "name": "Java/Output Path",
-    "desc": "Java Class Path",
-    "type": "QString",
-    "default": "${tmpdir}",
-    "tip": "The path of the parent directory of the compiled class file.\nIt's relative to the source file, or the temporary directory if the tab is untitled.\nYou can use \"${filename}\" for the complete file name,\n\"${basename}\" for the base file name without the suffix,\n\"${tmpdir}\" or \"${tempdir}\" for the absolute path of the temporary directory."
-  },
-  {
-    "name": "Python/Run Arguments",
-    "type": "QString",
-    "tip": "The runtime arguments when executing a Python program",
-    "old": ["runtime_python"]
-  },
-  {
-    "name": "Python/Run Command",
-    "type": "QString",
-    "default": "python",
-    "tip": "The command to start a Python program. It should NOT include the path to the source file.",
-    "old": ["run_python"]
-  },
-  {
     "name": "Editor Theme",
     "type": "QString",
     "default": "Light",
@@ -863,8 +797,8 @@
       "pass": {
         "group": [
           {
-            "name": "@tr(\"Template\")",
-            "target": ["Template Path", "Template Cursor Position Regex", "Template Cursor Position Offset Type", "Template Cursor Position Offset Characters"]
+            "name": "@tr(\"Command\")",
+            "target": ["Compile Command", "Compiler Output Codec", "Output Path", "Class Name", "Run Command", "Run Arguments"]
           },
           {
             "name": "@tr(\"Parentheses\")",
@@ -873,14 +807,76 @@
           {
             "name": "@tr(\"Snippet\")",
             "target": ["Snippet"]
+          },
+          {
+            "name": "@tr(\"Template\")",
+            "target": ["Template Path", "Template Cursor Position Regex", "Template Cursor Position Offset Type", "Template Cursor Position Offset Characters"]
           }
-        ]
+        ],
+        "hide": {
+          "Compile Command": ["Python"],
+          "Compiler Output Codec": ["Python"],
+          "Output Path": ["Python"],
+          "Run Command": ["C++"],
+          "Class Name": ["C++", "Python"]
+        }
       }
     },
     "default": [
       "C++", "Java", "Python"
     ],
     "sub": [
+      {
+        "name": "Compile Command",
+        "type": "QString",
+        "methods": {
+          "getDefault": {
+            "param": {
+              "pre": "QStringList"
+            },
+            "code": "auto lang = pre.back(); if (lang == \"C++\") return \"c++ -Wall\"; if (lang == \"Java\") return \"javac\"; return \"\";"
+          }
+        },
+        "tip": "The command used to compile @1. It should NOT include the path to the source file or any core params."
+      },
+      {
+        "name": "Compiler Output Codec",
+        "type": "QString",
+        "default": "UTF-8",
+        "ui": "CodecBox",
+        "tip": "Text codec of the compiler output (errors, warnings, etc.)"
+      },
+      {
+        "name": "Output Path",
+        "desc": "Executable File Path",
+        "type": "QString",
+        "default": "${tmpdir}/${basename}",
+        "tip": "The path of the compiled file.\nIt's relative to the source file, or the temporary directory if the tab is untitled.\nYou can use \"${filename}\" for the complete file name,\n\"${basename}\" for the base file name without the suffix,\n\"${tmpdir}\" or \"${tempdir}\" for the absolute path of the temporary directory."
+      },
+      {
+        "name": "Run Arguments",
+        "type": "QString",
+        "tip": "The runtime arguments when executing a @1 program."
+      },
+      {
+        "name": "Run Command",
+        "type": "QString",
+        "methods": {
+          "getDefault": {
+            "param": {
+              "pre": "QStringList"
+            },
+            "code": "auto lang = pre.back(); if (lang == \"Java\") return \"java\"; if (lang == \"Python\") return \"python\"; return \"\";"
+          }
+        },
+        "tip": "The command to start a @1 program. It should NOT include core params."
+      },
+      {
+        "name": "Class Name",
+        "type": "QString",
+        "default": "Main",
+        "tip": "The name of the main class of your solution."
+      },
       {
         "name": "Template Path",
         "type": "QString",
@@ -1135,20 +1131,6 @@
     ],
     "docAnchor": "network-proxy",
     "tip": "The password of the proxy server. It can be empty if the proxy server doesn't require authentication."
-  },
-  {
-    "name": "C++/Compiler Output Codec",
-    "type": "QString",
-    "default": "UTF-8",
-    "ui": "CodecBox",
-    "tip": "Text codec of the compiler output (errors, warnings, etc.)"
-  },
-  {
-    "name": "Java/Compiler Output Codec",
-    "type": "QString",
-    "default": "UTF-8",
-    "ui": "CodecBox",
-    "tip": "Text codec of the compiler output (errors, warnings, etc.)"
   },
   {
     "name": "Default Path/Names And Paths",

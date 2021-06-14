@@ -1464,10 +1464,6 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation></translation>
     </message>
     <message>
-        <source>%1 Commands</source>
-        <translation>%1 命令</translation>
-    </message>
-    <message>
         <source>%1 Server</source>
         <translation></translation>
     </message>
@@ -1617,59 +1613,6 @@ The cursor will be at the end of the template if there&apos;s no match of the re
         <translation>包含空白字符的偏移字符数，相对于正则表达式的匹配位置。</translation>
     </message>
     <message>
-        <source>The command used to compile C++. It should NOT include the path to the source file or &quot;-o &lt;output file&gt;&quot;.</source>
-        <translation>编译 C++ 代码所用命令。这里不应该包含源代码路径或是&quot;-o &lt;output file&gt;&quot;。</translation>
-    </message>
-    <message>
-        <source>The runtime arguments when executing a C++ program</source>
-        <translation>执行 C++ 程序时提供的命令行参数</translation>
-    </message>
-    <message>
-        <source>The command used to compile Java.
-It should NOT include the path to the source file or the path of the compiled class file.</source>
-        <translation>编译 Java 代码所用命令。这里不应该包含源代码路径或是输出的 class 文件路径。</translation>
-    </message>
-    <message>
-        <source>The runtime arguments when executing a Java program</source>
-        <translation>执行 Java 程序时提供的命令行参数</translation>
-    </message>
-    <message>
-        <source>The command to start a Java program. It should NOT include &quot;-classpath &lt;path&gt; &lt;class name&gt;&quot;.</source>
-        <translation>执行 Java 程序时的命令。这里不应该包含&quot;-classpath &lt;path&gt; &lt;class name&gt;&quot;。</translation>
-    </message>
-    <message>
-        <source>%1 Run Command</source>
-        <translation>%1 运行命令</translation>
-    </message>
-    <message>
-        <source>%1 Class Name</source>
-        <translation>%1 类名称</translation>
-    </message>
-    <message>
-        <source>%1 Class Path</source>
-        <translation>%1 类路径</translation>
-    </message>
-    <message>
-        <source>The path of the parent directory of the compiled class file.
-It&apos;s relative to the source file, or the temporary directory if the tab is untitled.
-You can use &quot;${filename}&quot; for the complete file name,
-&quot;${basename}&quot; for the base file name without the suffix,
-&quot;${tmpdir}&quot; or &quot;${tempdir}&quot; for the absolute path of the temporary directory.</source>
-        <translation>编译后生成的类文件所在的目录。
-是一个相对于源代码所在路径的相对路径。如果当前页未命名，则相对于临时目录。
-你可以使用 &quot;${filename}&quot; 来代指完整的源文件名；
-使用 &quot;${basename}&quot; 来代指无后缀的源文件名；
-使用 &quot;${tmpdir}&quot; 或 &quot;${tempdir}&quot; 来代指临时目录的绝对路径。</translation>
-    </message>
-    <message>
-        <source>The runtime arguments when executing a Python program</source>
-        <translation>执行 Python 程序时提供的命令行参数</translation>
-    </message>
-    <message>
-        <source>The command to start a Python program. It should NOT include the path to the source file.</source>
-        <translation>执行 Python 程序时的命令。这里不应该包含源代码路径。</translation>
-    </message>
-    <message>
         <source>Editor Theme</source>
         <translation>编辑器主题</translation>
     </message>
@@ -1729,32 +1672,6 @@ and move out of it when typing the right element of it.
 This can be overridden for each parenthesis in each language.</source>
         <translation>自动在输入左括号时添加右括号，在紧接着输入右括号时自动移出。
 此设置可以被各个语言的设置所覆盖。</translation>
-    </message>
-    <message>
-        <source>%1 Compile Command</source>
-        <translation>%1 编译命令</translation>
-    </message>
-    <message>
-        <source>%1 Executable File Path</source>
-        <translation>%1 可执行文件路径</translation>
-    </message>
-    <message>
-        <source>The path of the compiled executable file.
-It&apos;s relative to the source file, or the temporary directory if the tab is untitled.
-No &quot;.exe&quot; is needed.
-You can use &quot;${filename}&quot; for the complete file name,
-&quot;${basename}&quot; for the base file name without the suffix,
-&quot;${tmpdir}&quot; or &quot;${tempdir}&quot; for the absolute path of the temporary directory.</source>
-        <translation>编译后生成的可执行文件的路径。
-是一个相对于源代码所在路径的相对路径。如果当前页未命名，则相对于临时目录。
-不需要 &quot;.exe&quot; 后缀。
-你可以使用 &quot;${filename}&quot; 来代指完整的源文件名；
-使用 &quot;${basename}&quot; 来代指无后缀的源文件名；
-使用 &quot;${tmpdir}&quot; 或 &quot;${tempdir}&quot; 来代指临时目录的绝对路径。</translation>
-    </message>
-    <message>
-        <source>%1 Run Arguments</source>
-        <translation>%1 运行参数</translation>
     </message>
     <message>
         <source>The name of the main class of your solution.</source>
@@ -2289,10 +2206,6 @@ kill the application with SIGKILL which could not be handled by the application.
         <translation>整个 CP Editor 使用的自定义字体</translation>
     </message>
     <message>
-        <source>%1 Compiler Output Codec</source>
-        <translation>%1 编译器输出编码</translation>
-    </message>
-    <message>
         <source>Text codec of the compiler output (errors, warnings, etc.)</source>
         <translation>编译器输出（错误，警告等）的文字编码</translation>
     </message>
@@ -2691,6 +2604,58 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <source>Template</source>
         <translation>模板</translation>
+    </message>
+    <message>
+        <source>Compile Command</source>
+        <translation>编译命令</translation>
+    </message>
+    <message>
+        <source>The command used to compile @1. It should NOT include the path to the source file or any core params.</source>
+        <translation>编译 @1 代码所用命令。这里不应该包含源代码路径或任何核心参数。</translation>
+    </message>
+    <message>
+        <source>Compiler Output Codec</source>
+        <translation>编译器输出编码</translation>
+    </message>
+    <message>
+        <source>Executable File Path</source>
+        <translation>可执行文件路径</translation>
+    </message>
+    <message>
+        <source>Run Arguments</source>
+        <translation>运行参数</translation>
+    </message>
+    <message>
+        <source>Run Command</source>
+        <translation>运行命令</translation>
+    </message>
+    <message>
+        <source>The command to start a @1 program. It should NOT include core params.</source>
+        <translation>执行 @1 程序时的命令。这里不应该包含任何核心参数。</translation>
+    </message>
+    <message>
+        <source>Class Name</source>
+        <translation>类名</translation>
+    </message>
+    <message>
+        <source>Command</source>
+        <translation>命令</translation>
+    </message>
+    <message>
+        <source>The runtime arguments when executing a @1 program.</source>
+        <translation>执行 @1 程序时提供的命令行参数。</translation>
+    </message>
+    <message>
+        <source>The path of the compiled file.
+It&apos;s relative to the source file, or the temporary directory if the tab is untitled.
+You can use &quot;${filename}&quot; for the complete file name,
+&quot;${basename}&quot; for the base file name without the suffix,
+&quot;${tmpdir}&quot; or &quot;${tempdir}&quot; for the absolute path of the temporary directory.</source>
+        <translation>编译后生成的文件的路径。
+是一个相对于源代码所在路径的相对路径。如果当前页未命名，则相对于临时目录。
+你可以使用 &quot;${filename}&quot; 来代指完整的源文件名；
+使用 &quot;${basename}&quot; 来代指无后缀的源文件名；
+使用 &quot;${tmpdir}&quot; 或 &quot;${tempdir}&quot; 来代指临时目录的绝对路径。</translation>
     </message>
 </context>
 <context>

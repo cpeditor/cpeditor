@@ -18,7 +18,6 @@
 #include "Util/QCodeEditorUtil.hpp"
 #include "Core/EventLogger.hpp"
 #include "Extensions/EditorTheme.hpp"
-#include "Settings/SettingsManager.hpp"
 #include "generated/SettingsHelper.hpp"
 #include <QCXXHighlighter>
 #include <QCodeEditor>

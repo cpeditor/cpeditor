@@ -1464,10 +1464,6 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation>Language Server</translation>
     </message>
     <message>
-        <source>%1 Commands</source>
-        <translation>%1 Команды</translation>
-    </message>
-    <message>
         <source>%1 Server</source>
         <translation>%1 Сервер</translation>
     </message>
@@ -1617,60 +1613,6 @@ The cursor will be at the end of the template if there&apos;s no match of the re
         <translation>Смещение относительно совпадения регулярного выражения по количеству символов, включая пробелы.</translation>
     </message>
     <message>
-        <source>The command used to compile C++. It should NOT include the path to the source file or &quot;-o &lt;output file&gt;&quot;.</source>
-        <translation>Команда, используемая для компиляции C ++. Она НЕ должен включать путь к исходному файлу или &quot;-o &lt;output file&gt;&quot;.</translation>
-    </message>
-    <message>
-        <source>The runtime arguments when executing a C++ program</source>
-        <translation>Аргументы при выполнении программы на C++</translation>
-    </message>
-    <message>
-        <source>The command used to compile Java.
-It should NOT include the path to the source file or the path of the compiled class file.</source>
-        <translation>Команда, используемая для компиляции Java.
-Она НЕ должна включать путь к исходному файлу или путь к скомпилированному файлу класса.</translation>
-    </message>
-    <message>
-        <source>The runtime arguments when executing a Java program</source>
-        <translation>Аргументы при выполнении программы на Java</translation>
-    </message>
-    <message>
-        <source>The command to start a Java program. It should NOT include &quot;-classpath &lt;path&gt; &lt;class name&gt;&quot;.</source>
-        <translation>Команда для запуска программы на Java. НЕ должна включать &quot;-classpath &lt;path&gt; &lt;class name&gt;&quot;.</translation>
-    </message>
-    <message>
-        <source>%1 Run Command</source>
-        <translation>%1 Run Command</translation>
-    </message>
-    <message>
-        <source>%1 Class Name</source>
-        <translation>%1 Имя класса</translation>
-    </message>
-    <message>
-        <source>%1 Class Path</source>
-        <translation>%1 Путь класса</translation>
-    </message>
-    <message>
-        <source>The path of the parent directory of the compiled class file.
-It&apos;s relative to the source file, or the temporary directory if the tab is untitled.
-You can use &quot;${filename}&quot; for the complete file name,
-&quot;${basename}&quot; for the base file name without the suffix,
-&quot;${tmpdir}&quot; or &quot;${tempdir}&quot; for the absolute path of the temporary directory.</source>
-        <translation>Путь к родительскому каталогу скомпилированного файла класса.
-Путь относительно исходного файла или временного каталога, если вкладка не имеет названия.
-Вы можете использовать &quot;${filename}&quot; для полного имени файла,
-&quot;${basename}&quot; для базового имени файла без суффикса,
-&quot;${tmpdir}&quot; или &quot;${tempdir}&quot; для абсолютного пути к временному каталогу.</translation>
-    </message>
-    <message>
-        <source>The runtime arguments when executing a Python program</source>
-        <translation>Аргументы, используемые при запуске программы на Python</translation>
-    </message>
-    <message>
-        <source>The command to start a Python program. It should NOT include the path to the source file.</source>
-        <translation>Команда для запуска программы на Python. Она НЕ должна включать путь к исходному файлу.</translation>
-    </message>
-    <message>
         <source>Editor Theme</source>
         <translation>Тема редактора</translation>
     </message>
@@ -1731,32 +1673,6 @@ This can be overridden for each parenthesis in each language.</source>
         <translation>Автоматически дополнить пару скобок при наборе левого элемента,
 и отступить при наборе нужного элемента.
 Это может быть переопределено для каждой скобки на каждом языке.</translation>
-    </message>
-    <message>
-        <source>%1 Compile Command</source>
-        <translation>%1 Команда компиляции</translation>
-    </message>
-    <message>
-        <source>%1 Executable File Path</source>
-        <translation>%1 Путь к исполняемому файлу</translation>
-    </message>
-    <message>
-        <source>The path of the compiled executable file.
-It&apos;s relative to the source file, or the temporary directory if the tab is untitled.
-No &quot;.exe&quot; is needed.
-You can use &quot;${filename}&quot; for the complete file name,
-&quot;${basename}&quot; for the base file name without the suffix,
-&quot;${tmpdir}&quot; or &quot;${tempdir}&quot; for the absolute path of the temporary directory.</source>
-        <translation>Путь к скомпилированному исполняемому файлу.
-Имеет значение пути к файлу исходного кода или временной директории, если вкладка не определена.
-Не нужно указывать расширение &quot;.exe&quot;.
-Вы можете использовать &quot;${filename}&quot; для полного имени файла,
-&quot;${basename}&quot; для основного файла без суффикса,
-&quot;${tmpdir}&quot; или &quot;${tempdir}&quot; для абсолютного пути к временной директории.</translation>
-    </message>
-    <message>
-        <source>%1 Run Arguments</source>
-        <translation>%1 Run Arguments</translation>
     </message>
     <message>
         <source>The name of the main class of your solution.</source>
@@ -2293,10 +2209,6 @@ kill the application with SIGKILL which could not be handled by the application.
         <translation>Кастомный шрифт для всего приложения</translation>
     </message>
     <message>
-        <source>%1 Compiler Output Codec</source>
-        <translation>%1 Кодек выхода компилятора</translation>
-    </message>
-    <message>
         <source>Text codec of the compiler output (errors, warnings, etc.)</source>
         <translation>Текстовый кодек выхода компилятора (ошибки, предупреждения и т.д.)</translation>
     </message>
@@ -2697,6 +2609,54 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>Template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Compile Command</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The command used to compile @1. It should NOT include the path to the source file or any core params.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Compiler Output Codec</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Executable File Path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Run Arguments</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Run Command</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The command to start a @1 program. It should NOT include core params.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Class Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Command</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The runtime arguments when executing a @1 program.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The path of the compiled file.
+It&apos;s relative to the source file, or the temporary directory if the tab is untitled.
+You can use &quot;${filename}&quot; for the complete file name,
+&quot;${basename}&quot; for the base file name without the suffix,
+&quot;${tmpdir}&quot; or &quot;${tempdir}&quot; for the absolute path of the temporary directory.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

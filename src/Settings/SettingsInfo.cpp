@@ -77,8 +77,7 @@ QString SettingsInfo::SettingIter::_format(const QString &fmt, const QStringList
     int pos = 0;
     while (pos < fmt.length())
     {
-        int idx;
-        idx = fmt.indexOf('@', pos);
+        int idx = fmt.indexOf('@', pos);
         do
         {
             if (idx == -1)

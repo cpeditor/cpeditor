@@ -192,18 +192,6 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
         .page(TRKEY("Language Config"), {"Language Config"})
         .dir(TRKEY("Language"))
             .page(TRKEY("General"), {"Default Language"})
-            .dir(TRKEY("C++"))
-                .page("C++ Commands", tr("%1 Commands").arg(tr("C++")),
-                      {"C++/Compile Command", "C++/Output Path", "C++/Run Arguments", "C++/Compiler Output Codec"})
-            .end()
-            .dir(TRKEY("Java"))
-                .page("Java Commands", tr("%1 Commands").arg(tr("Java")),
-                      {"Java/Compile Command", "Java/Output Path", "Java/Class Name", "Java/Run Command", "Java/Run Arguments", "Java/Compiler Output Codec"})
-            .end()
-            .dir(TRKEY("Python"))
-                .page("Python Commands", tr("%1 Commands").arg(tr("Python")),
-                      {"Python/Run Command", "Python/Run Arguments"})
-            .end()
         .end()
         .dir(TRKEY("Appearance"))
             .page(TRKEY("General"),{"Locale", "UI Style", "Editor Theme", "Opacity", "Test Case Maximum Height",
