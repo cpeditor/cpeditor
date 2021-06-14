@@ -15,6 +15,7 @@
 #include <QSlider>
 #include <QSpinBox>
 #include <QSplitter>
+#include <QTabWidget>
 
 struct SettingBase : public QObject
 {
@@ -193,6 +194,7 @@ struct SettingsWrapper : public WrapperTemplate<QMap<QString, QVariant>, QWidget
     QStringList entries;
     QString key;
     QMap<QString, QVariant> data;
+    QTabWidget *tab;
     QMap<QString, SettingBase *> wraps;
 };
 
@@ -262,11 +264,13 @@ struct MapWrapper : public WrapperTemplate<QMap<QString, QVariant>, QSplitter>
 
   public:
     bool updateDisabled = false;
-    QString cur;
-    QStringList filt;
+
     QStringList rstrc;
     KeyCheck check;
     Actions action;
+    QVariant pass;
+
+    QString cur;
     QPushButton *btnadd;
     QPushButton *btndel;
     QPushButton *btnmre;

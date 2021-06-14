@@ -28,11 +28,14 @@ PreferencesTemplate::PreferencesTemplate(QStringList opts, const QString &path, 
 {
     PreferencesPage::setPath(path, trPath);
 
+    QMap<QString, QVariant> var;
+    var["filter"] = options;
+
     panel = new SettingsWrapper;
     panel->path = path;
     panel->trPath = trPath;
     panel->iter = SettingsInfo::fakeRootIter();
-    panel->init(this, options);
+    panel->init(this, var);
     makeUITheSameAsSettings();
     panel->enable(true);
 

@@ -42,6 +42,17 @@ class PathItem : public QWidget
         Executable,
     };
 
+    static inline Type getType(const QString &lang)
+    {
+        if (lang == "C++")
+            return CppSource;
+        if (lang == "Java")
+            return JavaSource;
+        if (lang == "Python")
+            return PythonSource;
+        return AnyFile;
+    }
+
     /**
      * @brief construct a PathItem with the given type
      */

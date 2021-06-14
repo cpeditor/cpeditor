@@ -708,7 +708,7 @@ void MainWindow::setLanguage(const QString &lang)
     {
         QString templateContent;
         if (!language.isEmpty())
-            templateContent = Util::readFile(SettingsManager::get(QString("%1/Template Path").arg(language)).toString(),
+            templateContent = Util::readFile(SettingsHelper::getLanguageConfig(language).getTemplatePath(),
                                              tr("Open %1 Template").arg(language), log);
         if (templateContent == editor->toPlainText())
         {
@@ -843,7 +843,7 @@ void MainWindow::loadFile(const QString &loadPath)
 
     if (!QFile::exists(path))
     {
-        QString templatePath = SettingsManager::get(QString("%1/Template Path").arg(language)).toString();
+        QString templatePath = SettingsHelper::getLanguageConfig(language).getTemplatePath();
 
         QFile f(templatePath);
 
@@ -886,14 +886,14 @@ void MainWindow::loadFile(const QString &loadPath)
 
     if (isTemplate)
     {
-        auto match = QRegularExpression(SettingsManager::get(language + "/Template Cursor Position Regex").toString())
+        auto match = QRegularExpression(SettingsHelper::getLanguageConfig(language).getTemplateCursorPositionRegex())
                          .match(content);
         if (match.hasMatch())
         {
-            int pos = SettingsManager::get(language + "/Template Cursor Position Offset Type").toString() == "start"
+            int pos = SettingsHelper::getLanguageConfig(language).getTemplateCursorPositionOffsetType() == "start"
                           ? match.capturedStart()
                           : match.capturedEnd();
-            pos += SettingsManager::get(language + "/Template Cursor Position Offset Characters").toInt();
+            pos += SettingsHelper::getLanguageConfig(language).getTemplateCursorPositionOffsetCharacters();
             pos = qMax(pos, 0);
             pos = qMin(pos, content.length());
             auto cursor = editor->textCursor();
@@ -1082,7 +1082,7 @@ bool MainWindow::isTextChanged() const
 {
     if (isUntitled())
     {
-        auto content = Util::readFile(SettingsManager::get(QString("%1/Template Path").arg(language)).toString(),
+        auto content = Util::readFile(SettingsHelper::getLanguageConfig(language).getTemplatePath(),
                                       tr("Read %1 Template").arg(language), log);
         if (content.isNull())
             return !editor->toPlainText().isEmpty();

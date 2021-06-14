@@ -1,5 +1,27 @@
 #include "Settings/SettingsInfo.hpp"
 
+QVariant SettingsInfo::SettingIter::buildChildDefault(const QString &key) const
+{
+    if (info->type != "Object")
+        return QVariant();
+    QMap<QString, QVariant> ret;
+    for (const auto &si : info->child)
+    {
+        auto it = *this;
+        it.child(key, &si);
+        if (si.type == "Object")
+        {
+            QMap<QString, QVariant> mp;
+            for (const auto &k : si.def.toStringList())
+                mp[k] = it.buildChildDefault(k);
+            ret[si.name] = mp;
+        }
+        else
+            ret[si.name] = it.getDefault();
+    }
+    return ret;
+}
+
 int SettingsInfo::SettingInfo::findChild(const QString &name) const
 {
     for (int i = 0; i < child.size(); i++)
@@ -10,29 +32,6 @@ int SettingsInfo::SettingInfo::findChild(const QString &name) const
         }
     }
     return -1;
-}
-
-QVariant SettingsInfo::SettingInfo::buildChildDefault() const
-{
-    if (type != "Object")
-        return QVariant();
-    QMap<QString, QVariant> ret;
-    for (const auto &si : child)
-    {
-        if (si.type == "Object")
-        {
-            QMap<QString, QVariant> mp;
-            auto d = si.buildChildDefault();
-            for (const auto &k : si.def.toStringList())
-            {
-                mp[k] = d;
-            }
-            ret[si.name] = mp;
-        }
-        else
-            ret[si.name] = si.def;
-    }
-    return ret;
 }
 
 SettingsInfo::SettingIter &SettingsInfo::SettingIter::child(const QString &key, const QString &name)
@@ -59,6 +58,19 @@ SettingsInfo::SettingIter &SettingsInfo::SettingIter::child(const QString &key, 
     throw "Getting a child which is not exist";
 }
 
+SettingsInfo::SettingIter &SettingsInfo::SettingIter::child(const QString &key, const SettingsInfo::SettingInfo *ch)
+{
+    if (key != "")
+    {
+        pre.push_back(info->name);
+        pre.push_back(key);
+        trPre.push_back(info->desc);
+        trPre.push_back(key);
+    }
+    info = ch;
+    return *this;
+}
+
 QString SettingsInfo::SettingIter::_format(const QString &fmt, const QStringList &p) const
 {
     QStringList res;
@@ -83,17 +95,14 @@ QString SettingsInfo::SettingIter::_format(const QString &fmt, const QStringList
             res.push_back(fmt.mid(pos).replace("@@", "@"));
             break;
         }
+        if (pos < idx)
+            res.push_back(fmt.mid(pos, idx - pos).replace("@@", "@"));
+        int n = fmt[idx + 1].digitValue(); // only @%d
+        if (n == 0)
+            res.push_back(info->desc);
         else
-        {
-            if (pos < idx)
-                res.push_back(fmt.mid(pos, idx - pos).replace("@@", "@"));
-            int n = fmt[idx + 1].digitValue(); // only @%d
-            if (n == 0)
-                res.push_back(info->desc);
-            else
-                res.push_back(p[p.size() - n]);
-            pos = idx + 2;
-        }
+            res.push_back(p[p.size() - n]);
+        pos = idx + 2;
     }
     return res.join("");
 }

@@ -12,7 +12,7 @@
 
 void SettingBase::setdef()
 {
-    setV(iter->def);
+    setV(iter.getDefault());
 }
 
 void SettingBase::reset()
@@ -359,7 +359,7 @@ static SettingBase *createWrapper(const SettingsInfo::SettingIter &iter, QWidget
     wrap->iter = iter;
     wrap->path = path;
     wrap->trPath = trPath;
-    wrap->init(widget, info.param);
+    wrap->init(widget, iter.getParam());
     if (iter->immediatelyApply)
         QObject::connect(wrap, &SettingBase::valueChanged, wrap, &SettingBase::apply);
     return wrap;
@@ -367,12 +367,10 @@ static SettingBase *createWrapper(const SettingsInfo::SettingIter &iter, QWidget
 
 void SettingsWrapper::init(QWidget *parent, QVariant param)
 {
+    auto cfg = param.toMap();
     widget = new QWidget(parent);
 
-    auto *layout = new QFormLayout(widget);
-    layout->setMargin(0);
-    widget->setLayout(layout);
-    auto filt = param.toStringList();
+    auto filt = cfg["filter"].toStringList();
     if (filt.length() > 0)
     {
         for (const auto &s : filt)
@@ -389,12 +387,56 @@ void SettingsWrapper::init(QWidget *parent, QVariant param)
         {
             entries.push_back(i.name);
         }
-        std::sort(entries.begin(), entries.end());
+    }
+    bool hasGroup = cfg.contains("group");
+    QFormLayout *layout;
+    QMap<QString, QFormLayout *> layouts;
+    QMap<QString, QString> choose;
+
+    if (hasGroup)
+    {
+        auto *l = new QVBoxLayout(widget);
+        l->setMargin(0);
+
+        tab = new QTabWidget(widget);
+        for (const auto &c : cfg["group"].toList())
+        {
+            auto *w = new QWidget(tab);
+            auto n = c.toMap()["name"].toString();
+            tab->addTab(w, n);
+            for (const auto &k : c.toMap()["target"].toStringList())
+            {
+                choose[k] = n;
+            }
+            layout = new QFormLayout(w);
+            w->setLayout(layout);
+            layouts[n] = layout;
+        }
+        l->addWidget(tab);
+        widget->setLayout(l);
+    }
+    else
+    {
+        tab = nullptr;
+        layout = new QFormLayout(widget);
+        widget->setLayout(layout);
     }
     for (const auto &name : entries)
     {
         auto siter = iter;
         siter.child(key, name);
+        QFormLayout *target;
+        if (hasGroup)
+        {
+            if (choose.contains(siter->name))
+                target = layouts[choose[siter->name]];
+            else
+                target = nullptr;
+        }
+        else
+            target = layout;
+        if (!target)
+            continue;
         QString desc = siter->desc;
         SettingBase *wrap = createWrapper(siter, widget, desc, path + '/' + siter->name, trPath + '/' + siter->desc);
         wrap->parent = this;
@@ -404,17 +446,18 @@ void SettingsWrapper::init(QWidget *parent, QVariant param)
         wraps[name] = wrap;
         auto *label = new QLabel;
         label->setOpenExternalLinks(true);
-        if (siter->type == "bool" || siter->type == "Object" ||
-            (siter->type == "int" && siter->ui == "RichTextCheckBox"))
+        if (target)
         {
-            layout->addRow(label, wrap->rootWidget());
-        }
-        else
-        {
-            label->setText(desc + " " + wrap->docLink());
-            if (!siter->tip.isEmpty())
-                label->setToolTip(siter.format(siter->tip));
-            layout->addRow(label, wrap->rootWidget());
+            if (siter->type == "bool" || siter->type == "Object" ||
+                (siter->type == "int" && siter->ui == "RichTextCheckBox"))
+                target->addRow(label, wrap->rootWidget());
+            else
+            {
+                label->setText(desc + " " + wrap->docLink());
+                if (!siter->tip.isEmpty())
+                    label->setToolTip(siter.format(siter->tip));
+                target->addRow(label, wrap->rootWidget());
+            }
         }
     }
     for (const auto &name : entries)
@@ -675,8 +718,6 @@ void MapWrapper::init(QWidget *parent, QVariant param)
     if (!param.isNull())
     {
         auto cfg = param.toMap();
-        if (cfg.contains("filter"))
-            filt = cfg["filter"].toStringList();
         if (cfg.contains("restrict"))
             rstrc = cfg["restrict"].toStringList();
         if (cfg.contains("check"))
@@ -685,6 +726,8 @@ void MapWrapper::init(QWidget *parent, QVariant param)
             action.init(cfg["action"]);
         if (cfg.contains("rename"))
             allowRename = cfg["rename"].toBool();
+        if (cfg.contains("pass"))
+            pass = cfg["pass"];
     }
     leftLayout->addWidget(list);
 
@@ -765,7 +808,7 @@ void MapWrapper::setdef()
 {
     QMap<QString, QVariant> def;
     for (const auto &k : iter->def.toStringList())
-        def.insert(k, iter->buildChildDefault());
+        def.insert(k, iter.buildChildDefault(k));
     set(def);
 }
 
@@ -873,7 +916,7 @@ void MapWrapper::add(const QString &key)
     panel->setKey(key);
     panel->path = path + "/" + iter->name;
     panel->trPath = trPath + "/" + iter->desc;
-    panel->init(widget, filt);
+    panel->init(widget, pass);
     rights[key] = panel;
     right->layout()->addWidget(panel->rootWidget());
     connect(panel, &SettingsWrapper::valueChanged, this, &MapWrapper::update);

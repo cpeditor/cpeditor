@@ -57,9 +57,27 @@ class SettingsInfo
         {
             return _format(fmt, pre);
         }
+        QVariant getDefault() const
+        {
+            if (!info)
+                return QVariant();
+            if (info->methods.contains("getDefault"))
+                return info->call("getDefault", "pre", pre);
+            return info->def;
+        }
+        QVariant getParam() const
+        {
+            if (!info)
+                return QVariant();
+            if (info->methods.contains("getParam"))
+                return info->call("getParam", "pre", pre);
+            return info->param;
+        }
+        QVariant buildChildDefault(const QString &key) const;
 
       private:
         QString _format(const QString &fmt, const QStringList &p) const;
+        SettingIter &child(const QString &key, const SettingInfo *ch);
     };
 
     class SettingInfo
@@ -87,7 +105,6 @@ class SettingsInfo
             return name.toLower().replace("c++", "cpp").replace(' ', '_');
         }
         int findChild(const QString &name) const;
-        QVariant buildChildDefault() const;
         template <typename... Extra> QVariant call(const QString &name, const Extra &... extra) const
         {
             if (!methods.contains(name))

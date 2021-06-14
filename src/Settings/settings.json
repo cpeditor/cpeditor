@@ -116,55 +116,6 @@
     "old": ["clang_format/format_on_auto_save"]
   },
   {
-    "name": "C++/Template Path",
-    "type": "QString",
-    "ui": "PathItem",
-    "param": "#PathItem::CppSource",
-    "tip": "The template used when creating a new C++ file",
-    "old": ["template_cpp"]
-  },
-  {
-    "name": "C++/Template Cursor Position Regex",
-    "type": "QString",
-    "default": "main\\(\\)",
-    "depends": [
-      {
-        "name": "C++/Template Path",
-        "check": "return !var.toString().isEmpty();"
-      }
-    ],
-    "tip": "The regular expression which matches a part of the code template.\nWhen opening a template, the position of the cursor is the position of the regex with an offset.\nThe cursor will be at the end of the template if there's no match of the regex."
-  },
-  {
-    "name": "C++/Template Cursor Position Offset Type",
-    "type": "QString",
-    "default": "end",
-    "ui": "QComboBox",
-    "param": [
-      "start", "end"
-    ],
-    "depends": [
-      {
-        "name": "C++/Template Path",
-        "check": "return !var.toString().isEmpty();"
-      }
-    ],
-    "tip": "Whether the offset is relative to the start of the regex or the end of the regex."
-  },
-  {
-    "name": "C++/Template Cursor Position Offset Characters",
-    "type": "int",
-    "default": 4,
-    "param": [-1000000, 1000000],
-    "depends": [
-      {
-        "name": "C++/Template Path",
-        "check": "return !var.toString().isEmpty();"
-      }
-    ],
-    "tip": "The offset relative to the match of the regex in the number of characters, including white spaces."
-  },
-  {
     "name": "C++/Compile Command",
     "type": "QString",
     "default": "c++ -Wall",
@@ -183,14 +134,6 @@
     "type": "QString",
     "tip": "The runtime arguments when executing a C++ program",
     "old": ["runtime_cpp"]
-  },
-  {
-    "name": "Java/Template Path",
-    "type": "QString",
-    "ui": "PathItem",
-    "param": "#PathItem::JavaSource",
-    "tip": "The template used when creating a new Java file",
-    "old": ["template_java"]
   },
   {
     "name": "Java/Compile Command",
@@ -224,92 +167,6 @@
     "type": "QString",
     "default": "${tmpdir}",
     "tip": "The path of the parent directory of the compiled class file.\nIt's relative to the source file, or the temporary directory if the tab is untitled.\nYou can use \"${filename}\" for the complete file name,\n\"${basename}\" for the base file name without the suffix,\n\"${tmpdir}\" or \"${tempdir}\" for the absolute path of the temporary directory."
-  },
-  {
-    "name": "Java/Template Cursor Position Regex",
-    "type": "QString",
-    "depends": [
-      {
-        "name": "Java/Template Path",
-        "check": "return !var.toString().isEmpty();"
-      }
-    ],
-    "tip": "The regular expression which matches a part of the code template.\nWhen opening a template, the position of the cursor is the position of the regex with an offset.\nThe cursor will be at the end of the template if there's no match of the regex."
-  },
-  {
-    "name": "Java/Template Cursor Position Offset Type",
-    "type": "QString",
-    "default": "end",
-    "ui": "QComboBox",
-    "param": [
-      "start", "end"
-    ],
-    "depends": [
-      {
-        "name": "Java/Template Path",
-        "check": "return !var.toString().isEmpty();"
-      }
-    ],
-    "tip": "Whether the offset is relative to the start of the regex or the end of the regex."
-  },
-  {
-    "name": "Java/Template Cursor Position Offset Characters",
-    "type": "int",
-    "param": [-1000000, 1000000],
-    "depends": [
-      {
-        "name": "Java/Template Path",
-        "check": "return !var.toString().isEmpty();"
-      }
-    ],
-    "tip": "The offset relative to the match of the regex in the number of characters, including white spaces."
-  },
-  {
-    "name": "Python/Template Path",
-    "type": "QString",
-    "ui": "PathItem",
-    "param": "#PathItem::PythonSource",
-    "tip": "The template used when creating a new Python file",
-    "old": ["template_python"]
-  },
-  {
-    "name": "Python/Template Cursor Position Regex",
-    "type": "QString",
-    "depends": [
-      {
-        "name": "Python/Template Path",
-        "check": "return !var.toString().isEmpty();"
-      }
-    ],
-    "tip": "The regular expression which matches a part of the code template.\nWhen opening a template, the position of the cursor is the position of the regex with an offset.\nThe cursor will be at the end of the template if there's no match of the regex."
-  },
-  {
-    "name": "Python/Template Cursor Position Offset Type",
-    "type": "QString",
-    "default": "end",
-    "ui": "QComboBox",
-    "param": [
-      "start", "end"
-    ],
-    "depends": [
-      {
-        "name": "Python/Template Path",
-        "check": "return !var.toString().isEmpty();"
-      }
-    ],
-    "tip": "Whether the offset is relative to the start of the regex or the end of the regex."
-  },
-  {
-    "name": "Python/Template Cursor Position Offset Characters",
-    "type": "int",
-    "param": [-1000000, 1000000],
-    "depends": [
-      {
-        "name": "Python/Template Path",
-        "check": "return !var.toString().isEmpty();"
-      }
-    ],
-    "tip": "The offset relative to the match of the regex in the number of characters, including white spaces."
   },
   {
     "name": "Python/Run Arguments",
@@ -1002,12 +859,90 @@
     "param": {
       "restrict": [
         "C++", "Java", "Python"
-      ]
+      ],
+      "pass": {
+        "group": [
+          {
+            "name": "@tr(\"Template\")",
+            "target": ["Template Path", "Template Cursor Position Regex", "Template Cursor Position Offset Type", "Template Cursor Position Offset Characters"]
+          },
+          {
+            "name": "@tr(\"Parentheses\")",
+            "target": ["Parentheses"]
+          },
+          {
+            "name": "@tr(\"Snippet\")",
+            "target": ["Snippet"]
+          }
+        ]
+      }
     },
     "default": [
       "C++", "Java", "Python"
     ],
     "sub": [
+      {
+        "name": "Template Path",
+        "type": "QString",
+        "ui": "PathItem",
+        "methods": {
+          "getParam": {
+            "param": {
+              "pre": "QStringList"
+            },
+            "code": "return PathItem::getType(pre.back());"
+          }
+        },
+        "tip": "The template used when creating a new @1 file"
+      },
+      {
+        "name": "Template Cursor Position Regex",
+        "type": "QString",
+        "methods": {
+          "getDefault": {
+            "param": {
+              "pre": "QStringList"
+            },
+            "code": "auto lang = pre.back(); if (lang == \"C++\") return \"main\\\\(\\\\)\"; return \"\";"
+          }
+        },
+        "depends": [
+          {
+            "name": "Template Path",
+            "check": "return !var.toString().isEmpty();"
+          }
+        ],
+        "tip": "The regular expression which matches a part of the code template.\nWhen opening a template, the position of the cursor is the position of the regex with an offset.\nThe cursor will be at the end of the template if there's no match of the regex."
+      },
+      {
+        "name": "Template Cursor Position Offset Type",
+        "type": "QString",
+        "default": "end",
+        "ui": "QComboBox",
+        "param": [
+          "start", "end"
+        ],
+        "depends": [
+          {
+            "name": "Template Path",
+            "check": "return !var.toString().isEmpty();"
+          }
+        ],
+        "tip": "Whether the offset is relative to the start of the regex or the end of the regex."
+      },
+      {
+        "name": "Template Cursor Position Offset Characters",
+        "type": "int",
+        "default": 4,
+        "param": [-1000000, 1000000],
+        "depends": [
+          {
+            "name": "Template Path",
+            "check": "return !var.toString().isEmpty();"
+          }
+        ],
+        "tip": "The offset relative to the match of the regex in the number of characters, including white spaces."
+      },
       {
         "name": "Parentheses",
         "type": "Object",
