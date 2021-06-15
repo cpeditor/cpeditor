@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+## 6.8.2
+
 ### Fixed
 
 -   Now the link in the update checker is clickable.
