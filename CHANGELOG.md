@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+## 6.9.1 (Beta)
+
 ### Added
 
 -   Show dialog on full screen for first time. (#786)
