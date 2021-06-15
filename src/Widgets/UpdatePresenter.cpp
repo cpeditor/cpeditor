@@ -68,6 +68,7 @@ void UpdatePresenter::showUpdate(const Telemetry::UpdateChecker::UpdateMetaInfor
             .arg(info.releasePageUrl)
             .arg(info.version);
     hint->setText(message);
+    hint->setOpenExternalLinks(true);
 
     Util::showWidgetOnTop(this);
 }
