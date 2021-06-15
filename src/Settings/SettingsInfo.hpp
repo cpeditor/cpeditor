@@ -62,7 +62,7 @@ class SettingsInfo
             if (!info)
                 return QVariant();
             if (info->methods.contains("getDefault"))
-                return info->call("getDefault", "pre", pre);
+                return info->call("getDefault", "pre", pre, "param", getParam());
             return info->def;
         }
         QVariant getParam() const
@@ -70,7 +70,7 @@ class SettingsInfo
             if (!info)
                 return QVariant();
             if (info->methods.contains("getParam"))
-                return info->call("getParam", "pre", pre);
+                return info->call("getParam", "pre", pre, "param", info->param);
             return info->param;
         }
         QVariant buildChildDefault(const QString &key) const;

@@ -4,7 +4,6 @@
 import sys
 import json
 
-
 def writeHelper(f, obj, pre, indent):
     ids = "    " * indent
     cst = " const"
@@ -74,6 +73,8 @@ def parseParam(obj):
         return str.lower(str(obj)), False
     return str(obj), False
 
+presetFunc = {}
+
 def writeInfo(f, obj, lst):
     for t in obj:
         name = t["name"]
@@ -96,6 +97,8 @@ def writeInfo(f, obj, lst):
         for fn in t.get("methods", []):
             func = t["methods"][fn]
             predef = ""
+            if type(func) == str:
+                func = presetFunc[func]
             for v in func.get("param", {}):
                 vt = func["param"][v].strip()
                 at = "auto "
@@ -173,7 +176,10 @@ def addDefaultPaths(obj):
 
 
 if __name__ == "__main__":
-    obj = json.load(open(sys.argv[1], mode="r", encoding="utf-8"))
+    objroot = json.load(open(sys.argv[1], mode="r", encoding="utf-8"))
+
+    presetFunc = objroot["presetMethod"]
+    obj = objroot["data"]
 
     addDefaultPaths(obj)
 
