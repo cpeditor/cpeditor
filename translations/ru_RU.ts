@@ -477,105 +477,6 @@ Git commit hash: %3
     </message>
 </context>
 <context>
-    <name>CodeSnippetsPage</name>
-    <message>
-        <source>Search...</source>
-        <translation>Search...</translation>
-    </message>
-    <message>
-        <source>Add</source>
-        <translation>Добавить</translation>
-    </message>
-    <message>
-        <source>Del</source>
-        <translation>Удалить</translation>
-    </message>
-    <message>
-        <source>Rename Snippet</source>
-        <translation>Переименовать сниппет</translation>
-    </message>
-    <message>
-        <source>Load Snippets From Files</source>
-        <translation>Загрузить сниппет из файлов</translation>
-    </message>
-    <message>
-        <source>Extract Snippets To Files</source>
-        <translation>Извлечь сниппет в файлы</translation>
-    </message>
-    <message>
-        <source>More</source>
-        <translation>Еще</translation>
-    </message>
-    <message>
-        <source>No Snippet Selected</source>
-        <translation>Сниппет не выбран</translation>
-    </message>
-    <message>
-        <source>Unsaved Snippets</source>
-        <translation>Несохраненные сниппеты</translation>
-    </message>
-    <message>
-        <source>The snippet [%1] has been changed. Do you want to save it or discard the changes?</source>
-        <translation>Сниппет [%1] был изменен. Вы хотите сохранить изменения или отменить их?</translation>
-    </message>
-    <message>
-        <source>Delete Snippet</source>
-        <translation>Удалить сниппет</translation>
-    </message>
-    <message>
-        <source>Do you really want to delete the snippet [%1]?</source>
-        <translation>Вы действительно хотите удалить сниппет [%1]?</translation>
-    </message>
-    <message>
-        <source>Load Snippets</source>
-        <translation>Загрузить сниппет</translation>
-    </message>
-    <message>
-        <source>Failed to open [%1]. Do I have read permission?</source>
-        <translation>Не удалось открыть [%1]. Предоставлен ли доступ к чтению файла?</translation>
-    </message>
-    <message>
-        <source>Extract Snippets</source>
-        <translation>Дополнительные сниппеты</translation>
-    </message>
-    <message>
-        <source>Extract Snippets: %1</source>
-        <translation>Дополнительные сниппеты: %1</translation>
-    </message>
-    <message>
-        <source>Failed to write to [%1]. Do I have write permission?</source>
-        <translation>Не удалось записать изменения в файл [%1]. Предоставлен ли доступ к изменению фалйла?</translation>
-    </message>
-    <message>
-        <source>Snippet name can&apos;t be empty.
-</source>
-        <translation>Название сниппета не может пустым.
-</translation>
-    </message>
-    <message>
-        <source>Snippet Name Conflict</source>
-        <translation>Конфликт названий сниппетов</translation>
-    </message>
-    <message>
-        <source>The name &quot;%1&quot; is already in use. Do you want to override it? (The old snippet with this name will be deleted.)</source>
-        <translation>Название &quot;%1&quot; уже используется. Вы хотите перезаписать сниппет с таким именем? (Старый сниппет будет удален.)</translation>
-    </message>
-    <message>
-        <source>The name &quot;%1&quot; is already in use.
-</source>
-        <translation>Название &quot;%1&quot; уже используется.
-</translation>
-    </message>
-    <message>
-        <source>Add Snippet</source>
-        <translation>Добавить сниппет</translation>
-    </message>
-    <message>
-        <source>New Snippet Name:</source>
-        <translation>Новое имя сниппета:</translation>
-    </message>
-</context>
-<context>
     <name>Core::Checker</name>
     <message>
         <source>Read Checker</source>
@@ -1208,7 +1109,7 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>More</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ещё</translation>
     </message>
     <message>
         <source>Add %1</source>
@@ -1242,66 +1143,6 @@ Do you want to reload it?</source>
 ... The message is too long</source>
         <translation>
 ... Это сообщение слишком длинное</translation>
-    </message>
-</context>
-<context>
-    <name>ParenthesesPage</name>
-    <message>
-        <source>%1 Parentheses</source>
-        <translation>Скобки %1</translation>
-    </message>
-    <message>
-        <source>Add</source>
-        <translation>Добавить</translation>
-    </message>
-    <message>
-        <source>Del</source>
-        <translation>Удалить</translation>
-    </message>
-    <message>
-        <source>No Parenthesis Selected</source>
-        <translation>Нет выбранных скобок</translation>
-    </message>
-    <message>
-        <source>New Parenthesis</source>
-        <translation>Новые скобки</translation>
-    </message>
-    <message>
-        <source>Enter a parenthesis (e.g. {}):</source>
-        <translation>Введите скобки (например, {}):</translation>
-    </message>
-    <message>
-        <source>Delete Parenthesis</source>
-        <translation>Удалить скобки</translation>
-    </message>
-    <message>
-        <source>Do you really want to delete the parenthesis %1?</source>
-        <translation>Вы действительно хотите удалить скобки %1?</translation>
-    </message>
-</context>
-<context>
-    <name>ParenthesisWidget</name>
-    <message>
-        <source>Parenthesis: %1</source>
-        <translation>Скобки: %1</translation>
-    </message>
-    <message>
-        <source>Enable %1 for %2 in %3.
-If it&apos;s partially checked, the global setting in Code Edit will be used.</source>
-        <translation>Активировано %1 для %2 в %3.
-Выбрано частично, будут использованы глобальные настройки в Code Edit.</translation>
-    </message>
-    <message>
-        <source>Auto Complete</source>
-        <translation>Автозавершение</translation>
-    </message>
-    <message>
-        <source>Auto Remove</source>
-        <translation>Автоудаление</translation>
-    </message>
-    <message>
-        <source>Tab Jump Out</source>
-        <translation>Tab Jump Out</translation>
     </message>
 </context>
 <context>
@@ -2668,7 +2509,7 @@ You can use &quot;${filename}&quot; for the complete file name,
     </message>
     <message>
         <source>Failed to open [%1]. Do I have read permission?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Не удалось открыть файл [%1]. Предоставлен ли доступ к чтению фалйла?</translation>
     </message>
     <message>
         <source>Extract Snippets</source>
