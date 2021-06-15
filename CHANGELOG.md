@@ -18,7 +18,7 @@
 -   Now entering/exiting the full-screen mode outside of CP Editor (via the OS/DE/WM) is correctly handled. (#833)
 -   Fix that Detached Execution doesn't work on Windows with clang++. (#872 and #873)
 
-## Changed
+### Changed
 
 -   Esc key, which was used to exit full-screen mode, now cancels text selection. Now you can use F11 to enter/exit the full-screen mode. (#786)
 
