@@ -15,6 +15,7 @@
 #include <QSlider>
 #include <QSpinBox>
 #include <QSplitter>
+#include <QStackedWidget>
 #include <QTabWidget>
 
 struct SettingBase : public QObject
@@ -247,11 +248,12 @@ struct MapWrapper : public WrapperTemplate<QMap<QString, QVariant>, QSplitter>
     void add(const QString &key);
     void del(const QString &key);
     void show(const QString &key);
+    void showFirst(bool updateList = false);
     void rename(const QString &target);
     QStringList keys() const;
     SettingsWrapper *getSub(const QString &key) const;
 
-    void resetLayout() const;
+    void resetLayout();
 
   public slots:
     void reload();
@@ -275,7 +277,7 @@ struct MapWrapper : public WrapperTemplate<QMap<QString, QVariant>, QSplitter>
     QPushButton *btndel;
     QPushButton *btnmre;
     QListWidget *list;
-    QWidget *right;
+    QStackedWidget *right;
     QMap<QString, SettingsWrapper *> rights;
     QMap<QString, QVariant> data;
 };

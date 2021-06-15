@@ -769,10 +769,7 @@ void MapWrapper::init(QWidget *parent, QVariant param)
 
     widget->addWidget(leftWidget);
 
-    right = new QWidget(widget);
-    auto *rightLayout = new QVBoxLayout(right);
-    rightLayout->setMargin(0);
-    right->setLayout(rightLayout);
+    right = new QStackedWidget(widget);
 
     connect(list, &QListWidget::currentTextChanged, this, &MapWrapper::show);
 }
@@ -791,18 +788,10 @@ void MapWrapper::set(const QMap<QString, QVariant> &v)
 
 void MapWrapper::enable(bool enabled)
 {
-    if (enabled)
+    list->setEnabled(enabled);
+    if (cur != "")
     {
-        list->setEnabled(true);
-        if (cur != "")
-        {
-            rights[cur]->enable(true);
-        }
-    }
-    else
-    {
-        list->setEnabled(false);
-        show("");
+        rights[cur]->enable(enabled);
     }
 }
 
@@ -824,7 +813,7 @@ void MapWrapper::reset()
     }
     data.clear();
     update();
-    show("");
+    showFirst(true);
 }
 
 void MapWrapper::apply()
@@ -920,11 +909,12 @@ void MapWrapper::add(const QString &key)
     panel->trPath = trPath + "/" + iter->desc;
     panel->init(widget, pass);
     rights[key] = panel;
-    right->layout()->addWidget(panel->rootWidget());
+    right->addWidget(panel->rootWidget());
     connect(panel, &SettingsWrapper::valueChanged, this, &MapWrapper::update);
-    panel->rootWidget()->setVisible(false);
     panel->enable(true);
     update();
+    if (rights.keys().length() == 1)
+        showFirst(true);
 }
 
 void MapWrapper::del(const QString &key)
@@ -946,7 +936,7 @@ void MapWrapper::del(const QString &key)
             }
             else
             {
-                show("");
+                showFirst();
             }
             rights[key]->deleteLater();
             rights.remove(key);
@@ -960,17 +950,24 @@ void MapWrapper::del(const QString &key)
 
 void MapWrapper::show(const QString &key)
 {
-    if (cur != "")
-    {
-        rights[cur]->rootWidget()->setVisible(false);
-    }
     if (key != "")
-    {
-        rights[key]->rootWidget()->setVisible(true);
-    }
+        right->setCurrentWidget(rights[key]->rootWidget());
     btndel->setEnabled(key != "");
     cur = key;
     emit curChanged(cur);
+}
+
+void MapWrapper::showFirst(bool updateList)
+{
+    auto ks = data.keys();
+    if (ks.length() > 0)
+    {
+        if (updateList)
+            list->setCurrentRow(0);
+        show(ks.front());
+    }
+    else
+        show("");
 }
 
 void MapWrapper::rename(const QString &target)
@@ -995,13 +992,16 @@ SettingsWrapper *MapWrapper::getSub(const QString &key) const
     return nullptr;
 }
 
-void MapWrapper::resetLayout() const
+void MapWrapper::resetLayout()
 {
     list->clear();
-    QWidget().setLayout(right->layout());
-    auto *rightLayout = new QVBoxLayout(right);
-    rightLayout->setMargin(0);
-    right->setLayout(rightLayout);
+    while (right->count() > 0)
+    {
+        auto *widget = right->widget(0);
+        right->removeWidget(widget);
+        widget->deleteLater();
+    }
+    show("");
 }
 
 void MapWrapper::reload()
@@ -1014,8 +1014,7 @@ void MapWrapper::reload()
         rights[name]->setV(data[name]);
     }
     updateDisabled = false;
-    cur = "";
-    show("");
+    showFirst(true);
 }
 
 void MapWrapper::update()
