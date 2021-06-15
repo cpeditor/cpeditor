@@ -100,7 +100,7 @@ void TristateCheckBoxWrapper::set(const int &v)
 void LineEditWrapper::init(QWidget *parent, QVariant param)
 {
     widget = new QLineEdit(parent);
-    widget->setMinimumWidth(400);
+    widget->setMinimumWidth(200);
     connect(widget, &QLineEdit::textChanged, this, &SettingBase::valueChanged);
 }
 
@@ -117,7 +117,7 @@ void LineEditWrapper::set(const QString &v)
 void PlainTextEditWrapper::init(QWidget *parent, QVariant param)
 {
     widget = new QPlainTextEdit(parent);
-    widget->setMinimumWidth(400);
+    widget->setMinimumWidth(200);
     widget->setWordWrapMode(QTextOption::NoWrap);
     connect(widget, &QPlainTextEdit::textChanged, this, &SettingBase::valueChanged);
 }
