@@ -2,7 +2,8 @@
 # -*- coding: utf-8 -*-
 
 import sys
-import json
+import json # for json.dumps()
+import yaml
 
 def writeHelper(f, obj, pre, indent):
     ids = "    " * indent
@@ -176,7 +177,7 @@ def addDefaultPaths(obj):
 
 
 if __name__ == "__main__":
-    objroot = json.load(open(sys.argv[1], mode="r", encoding="utf-8"))
+    objroot = yaml.load(open(sys.argv[1], mode="r", encoding="utf-8"))
 
     presetFunc = objroot["presetMethod"]
     obj = objroot["data"]
