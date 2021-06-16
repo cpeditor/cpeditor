@@ -223,6 +223,8 @@ add_executable(cpeditor
     src/appwindow.hpp
     src/mainwindow.cpp
     src/mainwindow.hpp
+    src/application.cpp
+    src/application.hpp
 
     src/SignalHandler.cpp
     src/SignalHandler.hpp

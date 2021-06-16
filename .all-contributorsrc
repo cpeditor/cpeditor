@@ -57,7 +57,8 @@
       "avatar_url": "https://avatars1.githubusercontent.com/u/51178055?v=4",
       "profile": "http://sadykhzadeh.github.io",
       "contributions": [
-        "translation"
+        "translation",
+        "review"
       ]
     },
     {
@@ -151,7 +152,8 @@
       "contributions": [
         "bug",
         "code",
-        "ideas"
+        "ideas",
+        "review"
       ]
     },
     {
@@ -161,6 +163,18 @@
       "profile": "https://chungzh.cc/",
       "contributions": [
         "code"
+      ]
+    },
+    {
+      "login": "swift-zym",
+      "name": "Yiming Zhang",
+      "avatar_url": "https://avatars.githubusercontent.com/u/61449077?v=4",
+      "profile": "https://183154.blog.luogu.org",
+      "contributions": [
+        "code",
+        "design",
+        "ideas",
+        "review"
       ]
     },
     {
@@ -501,20 +515,19 @@
       ]
     },
     {
-      "login": "swift-zym",
-      "name": "Yiming Zhang",
-      "avatar_url": "https://avatars.githubusercontent.com/u/61449077?v=4",
-      "profile": "https://183154.blog.luogu.org",
-      "contributions": [
-        "code",
-        "design"
-      ]
-    },
-    {
       "login": "tusqasi",
       "name": "tusqasi",
       "avatar_url": "https://avatars.githubusercontent.com/u/24749908?v=4",
       "profile": "https://github.com/tusqasi",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "rbruno95",
+      "name": "Bruno",
+      "avatar_url": "https://avatars.githubusercontent.com/u/48922045?v=4",
+      "profile": "https://github.com/rbruno95",
       "contributions": [
         "bug"
       ]
