@@ -28,7 +28,6 @@
 #include <QSettings>
 
 QVariantMap *SettingsManager::cur = nullptr;
-QVariantMap *SettingsManager::def = nullptr;
 QMap<QString, QString> *SettingsManager::settingPath = nullptr;
 QMap<QString, QString> *SettingsManager::settingTrPath = nullptr;
 QMap<QString, QString> *SettingsManager::pathSetting = nullptr;
@@ -87,14 +86,12 @@ void SettingsManager::save(QSettings &setting, const QString &prefix, const QLis
 void SettingsManager::init()
 {
     delete cur;
-    delete def;
     delete settingPath;
     delete settingTrPath;
     delete pathSetting;
     delete settingWidget;
 
     cur = new QVariantMap();
-    def = new QVariantMap();
     settingPath = new QMap<QString, QString>();
     settingTrPath = new QMap<QString, QString>();
     pathSetting = new QMap<QString, QString>();
@@ -102,11 +99,11 @@ void SettingsManager::init()
 
     startTime = QDateTime::currentSecsSinceEpoch();
 
-    generateDefaultSettings();
-
     QString path = Util::firstExistingConfigPath(configFileLocations);
     if (!path.isEmpty())
         loadSettings(path);
+
+    generateDefaultSettings();
 }
 
 void SettingsManager::deinit()
@@ -116,22 +113,42 @@ void SettingsManager::deinit()
     saveSettings(QString());
 
     delete cur;
-    delete def;
     delete settingPath;
     delete settingTrPath;
     delete pathSetting;
     delete settingWidget;
-    cur = def = nullptr;
+    cur = nullptr;
     settingPath = settingTrPath = pathSetting = nullptr;
     settingWidget = nullptr;
+}
+
+void SettingsManager::fillWithDefault(SettingsInfo::SettingIter pos)
+{
+    if (pos->type == "Object")
+    {
+        QStringList child;
+        if (cur->contains(pos.key() + '@'))
+            child = cur->value(pos.key() + '@').toStringList();
+        else if (!pos.getDefault().isNull())
+            child = pos.getDefault().toStringList();
+        cur->insert(pos.key() + '@', child);
+        for (const auto &sub : child)
+            for (const auto &it : pos.allVisibleChild(sub))
+                fillWithDefault(it);
+    }
+    else
+    {
+        if (cur->contains(pos.key()))
+            return;
+        cur->insert(pos.key(), pos.getDefault());
+    }
 }
 
 void SettingsManager::generateDefaultSettings()
 {
     LOG_INFO("Generating default settings");
 
-    for (const auto &si : SettingsInfo::getSettings())
-        def->insert(si.name, si.def);
+    fillWithDefault(SettingsInfo::fakeRootIter());
 
     LOG_INFO("Default settings are generated")
 }
@@ -168,26 +185,20 @@ void SettingsManager::saveSettings(const QString &path)
     LOG_INFO("Settings have been saved to " + savePath);
 }
 
-QVariant SettingsManager::get(QString const &key, bool alwaysDefault)
+QVariant SettingsManager::get(QString const &key)
 {
-    if (!alwaysDefault && cur->contains(key))
+    if (cur->contains(key))
         return cur->value(key);
-    if (def->contains(key))
-        return def->value(key);
-
-    if (!noUnknownKeyWarning.contains(key))
-        LOG_DEV("getting unknown key: " << key);
     return QVariant();
 }
 
-bool SettingsManager::contains(const QString &key, bool includingDefault)
+bool SettingsManager::contains(const QString &key)
 {
-    return cur->contains(key) || (includingDefault && def->contains(key));
+    return cur->contains(key);
 }
 
 void SettingsManager::set(const QString &key, QVariant const &value)
 {
-    LOG_INFO_IF(!key.startsWith("Language Config/"), INFO_OF(key) << INFO_OF(value.toString()));
     cur->insert(key, value);
 }
 
@@ -199,7 +210,8 @@ void SettingsManager::remove(QStringList const &keys)
 
 void SettingsManager::reset()
 {
-    *cur = *def;
+    cur->clear();
+    generateDefaultSettings();
 }
 
 void SettingsManager::setPath(const QString &key, const QString &path, const QString &trPath)

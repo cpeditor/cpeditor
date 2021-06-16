@@ -5,19 +5,17 @@ QVariant SettingsInfo::SettingIter::buildChildDefault(const QString &key) const
     if (info->type != "Object")
         return QVariant();
     QMap<QString, QVariant> ret;
-    for (const auto &si : info->child)
+    for (const auto &it : allVisibleChild(key))
     {
-        auto it = *this;
-        it.child(key, &si);
-        if (si.type == "Object")
+        if (it->type == "Object")
         {
             QMap<QString, QVariant> mp;
-            for (const auto &k : si.def.toStringList())
+            for (const auto &k : it.getDefault().toStringList())
                 mp[k] = it.buildChildDefault(k);
-            ret[si.name] = mp;
+            ret[it->name] = mp;
         }
         else
-            ret[si.name] = it.getDefault();
+            ret[it->name] = it.getDefault();
     }
     return ret;
 }
@@ -69,6 +67,38 @@ SettingsInfo::SettingIter &SettingsInfo::SettingIter::child(const QString &key, 
     }
     info = ch;
     return *this;
+}
+
+QList<SettingsInfo::SettingIter> SettingsInfo::SettingIter::allVisibleChild(const QString &key) const
+{
+    QList<SettingsInfo::SettingIter> result;
+    if (!info || info->type != "Object")
+        return result;
+    QStringList hideList;
+    auto param = info->param; // direct use param to prevent calling methods
+    if (param.canConvert(QMetaType::QVariantMap) && param.toMap().contains("pass"))
+    {
+        auto pass = param.toMap()["pass"];
+        if (pass.canConvert(QMetaType::QVariantMap) && pass.toMap().contains("hide"))
+        {
+            auto hide = pass.toMap()["hide"].toMap();
+            for (const auto &n : hide.keys())
+            {
+                auto lst = hide[n].toStringList();
+                if (lst.contains(key))
+                    hideList.push_back(n);
+            }
+        }
+    }
+    for (const auto &si : info->child)
+    {
+        if (hideList.contains(si.name))
+            continue;
+        auto it = *this;
+        it.child(key, &si);
+        result.push_back(it);
+    }
+    return result;
 }
 
 QString SettingsInfo::SettingIter::_format(const QString &fmt, const QStringList &p) const

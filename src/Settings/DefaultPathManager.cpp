@@ -38,7 +38,7 @@ void DefaultPathManager::setDefaultPathForAction(const QString &action, const QS
 
     const auto settingsKey = QString("Default Path/Action/%1/Changes").arg(action);
 
-    if (!SettingsManager::contains(settingsKey, true))
+    if (!SettingsManager::contains(settingsKey))
     {
         LOG_DEV("Unknown Action: " << action);
         return;

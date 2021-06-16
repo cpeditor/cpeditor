@@ -32,6 +32,7 @@ class SettingsManager
     static void init();
     static void deinit();
 
+    static void fillWithDefault(SettingsInfo::SettingIter pos);
     static void generateDefaultSettings();
 
     static void loadSettings(const QString &path);
@@ -42,8 +43,8 @@ class SettingsManager
      */
     static void saveSettings(const QString &path);
 
-    static QVariant get(QString const &key, bool alwaysDefault = false);
-    static bool contains(const QString &key, bool includingDefault = false);
+    static QVariant get(QString const &key);
+    static bool contains(const QString &key);
     static void set(const QString &key, QVariant const &value);
     static void remove(QStringList const &keys);
     static void reset();
@@ -71,7 +72,6 @@ class SettingsManager
 
   private:
     static QVariantMap *cur;
-    static QVariantMap *def;
     static QMap<QString, QString> *settingPath;
     static QMap<QString, QString> *settingTrPath;
     static QMap<QString, QString> *pathSetting;

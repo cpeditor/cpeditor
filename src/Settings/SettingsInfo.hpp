@@ -39,6 +39,8 @@ class SettingsInfo
         {
         }
         SettingIter &child(const QString &key, const QString &name);
+        SettingIter &child(const QString &key, const SettingInfo *ch);
+        QList<SettingIter> allVisibleChild(const QString &key) const;
         QString key() const
         {
             auto p = pre;
@@ -90,7 +92,6 @@ class SettingsInfo
 
       private:
         QString _format(const QString &fmt, const QStringList &p) const;
-        SettingIter &child(const QString &key, const SettingInfo *ch);
     };
 
     class SettingInfo
@@ -175,7 +176,7 @@ class SettingsInfo
     }
 
     static SettingIter fakeRootIter()
-    { // This fake root has not type. Only used for it's child.
+    { // This fake root has no type. Only used for it's child.
         return SettingIter(&fakeRoot);
     }
 
