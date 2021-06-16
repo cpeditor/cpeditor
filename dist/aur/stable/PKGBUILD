@@ -10,30 +10,31 @@ url='https://github.com/cpeditor/cpeditor'
 license=('GPL3')
 depends=('qt5-base')
 makedepends=(
-	"cmake"
-	"git"
-	"ninja"
-	"python3"
-	"qt5-tools"
+    "cmake"
+    "git"
+    "ninja"
+    "python3"
+    "qt5-tools"
+    "python-yaml"
 )
 optdepends=(
-	'cf-tool: submit to Codeforces'
-	'clang: C++ format and language server'
-	'java-environment: compile Java'
-	'java-runtime: execute Java'
-	'python: execute Python'
+    'cf-tool: submit to Codeforces'
+    'clang: C++ format and language server'
+    'java-environment: compile Java'
+    'java-runtime: execute Java'
+    'python: execute Python'
 )
 conflicts=("cpeditor-git")
 source=("https://github.com/cpeditor/$pkgname/releases/download/$pkgver/cpeditor-$pkgver-full-source.tar.gz")
 sha256sums=('SKIP')
 
 build() {
-	cd "$_pkgdir"
-	cmake -Bbuild -DCMAKE_INSTALL_PREFIX=/usr -DPORTABLE_VERSION=Off -DCMAKE_BUILD_TYPE=Release -GNinja
-	cmake --build build
+    cd "$_pkgdir"
+    cmake -Bbuild -DCMAKE_INSTALL_PREFIX=/usr -DPORTABLE_VERSION=Off -DCMAKE_BUILD_TYPE=Release -GNinja
+    cmake --build build
 }
 
 package() {
-	cd "$_pkgdir/build"
-	DESTDIR="$pkgdir/" ninja install
+    cd "$_pkgdir/build"
+    DESTDIR="$pkgdir/" ninja install
 }
