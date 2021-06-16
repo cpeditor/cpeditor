@@ -593,8 +593,7 @@ void MainWindow::applySettings(const QString &pagePath)
         }
     }
 
-    if (pageChanged("Code Edit") || pagePath.startsWith("Appearance/") ||
-        pageChanged(QString("Language/%1/%1 Parentheses").arg(language)))
+    if (pageChanged("Code Edit") || pagePath.startsWith("Appearance/") || pageChanged("Language Config"))
         Util::applySettingsToEditor(editor, language);
 
     if (!isLanguageSet && pageChanged("Language/General"))
@@ -614,7 +613,7 @@ void MainWindow::applySettings(const QString &pagePath)
         testcases->setTestCaseEditFont(SettingsHelper::getTestCasesFont());
     }
 
-    if (pageChanged("Language/C++/C++ Commands"))
+    if (pageChanged("Language Config"))
         updateChecker();
 
     if (pageChanged("Actions/Auto Save"))

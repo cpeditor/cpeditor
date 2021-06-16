@@ -56,9 +56,7 @@ void PreferencesHomePage::init()
 
     // add buttons
     addButton("Code Edit", tr("Code Editor Settings"));
-    addButton("Language/C++/C++ Commands", tr("C++ Compile and Run Commands"));
-    addButton("Language/Java/Java Commands", tr("Java Compile and Run Commands"));
-    addButton("Language/Python/Python Commands", tr("Python Run Commands"));
+    addButton("Language Config", tr("Compile and Run Commands"));
     addButton("Appearance/General", tr("Appearance Settings"));
     addButton("Appearance/Font", tr("Font Settings"));
 

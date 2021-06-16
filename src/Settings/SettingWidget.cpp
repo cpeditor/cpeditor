@@ -798,7 +798,7 @@ void MapWrapper::enable(bool enabled)
 void MapWrapper::setdef()
 {
     QMap<QString, QVariant> def;
-    for (const auto &k : iter->def.toStringList())
+    for (const auto &k : iter.getDefault().toStringList())
         def.insert(k, iter.buildChildDefault(k));
     set(def);
 }
