@@ -62,6 +62,11 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
     allocate();
     setConnections();
 
+#ifdef Q_OS_MACOS
+    ui->actionSwapLineUp->setShortcut({"Command+Ctrl+Up"});
+    ui->actionSwapLineDown->setShortcut({"Command+Ctrl+Down"});
+#endif
+
     auto *separator = ui->menuFile->insertSeparator(ui->actionSave); // used to insert openRecentFilesMenu
     auto *openRecentFilesMenu = new QMenu(tr("Open Recent Files"), ui->menuFile);
     ui->menuFile->insertMenu(separator, openRecentFilesMenu);
