@@ -1,5 +1,11 @@
 ## UNRELEASED
 
+### Fixed
+
+-   Fix that two dialogs are shown when entering full-screen mode for the first time. (#875)
+
+## v6.9
+
 ### Added
 
 -   Show dialog on full screen for first time. (#786)
@@ -10,12 +16,13 @@
 
 ### Fixed
 
+-   Now the link in the update checker is clickable.
 -   Fix that the Find/Replace dialog is not floating in i3-wm. (#767)
 -   Fix text selection color when Dark Fusion is selected. (#788)
 -   Now entering/exiting the full-screen mode outside of CP Editor (via the OS/DE/WM) is correctly handled. (#833)
 -   Fix that Detached Execution doesn't work on Windows with clang++. (#872 and #873)
 
-## Changed
+### Changed
 
 -   Esc key, which was used to exit full-screen mode, now cancels text selection. Now you can use F11 to enter/exit the full-screen mode. (#786)
 
