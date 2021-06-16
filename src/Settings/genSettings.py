@@ -20,10 +20,10 @@ def writeHelper(f, obj, pre, indent):
             f.write(f"{ids}    {key}(QString p) : pre(p) {{}}\n")
             writeHelper(f, t["sub"], "pre, ", indent + 1)
             f.write(f"{ids}}};\n")
-            f.write(
-                f"{ids}inline {key} get{key}(QString key){cst} {{ return {key}(QStringList {{{pre} {json.dumps(name)}, key}}.join('/')); }}\n")
-            f.write(f"{ids}inline void remove{key}(QString key){cst} {{ SettingsManager::remove(SettingsManager::keyStartsWith(QStringList {{{pre} {json.dumps(name)}, key}}.join('/'))); }}\n")
+            f.write(f"{ids}inline {key} get{key}(QString key){cst} {{ return {key}(QStringList {{{pre} {json.dumps(name)}, key}}.join('/')); }}\n")
             f.write(f"{ids}inline QStringList query{key}(){cst} {{ return SettingsManager::itemUnder(QStringList {{{pre} {json.dumps(name)}}}.join('/') + '/'); }}\n")
+            # f.write(f"{ids}inline void remove{key}(QString key){cst} {{ SettingsManager::remove(SettingsManager::keyStartsWith(QStringList {{{pre} {json.dumps(name)}, key}}.join('/'))); }}\n")
+            # Remove and Add will be done in setting page. Maybe add later.
         else:
             f.write(
                 f"{ids}inline void set{key}({typename} value){cst} {{ SettingsManager::set(QStringList {{{pre} {json.dumps(name)}}}.join('/'), value); }}\n")
@@ -50,6 +50,8 @@ def parseParam(obj):
                 return obj[1:], False
             elif obj[0] == "%":
                 return json.dumps(obj[1:]), True
+            elif obj[0] == "!":
+                return f'QStringList{{{json.dumps(obj[1:])}, tr({json.dumps(obj[1:])})}}', False
         return json.dumps(obj), True
     elif type(obj) == dict:
         ret = "QMap<QString, QVariant>{"

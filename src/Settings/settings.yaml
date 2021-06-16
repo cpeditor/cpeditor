@@ -3,14 +3,28 @@ presetMethod:
   pickDefault:
     param:
       pre: QStringList
-      param: QVariant
-    code: const auto &mp = param.toMap()["default"].toMap(); if (mp.contains(pre.back()))
-      return mp[pre.back()];
+      rawparam: QVariant
+    code: const auto &mp = rawparam.toMap()["default"].toMap(); if (mp.contains(pre.back())) return mp[pre.back()];
   pickParam:
     param:
       pre: QStringList
       param: QVariant
     code: const auto &mp = param.toMap(); if (mp.contains(pre.back())) return mp[pre.back()];
+  takeParam:
+    param:
+      param: QVariant
+    code: return param.toMap()["param"];
+  pickParamFromParam:
+    param:
+      pre: QStringList
+      param: QVariant
+    code: const auto &mp = param.toMap()["param"].toMap(); if (mp.contains(pre.back())) return mp[pre.back()];
+  pickTip:
+    param:
+      pre: QStringList
+      param: QVariant
+      needtr: bool
+    code: const auto &mp = param.toMap()["tip"].toMap(); if (mp.contains(pre.back())) return mp[pre.back()].toStringList()[needtr];
   genByRestrict:
     param:
       param: QVariant
@@ -62,47 +76,60 @@ data:
   - Java
   - Python
   tip: The default language used when opening new tabs
-- name: Clang Format/Program
-  type: QString
-  default: clang-format
-  ui: PathItem
-  param: "#PathItem::Executable"
-  tip: The path to the Clang Format executable file
-  old:
-  - clang_format_binary
-  - clang_format/path
-- name: Clang Format/Arguments
-  type: QString
-  tip: The arguments passed to clang-format. It should NOT contain "-i".
-- name: Clang Format/Style
-  type: QString
-  default: 'BasedOnStyle: Google'
-  ui: QPlainTextEdit
-  tip: |-
-    The Clang Format style options, which are usually saved in a .clang-format configuration file.
-    You can learn about it at <https://clang.llvm.org/docs/ClangFormatStyleOptions.html>.
-  old:
-  - clang_format_style
-- name: YAPF/Program
-  type: QString
-  default: python
-  ui: PathItem
-  param: "#PathItem::Executable"
-  tip: The program of YAPF. It could be `yapf` (which doesn't need arguments) or `python`
-    (which needs `-m yapf` as the arguments).
-- name: YAPF/Arguments
-  type: QString
-  default: "-m yapf"
-  tip: The arguments passed to the YAPF program. It should NOT contain "-i".
-- name: YAPF/Style
-  type: QString
-  default: |-
-    [style]
-    based_on_style = pep8
-  ui: QPlainTextEdit
-  tip: |-
-    The YAPF style options, which are usually saved in a .style.yapf or setup.conf configuration file.
-    You can learn about it by running `yapf --style-help`.
+- name: "Formatter"
+  type: "Object"
+  methods:
+    getDefault: genByRestrict
+  param:
+    restrict:
+    - Clang Format
+    - YAPF
+  sub:
+  - name: Program
+    type: QString
+    methods:
+      getDefault: pickDefault
+      getParam: takeParam
+      getTip: pickTip
+    param:
+      param: "#PathItem::Executable"
+      default:
+        Clang Format: clang-format
+        YAPF: python
+      tip:
+        Clang Format: |-
+          !The path to the clang-format executable file.
+        YAPF: |-
+          !The program of YAPF. It could be `yapf` (which doesn't need arguments) or `python`
+          (which needs `-m yapf` as the arguments).
+    ui: PathItem
+  - name: Arguments
+    type: QString
+    methods:
+      getDefault: pickDefault
+    param:
+      default:
+        YAPF: -m yapf
+    tip: The arguments passed to @1. It should NOT contain "-i".
+  - name: Style
+    type: QString
+    methods:
+      getDefault: pickDefault
+      getTip: pickTip
+    param:
+      default: 
+        Clang Format: 'BasedOnStyle: Google'
+        YAPF: |-
+          [style]
+          based_on_style = pep8
+      tip:
+        Clang Format: |-
+          !The Clang Format style options, which are usually saved in a .clang-format configuration file.
+          You can learn about it at <https://clang.llvm.org/docs/ClangFormatStyleOptions.html>.
+        YAPF: |-
+          !The YAPF style options, which are usually saved in a .style.yapf or setup.conf configuration file.
+          You can learn about it by running `yapf --style-help`.
+          ui: QPlainTextEdit
 - name: Format On Manual Save
   desc: Format code on manual save
   type: bool

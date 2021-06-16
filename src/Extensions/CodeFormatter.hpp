@@ -85,12 +85,6 @@ class CodeFormatter : public QObject
     bool formatSelectionOnly() const;
 
   private:
-    /**
-     * @brief get settingKey()/key
-     */
-    QVariant getSetting(const QString &key) const;
-
-  private:
     QCodeEditor *m_editor;
     QString m_lang;
     bool m_selectionOnly;

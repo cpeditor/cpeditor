@@ -44,10 +44,10 @@ QStringList SettingBase::content() const
         ret += iter->desc;
         ret += iter->untrDesc;
     }
-    if (!iter->tip.isEmpty())
+    if (!iter.getTip().isEmpty())
     {
-        ret += iter.format(iter->tip);
-        ret += iter.formatuntr(iter->untrTip);
+        ret += iter.getTip();
+        ret += iter.getTip(false);
     }
     return ret;
 }
@@ -63,8 +63,8 @@ QString SettingBase::docLink() const
 void CheckBoxWrapper::init(QWidget *parent, QVariant param)
 {
     widget = new RichTextCheckBox(iter->desc + docLink(), parent);
-    if (!iter->tip.isEmpty())
-        widget->setToolTip(iter.format(iter->tip));
+    if (!iter.getTip().isEmpty())
+        widget->setToolTip(iter.getTip());
     connect(widget, &RichTextCheckBox::toggled, this, &SettingBase::valueChanged);
 }
 
@@ -82,8 +82,8 @@ void TristateCheckBoxWrapper::init(QWidget *parent, QVariant param)
 {
     widget = new RichTextCheckBox(iter->desc + docLink(), parent);
     widget->getCheckBox()->setTristate();
-    if (!iter->tip.isEmpty())
-        widget->setToolTip(iter.format(iter->tip));
+    if (!iter.getTip().isEmpty())
+        widget->setToolTip(iter.getTip());
     connect(widget, &RichTextCheckBox::stateChanged, this, &SettingBase::valueChanged);
 }
 
@@ -448,18 +448,15 @@ void SettingsWrapper::init(QWidget *parent, QVariant param)
         wraps[name] = wrap;
         auto *label = new QLabel;
         label->setOpenExternalLinks(true);
-        if (target)
+        if (siter->type == "bool" || siter->type == "Object" ||
+            (siter->type == "int" && siter->ui == "RichTextCheckBox"))
+            target->addRow(label, wrap->rootWidget());
+        else
         {
-            if (siter->type == "bool" || siter->type == "Object" ||
-                (siter->type == "int" && siter->ui == "RichTextCheckBox"))
-                target->addRow(label, wrap->rootWidget());
-            else
-            {
-                label->setText(desc + " " + wrap->docLink());
-                if (!siter->tip.isEmpty())
-                    label->setToolTip(siter.format(siter->tip));
-                target->addRow(label, wrap->rootWidget());
-            }
+            label->setText(desc + " " + wrap->docLink());
+            if (!siter.getTip().isEmpty())
+                label->setToolTip(siter.getTip());
+            target->addRow(label, wrap->rootWidget());
         }
     }
     for (const auto &name : entries)
@@ -710,8 +707,8 @@ void MapWrapper::init(QWidget *parent, QVariant param)
     auto *name = new QLabel;
     name->setText(iter->desc + " " + docLink());
     name->setOpenExternalLinks(true);
-    if (!iter->tip.isEmpty())
-        name->setToolTip(iter.format(iter->tip));
+    if (!iter.getTip().isEmpty())
+        name->setToolTip(iter.getTip());
     leftLayout->addWidget(name);
 
     bool allowRename = false;
