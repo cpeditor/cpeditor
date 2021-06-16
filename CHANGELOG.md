@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+### Fixed
+
+-   Fix that two dialogs are shown when entering full-screen mode for the first time. (#875)
+
 ## 6.9.1 (Beta)
 
 ### Added
