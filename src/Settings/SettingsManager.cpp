@@ -48,9 +48,9 @@ void SettingsManager::load(QSettings &setting, const QString &prefix, const QLis
     {
         if (si.type == "Object")
         {
-            QStringList keys;
-            if (setting.contains(si.name + '@'))
-                keys = setting.value(si.name + '@', setting.childGroups()).toStringList();
+            if (!setting.contains(si.name + '@'))
+                continue;
+            auto keys = setting.value(si.name + '@', setting.childGroups()).toStringList();
             setting.beginGroup(si.name);
             set(prefix + si.name + '@', keys);
             for (const QString &sub : keys)
@@ -122,7 +122,7 @@ void SettingsManager::deinit()
     settingWidget = nullptr;
 }
 
-void SettingsManager::fillWithDefault(SettingsInfo::SettingIter pos)
+void SettingsManager::fillWithDefault(const SettingsInfo::SettingIter &pos)
 {
     if (pos->type == "Object")
     {

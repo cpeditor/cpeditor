@@ -32,7 +32,7 @@ class SettingsManager
     static void init();
     static void deinit();
 
-    static void fillWithDefault(SettingsInfo::SettingIter pos);
+    static void fillWithDefault(const SettingsInfo::SettingIter &pos);
     static void generateDefaultSettings();
 
     static void loadSettings(const QString &path);

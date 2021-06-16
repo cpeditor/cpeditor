@@ -63,6 +63,12 @@ class SettingsInfo
         {
             return _format(fmt, pre);
         }
+        QString getDesc(bool needtr = true) const
+        {
+            if (!info)
+                return "";
+            return format(needtr, needtr ? info->desc : info->untrDesc);
+        }
         QVariant getDefault() const
         {
             if (!info)
@@ -84,8 +90,9 @@ class SettingsInfo
             if (!info)
                 return "";
             if (info->methods.contains("getTip"))
-                return format(needtr,
-                              info->call("getTip", "pre", pre, "param", info->param, "needtr", needtr).toString());
+                return format(needtr, info->call("getTip", "pre", pre, "param", info->param, "rawparam", info->param,
+                                                 "needtr", needtr, "tip", needtr ? info->tip : info->untrTip)
+                                          .toString());
             return needtr ? format(info->tip) : formatuntr(info->untrTip);
         }
         QVariant buildChildDefault(const QString &key) const;

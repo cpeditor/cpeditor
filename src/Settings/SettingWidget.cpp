@@ -10,6 +10,8 @@
 #include <QTextCodec>
 #include <QVBoxLayout>
 
+#include <QDebug>
+
 void SettingBase::setdef()
 {
     setV(iter.getDefault());
@@ -39,10 +41,10 @@ bool SettingBase::changed() const
 QStringList SettingBase::content() const
 {
     QStringList ret;
-    if (!iter->desc.isEmpty())
+    if (!iter.getDesc().isEmpty())
     {
-        ret += iter->desc;
-        ret += iter->untrDesc;
+        ret += iter.getDesc();
+        ret += iter.getDesc(false);
     }
     if (!iter.getTip().isEmpty())
     {
@@ -57,12 +59,12 @@ QString SettingBase::docLink() const
     auto prefix = Util::websiteLink("docs/preferences/" + Util::sanitizeAnchorName(path.split('/').first()));
     return QString("<a href='%1#%2'>(?)</a>")
         .arg(prefix)
-        .arg(iter->docAnchor.isEmpty() ? Util::sanitizeAnchorName(iter->desc) : iter->docAnchor);
+        .arg(iter->docAnchor.isEmpty() ? Util::sanitizeAnchorName(iter.getDesc()) : iter->docAnchor);
 }
 
 void CheckBoxWrapper::init(QWidget *parent, QVariant param)
 {
-    widget = new RichTextCheckBox(iter->desc + docLink(), parent);
+    widget = new RichTextCheckBox(iter.getDesc() + " " + docLink(), parent);
     if (!iter.getTip().isEmpty())
         widget->setToolTip(iter.getTip());
     connect(widget, &RichTextCheckBox::toggled, this, &SettingBase::valueChanged);
@@ -80,7 +82,7 @@ void CheckBoxWrapper::set(const bool &v)
 
 void TristateCheckBoxWrapper::init(QWidget *parent, QVariant param)
 {
-    widget = new RichTextCheckBox(iter->desc + docLink(), parent);
+    widget = new RichTextCheckBox(iter.getDesc() + " " + docLink(), parent);
     widget->getCheckBox()->setTristate();
     if (!iter.getTip().isEmpty())
         widget->setToolTip(iter.getTip());
@@ -439,10 +441,10 @@ void SettingsWrapper::init(QWidget *parent, QVariant param)
             target = layout;
         if (!target)
             continue;
-        QString desc = siter->desc;
-        SettingBase *wrap = createWrapper(siter, widget, desc, path + '/' + siter->name, trPath + '/' + siter->desc);
+        QString desc = siter.getDesc();
+        SettingBase *wrap = createWrapper(siter, widget, desc, path + '/' + siter->name, trPath + '/' + desc);
         wrap->parent = this;
-        SettingsManager::setPath(siter->name, path + "/" + siter->untrDesc, path + "/" + siter->desc);
+        SettingsManager::setPath(siter->name, path + "/" + siter.getDesc(false), path + "/" + desc);
         connect(wrap, &SettingBase::valueChanged, this, &SettingsWrapper::update);
         wrap->enable(false);
         wraps[name] = wrap;
@@ -705,7 +707,7 @@ void MapWrapper::init(QWidget *parent, QVariant param)
     leftWidget->setLayout(leftLayout);
 
     auto *name = new QLabel;
-    name->setText(iter->desc + " " + docLink());
+    name->setText(iter.getDesc() + " " + docLink());
     name->setOpenExternalLinks(true);
     if (!iter.getTip().isEmpty())
         name->setToolTip(iter.getTip());
@@ -718,7 +720,27 @@ void MapWrapper::init(QWidget *parent, QVariant param)
     {
         auto cfg = param.toMap();
         if (cfg.contains("restrict"))
+        {
+            if (cfg["restrict"].toList()[0].userType() == QMetaType::QStringList)
+            {
+                rstrc.clear();
+                rstrcTr = new QMap<QString, QString>;
+                rstrcTr->insert("", "");
+                for (const auto &l : cfg["restrict"].toList())
+                {
+                    auto v = l.toStringList();
+                    rstrc.push_back(v[1]);
+                    rstrcTr->insert(v[1], v[0]);
+                    rstrcTr->insert(v[0], v[1]);
+                }
+            }
+            else
+            {
+                rstrcTr = nullptr;
+                rstrc = cfg["restrict"].toStringList();
+            }
             rstrc = cfg["restrict"].toStringList();
+        }
         if (cfg.contains("check"))
             check.init(cfg["check"]);
         if (cfg.contains("action"))
@@ -805,7 +827,10 @@ void MapWrapper::reset()
     resetLayout();
     for (const auto &name : SettingsManager::get(iter.key() + '@').toStringList())
     {
-        add(name);
+        if (rstrcTr)
+            add(name, rstrcTr->value(name));
+        else
+            add(name);
         rights[name]->reset();
     }
     data.clear();
@@ -861,7 +886,7 @@ QString MapWrapper::askKey(const QString &suggest) const
     bool ok = false;
     if (rstrc.isEmpty())
     {
-        key = QInputDialog::getText(rootWidget(), tr("Add %1").arg(iter->desc), tr("Add %1").arg(iter->desc),
+        key = QInputDialog::getText(rootWidget(), tr("Add %1").arg(iter.getDesc()), tr("Add %1").arg(iter.getDesc()),
                                     QLineEdit::Normal, suggest, &ok);
     }
     else
@@ -875,15 +900,15 @@ QString MapWrapper::askKey(const QString &suggest) const
             return QString();
         }
         auto idx = items.indexOf(suggest);
-        key = QInputDialog::getItem(rootWidget(), tr("Add %1").arg(iter->desc), tr("Select %1").arg(iter->desc), items,
-                                    std::max(idx, 0), false, &ok);
+        key = QInputDialog::getItem(rootWidget(), tr("Add %1").arg(iter.getDesc()), tr("Select %1").arg(iter.getDesc()),
+                                    items, std::max(idx, 0), false, &ok);
     }
     if (!ok)
         return QString();
     if (rights.contains(key))
     {
         QMessageBox::warning(rootWidget(), tr("Add failed"),
-                             QString(tr("%1 %2 already exists")).arg(iter->desc).arg(key));
+                             QString(tr("%1 %2 already exists")).arg(iter.getDesc()).arg(key));
         return QString();
     }
     QString message;
@@ -895,15 +920,15 @@ QString MapWrapper::askKey(const QString &suggest) const
     return key;
 }
 
-void MapWrapper::add(const QString &key)
+void MapWrapper::add(const QString &key, const QString &trkey)
 {
-    list->addItem(key);
+    list->addItem(trkey);
     auto *panel = new SettingsWrapper;
     panel->parent = this;
     panel->iter = iter;
     panel->setKey(key);
     panel->path = path + "/" + iter->name;
-    panel->trPath = trPath + "/" + iter->desc;
+    panel->trPath = trPath + "/" + iter.getDesc();
     panel->init(widget, pass);
     rights[key] = panel;
     right->addWidget(panel->rootWidget());
@@ -947,10 +972,11 @@ void MapWrapper::del(const QString &key)
 
 void MapWrapper::show(const QString &key)
 {
-    if (key != "")
-        right->setCurrentWidget(rights[key]->rootWidget());
-    btndel->setEnabled(key != "");
-    cur = key;
+    auto k = rstrcTr ? rstrcTr->value(key) : key;
+    if (k != "")
+        right->setCurrentWidget(rights[k]->rootWidget());
+    btndel->setEnabled(k != "");
+    cur = k;
     emit curChanged(cur);
 }
 
@@ -961,7 +987,7 @@ void MapWrapper::showFirst(bool updateList)
     {
         if (updateList)
             list->setCurrentRow(0);
-        show(ks.front());
+        show(list->currentItem()->text());
     }
     else
         show("");
@@ -1007,7 +1033,10 @@ void MapWrapper::reload()
     updateDisabled = true;
     for (const auto &name : data.keys())
     {
-        add(name);
+        if (rstrcTr)
+            add(name, rstrcTr->value(name));
+        else
+            add(name);
         rights[name]->setV(data[name]);
     }
     updateDisabled = false;
@@ -1037,7 +1066,12 @@ void MapWrapper::reqAdd()
 {
     auto key = askKey();
     if (key != "")
-        add(key);
+    {
+        if (rstrcTr)
+            add(rstrcTr->value(key), key);
+        else
+            add(key);
+    }
 }
 
 void MapWrapper::reqDel()

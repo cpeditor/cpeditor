@@ -22,13 +22,16 @@ presetMethod:
   pickTip:
     param:
       pre: QStringList
-      param: QVariant
+      rawparam: QVariant
       needtr: bool
-    code: const auto &mp = param.toMap()["tip"].toMap(); if (mp.contains(pre.back())) return mp[pre.back()].toStringList()[needtr];
+      tip: QString
+    code: const auto &mp = rawparam.toMap()["tip"].toMap(); if (mp.contains(pre.back())) return mp[pre.back()].toStringList()[needtr]; return tip;
   genByRestrict:
     param:
-      param: QVariant
-    code: return param.toMap()["restrict"].toStringList();
+      rawparam: QVariant
+    code: |-
+      if (rawparam.toMap()["restrict"].userType() == QMetaType::QStringList) return rawparam.toMap()["restrict"];
+      QStringList ret; for (const auto &l : rawparam.toMap()["restrict"].toList()) ret.push_back(l.toStringList()[0]); return ret;
 data:
 - name: Tab Width
   type: int
@@ -1019,6 +1022,69 @@ data:
     A list of default paths.
     They can be used in actions' corresponding default paths by using ${<default path name>} as a place holder.
     They can be either manually set or automatically changed after choosing a path for an action.
+- name: Default Path/Action
+  type: Object
+  methods:
+    getDefault: genByRestrict
+  param:
+    restrict:
+    - "!Open File"
+    - "!Save File"
+    - "!Open Contest"
+    - "!Load Single Test Case"
+    - "!Add Pairs Of Test Cases"
+    - "!Save Test Case To A File"
+    - "!Custom Checker"
+    - "!Export And Import Settings"
+    - "!Export And Load Session"
+    - "!Extract And Load Snippets"
+  sub:
+  - name: Uses
+    desc: Default path used for
+    type: QString
+    methods:
+      getDefault: pickDefault
+      getTip: pickTip
+    param:
+      default:
+        Open File: ${file}
+        Save File: ${file}
+        Open Contest: ${contest}
+        Load Single Test Case: ${testcase}
+        Add Pairs Of Test Cases: ${testcase}
+        Save Test Case To A File: ${testcase}
+        Custom Checker: ${checker}
+        Export And Import Settings: ${settings}
+        Export And Load Session: ${session}
+        Extract And Load Snippets: ${snippets}
+      tip:
+        Save File: |-
+          !The default path used when choosing a path for @1.
+          You can use ${<default path name>} as a place holder.
+          It can be overridden by Default File Paths For Problem URLs
+    tip: |-
+      The default path used when choosing a path for @1.
+      You can use ${<default path name>} as a place holder.
+  - name: Changes
+    desc: Default paths changed by
+    type: QString
+    methods:
+      getDefault: pickDefault
+    param:
+      default:
+        Open File: file, testcase, checker
+        Save File: file, testcase, checker
+        Open Contest: contest, file, testcase, checker
+        Load Single Test Case: testcase
+        Add Pairs Of Test Cases: testcase
+        Save Test Case To A File: testcase
+        Custom Checker: checker
+        Export And Import Settings: settings
+        Export And Load Session: session
+        Extract And Load Snippets: snippets
+    tip: |-
+      The default paths changed after choosing a path for @1.
+      It is a list of <default path name>s, separated by commas, and can be empty.
 - name: Auto Load External Changes If No Unsaved Modification
   desc: Auto-load external file changes if there's no unsaved modification
   type: bool

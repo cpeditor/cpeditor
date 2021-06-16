@@ -1175,18 +1175,6 @@ Do you want to reload it?</source>
         <translation>Настройки редактора кода</translation>
     </message>
     <message>
-        <source>C++ Compile and Run Commands</source>
-        <translation>Команды компиляции и запуска на С++</translation>
-    </message>
-    <message>
-        <source>Java Compile and Run Commands</source>
-        <translation>Команды компиляции и запуска на Java</translation>
-    </message>
-    <message>
-        <source>Python Run Commands</source>
-        <translation>Команды запуска на Python</translation>
-    </message>
-    <message>
         <source>You can read the &lt;a href=&quot;%1&quot;&gt;documentation&lt;/a&gt; or go through the settings for more information.</source>
         <translation>Вы можете почитать &lt;a href=&quot;%1&quot;&gt;документация&lt;/a&gt; или просмотреть настройки для более подробной информации.</translation>
     </message>
@@ -1197,6 +1185,10 @@ Do you want to reload it?</source>
     <message>
         <source>Font Settings</source>
         <translation>Настройки шрифтов</translation>
+    </message>
+    <message>
+        <source>Compile and Run Commands</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1297,10 +1289,6 @@ Do you want to reload it?</source>
         <translation>Расширения</translation>
     </message>
     <message>
-        <source>Clang Format</source>
-        <translation>Clang Format</translation>
-    </message>
-    <message>
         <source>Language Server</source>
         <translation>Language Server</translation>
     </message>
@@ -1373,10 +1361,6 @@ Do you want to reload it?</source>
         <translation>Шрифт</translation>
     </message>
     <message>
-        <source>YAPF</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Code Formatting</source>
         <translation>Форматирование кода</translation>
     </message>
@@ -1426,10 +1410,6 @@ Do you want to reload it?</source>
     <message>
         <source>Path</source>
         <translation>Путь</translation>
-    </message>
-    <message>
-        <source>The path to the Clang Format executable file</source>
-        <translation>Путь до исполняемых файлов Clang Format</translation>
     </message>
     <message>
         <source>The Clang Format style options, which are usually saved in a .clang-format configuration file.
@@ -2082,18 +2062,6 @@ They can be either manually set or automatically changed after choosing a path f
         <translation>Открыть файл</translation>
     </message>
     <message>
-        <source>The default path used when choosing a path for %1.
-You can use ${&lt;default path name&gt;} as a place holder.</source>
-        <translation>Путь по умолчанию, используемый при выборе пути для %1.
-Вы можете использовать ${&lt;default path name&gt;} в качестве заполнителя.</translation>
-    </message>
-    <message>
-        <source>The default paths changed after choosing a path for %1.
-It is a list of &lt;default path name&gt;s, separated by commas, and can be empty.</source>
-        <translation>Стандратные пути изменятся после выбора пути для %1.
-Это список &lt;default path name&gt;s, разделенный запятыми, который не может быть пустым.</translation>
-    </message>
-    <message>
         <source>Save File</source>
         <translation>Сохранить файл</translation>
     </message>
@@ -2124,18 +2092,6 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     <message>
         <source>Extract And Load Snippets</source>
         <translation>Экспорт и загрузка сниппетов</translation>
-    </message>
-    <message>
-        <source>Default path used for %1</source>
-        <translation>Стандартный путь для %1</translation>
-    </message>
-    <message>
-        <source>Default paths changed by %1</source>
-        <translation>Стандартные пути могут быть изменены %1</translation>
-    </message>
-    <message>
-        <source>It can be overridden by %1.</source>
-        <translation>Может быть перезаписан %1.</translation>
     </message>
     <message>
         <source>Format code on manual save</source>
@@ -2290,48 +2246,6 @@ The program will be killed if it doesn&apos;t terminate in the time limit.</sour
 A test case will be elided and read-only if it&apos;s too long.</source>
         <translation>Максимальное отображаемое число символов в тесткейсе.
 Если тесткейс будет слишком большой, он будет пропущен и доступен только для чтения.</translation>
-    </message>
-    <message>
-        <source>Clang Format Program</source>
-        <translation>Программа Clang Format</translation>
-    </message>
-    <message>
-        <source>Clang Format Arguments</source>
-        <translation>Аргументы Clang Format</translation>
-    </message>
-    <message>
-        <source>The arguments passed to clang-format. It should NOT contain &quot;-i&quot;.</source>
-        <translation>Аргументы, применяемы для Clang Format. Они НЕ должны содержать &quot;-i&quot;.</translation>
-    </message>
-    <message>
-        <source>Clang Format Style</source>
-        <translation>Стиль Clang Format</translation>
-    </message>
-    <message>
-        <source>YAPF Program</source>
-        <translation>Программа YAPF</translation>
-    </message>
-    <message>
-        <source>The program of YAPF. It could be `yapf` (which doesn&apos;t need arguments) or `python` (which needs `-m yapf` as the arguments).</source>
-        <translation>Программа для YAPF. Это может быть &quot;yapf&quot; (который не требует аргументы) или &quot;python&quot; (который требует аргумент &quot;-m yapf&quot;).</translation>
-    </message>
-    <message>
-        <source>YAPF Arguments</source>
-        <translation>Аргументы YAPF</translation>
-    </message>
-    <message>
-        <source>The arguments passed to the YAPF program. It should NOT contain &quot;-i&quot;.</source>
-        <translation>Аргументы, применяемы для программы YAPF. Они не должны содержать &quot;-i&quot;.</translation>
-    </message>
-    <message>
-        <source>YAPF Style</source>
-        <translation>Стиль YAPF</translation>
-    </message>
-    <message>
-        <source>The YAPF style options, which are usually saved in a .style.yapf or setup.conf configuration file.
-You can learn about it by running `yapf --style-help`.</source>
-        <translation>Параметры стиля YAPF, которые обычно сохраняются в конфигурационный файл .style.yapf or setup.conf.
-Вы можете узнать больше об этом запустив &quot;yapf --style-help&quot;.</translation>
     </message>
     <message>
         <source>Format the code when saving it manually.</source>
@@ -2498,6 +2412,69 @@ It&apos;s relative to the source file, or the temporary directory if the tab is 
 You can use &quot;${filename}&quot; for the complete file name,
 &quot;${basename}&quot; for the base file name without the suffix,
 &quot;${tmpdir}&quot; or &quot;${tempdir}&quot; for the absolute path of the temporary directory.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Program</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The path to the clang-format executable file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The program of YAPF. It could be `yapf` (which doesn&apos;t need arguments) or `python`
+(which needs `-m yapf` as the arguments).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Arguments</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The arguments passed to @1. It should NOT contain &quot;-i&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Style</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The YAPF style options, which are usually saved in a .style.yapf or setup.conf configuration file.
+You can learn about it by running `yapf --style-help`.
+ui: QPlainTextEdit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Formatter</source>
+        <translation type="unfinished">Форматирование</translation>
+    </message>
+    <message>
+        <source>Default path used for</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The default path used when choosing a path for @1.
+You can use ${&lt;default path name&gt;} as a place holder.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The default path used when choosing a path for @1.
+You can use ${&lt;default path name&gt;} as a place holder.
+It can be overridden by Default File Paths For Problem URLs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default paths changed by</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The default paths changed after choosing a path for @1.
+It is a list of &lt;default path name&gt;s, separated by commas, and can be empty.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default Path Action</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

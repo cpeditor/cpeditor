@@ -1175,18 +1175,6 @@ Do you want to reload it?</source>
         <translation>代码编辑器设置</translation>
     </message>
     <message>
-        <source>C++ Compile and Run Commands</source>
-        <translation>C++ 编译运行命令</translation>
-    </message>
-    <message>
-        <source>Java Compile and Run Commands</source>
-        <translation>Java 编译运行命令</translation>
-    </message>
-    <message>
-        <source>Python Run Commands</source>
-        <translation>Python 运行命令</translation>
-    </message>
-    <message>
         <source>You can read the &lt;a href=&quot;%1&quot;&gt;documentation&lt;/a&gt; or go through the settings for more information.</source>
         <translation>你可以阅读 &lt;a href=&quot;%1&quot;&gt;文档&lt;/a&gt; 或在设置中浏览以获取更多信息。</translation>
     </message>
@@ -1197,6 +1185,10 @@ Do you want to reload it?</source>
     <message>
         <source>Font Settings</source>
         <translation>字体设置</translation>
+    </message>
+    <message>
+        <source>Compile and Run Commands</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1297,10 +1289,6 @@ Do you want to reload it?</source>
         <translation>扩展</translation>
     </message>
     <message>
-        <source>Clang Format</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Language Server</source>
         <translation></translation>
     </message>
@@ -1373,10 +1361,6 @@ Do you want to reload it?</source>
         <translation>字体</translation>
     </message>
     <message>
-        <source>YAPF</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Code Formatting</source>
         <translation>代码格式化</translation>
     </message>
@@ -1426,10 +1410,6 @@ Do you want to reload it?</source>
     <message>
         <source>Path</source>
         <translation>路径</translation>
-    </message>
-    <message>
-        <source>The path to the Clang Format executable file</source>
-        <translation>Clang Format 可执行文件的路径</translation>
     </message>
     <message>
         <source>The Clang Format style options, which are usually saved in a .clang-format configuration file.
@@ -2075,28 +2055,8 @@ They can be either manually set or automatically changed after choosing a path f
         <translation>一个默认路径的路径</translation>
     </message>
     <message>
-        <source>Default path used for %1</source>
-        <translation>用于 %1 的默认路径</translation>
-    </message>
-    <message>
         <source>Open File</source>
         <translation>打开文件</translation>
-    </message>
-    <message>
-        <source>The default path used when choosing a path for %1.
-You can use ${&lt;default path name&gt;} as a place holder.</source>
-        <translation>选择 %1 的路径时使用的默认路径。
-你可以使用 ${&lt;默认路径名称&gt;} 来作为占位符。</translation>
-    </message>
-    <message>
-        <source>Default paths changed by %1</source>
-        <translation>被 %1 改变的默认路径</translation>
-    </message>
-    <message>
-        <source>The default paths changed after choosing a path for %1.
-It is a list of &lt;default path name&gt;s, separated by commas, and can be empty.</source>
-        <translation>为 %1 选择一个路径后被改变的默认路径。
-它是一个 &lt;默认路径名称&gt; 的列表，相邻两项之间用半角逗号隔开，可以为空。</translation>
     </message>
     <message>
         <source>Save File</source>
@@ -2129,10 +2089,6 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     <message>
         <source>Extract And Load Snippets</source>
         <translation>导出和加载代码片段</translation>
-    </message>
-    <message>
-        <source>It can be overridden by %1.</source>
-        <translation>它可以被 %1 覆盖。</translation>
     </message>
     <message>
         <source>Format code on manual save</source>
@@ -2283,48 +2239,6 @@ The program will be killed if it doesn&apos;t terminate in the time limit.</sour
         <source>The maximum number of characters in a test case to be displayed.
 A test case will be elided and read-only if it&apos;s too long.</source>
         <translation>会显示出来的测试用例的最大字符数。如果测试用例过长，超长部分会被省略，且测试用例会变得只读。</translation>
-    </message>
-    <message>
-        <source>Clang Format Program</source>
-        <translation>Clang Format 程序</translation>
-    </message>
-    <message>
-        <source>Clang Format Arguments</source>
-        <translation>Clang Format 参数</translation>
-    </message>
-    <message>
-        <source>The arguments passed to clang-format. It should NOT contain &quot;-i&quot;.</source>
-        <translation>传递给 clang-format 的参数。它不应包含 &quot;-i&quot;。</translation>
-    </message>
-    <message>
-        <source>Clang Format Style</source>
-        <translation>Clang Format 风格</translation>
-    </message>
-    <message>
-        <source>YAPF Program</source>
-        <translation>YAPF 程序</translation>
-    </message>
-    <message>
-        <source>The program of YAPF. It could be `yapf` (which doesn&apos;t need arguments) or `python` (which needs `-m yapf` as the arguments).</source>
-        <translation>YAPF 的程序。它可以是 `yapf`（无需额外设置参数）或 `python`（需要 `-m yapf` 作为参数）。</translation>
-    </message>
-    <message>
-        <source>YAPF Arguments</source>
-        <translation>YAPF 参数</translation>
-    </message>
-    <message>
-        <source>The arguments passed to the YAPF program. It should NOT contain &quot;-i&quot;.</source>
-        <translation>传递给 YAPF 程序的参数。它不应包含 &quot;-i&quot;。</translation>
-    </message>
-    <message>
-        <source>YAPF Style</source>
-        <translation>YAPF 风格</translation>
-    </message>
-    <message>
-        <source>The YAPF style options, which are usually saved in a .style.yapf or setup.conf configuration file.
-You can learn about it by running `yapf --style-help`.</source>
-        <translation>YAPF 格式化所用风格，通常存储为 .style.yapf 或 setup.conf。
-你可以运行 `yapf --style-help` 以了解更多。</translation>
     </message>
     <message>
         <source>Format the code when saving it manually.</source>
@@ -2497,6 +2411,69 @@ You can use &quot;${filename}&quot; for the complete file name,
 你可以使用 &quot;${filename}&quot; 来代指完整的源文件名；
 使用 &quot;${basename}&quot; 来代指无后缀的源文件名；
 使用 &quot;${tmpdir}&quot; 或 &quot;${tempdir}&quot; 来代指临时目录的绝对路径。</translation>
+    </message>
+    <message>
+        <source>Program</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The path to the clang-format executable file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The program of YAPF. It could be `yapf` (which doesn&apos;t need arguments) or `python`
+(which needs `-m yapf` as the arguments).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Arguments</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The arguments passed to @1. It should NOT contain &quot;-i&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Style</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The YAPF style options, which are usually saved in a .style.yapf or setup.conf configuration file.
+You can learn about it by running `yapf --style-help`.
+ui: QPlainTextEdit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Formatter</source>
+        <translation type="unfinished">格式化工具</translation>
+    </message>
+    <message>
+        <source>Default path used for</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The default path used when choosing a path for @1.
+You can use ${&lt;default path name&gt;} as a place holder.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The default path used when choosing a path for @1.
+You can use ${&lt;default path name&gt;} as a place holder.
+It can be overridden by Default File Paths For Problem URLs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default paths changed by</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The default paths changed after choosing a path for @1.
+It is a list of &lt;default path name&gt;s, separated by commas, and can be empty.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default Path Action</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

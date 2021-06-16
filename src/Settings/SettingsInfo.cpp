@@ -46,7 +46,7 @@ SettingsInfo::SettingIter &SettingsInfo::SettingIter::child(const QString &key, 
             {
                 pre.push_back(info->name);
                 pre.push_back(key);
-                trPre.push_back(info->desc);
+                trPre.push_back(getDesc());
                 trPre.push_back(key);
             }
             info = &c;
@@ -62,7 +62,7 @@ SettingsInfo::SettingIter &SettingsInfo::SettingIter::child(const QString &key, 
     {
         pre.push_back(info->name);
         pre.push_back(key);
-        trPre.push_back(info->desc);
+        trPre.push_back(getDesc());
         trPre.push_back(key);
     }
     info = ch;
@@ -76,10 +76,10 @@ QList<SettingsInfo::SettingIter> SettingsInfo::SettingIter::allVisibleChild(cons
         return result;
     QStringList hideList;
     auto param = info->param; // direct use param to prevent calling methods
-    if (param.canConvert(QMetaType::QVariantMap) && param.toMap().contains("pass"))
+    if (param.userType() == QMetaType::QVariantMap && param.toMap().contains("pass"))
     {
         auto pass = param.toMap()["pass"];
-        if (pass.canConvert(QMetaType::QVariantMap) && pass.toMap().contains("hide"))
+        if (pass.userType() == QMetaType::QVariantMap && pass.toMap().contains("hide"))
         {
             auto hide = pass.toMap()["hide"].toMap();
             for (const auto &n : hide.keys())
@@ -128,7 +128,7 @@ QString SettingsInfo::SettingIter::_format(const QString &fmt, const QStringList
             res.push_back(fmt.mid(pos, idx - pos).replace("@@", "@"));
         int n = fmt[idx + 1].digitValue(); // only @%d
         if (n == 0)
-            res.push_back(info->desc);
+            res.push_back(getDesc());
         else
             res.push_back(p[p.size() - n]);
         pos = idx + 2;

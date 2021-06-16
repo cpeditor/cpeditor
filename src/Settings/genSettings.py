@@ -144,47 +144,11 @@ def writeInfo(f, obj, lst):
             f.write(f", LIST{key}")
         f.write("});\n")
 
-
-def addDefaultPaths(obj):
-    actions = [
-        ("Open File", "${file}", "file, testcase, checker"),
-        ("Save File", "${file}", "file, testcase, checker"),
-        ("Open Contest", "${contest}", "contest, file, testcase, checker"),
-        ("Load Single Test Case", "${testcase}", "testcase"),
-        ("Add Pairs Of Test Cases", "${testcase}", "testcase"),
-        ("Save Test Case To A File", "${testcase}", "testcase"),
-        ("Custom Checker", "${checker}", "checker"),
-        ("Export And Import Settings", "${settings}", "settings"),
-        ("Export And Load Session", "${session}", "session"),
-        ("Extract And Load Snippets", "${snippets}", "snippets"),
-    ]
-
-    for action in actions:
-        obj.append({
-            "name": f"Default Path/Action/{action[0]}/Uses",
-            "trdesc": f'tr("Default path used for %1").arg(tr("{action[0]}"))',
-            "type": "QString",
-            "default": action[1],
-            "trtip": f'tr("The default path used when choosing a path for %1.\\nYou can use ${{<default path name>}} as a place holder.").arg(tr("{action[0]}"))'
-        })
-        if action[0] == "Save File":
-            obj[-1]["trtip"] += ' + "\\n" + tr("It can be overridden by %1.").arg(tr("Default File Paths For Problem URLs"))'
-        obj.append({
-            "name": f"Default Path/Action/{action[0]}/Changes",
-            "trdesc": f'tr("Default paths changed by %1").arg(tr("{action[0]}"))',
-            "type": "QString",
-            "default": action[2],
-            "trtip": f'tr("The default paths changed after choosing a path for %1.\\nIt is a list of <default path name>s, separated by commas, and can be empty.").arg(tr("{action[0]}"))'
-        })
-
-
 if __name__ == "__main__":
     objroot = yaml.full_load(open(sys.argv[1], mode="r", encoding="utf-8"))
 
     presetFunc = objroot["presetMethod"]
     obj = objroot["data"]
-
-    addDefaultPaths(obj)
 
     head = """/*
  * Copyright (C) 2019-2021 Ashar Khan <ashar786khan@gmail.com>

@@ -245,7 +245,11 @@ struct MapWrapper : public WrapperTemplate<QMap<QString, QVariant>, QSplitter>
     virtual QStringList content() const override;
 
     QString askKey(const QString &suggest = "") const;
-    void add(const QString &key);
+    void add(const QString &key)
+    {
+        add(key, key);
+    }
+    void add(const QString &key, const QString &trkey);
     void del(const QString &key);
     void show(const QString &key);
     void showFirst(bool updateList = false);
@@ -268,6 +272,7 @@ struct MapWrapper : public WrapperTemplate<QMap<QString, QVariant>, QSplitter>
     bool updateDisabled = false;
 
     QStringList rstrc;
+    QMap<QString, QString> *rstrcTr = nullptr;
     KeyCheck check;
     Actions action;
     QVariant pass;
