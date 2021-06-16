@@ -177,7 +177,7 @@ def addDefaultPaths(obj):
 
 
 if __name__ == "__main__":
-    objroot = yaml.load(open(sys.argv[1], mode="r", encoding="utf-8"))
+    objroot = yaml.full_load(open(sys.argv[1], mode="r", encoding="utf-8"))
 
     presetFunc = objroot["presetMethod"]
     obj = objroot["data"]
