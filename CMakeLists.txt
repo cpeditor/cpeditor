@@ -128,6 +128,23 @@ if(APPLE)
   list(APPEND RESOURCES resources/macos-resources.qrc)
 endif()
 
+add_library(
+    target_generated
+    OBJECT
+    src/Settings/SettingsInfo.hpp
+    ${CMAKE_BINARY_DIR}/generated/SettingsInfo.cpp
+)
+
+target_link_libraries(target_generated PRIVATE Qt5::Widgets)
+
+if(USE_CLANG_TIDY)
+  set_target_properties(
+    target_generated
+    PROPERTIES
+        CXX_CLANG_TIDY ""
+  )
+endif()
+
 add_executable(cpeditor
     ${GUI_TYPE}
 
@@ -241,13 +258,13 @@ add_executable(cpeditor
     ui/mainwindow.ui
     ui/appwindow.ui
 
+    src/Settings/SettingsInfo.hpp
     ${CMAKE_BINARY_DIR}/generated/version.hpp
     ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp
-    src/Settings/SettingsInfo.hpp
-    ${CMAKE_BINARY_DIR}/generated/SettingsInfo.cpp
-
+    $<TARGET_OBJECTS:target_generated>
     ${CMAKE_BINARY_DIR}/translations/translations.qrc
     ${RESOURCES}
+    
     assets/appicon.rc)
 
 include_directories("generated/")
