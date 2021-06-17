@@ -118,13 +118,18 @@ QString Compiler::outputPath(const QString &tmpFilePath, const QString &sourceFi
                                               .replace("${basename}", fileInfo.completeBaseName())
                                               .replace("${tmpdir}", QFileInfo(tmpFilePath).absolutePath())
                                               .replace("${tempdir}", QFileInfo(tmpFilePath).absolutePath()));
+
+    if (lang == "C++")
+        res += Util::exeSuffix; // Note: Util::exeSuffix is empty on UNIX
+
     if (createDirectory)
     {
         if (lang == "C++")
-            QDir().mkpath(QFileInfo(res).absolutePath() + Util::exeSuffix); // Note: Util::exeSuffix is empty on UNIX
+            QDir().mkpath(QFileInfo(res).absolutePath());
         else if (lang == "Java")
             QDir().mkpath(res);
     }
+
     return res;
 }
 

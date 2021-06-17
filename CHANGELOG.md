@@ -3,6 +3,7 @@
 ### Fixed
 
 -   Fix that two dialogs are shown when entering full-screen mode for the first time. (#875)
+-   Actually fix that Detached Execution doesn't work on Windows with clang++, which was incorrectly fixed in #873.
 
 ## 6.9.1 (Beta)
 
