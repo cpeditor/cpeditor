@@ -8,6 +8,7 @@
 
 -   Fix that two dialogs are shown when entering full-screen mode for the first time. (#875)
 -   Actually fix that Detached Execution doesn't work on Windows with clang++, which was incorrectly fixed in #873.
+-   Fix that the icon is not in the center on macOS. (#880)
 
 ## 6.9.1 (Beta)
 
