@@ -17,8 +17,8 @@
 #include "LanguageServer.hpp"
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
-#include "Settings/SettingsManager.hpp"
 #include "Util/Util.hpp"
+#include "generated/SettingsHelper.hpp"
 #include "third_party/lsp-cpp/include/LSPClient.hpp"
 #include <QDir>
 #include <QFileInfo>
@@ -169,15 +169,14 @@ void LanguageServer::updatePath(QString const &newPath)
 // Private methods
 bool LanguageServer::shouldCreateClient()
 {
-    return SettingsManager::get("LSP/Use Linting " + language).toBool() ||
-           SettingsManager::get("LSP/Use Autocomplete " + language).toBool();
+    return SettingsHelper::getLSP(language).isUseLinting() || SettingsHelper::getLSP(language).isUseAutocomplete();
 }
 
 void LanguageServer::createClient()
 {
     delete lsp;
-    auto program = SettingsManager::get("LSP/Path " + language).toString();
-    auto args = QProcess::splitCommand(SettingsManager::get("LSP/Args " + language).toString().trimmed());
+    auto program = SettingsHelper::getLSP(language).getPath();
+    auto args = QProcess::splitCommand(SettingsHelper::getLSP(language).getArgs().trimmed());
     lsp = new LSPClient(program, args);
 }
 
@@ -292,7 +291,7 @@ void LanguageServer::onLSPServerProcessError(QProcess::ProcessError const &error
     case QProcess::FailedToStart:
         logger->error(tr("Language Server [%1]").arg(language),
                       tr("Failed to start LSP Process. Have you set the path to the Language Server program at %1?")
-                          .arg(SettingsManager::getPathText("LSP/Path " + language)),
+                          .arg(SettingsManager::getPathText(QString("LSP/%1/Path").arg(language))),
                       false);
         break;
     case QProcess::Crashed:

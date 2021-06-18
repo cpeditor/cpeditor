@@ -22,6 +22,11 @@ def writeHelper(f, obj, pre, indent):
             f.write(f"{ids}}};\n")
             f.write(f"{ids}inline {key} get{key}(QString key){cst} {{ return {key}(QStringList {{{pre} {json.dumps(name)}, key}}.join('/')); }}\n")
             f.write(f"{ids}inline QStringList query{key}(){cst} {{ return SettingsManager::itemUnder(QStringList {{{pre} {json.dumps(name)}}}.join('/') + '/'); }}\n")
+            if "param" in t and "restrict" in t["param"]:
+                for k in t["param"]["restrict"]:
+                    if k[0] == "!":
+                        k = k[1:]
+                    f.write(f"{ids}inline {key} get{key}_{k.replace('+', 'p').replace(' ', '_')}(){cst} {{ return get{key}({json.dumps(k)}); }}\n")
             # f.write(f"{ids}inline void remove{key}(QString key){cst} {{ SettingsManager::remove(SettingsManager::keyStartsWith(QStringList {{{pre} {json.dumps(name)}, key}}.join('/'))); }}\n")
             # Remove and Add will be done in setting page. Maybe add later.
         else:

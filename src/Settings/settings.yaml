@@ -4,7 +4,8 @@ presetMethod:
     param:
       pre: QStringList
       rawparam: QVariant
-    code: const auto &mp = rawparam.toMap()["default"].toMap(); if (mp.contains(pre.back())) return mp[pre.back()];
+      def: QVariant
+    code: const auto &mp = rawparam.toMap()["default"].toMap(); if (mp.contains(pre.back())) return mp[pre.back()]; return def;
   pickParam:
     param:
       pre: QStringList
@@ -532,114 +533,61 @@ data:
   old:
   - load_test_case_file_length_limit
   - load_test_case_length_limit
-- name: LSP/Path C++
-  ui: PathItem
-  desc: Path to LSP executable
-  default: clangd
-  type: QString
-  param: "#PathItem::Executable"
-  requireAllDepends: false
-  depends:
-  - name: LSP/Use Linting C++
-  tip: The path to the C++ Language Server executable
-- name: LSP/Path Java
-  ui: PathItem
-  desc: Path to LSP executable
-  type: QString
-  param: "#PathItem::Executable"
-  requireAllDepends: false
-  depends:
-  - name: LSP/Use Linting Java
-  tip: The path to the Java Language Server executable
-- name: LSP/Path Python
-  ui: PathItem
-  desc: Path to LSP executable
-  default: python
-  type: QString
-  param: "#PathItem::Executable"
-  requireAllDepends: false
-  depends:
-  - name: LSP/Use Linting Python
-  tip: The path to the Python Language Server executable
-- name: LSP/Use Linting C++
-  desc: Use Linting with Language Server
-  type: bool
-  tip: Show Error, Warning, Information and Hints in Code Editor for C++ Language
-- name: LSP/Use Linting Java
-  desc: Use Linting with Language Server
-  type: bool
-  tip: Show Error, Warning, Information and Hints in Code Editor for Java Language
-- name: LSP/Use Linting Python
-  desc: Use Linting with Language Server
-  type: bool
-  tip: Show Error, Warning, Information and Hints in Code Editor for Python Language
-- name: LSP/Use Autocomplete C++
-  desc: Use auto-complete with Language Server
-  type: bool
-  tip: Use autocomplete results from Language server
-- name: LSP/Use Autocomplete Java
-  desc: Use auto-complete with Language Server
-  type: bool
-  tip: Use autocomplete results from Language server
-- name: LSP/Use Autocomplete Python
-  desc: Use auto-complete with Language Server
-  type: bool
-  tip: Use autocomplete results from Language server
-- name: LSP/Delay C++
-  type: int
-  desc: Delay in Linting (ms)
-  default: 2000
+- name: LSP
+  type: Object
+  methods:
+    getDefault: genByRestrict
   param:
-  - 10
-  - 3600000
-  - 1000
-  depends:
-  - name: LSP/Use Linting C++
-  tip: Delay in linting in milliseconds after last modification to code
-- name: LSP/Delay Java
-  type: int
-  desc: Delay in Linting (ms)
-  default: 2000
-  param:
-  - 10
-  - 3600000
-  - 1000
-  depends:
-  - name: LSP/Use Linting Java
-  tip: Delay in linting in milliseconds after last modification to code
-- name: LSP/Delay Python
-  type: int
-  desc: Delay in Linting (ms)
-  default: 2000
-  param:
-  - 10
-  - 3600000
-  - 1000
-  depends:
-  - name: LSP/Use Linting Python
-  tip: Delay in linting in milliseconds after last modification to code
-- name: LSP/Args C++
-  desc: Arguments for Language Server
-  type: QString
-  requireAllDepends: false
-  depends:
-  - name: LSP/Use Linting C++
-  tip: Arguments to pass to Language server executable
-- name: LSP/Args Java
-  desc: Arguments for Language Server
-  type: QString
-  requireAllDepends: false
-  depends:
-  - name: LSP/Use Linting Java
-  tip: Arguments to pass to Language server executable
-- name: LSP/Args Python
-  desc: Arguments for Language Server
-  default: "-m pyls"
-  type: QString
-  requireAllDepends: false
-  depends:
-  - name: LSP/Use Linting Python
-  tip: Arguments to pass to Language server executable
+    restrict:
+    - C++
+    - Java
+    - Python
+  sub:
+  - name: Path
+    desc: Path to LSP excutable
+    type: QString
+    ui: PathItem
+    methods:
+      getDefault: pickDefault
+      getParam: pickParamFromParam
+    param:
+      param: "#PathItem::Executable"
+      default:
+        C++: clangd
+        Python: python
+    depends:
+    - name: Use Linting
+    tip: The path to the @1 Language Server executable
+  - name: Use Linting
+    desc: Use Linting with Language Server
+    type: bool
+    tip: Show Error, Warning, Information and Hints in Code Editor for @1 Language
+  - name: Use Autocomplete
+    desc: Use auto-complete with Language Server
+    type: bool
+    tip: Use autocomplete results from Language server
+  - name: Delay
+    type: int
+    desc: Delay in Linting (ms)
+    default: 2000
+    param:
+    - 10
+    - 3600000
+    - 1000
+    depends:
+    - name: Use Linting
+    tip: Delay in linting in milliseconds after last modification to code
+  - name: Args
+    type: QString
+    desc: Arguments for Language Server
+    methods:
+      getDefault: pickDefault
+    param:
+      default:
+        Python: -m pyls
+    depends:
+    - name: Use Linting
+    tip: Arguments to pass to Language server executable
 - name: Testcases Matching Rules
   type: QVariantList
   default: '#QVariantList { QStringList {"(.*)\\.in", "\\1.ans"}, QStringList {"(.*)\\.in",

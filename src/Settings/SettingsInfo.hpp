@@ -74,7 +74,8 @@ class SettingsInfo
             if (!info)
                 return QVariant();
             if (info->methods.contains("getDefault"))
-                return info->call("getDefault", "pre", pre, "param", getParam(), "rawparam", info->param);
+                return info->call("getDefault", "pre", pre, "param", getParam(), "rawparam", info->param, "def",
+                                  info->def);
             return info->def;
         }
         QVariant getParam() const
@@ -90,7 +91,7 @@ class SettingsInfo
             if (!info)
                 return "";
             if (info->methods.contains("getTip"))
-                return format(needtr, info->call("getTip", "pre", pre, "param", info->param, "rawparam", info->param,
+                return format(needtr, info->call("getTip", "pre", pre, "param", getParam(), "rawparam", info->param,
                                                  "needtr", needtr, "tip", needtr ? info->tip : info->untrTip)
                                           .toString());
             return needtr ? format(info->tip) : formatuntr(info->untrTip);
