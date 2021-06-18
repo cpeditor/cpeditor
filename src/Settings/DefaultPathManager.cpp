@@ -22,12 +22,9 @@
 #include <QFileInfo>
 #include <QRegularExpression>
 
-QMap<QString, QString> DefaultPathManager::defaultPath;
-
 QString DefaultPathManager::defaultPathForAction(const QString &action)
 {
-    const auto result =
-        convertPath(SettingsManager::get(QString("Default Path/Action/%1/Uses").arg(action)).toString());
+    const auto result = convertPath(SettingsHelper::getDefaultPathAction(action).getUses());
     LOG_INFO(INFO_OF(action) << INFO_OF(result));
     return result;
 }
@@ -36,28 +33,17 @@ void DefaultPathManager::setDefaultPathForAction(const QString &action, const QS
 {
     LOG_INFO(INFO_OF(action) << INFO_OF(path));
 
-    const auto settingsKey = QString("Default Path/Action/%1/Changes").arg(action);
-
-    if (!SettingsManager::contains(settingsKey))
-    {
-        LOG_DEV("Unknown Action: " << action);
-        return;
-    }
-
+    auto list = SettingsHelper::getDefaultPathAction(action).getChanges().split(",");
     const QFileInfo info(path);
     const auto dir = info.isFile() ? info.canonicalPath() : info.canonicalFilePath();
-
-    const auto list = SettingsManager::get(settingsKey).toString().split(",");
 
     for (const auto &key : list)
     {
         const auto trimmedKey = key.trimmed();
         if (trimmedKey.isEmpty())
             continue;
-        defaultPath[trimmedKey] = dir;
+        SettingsHelper::getDefaultPath(trimmedKey).setPath(dir);
     }
-
-    SettingsHelper::setDefaultPathNamesAndPaths(toVariantList());
 }
 
 QString DefaultPathManager::getExistingDirectory(const QString &action, QWidget *parent, const QString &caption,
@@ -102,52 +88,16 @@ QString DefaultPathManager::getSaveFileName(const QString &action, QWidget *pare
     return result;
 }
 
-void DefaultPathManager::fromVariantList(const QVariantList &list)
-{
-    defaultPath.clear();
-    for (const auto &strListVar : list)
-    {
-        const auto strList = strListVar.toStringList();
-        if (strList.length() != 2)
-        {
-            LOG_ERR(INFO_OF(strList.length()));
-            continue;
-        }
-        defaultPath[strList[0]] = strList[1];
-    }
-}
-
-QStringList DefaultPathManager::actionSettingsList()
-{
-    QStringList list;
-    for (const auto &info : SettingsInfo::getSettings())
-    {
-        if (info.name.startsWith("Default Path/Action/"))
-        {
-            list.push_back(info.name);
-        }
-    }
-    return list;
-}
-
 QString DefaultPathManager::convertPath(const QString &str)
 {
     QString result = str;
-    for (const auto &key : defaultPath.keys())
-        result.replace(QString("${%1}").arg(key), defaultPath[key]);
+    for (const auto &key : SettingsHelper::queryDefaultPath())
+        result.replace(QString("${%1}").arg(key), SettingsHelper::getDefaultPath(key).getPath());
     const QRegularExpression placeHolderRegex(R"(\$\{.*?\})");
     if (result.contains(placeHolderRegex))
     {
         LOG_WARN("Unknown place holder: " << INFO_OF(str) << INFO_OF(result));
         result.replace(placeHolderRegex, "");
     }
-    return result;
-}
-
-QVariantList DefaultPathManager::toVariantList()
-{
-    QVariantList result;
-    for (const auto &key : defaultPath.keys())
-        result.push_back(QStringList{key, defaultPath[key]});
     return result;
 }

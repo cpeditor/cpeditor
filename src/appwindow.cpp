@@ -1072,11 +1072,6 @@ void AppWindow::onSettingsApplied(const QString &pagePath)
         sessionManager->setAutoUpdateSession(SettingsHelper::isHotExitEnable() && SettingsHelper::isHotExitAutoSave());
     }
 
-    if (pageChanged("File Path/Default Paths"))
-    {
-        DefaultPathManager::fromVariantList(SettingsHelper::getDefaultPathNamesAndPaths());
-    }
-
     SettingsManager::saveSettings(QString());
 }
 

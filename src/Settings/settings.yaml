@@ -1011,18 +1011,27 @@ data:
   docAnchor: network-proxy
   tip: The password of the proxy server. It can be empty if the proxy server doesn't
     require authentication.
-- name: Default Path/Names And Paths
-  type: QVariantList
+- name: Default Path
+  type: Object
+  methods:
+    getDefault: genByRestrict
   param:
-  - - '@tr("Name")'
-    - '@tr("The name of a default path")'
-  - - '@tr("Path")'
-    - '@tr("The path of a default path")'
+    restrict:
+    - file
+    - testcase
+    - checker
+    - contest
+    - settings
+    - session
+    - snippets
+  sub:
+  - name: Path
+    type: QString
   tip: |-
     A list of default paths.
     They can be used in actions' corresponding default paths by using ${<default path name>} as a place holder.
     They can be either manually set or automatically changed after choosing a path for an action.
-- name: Default Path/Action
+- name: Default Path Action
   type: Object
   methods:
     getDefault: genByRestrict

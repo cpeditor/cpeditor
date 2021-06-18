@@ -102,11 +102,7 @@ void SettingsUpdater::updateSetting(QSettings &setting)
 
     if (setting.contains("save_path"))
     {
-        if (SettingsHelper::getDefaultPathNamesAndPaths().isEmpty())
-        {
-            SettingsHelper::setDefaultPathNamesAndPaths(
-                QVariantList{QStringList{"file", setting.value("save_path").toString()}});
-        }
+        SettingsHelper::getDefaultPath("file").setPath(setting.value("save_path").toString());
     }
 
     QString theme = SettingsManager::get("Editor Theme")

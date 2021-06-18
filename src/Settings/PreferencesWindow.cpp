@@ -228,8 +228,7 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
         .dir(TRKEY("File Path"))
             .page(TRKEY("Testcases"), {"Input File Save Path", "Answer File Save Path", "Testcases Matching Rules"})
             .page(TRKEY("Problem URL"), {"Default File Paths For Problem URLs"})
-            .page(TRKEY("Default Paths"), {"Default Path/Action"})
-            .page(TRKEY("Name and Paths"), {"Default Path/Names And Paths"})
+            .page(TRKEY("Default Paths"), {"Default Path Action", "Default Path"})
         .end()
         .page(TRKEY("Key Bindings"), {"Hotkey/Compile", "Hotkey/Run", "Hotkey/Compile Run", "Hotkey/Format", "Hotkey/Kill",
                                    "Hotkey/Change View Mode", "Hotkey/Snippets"})
@@ -257,6 +256,7 @@ void PreferencesWindow::display()
 {
     bool hidden = isHidden();
     Util::showWidgetOnTop(this);
+
     if (hidden)
     {
         switchToPage(homePage);
@@ -305,9 +305,17 @@ bool PreferencesWindow::switchToPage(QWidget *page, bool force)
     if (page == nullptr)
         return false;
 
+    auto *preferencesPage = qobject_cast<PreferencesPage *>(page);
+
     // return if there's no need to switch
     if (stackedWidget->currentWidget() == page)
+    {
+        if (preferencesPage)
+        {
+            preferencesPage->loadSettings();
+        }
         return true;
+    }
 
     // ask for saving changes or not if not force
     if (!force)
@@ -323,7 +331,6 @@ bool PreferencesWindow::switchToPage(QWidget *page, bool force)
     // switch if everything is OK
     stackedWidget->setCurrentWidget(page);
 
-    auto *preferencesPage = qobject_cast<PreferencesPage *>(page);
     if (preferencesPage != nullptr)
     {
         pageTreeItem[preferencesPage]->setSelected(true);
