@@ -819,12 +819,15 @@ void MapWrapper::setdef()
     QMap<QString, QVariant> def;
     for (const auto &k : iter.getDefault().toStringList())
         def.insert(k, iter.buildChildDefault(k));
+    def["/"] = iter.getDefault().toStringList();
     set(def);
 }
 
 void MapWrapper::reset()
 {
     resetLayout();
+    data.clear();
+    data["/"] = QStringList();
     for (const auto &name : SettingsManager::get(iter.key() + '@').toStringList())
     {
         if (rstrcTr)
@@ -833,7 +836,6 @@ void MapWrapper::reset()
             add(name);
         rights[name]->reset();
     }
-    data.clear();
     update();
     showFirst(true);
 }
@@ -842,38 +844,28 @@ void MapWrapper::apply()
 {
     auto odl = SettingsManager::get(iter.key() + '@').toStringList();
     QSet<QString> ods(odl.begin(), odl.end());
-    for (const auto &name : data.keys())
+    for (const auto &name : keys())
     {
         rights[name]->apply();
         ods.remove(name);
     }
-    for (const auto &name : ods)
-    {
-        SettingsManager::remove(SettingsManager::keyStartsWith(iter.key() + '/' + name + '/'));
-        if (rights.contains(name))
-        {
-            delete rights[name];
-            rights.remove(name);
-        }
-    }
-    SettingsManager::set(iter.key() + '@', QVariant(data.keys()));
+    SettingsManager::set(iter.key() + '@', QVariant(keys()));
 }
 
 bool MapWrapper::changed() const
 {
-    if (data.keys() != SettingsManager::get(iter.key() + '@').toStringList())
+    if (keys() != SettingsManager::get(iter.key() + '@').toStringList())
     {
         return true;
     }
-    const auto &keys = data.keys();
-    return std::any_of(keys.begin(), keys.end(),
-                       [this](const QString &name) -> bool { return rights[name]->changed(); });
+    const auto &ks = keys();
+    return std::any_of(ks.begin(), ks.end(), [this](const QString &name) -> bool { return rights[name]->changed(); });
 }
 
 QStringList MapWrapper::content() const
 {
     QStringList ret = SettingBase::content();
-    for (const auto &k : rights.keys())
+    for (const auto &k : keys())
     {
         ret += rights[k]->content();
     }
@@ -923,6 +915,7 @@ QString MapWrapper::askKey(const QString &suggest) const
 void MapWrapper::add(const QString &key, const QString &trkey)
 {
     list->addItem(trkey);
+    data["/"] = keys() << key;
     auto *panel = new SettingsWrapper;
     panel->parent = this;
     panel->iter = iter;
@@ -963,6 +956,9 @@ void MapWrapper::del(const QString &key)
             rights[key]->deleteLater();
             rights.remove(key);
             delete list->takeItem(i);
+            auto lst = keys();
+            lst.removeAll(key);
+            data["/"] = lst;
             data.remove(key);
             emit valueChanged();
             break;
@@ -982,7 +978,7 @@ void MapWrapper::show(const QString &key)
 
 void MapWrapper::showFirst(bool updateList)
 {
-    auto ks = data.keys();
+    auto ks = keys();
     if (ks.length() > 0)
     {
         if (updateList)
@@ -998,6 +994,9 @@ void MapWrapper::rename(const QString &target)
     if (cur == "")
         return;
     data[target] = data.take(cur);
+    auto lst = keys();
+    lst.replace(lst.indexOf(cur), target);
+    data["/"] = lst;
     reload();
     show(target);
     emit valueChanged();
@@ -1005,7 +1004,7 @@ void MapWrapper::rename(const QString &target)
 
 QStringList MapWrapper::keys() const
 {
-    return rights.keys();
+    return data["/"].toStringList();
 }
 
 SettingsWrapper *MapWrapper::getSub(const QString &key) const
@@ -1031,7 +1030,9 @@ void MapWrapper::reload()
 {
     resetLayout();
     updateDisabled = true;
-    for (const auto &name : data.keys())
+    auto ks = keys();
+    data["/"] = QStringList();
+    for (const auto &name : ks)
     {
         if (rstrcTr)
             add(name, rstrcTr->value(name));
@@ -1048,7 +1049,7 @@ void MapWrapper::update()
     if (updateDisabled)
         return;
     bool updated = false;
-    for (const auto &name : rights.keys())
+    for (const auto &name : keys())
     {
         auto &od = data[name];
         auto nw = rights[name]->getV();
