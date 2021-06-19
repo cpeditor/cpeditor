@@ -442,9 +442,10 @@ void SettingsWrapper::init(QWidget *parent, QVariant param)
         if (!target)
             continue;
         QString desc = siter.getDesc();
-        SettingBase *wrap = createWrapper(siter, widget, desc, path + '/' + siter->name, trPath + '/' + desc);
+        SettingBase *wrap = createWrapper(siter, widget, desc, path + '/' + siter.getDesc(false), trPath + '/' + desc);
         wrap->parent = this;
-        SettingsManager::setPath(siter->name, path + "/" + siter.getDesc(false), path + "/" + desc);
+        SettingsManager::setPath(siter.key(), path + "/" + siter.getDesc(false), trPath + "/" + desc);
+        SettingsManager::setWidget(siter.key(), wrap->rootWidget());
         connect(wrap, &SettingBase::valueChanged, this, &SettingsWrapper::update);
         wrap->enable(false);
         wraps[name] = wrap;
@@ -920,8 +921,8 @@ void MapWrapper::add(const QString &key, const QString &trkey)
     panel->parent = this;
     panel->iter = iter;
     panel->setKey(key);
-    panel->path = path + "/" + iter->name;
-    panel->trPath = trPath + "/" + iter.getDesc();
+    panel->path = path + "/" + key;
+    panel->trPath = trPath + "/" + trkey;
     panel->init(widget, pass);
     rights[key] = panel;
     right->addWidget(panel->rootWidget());

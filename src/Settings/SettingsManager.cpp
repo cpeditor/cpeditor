@@ -232,8 +232,8 @@ QString SettingsManager::getPathText(const QString &key, bool parent)
     auto trPath = QCoreApplication::translate("PreferencesWindow", "Preferences") + "/" + settingTrPath->value(key);
     if (parent)
     {
-        path.chop(path.length() - path.lastIndexOf('/'));
-        trPath.chop(trPath.length() - trPath.lastIndexOf('/'));
+        path = path.left(path.lastIndexOf('/'));
+        trPath = trPath.left(trPath.lastIndexOf('/'));
     }
     return QString("<a href='#Preferences/%1'>%2</a>").arg(path).arg(trPath.replace('/', "->"));
 }

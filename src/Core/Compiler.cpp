@@ -75,9 +75,7 @@ void Compiler::start(const QString &tmpFilePath, const QString &sourceFilePath, 
 
     if (args.isEmpty())
     {
-        emit compilationFailed(
-            tr("%1 is empty")
-                .arg(SettingsManager::getPathText(SettingsHelper::getLanguageConfig(lang).pathOfCompileCommand())));
+        emit compilationFailed(tr("%1 is empty").arg(SettingsHelper::getLanguageConfig(lang).pathOfCompileCommand()));
         return;
     }
 

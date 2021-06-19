@@ -106,7 +106,7 @@ QString CodeFormatter::runProcess(const QStringList &args) const
                    tr("The format process didn't finish in 2 seconds. This is probably because the %1 program is not "
                       "found by CP Editor. You can set the path to the program at %2.")
                        .arg(settingKey())
-                       .arg(SettingsManager::getPathText(settingKey() + "/Program")),
+                       .arg(SettingsHelper::getFormatter(settingKey()).pathOfProgram()),
                    false);
         return QString();
     }

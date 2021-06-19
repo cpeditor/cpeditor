@@ -1353,7 +1353,7 @@ void MainWindow::onCompilationErrorOccurred(const QString &error)
             log->warn(
                 tr("Compile Errors"),
                 tr("Have you set a proper name for the main class in your solution? If not, you can set it at %1.")
-                    .arg(SettingsHelper::getLanguageConfig("Java").pathOfClassName()),
+                    .arg(SettingsHelper::getLanguageConfig_Java().pathOfClassName()),
                 false);
         }
     }
