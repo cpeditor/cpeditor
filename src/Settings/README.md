@@ -94,12 +94,12 @@ Each item in the array represents a configuration item, the structure is as foll
 
   depends:
     # If all dependency satisfied, this setting is enabled, otherwise it is disabled.
-	- name:
-    # Name of key, this setting depends on. (Should be in same page as this setting)
+  - name:
+    # Name of key, this setting depends on. (Should be in same page. Upper of object in the page could be detected too)
     checks:
     # a function that return true or false by checking the keys variant.
 
-	immediateApply:
+  immediateApply:
     # a boolean when enabled, this setting is applied as soon as changed by user. It does not require pressing Apply button
 
   sub:
@@ -110,7 +110,7 @@ Each item in the array represents a configuration item, the structure is as foll
 
 about methods
 
-If the code is too long, we suggest you write them in SettingsMethods.cpp and call it.
+If the code is too long, we suggest you to write them in `Settings/SettingsMethods.cpp` and call it.
 
 * onApply
 
@@ -128,9 +128,9 @@ If the code is too long, we suggest you write them in SettingsMethods.cpp and ca
   
   * rawparam: raw param
   
-  * pre: pre keys
-
   * def: raw default value
+
+  * pre: pre keys
   
 * getTip
 
@@ -160,7 +160,7 @@ To prevent misparsing of string, we use following rules:
 
 * String with no prefix is considered as a raw string.
 
-  * `hello\n` -> `"hello\\n"`
+  * `hello` -> `"hello"`
 
 * String starts with @ is considered as an expression of string.
 
@@ -174,7 +174,7 @@ To prevent misparsing of string, we use following rules:
 
   * `%#label` -> `"#label"`
 
-* String starts with ! is considered as a raw string that need translate. It becomes a string list [ raw str, translates str ].
+* String starts with ! is considered as a raw string that need to be translated. It becomes a string list [ raw str, translated str ].
 
   * `!tips` -> `QStringList{"tips", tr("tips")}`
 
@@ -353,7 +353,7 @@ The first ui in the list is the default ui.
 
   * param.pass: it will be passed to SettingsWrapper as param. Please refer `Language Config` for examples.
 
-    * param.pass.group: use `QTabWidget` to grouped the settings.
+    * param.pass.group: use `QTabWidget` to group the settings.
 
       * name: Title for the tab. Should always be a translated string.
 
