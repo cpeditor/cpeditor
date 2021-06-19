@@ -296,6 +296,11 @@ void StringListsItemWrapper::set(const QVariantList &v)
     widget->setStringLists(v);
 }
 
+bool StringListsItemWrapper::changed() const
+{
+    return getV() != SettingsManager::get(iter.key()).toList();
+}
+
 static SettingBase *createWrapper(const SettingsInfo::SettingIter &iter, QWidget *widget, const QString &desc,
                                   const QString &path, const QString &trPath)
 {

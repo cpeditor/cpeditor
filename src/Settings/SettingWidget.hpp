@@ -160,6 +160,7 @@ struct StringListsItemWrapper : public WrapperTemplate<QVariantList, StringLists
     virtual void init(QWidget *parent, QVariant param = QVariant()) override;
     virtual QVariantList get() const override;
     virtual void set(const QVariantList &v) override;
+    virtual bool changed() const override;
 };
 
 struct SettingsWrapper : public WrapperTemplate<QMap<QString, QVariant>, QWidget>
