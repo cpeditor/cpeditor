@@ -32,7 +32,8 @@ int SettingsInfo::SettingInfo::findChild(const QString &name) const
     return -1;
 }
 
-SettingsInfo::SettingIter &SettingsInfo::SettingIter::child(const QString &key, const QString &name)
+SettingsInfo::SettingIter &SettingsInfo::SettingIter::child(const QString &key, const QString &trKey,
+                                                            const QString &name)
 {
     if (!info || info->type != "Object")
     {
@@ -47,7 +48,7 @@ SettingsInfo::SettingIter &SettingsInfo::SettingIter::child(const QString &key, 
                 pre.push_back(info->name);
                 pre.push_back(key);
                 trPre.push_back(getDesc());
-                trPre.push_back(key);
+                trPre.push_back(trKey);
             }
             info = &c;
             return *this;
@@ -56,14 +57,15 @@ SettingsInfo::SettingIter &SettingsInfo::SettingIter::child(const QString &key, 
     throw "Getting a child which is not exist";
 }
 
-SettingsInfo::SettingIter &SettingsInfo::SettingIter::child(const QString &key, const SettingsInfo::SettingInfo *ch)
+SettingsInfo::SettingIter &SettingsInfo::SettingIter::child(const QString &key, const QString &trKey,
+                                                            const SettingsInfo::SettingInfo *ch)
 {
     if (key != "")
     {
         pre.push_back(info->name);
         pre.push_back(key);
         trPre.push_back(getDesc());
-        trPre.push_back(key);
+        trPre.push_back(trKey);
     }
     info = ch;
     return *this;

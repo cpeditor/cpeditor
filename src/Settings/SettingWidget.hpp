@@ -180,9 +180,10 @@ struct SettingsWrapper : public WrapperTemplate<QMap<QString, QVariant>, QWidget
 
     SettingBase *locate(const QString &name);
 
-    void setKey(QString k = "")
+    void setKey(QString k = "", QString tk = "")
     {
         key = k;
+        trKey = tk;
     }
   public slots:
     void reload();
@@ -193,7 +194,7 @@ struct SettingsWrapper : public WrapperTemplate<QMap<QString, QVariant>, QWidget
     bool updateDisabled = false;
     bool enabled = false;
     QStringList entries;
-    QString key;
+    QString key, trKey;
     QMap<QString, QVariant> data;
     QTabWidget *tab;
     QMap<QString, SettingBase *> wraps;

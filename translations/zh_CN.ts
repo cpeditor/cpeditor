@@ -1188,7 +1188,7 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>Compile and Run Commands</source>
-        <translation type="unfinished"></translation>
+        <translation>编译和运行指令</translation>
     </message>
 </context>
 <context>
@@ -1257,18 +1257,6 @@ Do you want to reload it?</source>
         <translation>通用</translation>
     </message>
     <message>
-        <source>C++</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Java</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Python</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Appearance</source>
         <translation>外观</translation>
     </message>
@@ -1290,10 +1278,6 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>Language Server</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>%1 Server</source>
         <translation></translation>
     </message>
     <message>
@@ -1671,36 +1655,8 @@ A source file won&apos;t be opened if it&apos;s too long.</source>
 如果超长，将不会打开。</translation>
     </message>
     <message>
-        <source>Path to LSP executable</source>
-        <translation>路径</translation>
-    </message>
-    <message>
-        <source>The path to the C++ Language Server executable</source>
-        <translation>C++ Language Server 可执行文件的路径</translation>
-    </message>
-    <message>
-        <source>The path to the Java Language Server executable</source>
-        <translation>Java Language Server 可执行文件的路径</translation>
-    </message>
-    <message>
-        <source>The path to the Python Language Server executable</source>
-        <translation>Python Language Server 可执行文件的路径</translation>
-    </message>
-    <message>
         <source>Use Linting with Language Server</source>
         <translation>启用 Language Server</translation>
-    </message>
-    <message>
-        <source>Show Error, Warning, Information and Hints in Code Editor for C++ Language</source>
-        <translation>在编辑器中为 C++ 显示错误、警告、信息和提示</translation>
-    </message>
-    <message>
-        <source>Show Error, Warning, Information and Hints in Code Editor for Java Language</source>
-        <translation>在编辑器中为 Java 显示错误、警告、信息和提示</translation>
-    </message>
-    <message>
-        <source>Show Error, Warning, Information and Hints in Code Editor for Python Language</source>
-        <translation>在编辑器中为 Python 显示错误、警告、信息和提示</translation>
     </message>
     <message>
         <source>Use auto-complete with Language Server</source>
@@ -2031,28 +1987,12 @@ kill the application with SIGKILL which could not be handled by the application.
         <translation>编译器输出（错误，警告等）的文字编码</translation>
     </message>
     <message>
-        <source>Default Path Names And Paths</source>
-        <translation>默认路径的名称和路径</translation>
-    </message>
-    <message>
         <source>A list of default paths.
 They can be used in actions&apos; corresponding default paths by using ${&lt;default path name&gt;} as a place holder.
 They can be either manually set or automatically changed after choosing a path for an action.</source>
         <translation>默认路径的列表。
 它们以占位符的形式（${&lt;默认路径名称&gt;}）用于一些动作对应的默认路径中。
 它们可以被手动设置，也可以在为一个动作选择路径后被自动设置。</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation>名称</translation>
-    </message>
-    <message>
-        <source>The name of a default path</source>
-        <translation>一个默认路径的名称</translation>
-    </message>
-    <message>
-        <source>The path of a default path</source>
-        <translation>一个默认路径的路径</translation>
     </message>
     <message>
         <source>Open File</source>
@@ -2414,66 +2354,90 @@ You can use &quot;${filename}&quot; for the complete file name,
     </message>
     <message>
         <source>Program</source>
-        <translation type="unfinished"></translation>
+        <translation>程序</translation>
     </message>
     <message>
         <source>The path to the clang-format executable file.</source>
-        <translation type="unfinished"></translation>
+        <translation>Clang Format 可执行文件路径</translation>
     </message>
     <message>
         <source>The program of YAPF. It could be `yapf` (which doesn&apos;t need arguments) or `python`
 (which needs `-m yapf` as the arguments).</source>
-        <translation type="unfinished"></translation>
+        <translation>YAPF 可执行文件。可以是“yapf”（不需要 参数）或“python”，（需要 参数 “-m yapf”）</translation>
     </message>
     <message>
         <source>Arguments</source>
-        <translation type="unfinished"></translation>
+        <translation>参数</translation>
     </message>
     <message>
         <source>The arguments passed to @1. It should NOT contain &quot;-i&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>传给 @1 的参数。不应该包含“-i”。</translation>
     </message>
     <message>
         <source>Style</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The YAPF style options, which are usually saved in a .style.yapf or setup.conf configuration file.
-You can learn about it by running `yapf --style-help`.
-ui: QPlainTextEdit</source>
-        <translation type="unfinished"></translation>
+        <translation>格式</translation>
     </message>
     <message>
         <source>Formatter</source>
-        <translation type="unfinished">格式化工具</translation>
+        <translation>格式化工具</translation>
     </message>
     <message>
         <source>Default path used for</source>
-        <translation type="unfinished"></translation>
+        <translation>默认路径将用于</translation>
     </message>
     <message>
         <source>The default path used when choosing a path for @1.
 You can use ${&lt;default path name&gt;} as a place holder.</source>
-        <translation type="unfinished"></translation>
+        <translation>当为动作 @1 选择一个路径时所使用的路径。
+你可以使用 ${&lt;默认路径名&gt;} 来作为一个占位符。</translation>
     </message>
     <message>
         <source>The default path used when choosing a path for @1.
 You can use ${&lt;default path name&gt;} as a place holder.
 It can be overridden by Default File Paths For Problem URLs</source>
-        <translation type="unfinished"></translation>
+        <translation>当为动作 @1 选择一个路径时所使用的默认路径。
+你可以使用 ${&lt;默认路径名&gt;} 来作为一个占位符。
+它可以被 针对题目链接的默认保存路径 所覆盖。</translation>
     </message>
     <message>
         <source>Default paths changed by</source>
-        <translation type="unfinished"></translation>
+        <translation>默认路径将会被修改于</translation>
     </message>
     <message>
         <source>The default paths changed after choosing a path for @1.
 It is a list of &lt;default path name&gt;s, separated by commas, and can be empty.</source>
-        <translation type="unfinished"></translation>
+        <translation>当为动作 @1 选择一个路径后将会被修改的默认路径。
+这里是一个通过英文逗号分隔的&lt;默认路径名&gt;列表，可以为空。</translation>
     </message>
     <message>
         <source>Default Path Action</source>
-        <translation type="unfinished"></translation>
+        <translation>默认路径动作</translation>
+    </message>
+    <message>
+        <source>Path to LSP excutable</source>
+        <translation>Language Server 可执行文件路径</translation>
+    </message>
+    <message>
+        <source>The path to the @1 Language Server executable</source>
+        <translation>@1 Language Server 可执行文件的路径</translation>
+    </message>
+    <message>
+        <source>Show Error, Warning, Information and Hints in Code Editor for @1 Language</source>
+        <translation>在编辑器中为 @1 显示错误、警告、信息和提示</translation>
+    </message>
+    <message>
+        <source>LSP</source>
+        <translation>LSP</translation>
+    </message>
+    <message>
+        <source>Default Path</source>
+        <translation>默认路径</translation>
+    </message>
+    <message>
+        <source>The YAPF style options, which are usually saved in a .style.yapf or setup.conf configuration file.
+You can learn about it by running `yapf --style-help`.</source>
+        <translation>YAPF 的格式化选项，通常保存在一个名叫 .style.yapf 或 setup.conf 的配置文件里。
+你可以通过执行“yapf --style-help”来了解更多。</translation>
     </message>
 </context>
 <context>

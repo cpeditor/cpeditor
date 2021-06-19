@@ -428,7 +428,7 @@ void SettingsWrapper::init(QWidget *parent, QVariant param)
     for (const auto &name : entries)
     {
         auto siter = iter;
-        siter.child(key, name);
+        siter.child(key, trKey, name);
         QFormLayout *target = nullptr;
         if (hasGroup)
         {
@@ -913,16 +913,16 @@ QString MapWrapper::askKey(const QString &suggest) const
     return key;
 }
 
-void MapWrapper::add(const QString &key, const QString &trkey)
+void MapWrapper::add(const QString &key, const QString &trKey)
 {
-    list->addItem(trkey);
+    list->addItem(trKey);
     data["/"] = keys() << key;
     auto *panel = new SettingsWrapper;
     panel->parent = this;
     panel->iter = iter;
-    panel->setKey(key);
+    panel->setKey(key, trKey);
     panel->path = path + "/" + key;
-    panel->trPath = trPath + "/" + trkey;
+    panel->trPath = trPath + "/" + trKey;
     panel->init(widget, pass);
     rights[key] = panel;
     right->addWidget(panel->rootWidget());

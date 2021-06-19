@@ -38,8 +38,16 @@ class SettingsInfo
         SettingIter(const SettingInfo *i) : info(i)
         {
         }
-        SettingIter &child(const QString &key, const QString &name);
-        SettingIter &child(const QString &key, const SettingInfo *ch);
+        SettingIter &child(const QString &key, const QString &name)
+        {
+            return child(key, key, name);
+        }
+        SettingIter &child(const QString &key, const SettingInfo *ch)
+        {
+            return child(key, key, ch);
+        }
+        SettingIter &child(const QString &key, const QString &trKey, const QString &name);
+        SettingIter &child(const QString &key, const QString &trKey, const SettingInfo *ch);
         QList<SettingIter> allVisibleChild(const QString &key) const;
         QString key() const
         {

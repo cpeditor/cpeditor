@@ -232,6 +232,7 @@ data:
     tip: The arguments passed to @1. It should NOT contain "-i".
   - name: Style
     type: QString
+    ui: QPlainTextEdit
     methods:
       getDefault: pickDefault
       getTip: pickTip
@@ -248,7 +249,6 @@ data:
         YAPF: |-
           !The YAPF style options, which are usually saved in a .style.yapf or setup.conf configuration file.
           You can learn about it by running `yapf --style-help`.
-          ui: QPlainTextEdit
 - name: Format On Manual Save
   desc: Format code on manual save
   type: bool

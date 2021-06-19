@@ -1257,18 +1257,6 @@ Do you want to reload it?</source>
         <translation>Основное</translation>
     </message>
     <message>
-        <source>C++</source>
-        <translation>C++</translation>
-    </message>
-    <message>
-        <source>Java</source>
-        <translation>Java</translation>
-    </message>
-    <message>
-        <source>Python</source>
-        <translation>Python</translation>
-    </message>
-    <message>
         <source>Appearance</source>
         <translation>Внешний вид</translation>
     </message>
@@ -1291,10 +1279,6 @@ Do you want to reload it?</source>
     <message>
         <source>Language Server</source>
         <translation>Language Server</translation>
-    </message>
-    <message>
-        <source>%1 Server</source>
-        <translation>%1 Сервер</translation>
     </message>
     <message>
         <source>Competitive Companion</source>
@@ -1674,36 +1658,8 @@ A source file won&apos;t be opened if it&apos;s too long.</source>
 Исходный файл не будет открыт, если он слишком длинный.</translation>
     </message>
     <message>
-        <source>Path to LSP executable</source>
-        <translation>Путь до исполняемого файла LSP</translation>
-    </message>
-    <message>
-        <source>The path to the C++ Language Server executable</source>
-        <translation>Путь до исполняемого файла C++ Language Server</translation>
-    </message>
-    <message>
-        <source>The path to the Java Language Server executable</source>
-        <translation>Путь до исполняемого файла Java Language Server</translation>
-    </message>
-    <message>
-        <source>The path to the Python Language Server executable</source>
-        <translation>Путь до исполняемого файла Python Language Server</translation>
-    </message>
-    <message>
         <source>Use Linting with Language Server</source>
         <translation>Использовать функцию Linting с Language Server</translation>
-    </message>
-    <message>
-        <source>Show Error, Warning, Information and Hints in Code Editor for C++ Language</source>
-        <translation>Показывать ошибки, предупреждения, информацию и подсказки в редакторе кода для языка C++</translation>
-    </message>
-    <message>
-        <source>Show Error, Warning, Information and Hints in Code Editor for Java Language</source>
-        <translation>Показывать ошибки, предупреждения, информацию и подсказки в редакторе кода для языка Java</translation>
-    </message>
-    <message>
-        <source>Show Error, Warning, Information and Hints in Code Editor for Python Language</source>
-        <translation>Показывать ошибки, предупреждения, информацию и подсказки в редакторе кода для языка Python</translation>
     </message>
     <message>
         <source>Use auto-complete with Language Server</source>
@@ -2034,28 +1990,12 @@ kill the application with SIGKILL which could not be handled by the application.
         <translation>Текстовый кодек выхода компилятора (ошибки, предупреждения и т.д.)</translation>
     </message>
     <message>
-        <source>Default Path Names And Paths</source>
-        <translation>Сделать названия путей по умолчанию</translation>
-    </message>
-    <message>
         <source>A list of default paths.
 They can be used in actions&apos; corresponding default paths by using ${&lt;default path name&gt;} as a place holder.
 They can be either manually set or automatically changed after choosing a path for an action.</source>
         <translation>Список путей по умолчанию.
 Их можно использовать в соответствующих путях по умолчанию для действий, используя ${&lt;default path name&gt;} в качестве заполнителя.
 Они могут быть установлены вручную или автоматически изменены после выбора пути для действия.</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation>Название</translation>
-    </message>
-    <message>
-        <source>The name of a default path</source>
-        <translation>Название стандартного пути</translation>
-    </message>
-    <message>
-        <source>The path of a default path</source>
-        <translation>Стандартный путь</translation>
     </message>
     <message>
         <source>Open File</source>
@@ -2440,12 +2380,6 @@ You can use &quot;${filename}&quot; for the complete file name,
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The YAPF style options, which are usually saved in a .style.yapf or setup.conf configuration file.
-You can learn about it by running `yapf --style-help`.
-ui: QPlainTextEdit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Formatter</source>
         <translation type="unfinished">Форматирование</translation>
     </message>
@@ -2475,6 +2409,31 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Default Path Action</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Path to LSP excutable</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The path to the @1 Language Server executable</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show Error, Warning, Information and Hints in Code Editor for @1 Language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LSP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default Path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The YAPF style options, which are usually saved in a .style.yapf or setup.conf configuration file.
+You can learn about it by running `yapf --style-help`.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
