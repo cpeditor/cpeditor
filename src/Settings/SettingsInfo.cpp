@@ -104,7 +104,7 @@ QList<SettingsInfo::SettingIter> SettingsInfo::SettingIter::allVisibleChild(cons
     return result;
 }
 
-QString SettingsInfo::SettingIter::_format(const QString &fmt, const QStringList &p) const
+QString SettingsInfo::SettingIter::_format(const QString &fmt, const QStringList &p, bool needtr) const
 {
     QStringList res;
     int pos = 0;
@@ -131,7 +131,7 @@ QString SettingsInfo::SettingIter::_format(const QString &fmt, const QStringList
             res.push_back(fmt.mid(pos, idx - pos).replace("@@", "@"));
         int n = fmt[idx + 1].digitValue(); // only @%d
         if (n == 0)
-            res.push_back(getDesc());
+            res.push_back(needtr ? getDesc() : info->name);
         else
             res.push_back(p[p.size() - n]);
         pos = idx + 2;
