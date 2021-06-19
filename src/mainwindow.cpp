@@ -593,7 +593,7 @@ void MainWindow::applySettings(const QString &pagePath)
         }
     }
 
-    if (pageChanged("Code Edit") || pagePath.startsWith("Appearance/") || pageChanged("Language Config"))
+    if (pageChanged("Code Edit") || pagePath.startsWith("Appearance/") || pageChanged("Language/Language Config"))
         Util::applySettingsToEditor(editor, language);
 
     if (!isLanguageSet && pageChanged("Language/General"))
@@ -613,7 +613,7 @@ void MainWindow::applySettings(const QString &pagePath)
         testcases->setTestCaseEditFont(SettingsHelper::getTestCasesFont());
     }
 
-    if (pageChanged("Language Config"))
+    if (pageChanged("Language/Language Config"))
         updateChecker();
 
     if (pageChanged("Actions/Auto Save"))

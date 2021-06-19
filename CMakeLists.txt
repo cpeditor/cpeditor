@@ -103,7 +103,7 @@ configure_file(cmake/version.hpp.in ${CMAKE_BINARY_DIR}/generated/version.hpp)
 configure_file(cmake/portable.hpp.in ${CMAKE_BINARY_DIR}/generated/portable.hpp)
 configure_file(cmake/cpeditor.appdata.xml.in ${PROJECT_SOURCE_DIR}/dist/linux/cpeditor.appdata.xml)
 
-add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMAKE_BINARY_DIR}/generated/SettingsInfo.cpp
+add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMAKE_BINARY_DIR}/generated/SettingsInfo.cpp ${CMAKE_BINARY_DIR}/generated/PreferencesWindow.cpp
                    COMMAND ${Python3_EXECUTABLE} ${PROJECT_SOURCE_DIR}/src/Settings/genSettings.py ${PROJECT_SOURCE_DIR}/src/Settings/settings.yaml
                    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
                    DEPENDS ${PROJECT_SOURCE_DIR}/src/Settings/settings.yaml ${PROJECT_SOURCE_DIR}/src/Settings/genSettings.py)
@@ -116,7 +116,7 @@ qt5_add_translation(QMFILES ${TSS})
 
 file(COPY ${CMAKE_SOURCE_DIR}/translations/translations.qrc DESTINATION ${CMAKE_BINARY_DIR}/translations)
 
-set_property(SOURCE ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMAKE_BINARY_DIR}/generated/SettingsInfo.cpp PROPERTY SKIP_AUTOGEN ON)
+set_property(SOURCE ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMAKE_BINARY_DIR}/generated/SettingsInfo.cpp ${CMAKE_BINARY_DIR}/generated/PreferencesWindow.cpp PROPERTY SKIP_AUTOGEN ON)
 
 if(USE_CLANG_TIDY)
 	set(CMAKE_CXX_CLANG_TIDY "clang-tidy")
@@ -134,6 +134,7 @@ add_library(
     src/Settings/SettingsInfo.hpp
     ${CMAKE_BINARY_DIR}/generated/SettingsInfo.cpp
 )
+
 
 target_link_libraries(target_generated PRIVATE Qt5::Widgets)
 
@@ -261,6 +262,7 @@ add_executable(cpeditor
     src/Settings/SettingsInfo.hpp
     ${CMAKE_BINARY_DIR}/generated/version.hpp
     ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp
+    ${CMAKE_BINARY_DIR}/generated/PreferencesWindow.cpp
     $<TARGET_OBJECTS:target_generated>
     ${CMAKE_BINARY_DIR}/translations/translations.qrc
     ${RESOURCES}

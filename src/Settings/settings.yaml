@@ -33,6 +33,121 @@ presetMethod:
     code: |-
       if (rawparam.toMap()["restrict"].userType() == QMetaType::QStringList) return rawparam.toMap()["restrict"];
       QStringList ret; for (const auto &l : rawparam.toMap()["restrict"].toList()) ret.push_back(l.toStringList()[0]); return ret;
+pageInfo:
+  Code Edit:
+  - Tab Width
+  - Cursor Width
+  - Auto Indent
+  - Wrap Text
+  - Auto Complete Parentheses
+  - Auto Remove Parentheses
+  - Tab Jump Out Parentheses
+  - Replace Tabs"
+  Language:
+    General:
+    - Default Language
+    Language Config: 
+    - Language Config
+  Appearance:
+    General:
+    - Locale
+    - UI Style
+    - Editor Theme
+    - Opacity
+    - Test Case Maximum Height
+    - Show Compile And Run Only
+    - Display EOLN In Diff
+    - Extra Bottom Margin
+    Font:
+    - Show Only Monospaced Font
+    - Editor Font
+    - Test Cases Font
+    - Message Logger Font
+    - Use Custom Application Font
+    - Custom Application Font
+  Actions: 
+    Save:
+      - Save Faster
+      - Save File On Compilation
+      - Save File On Execution
+      - Save Tests
+    Auto Save:
+    - Auto Save
+    - Auto Save Interval
+    - Auto Save Interval Type
+    <U>Detached Execution:
+    - Detached Run Terminal Program
+    - Detached Run Terminal Arguments
+    Save Session:
+    - Hot Exit/Enable
+    - Hot Exit/Auto Save
+    - Hot Exit/Auto Save Interval
+    Bind file and problem:
+    - Restore Old Problem Url
+    - Open Old File For Old Problem Url
+    Test Cases:
+    - Run On Empty Testcase
+    - Check On Testcases With Empty Output
+    - Auto Uncheck Accepted Testcases
+    Load External File Changes:
+    - Auto Load External Changes If No Unsaved Modification
+    - Ask For Loading External Changes
+  Extensions:
+    Code Formatting:
+      General:
+      - Format On Manual Save
+      - Format On Auto Save
+      - Formatter
+    Language Server:
+    - LSP
+    Competitive Companion:
+    - Competitive Companion/Enable
+    - Competitive Companion/Open New Tab
+    - Competitive Companion/Set Time Limit For Tab
+    - Competitive Companion/Connection Port
+    - Competitive Companion/Head Comments
+    - Competitive Companion/Head Comments Time Format
+    - Competitive Companion/Head Comments Powered By CP Editor
+    CF Tool:
+    - CF/Path
+    - CF/Show Toast Messages
+  File Path:
+    Testcases:
+    - Input File Save Path
+    - Answer File Save Path
+    - Testcases Matching Rules
+    Problem URL:
+    - Default File Paths For Problem URLs
+    Default Paths:
+    - Default Path Action
+    - Default Path
+  Key Bindings:
+    - Hotkey/Compile
+    - Hotkey/Run
+    - Hotkey/Compile Run
+    - Hotkey/Format
+    - Hotkey/Kill
+    - Hotkey/Change View Mode
+    - Hotkey/Snippets
+  Advanced:
+    Update:
+    - Check Update
+    - Beta
+    Limits:
+    - Default Time Limit
+    - Output Length Limit
+    - Output Display Length Limit
+    - Message Length Limit
+    - HTML Diff Viewer Length Limit
+    - Open File Length Limit
+    - Display Test Case Length Limit
+    Network Proxy:
+    - Proxy/Enabled
+    - Proxy/Type
+    - Proxy/Host Name
+    - Proxy/Port
+    - Proxy/User
+    - Proxy/Password
 data:
 - name: Tab Width
   type: int
@@ -590,7 +705,8 @@ data:
     tip: Arguments to pass to Language server executable
 - name: Testcases Matching Rules
   type: QVariantList
-  default: '#QVariantList { QStringList {"(.*)\\.in", "\\1.ans"}, QStringList {"(.*)\\.in",
+  default: '#QVariantList { QStringList {"(.*)\\.in
+  - \\1.ans"}, QStringList {"(.*)\\.in",
     "\\1.out"}}'
   param:
   - - '@tr("Input Regex")'

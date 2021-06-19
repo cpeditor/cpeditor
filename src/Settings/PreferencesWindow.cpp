@@ -181,64 +181,7 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
     connect(travelBackShortcut, &QShortcut::activated,
             [this]() { switchToPage(stackedWidget->widget(nextNonHiddenPage(stackedWidget->currentIndex(), -1))); });
 
-    // clang-format off
-
-#define TRKEY(x) x, tr(x)
-
-    AddPageHelper(this)
-        .page(TRKEY("Code Edit"),
-              {"Tab Width", "Cursor Width", "Auto Indent", "Wrap Text", "Auto Complete Parentheses", "Auto Remove Parentheses",
-               "Tab Jump Out Parentheses", "Replace Tabs"})
-        .page(TRKEY("Language Config"), {"Language Config"})
-        .dir(TRKEY("Language"))
-            .page(TRKEY("General"), {"Default Language"})
-        .end()
-        .dir(TRKEY("Appearance"))
-            .page(TRKEY("General"),{"Locale", "UI Style", "Editor Theme", "Opacity", "Test Case Maximum Height",
-                                    "Show Compile And Run Only", "Display EOLN In Diff", "Extra Bottom Margin"})
-            .page(TRKEY("Font"), {"Show Only Monospaced Font", "Editor Font", "Test Cases Font", "Message Logger Font",
-                                  "Use Custom Application Font", "Custom Application Font"})
-        .end()
-        .dir(TRKEY("Actions"))
-            .page(TRKEY("Save"), {"Save Faster", "Save File On Compilation", "Save File On Execution", "Save Tests"})
-            .page(TRKEY("Auto Save"), {"Auto Save", "Auto Save Interval", "Auto Save Interval Type"})
-#if defined(Q_OS_UNIX) && (!defined(Q_OS_MACOS))
-            .page(TRKEY("Detached Execution"), {"Detached Run Terminal Program", "Detached Run Terminal Arguments"})
-#endif
-            .page(TRKEY("Save Session"), {"Hot Exit/Enable", "Hot Exit/Auto Save", "Hot Exit/Auto Save Interval"})
-            .page(TRKEY("Bind file and problem"), {"Restore Old Problem Url", "Open Old File For Old Problem Url"})
-            .page(TRKEY("Test Cases"), {"Run On Empty Testcase", "Check On Testcases With Empty Output", "Auto Uncheck Accepted Testcases"})
-            .page(TRKEY("Load External File Changes"), {"Auto Load External Changes If No Unsaved Modification", "Ask For Loading External Changes"})
-        .end()
-        .dir(TRKEY("Extensions"))
-            .dir(TRKEY("Code Formatting"))
-                .page(TRKEY("General"), {"Format On Manual Save", "Format On Auto Save", "Formatter"})
-            .end()
-            .page(TRKEY("Language Server"), {"LSP"})
-            .page(TRKEY("Competitive Companion"), {"Competitive Companion/Enable", "Competitive Companion/Open New Tab",
-                "Competitive Companion/Set Time Limit For Tab", "Competitive Companion/Connection Port",
-                "Competitive Companion/Head Comments", "Competitive Companion/Head Comments Time Format",
-                "Competitive Companion/Head Comments Powered By CP Editor"}, false)
-            .page(TRKEY("CF Tool"), {"CF/Path", "CF/Show Toast Messages"})
-        .end()
-        .dir(TRKEY("File Path"))
-            .page(TRKEY("Testcases"), {"Input File Save Path", "Answer File Save Path", "Testcases Matching Rules"})
-            .page(TRKEY("Problem URL"), {"Default File Paths For Problem URLs"})
-            .page(TRKEY("Default Paths"), {"Default Path Action", "Default Path"})
-        .end()
-        .page(TRKEY("Key Bindings"), {"Hotkey/Compile", "Hotkey/Run", "Hotkey/Compile Run", "Hotkey/Format", "Hotkey/Kill",
-                                   "Hotkey/Change View Mode", "Hotkey/Snippets"})
-        .dir(TRKEY("Advanced"))
-            .page(TRKEY("Update"), {"Check Update", "Beta"})
-            .page(TRKEY("Limits"), {"Default Time Limit", "Output Length Limit", "Output Display Length Limit", "Message Length Limit",
-                                    "HTML Diff Viewer Length Limit", "Open File Length Limit", "Display Test Case Length Limit"})
-            .page(TRKEY("Network Proxy"), {"Proxy/Enabled", "Proxy/Type", "Proxy/Host Name", "Proxy/Port", "Proxy/User", "Proxy/Password"})
-        .end()
-    .ensureAtTop();
-
-#undef TRKEY
-
-    // clang-format on
+    addPages();
 
     homePage->init();
 }

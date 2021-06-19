@@ -4,6 +4,7 @@
 import sys
 import json # for json.dumps()
 import yaml
+import re
 
 def writeHelper(f, obj, pre, indent):
     ids = "    " * indent
@@ -149,6 +150,37 @@ def writeInfo(f, obj, lst):
             f.write(f", LIST{key}")
         f.write("});\n")
 
+re_os = re.compile(r"<(.+)>(.*)$")
+
+def writePage(f, obj, idt):
+    ids = "    " * idt
+    for key in obj:
+        m = re.match(re_os, key)
+        rkey = key
+        os = 7
+        if m:
+            os = 0
+            osstr = str.lower(m.group(1))
+            for o in osstr:
+                if o == 'w':
+                    os = os | 1
+                if o == 'u':
+                    os = os | 2
+                if o == 'm':
+                    os = os | 4
+            rkey = m.group(2)
+        if os != 7:
+            f.write(f"#if PW_OS & {os} != 0\n")
+        if type(obj[key]) == list:
+            # maybe support OS for options later
+            f.write(f"{ids}.page({json.dumps(rkey)}, tr({json.dumps(rkey)}), {{{','.join(list(map(lambda s: json.dumps(s), obj[key])))}}})\n")
+        else: # should be dict
+            f.write(f"{ids}.dir({json.dumps(rkey)}, tr({json.dumps(rkey)}))\n")
+            writePage(f, obj[key], idt + 1)
+            f.write(f"{ids}.end()\n")
+        if os != 7:
+            f.write("#endif\n")
+
 if __name__ == "__main__":
     objroot = yaml.full_load(open(sys.argv[1], mode="r", encoding="utf-8"))
 
@@ -220,3 +252,25 @@ void SettingsInfo::updateSettingInfo()
     writeInfo(setting_info, obj, "settings")
     setting_info.write("};\n")
     setting_info.close()
+    preferences_window = open("generated/PreferencesWindow.cpp",
+                        mode="w", encoding="utf-8")
+    preferences_window.write(head)
+    preferences_window.write("""#include "Settings/PreferencesWindow.hpp"
+
+#if defined(Q_OS_WIN)
+#define PW_OS 1
+#elif defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)
+#define PW_OS 2
+#elif defined(Q_OS_MACOS)
+#define PW_OS 4
+#else
+#define PW_OS 0
+#endif
+
+void PreferencesWindow::addPages()
+{
+    AddPageHelper(this)
+""")
+    writePage(preferences_window, objroot["pageInfo"], 2)
+    preferences_window.write("""    .ensureAtTop();
+}""")

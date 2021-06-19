@@ -56,7 +56,7 @@ void PreferencesHomePage::init()
 
     // add buttons
     addButton("Code Edit", tr("Code Editor Settings"));
-    addButton("Language Config", tr("Compile and Run Commands"));
+    addButton("Language/Language Config", tr("Compile and Run Commands"));
     addButton("Appearance/General", tr("Appearance Settings"));
     addButton("Appearance/Font", tr("Font Settings"));
 
