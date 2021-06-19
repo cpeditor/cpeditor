@@ -32,7 +32,8 @@ class SettingsInfo
     struct SettingIter
     {
         const SettingInfo *info;
-        QStringList pre, trPre; // pre contains object key and name. trPre contains object key and desc. untrDesc is not used.
+        QStringList pre,
+            trPre; // pre contains object key and name. trPre contains object key and desc. untrDesc is not used.
 
         SettingIter() = default;
         SettingIter(const SettingInfo *i) : info(i)
