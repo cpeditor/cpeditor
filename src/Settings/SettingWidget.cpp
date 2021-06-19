@@ -338,7 +338,7 @@ static SettingBase *createWrapper(const SettingsInfo::SettingIter &iter, QWidget
             wrap = new ScrollBarWrapper();
         else if (info.ui == "QSlider")
             wrap = new SliderWrapper();
-        else if (info.ui == "RichTextCheckBox")
+        else if (info.ui == "TristateCheckBox")
             wrap = new TristateCheckBoxWrapper();
         else
             Q_UNREACHABLE();

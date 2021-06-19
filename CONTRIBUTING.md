@@ -40,12 +40,12 @@ If you want to go a step further: The translated strings are wrapped in `tr()` i
 
 The basic structure of the settings system is:
 
-1.  The information of the settings are stored in [settings.json](src/Settings/settings.json).
-2.  `settings.json` is translated to `SettingsHelper.hpp` and `SettingsInfo.cpp` by [genSettings.py](src/Settings/genSettings.py).
-3.  Settings are displayed in [PreferencesWindow](src/Settings/PreferencesWindow.hpp) and separated into several [PreferencesPage](src/Settings/PreferencesPage.hpp)s. Most of the settings are displayed in [PreferencesPageTemplate](src/Settings/PreferencesPageTemplate.hpp) which uses `SettingsInfo` to generate the page.
-4.  In other parts of CP Editor, you can get the settings via the functions in `SettingsHelper.hpp` or use [SettingsManager](src/Settings/SettingsManager.hpp) to manage the settings. The purpose of `SettingsHelper.hpp` is to enable auto-complete during development and reduce the chance of misspelling the name of a setting. `SettingsManager` is usually used in cases where the name of the setting is a variable, for example: `SettingsManager::get(QString("%1/Compile Command").arg(language)).toString()`.
+1.  The information of the settings are stored in [settings.yaml](src/Settings/settings.yaml).
+2.  `settings.yaml` is translated to `SettingsHelper.hpp`, `SettingsInfo.cpp` and `PreferencesWindow.cpp` by [genSettings.py](src/Settings/genSettings.py).
+3.  Settings are displayed in [PreferencesWindow](src/Settings/PreferencesWindow.hpp) and separated into several [PreferencesPage](src/Settings/PreferencesPage.hpp)s. Most of the settings are displayed in [PreferencesTemplate](src/Settings/PreferencesTemplate.hpp) which uses `SettingsInfo` to generate the page.
+4.  In other parts of CP Editor, you can get the settings via the functions in `SettingsHelper.hpp` or use [SettingsManager](src/Settings/SettingsManager.hpp) to manage the settings. The purpose of `SettingsHelper.hpp` is to enable auto-complete during development and reduce the chance of misspelling the name of a setting. We strongly recommend you not to use `SettingsManager`, unless there is a special reason.
 
-To learn how to add/modify settings, you can refer to other settings or read the [documentation](src/Settings/README.md). Basically, you need to modify [settings.json](src/Settings/settings.json) and the part starts with `AddPageHelper(this)` in [PreferencesWindow.cpp](src/Settings/PreferencesWindow.cpp).
+To learn how to add/modify settings, you can refer to other settings or read the [documentation](src/Settings/README.md). Basically, you need to modify [settings.yaml](src/Settings/settings.json).
 
 ## Tips
 

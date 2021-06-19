@@ -955,21 +955,21 @@ data:
     sub:
     - name: Auto Complete
       type: int
-      ui: RichTextCheckBox
+      ui: TristateCheckBox
       default: "#Qt::PartiallyChecked"
       tip: |-
         Enable @0 for @1 in @3.
         If it's partially checked, the global setting in Code Edit will be used.
     - name: Auto Remove
       type: int
-      ui: RichTextCheckBox
+      ui: TristateCheckBox
       default: "#Qt::PartiallyChecked"
       tip: |-
         Enable @0 for @1 in @3.
         If it's partially checked, the global setting in Code Edit will be used.
     - name: Tab Jump Out
       type: int
-      ui: RichTextCheckBox
+      ui: TristateCheckBox
       default: "#Qt::PartiallyChecked"
       tip: |-
         Enable @0 for @1 in @3.
@@ -988,7 +988,7 @@ data:
           valid: bool
         code: return SettingsMethods::extractSnippet(widget, valid);
     param:
-      rename: "#true"
+      rename: true
       action:
       - name: '@tr("Load Snippet From File")'
         method: loadsnippet
