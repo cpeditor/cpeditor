@@ -22,7 +22,8 @@ def writeHelper(f, obj, pre, indent):
             writeHelper(f, t["sub"], "pre, ", indent + 1)
             f.write(f"{ids}}};\n")
             f.write(f"{ids}inline {key} get{key}(QString key){cst} {{ return {key}(QStringList {{{pre} {json.dumps(name)}, key}}.join('/')); }}\n")
-            f.write(f"{ids}inline QStringList query{key}(){cst} {{ return SettingsManager::itemUnder(QStringList {{{pre} {json.dumps(name)}}}.join('/') + '/'); }}\n")
+            f.write(f"{ids}inline QStringList query{key}(){cst} {{ return SettingsManager::get(QStringList {{{pre} {json.dumps(name)}}}.join('/') + '@').toStringList(); }}\n")
+            f.write(f"{ids}inline void set{key}(const QStringList &items){cst} {{ SettingsManager::set(QStringList {{{pre} {json.dumps(name)}}}.join('/') + '@', items); }}\n")
             if "param" in t and "restrict" in t["param"]:
                 for k in t["param"]["restrict"]:
                     if k[0] == "!":

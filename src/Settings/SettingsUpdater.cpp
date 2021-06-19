@@ -46,15 +46,12 @@ void SettingsUpdater::updateSetting(QSettings &setting)
 
     for (const auto &si : qAsConst(SettingsInfo::settings))
     {
-        if (!SettingsManager::contains(si.name))
+        for (const auto &old : qAsConst(si.old))
         {
-            for (const auto &old : qAsConst(si.old))
+            if (setting.contains(old))
             {
-                if (setting.contains(old))
-                {
-                    SettingsManager::set(si.name, setting.value(old));
-                    break;
-                }
+                SettingsManager::set(si.name, setting.value(old));
+                break;
             }
         }
     }
@@ -67,18 +64,18 @@ void SettingsUpdater::updateSetting(QSettings &setting)
         {
             setting.beginGroup(lang);
             auto obj = SettingsHelper::getLanguageConfig(lang == "Cpp" ? "C++" : lang);
-            QStringList used = obj.querySnippet();
-            for (const QString &key : setting.childKeys())
+            auto keys = setting.childKeys();
+            obj.setSnippet(keys);
+            for (const QString &key : keys)
             {
-                if (!used.contains(key))
-                    obj.getSnippet(key).setCode(setting.value(key).toString());
+                obj.getSnippet(key).setCode(setting.value(key).toString());
             }
             setting.endGroup();
         }
         setting.endGroup();
     }
 
-    if (setting.childGroups().contains("editor_status") && Core::SessionManager::lastSessionPath().isEmpty())
+    if (setting.childGroups().contains("editor_status"))
     {
         QJsonObject json;
         json.insert("currentIndex", setting.contains("hot_exit/current_index")
@@ -104,17 +101,13 @@ void SettingsUpdater::updateSetting(QSettings &setting)
     {
         SettingsHelper::getDefaultPath("file").setPath(setting.value("save_path").toString());
     }
+}
 
-    QString theme = SettingsManager::get("Editor Theme")
-                        .toString()
+void SettingsUpdater::updateSettingFinal()
+{
+    QString theme = SettingsHelper::getEditorTheme()
                         .replace("Monkai", "Monokai")
                         .replace("Drakula", "Dracula")
                         .replace("Solarised", "Solarized");
-    SettingsManager::set("Editor Theme", theme);
-
-    setting.beginGroup("Language Config");
-    setting.setValue("C++", 1);
-    setting.setValue("Java", 1);
-    setting.setValue("Python", 1);
-    setting.endGroup();
+    SettingsHelper::setEditorTheme(theme);
 }

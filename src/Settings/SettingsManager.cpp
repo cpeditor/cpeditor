@@ -52,13 +52,19 @@ void SettingsManager::load(QSettings &setting, const QString &prefix, const QLis
                 continue;
             auto keys = setting.value(si.name + '@', setting.childGroups()).toStringList();
             setting.beginGroup(si.name);
-            set(prefix + si.name + '@', keys);
             for (const QString &sub : keys)
             {
                 setting.beginGroup(sub);
                 load(setting, QString("%1%2/%3/").arg(prefix, si.name, sub), si.child);
                 setting.endGroup();
             }
+            auto oldKeys = get(prefix + si.name + '@').toStringList();
+            for (const auto &k : oldKeys)
+            {
+                if (keys.indexOf(k) == -1)
+                    keys.push_back(k);
+            }
+            set(prefix + si.name + '@', keys);
             setting.endGroup();
         }
         else if (setting.contains(si.key()) && setting.value(si.key()).isValid())
@@ -158,8 +164,9 @@ void SettingsManager::loadSettings(const QString &path)
     LOG_INFO("Start loading settings from " + path);
 
     QSettings setting(path, QSettings::IniFormat);
-    load(setting, "", SettingsInfo::getSettings());
     SettingsUpdater::updateSetting(setting);
+    load(setting, "", SettingsInfo::getSettings());
+    SettingsUpdater::updateSettingFinal();
 
     // load file problem binding
     FileProblemBinder::fromVariant(setting.value("file_problem_binding"));

@@ -24,6 +24,7 @@ class SettingsUpdater
 {
   public:
     static void updateSetting(QSettings &setting);
+    static void updateSettingFinal();
 };
 
 #endif // SETTINGSUPDATER_HPP
