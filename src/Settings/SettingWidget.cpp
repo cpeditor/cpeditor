@@ -815,12 +815,14 @@ void MapWrapper::enable(bool enabled)
     }
 }
 
+#include <QDebug>
+
 void MapWrapper::setdef()
 {
     QMap<QString, QVariant> def;
+    def["/"] = iter.getDefault().toStringList();
     for (const auto &k : iter.getDefault().toStringList())
         def.insert(k, iter.buildChildDefault(k));
-    def["/"] = iter.getDefault().toStringList();
     set(def);
 }
 

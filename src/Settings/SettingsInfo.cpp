@@ -10,6 +10,7 @@ QVariant SettingsInfo::SettingIter::buildChildDefault(const QString &key) const
         if (it->type == "Object")
         {
             QMap<QString, QVariant> mp;
+            mp["/"] = it.getDefault().toStringList();
             for (const auto &k : it.getDefault().toStringList())
                 mp[k] = it.buildChildDefault(k);
             ret[it->name] = mp;
