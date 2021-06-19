@@ -32,7 +32,8 @@ class SettingsInfo
     struct SettingIter
     {
         const SettingInfo *info;
-        QStringList pre, trPre;
+        QStringList pre,
+            trPre; // pre contains object key and name. trPre contains object key and desc. untrDesc is not used.
 
         SettingIter() = default;
         SettingIter(const SettingInfo *i) : info(i)
@@ -65,11 +66,11 @@ class SettingsInfo
         }
         QString format(const QString &fmt) const
         {
-            return _format(fmt, trPre);
+            return _format(fmt, trPre, true);
         }
         QString formatuntr(const QString &fmt) const
         {
-            return _format(fmt, pre);
+            return _format(fmt, pre, false);
         }
         QString getDesc(bool needtr = true) const
         {
@@ -107,7 +108,7 @@ class SettingsInfo
         QVariant buildChildDefault(const QString &key) const;
 
       private:
-        QString _format(const QString &fmt, const QStringList &p) const;
+        QString _format(const QString &fmt, const QStringList &p, bool needtr) const;
     };
 
     class SettingInfo

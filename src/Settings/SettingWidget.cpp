@@ -59,7 +59,7 @@ QString SettingBase::docLink() const
     auto prefix = Util::websiteLink("docs/preferences/" + Util::sanitizeAnchorName(path.split('/').first()));
     return QString("<a href='%1#%2'>(?)</a>")
         .arg(prefix)
-        .arg(iter->docAnchor.isEmpty() ? Util::sanitizeAnchorName(iter.getDesc()) : iter->docAnchor);
+        .arg(iter->docAnchor.isEmpty() ? Util::sanitizeAnchorName(iter.getDesc(false)) : iter->docAnchor);
 }
 
 void CheckBoxWrapper::init(QWidget *parent, QVariant param)
@@ -447,9 +447,9 @@ void SettingsWrapper::init(QWidget *parent, QVariant param)
         if (!target)
             continue;
         QString desc = siter.getDesc();
-        SettingBase *wrap = createWrapper(siter, widget, desc, path + '/' + siter.getDesc(false), trPath + '/' + desc);
+        SettingBase *wrap = createWrapper(siter, widget, desc, path + '/' + siter->name, trPath + '/' + desc);
         wrap->parent = this;
-        SettingsManager::setPath(siter.key(), path + "/" + siter.getDesc(false), trPath + "/" + desc);
+        SettingsManager::setPath(siter.key(), path + "/" + siter->name, trPath + "/" + desc);
         SettingsManager::setWidget(siter.key(), wrap->rootWidget());
         connect(wrap, &SettingBase::valueChanged, this, &SettingsWrapper::update);
         wrap->enable(false);
