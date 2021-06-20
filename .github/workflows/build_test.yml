@@ -65,7 +65,7 @@ jobs:
           cmake --build build -j4 --config Release
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v2.2.4
         with:
           name: "cpeditor-${{ matrix.config.os }}-${{ github.run_id }}"
           path: build/${{ matrix.config.binary }}
