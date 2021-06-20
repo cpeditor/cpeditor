@@ -171,7 +171,7 @@ yaml数组的每一项表示一个配置项，结构如下：
 
     * `%#label` -> `"#label"`
 
-* 有!前缀的字符串会被当做一个需要翻译的原始字符串。它将被解析为一个形如`[ 原始字符串, 被翻译字符串]`的字符串列表。
+* 有!前缀的字符串会被当做一个需要翻译的原始字符串。它将被解析为一个形如`[原始字符串, 被翻译字符串]`的字符串列表。
 
     * `!tips` -> `QStringList{"tips", tr("tips")}`
 
@@ -191,7 +191,7 @@ yaml数组的每一项表示一个配置项，结构如下：
 
 * `WrapperTemplate<Type, Widget>`
 
-确定类型和根控件类型的包装。
+确定类型和根控件类型的封装。
 
 * `XXXWrapper`
 
@@ -349,9 +349,9 @@ XXX控件的子类。
 
     * `param.restrict`: 令对象只能拥有这些键值。
 
-    * `param.pass`: 将会作为参数传递给`SettingsWrapper`. 请参考`Language Config`的示例。
+    * `param.pass`: 将会作为参数传递给`SettingsWrapper`。请参考`Language Config`的示例。
 
-        * `param.pass.group`: 使用`QTabWidget`来组织设置项.
+        * `param.pass.group`: 使用`QTabWidget`来组织设置项。
 
             * `name`: 一页的标签。应当总是一个翻译后的字符串。
 
