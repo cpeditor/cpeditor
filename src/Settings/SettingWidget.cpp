@@ -406,6 +406,7 @@ void SettingsWrapper::init(QWidget *parent, QVariant param)
     {
         auto *l = new QVBoxLayout(widget);
         l->setMargin(0);
+        QStringList newEntry;
 
         tab = new QTabWidget(widget);
         for (const auto &c : cfg["group"].toList())
@@ -416,11 +417,14 @@ void SettingsWrapper::init(QWidget *parent, QVariant param)
             for (const auto &k : c.toMap()["target"].toStringList())
             {
                 choose[k] = n;
+                if (entries.contains(k))
+                    newEntry.push_back(k);
             }
             layout = new QFormLayout(w);
             w->setLayout(layout);
             layouts[n] = layout;
         }
+        entries = newEntry;
         l->addWidget(tab);
         widget->setLayout(l);
     }
