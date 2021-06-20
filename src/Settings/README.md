@@ -15,29 +15,29 @@ There're three parts.
 
 Declare useful and universal methods.
 
-* used for getDefault
-  
-  * pickDefault: pick the default value from param.default.key. If key is not in param.default, return the default value.
-  
-  * genByRestrict: get param.restrict as default value.
+* used for `getDefault`
+    
+    * `pickDefault`: pick the default value from `param.default.key`. If key is not in param.default, return the default value declared outside.
+    
+    * `genByRestrict`: get `param.restrict` as default value.
 
-* used for getParam
+* used for `getParam`
 
-  * pickParam: pick the param from param.key.
+    * `pickParam`: pick the param from `param.key`.
 
-  * takeParam: pick the param from param.param.
+    * `takeParam`: pick the param from `param.param`.
 
-  * pickParamFromParam: pick the param from param.param.key.
+    * `pickParamFromParam`: pick the param from `param.param.key`.
 
-* used for getTip
+* used for `getTip`
 
-  * pickTip: pick tip from param.tip. Item under param.tip should contain translated version. e.g. `"!tip"`
+    * `pickTip`: pick tip from `param.tip`. It should contain translated version. e.g. `tip: "!the tip"`.
 
 #### pageInfo
 
-declare how to create the setting dialog.
+Declare how to create the setting dialog.
 
-If a group of setting is only supported on certain os, use \<xxx\> as prefix. xxx is the combine of `w`(windows), `u`(unix, linux), `m`(macos). Case insensitive.
+If a group of setting is only supported on certain os, use `<xxx>` as prefix. xxx is the combine of `w`(windows), `u`(unix, linux), `m`(macos). Case insensitive.
 
 ```yaml
 <wu>Options only for windows and unix:
@@ -54,105 +54,105 @@ It includes description of all settings, including those not in the Settings Int
 Each item in the array represents a configuration item, the structure is as follows:
 
 ```yaml
-  name:
-  # Required, internal key/name of the option
+    name:
+    # Required, internal key/name of the option
 
-  type:
-  # Required, data type of the option. Should be the type in the code.
+    type:
+    # Required, data type of the option. Should be the type in the code.
 
-  desc:
-  # Optional, prompt text of the option in the setting interface. If not set, it'll be the internal name after replacing splash to space.
+    desc:
+    # Optional, prompt text of the option in the setting interface. It will be translated. If not set, it'll be the internal name after replacing splash to space.
 
-  default:
-  # Optional, default value of the option.
+    default:
+    # Optional, default value of the option.
 
-  old:
-  # Optional, previous key/name of the option for backward compatibility. It should be a list of all old keys.
-  - ~cfg
+    old:
+    # Optional, previous key/name of the option for backward compatibility. It should be a list of all old keys.
+    -   ~old key
 
-  ui:
-  # Optional, type of QtWidget to use in the settings interface.
+    ui:
+    # Optional, type of QtWidget to use in the settings interface.
 
-  tip:
-  # Optional, tip showed when hovering widget. This will be translated.
+    tip:
+    # Optional, tip showed when hovering widget. It will be translated.
 
-  param:
-  # Optional, parameters passed for control creation in the setting interface.
+    param:
+    # Optional, parameters passed for control creation in the setting interface.
 
-  methods:
-  # Optional, methods used for different reasons.
+    methods:
+    # Optional, methods used for different reasons.
 
-    ~method name:
-    # onApply: invoked when user click apply button after changing this setting. Good to show warning messages or related information.
-    # getDefault, getParam, getTip: invoked when need a default value/param/tip. Good to dynamic calculating those values.
-      param:
-        ~param name: ~type
-      code: ~source code
+        ~method name:
+        # onApply: invoked when user click apply button after changing this setting. Good to show warning messages or related information.
+        # getDefault, getParam, getTip: invoked when need a default value/param/tip. Good to dynamic calculating those values.
+            param:
+                ~param name: ~type
+            code: ~source code
 
-    ~another method: ~preset method name
-    # use methods in presetMethod
+        ~another method: ~preset method name
+        # use methods in presetMethod
 
-  depends:
-    # If all dependency satisfied, this setting is enabled, otherwise it is disabled.
-  - name:
-    # Name of key, this setting depends on. (Should be in same page. Upper of object in the page could be detected too)
-    checks:
-    # a function that return true or false by checking the keys variant.
+    depends:
+    # Optional. If all dependency satisfied, this setting is enabled, otherwise it is disabled.
+    -   name:
+        # Name of key, this setting depends on. (Should be in same page. Upper of object in the page could be detected too.)
+        checks:
+        # a function that return true or false by checking the var(QVariant).
 
-  immediateApply:
-    # a boolean when enabled, this setting is applied as soon as changed by user. It does not require pressing Apply button
+    immediateApply:
+    # Optional， a boolean when enabled, this setting is applied as soon as changed by user. It does not require pressing Apply button
 
-  sub:
-  # children when type is Object
-  - name:
+    sub:
+    # children when type is Object
+    - name:
 }
 ```
 
 about methods
 
-If the code is too long, we suggest you to write them in `Settings/SettingsMethods.cpp` and call it.
+If the code is too long, we suggest you to write them in `SettingsMethods.cpp` and call it.
 
-* onApply
+* `onApply`
 
-  * parent: the rootWidget
+    * `parent`: the rootWidget
 
-* getParam
+* `getParam`
 
-  * param: raw param
-  
-  * pre: pre keys
-  
-* getDefault
+    * `param`: raw param
+    
+    * `pre`: list of keys and names/descs
+    
+* `getDefault`
 
-  * param: param from getParam
-  
-  * rawparam: raw param
-  
-  * def: raw default value
+    * `param`: param from `getParam`
+    
+    * `rawparam`: raw param
+    
+    * `def`: raw default value
 
-  * pre: pre keys
-  
-* getTip
+    * `pre`: list of keys and names/descs
+    
+* `getTip`
 
-  * param: param from getParam
-  
-  * rawparam: raw param
-  
-  * needtr: whether to translate
+    * `param`: param from `getParam`
+    
+    * `rawparam`: raw param
+    
+    * `needtr`: whether to translate
 
-  * tip: raw tip
-  
-  * pre: pre keys
+    * `tip`: raw tip
+    
+    * `pre`: list of keys and names/descs
 
-desc and tip will be formatted. Use @x (x is a digit) to refer the key or setting name. Use @@ as @. The string being replaced will be translated automatically.
+desc and tip will be formatted. Use @x (x is a digit) to refer the key or setting name. Use @@ to represent @. The string being replaced will use translated version automatically.
 
-  * @0: The name or desc of current setting
+    * @0: The name or desc of current setting
 
-  * @1: The key of the parent object
+    * @1: The key of the parent object
 
-  * @2: The name or desc of parent object
+    * @2: The name or desc of parent object
 
-  * ...
+    * ...
 
 param and default can use any structure that allowed in yaml. `genSettings.py` will handle it.
 
@@ -160,45 +160,45 @@ To prevent misparsing of string, we use following rules:
 
 * String with no prefix is considered as a raw string.
 
-  * `hello` -> `"hello"`
+    * `hello` -> `"hello"`
 
 * String starts with @ is considered as an expression of string.
 
-  * `@tr(\"foobar\")` -> `tr("foobar")`
+    * `@tr(\"foobar\")` -> `tr("foobar")`
 
 * String starts with # is considered as an expression of value(not string).
 
-  * `#PathItem::Executable` -> `PathItem::Executable`
+    * `#PathItem::Executable` -> `PathItem::Executable`
 
 * String starts with % is considered as a raw string. This is used for raw string that have special char at the beginning.
 
-  * `%#label` -> `"#label"`
+    * `%#label` -> `"#label"`
 
-* String starts with ! is considered as a raw string that need to be translated. It becomes a string list [ raw str, translated str ].
+* String starts with ! is considered as a raw string that need to be translated. It becomes a string list `[ raw str, translated str ]`.
 
-  * `!tips` -> `QStringList{"tips", tr("tips")}`
+    * `!tips` -> `QStringList{"tips", tr("tips")}`
 
-* If a list is full of string, it becomes QStringList, otherwise QVariantList.
+* If a list is full of string, it becomes `QStringList`, otherwise `QVariantList`.
 
 **`SettingWidget.hpp` `SettingWidget.cpp`**
 
 It includes codes for value and widget wrapping.
 
-  * `SettingBase`
+* `SettingBase`
 
-  The most basic wrapping.
+The most basic wrapping.
 
-  * `SettingTemplate<Type>`
+* `SettingTemplate<Type>`
 
-  The wrapping with type specified.
+The wrapping with type specified.
 
-  * `WrapperTemplate<Type, Widget>`
+* `WrapperTemplate<Type, Widget>`
 
-  The wrapping with type and rootWidget specified.
+The wrapping with type and rootWidget specified.
 
-  * `XXXWrapper`
+* `XXXWrapper`
 
-  The subclass of Wrapper for the widget XXX.
+The subclass of Wrapper for the widget XXX.
 
 **`genSettings.py`**
 
@@ -232,12 +232,15 @@ Include ```<generated/SettingsHelper.hpp>``` to use them.
 
 * for object
 
-  * get keys: `SettingsHelper::queryXXX`
-  * set keys: `SettingsHelper::setXXX`
-  * set YYY under XXX: `SettingsHelper::getXXX(key).setYYY`
-  * if it has restrict keys, then you can get by: `SettingsHelper::getXXX_YYY`
+    * get keys: `SettingsHelper::queryXXX`
 
-`PreferencesWindow.cpp`
+    * set keys: `SettingsHelper::setXXX`
+
+    * set option YYY under key KKK: `SettingsHelper::getXXX(KKK).setYYY`
+
+    * if it has restrict keys, then you can get by: `SettingsHelper::getXXX_YYY`
+
+**`PreferencesWindow.cpp`**
 
 Codes to generate setting dialog.
 
@@ -305,7 +308,7 @@ The first ui in the list is the default ui.
     * `TristateCheckBox`
     
         Checkbox with three states.
-    
+        
 * `QFont`
 
     Default value: not defined yet
@@ -328,46 +331,46 @@ The first ui in the list is the default ui.
 
 * `Object`
 
-  Object are handled directly.
+    Object are handled directly.
 
-  * default: set preset keys.
+    * `default`: set preset keys.
 
-  * param.rename: to allow user rename. default is false.
+    * `param.rename`: to allow user rename. default is disabled.
 
-  * param.action: show more actions in `More` button. Please refer `Snippet` for examples.
+    * `param.action`: show more actions in `More` menu. Please refer `Snippet` for examples.
 
-    * name: Name of the action. Should always be a translated string.
+        * `name`: Name of the action. Should always be a translated string.
 
-    * method: Name of method defined in `methods`.
-      
-      This method will be passed in two arguments.
+        * `method`: Name of method defined in `methods`.
+            
+            This method will be passed in two arguments.
 
-      ```yaml
-      widget: MapWidget*
-      valid: bool        # if true, return if this action is enabled. otherwise do the action.
-      ```
+            ```yaml
+            widget: MapWidget*
+            valid: bool        # if true, return whether this action is enabled. otherwise do the action.
+            ```
 
-      method with valid=true will be called when data changed or current selecting changed.
+            method with `valid=true` will be called when data changed or current selecting changed.
 
-  * param.restrict: it means the object can only contains those keys.
+    * `param.restrict`: it means the object can only contains those keys.
 
-  * param.pass: it will be passed to SettingsWrapper as param. Please refer `Language Config` for examples.
+    * `param.pass`: it will be passed to `SettingsWrapper` as param. Please refer `Language Config` for examples.
 
-    * param.pass.group: use `QTabWidget` to group the settings.
+        * `param.pass.group`: use `QTabWidget` to group the settings.
 
-      * name: Title for the tab. Should always be a translated string.
+            * `name`: Title for the tab. Should always be a translated string.
 
-      * target: Options for this tab.
+            * `target`: Options for this tab.
 
-    * param.pass.hide: hide options for certain keys
+        * `param.pass.hide`: hide options for certain keys.
 
-    ```yaml
-    hide:
-      opt:
-      - key1
-    ```
+        ```yaml
+        hide:
+            opt:
+            - key1
+        ```
 
-    It means when choosing `key1`, don't show the option `opt`
+        It means when choosing `key1`, don't show the option `opt`.
 
 ### Adding Settings
 
@@ -375,9 +378,9 @@ Refer to the existing code for more details.
 
 #### Adding a new type or a new widget
 
-1. Add `XXXWrapper` in `SettingWidget`       (XXX represent the widget name)
-2. Modify `createWrapper` in `SettingWidget`
-3. Optionally, add fallback default value in `genSettings.py`
+1. Add `XXXWrapper` in `SettingWidget`       (XXX represent the widget name).
+2. Modify `createWrapper` in `SettingWidget`.
+3. Optionally, add fallback default value in `genSettings.py`.
 
 #### Adding a new setting
 
@@ -385,7 +388,7 @@ Refer to the existing code for more details.
 
 #### Adding a new page or a new option
 
-* Modify `pageInfo`
+* Modify `pageInfo`.
 
 #### Using a new setting
 

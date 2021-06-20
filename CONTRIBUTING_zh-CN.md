@@ -38,12 +38,12 @@
 
 设置系统的基本结构如下：
 
-1.  设置的信息存储在 [settings.json](src/Settings/settings.json)。
-2.  `settings.json` 被 [genSettings.py](src/Settings/genSettings.py) 翻译成 `SettingsHelper.hpp` 和 `SettingsInfo.cpp`。
-3.  设置通过 [PreferencesWindow](src/Settings/PreferencesWindow.hpp) 显示，并被分成若干个 [PreferencesPage](src/Settings/PreferencesPage.hpp)。大多数设置通过 [PreferencesPageTemplate](src/Settings/PreferencesPageTemplate.hpp) 显示，基于 `SettingsInfo` 自动生成页面。
-4.  在 CP Editor 的代码中，你可以使用 `SettingsHelper.hpp` 中提供的函数或者 `SettingsManager` 来访问/修改设置。`SettingsHelper.hpp` 的作用是使设置可以被自动补全，以及减少笔误的可能性。`SettingsManager` 通常用于设置名称是变量的情景，例如：`SettingsManager::get(QString("%1/Compile Command").arg(language)).toString()`。
+1.  设置的信息存储在 [settings.yaml](src/Settings/settings.yaml)。
+2.  `settings.yaml` 被 [genSettings.py](src/Settings/genSettings.py) 翻译成 `SettingsHelper.hpp`、 `SettingsInfo.cpp` 和 `PreferencesWindow.cpp`。
+3.  设置通过 [PreferencesWindow](src/Settings/PreferencesWindow.hpp) 显示，并被分成若干个 [PreferencesPage](src/Settings/PreferencesPage.hpp)。大多数设置通过 [PreferencesTemplate](src/Settings/PreferencesTemplate.hpp) 显示，基于 `SettingsInfo` 自动生成页面。
+4.  在 CP Editor 的代码中，你可以使用 `SettingsHelper.hpp` 中提供的函数或者 `SettingsManager` 来访问/修改设置。`SettingsHelper.hpp` 的作用是使设置可以被自动补全，以及减少笔误的可能性。除非有特殊情况，我们强烈建议不要使用`SettingManager`。
 
-你可以参考其它设置来添加/修改设置项。你也可以参考[文档](src/Settings/README_zh-CN.md)。简单来说，你需要修改 [settings.json](src/Settings/settings.json) 以及 [PreferencesWindow.cpp](src/Settings/PreferencesWindow.cpp) 中以 `AddPageHelper(this)` 开头的那一段。
+你可以参考其它设置来添加/修改设置项。你也可以参考[文档](src/Settings/README_zh-CN.md)。简单来说，你需要修改 [settings.yaml](src/Settings/settings.yaml) 。
 
 ## 提示
 
