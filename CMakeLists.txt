@@ -283,6 +283,7 @@ target_link_libraries(diff_match_patch PRIVATE Qt5::Core)
 target_link_libraries(cpeditor PRIVATE diff_match_patch)
 
 if(MSVC)
+  target_compile_options(target_generated PUBLIC "/utf-8")
   target_compile_options(cpeditor PUBLIC "/utf-8")
 endif(MSVC)
 
