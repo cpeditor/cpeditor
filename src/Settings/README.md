@@ -164,7 +164,9 @@ To prevent misparsing of string, we use following rules:
 
 * String starts with @ is considered as an expression of string.
 
-    * `@tr(\"foobar\")` -> `tr("foobar")`
+    * `@"demo"+Util::exeSuffix` -> `"demo"+Util::exeSuffix`
+
+    * Note: Use prefix * for those string that need to be translated.
 
 * String starts with # is considered as an expression of value(not string).
 
@@ -174,7 +176,11 @@ To prevent misparsing of string, we use following rules:
 
     * `%#label` -> `"#label"`
 
-* String starts with ! is considered as a raw string that need to be translated. It becomes a string list `[ raw str, translated str ]`.
+* String starts with * is considered as a raw string that needs to be translated.
+
+    * `*tips` -> `tr("tips")`
+
+* String starts with ! is considered as a raw string that needs both raw and translated version. It becomes a string list `[ raw str, translated str ]`.
 
     * `!tips` -> `QStringList{"tips", tr("tips")}`
 

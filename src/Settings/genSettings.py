@@ -47,6 +47,8 @@ def writeHelper(f, obj, pre, indent):
 # tr("123") -> "@tr(\"123\")"
 # QFont() -> "#QFont()"
 # "#hello" -> "%#hello"
+# tr("233") -> "*233"
+# {"str", tr("str")} -> "!str"
 
 def parseParam(obj):
     if type(obj) == str:
@@ -57,6 +59,8 @@ def parseParam(obj):
                 return obj[1:], False
             elif obj[0] == "%":
                 return json.dumps(obj[1:]), True
+            elif obj[0] == "*":
+                return f"tr({json.dumps(obj[1:])})", True
             elif obj[0] == "!":
                 return f'QStringList{{{json.dumps(obj[1:])}, tr({json.dumps(obj[1:])})}}', False
         return json.dumps(obj), True
