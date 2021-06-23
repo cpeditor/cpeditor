@@ -195,14 +195,15 @@ data:
   - Java
   - Python
   tip: The default language used when opening new tabs
-- name: "Formatter"
-  type: "Object"
+- name: Formatter
+  type: Object
   methods:
     getDefault: genByRestrict
   param:
     restrict:
     - Clang Format
     - YAPF
+    noadddel: true
   sub:
   - name: Program
     type: QString
@@ -657,6 +658,7 @@ data:
     - C++
     - Java
     - Python
+    noadddel: true
   sub:
   - name: Path
     desc: Path to LSP excutable
@@ -817,6 +819,7 @@ data:
     - C++
     - Java
     - Python
+    noadddel: true
     pass:
       group:
       - name: "*Command"
@@ -1077,17 +1080,14 @@ data:
     require authentication.
 - name: Default Path
   type: Object
-  methods:
-    getDefault: genByRestrict
-  param:
-    restrict:
-    - file
-    - testcase
-    - checker
-    - contest
-    - settings
-    - session
-    - snippets
+  default:
+  - file
+  - testcase
+  - checker
+  - contest
+  - settings
+  - session
+  - snippets
   sub:
   - name: Path
     type: QString
@@ -1111,6 +1111,7 @@ data:
     - "!Export And Import Settings"
     - "!Export And Load Session"
     - "!Extract And Load Snippets"
+    noadddel: true
   sub:
   - name: Uses
     desc: Default path used for

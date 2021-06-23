@@ -726,6 +726,9 @@ void MapWrapper::init(QWidget *parent, QVariant param)
     bool allowRename = false;
 
     list = new QListWidget(leftWidget);
+
+    bool noadddel = false;
+
     if (!param.isNull())
     {
         auto cfg = param.toMap();
@@ -749,7 +752,6 @@ void MapWrapper::init(QWidget *parent, QVariant param)
                 rstrcTr = nullptr;
                 rstrc = cfg["restrict"].toStringList();
             }
-            rstrc = cfg["restrict"].toStringList();
         }
         if (cfg.contains("check"))
             check.init(cfg["check"]);
@@ -759,19 +761,24 @@ void MapWrapper::init(QWidget *parent, QVariant param)
             allowRename = cfg["rename"].toBool();
         if (cfg.contains("pass"))
             pass = cfg["pass"];
+        if (cfg.contains("noadddel"))
+            noadddel = cfg["noadddel"].toBool();
     }
     leftLayout->addWidget(list);
 
     auto *btnLayout = new QHBoxLayout;
 
-    btnadd = new QPushButton(tr("Add"), leftWidget);
-    btnLayout->addWidget(btnadd);
-    connect(btnadd, &QPushButton::clicked, this, &MapWrapper::reqAdd);
+    if (!noadddel)
+    {
+        btnadd = new QPushButton(tr("Add"), leftWidget);
+        btnLayout->addWidget(btnadd);
+        connect(btnadd, &QPushButton::clicked, this, &MapWrapper::reqAdd);
 
-    btndel = new QPushButton(tr("Del"), leftWidget);
-    btnLayout->addWidget(btndel);
-    connect(btndel, &QPushButton::clicked, this, &MapWrapper::reqDel);
-    btndel->setEnabled(false);
+        btndel = new QPushButton(tr("Del"), leftWidget);
+        btnLayout->addWidget(btndel);
+        connect(btndel, &QPushButton::clicked, this, &MapWrapper::reqDel);
+        btndel->setEnabled(false);
+    }
 
     if (action.hasMore() || allowRename)
     {
@@ -896,8 +903,10 @@ QString MapWrapper::askKey(const QString &suggest) const
     else
     {
         QStringList items = rstrc;
-        items.erase(std::remove_if(items.begin(), items.end(), [this](const QString &r) { return rights.contains(r); }),
-                    items.end());
+        items.erase(
+            std::remove_if(items.begin(), items.end(),
+                           [this](const QString &r) { return rights.contains(rstrcTr ? rstrcTr->value(r) : r); }),
+            items.end());
         if (items.isEmpty())
         {
             QMessageBox::warning(rootWidget(), tr("Add failed"), tr("All possible names have been used."));
@@ -983,7 +992,8 @@ void MapWrapper::show(const QString &key)
     auto k = rstrcTr ? rstrcTr->value(key) : key;
     if (k != "")
         right->setCurrentWidget(rights[k]->rootWidget());
-    btndel->setEnabled(k != "");
+    if (btndel)
+        btndel->setEnabled(k != "");
     cur = k;
     emit curChanged(cur);
 }

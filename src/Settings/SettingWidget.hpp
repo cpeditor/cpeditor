@@ -280,8 +280,8 @@ struct MapWrapper : public WrapperTemplate<QMap<QString, QVariant>, QSplitter>
     QVariant pass;
 
     QString cur;
-    QPushButton *btnadd;
-    QPushButton *btndel;
+    QPushButton *btnadd = nullptr;
+    QPushButton *btndel = nullptr;
     QPushButton *btnmre;
     QListWidget *list;
     QStackedWidget *right;
