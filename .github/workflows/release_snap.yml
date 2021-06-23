@@ -1,0 +1,59 @@
+name: "Release Snap package"
+
+on:
+  release:
+    types:
+      - published
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version number to release"
+        required: true
+
+jobs:
+  snap:
+    name: "Release Snap package"
+    runs-on: ubuntu-latest
+    if: github.repository_owner == 'cpeditor'
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Get version
+        id: get_version
+        run: |
+          case "${{ github.event_name }}" in
+            release) VERSION=${{ github.event.release.tag_name }};;
+            workflow_dispatch) VERSION=${{ github.event.inputs.version }};;
+          esac
+
+          echo ::set-output name=version::$VERSION
+          STABLE_VERSION=$(cat dist/STABLE_VERSION)
+          if [[ VERSION == "$STABLE_VERSION"* ]]; then
+            echo ::set-output name=ISSTABLE::true
+          else
+            echo ::set-output name=ISSTABLE::false
+          fi
+
+      - name: Fetch release and prepare
+        if: steps.get_version.outputs.ISSTABLE == 'true'
+        run: |
+          wget -c https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.version }}/cpeditor-${{ steps.get_version.outputs.version }}-full-source.tar.gz
+          tar -xvf cpeditor-${{ steps.get_version.outputs.version }}-full-source.tar.gz
+          cd cpeditor-${{ steps.get_version.outputs.version }}-full-source
+          cp dist/snap/snapcraft.yaml snapcraft.yaml
+      
+      - uses: snapcore/action-build@v1
+        if: steps.get_version.outputs.ISSTABLE == 'true'
+        id: build
+        with:
+          path: cpeditor-${{ steps.get_version.outputs.version }}-full-source
+
+      - uses: snapcore/action-publish@v1
+        if: steps.get_version.outputs.ISSTABLE == 'true'
+        with:
+          store_login: ${{ secrets.STORE_LOGIN }}
+          snap: ${{ steps.build.outputs.snap }}
+          release: stable

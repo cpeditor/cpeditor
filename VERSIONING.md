@@ -115,7 +115,7 @@ Suppose you are releasing `2.3.7` and `2.4.1`:
 
 1.  In [the documentation repo](https://github.com/cpeditor/cpeditor.github.io), create a new branch `v2.4` based on `hugo` (the default branch), push it and manually trigger the deploy action.
 2.  Create a new branch `v2.4` based on master.
-3.  Checkout to `v2.3`. Change [STABLE_VERSION](dist/STABLE_VERSION) to `2.3.`. Do the first 4 steps to [make a new stable release](#the-complete-workflow-to-make-a-new-stable-release). Also do step 5 but the content of the changelog is all changelogs from `2.3.1` to `2.3.7`.
+3.  Checkout to `v2.3`. Change [STABLE_VERSION](dist/STABLE_VERSION) to `2.3.`. Update Qt version and Winlibs version in [release.yml](.github/workflows/release.yml). Do the first 4 steps to [make a new stable release](#the-complete-workflow-to-make-a-new-stable-release). Also do step 5 but the content of the changelog is all changelogs from `2.3.1` to `2.3.7`.
 4.  Merge `v2.3` into `v2.4`. Do the first 5 steps to [make a new beta release](#the-complete-workflow-to-make-a-new-beta-release).
 5.  Create a new branch `merge-2.3.7-2.4.1` based on master. Merge `v2.4` into `merge-2.3.7-2.4.1`. Set the version in [CMakeLists.txt](CMakeLists.txt) to `2.5.0`. Rename `## 2.4.1 (Beta)` in [CHANGELOG.md](CHANGELOG.md) to `## v2.4`. Update the version badges in [README.md](README.md). Create a PR merging `merge-2.3.7-2.4.1` into master.
 

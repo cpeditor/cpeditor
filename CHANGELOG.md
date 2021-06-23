@@ -1,8 +1,15 @@
 ## UNRELEASED
 
+### Added
+
+-   Now the winlibs release on Windows includes LLVM. If you use the `clangd` in this release as the C++ Language Server, `<bits/stdc++.h>` should be properly recognized. (#878)
+
 ### Fixed
 
 -   Fix that two dialogs are shown when entering full-screen mode for the first time. (#875)
+-   Actually fix that Detached Execution doesn't work on Windows with clang++, which was incorrectly fixed in #873.
+-   Change the swap-line shortcuts on macOS from `Ctrl+Shift+Up/Down` to `Command+Control+Up/Down` to fix that the old shortcuts were unusable on macOS. (#863 and #876)
+-   Fix that the icon is not in the center on macOS. (#880)
 
 ## v6.9
 
