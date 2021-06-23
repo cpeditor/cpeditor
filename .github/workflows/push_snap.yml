@@ -1,0 +1,44 @@
+name: "Update Snap"
+
+on:
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - ".github/**"
+      - "!.github/workflows/push_aur.yml"
+      - "**.md"
+      - ".all-contributorsrc"
+      - ".gitignore"
+
+jobs:
+  snap:
+    name: "Update Snap"
+    runs-on: ubuntu-latest
+    if: github.repository_owner == 'cpeditor'
+    steps:
+      - uses: actions/checkout@v2
+        with:
+           submodules: recursive
+           ref: snapcraft
+           fetch-depth: 0
+
+      - name: Update Appdata file
+        id: update-appdata-file
+        run: |
+          git fetch --tags
+          SNAP_VERSION=$(git describe --long --tags --abbrev=8 | sed 's/-/./g' | cut -d '.' -f 1-4)
+          sed -i "s/@PROJECT_VERSION@/$SNAP_VERSION/g" cmake/cpeditor.appdata.xml.in
+
+      - name: Update Snapcraft
+        run: |
+          cp dist/snap/snapcraft.yaml snapcraft.yaml
+
+      - uses: snapcore/action-build@v1
+        id: build
+
+      - uses: snapcore/action-publish@v1
+        with:
+          store_login: ${{ secrets.STORE_LOGIN }}
+          snap: ${{ steps.build.outputs.snap }}
+          release: edge
