@@ -138,6 +138,16 @@ void SettingsManager::fillWithDefault(const SettingsInfo::SettingIter &pos)
         else if (!pos.getDefault().isNull())
             child = pos.getDefault().toStringList();
         cur->insert(pos.key() + '@', child);
+        if (pos->name == "@ROOT@")
+        {
+            for (const auto &sub : pos->child)
+            {
+                auto it = pos;
+                it.child("", &sub);
+                fillWithDefault(it);
+            }
+            return;
+        }
         for (const auto &sub : child)
             for (const auto &it : pos.allVisibleChild(sub))
                 fillWithDefault(it);
