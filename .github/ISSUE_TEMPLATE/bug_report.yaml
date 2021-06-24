@@ -56,7 +56,7 @@ body:
     attributes:
       label: OS
       description: The OS(s) on which you encountered this issue
-      placeholder: Windows 10 / macOS Big Sur / Arch Linux
+      placeholder: Windows 10 / macOS Big Sur / Arch Linux / Ubuntu 20.04
     validations:
       required: true
   
