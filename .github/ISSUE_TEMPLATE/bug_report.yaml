@@ -23,7 +23,7 @@ body:
   - type: textarea
     attributes:
       label: Current Behavior
-      description: A concise description of what you're experiencing. You can add screenshots here if it's helpful
+      description: A concise description of what you're experiencing. You can add screenshots here if it's helpful.
     validations:
       required: true
 
