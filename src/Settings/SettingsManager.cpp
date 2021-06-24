@@ -238,10 +238,7 @@ void SettingsManager::load(const YAML::Node &setting, const QString &prefix,
                 else if (si.type == "QRect")
                     ret = node.as<QRect>();
                 else
-                {
-                    qDebug() << si.name << si.type;
                     Q_UNREACHABLE();
-                }
             default:
                 break;
             }
@@ -322,10 +319,7 @@ void SettingsManager::save(YAML::Emitter &setting, const QString &prefix, const 
                 setting << YAML::EndSeq;
             }
             else
-            {
-                qDebug() << si.name << si.type;
                 Q_UNREACHABLE();
-            }
         }
 }
 
