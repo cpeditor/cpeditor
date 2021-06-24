@@ -1,0 +1,62 @@
+name: Feature Request
+
+description: Suggest an idea for this project
+
+labels: enhancement
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this feature request!
+
+  - type: checkboxes
+    attributes:
+      label: Is there an existing issue for this?
+      description: Please search to see if an issue already exists for the feature you want. If that issue is still open, you can click the face icon in the upper-right corner of the issue body to upvote it.
+      options:
+      - label: I have searched the existing issues
+        required: true
+
+  - type: checkboxes
+    attributes:
+      label: Is this feature provided in the master branch?
+      description: It takes time for features to be released. Please take a look at [the changelog](https://github.com/cpeditor/cpeditor/blob/master/CHANGELOG.md) to see if the feature you want is already provided. Also make sure you are running the latest version of CP Editor in case the feature is provided in the newer versions.
+      options:
+      - label: I have checked the changelog
+        required: true
+
+  - type: textarea
+    attributes:
+      label: The problem you are facing
+      description: Are you facing a problem that makes you want this new feature? Please describe.
+      placeholder: I'm always frustrated when...
+
+  - type: textarea
+    attributes:
+      label: Describe the feature you'd like
+      description: A clear and concise description of the feature you want
+      placeholder: It solves my problem if...
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Describe alternatives you've considered
+      description: A clear and concise description of any alternative solutions or features you've considered
+      placeholder: It will also be acceptable if...
+
+  - type: checkboxes
+    attributes:
+      label: Are you willing to contribute to this?
+      description: It's OK if you are a first-timer. You can read the [Contributing Guidelines](https://github.com/cpeditor/cpeditor/blob/master/CONTRIBUTING.md) to learn how to make your contributions.
+      options:
+        - label: I'm ready to contribute to this (and will open a PR soon)
+        - label: I'd like to have a try (with the help of the maintainers)
+        - label: No, thanks
+
+  - type: textarea
+    attributes:
+      label: Anything else?
+      description: |
+        Links? References? Anything that will give us more context about the feature you are requesting!

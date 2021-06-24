@@ -1,0 +1,76 @@
+name: Bug Report
+
+description: Report that something doesn't work as expected
+
+labels: bug
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+
+        If you are not sure whether this is actually a bug, you can ask in [Discussions](https://github.com/cpeditor/cpeditor/discussions) instead.
+
+  - type: checkboxes
+    attributes:
+      label: Is there an existing issue for this?
+      description: Please search to see if an issue already exists for the bug you encountered. If that issue is still open, you can click the face icon in the upper-right corner of the issue body to upvote it.
+      options:
+      - label: I have searched the existing issues
+        required: true
+
+  - type: textarea
+    attributes:
+      label: Current Behavior
+      description: A concise description of what you're experiencing. You can add screenshots here if it's helpful
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Expected Behavior
+      description: A concise description of what you expected to happen
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Steps To Reproduce
+      description: Steps to reproduce the unexpected behavior
+      placeholder: |
+        1. Open a file ...
+        2. Click ...
+        3. See the error ...
+    validations:
+      required: true
+
+  - type: input
+    attributes:
+      label: CP Editor Version
+      placeholder: 6.9.2
+    validations:
+      required: true
+
+  - type: input
+    attributes:
+      label: OS
+      description: The OS(s) on which you encountered this issue
+      placeholder: Windows 10 / macOS Big Sur / Arch Linux / Ubuntu 20.04
+    validations:
+      required: true
+  
+  - type: checkboxes
+    attributes:
+      label: Are you willing to contribute to this?
+      description: It's OK if you are a first-timer. You can read the [Contributing Guidelines](https://github.com/cpeditor/cpeditor/blob/master/CONTRIBUTING.md) to learn how to make your contributions.
+      options:
+        - label: I'm ready to fix this (and will open a PR soon)
+        - label: I'd like to have a try (with the help of the maintainers)
+        - label: No, thanks
+
+  - type: textarea
+    attributes:
+      label: Anything else?
+      description: |
+        Links? References? Anything that will give us more context about the issue you are encountering!
