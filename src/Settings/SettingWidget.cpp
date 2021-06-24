@@ -461,7 +461,7 @@ void SettingsWrapper::init(QWidget *parent, QVariant param)
         auto *label = new QLabel;
         label->setOpenExternalLinks(true);
         if (siter->type == "bool" || siter->type == "Object" ||
-            (siter->type == "int" && siter->ui == "RichTextCheckBox"))
+            (siter->type == "int" && siter->ui == "TristateCheckBox"))
             target->addRow(label, wrap->rootWidget());
         else
         {
