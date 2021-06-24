@@ -6,7 +6,7 @@ on:
       - master
     paths-ignore:
       - ".github/**"
-      - "!.github/workflows/push_aur.yml"
+      - "!.github/workflows/push_snap.yml"
       - "**.md"
       - ".all-contributorsrc"
       - ".gitignore"
