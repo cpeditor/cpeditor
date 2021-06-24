@@ -23,6 +23,7 @@ find_package(Qt5 COMPONENTS Core REQUIRED)
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt5 COMPONENTS Network REQUIRED)
 find_package(Qt5 COMPONENTS LinguistTools REQUIRED)
+find_package(yaml-cpp)
 find_package(Python3 COMPONENTS Interpreter REQUIRED)
 
 if(DEFINED ENV{VIRTUAL_ENV} OR DEFINED ENV{CONDA_PREFIX})
@@ -43,8 +44,6 @@ add_subdirectory(third_party/QtFindReplaceDialog/dialogs)
 add_subdirectory(third_party/lsp-cpp)
 
 add_subdirectory(third_party/qhttp)
-
-add_subdirectory(third_party/yaml-cpp)
 
 add_library(diff_match_patch
 	third_party/diff_match_patch/diff_match_patch.cpp)

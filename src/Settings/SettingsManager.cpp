@@ -21,13 +21,13 @@
 #include "Settings/SettingsUpdater.hpp"
 #include "Util/FileUtil.hpp"
 #include "generated/portable.hpp"
-#include "third_party/yaml-cpp/include/yaml-cpp/yaml.h"
 #include <QDateTime>
 #include <QFile>
 #include <QFileInfo>
 #include <QFont>
 #include <QRect>
 #include <QSettings>
+#include <yaml-cpp/yaml.h>
 
 namespace YAML
 {
@@ -119,7 +119,7 @@ template <typename Type> struct convert<QList<Type>>
 {
     static Node encode(const QList<Type> &l)
     {
-        Node node;
+        Node node(YAML::NodeType::Sequence);
         for (const auto &v : l)
             node.push_back(v);
         return node;
@@ -142,7 +142,7 @@ template <> struct convert<QStringList>
 {
     static Node encode(const QStringList &l)
     {
-        Node node;
+        Node node(YAML::NodeType::Sequence);
         for (const auto &v : l)
             node.push_back(v);
         return node;
@@ -422,6 +422,7 @@ void SettingsManager::loadSettings(const QString &path)
     // load file problem binding
     if (setting["File Problem Binding"] && !setting["File Problem Binding"].IsNull())
     {
+        qDebug() << setting["File Problem Binding"].Type();
         FileProblemBinder::fromList(setting["File Problem Binding"].as<QStringList>()); // TODO: solve this
     }
 
