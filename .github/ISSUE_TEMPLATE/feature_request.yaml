@@ -28,7 +28,7 @@ body:
 
   - type: textarea
     attributes:
-      label: The Problem You Are Facing
+      label: The problem you are facing
       description: Are you facing a problem that makes you want this new feature? Please describe.
       placeholder: I'm always frustrated when...
 
