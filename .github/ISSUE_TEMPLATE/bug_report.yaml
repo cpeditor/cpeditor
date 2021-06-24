@@ -23,7 +23,7 @@ body:
   - type: textarea
     attributes:
       label: Current Behavior
-      description: A concise description of what you're experiencing. You can add screenshots here if it's helpful
+      description: A concise description of what you're experiencing. You can add screenshots here if it's helpful.
     validations:
       required: true
 
@@ -48,6 +48,7 @@ body:
   - type: input
     attributes:
       label: CP Editor Version
+      description: You can get the version by clicking Help->Build Info in CP Editor or running `cpeditor --version` in the terminal.
       placeholder: 6.9.2
     validations:
       required: true
@@ -59,7 +60,7 @@ body:
       placeholder: Windows 10 / macOS Big Sur / Arch Linux / Ubuntu 20.04
     validations:
       required: true
-  
+
   - type: checkboxes
     attributes:
       label: Are you willing to contribute to this?
