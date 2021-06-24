@@ -1,0 +1,38 @@
+name: cpeditor
+base: core20
+grade: stable
+confinement: classic
+adopt-info: cpeditor
+
+package-repositories:
+  - type: apt
+    formats: [deb, deb-src]
+    components: [main]
+    suites: [focal]
+    key-id: C65D51784EDC19A871DBDBB710C56D0DE9977759
+    url: http://ppa.launchpad.net/beineri/opt-qt-5.15.2-focal/ubuntu
+
+apps:
+  cpeditor:
+    common-id: cpeditor.desktop
+    command: usr/bin/cpeditor
+
+parts:
+  cpeditor:
+    parse-info:
+      - usr/share/metainfo/cpeditor.appdata.xml
+    plugin: cmake
+    build-packages:
+      - build-essential
+      - qt515base
+      - qt515tools
+      - libgl1-mesa-dev
+    stage-packages:
+      - qt515base
+    source: .
+    cmake-parameters:
+      - -DCMAKE_INSTALL_PREFIX=/usr
+      - -DCMAKE_BUILD_TYPE=Release
+    override-prime: |
+        snapcraftctl prime
+        sed -i 's|Icon=.*|Icon=${SNAP}/usr/share/icons/hicolor/512x512/apps/cpeditor.png|g' $SNAPCRAFT_PRIME/usr/share/applications/cpeditor.desktop
