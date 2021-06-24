@@ -47,7 +47,7 @@ body:
 
   - type: input
     attributes:
-      label: CP Editor version
+      label: CP Editor Version
       placeholder: 6.9.2
     validations:
       required: true
