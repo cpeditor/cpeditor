@@ -22,11 +22,18 @@
 
 class QSettings;
 
+namespace YAML
+{
+class Node;
+class Emitter;
+}; // namespace YAML
+
 class SettingsManager
 {
   private:
-    static void load(QSettings &setting, const QString &prefix, const QList<SettingsInfo::SettingInfo> &infos);
-    static void save(QSettings &setting, const QString &prefix, const QList<SettingsInfo::SettingInfo> &infos);
+    static void load(const YAML::Node &setting, const QString &prefix, const QList<SettingsInfo::SettingInfo> &infos);
+    static void load_INI(QSettings &setting, const QString &prefix, const QList<SettingsInfo::SettingInfo> &infos);
+    static void save(YAML::Emitter &setting, const QString &prefix, const QList<SettingsInfo::SettingInfo> &infos);
 
   public:
     static void init();
@@ -36,6 +43,7 @@ class SettingsManager
     static void generateDefaultSettings();
 
     static void loadSettings(const QString &path);
+    static void loadSettings_INI(const QString &path);
 
     /**
      * @brief save settings to the given path

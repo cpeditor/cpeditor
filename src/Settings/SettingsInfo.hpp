@@ -131,7 +131,7 @@ class SettingsInfo
         QVariant param;
         QList<SettingInfo> child;
 
-        QString key() const
+        QString key() const // now only use for backward compability
         {
             return name.toLower().replace("c++", "cpp").replace(' ', '_');
         }

@@ -21,11 +21,146 @@
 #include "Settings/SettingsUpdater.hpp"
 #include "Util/FileUtil.hpp"
 #include "generated/portable.hpp"
+#include "third_party/yaml-cpp/include/yaml-cpp/yaml.h"
 #include <QDateTime>
 #include <QFile>
+#include <QFileInfo>
 #include <QFont>
 #include <QRect>
 #include <QSettings>
+
+namespace YAML
+{
+
+template <> struct convert<QString>
+{
+    static Node encode(const QString &s)
+    {
+        Node node;
+        node = s.toUtf8().toStdString();
+        return node;
+    }
+
+    static bool decode(const Node &node, QString &s)
+    {
+        if (!node.IsScalar())
+        {
+            return false;
+        }
+        s = QString::fromUtf8(QByteArray::fromStdString(node.as<std::string>()));
+        return true;
+    }
+};
+
+template <> struct convert<QFont>
+{
+    static Node encode(const QFont &f)
+    {
+        Node node;
+        node = f.toString();
+        return node;
+    }
+
+    static bool decode(const Node &node, QFont &f)
+    {
+        if (!node.IsScalar())
+        {
+            return false;
+        }
+        f.fromString(node.as<QString>());
+        return true;
+    }
+};
+
+template <> struct convert<QRect>
+{
+    static Node encode(const QRect &r)
+    {
+        Node node;
+        node.push_back(r.left());
+        node.push_back(r.top());
+        node.push_back(r.right());
+        node.push_back(r.bottom());
+        return node;
+    }
+
+    static bool decode(const Node &node, QRect &r)
+    {
+        if (!node.IsSequence() || node.size() != 4)
+        {
+            return false;
+        }
+        r = QRect(node[0].as<int>(), node[1].as<int>(), node[2].as<int>(), node[3].as<int>());
+        return true;
+    }
+};
+
+template <> struct convert<QByteArray>
+{
+    static Node encode(const QByteArray &d)
+    {
+        Node node;
+        node = d.toHex().toStdString();
+        return node;
+    }
+
+    static bool decode(const Node &node, QByteArray &d)
+    {
+        if (!node.IsScalar())
+        {
+            return false;
+        }
+        d = QByteArray::fromHex(QByteArray::fromStdString(node.as<std::string>()));
+        return true;
+    }
+};
+
+template <typename Type> struct convert<QList<Type>>
+{
+    static Node encode(const QList<Type> &l)
+    {
+        Node node;
+        for (const auto &v : l)
+            node.push_back(v);
+        return node;
+    }
+
+    static bool decode(const Node &node, QList<Type> &l)
+    {
+        if (!node.IsSequence())
+        {
+            return false;
+        }
+        l.clear();
+        for (auto it = node.begin(); it != node.end(); it++)
+            l.push_back(it->as<Type>());
+        return true;
+    }
+};
+
+template <> struct convert<QStringList>
+{
+    static Node encode(const QStringList &l)
+    {
+        Node node;
+        for (const auto &v : l)
+            node.push_back(v);
+        return node;
+    }
+
+    static bool decode(const Node &node, QStringList &l)
+    {
+        if (!node.IsSequence())
+        {
+            return false;
+        }
+        l.clear();
+        for (auto it = node.begin(); it != node.end(); it++)
+            l.push_back(it->as<QString>());
+        return true;
+    }
+};
+} // namespace YAML
 
 QVariantMap *SettingsManager::cur = nullptr;
 QMap<QString, QString> *SettingsManager::settingPath = nullptr;
@@ -38,11 +173,83 @@ const static QStringList configFileLocations = {
 #ifdef PORTABLE_VERSION
     "$BINARY/cp_editor_settings.ini",
 #endif
-    "$APPCONFIG/cp_editor_settings.ini", "$HOME/.cp_editor_settings.ini", "$HOME/cp_editor_settings.ini"};
+    "$APPCONFIG/cp_editor_settings.yml", "$APPCONFIG/cp_editor_settings.ini", "$HOME/.cp_editor_settings.ini",
+    "$HOME/cp_editor_settings.ini"};
 
-static const QStringList noUnknownKeyWarning = {"C++/Run Command", "Python/Compile Command"};
-
-void SettingsManager::load(QSettings &setting, const QString &prefix, const QList<SettingsInfo::SettingInfo> &infos)
+void SettingsManager::load(const YAML::Node &setting, const QString &prefix,
+                           const QList<SettingsInfo::SettingInfo> &infos)
+{
+    if (!setting.IsMap())
+        return;
+    for (const auto &si : infos)
+    {
+        if (!setting[si.name])
+            continue;
+        const auto &node = setting[si.name];
+        if (si.type == "Object")
+        {
+            if (!node.IsMap() || !setting[si.name + '@'] || !setting[si.name + '@'].IsSequence())
+                continue;
+            QStringList keys = setting[si.name + '@'].as<QStringList>();
+            for (const QString &sub : keys)
+            {
+                if (!node[sub])
+                    continue;
+                load(node[sub], QString("%1%2/%3/").arg(prefix, si.name, sub), si.child);
+            }
+            auto oldKeys = get(prefix + si.name + '@').toStringList();
+            for (const auto &k : oldKeys)
+            {
+                if (keys.indexOf(k) == -1)
+                    keys.push_back(k);
+            }
+            set(prefix + si.name + '@', keys);
+        }
+        else
+        {
+            QVariant ret(QVariant::Invalid);
+            switch (node.Type())
+            {
+            case YAML::NodeType::Scalar:
+                if (si.type == "bool")
+                    ret = node.as<bool>();
+                else if (si.type == "int")
+                    ret = node.as<int>();
+                else if (si.type == "QString")
+                    ret = node.as<QString>();
+                else if (si.type == "QByteArray")
+                    ret = node.as<QByteArray>();
+                else if (si.type == "QFont")
+                    ret = node.as<QFont>();
+                else
+                    Q_UNREACHABLE();
+                break;
+            case YAML::NodeType::Sequence:
+                if (si.type == "QVariantList")
+                {
+                    auto lsl = node.as<QList<QStringList>>();
+                    QVariantList vl;
+                    for (const auto &sl : lsl)
+                        vl.push_back(sl);
+                    ret = vl;
+                }
+                else if (si.type == "QStringList")
+                    ret = node.as<QStringList>();
+                else if (si.type == "QRect")
+                    ret = node.as<QRect>();
+                else
+                {
+                    qDebug() << si.name << si.type;
+                    Q_UNREACHABLE();
+                }
+            default:
+                break;
+            }
+            set(prefix + si.name, ret);
+        }
+    }
+}
+void SettingsManager::load_INI(QSettings &setting, const QString &prefix, const QList<SettingsInfo::SettingInfo> &infos)
 {
     for (const auto &si : infos)
     {
@@ -55,7 +262,7 @@ void SettingsManager::load(QSettings &setting, const QString &prefix, const QLis
             for (const QString &sub : keys)
             {
                 setting.beginGroup(sub);
-                load(setting, QString("%1%2/%3/").arg(prefix, si.name, sub), si.child);
+                load_INI(setting, QString("%1%2/%3/").arg(prefix, si.name, sub), si.child);
                 setting.endGroup();
             }
             auto oldKeys = get(prefix + si.name + '@').toStringList();
@@ -72,21 +279,54 @@ void SettingsManager::load(QSettings &setting, const QString &prefix, const QLis
     }
 }
 
-void SettingsManager::save(QSettings &setting, const QString &prefix, const QList<SettingsInfo::SettingInfo> &infos)
+void SettingsManager::save(YAML::Emitter &setting, const QString &prefix, const QList<SettingsInfo::SettingInfo> &infos)
 {
     for (const auto &si : infos)
         if (si.type == "Object")
         {
-            QString head = QString("%1%2").arg(prefix, si.name);
+            QString head = prefix + si.name;
             QStringList keys = get(head + '@').toStringList();
-            setting.setValue(head + '@', keys);
+            setting << YAML::Key << YAML::Node(si.name + '@') << YAML::Value << YAML::Node(keys);
+            setting << YAML::Key << YAML::Node(si.name) << YAML::BeginMap;
             for (const QString &k : keys)
             {
+                setting << YAML::Key << YAML::Node(k) << YAML::Value << YAML::BeginMap;
                 save(setting, QString("%1/%2/").arg(head, k), si.child);
+                setting << YAML::EndMap;
             }
+            setting << YAML::EndMap;
         }
         else
-            setting.setValue(QString("%1%2").arg(prefix, si.key()), get(prefix + si.name));
+        {
+            setting << YAML::Key << YAML::Node(si.name) << YAML::Value;
+            auto v = get(prefix + si.name);
+            if (si.type == "bool")
+                setting << v.toBool();
+            else if (si.type == "int")
+                setting << v.toInt();
+            else if (si.type == "QRect")
+                setting << YAML::Node(v.toRect());
+            else if (si.type == "QString")
+                setting << YAML::Node(v.toString());
+            else if (si.type == "QStringList")
+                setting << YAML::Node(v.toStringList());
+            else if (si.type == "QByteArray")
+                setting << YAML::Node(v.toByteArray());
+            else if (si.type == "QFont")
+                setting << YAML::Node(v.value<QFont>());
+            else if (si.type == "QVariantList")
+            {
+                setting << YAML::BeginSeq;
+                for (const auto &l : v.toList())
+                    setting << YAML::Node(l.toStringList());
+                setting << YAML::EndSeq;
+            }
+            else
+            {
+                qDebug() << si.name << si.type;
+                Q_UNREACHABLE();
+            }
+        }
 }
 
 void SettingsManager::init()
@@ -107,7 +347,14 @@ void SettingsManager::init()
 
     QString path = Util::firstExistingConfigPath(configFileLocations);
     if (!path.isEmpty())
-        loadSettings(path);
+    {
+        QFileInfo i(path);
+        auto sfx = i.suffix();
+        if (sfx == "yml")
+            loadSettings(path);
+        else if (sfx == "ini")
+            loadSettings_INI(path);
+    }
 
     generateDefaultSettings();
 }
@@ -173,13 +420,31 @@ void SettingsManager::loadSettings(const QString &path)
 {
     LOG_INFO("Start loading settings from " + path);
 
-    QSettings setting(path, QSettings::IniFormat);
-    SettingsUpdater::updateSetting(setting);
+    YAML::Node setting = YAML::LoadFile(path.toUtf8().toStdString());
+    SettingsUpdater::updateSetting();
     load(setting, "", SettingsInfo::getSettings());
     SettingsUpdater::updateSettingFinal();
 
     // load file problem binding
-    FileProblemBinder::fromVariant(setting.value("file_problem_binding"));
+    if (setting["File Problem Binding"] && !setting["File Problem Binding"].IsNull())
+    {
+        FileProblemBinder::fromList(setting["File Problem Binding"].as<QStringList>()); // TODO: solve this
+    }
+
+    LOG_INFO("Settings have been loaded from " + path);
+}
+
+void SettingsManager::loadSettings_INI(const QString &path)
+{
+    LOG_INFO("Start loading settings from " + path);
+
+    QSettings setting(path, QSettings::IniFormat);
+    SettingsUpdater::updateSetting_INI(setting);
+    load_INI(setting, "", SettingsInfo::getSettings());
+    SettingsUpdater::updateSettingFinal();
+
+    // load file problem binding
+    FileProblemBinder::fromList(setting.value("file_problem_binding").toStringList()); // TODO: solve this
 
     LOG_INFO("Settings have been loaded from " + path);
 }
@@ -190,14 +455,19 @@ void SettingsManager::saveSettings(const QString &path)
 
     LOG_INFO("Start saving settings to " + savePath);
 
-    QSettings setting(savePath, QSettings::IniFormat);
-    setting.clear(); // Otherwise SettingsManager::remove won't work
+    YAML::Emitter setting;
+    setting << YAML::BeginMap;
     save(setting, "", SettingsInfo::getSettings());
 
     // save file problem binding
-    setting.setValue("file_problem_binding", FileProblemBinder::toVariant());
+    setting << YAML::Key << "File Problem Binding" << YAML::Value << YAML::Node(FileProblemBinder::toList());
 
-    setting.sync();
+    setting << YAML::EndMap;
+
+    QFile file(savePath);
+    file.open(QIODevice::WriteOnly);
+    file.write(setting.c_str());
+    file.close();
 
     LOG_INFO("Settings have been saved to " + savePath);
 }

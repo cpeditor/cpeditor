@@ -44,6 +44,8 @@ add_subdirectory(third_party/lsp-cpp)
 
 add_subdirectory(third_party/qhttp)
 
+add_subdirectory(third_party/yaml-cpp)
+
 add_library(diff_match_patch
 	third_party/diff_match_patch/diff_match_patch.cpp)
 
@@ -134,7 +136,6 @@ add_library(
     src/Settings/SettingsInfo.hpp
     ${CMAKE_BINARY_DIR}/generated/SettingsInfo.cpp
 )
-
 
 target_link_libraries(target_generated PRIVATE Qt5::Widgets)
 
@@ -279,6 +280,7 @@ target_link_libraries(cpeditor PRIVATE Qt5::Widgets)
 target_link_libraries(cpeditor PRIVATE QtFindReplaceDialog)
 target_link_libraries(cpeditor PRIVATE SingleApplication)
 target_link_libraries(cpeditor PRIVATE QHttp)
+target_link_libraries(cpeditor PRIVATE yaml-cpp)
 target_link_libraries(diff_match_patch PRIVATE Qt5::Core)
 target_link_libraries(cpeditor PRIVATE diff_match_patch)
 

@@ -19,12 +19,14 @@
 #include "Core/SessionManager.hpp"
 #include "Settings/SettingsManager.hpp"
 #include "generated/SettingsHelper.hpp"
-#include <QJsonArray>
-#include <QJsonDocument>
-#include <QJsonObject>
+#include <QSet>
 #include <QSettings>
 
-void SettingsUpdater::updateSetting(QSettings &setting)
+void SettingsUpdater::updateSetting()
+{
+}
+
+void SettingsUpdater::updateSetting_INI(QSettings &setting)
 {
 #ifdef QT_DEBUG
     // Check for key conflicts
@@ -39,75 +41,13 @@ void SettingsUpdater::updateSetting(QSettings &setting)
 
     for (const auto &si : qAsConst(SettingsInfo::settings))
     {
-        addKey(si.key());
+        addKey(si.name);
         std::for_each(si.old.begin(), si.old.end(), addKey);
     }
 #endif
-
-    for (const auto &si : qAsConst(SettingsInfo::settings))
-    {
-        for (const auto &old : qAsConst(si.old))
-        {
-            if (setting.contains(old))
-            {
-                SettingsManager::set(si.name, setting.value(old));
-                break;
-            }
-        }
-    }
-
-    if (setting.childGroups().contains("snippets"))
-    {
-        setting.beginGroup("snippets");
-        auto langs = setting.childGroups();
-        for (const QString &lang : langs)
-        {
-            setting.beginGroup(lang);
-            auto obj = SettingsHelper::getLanguageConfig(lang == "Cpp" ? "C++" : lang);
-            auto keys = setting.childKeys();
-            obj.setSnippet(keys);
-            for (const QString &key : keys)
-            {
-                obj.getSnippet(key).setCode(setting.value(key).toString());
-            }
-            setting.endGroup();
-        }
-        setting.endGroup();
-    }
-
-    if (setting.childGroups().contains("editor_status"))
-    {
-        QJsonObject json;
-        json.insert("currentIndex", setting.contains("hot_exit/current_index")
-                                        ? setting.value("hot_exit/current_index").toInt()
-                                        : setting.value("current_index").toInt());
-
-        QJsonArray arr;
-
-        setting.beginGroup("editor_status");
-        auto indices = setting.childKeys();
-        for (const auto &index : indices)
-        {
-            arr.push_back(QJsonDocument::fromVariant(setting.value(index).toMap()).object());
-        }
-        setting.endGroup();
-
-        json.insert("tabs", arr);
-
-        Core::SessionManager::saveSession(QJsonDocument(json).toJson());
-    }
-
-    if (setting.contains("save_path"))
-    {
-        SettingsHelper::getDefaultPath("file").setPath(setting.value("save_path").toString());
-    }
+    // Remove all fixes.
 }
 
 void SettingsUpdater::updateSettingFinal()
 {
-    QString theme = SettingsHelper::getEditorTheme()
-                        .replace("Monkai", "Monokai")
-                        .replace("Drakula", "Dracula")
-                        .replace("Solarised", "Solarized");
-    SettingsHelper::setEditorTheme(theme);
 }
