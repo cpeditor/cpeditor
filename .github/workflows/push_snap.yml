@@ -6,7 +6,7 @@ on:
       - master
     paths-ignore:
       - ".github/**"
-      - "!.github/workflows/push_aur.yml"
+      - "!.github/workflows/push_snap.yml"
       - "**.md"
       - ".all-contributorsrc"
       - ".gitignore"
@@ -19,9 +19,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-           submodules: recursive
-           ref: snapcraft
-           fetch-depth: 0
+          ref: master
+          submodules: recursive
+          fetch-depth: 0
 
       - name: Update Appdata file
         id: update-appdata-file
