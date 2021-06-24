@@ -23,21 +23,21 @@ body:
   - type: textarea
     attributes:
       label: Current Behavior
-      description: A concise description of what you're experiencing. You can add screenshots here if it's helpful.
+      description: A concise description of what you're experiencing. You can add screenshots here if it's helpful
     validations:
       required: true
 
   - type: textarea
     attributes:
       label: Expected Behavior
-      description: A concise description of what you expected to happen.
+      description: A concise description of what you expected to happen
     validations:
       required: true
 
   - type: textarea
     attributes:
       label: Steps To Reproduce
-      description: Steps to reproduce the unexpected behavior.
+      description: Steps to reproduce the unexpected behavior
       placeholder: |
         1. Open a file ...
         2. Click ...
