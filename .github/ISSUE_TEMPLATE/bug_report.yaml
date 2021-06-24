@@ -65,9 +65,9 @@ body:
       label: Are you willing to contribute to this?
       description: It's OK if you are a first-timer. You can read the [Contributing Guidelines](https://github.com/cpeditor/cpeditor/blob/master/CONTRIBUTING.md) to learn how to make your contributions.
       options:
-        - I'm ready to fix this and will open a PR soon
-        - I'd like to have a try with the help of the maintainers
-        - No, thanks
+        - label: I'm ready to fix this and will open a PR soon
+        - label: I'd like to have a try with the help of the maintainers
+        - label: No, thanks
     validations:
       required: true
 
