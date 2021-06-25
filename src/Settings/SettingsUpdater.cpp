@@ -42,7 +42,6 @@ void SettingsUpdater::updateSetting_INI(QSettings &setting)
     for (const auto &si : qAsConst(SettingsInfo::settings))
     {
         addKey(si.name);
-        std::for_each(si.old.begin(), si.old.end(), addKey);
     }
 #endif
     // Remove all fixes.

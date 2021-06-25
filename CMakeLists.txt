@@ -24,14 +24,6 @@ find_package(Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt5 COMPONENTS Network REQUIRED)
 find_package(Qt5 COMPONENTS LinguistTools REQUIRED)
 find_package(yaml-cpp)
-find_package(Python3 COMPONENTS Interpreter REQUIRED)
-
-if(DEFINED ENV{VIRTUAL_ENV} OR DEFINED ENV{CONDA_PREFIX})
-  set(_pip_args)
-else()
-  set(_pip_args "--user")
-endif()
-execute_process(COMMAND ${Python3_EXECUTABLE} -m pip install pyyaml ${_pip_args})
 
 add_subdirectory(third_party/QCodeEditor)
 
@@ -104,10 +96,14 @@ configure_file(cmake/version.hpp.in ${CMAKE_BINARY_DIR}/generated/version.hpp)
 configure_file(cmake/portable.hpp.in ${CMAKE_BINARY_DIR}/generated/portable.hpp)
 configure_file(cmake/cpeditor.appdata.xml.in ${PROJECT_SOURCE_DIR}/dist/linux/cpeditor.appdata.xml)
 
+add_executable(gen_settings src/Settings/genSettings.cpp)
+
+target_link_libraries(gen_settings PRIVATE yaml-cpp)
+
 add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMAKE_BINARY_DIR}/generated/SettingsInfo.cpp ${CMAKE_BINARY_DIR}/generated/PreferencesWindow.cpp
-                   COMMAND ${Python3_EXECUTABLE} ${PROJECT_SOURCE_DIR}/src/Settings/genSettings.py ${PROJECT_SOURCE_DIR}/src/Settings/settings.yaml
+                   COMMAND gen_settings ${PROJECT_SOURCE_DIR}/src/Settings/settings.yaml
                    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-                   DEPENDS ${PROJECT_SOURCE_DIR}/src/Settings/settings.yaml ${PROJECT_SOURCE_DIR}/src/Settings/genSettings.py)
+                   DEPENDS ${PROJECT_SOURCE_DIR}/src/Settings/settings.yaml gen_settings)
 
 set(TSS ${CMAKE_SOURCE_DIR}/translations/zh_CN.ts ${CMAKE_SOURCE_DIR}/translations/ru_RU.ts)
 

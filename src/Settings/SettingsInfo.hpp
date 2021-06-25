@@ -126,7 +126,6 @@ class SettingsInfo
         bool immediatelyApply;
         QMap<QString, std::function<QVariant(QVariant)>> methods;
         QList<QPair<QString, std::function<bool(const QVariant &)>>> depends;
-        QList<QString> old; // the old keys of this setting
         QVariant def;
         QVariant param;
         QList<SettingInfo> child;
