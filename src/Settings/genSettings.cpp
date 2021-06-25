@@ -164,7 +164,26 @@ string parseParam(const YAML::Node &obj, bool &isStr)
     return obj.as<string>();
 }
 
-map<string, const YAML::Node *> presetFunc;
+string buildMethod(const YAML::Node &func)
+{
+    string predef;
+    if (func["param"] && func["param"].IsMap())
+    {
+        for (const auto &pr : func["param"])
+        {
+            string vname = pr.first.as<string>();
+            string vtype = pr.second.as<string>();
+            vtype = vtype.substr(vtype.find_first_not_of(' '));
+            vtype = vtype.substr(0, vtype.find_last_not_of(' ') + 1);
+            string a = "auto ";
+            if (vtype.back() == '*')
+                a = "auto *";
+            predef += a + vname + "(_.toMap()[" + dump(vname) + "].value<" + vtype + ">());";
+        }
+    }
+    return "[](const QVariant &_)->QVariant{" + predef + "do{" + func["code"].as<string>() +
+           "}while(false);return QVariant();}";
+}
 
 void writeInfo(ofstream &f, const YAML::Node &obj, const string &lst)
 {
@@ -226,29 +245,9 @@ void writeInfo(ofstream &f, const YAML::Node &obj, const string &lst)
                 auto fn = _pr.first.as<string>();
                 const YAML::Node *pfunc = &_pr.second;
                 if (pfunc->IsScalar())
-                {
-                    pfunc = presetFunc[pfunc->as<string>()];
-                }
-                if (!pfunc)
-                    continue;
-                const auto &func = *pfunc;
-                string predef;
-                if (func["param"] && func["param"].IsMap())
-                {
-                    for (const auto &pr : func["param"])
-                    {
-                        string vname = pr.first.as<string>();
-                        string vtype = pr.second.as<string>();
-                        vtype = vtype.substr(vtype.find_first_not_of(' '));
-                        vtype = vtype.substr(0, vtype.find_last_not_of(' ') + 1);
-                        string a = "auto ";
-                        if (vtype.back() == '*')
-                            a = "auto *";
-                        predef += a + vname + "(_.toMap()[" + dump(vname) + "].value<" + vtype + ">());";
-                    }
-                }
-                methods += "{" + dump(fn) + ",[](const QVariant &_)->QVariant{" + predef + "do{" +
-                           func["code"].as<string>() + "}while(false);return QVariant();}},";
+                    methods += "{" + dump(fn) + ",_M_" + pfunc->as<string>() + "},";
+                else
+                    methods += "{" + dump(fn) + "," + buildMethod(*pfunc) + "},";
             }
         }
         methods += "}";
@@ -363,11 +362,6 @@ int main(int argc, char *argv[])
     if (argc != 2)
         return 1;
     auto root = YAML::LoadFile(argv[1]);
-    if (root["presetMethod"] && root["presetMethod"].IsMap())
-    {
-        for (const auto &pr : root["presetMethod"])
-            presetFunc[pr.first.as<string>()] = &pr.second;
-    }
     string head = R"(/*
  * Copyright (C) 2019-2021 Ashar Khan <ashar786khan@gmail.com>
  *
@@ -428,6 +422,13 @@ void SettingsInfo::updateSettingInfo()
 {
     settings.clear();
 )";
+    if (root["presetMethod"] && root["presetMethod"].IsMap())
+    {
+        for (const auto &pr : root["presetMethod"])
+        {
+            info << "    auto _M_" << pr.first.as<string>() << " = " << buildMethod(pr.second) << ";" << endl;
+        }
+    }
     writeInfo(info, root["data"], "settings");
     info << "}" << endl;
     info.close();
