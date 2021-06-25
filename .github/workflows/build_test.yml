@@ -52,6 +52,16 @@ jobs:
           brew install llvm
           ln -s "$(brew --prefix llvm)/bin/clang-tidy" "/usr/local/bin/clang-tidy"
 
+      - name: "[Linux] Download yaml-cpp"
+        if: startsWith(matrix.config.os, 'ubuntu')
+        run: |
+          sudo apt-get install libyaml-cpp-dev
+
+      - name: "[macOS] Download yaml-cpp"
+        if: startsWith(matrix.config.os, 'macos')
+        run: |
+          brew install yaml-cpp
+
       - name: "[Unix] Build"
         if: startsWith(matrix.config.os, 'ubuntu') || startsWith(matrix.config.os, 'macos')
         run: |
