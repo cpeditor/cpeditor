@@ -1,0 +1,37 @@
+name: AUR Build Test
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  build:
+    name: makepkg ${{ matrix.pkg.name }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        pkg:
+          - path: dist/aur/stable
+            name: cpeditor
+          - path: dist/aur/git
+            name: cpeditor-git
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+          fetch-depth: 0
+      - name: Update Version
+        run: |
+          cd dist/aur
+          sed -i "s/@PROJECT_VERSION@/$(git describe --long --tags --abbrev=8 | sed 's/\([^-]*-g\)/r\1/;s/-/./g')/g" git/PKGBUILD
+          sed -i "s/@PROJECT_VERSION@/$(git describe --tags --abbrev=0)/g" stable/PKGBUILD
+      - name: Build Package
+        uses: ouuan/pkgbuild-action@master
+        id: build-pkg
+        with:
+          path: ${{ matrix.pkg.path }}
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ matrix.pkg.name }}-${{ github.run_id }}
+          path: ${{ steps.build-pkg.outputs.pkgfile }}
