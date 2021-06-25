@@ -422,7 +422,6 @@ void SettingsManager::loadSettings(const QString &path)
     // load file problem binding
     if (setting["File Problem Binding"] && !setting["File Problem Binding"].IsNull())
     {
-        qDebug() << setting["File Problem Binding"].Type();
         FileProblemBinder::fromList(setting["File Problem Binding"].as<QStringList>()); // TODO: solve this
     }
 
