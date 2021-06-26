@@ -151,7 +151,7 @@ yaml数组的每一项表示一个配置项，结构如下：
 
     * ……
 
-参数值和默认值可以使用任何`yaml`支持的数据结构。`genSettings.py`会处理它们。
+参数值和默认值可以使用任何`yaml`支持的数据结构。`genSettings.cpp`会处理它们。
 
 为了防止错误解析字符串，我们使用了以下规则：
 
@@ -203,18 +203,14 @@ yaml数组的每一项表示一个配置项，结构如下：
 
 XXX控件的子类。
 
-**`genSettings.py`**
+**`genSettings.cpp`**
 
-这里包含了在yaml中未设置默认值时的默认值。
+生成`SettingsInfo.hpp`、`SettingsHelper.hpp`和`PreferencesWindow.cpp`的脚本。
 
-> ```python
-> defs = {
->     'QString':'""',
->     'int': '0',
->     'bool': 'false',
->     'QRect': 'QRect()',
->     'QByteArray': 'QByteArray()'
-> }
+这里包含了在`settings.yaml`中未设置默认值时的默认值。
+
+> ```cpp
+static map<string, string> defs = {{"QString", "\"\""}, {"int", "0"}, {"bool", "false"}};
 > ```
 
 **`SettingsInfo.hpp`**
@@ -382,7 +378,7 @@ XXX控件的子类。
 
 2. 修改`SettingWidget`中的`createWrapper`。
 
-3. \[可选\]在`genSettings.py`中为类型设定一个默认值。
+3. \[可选\]在`genSettings.cpp`中为类型设定一个默认值。
 
 #### 添加新设置
 

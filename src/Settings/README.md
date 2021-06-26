@@ -154,7 +154,7 @@ desc and tip will be formatted. Use @x (x is a digit) to refer the key or settin
 
     * ...
 
-param and default can use any structure that allowed in yaml. `genSettings.py` will handle it.
+param and default can use any structure that allowed in yaml. `genSettings.cpp` will handle it.
 
 To prevent misparsing of string, we use following rules:
 
@@ -206,20 +206,14 @@ The wrapping with type and rootWidget specified.
 
 The subclass of Wrapper for the widget XXX.
 
-**`genSettings.py`**
+**`genSettings.cpp`**
 
 Script to generate `SettingsInfo.hpp`, `SettingsHelper.hpp` and `PreferencesWindow.cpp`.
 
 It includes the default value used when you don't specify it in `Settings.yaml`.
 
-> ```python
-> defs = {
->     'QString':'""',
->     'int': '0',
->     'bool': 'false',
->     'QRect': 'QRect()',
->     'QByteArray': 'QByteArray()'
-> }
+> ```cpp
+static map<string, string> defs = {{"QString", "\"\""}, {"int", "0"}, {"bool", "false"}};
 > ```
 
 **`SettingsInfo.hpp`**
@@ -386,7 +380,7 @@ Refer to the existing code for more details.
 
 1. Add `XXXWrapper` in `SettingWidget`       (XXX represent the widget name).
 2. Modify `createWrapper` in `SettingWidget`.
-3. Optionally, add fallback default value in `genSettings.py`.
+3. Optionally, add fallback default value in `genSettings.cpp`.
 
 #### Adding a new setting
 
