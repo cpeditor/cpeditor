@@ -22,7 +22,7 @@ jobs:
           fetch-depth: 0
 
       - name: Update Stable
-        if: matrix.pkg.name == "cpeditor"
+        if: matrix.pkg.name == 'cpeditor'
         run: |
           shopt -s extglob # enable "!(...)"
           mv .git/objects/pack .
@@ -35,7 +35,7 @@ jobs:
           sed -i "s|source=.*|source=(file://$(realpath cpeditor-0.0.0-full-source.tar.gz))|g" PKGBUILD
 
       - name: Update Git
-        if: matrix.pkg.name == "cpeditor-git"
+        if: matrix.pkg.name == 'cpeditor-git'
         run: |
           cd dist/aur/git
           sed -i "s/@PROJECT_VERSION@/$(git describe --long --tags --abbrev=8 | sed 's/\([^-]*-g\)/r\1/;s/-/./g')/g" PKGBUILD
