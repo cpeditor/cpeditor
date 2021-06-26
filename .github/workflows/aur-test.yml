@@ -30,9 +30,8 @@ jobs:
           rm -rf pack .git/objects/!($(git rev-parse @ | cut -c-2)) .git/objects/$(git rev-parse @ | cut -c-2)/!($(git rev-parse @ | cut -c3-))
           wget https://raw.githubusercontent.com/Kentzo/git-archive-all/master/git_archive_all.py
           python3 git_archive_all.py cpeditor-0.0.0-full-source.tar.gz --extra=.git/HEAD --extra=.git/refs --extra=.git/objects
-          cd dist/aur/stable
-          sed -i "s/@PROJECT_VERSION@/0.0.0/g" PKGBUILD
-          sed -i "s|source=.*|source=(file://$(realpath cpeditor-0.0.0-full-source.tar.gz))|g" PKGBUILD
+          sed -i "s/@PROJECT_VERSION@/0.0.0/g" dist/aur/stable/PKGBUILD
+          sed -i "s|source=.*|source=(file://$(realpath cpeditor-0.0.0-full-source.tar.gz))|g" dist/aur/stable/PKGBUILD
 
       - name: Update Git
         if: matrix.pkg.name == 'cpeditor-git'
