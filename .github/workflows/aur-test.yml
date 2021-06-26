@@ -20,7 +20,7 @@ jobs:
         with:
           submodules: recursive
           fetch-depth: 0
-      - name: Update Version
+      - name: Update PKBUILDs
         run: |
           cd dist/aur
           sed -i "s/@PROJECT_VERSION@/$(git describe --long --tags --abbrev=8 | sed 's/\([^-]*-g\)/r\1/;s/-/./g')/g" */PKGBUILD
