@@ -79,8 +79,8 @@ template <> struct convert<QRect>
         Node node;
         node.push_back(r.left());
         node.push_back(r.top());
-        node.push_back(r.right());
-        node.push_back(r.bottom());
+        node.push_back(r.width());
+        node.push_back(r.height());
         return node;
     }
 

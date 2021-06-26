@@ -304,6 +304,8 @@ void writeInfo(ofstream &f, const YAML::Node &obj, const string &lst)
             f << "," << parseParam(t["param"], _);
         else
             f << ",QVariant()";
+        if (type == "Object")
+            f << ",LIST" << key;
         f << "});" << endl;
     }
 }
