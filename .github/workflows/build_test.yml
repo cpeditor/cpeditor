@@ -81,7 +81,7 @@ jobs:
       - name: "[Windows] Build"
         if: startsWith(matrix.config.os, 'windows')
         run: |
-          cmake -B build -S . -D USE_CLANG_TIDY=On
+          cmake -B build -S . -D USE_CLANG_TIDY=On -DCMAKE_TOOLCHAIN_FILE=${{ runner.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake
           cmake --build build -j4 --config Release
 
       - name: Upload Artifact
