@@ -155,6 +155,7 @@ class MainWindow : public QMainWindow
     void onTextChanged();
     void updateCursorInfo();
     void updateChecker();
+    void onCheckerAdded(const QString &path);
     void runTestCase(int index);
 
     // UI Slots
@@ -216,6 +217,7 @@ class MainWindow : public QMainWindow
     QString savedText;
     QString cftoolPath;
     QFileSystemWatcher *fileWatcher;
+    QFileSystemWatcher *checkerWatcher;
 
     std::atomic<bool> reloading;
     std::atomic<bool> killingProcesses;

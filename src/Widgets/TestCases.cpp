@@ -541,6 +541,7 @@ void TestCases::on_addCheckerButton_clicked()
     {
         checkerComboBox->addItem(path);
         checkerComboBox->setCurrentIndex(checkerComboBox->count() - 1);
+        emit checkerAdded(path);
     }
 }
 

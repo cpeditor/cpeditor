@@ -58,8 +58,8 @@ static const int MAX_NUMBER_OF_RECENT_FILES = 20;
 
 MainWindow::MainWindow(int index, AppWindow *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow), editor(nullptr), appWindow(parent), untitledIndex(index),
-      fileWatcher(new QFileSystemWatcher(this)), reloading(false), killingProcesses(false),
-      autoSaveTimer(new QTimer(this))
+      fileWatcher(new QFileSystemWatcher(this)), checkerWatcher(new QFileSystemWatcher(this)), reloading(false),
+      killingProcesses(false), autoSaveTimer(new QTimer(this))
 {
     LOG_INFO(INFO_OF(index));
 
@@ -72,6 +72,7 @@ MainWindow::MainWindow(int index, AppWindow *parent)
     ui->testCasesLayout->addWidget(testcases);
     connect(testcases, &Widgets::TestCases::checkerChanged, this, &MainWindow::updateChecker);
     connect(testcases, &Widgets::TestCases::requestRun, this, &MainWindow::runTestCase);
+    connect(testcases, &Widgets::TestCases::checkerAdded, this, &MainWindow::onCheckerAdded);
 
     setEditor();
     connect(fileWatcher, &QFileSystemWatcher::fileChanged, this, &MainWindow::onFileWatcherChanged);
@@ -108,6 +109,7 @@ MainWindow::~MainWindow()
     delete autoSaveTimer;
     delete testcases;
     delete fileWatcher;
+    delete checkerWatcher;
     delete editor;
     delete log;
 }
@@ -1443,4 +1445,9 @@ void MainWindow::onRunKilled(int index)
     log->error(getRunnerHead(index),
                tr("%1 has been killed")
                    .arg(index == -1 ? tr("Detached runner") : tr("Runner for testcase #%1").arg(index + 1)));
+}
+
+void MainWindow::onCheckerAdded(const QString &path)
+{
+    checkerWatcher->addPath(path);
 }

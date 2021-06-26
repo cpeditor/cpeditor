@@ -90,6 +90,7 @@ class TestCases : public QWidget
   signals:
     void checkerChanged();
     void requestRun(int index);
+    void checkerAdded(const QString &path);
 
   private slots:
     void on_addButton_clicked();
