@@ -9,6 +9,7 @@ jobs:
     name: makepkg ${{ matrix.pkg.name }}
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         pkg:
           - path: dist/aur/stable
