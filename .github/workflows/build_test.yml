@@ -52,6 +52,16 @@ jobs:
           brew install llvm
           ln -s "$(brew --prefix llvm)/bin/clang-tidy" "/usr/local/bin/clang-tidy"
 
+      - name: "[Windows] Download yaml-cpp"
+        if: startsWith(matrix.config.os, 'windows')
+        uses: lukka/run-vcpkg@v7
+        id: runvcpkg
+        with:
+          vcpkgArguments: yaml-cpp:x64-windows
+          vcpkgDirectory: ${{ runner.workspace }}/vcpkg/
+          vcpkgTriplet: x64-windows
+          vcpkgGitCommitId: 7bc5b8cdfaf35329c1520b2af8d368e2b1cb78e6
+
       - name: "[Linux] Download yaml-cpp"
         if: startsWith(matrix.config.os, 'ubuntu')
         run: |

@@ -23,7 +23,7 @@ find_package(Qt5 COMPONENTS Core REQUIRED)
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt5 COMPONENTS Network REQUIRED)
 find_package(Qt5 COMPONENTS LinguistTools REQUIRED)
-find_package(yaml-cpp)
+find_package(yaml-cpp REQUIRED)
 
 add_subdirectory(third_party/QCodeEditor)
 
