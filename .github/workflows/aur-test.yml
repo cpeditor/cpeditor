@@ -23,8 +23,8 @@ jobs:
       - name: Update Version
         run: |
           cd dist/aur
-          sed -i "s/@PROJECT_VERSION@/$(git describe --long --tags --abbrev=8 | sed 's/\([^-]*-g\)/r\1/;s/-/./g')/g" git/PKGBUILD
-          sed -i "s/@PROJECT_VERSION@/$(git describe --tags --abbrev=0)/g" stable/PKGBUILD
+          sed -i "s/@PROJECT_VERSION@/$(git describe --long --tags --abbrev=8 | sed 's/\([^-]*-g\)/r\1/;s/-/./g')/g" */PKGBUILD
+          sed -i "s|source=.*|source=(https://codeload.github.com/cpeditor/cpeditor/tar.gz/${{ github.sha }})|g" stable/PKGBUILD
       - name: Build Package
         uses: ouuan/pkgbuild-action@master
         id: build-pkg
