@@ -174,6 +174,8 @@ To prevent misparsing of string, we use following rules:
 
 * String starts with % is considered as a raw string. This is used for raw string that have special char at the beginning.
 
+    * Note, because of the [problem](https://github.com/jbeder/yaml-cpp/issues/261) of `yaml-cpp`, we compare the string value to parse number and boolean. Thus if you want a string value like `true`, `123`, please use prefix %.
+
     * `%#label` -> `"#label"`
 
 * String starts with * is considered as a raw string that needs to be translated.

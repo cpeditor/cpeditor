@@ -95,6 +95,14 @@ void writeHelper(ofstream &f, const YAML::Node &obj, const string &pre, int inde
     }
 }
 
+bool isNumber(const string &s)
+{
+    auto b = s.begin();
+    if (*b == '+' || *b == '-')
+        b++;
+    return b != s.end() && !any_of(b, s.end(), [](char c) { return !isdigit(c); });
+}
+
 string parseParam(const YAML::Node &obj, bool &isStr)
 {
     if (obj.IsScalar())
@@ -124,7 +132,7 @@ string parseParam(const YAML::Node &obj, bool &isStr)
         }
         // yaml-cpp cannot distinguish between "123" and 123
         // Luckily we have % to solve it
-        if (s == "true" || s == "false" || !any_of(s.begin(), s.end(), [](char c) { return !isdigit(c); }))
+        if (s == "true" || s == "false" || isNumber(s))
         {
             isStr = false;
             return s;
