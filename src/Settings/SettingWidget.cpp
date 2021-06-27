@@ -924,6 +924,11 @@ QString MapWrapper::askKey(const QString &suggest) const
                              QString(tr("%1 %2 already exists")).arg(iter.getDesc()).arg(key));
         return QString();
     }
+    if (key == "/")
+    {
+        QMessageBox::warning(rootWidget(), tr("Add failed"), QString(tr("Key '/' is not supported")));
+        return QString();
+    }
     QString message;
     if (!check.check(key, message))
     {

@@ -1135,6 +1135,10 @@ Do you want to reload it?</source>
         <source>rename</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Key &apos;/&apos; is not supported</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MessageLogger</name>
