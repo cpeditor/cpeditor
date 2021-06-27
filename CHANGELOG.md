@@ -2,6 +2,7 @@
 
 ### Fixed
 
+-   Fix that there's no suffix when using Default File Path For Problem URLs. (#894)
 -   Fix that when "Save Test Case To A File" the elided version instead of the full content of a test case was saved to the file.
 
 ## 6.8.2
