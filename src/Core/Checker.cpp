@@ -274,8 +274,7 @@ bool Checker::checkIgnoreTrailingSpaces(const QString &output, const QString &ex
         while (!answerLine.isEmpty() && answerLine.back().isSpace())
             answerLine.chop(1);
 
-        // if they are considered the same, the current line should be exactly the same after removing trailing
-        // spaces
+        // if they are considered the same, the current line should be exactly the same after removing trailing spaces
         if (outputLine != answerLine)
             return false;
     }
