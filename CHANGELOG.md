@@ -3,6 +3,7 @@
 ### Added
 
 -   Now the winlibs release on Windows includes LLVM. If you use the `clangd` in this release as the C++ Language Server, `<bits/stdc++.h>` should be properly recognized. (#878)
+-   Now checker can auto re-compile after changed. (#897) 
 
 ### Fixed
 
