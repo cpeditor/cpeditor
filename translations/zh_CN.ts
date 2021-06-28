@@ -1195,6 +1195,17 @@ Do you want to reload it?</source>
         <source>Failed to start compilation: %1</source>
         <translation>未能开始编译：%1</translation>
     </message>
+    <message>
+        <source>Re-complie checker</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Checker [%1]
+
+has been changed on disk.
+Do you want to re-complie it?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MessageLogger</name>

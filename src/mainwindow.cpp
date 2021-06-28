@@ -76,6 +76,7 @@ MainWindow::MainWindow(int index, AppWindow *parent)
 
     setEditor();
     connect(fileWatcher, &QFileSystemWatcher::fileChanged, this, &MainWindow::onFileWatcherChanged);
+    connect(checkerWatcher, &QFileSystemWatcher::fileChanged, this, &MainWindow::onCheckerWatcherChanged);
     connect(
         autoSaveTimer, &QTimer::timeout, autoSaveTimer, [this] { saveFile(AutoSave, tr("Auto Save"), false); },
         Qt::DirectConnection);
@@ -482,6 +483,7 @@ void MainWindow::loadStatus(const EditorStatus &status, bool duplicate)
         setFilePath(status.filePath);
     }
     testcases->addCustomCheckers(status.customCheckers);
+    checkerWatcher->addPaths(status.customCheckers);
     testcases->setCheckerIndex(status.checkerIndex);
     savedText = status.savedText;
     editor->setPlainText(status.editorText);
@@ -1199,6 +1201,29 @@ void MainWindow::onTextChanged()
     emit editorTextChanged(this);
 }
 
+void MainWindow::onCheckerAdded(const QString &path)
+{
+    LOG_DEV("Checker " << path << " added");
+    if (!checkerWatcher->files().isEmpty())
+        checkerWatcher->removePaths(checkerWatcher->files());
+    checkerWatcher->addPath(path);
+}
+
+void MainWindow::onCheckerWatcherChanged(const QString &path)
+{
+    LOG_DEV("Checker " << path << " changed");
+    if (testcases->checkerText() != path)
+        return;
+    emit confirmTriggered(this);
+    auto reload =
+        QMessageBox::question(this, tr("Re-complie checker"),
+                              tr("Checker [%1]\n\nhas been changed on disk.\nDo you want to re-complie it?").arg(path));
+    if (reload == QMessageBox::StandardButton::Yes)
+    {
+        updateChecker();
+    }
+}
+
 void MainWindow::onEditorFontChanged(const QFont &newFont)
 {
     SettingsHelper::setEditorFont(newFont);
@@ -1445,9 +1470,4 @@ void MainWindow::onRunKilled(int index)
     log->error(getRunnerHead(index),
                tr("%1 has been killed")
                    .arg(index == -1 ? tr("Detached runner") : tr("Runner for testcase #%1").arg(index + 1)));
-}
-
-void MainWindow::onCheckerAdded(const QString &path)
-{
-    checkerWatcher->addPath(path);
 }

@@ -151,6 +151,7 @@ class MainWindow : public QMainWindow
     void onRunKilled(int index);
 
     void onFileWatcherChanged(const QString &);
+    void onCheckerWatcherChanged(const QString &path);
     void onEditorFontChanged(const QFont &newFont);
     void onTextChanged();
     void updateCursorInfo();
