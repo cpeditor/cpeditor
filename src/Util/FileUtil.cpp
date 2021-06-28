@@ -20,6 +20,7 @@
 #include "Core/MessageLogger.hpp"
 #include "generated/SettingsHelper.hpp"
 #include <QCoreApplication>
+#include <QCryptographicHash>
 #include <QDesktopServices>
 #include <QDir>
 #include <QFile>
@@ -152,6 +153,16 @@ QString readFile(const QString &path, const QString &head, MessageLogger *log, b
     if (content.isNull())
         return "";
     return content;
+}
+
+QString getFileHash(const QString &path)
+{
+    QString content = readFile(path);
+    if (content.isEmpty())
+        return QString();
+    QCryptographicHash hash(QCryptographicHash::Md5);
+    hash.addData(content.toUtf8());
+    return hash.result().toHex();
 }
 
 QString configFilePath(QString path)

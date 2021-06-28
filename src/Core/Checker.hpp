@@ -108,6 +108,8 @@ class Checker : public QObject
      */
     void clearTasks();
 
+    QString hash;
+
   signals:
     /**
      * @brief return the check result

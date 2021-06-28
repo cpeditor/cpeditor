@@ -162,6 +162,16 @@ void MainWindow::run()
     if (SettingsHelper::isSaveFileOnExecution())
         saveFile(IgnoreUntitled, tr("Runner"), true);
 
+    if (testcases->checkerType() == Core::Checker::Custom)
+    {
+        QString newHash = Util::getFileHash(testcases->checkerText());
+        if (!newHash.isEmpty() && checker->hash != newHash)
+        {
+            LOG_INFO("Recompiling checker");
+            updateChecker();
+        }
+    }
+
     LOG_INFO("Requesting run of testcases");
     killProcesses();
     testcases->clearOutput();
