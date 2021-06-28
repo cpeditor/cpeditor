@@ -37,15 +37,11 @@
 #include "generated/version.hpp"
 #include <QCodeEditor>
 #include <QFileSystemWatcher>
-#include <QFontDialog>
 #include <QInputDialog>
 #include <QMessageBox>
 #include <QMimeData>
 #include <QRegularExpression>
-#include <QSaveFile>
 #include <QScrollBar>
-#include <QShortcut>
-#include <QSyntaxStyle>
 #include <QTemporaryDir>
 #include <QTextBlock>
 #include <QTimer>
@@ -949,12 +945,14 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
                     }
                 }
             }
+
             if (defaultPath.isEmpty())
             {
-                defaultPath = Util::fileNameWithSuffix(
-                    QDir(DefaultPathManager::defaultPathForAction("Save File")).filePath(getTabTitle(false, false)),
-                    language);
+                defaultPath =
+                    QDir(DefaultPathManager::defaultPathForAction("Save File")).filePath(getTabTitle(false, false));
             }
+
+            defaultPath = Util::fileNameWithSuffix(defaultPath, language);
         }
 
         // Create the parent directories of the default path if they don't exist,

@@ -9,6 +9,7 @@ jobs:
     name: makepkg ${{ matrix.pkg.name }}
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         pkg:
           - path: dist/aur/stable
@@ -20,16 +21,32 @@ jobs:
         with:
           submodules: recursive
           fetch-depth: 0
-      - name: Update Version
+
+      - name: Update Stable
+        if: matrix.pkg.name == 'cpeditor'
         run: |
-          cd dist/aur
-          sed -i "s/@PROJECT_VERSION@/$(git describe --long --tags --abbrev=8 | sed 's/\([^-]*-g\)/r\1/;s/-/./g')/g" git/PKGBUILD
-          sed -i "s/@PROJECT_VERSION@/$(git describe --tags --abbrev=0)/g" stable/PKGBUILD
+          shopt -s extglob # enable "!(...)"
+          mv .git/objects/pack .
+          git unpack-objects < pack/*.pack
+          rm -rf pack .git/objects/!($(git rev-parse @ | cut -c-2)) .git/objects/$(git rev-parse @ | cut -c-2)/!($(git rev-parse @ | cut -c3-))
+          wget https://raw.githubusercontent.com/Kentzo/git-archive-all/master/git_archive_all.py
+          python3 git_archive_all.py dist/aur/stable/cpeditor-0.0.0-full-source.tar.gz --extra=.git/HEAD --extra=.git/refs --extra=.git/objects
+          cd dist/aur/stable
+          sed -i "s/@PROJECT_VERSION@/0.0.0/g" PKGBUILD
+          sed -i "s|source=.*|source=(cpeditor-0.0.0-full-source.tar.gz)|g" PKGBUILD
+
+      - name: Update Git
+        if: matrix.pkg.name == 'cpeditor-git'
+        run: |
+          cd dist/aur/git
+          sed -i "s/@PROJECT_VERSION@/$(git describe --long --tags --abbrev=8 | sed 's/\([^-]*-g\)/r\1/;s/-/./g')/g" PKGBUILD
+
       - name: Build Package
         uses: ouuan/pkgbuild-action@master
         id: build-pkg
         with:
           path: ${{ matrix.pkg.path }}
+
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
