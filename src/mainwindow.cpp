@@ -1210,12 +1210,12 @@ void MainWindow::onCheckerAdded(const QString &path)
 void MainWindow::onCheckerWatcherChanged(const QString &path)
 {
     LOG_DEV("Checker " << path << " changed");
-    if (testcases->checkerText() != path)
+    if (testcases->checkerText() != path || !SettingsHelper::isAskForRecompilingCheckerWhenChanged())
         return;
     emit confirmTriggered(this);
     auto reload =
-        QMessageBox::question(this, tr("Re-complie checker"),
-                              tr("Checker [%1]\n\nhas been changed on disk.\nDo you want to re-complie it?").arg(path));
+        QMessageBox::question(this, tr("Re-compile checker"),
+                              tr("Checker [%1]\n\nhas been changed on disk.\nDo you want to re-compile it?").arg(path));
     if (reload == QMessageBox::StandardButton::Yes)
     {
         updateChecker();

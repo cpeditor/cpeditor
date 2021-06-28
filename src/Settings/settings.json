@@ -1182,5 +1182,11 @@
     "type": "bool",
     "default": false,
     "notr": true
+  },
+  {
+    "name": "Ask For Recompiling Checker When Changed",
+    "desc": "Ask whether to re-compile current checker when it changed",
+    "type": "bool",
+    "default": true
   }
 ]

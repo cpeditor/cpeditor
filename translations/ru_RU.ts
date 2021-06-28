@@ -1196,14 +1196,14 @@ Do you want to reload it?</source>
         <translation>Ошибка старта компиляции: %1</translation>
     </message>
     <message>
-        <source>Re-complie checker</source>
+        <source>Re-compile checker</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Checker [%1]
 
 has been changed on disk.
-Do you want to re-complie it?</source>
+Do you want to re-compile it?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2636,6 +2636,10 @@ You can learn about it by running `yapf --style-help`.</source>
     </message>
     <message>
         <source>Automatically uncheck test cases when they get accepted.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ask whether to re-compile current checker when it changed</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

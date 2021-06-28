@@ -1196,14 +1196,14 @@ Do you want to reload it?</source>
         <translation>未能开始编译：%1</translation>
     </message>
     <message>
-        <source>Re-complie checker</source>
+        <source>Re-compile checker</source>
         <translation>重编译评测器</translation>
     </message>
     <message>
         <source>Checker [%1]
 
 has been changed on disk.
-Do you want to re-complie it?</source>
+Do you want to re-compile it?</source>
         <translation>评测器 [%1]
 
 在磁盘上已被更改。
@@ -2632,6 +2632,10 @@ You can learn about it by running `yapf --style-help`.</source>
     <message>
         <source>Automatically uncheck test cases when they get accepted.</source>
         <translation>在测试点通过测试时自动取消选中。</translation>
+    </message>
+    <message>
+        <source>Ask whether to re-compile current checker when it changed</source>
+        <translation>在评测器被更改时询问是否重新编译</translation>
     </message>
 </context>
 <context>
