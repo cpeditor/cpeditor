@@ -1197,14 +1197,17 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>Re-complie checker</source>
-        <translation type="unfinished"></translation>
+        <translation>重编译评测器</translation>
     </message>
     <message>
         <source>Checker [%1]
 
 has been changed on disk.
 Do you want to re-complie it?</source>
-        <translation type="unfinished"></translation>
+        <translation>评测器 [%1]
+
+在磁盘上已被更改。
+你希望重新编译它吗？</translation>
     </message>
 </context>
 <context>
