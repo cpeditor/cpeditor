@@ -24,8 +24,8 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 
-PreferencesTemplate::PreferencesTemplate(QStringList opts, const QString &path, const QString &trPath, bool alignTop,
-                                         QWidget *parent)
+PreferencesTemplate::PreferencesTemplate(const QStringList &opts, const QString &path, const QString &trPath,
+                                         bool alignTop, QWidget *parent)
     : PreferencesPage(parent)
 {
     PreferencesPage::setPath(path, trPath);
@@ -33,7 +33,7 @@ PreferencesTemplate::PreferencesTemplate(QStringList opts, const QString &path, 
     QStringList temp;
     for (const auto &s : opts)
     {
-        if (s == "===" && temp.size() > 0)
+        if (s == "===" && !temp.empty())
         {
             options.push_back(temp);
             temp.clear();
@@ -41,7 +41,7 @@ PreferencesTemplate::PreferencesTemplate(QStringList opts, const QString &path, 
         else
             temp.push_back(s);
     }
-    if (temp.size() > 0)
+    if (!temp.empty())
         options.push_back(temp);
 
     for (const auto &os : options)

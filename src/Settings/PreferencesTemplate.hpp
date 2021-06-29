@@ -28,8 +28,8 @@ class PreferencesTemplate : public PreferencesPage
     Q_OBJECT
 
   public:
-    explicit PreferencesTemplate(QStringList opts, const QString &path, const QString &trPath, bool alignTop = true,
-                                 QWidget *parent = nullptr);
+    explicit PreferencesTemplate(const QStringList &opts, const QString &path, const QString &trPath,
+                                 bool alignTop = true, QWidget *parent = nullptr);
 
     QStringList content() override;
 
