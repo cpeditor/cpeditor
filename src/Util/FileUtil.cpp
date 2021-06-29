@@ -20,7 +20,6 @@
 #include "Core/MessageLogger.hpp"
 #include "generated/SettingsHelper.hpp"
 #include <QCoreApplication>
-#include <QCryptographicHash>
 #include <QDesktopServices>
 #include <QDir>
 #include <QFile>
