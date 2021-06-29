@@ -25,7 +25,6 @@
 #include "generated/SettingsHelper.hpp"
 #include "generated/version.hpp"
 #include "mainwindow.hpp"
-#include <QApplication>
 #include <QCommandLineParser>
 #include <QDialog>
 #include <QDir>
@@ -46,13 +45,13 @@
 int main(int argc, char *argv[])
 {
     Application app(argc, argv);
-    SingleApplication::setApplicationName("CP Editor");
-    SingleApplication::setApplicationVersion(DISPLAY_VERSION);
-    QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
+    Application::setApplicationName("cpeditor");
+    Application::setApplicationVersion(DISPLAY_VERSION);
+    Application::setAttribute(Qt::AA_UseHighDpiPixmaps);
 #ifdef Q_OS_MACOS
-    QApplication::setWindowIcon(QIcon(":/macos-icon.png"));
+    Application::setWindowIcon(QIcon(":/macos-icon.png"));
 #else
-    QApplication::setWindowIcon(QIcon(":/icon.png"));
+    Application::setWindowIcon(QIcon(":/icon.png"));
 #endif
 
 #ifdef Q_OS_WIN
@@ -63,7 +62,7 @@ int main(int argc, char *argv[])
     QObject::connect(&handler, &SignalHandler::signalReceived, qApp, [](int signal) {
         if (qApp)
         {
-            auto widgets = QApplication::topLevelWidgets();
+            auto widgets = Application::topLevelWidgets();
             for (auto *widget : widgets)
             {
                 auto *dialog = qobject_cast<QDialog *>(widget);
@@ -221,10 +220,10 @@ int main(int argc, char *argv[])
 
         AppWindow w(cpp, java, python, noHotExit, number, path);
         LOG_INFO("Launched window connecting this window to onReceiveMessage()");
-        QObject::connect(&app, &SingleApplication::receivedMessage, &w, &AppWindow::onReceivedMessage);
+        QObject::connect(&app, &Application::receivedMessage, &w, &AppWindow::onReceivedMessage);
         LOG_INFO("Showing the application window and beginning the event loop");
         w.show();
-        return SingleApplication::exec();
+        return Application::exec();
     }
     LOG_INFO("Staarting in normal mode. Now parsing depth");
     bool ok = false;
@@ -275,11 +274,11 @@ int main(int argc, char *argv[])
 
     AppWindow w(depth, cpp, java, python, noHotExit, args);
     LOG_INFO("Launched window connecting this window to onReceiveMessage()");
-    QObject::connect(&app, &SingleApplication::receivedMessage, &w, &AppWindow::onReceivedMessage);
+    QObject::connect(&app, &Application::receivedMessage, &w, &AppWindow::onReceivedMessage);
     LOG_INFO("Showing the application window and beginning the event loop");
 
     w.show();
-    return SingleApplication::exec();
+    return Application::exec();
 }
 
 #undef TOJSON

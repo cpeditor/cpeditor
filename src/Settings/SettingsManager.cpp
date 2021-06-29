@@ -171,9 +171,10 @@ long long SettingsManager::startTime = 0;
 
 const static QStringList configFileLocations = {
 #ifdef PORTABLE_VERSION
+    "$BINARY/config.yml"
     "$BINARY/cp_editor_settings.ini",
 #endif
-    "$APPCONFIG/cp_editor_settings.yml", "$APPCONFIG/cp_editor_settings.ini", "$HOME/.cp_editor_settings.ini",
+    "$APPCONFIG/config.yml", "$OLDAPPCONFIG/cp_editor_settings.ini", "$HOME/.cp_editor_settings.ini",
     "$HOME/cp_editor_settings.ini"};
 
 void SettingsManager::load(const YAML::Node &setting, const QString &prefix,

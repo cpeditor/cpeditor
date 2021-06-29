@@ -157,6 +157,8 @@ QString readFile(const QString &path, const QString &head, MessageLogger *log, b
 QString configFilePath(QString path)
 {
     return path.replace("$APPCONFIG", QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation))
+        .replace("$OLDAPPCONFIG",
+                 QDir(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation)).filePath("CP Editor"))
         .replace("$HOME", QStandardPaths::writableLocation(QStandardPaths::HomeLocation))
         .replace("$BINARY", QCoreApplication::applicationDirPath());
 }
