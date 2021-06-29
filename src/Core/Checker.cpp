@@ -37,7 +37,7 @@ Checker::Checker(CheckerType type, MessageLogger *logger, QObject *parent) : QOb
 
 Checker::Checker(const QString &path, MessageLogger *logger, QObject *parent) : Checker(Custom, logger, parent)
 {
-    checkerPath = path;
+    checkerPath = checkerResource = path;
     LOG_INFO("Updated checker path to " << path);
 }
 
@@ -50,8 +50,9 @@ Checker::~Checker()
     LOG_INFO("Destroyed checker of type " << checkerType);
 }
 
-void Checker::prepare(const QString &compileCommand)
+void Checker::prepare()
 {
+    QString compileCommand = SettingsManager::get(QString("C++/Compile Command")).toString();
     clearTasks();
 
     if (!compiled)
@@ -59,40 +60,38 @@ void Checker::prepare(const QString &compileCommand)
         LOG_INFO("Compiling checker with command " << compileCommand);
         // compile the checker if it's not compiled
 
-        QString checkerResource;
-
         // get the checker resource
-        switch (checkerType)
+        if (checkerResource.isEmpty())
         {
-        case IgnoreTrailingSpaces:
-        case Strict:
-            onCompilationFinished(); // terminate compilation if this is a built-in checker
-            return;
-        case Ncmp:
-            checkerResource = ":/testlib/checkers/ncmp.cpp";
-            break;
-        case Rcmp4:
-            checkerResource = ":/testlib/checkers/rcmp4.cpp";
-            break;
-        case Rcmp6:
-            checkerResource = ":/testlib/checkers/rcmp6.cpp";
-            break;
-        case Rcmp9:
-            checkerResource = ":/testlib/checkers/rcmp9.cpp";
-            break;
-        case Wcmp:
-            checkerResource = ":/testlib/checkers/wcmp.cpp";
-            break;
-        case Nyesno:
-            checkerResource = ":/testlib/checkers/nyesno.cpp";
-            break;
-        case Custom:
-            checkerResource = checkerPath;
-            break;
+            switch (checkerType)
+            {
+            case IgnoreTrailingSpaces:
+            case Strict:
+                onCompilationFinished(); // terminate compilation if this is a built-in checker
+                return;
+            case Ncmp:
+                checkerResource = ":/testlib/checkers/ncmp.cpp";
+                break;
+            case Rcmp4:
+                checkerResource = ":/testlib/checkers/rcmp4.cpp";
+                break;
+            case Rcmp6:
+                checkerResource = ":/testlib/checkers/rcmp6.cpp";
+                break;
+            case Rcmp9:
+                checkerResource = ":/testlib/checkers/rcmp9.cpp";
+                break;
+            case Wcmp:
+                checkerResource = ":/testlib/checkers/wcmp.cpp";
+                break;
+            case Nyesno:
+                checkerResource = ":/testlib/checkers/nyesno.cpp";
+                break;
+            case Custom:
+                checkerResource = checkerPath;
+                break;
+            }
         }
-
-        hash = Util::getFileHash(checkerResource);
-
         // get the code of the checker
         QString checkerCode = Util::readFile(checkerResource, tr("Read Checker"), log);
         if (checkerCode.isNull())
@@ -132,6 +131,12 @@ void Checker::prepare(const QString &compileCommand)
 
 void Checker::reqeustCheck(int index, const QString &input, const QString &output, const QString &expected)
 {
+    if (!isLatest())
+    {
+        LOG_INFO("Recompiling checker");
+        compiled = false;
+        prepare();
+    }
     LOG_INFO(BOOL_INFO_OF(compiled));
     if (compiled)
         check(index, input, output, expected); // check immediately if the checker is compiled
@@ -155,6 +160,10 @@ void Checker::clearTasks()
 void Checker::onCompilationFinished()
 {
     compiled = true; // mark that the checker is compiled
+    if (!checkerResource.isEmpty())
+    {
+        hash = Util::getFileHash(checkerResource);
+    }
     if (checkerType >= Ncmp)
         log->info(tr("Checker"), tr("The checker is compiled"));
     for (auto const &t : pendingTasks)
@@ -331,6 +340,16 @@ void Checker::check(int index, const QString &input, const QString &output, cons
 QString Checker::head(int index)
 {
     return tr("Checker[%1]").arg(index + 1);
+}
+
+bool Checker::isLatest()
+{
+    if (checkerResource.isEmpty())
+        return true;
+    QString newHash = Util::getFileHash(checkerResource);
+    if (newHash.isEmpty() || newHash == hash)
+        return true;
+    return false;
 }
 
 } // namespace Core

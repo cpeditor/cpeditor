@@ -87,10 +87,9 @@ class Checker : public QObject
 
     /**
      * @brief prepare for checking
-     * @param compileCommand the command used to compile the checker
      * @note Testlib checkers will be compiled after calling this function. This should be called only once.
      */
-    void prepare(const QString &compileCommand);
+    void prepare();
 
     /**
      * @brief request the checker to check a testcase
@@ -169,6 +168,8 @@ class Checker : public QObject
      */
     static QString head(int index);
 
+    bool isLatest();
+
     // a struct with the info of a testcase, or called a check task, used to save check requests
     struct Task
     {
@@ -189,8 +190,9 @@ class Checker : public QObject
         _partially = 16
     };
 
-    CheckerType checkerType;         // the type of the checker
-    QString checkerPath;             // the file path to the custom checker
+    CheckerType checkerType; // the type of the checker
+    QString checkerPath;     // the file path to the custom checker
+    QString checkerResource;
     QTemporaryDir *tmpDir = nullptr; // the temp directory to save the I/O files, testlib.h and the compiled checker
                                      // It's not needed by built-in checkers
     MessageLogger *log = nullptr;    // the message logger to show messages to the user
