@@ -112,7 +112,7 @@ void Checker::prepare()
     connect(compiler, &Compiler::compilationErrorOccurred, this, &Checker::onCompilationErrorOccurred);
     connect(compiler, &Compiler::compilationFailed, this, &Checker::onCompilationFailed);
     connect(compiler, &Compiler::compilationKilled, this, &Checker::onCompilationKilled);
-    compiler->start(checkerTmpPath, "", SettingsHelper::getCppCompileCommand(), "");
+    compiler->start(checkerTmpPath, "", SettingsHelper::getCppCompileCommand(), "C++");
 }
 
 void Checker::reqeustCheck(int index, const QString &input, const QString &output, const QString &expected)
