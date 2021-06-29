@@ -10,8 +10,6 @@
 #include <QTextCodec>
 #include <QVBoxLayout>
 
-#include <QDebug>
-
 void SettingBase::setdef()
 {
     setV(iter.getDefault());
@@ -710,6 +708,7 @@ void MapWrapper::init(QWidget *parent, QVariant param)
     action.parent = this;
 
     widget = new QSplitter(parent);
+    widget->setChildrenCollapsible(false);
 
     auto *leftWidget = new QWidget(widget);
     auto *leftLayout = new QVBoxLayout(leftWidget);
@@ -766,18 +765,21 @@ void MapWrapper::init(QWidget *parent, QVariant param)
     }
     leftLayout->addWidget(list);
 
-    auto *btnLayout = new QHBoxLayout;
+    auto *btnLayout = new QVBoxLayout;
 
     if (!noadddel)
     {
+        auto *adl = new QHBoxLayout;
         btnadd = new QPushButton(tr("Add"), leftWidget);
-        btnLayout->addWidget(btnadd);
+        adl->addWidget(btnadd);
         connect(btnadd, &QPushButton::clicked, this, &MapWrapper::reqAdd);
 
         btndel = new QPushButton(tr("Del"), leftWidget);
-        btnLayout->addWidget(btndel);
+        adl->addWidget(btndel);
         connect(btndel, &QPushButton::clicked, this, &MapWrapper::reqDel);
         btndel->setEnabled(false);
+
+        btnLayout->addLayout(adl);
     }
 
     if (action.hasMore() || allowRename)
@@ -810,6 +812,8 @@ void MapWrapper::init(QWidget *parent, QVariant param)
     connect(list, &QListWidget::currentTextChanged, this, &MapWrapper::show);
 
     widget->addWidget(right);
+    widget->setStretchFactor(0, 1);
+    widget->setStretchFactor(1, INT_MAX);
 }
 
 QMap<QString, QVariant> MapWrapper::get() const
@@ -832,8 +836,6 @@ void MapWrapper::enable(bool enabled)
         rights[cur]->enable(enabled);
     }
 }
-
-#include <QDebug>
 
 void MapWrapper::setdef()
 {

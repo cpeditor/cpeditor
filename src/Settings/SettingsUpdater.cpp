@@ -95,7 +95,7 @@ void SettingsUpdater::updateSetting_INI(QSettings &setting)
             {
                 auto l = setting.value("parentheses").toList();
                 QStringList ks;
-                for (auto v : l)
+                for (const auto &v : l)
                 {
                     auto vl = v.toList();
                     if (vl.size() != 5)
@@ -139,7 +139,7 @@ void SettingsUpdater::updateSetting_INI(QSettings &setting)
         {
             auto l = setting.value("names_and_paths").toList();
             QStringList ks;
-            for (auto v : l)
+            for (const auto &v : l)
             {
                 auto vl = v.toList();
                 if (vl.size() != 2)
