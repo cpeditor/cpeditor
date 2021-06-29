@@ -134,6 +134,16 @@ void Checker::onCompilationStarted()
     log->info(tr("Checker"), tr("Started compiling the checker"));
 }
 
+void Checker::clearTasks()
+{
+    pendingTasks.clear();
+    for (auto &t : runners)
+    {
+        delete t;
+    }
+    runners.clear();
+}
+
 void Checker::onCompilationFinished()
 {
     if (!isLatest())
