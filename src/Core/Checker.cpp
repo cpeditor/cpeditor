@@ -117,11 +117,7 @@ void Checker::prepare()
 
 void Checker::reqeustCheck(int index, const QString &input, const QString &output, const QString &expected)
 {
-    if (!isLatest())
-    {
-        LOG_INFO("Recompiling checker");
-        prepare();
-    }
+    recompileIfChanged();
     LOG_INFO(BOOL_INFO_OF(compiled));
     if (compiled)
         check(index, input, output, expected); // check immediately if the checker is compiled
@@ -146,11 +142,8 @@ void Checker::clearTasks()
 
 void Checker::onCompilationFinished()
 {
-    if (!isLatest())
-    {
-        prepare();
+    if (recompileIfChanged())
         return;
-    }
     compiled = true;
     log->info(tr("Checker"), tr("The checker is compiled"));
     for (auto const &t : pendingTasks)
@@ -329,12 +322,16 @@ QString Checker::head(int index)
     return tr("Checker[%1]").arg(index + 1);
 }
 
-bool Checker::isLatest()
+bool Checker::recompileIfChanged()
 {
     if (checkerOriginalPath.isEmpty())
-        return true;
+        return false;
     const QString currentCheckerCode = Util::readFile(checkerOriginalPath, "Read Checker", log);
-    return currentCheckerCode.isNull() || currentCheckerCode == checkerCode;
+    if (currentCheckerCode.isNull() || currentCheckerCode == checkerCode)
+        return false;
+    LOG_INFO("Recompiling checker");
+    prepare();
+    return true;
 }
 
 } // namespace Core

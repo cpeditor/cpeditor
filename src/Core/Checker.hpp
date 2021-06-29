@@ -165,7 +165,10 @@ class Checker : public QObject
      */
     static QString head(int index);
 
-    bool isLatest();
+    /**
+     * @returns if checker is changed, it starts recompilation and returns true; otherwise, returns false
+     */
+    bool recompileIfChanged();
 
     // a struct with the info of a testcase, or called a check task, used to save check requests
     struct Task
