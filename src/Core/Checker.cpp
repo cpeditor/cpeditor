@@ -330,6 +330,7 @@ bool Checker::recompileIfChanged()
     if (currentCheckerCode.isNull() || currentCheckerCode == checkerCode)
         return false;
     LOG_INFO("Recompiling checker");
+    log->info(tr("Checker"), tr("The source code of the checker has changed, recompiling..."));
     prepare();
     return true;
 }
