@@ -155,16 +155,6 @@ QString readFile(const QString &path, const QString &head, MessageLogger *log, b
     return content;
 }
 
-QString getFileHash(const QString &path)
-{
-    QString content = readFile(path);
-    if (content.isEmpty())
-        return QString();
-    QCryptographicHash hash(QCryptographicHash::Md5);
-    hash.addData(content.toUtf8());
-    return hash.result().toHex();
-}
-
 QString configFilePath(QString path)
 {
     return path.replace("$APPCONFIG", QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation))
