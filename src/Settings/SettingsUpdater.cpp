@@ -131,6 +131,53 @@ void SettingsUpdater::updateSetting_INI(QSettings &setting)
             setting.endGroup();
         }
     }
+
+    if (setting.childGroups().contains("default_path"))
+    {
+        setting.beginGroup("default_path");
+        if (setting.contains("names_and_paths"))
+        {
+            auto l = setting.value("names_and_paths").toList();
+            QStringList ks;
+            for (auto v : l)
+            {
+                auto vl = v.toList();
+                if (vl.size() != 2)
+                    continue;
+                auto k = vl[0].toString();
+                auto p = vl[1].toString();
+                ks.push_back(k);
+                SettingsHelper::getDefaultPath(k).setPath(p);
+            }
+            SettingsHelper::setDefaultPath(ks);
+        }
+        if (setting.childGroups().contains("action"))
+        {
+            setting.beginGroup("action");
+            QMap<QString, QString> acts = {
+                {"open_file", "Open File"},
+                {"save_file", "Save File"},
+                {"open_contest", "Open Contest"},
+                {"load_single_test_case", "Load Single Test Case"},
+                {"add_pairs_of_test_cases", "Add Pairs Of Test Cases"},
+                {"save_test_case_to_a_file", "Save Test Case To A File"},
+                {"custom_checker", "Custom Checker"},
+                {"export_and_import_settings", "Export And Import Settings"},
+                {"export_and_load_session", "Export And Load Session"},
+                {"extract_and_load_snippets", "Extract And Load Snippets"},
+            };
+            for (const auto &key : acts.keys())
+            {
+                if (setting.contains(key + "/uses"))
+                    SettingsHelper::getDefaultPathAction(acts[key]).setUses(setting.value(key + "/uses").toString());
+                if (setting.contains(key + "/changes"))
+                    SettingsHelper::getDefaultPathAction(acts[key]).setChanges(
+                        setting.value(key + "/changes").toString());
+            }
+            setting.endGroup();
+        }
+        setting.endGroup();
+    }
 }
 
 void SettingsUpdater::updateSettingFinal()
