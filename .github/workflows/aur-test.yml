@@ -39,6 +39,7 @@ jobs:
         if: matrix.pkg.name == 'cpeditor-git'
         run: |
           cd dist/aur/git
+          sed -i "s|git://github.com/cpeditor/cpeditor.git|git+$(git remote get-url origin)#commit=${{ github.sha }}|g" PKGBUILD
           sed -i "s/@PROJECT_VERSION@/$(git describe --long --tags --abbrev=8 | sed 's/\([^-]*-g\)/r\1/;s/-/./g')/g" PKGBUILD
 
       - name: Build Package
