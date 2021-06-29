@@ -1356,10 +1356,6 @@ Do you want to reload it?</source>
         <source>Test Cases</source>
         <translation type="unfinished">Тесткейсы</translation>
     </message>
-    <message>
-        <source>Language Config</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>SettingsInfo</name>
