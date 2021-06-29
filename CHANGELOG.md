@@ -1,11 +1,5 @@
 ## UNRELEASED
 
-### Fixed
-
--   Fix that two dialogs are shown when entering full-screen mode for the first time. (#875)
-
-## v6.9
-
 ### Added
 
 -   Now the winlibs release on Windows includes LLVM. If you use the `clangd` in this release as the C++ Language Server, `<bits/stdc++.h>` should be properly recognized. (#878)
