@@ -21,6 +21,8 @@
 #include "Settings/PreferencesPage.hpp"
 #include "Settings/SettingWidget.hpp"
 
+struct SettingsWrapper;
+
 class PreferencesTemplate : public PreferencesPage
 {
     Q_OBJECT
@@ -38,8 +40,8 @@ class PreferencesTemplate : public PreferencesPage
     void makeSettingsTheSameAsUI() override;
 
   private:
-    QStringList options;
-    SettingsWrapper *panel;
+    QList<QStringList> options;
+    QList<SettingsWrapper *> wraps;
 };
 
 #endif // PREFERENCESPAGETEMPLATE_HPP

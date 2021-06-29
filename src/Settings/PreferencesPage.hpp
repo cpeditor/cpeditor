@@ -151,6 +151,7 @@ class PreferencesPage : public QWidget
     void addItem(QLayoutItem *item);
 
     void registerWidget(const QString &key, SettingBase *widget) const;
+    void registerWidgets(const QString &key, QList<SettingBase *> widgets) const;
 
   protected slots:
     /**

@@ -47,6 +47,8 @@ If a group of setting is only supported on certain os, use `<xxx>` as prefix. xx
 
 Currently os restricting for a single option is not supported.
 
+Use `- ===` to separate options into different form layout. This is usually used when putting Object and other type of options in the same page.
+
 #### data
 
 It includes description of all settings, including those not in the Settings Interface.

@@ -154,6 +154,14 @@ void PreferencesPage::registerWidget(const QString &key, SettingBase *widget) co
     SettingsManager::setWidget(key, widget->rootWidget());
 }
 
+void PreferencesPage::registerWidgets(const QString &key, QList<SettingBase *> widgets) const
+{
+    for (auto *w : widgets)
+        QObject::connect(w, &SettingBase::valueChanged, this, &PreferencesPage::updateButtons, Qt::QueuedConnection);
+
+    SettingsManager::setWidget(key, widgets.front()->rootWidget());
+}
+
 void PreferencesPage::loadDefault()
 {
     makeUITheSameAsDefault();

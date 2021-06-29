@@ -44,10 +44,9 @@ pageInfo:
   - Tab Jump Out Parentheses
   - Replace Tabs"
   Language:
-    General:
-    - Default Language
-    Language Config: 
-    - Language Config
+  - Default Language
+  - ===
+  - Language Config
   Appearance:
     General:
     - Locale

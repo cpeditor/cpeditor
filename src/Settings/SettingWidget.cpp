@@ -59,7 +59,7 @@ QString SettingBase::docLink() const
     auto prefix = Util::websiteLink("docs/preferences/" + Util::sanitizeAnchorName(path.split('/').first()));
     return QString("<a href='%1#%2'>(?)</a>")
         .arg(prefix)
-        .arg(iter->docAnchor.isEmpty() ? Util::sanitizeAnchorName(iter.getDesc(false)) : iter->docAnchor);
+        .arg(iter->docAnchor.isEmpty() ? Util::sanitizeAnchorName(iter.getDesc(true)) : iter->docAnchor);
 }
 
 void CheckBoxWrapper::init(QWidget *parent, QVariant param)
@@ -808,6 +808,8 @@ void MapWrapper::init(QWidget *parent, QVariant param)
     right = new QStackedWidget(widget);
 
     connect(list, &QListWidget::currentTextChanged, this, &MapWrapper::show);
+
+    widget->addWidget(right);
 }
 
 QMap<QString, QVariant> MapWrapper::get() const

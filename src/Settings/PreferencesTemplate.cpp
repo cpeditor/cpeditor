@@ -21,32 +21,71 @@
 #include "Settings/SettingsManager.hpp"
 #include "Util/Util.hpp"
 #include <QCheckBox>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
 
 PreferencesTemplate::PreferencesTemplate(QStringList opts, const QString &path, const QString &trPath, bool alignTop,
                                          QWidget *parent)
-    : PreferencesPage(parent), options(std::move(opts))
+    : PreferencesPage(parent)
 {
     PreferencesPage::setPath(path, trPath);
 
-    QMap<QString, QVariant> var;
-    var["filter"] = options;
+    QStringList temp;
+    for (const auto &s : opts)
+    {
+        if (s == "===" && temp.size() > 0)
+        {
+            options.push_back(temp);
+            temp.clear();
+        }
+        else
+            temp.push_back(s);
+    }
+    if (temp.size() > 0)
+        options.push_back(temp);
 
-    panel = new SettingsWrapper;
-    panel->path = path;
-    panel->trPath = trPath;
-    panel->iter = SettingsInfo::fakeRootIter();
-    panel->init(this, var);
+    for (const auto &os : options)
+    {
+        QMap<QString, QVariant> var;
+        var["filter"] = os;
+
+        auto *panel = new SettingsWrapper;
+        panel->path = path;
+        panel->trPath = trPath;
+        panel->iter = SettingsInfo::fakeRootIter();
+        panel->init(this, var);
+        wraps.push_back(panel);
+    }
+
     makeUITheSameAsSettings();
-    panel->enable(true);
 
-    registerWidget(path, panel);
+    QList<SettingBase *> tws;
 
-    addWidget(panel->rootWidget());
+    for (auto *w : wraps)
+    {
+        w->enable(true);
+        tws.push_back(w);
+    }
+
+    registerWidgets(path, tws);
+
+    auto *vlayout = new QVBoxLayout();
+    vlayout->addSpacing(20);
+    for (auto *w : wraps)
+        vlayout->addWidget(w->rootWidget());
+    vlayout->addSpacing(20);
+    auto *layout = new QHBoxLayout();
+    layout->addStretch();
+    layout->addLayout(vlayout);
+    layout->addStretch();
+    addLayout(layout);
 }
 
 QStringList PreferencesTemplate::content()
 {
-    auto ctt = panel->content();
+    QStringList ctt;
+    for (auto *w : wraps)
+        ctt += w->content();
     std::sort(ctt.begin(), ctt.end());
     ctt.erase(std::unique(ctt.begin(), ctt.end()), ctt.end());
     return ctt;
@@ -54,20 +93,20 @@ QStringList PreferencesTemplate::content()
 
 bool PreferencesTemplate::areSettingsChanged()
 {
-    return panel->changed();
+    return std::any_of(wraps.begin(), wraps.end(), [](SettingsWrapper *w) { return w->changed(); });
 }
 
 void PreferencesTemplate::makeUITheSameAsDefault()
 {
-    panel->setdef();
+    std::for_each(wraps.begin(), wraps.end(), [](SettingsWrapper *w) { w->setdef(); });
 }
 
 void PreferencesTemplate::makeUITheSameAsSettings()
 {
-    panel->reset();
+    std::for_each(wraps.begin(), wraps.end(), [](SettingsWrapper *w) { w->reset(); });
 }
 
 void PreferencesTemplate::makeSettingsTheSameAsUI()
 {
-    panel->apply();
+    std::for_each(wraps.begin(), wraps.end(), [](SettingsWrapper *w) { w->apply(); });
 }
