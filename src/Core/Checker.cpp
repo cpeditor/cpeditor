@@ -347,9 +347,7 @@ bool Checker::isLatest()
     if (checkerResource.isEmpty())
         return true;
     QString newHash = Util::getFileHash(checkerResource);
-    if (newHash.isEmpty() || newHash == hash)
-        return true;
-    return false;
+    return newHash.isEmpty() || newHash == hash;
 }
 
 } // namespace Core
