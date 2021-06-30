@@ -80,7 +80,7 @@ class PreferencesPage : public QWidget
      * @brief a virtual destructor that does nothing
      * @note the widgets are destructed by Qt, so we shouldn't destruct them in the codes
      */
-    virtual ~PreferencesPage(){};
+    ~PreferencesPage() override = default;
 
     /**
      * @brief ask the user whether to save, discard or cancel if there are unsaved changes

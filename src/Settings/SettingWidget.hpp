@@ -23,7 +23,7 @@ struct SettingBase : public QObject
     Q_OBJECT
 
   public:
-    SettingBase *parent = 0;
+    SettingBase *parent = nullptr;
     QString path, trPath;
     SettingsInfo::SettingIter iter;
 
@@ -52,11 +52,11 @@ template <typename Type> struct SettingTemplate : public SettingBase
     virtual Type get() const = 0;
     virtual void set(const Type &) = 0;
 
-    virtual QVariant getV() const override final
+    QVariant getV() const final
     {
         return get();
     }
-    virtual void setV(QVariant v) override final
+    void setV(QVariant v) final
     {
         set(v.value<Type>());
     }
@@ -64,7 +64,7 @@ template <typename Type> struct SettingTemplate : public SettingBase
 
 template <typename Type, typename RootWidget> struct WrapperTemplate : public SettingTemplate<Type>
 {
-    virtual QWidget *rootWidget() const override final
+    QWidget *rootWidget() const final
     {
         return widget;
     }
@@ -75,92 +75,92 @@ template <typename Type, typename RootWidget> struct WrapperTemplate : public Se
 
 struct CheckBoxWrapper : public WrapperTemplate<bool, RichTextCheckBox>
 {
-    virtual void init(QWidget *parent, QVariant param = QVariant()) override;
-    virtual bool get() const override;
-    virtual void set(const bool &v) override;
+    void init(QWidget *parent, QVariant param = QVariant()) override;
+    bool get() const override;
+    void set(const bool &v) override;
 };
 
 struct TristateCheckBoxWrapper : public WrapperTemplate<int, RichTextCheckBox>
 {
-    virtual void init(QWidget *parent, QVariant param = QVariant()) override;
-    virtual int get() const override;
-    virtual void set(const int &v) override;
+    void init(QWidget *parent, QVariant param = QVariant()) override;
+    int get() const override;
+    void set(const int &v) override;
 };
 
 struct LineEditWrapper : public WrapperTemplate<QString, QLineEdit>
 {
-    virtual void init(QWidget *parent, QVariant param = QVariant()) override;
-    virtual QString get() const override;
-    virtual void set(const QString &v) override;
+    void init(QWidget *parent, QVariant param = QVariant()) override;
+    QString get() const override;
+    void set(const QString &v) override;
 };
 
 struct PlainTextEditWrapper : public WrapperTemplate<QString, QPlainTextEdit>
 {
-    virtual void init(QWidget *parent, QVariant param = QVariant()) override;
-    virtual QString get() const override;
-    virtual void set(const QString &v) override;
+    void init(QWidget *parent, QVariant param = QVariant()) override;
+    QString get() const override;
+    void set(const QString &v) override;
 };
 
 struct ComboBoxWrapper : public WrapperTemplate<QString, QComboBox>
 {
-    virtual void init(QWidget *parent, QVariant param = QVariant()) override;
-    virtual QString get() const override;
-    virtual void set(const QString &v) override;
+    void init(QWidget *parent, QVariant param = QVariant()) override;
+    QString get() const override;
+    void set(const QString &v) override;
 };
 
 struct PathItemWrapper : public WrapperTemplate<QString, PathItem>
 {
-    virtual void init(QWidget *parent, QVariant param = QVariant()) override;
-    virtual QString get() const override;
-    virtual void set(const QString &v) override;
+    void init(QWidget *parent, QVariant param = QVariant()) override;
+    QString get() const override;
+    void set(const QString &v) override;
 };
 
 struct ShortcutItemWrapper : public WrapperTemplate<QString, ShortcutItem>
 {
-    virtual void init(QWidget *parent, QVariant param = QVariant()) override;
-    virtual QString get() const override;
-    virtual void set(const QString &v) override;
+    void init(QWidget *parent, QVariant param = QVariant()) override;
+    QString get() const override;
+    void set(const QString &v) override;
 };
 
 struct CodecBoxWrapper : public ComboBoxWrapper
 {
-    virtual void init(QWidget *parent, QVariant param = QVariant()) override;
+    void init(QWidget *parent, QVariant param = QVariant()) override;
 };
 
 struct SpinBoxWrapper : public WrapperTemplate<int, QSpinBox>
 {
-    virtual void init(QWidget *parent, QVariant param = QVariant()) override;
-    virtual int get() const override;
-    virtual void set(const int &v) override;
+    void init(QWidget *parent, QVariant param = QVariant()) override;
+    int get() const override;
+    void set(const int &v) override;
 };
 
 struct ScrollBarWrapper : public WrapperTemplate<int, QScrollBar>
 {
-    virtual void init(QWidget *parent, QVariant param = QVariant()) override;
-    virtual int get() const override;
-    virtual void set(const int &v) override;
+    void init(QWidget *parent, QVariant param = QVariant()) override;
+    int get() const override;
+    void set(const int &v) override;
 };
 
 struct SliderWrapper : public WrapperTemplate<int, QSlider>
 {
-    virtual void init(QWidget *parent, QVariant param = QVariant()) override;
-    virtual int get() const override;
-    virtual void set(const int &v) override;
+    void init(QWidget *parent, QVariant param = QVariant()) override;
+    int get() const override;
+    void set(const int &v) override;
 };
 
 struct FontItemWrapper : public WrapperTemplate<QFont, FontItem>
 {
-    virtual void init(QWidget *parent, QVariant param = QVariant()) override;
-    virtual QFont get() const override;
-    virtual void set(const QFont &v) override;
+    void init(QWidget *parent, QVariant param = QVariant()) override;
+    QFont get() const override;
+    void set(const QFont &v) override;
 };
 
 struct StringListsItemWrapper : public WrapperTemplate<QVariantList, StringListsItem>
 {
-    virtual void init(QWidget *parent, QVariant param = QVariant()) override;
-    virtual QVariantList get() const override;
-    virtual void set(const QVariantList &v) override;
-    virtual bool changed() const override;
+    void init(QWidget *parent, QVariant param = QVariant()) override;
+    QVariantList get() const override;
+    void set(const QVariantList &v) override;
+    bool changed() const override;
 };
 
 struct SettingsWrapper : public WrapperTemplate<QMap<QString, QVariant>, QWidget>
@@ -168,23 +168,23 @@ struct SettingsWrapper : public WrapperTemplate<QMap<QString, QVariant>, QWidget
     Q_OBJECT
 
   public:
-    virtual void init(QWidget *parent, QVariant param = QVariant()) override;
-    virtual QMap<QString, QVariant> get() const override;
-    virtual void set(const QMap<QString, QVariant> &v) override;
-    virtual void enable(bool enabled = true) override;
+    void init(QWidget *parent, QVariant param = QVariant()) override;
+    QMap<QString, QVariant> get() const override;
+    void set(const QMap<QString, QVariant> &v) override;
+    void enable(bool enabled = true) override;
 
-    virtual void setdef() override;
-    virtual void reset() override;
-    virtual void apply() override;
-    virtual bool changed() const override;
-    virtual QStringList content() const override;
+    void setdef() override;
+    void reset() override;
+    void apply() override;
+    bool changed() const override;
+    QStringList content() const override;
 
     SettingBase *locate(const QString &name);
 
     void setKey(QString k = "", QString tk = "")
     {
-        key = k;
-        trKey = tk;
+        key = std::move(k);
+        trKey = std::move(tk);
     }
   public slots:
     void reload();
@@ -213,7 +213,7 @@ struct MapWrapper : public WrapperTemplate<QMap<QString, QVariant>, QSplitter>
             QString regex;
             QString message;
             bool invert = false;
-            Rule(const QString &r, const QString &m) : regex(r), message(m)
+            Rule(QString r, QString m) : regex(std::move(r)), message(std::move(m))
             {
             }
         };
@@ -235,16 +235,16 @@ struct MapWrapper : public WrapperTemplate<QMap<QString, QVariant>, QSplitter>
         void genMenu(QMenu *menu) const;
     };
 
-    virtual void init(QWidget *parent, QVariant param = QVariant()) override;
-    virtual QMap<QString, QVariant> get() const override;
-    virtual void set(const QMap<QString, QVariant> &v) override;
-    virtual void enable(bool enabled = true) override;
+    void init(QWidget *parent, QVariant param = QVariant()) override;
+    QMap<QString, QVariant> get() const override;
+    void set(const QMap<QString, QVariant> &v) override;
+    void enable(bool enabled = true) override;
 
-    virtual void setdef() override;
-    virtual void reset() override;
-    virtual void apply() override;
-    virtual bool changed() const override;
-    virtual QStringList content() const override;
+    void setdef() override;
+    void reset() override;
+    void apply() override;
+    bool changed() const override;
+    QStringList content() const override;
 
     QString askKey(const QString &suggest = "") const;
     void add(const QString &key)

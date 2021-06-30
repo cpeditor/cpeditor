@@ -64,7 +64,7 @@ pageInfo:
     - Message Logger Font
     - Use Custom Application Font
     - Custom Application Font
-  Actions: 
+  Actions:
     Save:
       - Save Faster
       - Save File On Compilation
@@ -237,7 +237,7 @@ data:
       getDefault: pickDefault
       getTip: pickTip
     param:
-      default: 
+      default:
         Clang Format: 'BasedOnStyle: Google'
         YAPF: |-
           [style]
