@@ -785,10 +785,12 @@ void MapWrapper::init(QWidget *parent, QVariant param)
     {
         auto *adl = new QHBoxLayout;
         btnadd = new QPushButton(tr("Add"), leftWidget);
+        btnadd->setShortcut({"Ctrl+N"});
         adl->addWidget(btnadd);
         connect(btnadd, &QPushButton::clicked, this, &MapWrapper::reqAdd);
 
         btndel = new QPushButton(tr("Del"), leftWidget);
+        btndel->setShortcut({"Ctrl+W"});
         adl->addWidget(btndel);
         connect(btndel, &QPushButton::clicked, this, &MapWrapper::reqDel);
         btndel->setEnabled(false);
@@ -803,6 +805,7 @@ void MapWrapper::init(QWidget *parent, QVariant param)
         if (allowRename)
         {
             auto *ren = new QAction(tr("rename"));
+            ren->setShortcut({"F12"});
             connect(this, &MapWrapper::curChanged, [ren](const QString &cur) { ren->setEnabled(cur != ""); });
             connect(ren, &QAction::triggered, [this]() {
                 QString key = askKey(cur);
