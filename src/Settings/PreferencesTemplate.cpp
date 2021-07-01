@@ -73,7 +73,12 @@ PreferencesTemplate::PreferencesTemplate(const QStringList &opts, const QString 
     vlayout->addSpacing(20);
     for (auto *w : wraps)
         vlayout->addWidget(w->rootWidget());
-    vlayout->addSpacing(20);
+    if (std::none_of(wraps.begin(), wraps.end(), [](SettingsWrapper *s) {
+            return s->rootWidget()->sizePolicy().verticalPolicy() & QSizePolicy::ExpandFlag;
+        }))
+        vlayout->addStretch();
+    else
+        vlayout->addSpacing(20);
     auto *layout = new QHBoxLayout();
     layout->addStretch();
     layout->addLayout(vlayout);

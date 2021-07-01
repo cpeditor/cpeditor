@@ -826,9 +826,15 @@ void MapWrapper::init(QWidget *parent, QVariant param)
 
     connect(list, &QListWidget::currentTextChanged, this, &MapWrapper::show);
 
-    widget->addWidget(right);
+    auto *ph = new QLabel(tr("Select or add an item to start"), right);
+    ph->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    placeholder = ph;
+
+    right->addWidget(placeholder);
     widget->setStretchFactor(0, 1);
     widget->setStretchFactor(1, INT_MAX);
+
+    widget->addWidget(right);
 }
 
 QMap<QString, QVariant> MapWrapper::get() const
@@ -1016,6 +1022,8 @@ void MapWrapper::show(const QString &key)
     auto k = rstrcTr ? rstrcTr->value(key) : key;
     if (k != "")
         right->setCurrentWidget(rights[k]->rootWidget());
+    else
+        right->setCurrentWidget(placeholder);
     if (btndel)
         btndel->setEnabled(k != "");
     cur = k;
@@ -1067,8 +1075,10 @@ void MapWrapper::resetLayout()
     {
         auto *widget = right->widget(0);
         right->removeWidget(widget);
-        widget->deleteLater();
+        if (widget != placeholder)
+            widget->deleteLater();
     }
+    right->addWidget(placeholder);
     show("");
 }
 

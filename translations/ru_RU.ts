@@ -1139,6 +1139,10 @@ Do you want to reload it?</source>
         <source>Key &apos;/&apos; is not supported</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Select or add an item to start</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MessageLogger</name>

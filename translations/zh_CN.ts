@@ -1139,6 +1139,10 @@ Do you want to reload it?</source>
         <source>Key &apos;/&apos; is not supported</source>
         <translation>不支持使用键 “/”</translation>
     </message>
+    <message>
+        <source>Select or add an item to start</source>
+        <translation>选择或添加一个项目来开始</translation>
+    </message>
 </context>
 <context>
     <name>MessageLogger</name>

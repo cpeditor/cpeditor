@@ -305,6 +305,7 @@ struct MapWrapper : public WrapperTemplate<QMap<QString, QVariant>, QSplitter>
     QListWidget *list;
     QStackedWidget *right;
     QMap<QString, SettingsWrapper *> rights;
+    QWidget *placeholder;
     QMap<QString, QVariant> data;
 };
 
