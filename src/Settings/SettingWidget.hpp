@@ -35,6 +35,8 @@ struct SettingBase : public QObject
     {
         rootWidget()->setEnabled(enabled);
     }
+    virtual bool needVExpand() const = 0;
+
     virtual void setdef();
     virtual void reset();
     virtual void apply();
@@ -68,6 +70,10 @@ template <typename Type, typename RootWidget> struct WrapperTemplate : public Se
     {
         return widget;
     }
+    virtual bool needVExpand() const override
+    {
+        return false;
+    }
 
   protected:
     RootWidget *widget;
@@ -99,6 +105,10 @@ struct PlainTextEditWrapper : public WrapperTemplate<QString, QPlainTextEdit>
     void init(QWidget *parent, QVariant param = QVariant()) override;
     QString get() const override;
     void set(const QString &v) override;
+    virtual bool needVExpand() const override
+    {
+        return true;
+    }
 };
 
 struct ComboBoxWrapper : public WrapperTemplate<QString, QComboBox>
@@ -161,6 +171,10 @@ struct StringListsItemWrapper : public WrapperTemplate<QVariantList, StringLists
     QVariantList get() const override;
     void set(const QVariantList &v) override;
     bool changed() const override;
+    bool needVExpand() const override
+    {
+        return true;
+    }
 };
 
 struct SettingsWrapper : public WrapperTemplate<QMap<QString, QVariant>, QWidget>
@@ -172,6 +186,7 @@ struct SettingsWrapper : public WrapperTemplate<QMap<QString, QVariant>, QWidget
     QMap<QString, QVariant> get() const override;
     void set(const QMap<QString, QVariant> &v) override;
     void enable(bool enabled = true) override;
+    bool needVExpand() const override;
 
     void setdef() override;
     void reset() override;
@@ -239,6 +254,10 @@ struct MapWrapper : public WrapperTemplate<QMap<QString, QVariant>, QSplitter>
     QMap<QString, QVariant> get() const override;
     void set(const QMap<QString, QVariant> &v) override;
     void enable(bool enabled = true) override;
+    bool needVExpand() const override
+    {
+        return true;
+    }
 
     void setdef() override;
     void reset() override;

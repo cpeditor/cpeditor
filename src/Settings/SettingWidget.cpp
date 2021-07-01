@@ -10,6 +10,13 @@
 #include <QTextCodec>
 #include <QVBoxLayout>
 
+inline void setVExpanding(QWidget *w)
+{
+    auto sp = w->sizePolicy();
+    sp.setVerticalPolicy(QSizePolicy::Expanding);
+    w->setSizePolicy(sp);
+}
+
 void SettingBase::setdef()
 {
     setV(iter.getDefault());
@@ -419,7 +426,6 @@ void SettingsWrapper::init(QWidget *parent, QVariant param)
                     newEntry.push_back(k);
             }
             layout = new QFormLayout(w);
-            w->setLayout(layout);
             layouts[n] = layout;
         }
         entries = newEntry;
@@ -430,7 +436,6 @@ void SettingsWrapper::init(QWidget *parent, QVariant param)
     {
         tab = nullptr;
         layout = new QFormLayout(widget);
-        widget->setLayout(layout);
     }
     for (const auto &name : entries)
     {
@@ -480,6 +485,8 @@ void SettingsWrapper::init(QWidget *parent, QVariant param)
             connect(base, &SettingBase::valueChanged, this, [this, name]() { this->check(name); });
         }
     }
+    if (needVExpand())
+        setVExpanding(widget);
 }
 
 QMap<QString, QVariant> SettingsWrapper::get() const
@@ -510,6 +517,12 @@ void SettingsWrapper::enable(bool e)
             check(name);
         }
     }
+}
+
+bool SettingsWrapper::needVExpand() const
+{
+    return std::any_of(entries.begin(), entries.end(),
+                       [this](const QString &name) { return wraps[name]->needVExpand(); });
 }
 
 void SettingsWrapper::setdef()
@@ -709,6 +722,7 @@ void MapWrapper::init(QWidget *parent, QVariant param)
 
     widget = new QSplitter(parent);
     widget->setChildrenCollapsible(false);
+    setVExpanding(widget);
 
     auto *leftWidget = new QWidget(widget);
     auto *leftLayout = new QVBoxLayout(leftWidget);
@@ -808,6 +822,7 @@ void MapWrapper::init(QWidget *parent, QVariant param)
     widget->addWidget(leftWidget);
 
     right = new QStackedWidget(widget);
+    setVExpanding(right);
 
     connect(list, &QListWidget::currentTextChanged, this, &MapWrapper::show);
 

@@ -73,7 +73,6 @@ PreferencesTemplate::PreferencesTemplate(const QStringList &opts, const QString 
     vlayout->addSpacing(20);
     for (auto *w : wraps)
         vlayout->addWidget(w->rootWidget());
-    vlayout->addStretch();
     vlayout->addSpacing(20);
     auto *layout = new QHBoxLayout();
     layout->addStretch();
