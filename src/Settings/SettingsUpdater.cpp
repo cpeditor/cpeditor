@@ -132,6 +132,30 @@ void SettingsUpdater::updateSetting_INI(QSettings &setting)
         }
     }
 
+    if (setting.childGroups().contains("Language Config"))
+    {
+        setting.beginGroup("Language Config");
+        for (const auto &key : langs.values())
+        {
+            if (setting.childGroups().contains(key))
+            {
+                auto c = SettingsHelper::getLanguageConfig(key);
+                setting.beginGroup(key);
+                if (setting.childGroups().contains("snippet"))
+                {
+                    setting.beginGroup("snippet");
+                    auto ks = setting.childKeys();
+                    for (const auto &k : ks)
+                        c.getSnippet(k).setCode(setting.value(k).toString());
+                    c.setSnippet(ks);
+                    setting.endGroup();
+                }
+                setting.endGroup();
+            }
+        }
+        setting.endGroup();
+    }
+
     if (setting.childGroups().contains("default_path"))
     {
         setting.beginGroup("default_path");
