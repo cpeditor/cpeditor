@@ -2337,7 +2337,7 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation>类名</translation>
     </message>
     <message>
-        <source>Command</source>
+        <source>Commands</source>
         <translation>命令</translation>
     </message>
     <message>

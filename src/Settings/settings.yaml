@@ -821,7 +821,7 @@ data:
     noadddel: true
     pass:
       group:
-      - name: "*Command"
+      - name: "*Commands"
         target:
         - Compile Command
         - Compiler Output Codec

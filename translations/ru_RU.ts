@@ -2343,10 +2343,6 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Command</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>The runtime arguments when executing a @1 program.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2438,6 +2434,10 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     <message>
         <source>The YAPF style options, which are usually saved in a .style.yapf or setup.conf configuration file.
 You can learn about it by running `yapf --style-help`.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Commands</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
