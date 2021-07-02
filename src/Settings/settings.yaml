@@ -93,10 +93,9 @@ pageInfo:
     - Ask For Loading External Changes
   Extensions:
     Code Formatting:
-      General:
-      - Format On Manual Save
-      - Format On Auto Save
-      - Formatter
+    - Format On Manual Save
+    - Format On Auto Save
+    - Formatter
     Language Server:
     - LSP
     Competitive Companion:
