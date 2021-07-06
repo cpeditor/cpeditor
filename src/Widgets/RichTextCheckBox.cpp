@@ -19,7 +19,6 @@
 
 #include "Widgets/RichTextCheckBox.hpp"
 #include "Core/EventLogger.hpp"
-#include "generated/SettingsHelper.hpp"
 #include <QDesktopServices>
 #include <QHBoxLayout>
 #include <QMouseEvent>
@@ -69,7 +68,7 @@ void ClickableLabel::mouseMoveEvent(QMouseEvent *event)
 
 HoverCheckBox::HoverCheckBox(QWidget *parent) : QCheckBox(parent)
 {
-    setStyleSheet("QCheckBox{spacing:4px;}");
+    setStyleSheet("QCheckBox{spacing:0px;}");
 }
 
 void HoverCheckBox::paintEvent(QPaintEvent * /*unused*/)
@@ -124,13 +123,7 @@ RichTextCheckBox::RichTextCheckBox(const QString &text, QWidget *parent) : QWidg
     layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
     layout->addWidget(checkBox);
-#ifdef Q_OS_MACOS
-    QString currentStyle = SettingsHelper::getUIStyle();
-    if (currentStyle == "macintosh" || currentStyle == "default")
-    {
-        layout->addSpacing(5);
-    }
-#endif
+    layout->addSpacing(style()->pixelMetric(QStyle::PM_CheckBoxLabelSpacing));
     layout->addWidget(label);
     layout->setAlignment(Qt::AlignLeft);
     connect(label, &ClickableLabel::released, checkBox, &HoverCheckBox::toggle);
