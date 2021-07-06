@@ -19,14 +19,13 @@
 #define SUPPORTUSDIALOG_HPP
 
 #include <QDialog>
-#include <QPushButton>
 
 class SupportEntry : public QWidget
 {
     Q_OBJECT
 
   public:
-    explicit SupportEntry(const QString &text, const QString &icon, const QString &url, QWidget *parent = nullptr);
+	explicit SupportEntry(const QString &text, const QString &icon, QString url, QWidget *parent = nullptr);
 
   signals:
     void clicked(const QString &url);
@@ -34,8 +33,6 @@ class SupportEntry : public QWidget
   private:
     QString url;
 };
-
-class QTextBrowser;
 
 class SupportUsDialog : public QDialog
 {
