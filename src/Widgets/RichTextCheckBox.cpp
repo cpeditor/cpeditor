@@ -19,6 +19,7 @@
 
 #include "Widgets/RichTextCheckBox.hpp"
 #include "Core/EventLogger.hpp"
+#include "generated/SettingsHelper.hpp"
 #include <QDesktopServices>
 #include <QHBoxLayout>
 #include <QMouseEvent>
@@ -123,6 +124,13 @@ RichTextCheckBox::RichTextCheckBox(const QString &text, QWidget *parent) : QWidg
     layout->setContentsMargins(0, 0, 0, 0);
     layout->setSpacing(0);
     layout->addWidget(checkBox);
+#ifdef Q_OS_MACOS
+    QString currentStyle = SettingsHelper::getUIStyle();
+    if (currentStyle == "macintosh" || currentStyle == "default")
+    {
+        layout->setSpacing(5);
+    }
+#endif
     layout->addWidget(label);
     layout->setAlignment(Qt::AlignLeft);
     connect(label, &ClickableLabel::released, checkBox, &HoverCheckBox::toggle);
