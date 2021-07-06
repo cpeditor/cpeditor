@@ -128,7 +128,7 @@ RichTextCheckBox::RichTextCheckBox(const QString &text, QWidget *parent) : QWidg
     QString currentStyle = SettingsHelper::getUIStyle();
     if (currentStyle == "macintosh" || currentStyle == "default")
     {
-        layout->setSpacing(5);
+        layout->addSpacing(5);
     }
 #endif
     layout->addWidget(label);
