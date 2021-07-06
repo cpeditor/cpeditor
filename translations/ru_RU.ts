@@ -2679,6 +2679,13 @@ You can learn about it by running `yapf --style-help`.</source>
     </message>
 </context>
 <context>
+    <name>SupportEntry</name>
+    <message>
+        <source>Donate</source>
+        <translation>Пожертвовать</translation>
+    </message>
+</context>
+<context>
     <name>SupportUsDialog</name>
     <message>
         <source>Like CP Editor?</source>
@@ -2707,10 +2714,6 @@ You can learn about it by running `yapf --style-help`.</source>
     <message>
         <source>Provide some suggestions to help us do better</source>
         <translation>Дать немного советов чтобы помочь нам быть лучше</translation>
-    </message>
-    <message>
-        <source>Donate</source>
-        <translation>Пожертвовать</translation>
     </message>
     <message>
         <source>I&apos;m using @cpeditor_, an IDE specially designed for competitive programmers, which is awesome!</source>
