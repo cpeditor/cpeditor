@@ -25,7 +25,7 @@ class SupportEntry : public QWidget
     Q_OBJECT
 
   public:
-    explicit SupportEntry(const QString &text, const QString &icon, QString url, QWidget *parent = nullptr);
+    explicit SupportEntry(const QString &text, const QString &iconPath, QString url, QWidget *parent = nullptr);
 
   private slots:
     void onLinkClicked();

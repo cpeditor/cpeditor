@@ -26,25 +26,24 @@
 #include <QUrl>
 #include <QVBoxLayout>
 
-SupportEntry::SupportEntry(const QString &text, const QString &icon, QString url, QWidget *parent)
+SupportEntry::SupportEntry(const QString &text, const QString &iconPath, QString url, QWidget *parent)
     : QWidget(parent), url(std::move(url))
 {
     auto *layout = new QHBoxLayout(this);
 
-    auto *l = new QLabel(text);
-    l->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
-    layout->addWidget(l);
+    auto *label = new QLabel(text);
+    label->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    layout->addWidget(label);
 
     layout->addStretch();
 
-    auto *i = new QToolButton();
-    i->setStyleSheet("QToolButton { border: none; }");
-    i->setCursor(QCursor(Qt::PointingHandCursor));
-    QIcon ic(icon);
-    i->setIcon(ic);
-    i->setIconSize(QSize(fontMetrics().height(), fontMetrics().height()));
-    connect(i, &QToolButton::clicked, this, &SupportEntry::onLinkClicked);
-    layout->addWidget(i);
+    auto *icon = new QToolButton();
+    icon->setStyleSheet("QToolButton { border: none; }");
+    icon->setCursor(QCursor(Qt::PointingHandCursor));
+    icon->setIcon(QIcon(iconPath));
+    icon->setIconSize({fontMetrics().height(), fontMetrics().height()});
+    connect(icon, &QToolButton::clicked, this, &SupportEntry::onLinkClicked);
+    layout->addWidget(icon);
 }
 
 void SupportEntry::onLinkClicked()
