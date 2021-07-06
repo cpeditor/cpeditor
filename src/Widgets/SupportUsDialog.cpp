@@ -43,7 +43,7 @@ SupportEntry::SupportEntry(const QString &text, const QString &icon, QString url
     i->setCursor(QCursor(Qt::PointingHandCursor));
     QIcon ic(icon);
     i->setIcon(ic);
-    i->setIconSize(QSize(24, 24));
+    i->setIconSize(QSize(fontMetrics().height(), fontMetrics().height()));
     connect(i, &QToolButton::clicked, this, &SupportEntry::onLinkClicked);
     layout->addWidget(i);
 }
@@ -80,7 +80,7 @@ SupportUsDialog::SupportUsDialog(QWidget *parent) : QDialog(parent)
 
     auto *title = new QLabel(tr("Thank you for using CP Editor!"));
     auto f = title->font();
-    f.setPixelSize(24);
+    f.setPointSizeF(font().pointSizeF() * 1.5);
     title->setFont(f);
     titleLayout->addStretch();
     titleLayout->addWidget(title);
