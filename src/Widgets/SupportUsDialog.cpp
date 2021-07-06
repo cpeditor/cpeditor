@@ -20,21 +20,18 @@
 #include "Core/Translator.hpp"
 #include "Util/FileUtil.hpp"
 #include <QDesktopServices>
-#include <QDialogButtonBox>
 #include <QLabel>
 #include <QMessageBox>
 #include <QPixmap>
 #include <QPushButton>
-#include <QTextBrowser>
 #include <QToolButton>
+#include <QUrl>
 #include <QVBoxLayout>
 
-#include <QDebug>
-
-SupportEntry::SupportEntry(const QString &text, const QString &icon, const QString &url, QWidget *parent)
+SupportEntry::SupportEntry(const QString &text, const QString &icon, QString url, QWidget *parent)
     : QWidget(parent), url(url)
 {
-    QHBoxLayout *layout = new QHBoxLayout;
+    auto *layout = new QHBoxLayout;
     setLayout(layout);
 
     auto *l = new QLabel(text, this);
@@ -49,7 +46,7 @@ SupportEntry::SupportEntry(const QString &text, const QString &icon, const QStri
     i->setCursor(QCursor(Qt::PointingHandCursor));
     QIcon ic(icon);
     i->setIcon(ic);
-    i->setIconSize(QSize(32, 32));
+    i->setIconSize(QSize(24, 24));
     connect(i, &QToolButton::clicked, [this]() { emit clicked(this->url); });
     layout->addWidget(i);
 }
@@ -104,10 +101,6 @@ SupportUsDialog::SupportUsDialog(QWidget *parent) : QDialog(parent)
                                    "https://github.com/cpeditor/cpeditor/issues/new/choose", this);
     mainLayout->addWidget(issue);
     connect(issue, &SupportEntry::clicked, this, &SupportUsDialog::onAnchorClicked);
-
-    auto *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok);
-    mainLayout->addWidget(buttonBox);
-    connect(buttonBox->button(QDialogButtonBox::Ok), &QPushButton::clicked, this, &QDialog::accept);
 }
 
 void SupportUsDialog::onAnchorClicked(const QUrl &url)
