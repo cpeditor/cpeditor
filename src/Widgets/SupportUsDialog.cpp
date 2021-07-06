@@ -38,8 +38,7 @@ SupportEntry::SupportEntry(const QString &text, const QString &icon, QString url
     layout->addStretch();
 
     auto *i = new QToolButton();
-    i->setAttribute(Qt::WA_TranslucentBackground, true);
-    i->setStyleSheet("background-color: rgba(0, 0, 0, 0%)");
+    i->setStyleSheet("QToolButton { border: none; }");
     i->setCursor(QCursor(Qt::PointingHandCursor));
     QIcon ic(icon);
     i->setIcon(ic);
