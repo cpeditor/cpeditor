@@ -22,8 +22,6 @@
 #include <QDesktopServices>
 #include <QLabel>
 #include <QMessageBox>
-#include <QPixmap>
-#include <QPushButton>
 #include <QToolButton>
 #include <QUrl>
 #include <QVBoxLayout>
