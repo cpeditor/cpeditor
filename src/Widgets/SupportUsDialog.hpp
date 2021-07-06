@@ -27,8 +27,8 @@ class SupportEntry : public QWidget
   public:
     explicit SupportEntry(const QString &text, const QString &icon, QString url, QWidget *parent = nullptr);
 
-  signals:
-    void clicked(const QString &url);
+  private slots:
+    void onLinkClicked();
 
   private:
     QString url;
@@ -40,9 +40,6 @@ class SupportUsDialog : public QDialog
 
   public:
     explicit SupportUsDialog(QWidget *parent = nullptr);
-
-  private slots:
-    void onAnchorClicked(const QUrl &url);
 };
 
 #endif // SUPPORTUSDIALOG_HPP
