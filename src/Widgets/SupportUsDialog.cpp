@@ -31,7 +31,7 @@
 SupportEntry::SupportEntry(const QString &text, const QString &icon, QString url, QWidget *parent)
     : QWidget(parent), url(url)
 {
-	auto *layout = new QHBoxLayout;
+    auto *layout = new QHBoxLayout;
     setLayout(layout);
 
     auto *l = new QLabel(text, this);
@@ -46,7 +46,7 @@ SupportEntry::SupportEntry(const QString &text, const QString &icon, QString url
     i->setCursor(QCursor(Qt::PointingHandCursor));
     QIcon ic(icon);
     i->setIcon(ic);
-	i->setIconSize(QSize(24, 24));
+    i->setIconSize(QSize(24, 24));
     connect(i, &QToolButton::clicked, [this]() { emit clicked(this->url); });
     layout->addWidget(i);
 }
