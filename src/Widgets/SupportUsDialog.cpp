@@ -31,8 +31,7 @@
 SupportEntry::SupportEntry(const QString &text, const QString &icon, QString url, QWidget *parent)
     : QWidget(parent), url(std::move(url))
 {
-    auto *layout = new QHBoxLayout;
-    setLayout(layout);
+    auto *layout = new QHBoxLayout(this);
 
     auto *l = new QLabel(text);
     l->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
