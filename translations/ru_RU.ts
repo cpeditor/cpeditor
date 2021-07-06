@@ -2685,8 +2685,12 @@ You can learn about it by running `yapf --style-help`.</source>
         <translation>Нравится CP Editor?</translation>
     </message>
     <message>
-        <source>Thank you for using CP Editor! To support us, you can:</source>
-        <translation>Спасибо Вам за использование CP Editor! Для того чтобы поддержать нас, Вы можете:</translation>
+        <source>Thank you for using CP Editor!</source>
+        <translation>Спасибо Вам за использование CP Editor!</translation>
+    </message>
+    <message>
+        <source>To support us, you can:</source>
+        <translation>Для того чтобы поддержать нас, Вы можете:</translation>
     </message>
     <message>
         <source>Give us a star on GitHub</source>
@@ -2701,8 +2705,8 @@ You can learn about it by running `yapf --style-help`.</source>
         <translation>Поддержать нас финансово</translation>
     </message>
     <message>
-        <source>Or, [provide some suggestions](https://github.com/cpeditor/cpeditor/issues/new/choose) to help us do better.</source>
-        <translation>Или [дать немного советов](https://github.com/cpeditor/cpeditor/issues/new/choose) чтобы помочь нам быть лучше.</translation>
+        <source>Provide some suggestions to help us do better</source>
+        <translation>Дать немного советов чтобы помочь нам быть лучше</translation>
     </message>
     <message>
         <source>Donate</source>

@@ -19,6 +19,21 @@
 #define SUPPORTUSDIALOG_HPP
 
 #include <QDialog>
+#include <QPushButton>
+
+class SupportEntry : public QWidget
+{
+    Q_OBJECT
+
+  public:
+    explicit SupportEntry(const QString &text, const QString &icon, const QString &url, QWidget *parent = nullptr);
+
+  signals:
+    void clicked(const QString &url);
+
+  private:
+    QString url;
+};
 
 class QTextBrowser;
 
@@ -31,9 +46,6 @@ class SupportUsDialog : public QDialog
 
   private slots:
     void onAnchorClicked(const QUrl &url);
-
-  private:
-    QTextBrowser *textBrowser = nullptr;
 };
 
 #endif // SUPPORTUSDIALOG_HPP

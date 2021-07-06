@@ -19,11 +19,40 @@
 #include "Core/EventLogger.hpp"
 #include "Core/Translator.hpp"
 #include "Util/FileUtil.hpp"
+#include <QDesktopServices>
 #include <QDialogButtonBox>
+#include <QLabel>
 #include <QMessageBox>
+#include <QPixmap>
 #include <QPushButton>
 #include <QTextBrowser>
+#include <QToolButton>
 #include <QVBoxLayout>
+
+#include <QDebug>
+
+SupportEntry::SupportEntry(const QString &text, const QString &icon, const QString &url, QWidget *parent)
+    : QWidget(parent), url(url)
+{
+    QHBoxLayout *layout = new QHBoxLayout;
+    setLayout(layout);
+
+    auto *l = new QLabel(text, this);
+    l->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    layout->addWidget(l);
+
+    layout->addStretch();
+
+    auto *i = new QToolButton(this);
+    i->setAttribute(Qt::WA_TranslucentBackground, true);
+    i->setStyleSheet("background-color: rgba(0, 0, 0, 0%)");
+    i->setCursor(QCursor(Qt::PointingHandCursor));
+    QIcon ic(icon);
+    i->setIcon(ic);
+    i->setIconSize(QSize(32, 32));
+    connect(i, &QToolButton::clicked, [this]() { emit clicked(this->url); });
+    layout->addWidget(i);
+}
 
 SupportUsDialog::SupportUsDialog(QWidget *parent) : QDialog(parent)
 {
@@ -33,42 +62,48 @@ SupportUsDialog::SupportUsDialog(QWidget *parent) : QDialog(parent)
 
     auto *mainLayout = new QVBoxLayout(this);
 
-    textBrowser = new QTextBrowser();
-    mainLayout->addWidget(textBrowser);
+    auto *titleLayout = new QHBoxLayout;
+    mainLayout->addLayout(titleLayout);
 
-    textBrowser->setFrameStyle(QFrame::NoFrame);
-    textBrowser->setOpenExternalLinks(true);
-    textBrowser->setMarkdown(
-        QString(R"(%1
--   <a href="https://github.com/cpeditor/cpeditor/stargazers">
-      <img src=":/donate/star.png"/>
-    </a>
-    %2
--   <a href="https://twitter.com/intent/tweet?text=&amp;hashtags=CPEditor,CompetitiveProgramming&amp;url=https://cpeditor.org">
-      <img src=":/donate/tweet.png"/>
-    </a>
-    %3
--   <a href="#donate">
-      <img src=":/donate/sponsor.png"/>
-    </a>
-    %4
+    auto *title = new QLabel(tr("Thank you for using CP Editor!"), this);
+    auto f = title->font();
+    f.setPixelSize(24);
+    title->setFont(f);
+    titleLayout->addStretch();
+    titleLayout->addWidget(title);
+    titleLayout->addStretch();
 
-%5)")
-            .arg(tr("Thank you for using CP Editor! To support us, you can:"))
-            .arg(tr("Give us a star on GitHub"))
-            .arg(tr("Share CP Editor with your friends"))
-            .arg(tr("Financially support us"))
-            .arg(tr("Or, [provide some suggestions](https://github.com/cpeditor/cpeditor/issues/new/choose) to help us "
-                    "do better."))
-            // this must be the last one, because the percent encoding includes %1, %2, etc., which breaks QString::arg
-            .replace("?text=", "?text=" + QString::fromUtf8(QUrl::toPercentEncoding(
-                                              tr("I'm using @cpeditor_, an IDE specially designed for competitive "
-                                                 "programmers, which is awesome!")))));
+    auto *subtitleLayout = new QHBoxLayout;
+    mainLayout->addLayout(subtitleLayout);
 
-    setMinimumHeight(textBrowser->height());
-    setMinimumWidth(textBrowser->width());
+    auto *subt = new QLabel(tr("To support us, you can:"), this);
+    subtitleLayout->addStretch();
+    subtitleLayout->addWidget(subt);
+    subtitleLayout->addStretch();
 
-    connect(textBrowser, &QTextBrowser::anchorClicked, this, &SupportUsDialog::onAnchorClicked);
+    auto *star = new SupportEntry(tr("Give us a star on GitHub"), ":/donate/star.svg",
+                                  "https://github.com/cpeditor/cpeditor/stargazers", this);
+    mainLayout->addWidget(star);
+    connect(star, &SupportEntry::clicked, this, &SupportUsDialog::onAnchorClicked);
+
+    auto *tweet = new SupportEntry(
+        tr("Share CP Editor with your friends"), ":/donate/twitter.svg",
+        QString("https://twitter.com/intent/tweet?text=%1&amp;hashtags=CPEditor,CompetitiveProgramming&amp;url=https://"
+                "cpeditor.org")
+            .arg(QString::fromUtf8(QUrl::toPercentEncoding(
+                tr("I'm using @cpeditor_, an IDE specially designed for competitive programmers, which is awesome!")))),
+        this);
+    mainLayout->addWidget(tweet);
+    connect(tweet, &SupportEntry::clicked, this, &SupportUsDialog::onAnchorClicked);
+
+    auto *donate = new SupportEntry(tr("Financially support us"), ":/donate/heart.svg", "#donate", this);
+    mainLayout->addWidget(donate);
+    connect(donate, &SupportEntry::clicked, this, &SupportUsDialog::onAnchorClicked);
+
+    auto *issue = new SupportEntry(tr("Provide some suggestions to help us do better"), ":/donate/wrench.svg",
+                                   "https://github.com/cpeditor/cpeditor/issues/new/choose", this);
+    mainLayout->addWidget(issue);
+    connect(issue, &SupportEntry::clicked, this, &SupportUsDialog::onAnchorClicked);
 
     auto *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok);
     mainLayout->addWidget(buttonBox);
@@ -87,5 +122,9 @@ void SupportUsDialog::onAnchorClicked(const QUrl &url)
         dialog->setText(
             Util::readFile(QString(":/DONATE%1.md").arg(Core::Translator::langSuffix())).replace("resources/", ":/"));
         dialog->show();
+    }
+    else
+    {
+        QDesktopServices::openUrl(url);
     }
 }
