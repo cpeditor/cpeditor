@@ -19,65 +19,36 @@
 #include "Core/EventLogger.hpp"
 #include "Core/Translator.hpp"
 #include "Util/FileUtil.hpp"
-#include <QDialogButtonBox>
+#include <QDesktopServices>
+#include <QLabel>
 #include <QMessageBox>
-#include <QPushButton>
-#include <QTextBrowser>
+#include <QToolButton>
+#include <QUrl>
 #include <QVBoxLayout>
 
-SupportUsDialog::SupportUsDialog(QWidget *parent) : QDialog(parent)
+SupportEntry::SupportEntry(const QString &text, const QString &iconPath, QString url, QWidget *parent)
+    : QWidget(parent), url(std::move(url))
 {
-    setModal(true);
-    setAttribute(Qt::WA_DeleteOnClose);
-    setWindowTitle(tr("Like CP Editor?"));
+    auto *layout = new QHBoxLayout(this);
 
-    auto *mainLayout = new QVBoxLayout(this);
+    auto *label = new QLabel(text);
+    label->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+    layout->addWidget(label);
 
-    textBrowser = new QTextBrowser();
-    mainLayout->addWidget(textBrowser);
+    layout->addStretch();
 
-    textBrowser->setFrameStyle(QFrame::NoFrame);
-    textBrowser->setOpenExternalLinks(true);
-    textBrowser->setMarkdown(
-        QString(R"(%1
--   <a href="https://github.com/cpeditor/cpeditor/stargazers">
-      <img src=":/donate/star.png"/>
-    </a>
-    %2
--   <a href="https://twitter.com/intent/tweet?text=&amp;hashtags=CPEditor,CompetitiveProgramming&amp;url=https://cpeditor.org">
-      <img src=":/donate/tweet.png"/>
-    </a>
-    %3
--   <a href="#donate">
-      <img src=":/donate/sponsor.png"/>
-    </a>
-    %4
-
-%5)")
-            .arg(tr("Thank you for using CP Editor! To support us, you can:"))
-            .arg(tr("Give us a star on GitHub"))
-            .arg(tr("Share CP Editor with your friends"))
-            .arg(tr("Financially support us"))
-            .arg(tr("Or, [provide some suggestions](https://github.com/cpeditor/cpeditor/issues/new/choose) to help us "
-                    "do better."))
-            // this must be the last one, because the percent encoding includes %1, %2, etc., which breaks QString::arg
-            .replace("?text=", "?text=" + QString::fromUtf8(QUrl::toPercentEncoding(
-                                              tr("I'm using @cpeditor_, an IDE specially designed for competitive "
-                                                 "programmers, which is awesome!")))));
-
-    setMinimumHeight(textBrowser->height());
-    setMinimumWidth(textBrowser->width());
-
-    connect(textBrowser, &QTextBrowser::anchorClicked, this, &SupportUsDialog::onAnchorClicked);
-
-    auto *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok);
-    mainLayout->addWidget(buttonBox);
-    connect(buttonBox->button(QDialogButtonBox::Ok), &QPushButton::clicked, this, &QDialog::accept);
+    auto *icon = new QToolButton();
+    icon->setStyleSheet("QToolButton { border: none; }");
+    icon->setCursor(QCursor(Qt::PointingHandCursor));
+    icon->setIcon(QIcon(iconPath));
+    icon->setIconSize({fontMetrics().height(), fontMetrics().height()});
+    connect(icon, &QToolButton::clicked, this, &SupportEntry::onLinkClicked);
+    layout->addWidget(icon);
 }
 
-void SupportUsDialog::onAnchorClicked(const QUrl &url)
+void SupportEntry::onLinkClicked()
 {
-    if (url.toString() == "#donate")
+    if (url == "#donate")
     {
         auto *dialog = new QMessageBox(this);
         dialog->setTextFormat(Qt::MarkdownText);
@@ -88,4 +59,55 @@ void SupportUsDialog::onAnchorClicked(const QUrl &url)
             Util::readFile(QString(":/DONATE%1.md").arg(Core::Translator::langSuffix())).replace("resources/", ":/"));
         dialog->show();
     }
+    else
+    {
+        QDesktopServices::openUrl(url);
+    }
+}
+
+SupportUsDialog::SupportUsDialog(QWidget *parent) : QDialog(parent)
+{
+    setModal(true);
+    setAttribute(Qt::WA_DeleteOnClose);
+    setWindowTitle(tr("Like CP Editor?"));
+
+    auto *mainLayout = new QVBoxLayout(this);
+
+    auto *titleLayout = new QHBoxLayout;
+    mainLayout->addLayout(titleLayout);
+
+    auto *title = new QLabel(tr("Thank you for using CP Editor!"));
+    auto f = title->font();
+    f.setPointSizeF(font().pointSizeF() * 1.5);
+    title->setFont(f);
+    titleLayout->addStretch();
+    titleLayout->addWidget(title);
+    titleLayout->addStretch();
+
+    auto *subtitleLayout = new QHBoxLayout;
+    mainLayout->addLayout(subtitleLayout);
+
+    auto *subt = new QLabel(tr("To support us, you can:"));
+    subtitleLayout->addStretch();
+    subtitleLayout->addWidget(subt);
+    subtitleLayout->addStretch();
+
+    auto *star = new SupportEntry(tr("Give us a star on GitHub"), ":/donate/star.svg",
+                                  "https://github.com/cpeditor/cpeditor/stargazers");
+    mainLayout->addWidget(star);
+
+    auto *tweet = new SupportEntry(
+        tr("Share CP Editor with your friends"), ":/donate/twitter.svg",
+        QString("https://twitter.com/intent/tweet?text=%1&amp;hashtags=CPEditor,CompetitiveProgramming&amp;url=https://"
+                "cpeditor.org")
+            .arg(QString::fromUtf8(QUrl::toPercentEncoding(tr(
+                "I'm using @cpeditor_, an IDE specially designed for competitive programmers, which is awesome!")))));
+    mainLayout->addWidget(tweet);
+
+    auto *donate = new SupportEntry(tr("Financially support us"), ":/donate/heart.svg", "#donate");
+    mainLayout->addWidget(donate);
+
+    auto *issue = new SupportEntry(tr("Provide some suggestions to help us do better"), ":/donate/wrench.svg",
+                                   "https://github.com/cpeditor/cpeditor/issues/new/choose");
+    mainLayout->addWidget(issue);
 }

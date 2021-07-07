@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2021 Ashar Khan <ashar786khan@gmail.com> -->
+<component type="desktop">
+  <id>cpeditor.desktop</id>
+  <metadata_license>CC0-1.0</metadata_license> <!-- This is not cpeditor's license, but for this file only. cpeditor is licensed under GPL -->
+  <name>CP Editor</name>
+  <summary>Code editor for competitive programming</summary>
+  <summary xml:lang="ru">Редактор кода для спортивного программирования</summary>
+  <summary xml:lang="zh_CN">算法竞赛代码编辑器</summary>
+  <description>CP Editor is a Qt-based, lightweight and cross-platform code editor specially designed for competitive programming. </description>
+  <description xml:lang="ru">CP Editor - это легкий кросс-платформенный редактор кода на базе Qt, специально разработанный для спортивного программирования.</description>
+  <description xml:lang="zh_CN">CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法竞赛设计。</description>
+  <url type="homepage">https://cpeditor.org</url>
+  <url type="bugtracker">https://github.com/cpeditor/cpeditor/issues</url>
+  <url type="help">https://github.com/cpeditor/cpeditor/discussions</url>
+  <url type="donation">https://github.com/cpeditor/cpeditor/blob/master/DONATE.md</url>
+  <update_contact>officialcpeditor@gmail.com</update_contact>
+  <project_group>CP Editor</project_group>
+  <project_license>GPL-3.0+</project_license>
+  <developer_name>Ashar Khan</developer_name>
+  <translation type="gettext">cpeditor</translation>
+  <provides>
+    <id>cpeditor.desktop</id>
+  </provides>
+  <screenshots>
+    <screenshot type="default">https://cpeditor.org/img/banner/home-center-2.jpg</screenshot>
+  </screenshots>
+  <releases>
+    <release version="@PROJECT_VERSION@" date="@BUILD_DATE@"/>
+  </releases>
+</component>

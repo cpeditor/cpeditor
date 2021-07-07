@@ -467,6 +467,14 @@ git 提交编号: %3
         <source>Support us</source>
         <translation>支持我们</translation>
     </message>
+    <message>
+        <source>How to exit full-screen</source>
+        <translation>如何退出全屏模式</translation>
+    </message>
+    <message>
+        <source>Press F11 key to exit full-screen mode.</source>
+        <translation>按下 F11 以退出全屏模式。</translation>
+    </message>
 </context>
 <context>
     <name>CodeSnippetsPage</name>
@@ -1481,10 +1489,6 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation>保存会话</translation>
     </message>
     <message>
-        <source>Empty Test Cases</source>
-        <translation>空测试点</translation>
-    </message>
-    <message>
         <source>Network Proxy</source>
         <translation>网络代理</translation>
     </message>
@@ -1512,6 +1516,10 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <source>Code Formatting</source>
         <translation>代码格式化</translation>
     </message>
+    <message>
+        <source>Test Cases</source>
+        <translation>测试用例</translation>
+    </message>
 </context>
 <context>
     <name>SettingsInfo</name>
@@ -1522,6 +1530,18 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <source>The width of the tab character, or the number of spaces of an indent</source>
         <translation>制表符的宽度或缩进的空格个数</translation>
+    </message>
+    <message>
+        <source>Cursor Width</source>
+        <translation>光标宽度</translation>
+    </message>
+    <message>
+        <source>The width of the cursor in pixels</source>
+        <translation>光标的像素宽度</translation>
+    </message>
+    <message>
+        <source>Editor Font</source>
+        <translation>编辑器字体</translation>
     </message>
     <message>
         <source>The font of the code editor</source>
@@ -2595,6 +2615,14 @@ You can learn about it by running `yapf --style-help`.</source>
         <comment>the anchor of Password on the corresponding page of https://cpeditor.org/docs/preferences</comment>
         <translation>网络代理</translation>
     </message>
+    <message>
+        <source>Auto Uncheck Accepted Testcases</source>
+        <translation>自动取消选中已通过的测试点</translation>
+    </message>
+    <message>
+        <source>Automatically uncheck test cases when they get accepted.</source>
+        <translation>在测试点通过测试时自动取消选中。</translation>
+    </message>
 </context>
 <context>
     <name>ShortcutItem</name>
@@ -2647,14 +2675,25 @@ You can learn about it by running `yapf --style-help`.</source>
     </message>
 </context>
 <context>
+    <name>SupportEntry</name>
+    <message>
+        <source>Donate</source>
+        <translation>捐赠</translation>
+    </message>
+</context>
+<context>
     <name>SupportUsDialog</name>
     <message>
         <source>Like CP Editor?</source>
         <translation>喜欢 CP Editor 吗？</translation>
     </message>
     <message>
-        <source>Thank you for using CP Editor! To support us, you can:</source>
-        <translation>感谢您使用 CP Editor！你可以用下列方式支持我们：</translation>
+        <source>Thank you for using CP Editor!</source>
+        <translation>感谢您使用 CP Editor！</translation>
+    </message>
+    <message>
+        <source>To support us, you can:</source>
+        <translation>你可以用下列方式支持我们：</translation>
     </message>
     <message>
         <source>Give us a star on GitHub</source>
@@ -2669,12 +2708,8 @@ You can learn about it by running `yapf --style-help`.</source>
         <translation>在经济上支持我们</translation>
     </message>
     <message>
-        <source>Or, [provide some suggestions](https://github.com/cpeditor/cpeditor/issues/new/choose) to help us do better.</source>
-        <translation>或者，[提供一些建议](https://github.com/cpeditor/cpeditor/issues/new/choose)以使我们做得更好。</translation>
-    </message>
-    <message>
-        <source>Donate</source>
-        <translation>捐赠</translation>
+        <source>Provide some suggestions to help us do better</source>
+        <translation>提供一些建议以使我们做得更好</translation>
     </message>
     <message>
         <source>I&apos;m using @cpeditor_, an IDE specially designed for competitive programmers, which is awesome!</source>

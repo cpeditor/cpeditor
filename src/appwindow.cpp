@@ -33,6 +33,7 @@
 #include "Util/FileUtil.hpp"
 #include "Util/Util.hpp"
 #include "Widgets/SupportUsDialog.hpp"
+#include "application.hpp"
 #include "generated/SettingsHelper.hpp"
 #include "generated/portable.hpp"
 #include "generated/version.hpp"
@@ -60,6 +61,11 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
     allocate();
     setConnections();
 
+#ifdef Q_OS_MACOS
+    ui->actionSwapLineUp->setShortcut({"Ctrl+Meta+Up"});
+    ui->actionSwapLineDown->setShortcut({"Ctrl+Meta+Down"});
+#endif
+
     auto *separator = ui->menuFile->insertSeparator(ui->actionSave); // used to insert openRecentFilesMenu
     auto *openRecentFilesMenu = new QMenu(tr("Open Recent Files"), ui->menuFile);
     ui->menuFile->insertMenu(separator, openRecentFilesMenu);
@@ -83,7 +89,11 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
     Core::StyleManager::setDefault();
 
     QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
+#ifdef Q_OS_MACOS
+    setWindowIcon(QIcon(":/macos-icon.png"));
+#else
     setWindowIcon(QIcon(":/icon.png"));
+#endif
 
 #ifdef Q_OS_WIN
     // setWindowOpacity(0.99) when opacity should be 100 is a workaround for a strange issue on Windows
@@ -240,6 +250,15 @@ void AppWindow::dropEvent(QDropEvent *event)
     openPaths(paths);
 }
 
+void AppWindow::changeEvent(QEvent *event)
+{
+    if (event->type() == QEvent::WindowStateChange)
+    {
+        ui->actionFullScreen->setChecked(windowState().testFlag(Qt::WindowFullScreen));
+    }
+    QMainWindow::changeEvent(event);
+}
+
 /******************** PRIVATE METHODS ********************/
 void AppWindow::setConnections()
 {
@@ -258,6 +277,9 @@ void AppWindow::setConnections()
 
     connect(trayIcon, &QSystemTrayIcon::activated, this, &AppWindow::onTrayIconActivated);
     connect(trayIcon, &QSystemTrayIcon::messageClicked, this, &AppWindow::showOnTop);
+
+    connect(qobject_cast<Application *>(qApp), &Application::requestOpenFile, this,
+            qOverload<const QString &>(&AppWindow::openTab));
 }
 
 void AppWindow::allocate()
@@ -364,8 +386,6 @@ void AppWindow::maybeSetHotkeys()
         hotkeyObjects.push_back(
             new QShortcut(SettingsHelper::getHotkeySnippets(), this, [this] { on_actionUseSnippets_triggered(); }));
     }
-
-    hotkeyObjects.push_back(new QShortcut(Qt::Key_Escape, this, [this] { ui->actionFullScreen->setChecked(false); }));
 }
 
 bool AppWindow::closeTab(int index)
@@ -406,41 +426,6 @@ void AppWindow::openTab(MainWindow *window)
 
     window->getEditor()->setFocus();
     onEditorFileChanged();
-}
-
-void AppWindow::openTab(const QString &path)
-{
-    LOG_INFO("OpenTab Path is " << path);
-    if (!path.isEmpty())
-    {
-        auto fileInfo = QFileInfo(path);
-        for (int t = 0; t < ui->tabWidget->count(); t++)
-        {
-            auto tPath = qobject_cast<MainWindow *>(ui->tabWidget->widget(t))->getFilePath();
-            if (path == tPath || (fileInfo.exists() && fileInfo == QFileInfo(tPath)))
-            {
-                ui->tabWidget->setCurrentIndex(t);
-                return;
-            }
-        }
-    }
-
-    auto *newWindow = new MainWindow(path, getNewUntitledIndex(), this);
-
-    QString lang = SettingsHelper::getDefaultLanguage();
-
-    auto suffix = QFileInfo(path).suffix();
-
-    if (Util::cppSuffix.contains(suffix))
-        lang = "C++";
-    else if (Util::javaSuffix.contains(suffix))
-        lang = "Java";
-    else if (Util::pythonSuffix.contains(suffix))
-        lang = "Python";
-
-    newWindow->setLanguage(lang);
-
-    openTab(newWindow);
 }
 
 void AppWindow::openTab(const MainWindow::EditorStatus &status, bool duplicate)
@@ -1162,6 +1147,41 @@ void AppWindow::onRightSplitterMoved()
     SettingsHelper::setRightSplitterSize(splitter->saveState());
 }
 
+void AppWindow::openTab(const QString &path)
+{
+    LOG_INFO("OpenTab Path is " << path);
+    if (!path.isEmpty())
+    {
+        auto fileInfo = QFileInfo(path);
+        for (int t = 0; t < ui->tabWidget->count(); t++)
+        {
+            auto tPath = qobject_cast<MainWindow *>(ui->tabWidget->widget(t))->getFilePath();
+            if (path == tPath || (fileInfo.exists() && fileInfo == QFileInfo(tPath)))
+            {
+                ui->tabWidget->setCurrentIndex(t);
+                return;
+            }
+        }
+    }
+
+    auto *newWindow = new MainWindow(path, getNewUntitledIndex(), this);
+
+    QString lang = SettingsHelper::getDefaultLanguage();
+
+    auto suffix = QFileInfo(path).suffix();
+
+    if (Util::cppSuffix.contains(suffix))
+        lang = "C++";
+    else if (Util::javaSuffix.contains(suffix))
+        lang = "Java";
+    else if (Util::pythonSuffix.contains(suffix))
+        lang = "Python";
+
+    newWindow->setLanguage(lang);
+
+    openTab(newWindow);
+}
+
 /************************* ACTIONS ************************/
 void AppWindow::on_actionCheckForUpdates_triggered()
 {
@@ -1300,6 +1320,11 @@ void AppWindow::on_actionFullScreen_toggled(bool checked)
     auto state = windowState();
     state.setFlag(Qt::WindowFullScreen, checked);
     setWindowState(state);
+    if (checked && !SettingsHelper::isFullScreenDialogShown())
+    {
+        SettingsHelper::setFullScreenDialogShown(true);
+        QMessageBox::information(this, tr("How to exit full-screen"), tr("Press F11 key to exit full-screen mode."));
+    }
 }
 
 void AppWindow::on_actionIndent_triggered()

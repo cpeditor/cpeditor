@@ -36,14 +36,11 @@
 #include "generated/SettingsHelper.hpp"
 #include "generated/version.hpp"
 #include <QFileSystemWatcher>
-#include <QFontDialog>
 #include <QInputDialog>
 #include <QMessageBox>
 #include <QMimeData>
 #include <QRegularExpression>
-#include <QSaveFile>
 #include <QScrollBar>
-#include <QShortcut>
 #include <QTemporaryDir>
 #include <QTextBlock>
 #include <QTimer>
@@ -943,12 +940,14 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
                     }
                 }
             }
+
             if (defaultPath.isEmpty())
             {
-                defaultPath = Util::fileNameWithSuffix(
-                    QDir(DefaultPathManager::defaultPathForAction("Save File")).filePath(getTabTitle(false, false)),
-                    language);
+                defaultPath =
+                    QDir(DefaultPathManager::defaultPathForAction("Save File")).filePath(getTabTitle(false, false));
             }
+
+            defaultPath = Util::fileNameWithSuffix(defaultPath, language);
         }
 
         // Create the parent directories of the default path if they don't exist,
@@ -1383,7 +1382,8 @@ void MainWindow::onRunStarted(int index)
     log->info(getRunnerHead(index), tr("Execution has started"));
 }
 
-void MainWindow::onRunFinished(int index, const QString &out, const QString &err, int exitCode, int timeUsed, bool tle)
+void MainWindow::onRunFinished(int index, const QString &out, const QString &err, int exitCode, qint64 timeUsed,
+                               bool tle)
 {
     auto head = getRunnerHead(index);
 

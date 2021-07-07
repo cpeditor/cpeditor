@@ -7,36 +7,42 @@ on:
 
 env:
   QT_VERSION: 5.15.2
+  WINLIBS_GCC: 11.1.0
+  WINLIBS_LLVM: 12.0.0
+  WINLIBS_MINGW: 9.0.0-r2
 
 jobs:
-  get-winlibs-versions:
+  # "env" is only available in jobs, we need to convert them to outputs so that they can be used in the matrix
+  get-winlibs-outputs:
     runs-on: ubuntu-latest
     steps:
-      - name: Get Winlibs versions
+      - name: Get winlibs outputs
         id: get
         run: |
-          tag=$(curl https://api.github.com/repos/brechtsanders/winlibs_mingw/releases/latest | jq -r .tag_name)
-          echo "::set-output name=tag-name::$tag"
-          echo "::set-output name=gcc-version::$(echo $tag | cut -d'-' -f 1)"
-          echo "::set-output name=mingw-version::$(echo $tag | cut -d'-' -f 3-)"
+          echo ::set-output name=GCC::$WINLIBS_GCC
+          echo ::set-output name=LLVM::$WINLIBS_LLVM
+          echo ::set-output name=MINGW::$WINLIBS_MINGW
+          echo ::set-output name=tag::$WINLIBS_GCC-$WINLIBS_LLVM-$WINLIBS_MINGW
     outputs:
-      tag-name: ${{ steps.get.outputs.tag-name }}
-      gcc-version: ${{ steps.get.outputs.gcc-version }}
-      mingw-version: ${{ steps.get.outputs.mingw-version }}
+      GCC: ${{ steps.get.outputs.GCC }}
+      LLVM: ${{ steps.get.outputs.LLVM }}
+      MINGW: ${{ steps.get.outputs.MINGW }}
+      tag: ${{ steps.get.outputs.tag }}
 
   release:
     name: "OS: ${{ matrix.config.os }} Arch: ${{ matrix.config.arch }} Portable: ${{ matrix.config.portable-option }} Winlibs: ${{ matrix.config.winlibs }}"
     runs-on: "${{ matrix.config.os }}"
-    needs:
-      - get-winlibs-versions
+    needs: get-winlibs-outputs
     strategy:
       fail-fast: false
       matrix:
         config:
-          - os: "ubuntu-16.04"
+          - os: "ubuntu-18.04"
             portable-option: "Off"
+            winlibs: false
           - os: "macos-latest"
             portable-option: "Off"
+            winlibs: false
           - os: "windows-latest"
             arch: x64
             platform: x64
@@ -70,7 +76,7 @@ jobs:
             platform: x64
             qtarch: win64_msvc2019_64
             portable-option: "Off"
-            filename-suffix: "setup-with-gcc-${{ needs.get-winlibs-versions.outputs.gcc-version }}.exe"
+            filename-suffix: "setup-with-gcc-${{ needs.get-winlibs-outputs.outputs.GCC }}-LLVM-${{ needs.get-winlibs-outputs.outputs.LLVM }}.exe"
             winlibs: true
             winlibs-arch: x86_64-posix-seh
             mingw-arch: mingw64
@@ -79,7 +85,7 @@ jobs:
             platform: x64
             qtarch: win64_msvc2019_64
             portable-option: "On"
-            filename-suffix: "portable-with-gcc-${{ needs.get-winlibs-versions.outputs.gcc-version }}.zip"
+            filename-suffix: "portable-with-gcc-${{ needs.get-winlibs-outputs.outputs.GCC }}-LLVM-${{ needs.get-winlibs-outputs.outputs.LLVM }}.zip"
             winlibs: true
             winlibs-arch: x86_64-posix-seh
             mingw-arch: mingw64
@@ -88,7 +94,7 @@ jobs:
             platform: Win32
             qtarch: win32_msvc2019
             portable-option: "Off"
-            filename-suffix: "setup-with-gcc-${{ needs.get-winlibs-versions.outputs.gcc-version }}.exe"
+            filename-suffix: "setup-with-gcc-${{ needs.get-winlibs-outputs.outputs.GCC }}-LLVM-${{ needs.get-winlibs-outputs.outputs.LLVM }}.exe"
             winlibs: true
             winlibs-arch: i686-posix-dwarf
             mingw-arch: mingw32
@@ -97,7 +103,7 @@ jobs:
             platform: Win32
             qtarch: win32_msvc2019
             portable-option: "On"
-            filename-suffix: "portable-with-gcc-${{ needs.get-winlibs-versions.outputs.gcc-version }}.zip"
+            filename-suffix: "portable-with-gcc-${{ needs.get-winlibs-outputs.outputs.GCC }}-LLVM-${{ needs.get-winlibs-outputs.outputs.LLVM }}.zip"
             winlibs: true
             winlibs-arch: i686-posix-dwarf
             mingw-arch: mingw32
@@ -165,8 +171,8 @@ jobs:
         run: |
           VERSION=${GITHUB_REF/refs\/tags\//}
           echo ::set-output name=VERSION::$VERSION
-          read STABLE_VERSION < .ci/STABLE_VERSION
-          if [ "${VERSION:0:${#STABLE_VERSION}}" == "$STABLE_VERSION" ]; then
+          STABLE_VERSION=$(cat dist/STABLE_VERSION)
+          if [[ VERSION == "$STABLE_VERSION"* ]]; then
             echo ::set-output name=ISBETA::false
           else
             echo ::set-output name=ISBETA::true
@@ -180,7 +186,7 @@ jobs:
           wget -c "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
           chmod a+x linuxdeployqt*.AppImage
           export VERSION=${{ steps.get_version.outputs.VERSION }}
-          cp ../.ci/linux/cpeditor.desktop default.desktop
+          cp ../dist/linux/cpeditor.desktop default.desktop
           cp ../resources/icon.png cpeditor.png
           ./linuxdeployqt*.AppImage ./cpeditor -appimage -qmake=../../Qt/${{ env.QT_VERSION }}/gcc_64/bin/qmake
           mv CP_Editor-${{steps.get_version.outputs.VERSION }}-x86_64.AppImage cpeditor-${{ steps.get_version.outputs.VERSION }}-linux-x86_64.AppImage
@@ -207,10 +213,10 @@ jobs:
           cd ${pkgname}/usr/share/
 
           mkdir applications/
-          cp ${{ github.workspace }}/.ci/linux/cpeditor.desktop ./applications
+          cp ${{ github.workspace }}/dist/linux/cpeditor.desktop ./applications
 
           mkdir -p cpeditor/bin/
-          cp ${{ github.workspace }}/.ci/DEB/cpeditor.sh ./cpeditor/
+          cp ${{ github.workspace }}/dist/DEB/cpeditor.sh ./cpeditor/
           cp -r ${{ github.workspace }}/build/plugins/ ./cpeditor
           cp ${{ github.workspace }}/build/cpeditor ./cpeditor/bin/
 
@@ -227,7 +233,7 @@ jobs:
           cp ${{ github.workspace }}/build/lib/* ./lib/cpeditor
 
           cd ..
-          cp -r ${{ github.workspace }}/.ci/DEB/DEBIAN .
+          cp -r ${{ github.workspace }}/dist/DEB/DEBIAN .
           wget -c "http://archive.ubuntu.com/ubuntu/pool/universe/h/hashdeep/md5deep_4.4-4_all.deb"
           wget -c "http://archive.ubuntu.com/ubuntu/pool/universe/h/hashdeep/hashdeep_4.4-4_amd64.deb"
           sudo apt install ./*.deb
@@ -279,7 +285,7 @@ jobs:
         run: |
           cd build
           ../../Qt/*/*/bin/macdeployqt cpeditor.app
-          cp ../.ci/mac/cpeditor.icns cpeditor.app/Contents/Resources
+          cp ../dist/mac/cpeditor.icns cpeditor.app/Contents/Resources
           hdiutil create -volname cpeditor-${{ steps.get_version.outputs.VERSION }}-x64 -srcfolder cpeditor.app -ov -format UDZO cpeditor-${{ steps.get_version.outputs.VERSION }}-macos-x64.dmg
 
       - name: "[macOS] Release"
@@ -308,14 +314,14 @@ jobs:
         if: startsWith(matrix.config.os, 'windows') && matrix.config.winlibs
         id: winlibs
         shell: bash
-        run: echo "::set-output name=asset::winlibs-${{ matrix.config.winlibs-arch }}-gcc-${{ needs.get-winlibs-versions.outputs.gcc-version }}-mingw-w64-${{ needs.get-winlibs-versions.outputs.mingw-version }}.7z"
+        run: echo "::set-output name=asset::winlibs-${{ matrix.config.winlibs-arch }}-gcc-${{ needs.get-winlibs-outputs.outputs.GCC }}-llvm-${{ needs.get-winlibs-outputs.outputs.LLVM }}-mingw-w64-${{ needs.get-winlibs-outputs.outputs.MINGW }}.7z"
 
       - name: "[Windows] Download Winlibs"
         if: startsWith(matrix.config.os, 'windows') && matrix.config.winlibs
         uses: robinraju/release-downloader@v1
         with:
           repository: brechtsanders/winlibs_mingw
-          tag: ${{ needs.get-winlibs-versions.outputs.tag-name }}
+          tag: ${{ needs.get-winlibs-outputs.outputs.tag }}
           fileName: ${{ steps.winlibs.outputs.asset }}
 
       - name: "[Windows] Extract Winlibs"
@@ -329,7 +335,7 @@ jobs:
         run: |
           mkdir build/out/Redist
           cp "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Redist/MSVC/$VC_REDIST_VERSION/vc_redist.${{ matrix.config.arch }}.exe" build/out/Redist
-          iscc .ci/win/win-setup.iss \
+          iscc dist/win/win-setup.iss \
             -DArch=${{ matrix.config.arch }} \
             $([[ "${{ matrix.config.winlibs }}" == "true" ]] && echo '-DGccDir=${{ matrix.config.mingw-arch }}' || echo '') \
             -DMyAppVersion=${{ steps.get_version.outputs.VERSION }} \

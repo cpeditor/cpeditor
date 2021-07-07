@@ -118,6 +118,10 @@ QString Compiler::outputPath(const QString &tmpFilePath, const QString &sourceFi
                                               .replace("${basename}", fileInfo.completeBaseName())
                                               .replace("${tmpdir}", QFileInfo(tmpFilePath).absolutePath())
                                               .replace("${tempdir}", QFileInfo(tmpFilePath).absolutePath()));
+
+    if (lang == "C++")
+        res += Util::exeSuffix; // Note: Util::exeSuffix is empty on UNIX
+
     if (createDirectory)
     {
         if (lang == "C++")
@@ -125,18 +129,17 @@ QString Compiler::outputPath(const QString &tmpFilePath, const QString &sourceFi
         else if (lang == "Java")
             QDir().mkpath(res);
     }
+
     return res;
 }
 
 QString Compiler::outputFilePath(const QString &tmpFilePath, const QString &sourceFilePath, const QString &lang,
                                  bool createDirectory)
 {
-    auto path = outputPath(tmpFilePath, sourceFilePath, lang, createDirectory);
+    const auto &path = outputPath(tmpFilePath, sourceFilePath, lang, createDirectory);
 
-    if (lang == "C++")
-        path += Util::exeSuffix;
-    else if (lang == "Java")
-        path = QDir(path).filePath(SettingsHelper::getJavaClassName() + ".class");
+    if (lang == "Java")
+        return QDir(path).filePath(SettingsHelper::getJavaClassName() + ".class");
 
     return path;
 }

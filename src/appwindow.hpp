@@ -64,11 +64,13 @@ class AppWindow : public QMainWindow
                        QWidget *parent = nullptr);
     ~AppWindow() override;
 
+    PreferencesWindow *getPreferencesWindow() const;
+
+  protected:
     void closeEvent(QCloseEvent *event) override;
     void dropEvent(QDropEvent *event) override;
     void dragEnterEvent(QDragEnterEvent *event) override;
-
-    PreferencesWindow *getPreferencesWindow() const;
+    void changeEvent(QEvent *event) override;
 
   public slots:
     void onReceivedMessage(quint32 instanceId, QByteArray message);
@@ -207,6 +209,8 @@ class AppWindow : public QMainWindow
 
     void onViewModeToggle();
 
+    void openTab(const QString &path);
+
   private:
     Ui::AppWindow *ui;
     MessageLogger *activeLogger = nullptr;
@@ -243,7 +247,6 @@ class AppWindow : public QMainWindow
     void maybeSetHotkeys();
     bool closeTab(int index);
     void openTab(MainWindow *window);
-    void openTab(const QString &path);
     void openTab(const MainWindow::EditorStatus &status, bool duplicate = false);
     void openTabs(const QStringList &paths);
     void openPaths(const QStringList &paths, bool cpp = true, bool java = true, bool python = true, int depth = -1);

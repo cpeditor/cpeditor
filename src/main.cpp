@@ -20,6 +20,7 @@
 #include "Settings/SettingsInfo.hpp"
 #include "SignalHandler.hpp"
 #include "Util/Util.hpp"
+#include "application.hpp"
 #include "appwindow.hpp"
 #include "generated/SettingsHelper.hpp"
 #include "generated/version.hpp"
@@ -35,7 +36,6 @@
 #include <QProgressDialog>
 #include <QTextStream>
 #include <iostream>
-#include <singleapplication.h>
 
 #ifdef Q_OS_WIN
 #include <windows.h>
@@ -45,11 +45,15 @@
 
 int main(int argc, char *argv[])
 {
-    SingleApplication app(argc, argv, true);
+    Application app(argc, argv);
     SingleApplication::setApplicationName("CP Editor");
     SingleApplication::setApplicationVersion(DISPLAY_VERSION);
     QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
+#ifdef Q_OS_MACOS
+    QApplication::setWindowIcon(QIcon(":/macos-icon.png"));
+#else
     QApplication::setWindowIcon(QIcon(":/icon.png"));
+#endif
 
 #ifdef Q_OS_WIN
     AllowSetForegroundWindow(ASFW_ANY); // #657
@@ -124,9 +128,6 @@ int main(int argc, char *argv[])
     parser.addOptions(
         {{{"d", "depth"}, "Maximum depth when opening files in directories. No limit if not specified.", "depth", "-1"},
          {{"c", "contest"}, "Open a contest. i.e. Open files named A, B, ..., Z in a given directory."},
-         /*{{"n", "new"},
-          "Open a new window instead of open tabs in an existing window. This may cause error of the competitive "
-          "companion server."},*/
          {"cpp", "Open C++ files in given directories. / Use C++ for open contests."},
          {"java", "Open Java files in given directories. / Use Java for open contests."},
          {"python", "Open Python files in given directories. / Use Python for open contests."},
@@ -192,7 +193,7 @@ int main(int argc, char *argv[])
 
         LOG_INFO("Path extracted as : " << path);
 
-        if (/*!parser.isSet("new") &&*/ app.isSecondary())
+        if (app.isSecondary())
         {
             QJsonObject json;
             json["type"] = "contest";
@@ -201,13 +202,17 @@ int main(int argc, char *argv[])
             TOJSON(python);
             TOJSON(number);
             TOJSON(path);
-            if (app.sendMessage("AAAAAAAAAAAAAAAAAAAANOLOSTDATA" + QJsonDocument(json).toJson()))
+            if (app.sendMessage("AAAAAAAAAAAAAAAAAAAANOLOSTDATA" + QJsonDocument(json).toJson(), 20000))
             {
                 LOG_INFO("This is secondary application. Sending to primary instance the binary data : " +
                          QJsonDocument(json).toJson(QJsonDocument::Compact));
                 cerr << "There is already a CP Editor running. New tabs are opened there.\n";
                 return 0;
             }
+            LOG_ERR("Failed to sendMessage");
+            cerr << "The open-file request timeouts. Please kill the old CP Editor instance if it's still running but "
+                    "has no response.\n";
+            return 1;
         }
 
         LOG_INFO("Launching the new Appwindow with args: " << BOOL_INFO_OF(cpp) << BOOL_INFO_OF(java)
@@ -243,7 +248,7 @@ int main(int argc, char *argv[])
         LOG_INFO("Path is : " << path);
     }
 
-    if (/*!parser.isSet("new") &&*/ app.isSecondary())
+    if (app.isSecondary())
     {
         QJsonObject json;
         json["type"] = "normal";
@@ -252,13 +257,17 @@ int main(int argc, char *argv[])
         TOJSON(java);
         TOJSON(python);
         json["paths"] = QJsonArray::fromStringList(args);
-        if (app.sendMessage("AAAAAAAAAAAAAAAAAAAANOLOSTDATA" + QJsonDocument(json).toJson()))
+        if (app.sendMessage("AAAAAAAAAAAAAAAAAAAANOLOSTDATA" + QJsonDocument(json).toJson(), 20000))
         {
             LOG_INFO("This is secondary application. Sending to primary instance the data : "
                      << QJsonDocument(json).toJson(QJsonDocument::Compact));
             cerr << "There is already a CP Editor running. New tabs are opened there.\n";
             return 0;
         }
+        LOG_ERR("Failed to sendMessage");
+        cerr << "The open-file request timeouts. Please kill the old CP Editor instance if it's still running but "
+                "has no response.\n";
+        return 1;
     }
     LOG_INFO("Launching the new Appwindow with args: " << INFO_OF(depth) << BOOL_INFO_OF(cpp) << BOOL_INFO_OF(java)
                                                        << BOOL_INFO_OF(python) << BOOL_INFO_OF(noHotExit)

@@ -467,6 +467,14 @@ Git commit hash: %3
         <source>Support us</source>
         <translation>Поддержи нас</translation>
     </message>
+    <message>
+        <source>How to exit full-screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Press F11 key to exit full-screen mode.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CodeSnippetsPage</name>
@@ -1481,10 +1489,6 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation>Сохранении сессиии</translation>
     </message>
     <message>
-        <source>Empty Test Cases</source>
-        <translation>Пустые тесткейсы</translation>
-    </message>
-    <message>
         <source>Network Proxy</source>
         <translation>Прокси сети</translation>
     </message>
@@ -1512,6 +1516,10 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <source>Code Formatting</source>
         <translation>Форматирование кода</translation>
     </message>
+    <message>
+        <source>Test Cases</source>
+        <translation type="unfinished">Тесткейсы</translation>
+    </message>
 </context>
 <context>
     <name>SettingsInfo</name>
@@ -1522,6 +1530,18 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <source>The width of the tab character, or the number of spaces of an indent</source>
         <translation>Ширина символов вкладки или количество пробелов на конце</translation>
+    </message>
+    <message>
+        <source>Cursor Width</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The width of the cursor in pixels</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Editor Font</source>
+        <translation>Шрифт редактора</translation>
     </message>
     <message>
         <source>The font of the code editor</source>
@@ -2603,6 +2623,14 @@ You can learn about it by running `yapf --style-help`.</source>
         <comment>the anchor of Password on the corresponding page of https://cpeditor.org/docs/preferences</comment>
         <translation>прокси сети</translation>
     </message>
+    <message>
+        <source>Auto Uncheck Accepted Testcases</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatically uncheck test cases when they get accepted.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ShortcutItem</name>
@@ -2655,14 +2683,25 @@ You can learn about it by running `yapf --style-help`.</source>
     </message>
 </context>
 <context>
+    <name>SupportEntry</name>
+    <message>
+        <source>Donate</source>
+        <translation>Пожертвовать</translation>
+    </message>
+</context>
+<context>
     <name>SupportUsDialog</name>
     <message>
         <source>Like CP Editor?</source>
         <translation>Нравится CP Editor?</translation>
     </message>
     <message>
-        <source>Thank you for using CP Editor! To support us, you can:</source>
-        <translation>Спасибо Вам за использование CP Editor! Для того чтобы поддержать нас, Вы можете:</translation>
+        <source>Thank you for using CP Editor!</source>
+        <translation>Спасибо Вам за использование CP Editor!</translation>
+    </message>
+    <message>
+        <source>To support us, you can:</source>
+        <translation>Для того чтобы поддержать нас, Вы можете:</translation>
     </message>
     <message>
         <source>Give us a star on GitHub</source>
@@ -2677,12 +2716,8 @@ You can learn about it by running `yapf --style-help`.</source>
         <translation>Поддержать нас финансово</translation>
     </message>
     <message>
-        <source>Or, [provide some suggestions](https://github.com/cpeditor/cpeditor/issues/new/choose) to help us do better.</source>
-        <translation>Или [дать немного советов](https://github.com/cpeditor/cpeditor/issues/new/choose) чтобы помочь нам быть лучше.</translation>
-    </message>
-    <message>
-        <source>Donate</source>
-        <translation>Пожертвовать</translation>
+        <source>Provide some suggestions to help us do better</source>
+        <translation>Дать немного советов чтобы помочь нам быть лучше</translation>
     </message>
     <message>
         <source>I&apos;m using @cpeditor_, an IDE specially designed for competitive programmers, which is awesome!</source>

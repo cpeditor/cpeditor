@@ -62,6 +62,7 @@ class Compiler : public QObject
 
     /**
      * @brief get the output path (executable file path for C++, class path for Java, tmp file path for Python)
+     * This should be used as an argument in the compilation command
      * @param tmpFilePath the path to the temporary file which is compiled
      * @param sourceFilePath the path to the original source file, if it's empty, tmpFilePath will be used instead of it
      * @param lang the language being compiled
@@ -72,7 +73,7 @@ class Compiler : public QObject
 
     /**
      * @brief Similar to Compiler::outputPath, but returns the path of the output file.
-     * i.e. with .exe on Windows for C++, class file instead of containing directory for Java
+     * This should be used to find the executable file for C++ and class file for Java.
      */
     static QString outputFilePath(const QString &tmpFilePath, const QString &sourceFilePath, const QString &lang,
                                   bool createDirectory = true);

@@ -1,0 +1,41 @@
+name: "Check translations are up to date"
+
+on:
+  - push
+  - pull_request
+
+env:
+  QT_VERSION: 5.15.2
+
+jobs:
+  check-translations:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Restore Qt from cache
+        id: cache-qt
+        uses: actions/cache@v1
+        with:
+          path: ../Qt
+          key: Qt-ubuntu-latest-${{ env.QT_VERSION }}
+
+      - name: Set up Qt environment
+        uses: jurplel/install-qt-action@v2
+        with:
+          cached: ${{ steps.cache-qt.outputs.cache-hit }}
+          version: ${{ env.QT_VERSION }}
+
+      - name: Build
+        run: |
+          cmake -B build -S . -D CMAKE_BUILD_TYPE=Release
+          cmake --build build -j4
+
+      - name: Check translations are up to date
+        run: |
+          tools/updateTranslation.sh
+          git diff --exit-code HEAD

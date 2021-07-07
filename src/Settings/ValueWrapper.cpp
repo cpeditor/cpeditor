@@ -39,118 +39,113 @@
 // QVariantList
 #include "Settings/StringListsItem.hpp"
 
-void ValueWidget::emitSignal()
+void CheckBoxWrapper::init(QWidget *parent, const QVariant &param)
 {
-    emit valueChanged();
-}
-
-void CheckBoxWrapper::init(QString name, QWidget *parent, QVariant /*param*/)
-{
-    auto *item = new RichTextCheckBox(name, parent);
-    connect(item, &RichTextCheckBox::toggled, this, &ValueWidget::emitSignal);
-    widget = item;
+    auto *item = new RichTextCheckBox(param.toString(), parent);
+    connect(item, &RichTextCheckBox::toggled, this, &ValueWidget::valueChanged);
+    setWidget(item);
 }
 
 bool CheckBoxWrapper::get()
 {
-    return qobject_cast<RichTextCheckBox *>(widget)->isChecked();
+    return qobject_cast<RichTextCheckBox *>(coreWidget())->isChecked();
 }
 
-void CheckBoxWrapper::set(bool b)
+void CheckBoxWrapper::set(const bool &b)
 {
-    qobject_cast<RichTextCheckBox *>(widget)->setChecked(b);
+    qobject_cast<RichTextCheckBox *>(coreWidget())->setChecked(b);
 }
 
-void LineEditWrapper::init(QWidget *parent, QVariant /*param*/)
+void LineEditWrapper::init(QWidget *parent, const QVariant & /*param*/)
 {
     auto *item = new QLineEdit(parent);
     item->setMinimumWidth(400);
-    connect(item, &QLineEdit::textChanged, this, &ValueWidget::emitSignal);
-    widget = item;
+    connect(item, &QLineEdit::textChanged, this, &ValueWidget::valueChanged);
+    setWidget(item);
 }
 
 QString LineEditWrapper::get()
 {
-    return qobject_cast<QLineEdit *>(widget)->text();
+    return qobject_cast<QLineEdit *>(coreWidget())->text();
 }
 
-void LineEditWrapper::set(QString s)
+void LineEditWrapper::set(const QString &s)
 {
-    qobject_cast<QLineEdit *>(widget)->setText(s);
+    qobject_cast<QLineEdit *>(coreWidget())->setText(s);
 }
 
-void PlainTextEditWrapper::init(QWidget *parent, QVariant /*param*/)
+void PlainTextEditWrapper::init(QWidget *parent, const QVariant & /*param*/)
 {
     auto *item = new QPlainTextEdit(parent);
     item->setMinimumWidth(400);
     item->setWordWrapMode(QTextOption::NoWrap);
-    connect(item, &QPlainTextEdit::textChanged, this, &ValueWidget::emitSignal);
-    widget = item;
+    connect(item, &QPlainTextEdit::textChanged, this, &ValueWidget::valueChanged);
+    setWidget(item);
 }
 
 QString PlainTextEditWrapper::get()
 {
-    return qobject_cast<QPlainTextEdit *>(widget)->toPlainText();
+    return qobject_cast<QPlainTextEdit *>(coreWidget())->toPlainText();
 }
 
-void PlainTextEditWrapper::set(QString s)
+void PlainTextEditWrapper::set(const QString &s)
 {
-    qobject_cast<QPlainTextEdit *>(widget)->setPlainText(s);
+    qobject_cast<QPlainTextEdit *>(coreWidget())->setPlainText(s);
 }
 
-void ComboBoxWrapper::init(QWidget *parent, QVariant param)
+void ComboBoxWrapper::init(QWidget *parent, const QVariant &param)
 {
     auto *item = new QComboBox(parent);
     item->addItems(param.toStringList());
-    connect(item, &QComboBox::currentTextChanged, this, &ValueWidget::emitSignal);
-    widget = item;
+    connect(item, &QComboBox::currentTextChanged, this, &ValueWidget::valueChanged);
+    setWidget(item);
 }
 
 QString ComboBoxWrapper::get()
 {
-    return qobject_cast<QComboBox *>(widget)->currentText();
+    return qobject_cast<QComboBox *>(coreWidget())->currentText();
 }
 
-void ComboBoxWrapper::set(QString s)
+void ComboBoxWrapper::set(const QString &s)
 {
-    qobject_cast<QComboBox *>(widget)->setCurrentText(s);
+    qobject_cast<QComboBox *>(coreWidget())->setCurrentText(s);
 }
 
-void PathItemWrapper::init(QWidget *parent, QVariant param)
+void PathItemWrapper::init(QWidget *parent, const QVariant &param)
 {
     auto *item = new PathItem(PathItem::Type(param.toInt()), parent);
-    connect(item->getLineEdit(), &QLineEdit::textChanged, this, &ValueWidget::emitSignal);
-    widget = item;
+    connect(item->getLineEdit(), &QLineEdit::textChanged, this, &ValueWidget::valueChanged);
+    setWidget(item);
 }
 
 QString PathItemWrapper::get()
 {
-    return qobject_cast<PathItem *>(widget)->getLineEdit()->text();
+    return qobject_cast<PathItem *>(coreWidget())->getLineEdit()->text();
 }
 
-void PathItemWrapper::set(QString s)
+void PathItemWrapper::set(const QString &s)
 {
-    qobject_cast<PathItem *>(widget)->getLineEdit()->setText(s);
+    qobject_cast<PathItem *>(coreWidget())->getLineEdit()->setText(s);
 }
 
-void ShortcutItemWrapper::init(QWidget *parent, QVariant param)
+void ShortcutItemWrapper::init(QWidget *parent, const QVariant &param)
 {
     auto *item = new ShortcutItem(parent);
-    connect(item, &ShortcutItem::shortcutChanged, this, &ValueWidget::emitSignal);
-    widget = item;
+    connect(item, &ShortcutItem::shortcutChanged, this, &ValueWidget::valueChanged);
+    setWidget(item);
 }
 
 QString ShortcutItemWrapper::get()
 {
-    return qobject_cast<ShortcutItem *>(widget)->getShortcut();
+    return qobject_cast<ShortcutItem *>(coreWidget())->getShortcut();
 }
 
-void ShortcutItemWrapper::set(QString s)
+void ShortcutItemWrapper::set(const QString &s)
 {
-    qobject_cast<ShortcutItem *>(widget)->setShortcut(s);
+    qobject_cast<ShortcutItem *>(coreWidget())->setShortcut(s);
 }
 
-void CodecBoxWrapper::init(QWidget *parent, QVariant /*param*/)
+void CodecBoxWrapper::init(QWidget *parent, const QVariant & /*param*/)
 {
     QStringList names;
     for (auto const &mib : QTextCodec::availableMibs())
@@ -162,7 +157,7 @@ void CodecBoxWrapper::init(QWidget *parent, QVariant /*param*/)
     ComboBoxWrapper::init(parent, names);
 }
 
-void SpinBoxWrapper::init(QWidget *parent, QVariant param)
+void SpinBoxWrapper::init(QWidget *parent, const QVariant &param)
 {
     auto *item = new QSpinBox(parent);
     if (!param.isNull())
@@ -172,21 +167,21 @@ void SpinBoxWrapper::init(QWidget *parent, QVariant param)
         if (il.length() >= 3)
             item->setSingleStep(il[2].toInt());
     }
-    connect(item, QOverload<int>::of(&QSpinBox::valueChanged), this, &SpinBoxWrapper::emitSignal);
-    widget = item;
+    connect(item, QOverload<int>::of(&QSpinBox::valueChanged), this, &SpinBoxWrapper::valueChanged);
+    setWidget(item);
 }
 
 int SpinBoxWrapper::get()
 {
-    return qobject_cast<QSpinBox *>(widget)->value();
+    return qobject_cast<QSpinBox *>(coreWidget())->value();
 }
 
-void SpinBoxWrapper::set(int i)
+void SpinBoxWrapper::set(const int &i)
 {
-    qobject_cast<QSpinBox *>(widget)->setValue(i);
+    qobject_cast<QSpinBox *>(coreWidget())->setValue(i);
 }
 
-void ScrollBarWrapper::init(QWidget *parent, QVariant param)
+void ScrollBarWrapper::init(QWidget *parent, const QVariant &param)
 {
     auto *item = new QScrollBar(Qt::Horizontal, parent);
     if (!param.isNull())
@@ -194,21 +189,21 @@ void ScrollBarWrapper::init(QWidget *parent, QVariant param)
         QVariantList il = param.toList();
         item->setRange(il[0].toInt(), il[1].toInt());
     }
-    connect(item, &QScrollBar::valueChanged, this, &ValueWidget::emitSignal);
-    widget = item;
+    connect(item, &QScrollBar::valueChanged, this, &ValueWidget::valueChanged);
+    setWidget(item);
 }
 
 int ScrollBarWrapper::get()
 {
-    return qobject_cast<QScrollBar *>(widget)->value();
+    return qobject_cast<QScrollBar *>(coreWidget())->value();
 }
 
-void ScrollBarWrapper::set(int i)
+void ScrollBarWrapper::set(const int &i)
 {
-    qobject_cast<QScrollBar *>(widget)->setValue(i);
+    qobject_cast<QScrollBar *>(coreWidget())->setValue(i);
 }
 
-void SliderWrapper::init(QWidget *parent, QVariant param)
+void SliderWrapper::init(QWidget *parent, const QVariant &param)
 {
     auto *item = new QSlider(Qt::Horizontal, parent);
     if (!param.isNull())
@@ -216,68 +211,64 @@ void SliderWrapper::init(QWidget *parent, QVariant param)
         QVariantList il = param.toList();
         item->setRange(il[0].toInt(), il[1].toInt());
     }
-    connect(item, &QSlider::valueChanged, this, &ValueWidget::emitSignal);
-    widget = item;
+    connect(item, &QSlider::valueChanged, this, &ValueWidget::valueChanged);
+    setWidget(item);
 }
 
 int SliderWrapper::get()
 {
-    return qobject_cast<QSlider *>(widget)->value();
+    return qobject_cast<QSlider *>(coreWidget())->value();
 }
 
-void SliderWrapper::set(int i)
+void SliderWrapper::set(const int &i)
 {
-    qobject_cast<QSlider *>(widget)->setValue(i);
+    qobject_cast<QSlider *>(coreWidget())->setValue(i);
 }
 
-void FontItemWrapper::init(QWidget *parent, QVariant param)
+void FontItemWrapper::init(QWidget *parent, const QVariant &param)
 {
     auto *item = new FontItem(parent, param);
-    connect(item, &FontItem::fontChanged, this, &ValueWidget::emitSignal);
-    widget = item;
+    connect(item, &FontItem::fontChanged, this, &ValueWidget::valueChanged);
+    setWidget(item);
 }
 
 QFont FontItemWrapper::get()
 {
-    return qobject_cast<FontItem *>(widget)->getFont();
+    return qobject_cast<FontItem *>(coreWidget())->getFont();
 }
 
-void FontItemWrapper::set(QFont f)
+void FontItemWrapper::set(const QFont &f)
 {
-    qobject_cast<FontItem *>(widget)->setFont(f);
+    qobject_cast<FontItem *>(coreWidget())->setFont(f);
 }
 
-void StringListsItemWrapper::init(QWidget *parent, QVariant param)
+void StringListsItemWrapper::init(QWidget *parent, const QVariant &param)
 {
     auto *item = new StringListsItem(param.toList(), parent);
-    connect(item, &StringListsItem::valueChanged, this, &ValueWidget::emitSignal);
-    widget = item;
+    connect(item, &StringListsItem::valueChanged, this, &ValueWidget::valueChanged);
+    setWidget(item);
 }
 
 QVariantList StringListsItemWrapper::get()
 {
-    return qobject_cast<StringListsItem *>(widget)->getStringLists();
+    return qobject_cast<StringListsItem *>(coreWidget())->getStringLists();
 }
 
-void StringListsItemWrapper::set(QVariantList sl)
+void StringListsItemWrapper::set(const QVariantList &sl)
 {
-    qobject_cast<StringListsItem *>(widget)->setStringLists(sl);
+    qobject_cast<StringListsItem *>(coreWidget())->setStringLists(sl);
 }
 
-Wrapper<bool> *createBoolWrapper(QString type)
+Wrapper<bool> *createBoolWrapper(const QString &type)
 {
-    if (type == "")
-        type = "QCheckBox";
-    if (type == "QCheckBox")
+    if (type.isEmpty() || type == "QCheckBox")
         return new CheckBoxWrapper();
     return nullptr;
 }
 
-Wrapper<QString> *createStringWrapper(QString type)
+Wrapper<QString> *createStringWrapper(const QString &type)
 {
-    if (type == "")
-        type = "QLineEdit";
-    if (type == "QLineEdit")
+    if (type.isEmpty() || type == "QLineEdit")
         return new LineEditWrapper();
     if (type == "QPlainTextEdit")
         return new PlainTextEditWrapper();
@@ -292,11 +283,9 @@ Wrapper<QString> *createStringWrapper(QString type)
     return nullptr;
 }
 
-Wrapper<int> *createIntWrapper(QString type)
+Wrapper<int> *createIntWrapper(const QString &type)
 {
-    if (type == "")
-        type = "QSpinBox";
-    if (type == "QSpinBox")
+    if (type.isEmpty() || type == "QSpinBox")
         return new SpinBoxWrapper();
     if (type == "QScrollBar")
         return new ScrollBarWrapper();
@@ -305,20 +294,16 @@ Wrapper<int> *createIntWrapper(QString type)
     return nullptr;
 }
 
-Wrapper<QFont> *createFontWrapper(QString type)
+Wrapper<QFont> *createFontWrapper(const QString &type)
 {
-    if (type == "")
-        type = "FontItem";
-    if (type == "FontItem")
+    if (type.isEmpty() || type == "FontItem")
         return new FontItemWrapper();
     return nullptr;
 }
 
-Wrapper<QVariantList> *createStringListsWrapper(QString type)
+Wrapper<QVariantList> *createStringListsWrapper(const QString &type)
 {
-    if (type == "")
-        type = "StringListsItem";
-    if (type == "StringListsItem")
+    if (type.isEmpty() || type == "StringListsItem")
         return new StringListsItemWrapper();
     return nullptr;
 }

@@ -4,7 +4,7 @@ if(APPLE)
   set(CMAKE_OSX_DEPLOYMENT_TARGET "10.14" CACHE STRING "Minimum OS X deployment version")
 endif()
 
-project(cpeditor LANGUAGES CXX VERSION 6.9.0)
+project(cpeditor LANGUAGES CXX VERSION 6.10.0)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -41,6 +41,9 @@ add_library(diff_match_patch
 
 option(PORTABLE_VERSION "Build the portable version" Off)
 option(USE_CLANG_TIDY "Use clang-tidy to lint the files" Off)
+
+string(TIMESTAMP BUILD_DATE "%Y-%m-%d")
+message(STATUS "Makefile generated on ${BUILD_DATE}")
 
 if(${PORTABLE_VERSION})
   message(STATUS "Will build the portable version")
@@ -90,6 +93,7 @@ message(STATUS "Minor version: ${MINOR_VERSION}")
 
 configure_file(cmake/version.hpp.in ${CMAKE_BINARY_DIR}/generated/version.hpp)
 configure_file(cmake/portable.hpp.in ${CMAKE_BINARY_DIR}/generated/portable.hpp)
+configure_file(cmake/cpeditor.appdata.xml.in ${PROJECT_SOURCE_DIR}/dist/linux/cpeditor.appdata.xml)
 
 add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMAKE_BINARY_DIR}/generated/SettingsInfo.cpp
                    COMMAND ${Python3_EXECUTABLE} ${PROJECT_SOURCE_DIR}/src/Settings/genSettings.py ${PROJECT_SOURCE_DIR}/src/Settings/settings.json
@@ -109,6 +113,11 @@ set_property(SOURCE ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMAKE_BIN
 if(USE_CLANG_TIDY)
 	set(CMAKE_CXX_CLANG_TIDY "clang-tidy")
 	message(STATUS "clang-tidy checks will be performed")
+endif()
+
+set(RESOURCES resources/resources.qrc)
+if(APPLE)
+  list(APPEND RESOURCES resources/macos-resources.qrc)
 endif()
 
 add_executable(cpeditor
@@ -218,6 +227,8 @@ add_executable(cpeditor
     src/appwindow.hpp
     src/mainwindow.cpp
     src/mainwindow.hpp
+    src/application.cpp
+    src/application.hpp
 
     src/SignalHandler.cpp
     src/SignalHandler.hpp
@@ -233,7 +244,7 @@ add_executable(cpeditor
     ${CMAKE_BINARY_DIR}/generated/SettingsInfo.cpp
 
     ${CMAKE_BINARY_DIR}/translations/translations.qrc
-    resources/resources.qrc
+    ${RESOURCES}
     assets/appicon.rc)
 
 include_directories("generated/")
@@ -258,7 +269,7 @@ if(APPLE)
     PROPERTIES
     MACOSX_BUNDLE TRUE
     MACOSX_BUNDLE_INFO_PLIST ${CMAKE_SOURCE_DIR}/cmake/Info.plist.in
-    RESOURCE ".ci/mac/cpeditor.icns"
+    RESOURCE "dist/mac/cpeditor.icns"
   )
 endif()
 
@@ -266,8 +277,9 @@ if(UNIX AND NOT APPLE)
   install(TARGETS cpeditor
           RUNTIME DESTINATION bin
           LIBRARY DESTINATION lib)
-  install(FILES .ci/linux/cpeditor.desktop DESTINATION share/applications)
+  install(FILES dist/linux/cpeditor.desktop DESTINATION share/applications)
   install(FILES resources/icon.png DESTINATION share/icons/hicolor/512x512/apps RENAME cpeditor.png)
+  install(FILES dist/linux/cpeditor.appdata.xml DESTINATION share/metainfo)
 endif()
 
 

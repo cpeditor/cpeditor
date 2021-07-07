@@ -4,10 +4,6 @@ on: [push, pull_request]
 
 env:
   QT_VERSION: 5.15.2
-  CMAKE_VERSION: 3.18.2
-  NINJA_VERSION: 1.10.1
-  CCACHE_VERSION: 3.7.7
-  BUILD_TYPE: Release
 
 jobs:
   build:
@@ -17,20 +13,12 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {
-              os: windows-latest,
-              cc: "cl",
-              cxx: "cl",
-              binary: "cpeditor.exe",
-              environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat",
-            }
-          - { os: ubuntu-latest, cc: "gcc", cxx: "g++", binary: "cpeditor" }
-          - {
-              os: macos-latest,
-              cc: "clang",
-              cxx: "clang++",
-              binary: "cpeditor.app/Contents/MacOS/cpeditor",
-            }
+          - os: windows-latest
+            binary: Release/cpeditor.exe
+          - os: ubuntu-latest
+            binary: cpeditor
+          - os: macos-latest
+            binary: cpeditor.app/Contents/MacOS/cpeditor
 
     steps:
       - uses: actions/checkout@v2
@@ -50,65 +38,6 @@ jobs:
         with:
           cached: ${{ steps.cache-qt.outputs.cache-hit }}
           version: ${{ env.QT_VERSION }}
-
-      - name: Download Ninja and CMake
-        id: cmake_and_ninja
-        shell: cmake -P {0}
-        run: |
-          set(cmake_version $ENV{CMAKE_VERSION})
-          set(ninja_version $ENV{NINJA_VERSION})
-          message(STATUS "Using host CMake version: ${CMAKE_VERSION}")
-          if ("${{ runner.os }}" STREQUAL "Windows")
-            set(ninja_suffix "win.zip")
-            set(cmake_suffix "win64-x64.zip")
-            set(cmake_dir "cmake-${cmake_version}-win64-x64/bin")
-          elseif ("${{ runner.os }}" STREQUAL "Linux")
-            set(ninja_suffix "linux.zip")
-            set(cmake_suffix "Linux-x86_64.tar.gz")
-            set(cmake_dir "cmake-${cmake_version}-Linux-x86_64/bin")
-          elseif ("${{ runner.os }}" STREQUAL "macOS")
-            set(ninja_suffix "mac.zip")
-            set(cmake_suffix "Darwin-x86_64.tar.gz")
-            set(cmake_dir "cmake-${cmake_version}-Darwin-x86_64/CMake.app/Contents/bin")
-          endif()
-          set(ninja_url "https://github.com/ninja-build/ninja/releases/download/v${ninja_version}/ninja-${ninja_suffix}")
-          file(DOWNLOAD "${ninja_url}" ./ninja.zip)
-          execute_process(COMMAND ${CMAKE_COMMAND} -E tar xf ./ninja.zip)
-          set(cmake_url "https://github.com/Kitware/CMake/releases/download/v${cmake_version}/cmake-${cmake_version}-${cmake_suffix}")
-          file(DOWNLOAD "${cmake_url}" ./cmake.zip)
-          execute_process(COMMAND ${CMAKE_COMMAND} -E tar xf ./cmake.zip)
-          # Save the path for other steps
-          file(TO_CMAKE_PATH "$ENV{GITHUB_WORKSPACE}/${cmake_dir}" cmake_dir)
-          message("::set-output name=cmake_dir::${cmake_dir}")
-          if (NOT "${{ runner.os }}" STREQUAL "Windows")
-            execute_process(
-              COMMAND chmod +x ninja
-              COMMAND chmod +x ${cmake_dir}/cmake
-            )
-          endif()
-
-      - name: Download ccache
-        id: ccache
-        shell: cmake -P {0}
-        run: |
-          set(ccache_url "https://github.com/cristianadam/ccache/releases/download/v$ENV{CCACHE_VERSION}/${{ runner.os }}.tar.xz")
-          file(DOWNLOAD "${ccache_url}" ./ccache.tar.xz)
-          execute_process(COMMAND ${CMAKE_COMMAND} -E tar xf ./ccache.tar.xz)
-
-      - name: Prepare ccache timestamp
-        id: ccache_cache_timestamp
-        shell: cmake -P {0}
-        run: |
-          string(TIMESTAMP current_date "%Y-%m-%d-%H;%M;%S" UTC)
-          message("::set-output name=timestamp::${current_date}")
-
-      - name: Restore ccache cache files
-        uses: actions/cache@v1
-        with:
-          path: .ccache
-          key: ${{ matrix.config.os }}-${{ env.QT_VERSION }}-ccache-${{ steps.ccache_cache_timestamp.outputs.timestamp }}
-          restore-keys: |
-            ${{ matrix.config.os }}-${{ env.QT_VERSION }}-ccache-
 
       - name: Get KDE syntax-highlighting status
         id: get-kde-syntax-highlighting-status
@@ -140,88 +69,33 @@ jobs:
           tools/install_ecm.sh
           tools/install_ksh.sh
 
-      - name: Configure CMake
-        shell: cmake -P {0}
-        run: |
-          set(ENV{CC} ${{ matrix.config.cc }})
-          set(ENV{CXX} ${{ matrix.config.cxx }})
-          if ("${{ runner.os }}" STREQUAL "Windows" AND NOT "x${{ matrix.config.environment_script }}" STREQUAL "x")
-            execute_process(
-              COMMAND "${{ matrix.config.environment_script }}" && set
-              OUTPUT_FILE environment_script_output.txt
-            )
-            file(STRINGS environment_script_output.txt output_lines)
-            foreach(line IN LISTS output_lines)
-              if (line MATCHES "^([a-zA-Z0-9_-]+)=(.*)$")
-                set(ENV{${CMAKE_MATCH_1}} "${CMAKE_MATCH_2}")
-              endif()
-            endforeach()
-          endif()
-          set(path_separator ":")
-          if ("${{ runner.os }}" STREQUAL "Windows")
-            set(path_separator ";")
-          endif()
-          set(ENV{PATH} "$ENV{GITHUB_WORKSPACE}${path_separator}$ENV{PATH}")
-          execute_process(
-            COMMAND ${{ steps.cmake_and_ninja.outputs.cmake_dir }}/cmake
-              -S .
-              -B build
-              -D CMAKE_BUILD_TYPE=$ENV{BUILD_TYPE}
-              -G Ninja
-              -D CMAKE_MAKE_PROGRAM=ninja
-              -D CMAKE_C_COMPILER_LAUNCHER=ccache
-              -D CMAKE_CXX_COMPILER_LAUNCHER=ccache
-            RESULT_VARIABLE result
-          )
-          if (NOT result EQUAL 0)
-            message(FATAL_ERROR "Bad exit status")
-          endif()
-
-      - name: Build
-        shell: cmake -P {0}
-        run: |
-          set(ENV{NINJA_STATUS} "[%f/%t %o/sec] ")
-          if ("${{ runner.os }}" STREQUAL "Windows" AND NOT "x${{ matrix.config.environment_script }}" STREQUAL "x")
-            file(STRINGS environment_script_output.txt output_lines)
-            foreach(line IN LISTS output_lines)
-              if (line MATCHES "^([a-zA-Z0-9_-]+)=(.*)$")
-                set(ENV{${CMAKE_MATCH_1}} "${CMAKE_MATCH_2}")
-              endif()
-            endforeach()
-          endif()
-          set(path_separator ":")
-          if ("${{ runner.os }}" STREQUAL "Windows")
-            set(path_separator ";")
-          endif()
-          set(ENV{PATH} "$ENV{GITHUB_WORKSPACE}${path_separator}$ENV{PATH}")
-          file(TO_CMAKE_PATH "$ENV{GITHUB_WORKSPACE}" ccache_basedir)
-          set(ENV{CCACHE_BASEDIR} "${ccache_basedir}")
-          set(ENV{CCACHE_DIR} "${ccache_basedir}/.ccache")
-          set(ENV{CCACHE_COMPRESS} "true")
-          set(ENV{CCACHE_COMPRESSLEVEL} "6")
-          set(ENV{CCACHE_MAXSIZE} "20M")
-          if ("${{ matrix.config.cxx }}" STREQUAL "cl")
-            set(ENV{CCACHE_MAXSIZE} "30M")
-          endif()
-          execute_process(COMMAND ccache -p)
-          execute_process(COMMAND ccache -z)
-          execute_process(
-            COMMAND ${{ steps.cmake_and_ninja.outputs.cmake_dir }}/cmake --build build -j2
-            RESULT_VARIABLE result
-          )
-          if (NOT result EQUAL 0)
-            message(FATAL_ERROR "Bad exit status")
-          endif()
-          execute_process(COMMAND ccache -s)
-
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v1
-        with:
-          name: "cpeditor-${{ matrix.config.os }}-${{ github.sha }}"
-          path: build/${{ matrix.config.binary }}
-
-      - name: Check translations are up-to-date
+      - name: "[Linux] Download clang-tidy"
         if: startsWith(matrix.config.os, 'ubuntu')
         run: |
-          tools/updateTranslation.sh
-          git diff --exit-code HEAD
+          sudo apt-get update
+          sudo apt-get install clang-tidy-9
+          sudo ln -s "$(which clang-tidy-9)" "/usr/local/bin/clang-tidy"
+
+      - name: "[macOS] Download clang-tidy"
+        if: startsWith(matrix.config.os, 'macos')
+        run: |
+          brew install llvm
+          ln -s "$(brew --prefix llvm)/bin/clang-tidy" "/usr/local/bin/clang-tidy"
+
+      - name: "[Unix] Build"
+        if: startsWith(matrix.config.os, 'ubuntu') || startsWith(matrix.config.os, 'macos')
+        run: |
+          cmake -B build -S . -D USE_CLANG_TIDY=On -D CMAKE_BUILD_TYPE=Release
+          cmake --build build -j4
+
+      - name: "[Windows] Build"
+        if: startsWith(matrix.config.os, 'windows')
+        run: |
+          cmake -B build -S . -D USE_CLANG_TIDY=On
+          cmake --build build -j4 --config Release
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2.2.4
+        with:
+          name: "cpeditor-${{ matrix.config.os }}-${{ github.run_id }}"
+          path: build/${{ matrix.config.binary }}

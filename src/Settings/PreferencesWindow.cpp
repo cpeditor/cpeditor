@@ -189,7 +189,7 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
 
     AddPageHelper(this)
         .page(TRKEY("Code Edit"),
-              {"Tab Width", "Auto Indent", "Wrap Text", "Auto Complete Parentheses", "Auto Remove Parentheses",
+              {"Tab Width", "Cursor Width", "Auto Indent", "Wrap Text", "Auto Complete Parentheses", "Auto Remove Parentheses",
                "Tab Jump Out Parentheses", "Replace Tabs"})
         .dir(TRKEY("Language"))
             .page(TRKEY("General"), {"Default Language"})
@@ -239,12 +239,12 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
         .dir(TRKEY("Actions"))
             .page(TRKEY("Save"), {"Save Faster", "Save File On Compilation", "Save File On Execution", "Save Tests"})
             .page(TRKEY("Auto Save"), {"Auto Save", "Auto Save Interval", "Auto Save Interval Type"})
-#if defined(Q_OS_UNIX) && (!defined(Q_OS_MAC))
+#if defined(Q_OS_UNIX) && (!defined(Q_OS_MACOS))
             .page(TRKEY("Detached Execution"), {"Detached Run Terminal Program", "Detached Run Terminal Arguments"})
 #endif
             .page(TRKEY("Save Session"), {"Hot Exit/Enable", "Hot Exit/Auto Save", "Hot Exit/Auto Save Interval"})
             .page(TRKEY("Bind file and problem"), {"Restore Old Problem Url", "Open Old File For Old Problem Url"})
-            .page(TRKEY("Empty Test Cases"), {"Run On Empty Testcase", "Check On Testcases With Empty Output"})
+            .page(TRKEY("Test Cases"), {"Run On Empty Testcase", "Check On Testcases With Empty Output", "Auto Uncheck Accepted Testcases"})
             .page(TRKEY("Load External File Changes"), {"Auto Load External Changes If No Unsaved Modification", "Ask For Loading External Changes"})
         .end()
         .dir(TRKEY("Extensions"))
