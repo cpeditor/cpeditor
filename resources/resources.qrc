@@ -1,13 +1,9 @@
 <RCC>
-    <qresource>
+    <qresource prefix="/">
         <file>icon.png</file>
         <file>../DONATE.md</file>
         <file>../DONATE_zh-CN.md</file>
         <file>../DONATE_ru-RU.md</file>
-        <file>donate/sponsor.png</file>
-        <file>donate/star.png</file>
-        <file>donate/tweet.png</file>
-        <file>donate/wechat-donate.png</file>
         <file>styles/dracula.xml</file>
         <file>styles/monokai.xml</file>
         <file>styles/solarized.xml</file>
@@ -19,5 +15,10 @@
         <file alias="testlib/checkers/rcmp9.cpp">../third_party/testlib/checkers/rcmp9.cpp</file>
         <file alias="testlib/checkers/wcmp.cpp">../third_party/testlib/checkers/wcmp.cpp</file>
         <file alias="testlib/checkers/nyesno.cpp">../third_party/testlib/checkers/nyesno.cpp</file>
+        <file>donate/heart.svg</file>
+        <file>donate/star.svg</file>
+        <file>donate/twitter.svg</file>
+        <file>donate/wrench.svg</file>
+        <file>donate/wechat-donate.png</file>
     </qresource>
 </RCC>
