@@ -244,6 +244,11 @@ Thanks go to these wonderful people: (if we forget to add you as a contributor, 
       <a href="https://github.com/rbruno95"><img src="https://avatars.githubusercontent.com/u/48922045?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/rbruno95"><sub><b>Bruno</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3Arbruno95" title="Bug reports">🐛</a>
     </td>
   </tr>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/Mooos-MoSheng"><img src="https://avatars.githubusercontent.com/u/46639923?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/Mooos-MoSheng"><sub><b>墨笙_Mooos</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/commits?author=Mooos-MoSheng" title="Code">💻</a> <a href="https://github.com/cpeditor/cpeditor/issues?q=author%3AMooos-MoSheng" title="Bug reports">🐛</a>
+    </td>
+  </tr>
 </table>
 
 <!-- markdownlint-restore -->
