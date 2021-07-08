@@ -170,7 +170,7 @@ void Runner::onTimeout()
 
 void Runner::onReadyReadStandardOutput()
 {
-    processStdout.append(runProcess->readAllStandardOutput());
+    processStdout.append(runProcess->readAllStandardOutput().replace('\0',""));
     if (!outputLimitExceededEmitted && processStdout.length() > SettingsHelper::getOutputLengthLimit())
     {
         outputLimitExceededEmitted = true;
@@ -182,7 +182,7 @@ void Runner::onReadyReadStandardOutput()
 
 void Runner::onReadyReadStandardError()
 {
-    processStderr.append(runProcess->readAllStandardError());
+    processStderr.append(runProcess->readAllStandardError().replace('\0',""));
     if (!outputLimitExceededEmitted && processStderr.length() > SettingsHelper::getOutputLengthLimit())
     {
         outputLimitExceededEmitted = true;
