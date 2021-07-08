@@ -92,6 +92,11 @@ endif()
 message(STATUS "Display version: ${DISPLAY_VERSION}")
 message(STATUS "Minor version: ${MINOR_VERSION}")
 
+if (WIN32)
+	string(REGEX REPLACE "\\." "," "COMMA_VERSION" "${PROJECT_VERSION}")
+	configure_file(cmake/version.rc.in ${CMAKE_BINARY_DIR}/generated/version.rc)
+endif()
+
 configure_file(cmake/version.hpp.in ${CMAKE_BINARY_DIR}/generated/version.hpp)
 configure_file(cmake/portable.hpp.in ${CMAKE_BINARY_DIR}/generated/portable.hpp)
 configure_file(cmake/cpeditor.appdata.xml.in ${PROJECT_SOURCE_DIR}/dist/linux/cpeditor.appdata.xml)
@@ -119,6 +124,9 @@ endif()
 set(RESOURCES resources/resources.qrc)
 if(APPLE)
   list(APPEND RESOURCES resources/macos-resources.qrc)
+endif()
+if(WIN32)
+  list(APPEND RESOURCES ${CMAKE_BINARY_DIR}/generated/version.rc)
 endif()
 
 add_executable(cpeditor
