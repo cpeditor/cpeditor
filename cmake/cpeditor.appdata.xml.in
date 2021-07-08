@@ -26,6 +26,6 @@
     <screenshot type="default">https://cpeditor.org/img/banner/home-center-2.jpg</screenshot>
   </screenshots>
   <releases>
-    <release version="@PROJECT_VERSION@" date="@BUILD_DATE@"/>
+    <release version="@FOUR_PART_VERSION@" date="@BUILD_DATE@"/>
   </releases>
 </component>
