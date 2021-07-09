@@ -30,7 +30,7 @@ parts:
       - libyaml-cpp-dev
     stage-packages:
       - qt515base
-      - libyaml-cpp0.5v5
+      - libyaml-cpp-dev
     source: .
     cmake-parameters:
       - -DCMAKE_INSTALL_PREFIX=/usr
