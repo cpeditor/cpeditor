@@ -59,7 +59,7 @@
 #include <definition.h>
 #include <syntaxhighlighter.h>
 
-CodeEditor::CodeEditor(QWidget *widget) : QPlainTextEdit(widget)
+CodeEditor::CodeEditor(QWidget *widget) : QTextEdit(widget)
 {
     highlighter = new KSyntaxHighlighting::SyntaxHighlighter(document());
     sideBar = new CodeEditorSidebar(this);
@@ -1071,6 +1071,27 @@ QChar CodeEditor::charUnderCursor(int offset) const
     }
 
     return text[index];
+}
+
+
+bool CodeEditor::isPositionInsideBlockComments(int position) const
+{
+}
+
+bool CodeEditor::isPositionInsideLineComments(int position) const
+{
+}
+
+bool CodeEditor::isPositionInsideSingleQuotes(int position) const
+{
+}
+
+bool CodeEditor::isPositionInsideDoubleQuotes(int position) const
+{
+}
+
+bool CodeEditor::isPositionPartOfRawOrStringLiteral(int position) const
+{
 }
 
 void CodeEditor::insertFromMimeData(const QMimeData *source)

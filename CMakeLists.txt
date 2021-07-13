@@ -134,13 +134,6 @@ endif()
 add_executable(cpeditor
     ${GUI_TYPE}
 
-    src/CodeEditor/CodeEditor.cpp
-    src/CodeEditor/CodeEditor.hpp
-    src/CodeEditor/CodeEditorSideBar.cpp
-    src/CodeEditor/CodeEditorSideBar.hpp
-    src/CodeEditor/KSHRepository.cpp
-    src/CodeEditor/KSHRepository.hpp
-
     src/Core/Checker.cpp
     src/Core/Checker.hpp
     src/Core/Compiler.cpp
@@ -159,6 +152,15 @@ add_executable(cpeditor
     src/Core/TestCasesCopyPaster.hpp
     src/Core/Translator.cpp
     src/Core/Translator.hpp
+    
+    src/Editor/CodeEditor.cpp
+    src/Editor/CodeEditor.hpp
+    src/Editor/CodeEditorSideBar.cpp
+    src/Editor/CodeEditorSideBar.hpp
+    src/Editor/KSHRepository.cpp
+    src/Editor/KSHRepository.hpp
+    src/Editor/LanguageRepository.cpp
+    src/Editor/LanguageRepository.hpp
 
     src/Extensions/CFTool.cpp
     src/Extensions/CFTool.hpp

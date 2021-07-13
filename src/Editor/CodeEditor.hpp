@@ -44,6 +44,7 @@
 
 #include <QPlainTextEdit>
 #include <QTextEdit>
+#include <utility>
 #include <theme.h>
 
 namespace KSyntaxHighlighting
@@ -53,7 +54,7 @@ class SyntaxHighlighter;
 
 class CodeEditorSidebar;
 
-class CodeEditor : public QPlainTextEdit
+class CodeEditor : public QTextEdit
 {
     Q_OBJECT
 
@@ -104,6 +105,28 @@ class CodeEditor : public QPlainTextEdit
      * @brief clearSquiggle, Clears complete squiggle from editor
      */
     void clearSquiggle();
+
+    /**
+     * @brief Enables or disables Vim Like cursor
+     */
+    void setVimCursor(bool value);
+
+    /**
+     * @brief Checks if cursor type is Vim Cursor
+     */
+    bool vimCursor() const;
+
+    /**
+     * @brief Enables or disables current line highlighting
+     * @note In vim mode this cannot enable line highlighting
+     */
+    void setHighlightCurrentLine(bool enabled);
+
+    /**
+     * @brief Checks if current line is being higlighted in non vim mode
+     */
+    bool isHighlightingCurrentLine() const;
+
 
     void applySettings(const QString &lang);
 
@@ -192,6 +215,13 @@ class CodeEditor : public QPlainTextEdit
     void keyPressEvent(QKeyEvent *e) override;
 
     /**
+     * @brief Method, that's called on focus loss
+     * It's required for setting block cursor
+     * in fakevim mode.
+     */
+    void focusOutEvent(QFocusEvent *e) override;
+
+    /**
      * @brief Method for tooltip generation
      */
     bool event(QEvent *e) override;
@@ -233,6 +263,46 @@ class CodeEditor : public QPlainTextEdit
     QChar charUnderCursor(int offset = 0) const;
 
     /**
+     * @brief Method to check if character at given position
+     * is inside a block comment. Return false if language does
+     * not have notion of block comments.
+     * @param the position to check
+     */
+    bool isPositionInsideBlockComments(int position) const;
+
+    /**
+     * @brief Method to check if character at given position
+     * is inside a line comment.
+     * @param the position to check
+     */
+
+    bool isPositionInsideLineComments(int position) const;
+    
+    /**
+     * @brief Method to check if character at given position
+     * is inside a single quote.
+     * @param the position to check
+     */
+    bool isPositionInsideSingleQuotes(int position) const;
+
+    /**
+     * @brief Method to check if character at given position
+     * is inside a Double quote.
+     * @param the position to check
+     */
+
+    bool isPositionInsideDoubleQuotes(int position) const;
+
+
+    /**
+     * @brief Method to check if character at given position
+     * is inside a Raw String or String literals quote.
+     * @param the position to check
+     */
+
+    bool isPositionPartOfRawOrStringLiteral(int position) const;
+
+    /**
      * @brief Method for remove the first group of regex
      * in each line of the selection.
      * @param regex remove its first group
@@ -266,7 +336,7 @@ class CodeEditor : public QPlainTextEdit
         SquiggleInformation() = default;
 
         SquiggleInformation(QPair<int, int> start, QPair<int, int> stop, QString text)
-            : m_startPos(start), m_stopPos(stop), m_tooltipText(text)
+            : m_startPos(start), m_stopPos(stop), m_tooltipText(std::move(text))
         {
         }
 
@@ -279,6 +349,12 @@ class CodeEditor : public QPlainTextEdit
         squigglesExtraSelections;
 
     QString m_tabReplace;
+
+    bool m_vimCursor = false;
+
+    bool m_highlightingCurrentLine = true;
+
+    QRect m_cursorRect;
 
     QVector<SquiggleInformation> squiggles;
 
