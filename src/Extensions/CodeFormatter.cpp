@@ -16,7 +16,7 @@
  */
 
 #include "Extensions/CodeFormatter.hpp"
-#include "CodeEditor/CodeEditor.hpp"
+#include "Editor/CodeEditor.hpp"
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
 #include "Settings/SettingsManager.hpp"

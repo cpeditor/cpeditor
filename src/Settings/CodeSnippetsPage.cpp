@@ -16,7 +16,7 @@
  */
 
 #include "Settings/CodeSnippetsPage.hpp"
-#include "CodeEditor/CodeEditor.hpp"
+#include "Editor/CodeEditor.hpp"
 #include "Settings/DefaultPathManager.hpp"
 #include "Util/FileUtil.hpp"
 #include "generated/SettingsHelper.hpp"

@@ -22,6 +22,8 @@
 
 class QStringList;
 
+namespace Editor
+{
 class KSyntaxHighlightingRepository
 {
   public:
@@ -32,5 +34,5 @@ class KSyntaxHighlightingRepository
   private:
     static KSyntaxHighlighting::Repository repository;
 };
-
+} // namespace Editor
 #endif // KSHREPOSITORY_HPP

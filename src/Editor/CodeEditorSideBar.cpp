@@ -39,10 +39,12 @@
     SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#include "CodeEditor/CodeEditorSideBar.hpp"
-#include "CodeEditor/CodeEditor.hpp"
+#include "Editor/CodeEditorSideBar.hpp"
+#include "Editor/CodeEditor.hpp"
 #include <QTextBlock>
 
+namespace Editor
+{
 CodeEditorSidebar::CodeEditorSidebar(CodeEditor *editor) : QWidget(editor), m_codeEditor(editor)
 {
 }
@@ -68,3 +70,4 @@ void CodeEditorSidebar::mouseReleaseEvent(QMouseEvent *event)
     }
     QWidget::mouseReleaseEvent(event);
 }
+} // namespace Editor

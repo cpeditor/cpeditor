@@ -44,14 +44,16 @@
 
 #include <QPlainTextEdit>
 #include <QTextEdit>
-#include <utility>
 #include <theme.h>
+#include <utility>
 
 namespace KSyntaxHighlighting
 {
 class SyntaxHighlighter;
 }
 
+namespace Editor
+{
 class CodeEditorSidebar;
 
 class CodeEditor : public QTextEdit
@@ -126,7 +128,6 @@ class CodeEditor : public QTextEdit
      * @brief Checks if current line is being higlighted in non vim mode
      */
     bool isHighlightingCurrentLine() const;
-
 
     void applySettings(const QString &lang);
 
@@ -277,7 +278,7 @@ class CodeEditor : public QTextEdit
      */
 
     bool isPositionInsideLineComments(int position) const;
-    
+
     /**
      * @brief Method to check if character at given position
      * is inside a single quote.
@@ -292,7 +293,6 @@ class CodeEditor : public QTextEdit
      */
 
     bool isPositionInsideDoubleQuotes(int position) const;
-
 
     /**
      * @brief Method to check if character at given position
@@ -370,5 +370,6 @@ class CodeEditor : public QTextEdit
 
     friend class CodeEditorSidebar;
 };
+} // namespace Editor
 
 #endif // CODEEDITOR_HPP

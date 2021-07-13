@@ -16,7 +16,7 @@
  */
 
 #include "Extensions/YAPFormatter.hpp"
-#include "CodeEditor/CodeEditor.hpp"
+#include "Editor/CodeEditor.hpp"
 #include <QTextBlock>
 #include <QTextCursor>
 #include <QTextDocument>

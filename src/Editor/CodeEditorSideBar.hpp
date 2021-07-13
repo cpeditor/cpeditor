@@ -44,6 +44,8 @@
 
 #include <QWidget>
 
+namespace Editor
+{
 class CodeEditor;
 
 class CodeEditorSidebar : public QWidget
@@ -61,5 +63,6 @@ class CodeEditorSidebar : public QWidget
   private:
     CodeEditor *m_codeEditor;
 };
+} // namespace Editor
 
 #endif // CODEEDITORSIDEBAR_HPP

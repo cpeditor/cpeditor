@@ -39,10 +39,10 @@
     SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
-#include "CodeEditor/CodeEditor.hpp"
-#include "CodeEditor/CodeEditorSideBar.hpp"
-#include "CodeEditor/KSHRepository.hpp"
+#include "Editor/CodeEditor.hpp"
 #include "Core/EventLogger.hpp"
+#include "Editor/CodeEditorSideBar.hpp"
+#include "Editor/KSHRepository.hpp"
 #include "Settings/SettingsManager.hpp"
 #include "generated/SettingsHelper.hpp"
 #include <QApplication>
@@ -59,17 +59,19 @@
 #include <definition.h>
 #include <syntaxhighlighter.h>
 
+namespace Editor
+{
 CodeEditor::CodeEditor(QWidget *widget) : QTextEdit(widget)
 {
     highlighter = new KSyntaxHighlighting::SyntaxHighlighter(document());
     sideBar = new CodeEditorSidebar(this);
 
     connect(document(), &QTextDocument::blockCountChanged, this, &CodeEditor::updateBottomMargin);
-    connect(this, &QPlainTextEdit::blockCountChanged, this, &CodeEditor::updateSidebarGeometry);
-    connect(this, &QPlainTextEdit::updateRequest, this, &CodeEditor::updateSidebarArea);
-    connect(this, &QPlainTextEdit::cursorPositionChanged, this, &CodeEditor::highlightCurrentLine);
-    connect(this, &QPlainTextEdit::cursorPositionChanged, this, &CodeEditor::highlightParentheses);
-    connect(this, &QPlainTextEdit::selectionChanged, this, &CodeEditor::highlightOccurrences);
+    connect(this, &QTextEdit::blockCountChanged, this, &CodeEditor::updateSidebarGeometry);
+    connect(this, &QTextEdit::updateRequest, this, &CodeEditor::updateSidebarArea);
+    connect(this, &QTextEdit::cursorPositionChanged, this, &CodeEditor::highlightCurrentLine);
+    connect(this, &QTextEdit::cursorPositionChanged, this, &CodeEditor::highlightParentheses);
+    connect(this, &QTextEdit::selectionChanged, this, &CodeEditor::highlightOccurrences);
 
     setMouseTracking(true);
 }
@@ -328,14 +330,14 @@ void CodeEditor::toggleFold(const QTextBlock &startBlock)
 
 void CodeEditor::resizeEvent(QResizeEvent *e)
 {
-    QPlainTextEdit::resizeEvent(e);
+    QTextEdit::resizeEvent(e);
     updateSidebarGeometry();
     updateBottomMargin();
 }
 
 void CodeEditor::changeEvent(QEvent *e)
 {
-    QPlainTextEdit::changeEvent(e);
+    QTextEdit::changeEvent(e);
     if (e->type() == QEvent::FontChange)
         updateBottomMargin();
 }
@@ -364,7 +366,7 @@ void CodeEditor::wheelEvent(QWheelEvent *e)
         }
     }
     else
-        QPlainTextEdit::wheelEvent(e);
+        QTextEdit::wheelEvent(e);
 }
 
 void CodeEditor::updateBottomMargin()
@@ -957,7 +959,7 @@ void CodeEditor::keyPressEvent(QKeyEvent *e)
         return;
     }
 
-    QPlainTextEdit::keyPressEvent(e);
+    QTextEdit::keyPressEvent(e);
 }
 
 bool CodeEditor::event(QEvent *event)
@@ -995,7 +997,7 @@ bool CodeEditor::event(QEvent *event)
 
         return true;
     }
-    return QPlainTextEdit::event(event);
+    return QTextEdit::event(event);
 }
 
 void CodeEditor::squiggle(SeverityLevel level, QPair<int, int> start, QPair<int, int> stop, QString tooltipMessage)
@@ -1072,7 +1074,6 @@ QChar CodeEditor::charUnderCursor(int offset) const
 
     return text[index];
 }
-
 
 bool CodeEditor::isPositionInsideBlockComments(int position) const
 {
@@ -1203,6 +1204,7 @@ void CodeEditor::addInEachLineOfSelection(const QRegularExpression &regex, const
 
 void CodeEditor::updateExtraSelections()
 {
-    QPlainTextEdit::setExtraSelections(currentLineExtraSelections + parenthesesExtraSelections +
+    QTextEdit::setExtraSelections(currentLineExtraSelections + parenthesesExtraSelections +
                                        occurrencesExtraSelections + squigglesExtraSelections);
 }
+} // namespace Editor

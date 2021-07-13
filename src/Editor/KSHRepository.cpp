@@ -15,10 +15,12 @@
  *
  */
 
-#include "CodeEditor/KSHRepository.hpp"
+#include "Editor/KSHRepository.hpp"
 #include <QStringList>
 #include <theme.h>
 
+namespace Editor
+{
 KSyntaxHighlighting::Repository KSyntaxHighlightingRepository::repository;
 
 KSyntaxHighlighting::Repository *KSyntaxHighlightingRepository::getSyntaxHighlightingRepository()
@@ -33,3 +35,4 @@ QStringList KSyntaxHighlightingRepository::themeNames()
         names.push_back(theme.name());
     return names;
 }
+} // namespace Editor
