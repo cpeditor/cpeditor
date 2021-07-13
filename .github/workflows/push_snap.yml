@@ -23,13 +23,6 @@ jobs:
           submodules: recursive
           fetch-depth: 0
 
-      - name: Update Appdata file
-        id: update-appdata-file
-        run: |
-          git fetch --tags
-          SNAP_VERSION=$(git describe --long --tags --abbrev=8 | sed 's/-/./g' | cut -d '.' -f 1-4)
-          sed -i "s/@PROJECT_VERSION@/$SNAP_VERSION/g" cmake/cpeditor.appdata.xml.in
-
       - name: Update Snapcraft
         run: |
           cp dist/snap/snapcraft.yaml snapcraft.yaml
