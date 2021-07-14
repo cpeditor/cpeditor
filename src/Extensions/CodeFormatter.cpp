@@ -16,9 +16,9 @@
  */
 
 #include "Extensions/CodeFormatter.hpp"
-#include "Editor/CodeEditor.hpp"
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
+#include "Editor/CodeEditor.hpp"
 #include "Settings/SettingsManager.hpp"
 #include "Util/FileUtil.hpp"
 #include <QProcess>

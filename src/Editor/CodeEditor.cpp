@@ -342,9 +342,9 @@ void CodeEditor::changeEvent(QEvent *e)
         updateBottomMargin();
 }
 
-void CodeEditor::paintEvent(QPaintEvent* e)
+void CodeEditor::paintEvent(QPaintEvent *e)
 {
-  if (m_vimCursor)
+    if (m_vimCursor)
     {
         if (!m_cursorRect.isNull() && e->rect().intersects(m_cursorRect))
         {
@@ -953,7 +953,6 @@ void CodeEditor::keyPressEvent(QKeyEvent *e)
 
         return;
     }
-
 
     if (e->key() == Qt::Key_Backspace && e->modifiers() == Qt::NoModifier && !textCursor().hasSelection())
     {
