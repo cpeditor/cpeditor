@@ -19,7 +19,7 @@
 -   請牢記我們的目標是為競程愛好者開發好用的編輯器，而非一般開發者
 -   每次拉取請求（PR）中僅做一件事。若您 PR 包含多個不相關的功能或臭蟲修補，請拆分為多個 PR。您可能需要建立多個分支（branch）以便發起多次 PR，[學習更多 git 分支的知識](https://learngitbranching.js.org/)
 -   請將新功能加在 master 分支，bug 修補則在 bug 存在的最新分支（master、beta、stable）上處理。另請參閱[版號規則](VERSIONING.md)
--   請撰寫[明確的提交（commit）訊息](https://chris.beams.io/posts/git-commit/)，建議遵循 [Conventional Commits](https://www.conventionalcommits.org/)。由於我們採用 [squashing and merging pull requests](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/about-pull-request-merges#squash-and-merge-your-pull-request-commits)，PR 的提交訊息並不是這麼重要，然而 PR 的主旨及 Squash 之後的提交訊息就變得極為關鍵
+-   請撰寫[明確的提交（commit）訊息](https://chris.beams.io/posts/git-commit/)，建議遵循 [約定式提交](https://www.conventionalcommits.org/) 規範。由於我們採用 [Squash and Merge](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/about-pull-request-merges#squash-and-merge-your-pull-request-commits)，PR 的提交訊息並不是這麼重要，然而 PR 的主旨及 Squash 之後的提交訊息就變得極為關鍵
 -   使用 Clang Format 及 [`.clang-format`](.clang-format) 排版程式碼。若排版的過程中發生任何問題，請試著將 `clang-format` 更新到 [最新版本](https://releases.llvm.org/download.html)
 -   非必要時禁止移除任何功能，加上預設停用的開關就好。
 -   保持設定檔的向下相容性。
