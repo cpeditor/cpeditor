@@ -221,7 +221,7 @@ class CodeEditor : public QPlainTextEdit
      */
     void focusOutEvent(QFocusEvent *e) override;
 
-    void paintEvent(QPaintEvent* e) override;
+    void paintEvent(QPaintEvent *e) override;
 
     /**
      * @brief Method for tooltip generation

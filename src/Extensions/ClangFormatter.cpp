@@ -16,9 +16,9 @@
  */
 
 #include "Extensions/ClangFormatter.hpp"
-#include "Editor/CodeEditor.hpp"
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
+#include "Editor/CodeEditor.hpp"
 #include "Util/FileUtil.hpp"
 #include "generated/SettingsHelper.hpp"
 
