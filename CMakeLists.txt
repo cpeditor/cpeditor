@@ -34,6 +34,8 @@ add_subdirectory(third_party/QtFindReplaceDialog/dialogs)
 
 add_subdirectory(third_party/lsp-cpp)
 
+add_subdirectory(third_party/FakeVim)
+
 add_subdirectory(third_party/qhttp)
 
 add_library(diff_match_patch
@@ -139,7 +141,11 @@ add_executable(cpeditor
     src/Core/Compiler.cpp
     src/Core/Compiler.hpp
     src/Core/EventLogger.cpp
-    src/Core/EventLogger.hpp
+    src/Core/EventLogger.hpp 
+    src/Core/FakeVimProxy.cpp
+    src/Core/FakeVimProxy.hpp 
+    src/Core/FakeVimCommand.cpp
+    src/Core/FakeVimCommand.hpp
     src/Core/MessageLogger.cpp
     src/Core/MessageLogger.hpp
     src/Core/Runner.cpp
@@ -263,14 +269,16 @@ add_executable(cpeditor
 include_directories("generated/")
 include_directories("src/")
 
+target_link_libraries(diff_match_patch PRIVATE Qt5::Core)
+
 target_link_libraries(cpeditor PRIVATE LSPClient)
 target_link_libraries(cpeditor PRIVATE Qt5::Network)
 target_link_libraries(cpeditor PRIVATE Qt5::Widgets)
 target_link_libraries(cpeditor PRIVATE QtFindReplaceDialog)
 target_link_libraries(cpeditor PRIVATE SingleApplication)
+target_link_libraries(cpeditor PRIVATE fakevim)
 target_link_libraries(cpeditor PRIVATE QHttp)
 target_link_libraries(cpeditor PRIVATE KF5::SyntaxHighlighting)
-target_link_libraries(diff_match_patch PRIVATE Qt5::Core)
 target_link_libraries(cpeditor PRIVATE diff_match_patch)
 
 if(MSVC)
