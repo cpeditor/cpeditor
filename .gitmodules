@@ -19,3 +19,6 @@
 [submodule "third_party/qhttp"]
 	path = third_party/qhttp
 	url = https://github.com/cpeditor/qhttp
+[submodule "third_party/FakeVim"]
+	path = third_party/FakeVim
+	url = https://github.com/cpeditor/FakeVim
