@@ -22,7 +22,10 @@
 
 class AppWindow;
 class MessageLogger;
+namespace Editor
+{
 class CodeEditor;
+}
 class QFileSystemWatcher;
 class QPushButton;
 class QSplitter;
@@ -86,7 +89,7 @@ class MainWindow : public QMainWindow
     QString getProblemURL() const;
     QString getCompleteTitle() const;
     QString getTabTitle(bool complete, bool star, int removeLength = 0);
-    CodeEditor *getEditor() const;
+    Editor::CodeEditor *getEditor() const;
     bool isUntitled() const;
 
     void setProblemURL(const QString &url);
@@ -196,7 +199,7 @@ class MainWindow : public QMainWindow
     };
 
     Ui::MainWindow *ui;
-    CodeEditor *editor;
+    Editor::CodeEditor *editor;
     QString language;
     bool isLanguageSet = false;
 

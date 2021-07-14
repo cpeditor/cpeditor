@@ -24,7 +24,7 @@
 namespace Extensions
 {
 
-YAPFormatter::YAPFormatter(CodeEditor *editor, const QString &lang, bool selectionOnly, bool logOnNoChange,
+YAPFormatter::YAPFormatter(Editor::CodeEditor *editor, const QString &lang, bool selectionOnly, bool logOnNoChange,
                            MessageLogger *log, QObject *parent)
     : CodeFormatter(editor, lang, selectionOnly, logOnNoChange, log, parent)
 {

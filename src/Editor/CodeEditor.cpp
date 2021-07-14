@@ -61,17 +61,17 @@
 
 namespace Editor
 {
-CodeEditor::CodeEditor(QWidget *widget) : QTextEdit(widget)
+CodeEditor::CodeEditor(QWidget *widget) : QPlainTextEdit(widget)
 {
     highlighter = new KSyntaxHighlighting::SyntaxHighlighter(document());
     sideBar = new CodeEditorSidebar(this);
 
     connect(document(), &QTextDocument::blockCountChanged, this, &CodeEditor::updateBottomMargin);
-    connect(this, &QTextEdit::blockCountChanged, this, &CodeEditor::updateSidebarGeometry);
-    connect(this, &QTextEdit::updateRequest, this, &CodeEditor::updateSidebarArea);
-    connect(this, &QTextEdit::cursorPositionChanged, this, &CodeEditor::highlightCurrentLine);
-    connect(this, &QTextEdit::cursorPositionChanged, this, &CodeEditor::highlightParentheses);
-    connect(this, &QTextEdit::selectionChanged, this, &CodeEditor::highlightOccurrences);
+    connect(document(), &QTextDocument::blockCountChanged, this, &CodeEditor::updateSidebarGeometry);
+    connect(this, &QPlainTextEdit::updateRequest, this, &CodeEditor::updateSidebarArea);
+    connect(this, &QPlainTextEdit::cursorPositionChanged, this, &CodeEditor::highlightCurrentLine);
+    connect(this, &QPlainTextEdit::cursorPositionChanged, this, &CodeEditor::highlightParentheses);
+    connect(this, &QPlainTextEdit::selectionChanged, this, &CodeEditor::highlightOccurrences);
 
     setMouseTracking(true);
 }
@@ -178,7 +178,7 @@ void CodeEditor::setTheme(const KSyntaxHighlighting::Theme &newTheme)
 int CodeEditor::sidebarWidth() const
 {
     int digits = 1;
-    auto count = blockCount();
+    auto count = document()->blockCount();
     while (count >= 10)
     {
         ++digits;
@@ -194,7 +194,7 @@ void CodeEditor::sidebarPaintEvent(QPaintEvent *event)
 
     auto block = firstVisibleBlock();
     auto blockNumber = block.blockNumber();
-    int top = blockBoundingGeometry(block).translated(contentOffset()).top();
+    int top = static_cast<int>(blockBoundingGeometry(block).translated(contentOffset()).top());
     int bottom = top + static_cast<int>(blockBoundingRect(block).height());
     const int currentBlockNumber = textCursor().blockNumber();
 
@@ -265,7 +265,7 @@ QTextBlock CodeEditor::blockAtPosition(int y) const
     if (!block.isValid())
         return QTextBlock();
 
-    int top = blockBoundingGeometry(block).translated(contentOffset()).top();
+    int top = static_cast<int>(blockBoundingGeometry(block).translated(contentOffset()).top());
     int bottom = top + static_cast<int>(blockBoundingRect(block).height());
     do
     {
@@ -330,16 +330,87 @@ void CodeEditor::toggleFold(const QTextBlock &startBlock)
 
 void CodeEditor::resizeEvent(QResizeEvent *e)
 {
-    QTextEdit::resizeEvent(e);
+    QPlainTextEdit::resizeEvent(e);
     updateSidebarGeometry();
     updateBottomMargin();
 }
 
 void CodeEditor::changeEvent(QEvent *e)
 {
-    QTextEdit::changeEvent(e);
+    QPlainTextEdit::changeEvent(e);
     if (e->type() == QEvent::FontChange)
         updateBottomMargin();
+}
+
+void CodeEditor::paintEvent(QPaintEvent* e)
+{
+  if (m_vimCursor)
+    {
+        if (!m_cursorRect.isNull() && e->rect().intersects(m_cursorRect))
+        {
+            QRect rect = m_cursorRect;
+            m_cursorRect = QRect();
+            viewport()->update(rect);
+        }
+
+        // Draw text cursor.
+        QRect rect = cursorRect();
+        if (e->rect().intersects(rect))
+        {
+            QPainter painter(viewport());
+
+            if (overwriteMode())
+            {
+                QFontMetrics fm(font());
+                const int position = textCursor().position();
+                const QChar c = document()->characterAt(position);
+                rect.setWidth(fm.horizontalAdvance(c));
+                painter.setPen(Qt::NoPen);
+
+                painter.setBrush(QColor(highlighter->theme().textColor(KSyntaxHighlighting::Theme::Char)));
+                painter.setCompositionMode(QPainter::CompositionMode_Difference);
+            }
+            else
+            {
+                rect.setWidth(cursorWidth());
+                painter.setPen(QColor(highlighter->theme().textColor(KSyntaxHighlighting::Theme::Char)));
+            }
+
+            painter.drawRect(rect);
+            m_cursorRect = rect;
+        }
+    }
+}
+void CodeEditor::focusOutEvent(QFocusEvent *e)
+{
+    if (m_vimCursor)
+    {
+        setOverwriteMode(true); // makes a block cursor when focus is lost
+    }
+    QPlainTextEdit::focusOutEvent(e);
+}
+
+void CodeEditor::setHighlightCurrentLine(bool enabled)
+{
+    m_highlightingCurrentLine = enabled;
+}
+
+void CodeEditor::setVimCursor(bool value)
+{
+    m_vimCursor = value;
+
+    setOverwriteMode(false);
+    setCursorWidth(value ? 0 : 1);
+}
+
+bool CodeEditor::isHighlightingCurrentLine() const
+{
+    return m_highlightingCurrentLine;
+}
+
+bool CodeEditor::vimCursor() const
+{
+    return m_vimCursor;
 }
 
 void CodeEditor::wheelEvent(QWheelEvent *e)
@@ -366,7 +437,7 @@ void CodeEditor::wheelEvent(QWheelEvent *e)
         }
     }
     else
-        QTextEdit::wheelEvent(e);
+        QPlainTextEdit::wheelEvent(e);
 }
 
 void CodeEditor::updateBottomMargin()
@@ -377,7 +448,7 @@ void CodeEditor::updateBottomMargin()
         // calling QTextFrame::setFrameFormat with an empty document makes the application crash
         auto *rf = doc->rootFrame();
         auto format = rf->frameFormat();
-        int documentMargin = doc->documentMargin();
+        int documentMargin = static_cast<int>(doc->documentMargin());
         int bottomMargin = SettingsHelper::isExtraBottomMargin()
                                ? qMax(0, viewport()->height() - fontMetrics().height() - documentMargin)
                                : documentMargin;
@@ -707,7 +778,7 @@ void CodeEditor::highlightCurrentLine()
 {
     currentLineExtraSelections.clear();
 
-    if (!isReadOnly())
+    if (m_highlightingCurrentLine && !isReadOnly())
     {
         QTextEdit::ExtraSelection selection;
 
@@ -757,6 +828,12 @@ int CodeEditor::getFirstVisibleBlock()
 
 void CodeEditor::keyPressEvent(QKeyEvent *e)
 {
+    /* if(m_vimCursor) */
+    /* { */
+    /*     QPlainTextEdit::keyPressEvent(e); */
+    /*     proceedCompleterEnd(); */
+    /*     return; */
+    /* } */
     if ((e->key() == Qt::Key_Return || e->key() == Qt::Key_Enter) && e->modifiers() != Qt::NoModifier)
     {
         QKeyEvent pureEnter(QEvent::KeyPress, Qt::Key_Enter, Qt::NoModifier);
@@ -855,6 +932,28 @@ void CodeEditor::keyPressEvent(QKeyEvent *e)
         setTextCursor(textCursor()); // scroll to the cursor
         return;
     }
+
+    // Toggle Overwrite and insert mode in non-vim modes.
+    if (e->key() == Qt::Key_Insert && !m_vimCursor)
+    {
+        setOverwriteMode(!overwriteMode());
+        if (overwriteMode())
+        {
+            QFontMetrics fm(QPlainTextEdit::font());
+            const int position = QPlainTextEdit::textCursor().position();
+            const QChar c = QPlainTextEdit::document()->characterAt(position);
+            setCursorWidth(fm.horizontalAdvance(c));
+        }
+        else
+        {
+            auto rect = cursorRect();
+            setCursorWidth(1);
+            viewport()->update(rect);
+        }
+
+        return;
+    }
+
 
     if (e->key() == Qt::Key_Backspace && e->modifiers() == Qt::NoModifier && !textCursor().hasSelection())
     {
@@ -959,7 +1058,7 @@ void CodeEditor::keyPressEvent(QKeyEvent *e)
         return;
     }
 
-    QTextEdit::keyPressEvent(e);
+    QPlainTextEdit::keyPressEvent(e);
 }
 
 bool CodeEditor::event(QEvent *event)
@@ -997,7 +1096,7 @@ bool CodeEditor::event(QEvent *event)
 
         return true;
     }
-    return QTextEdit::event(event);
+    return QPlainTextEdit::event(event);
 }
 
 void CodeEditor::squiggle(SeverityLevel level, QPair<int, int> start, QPair<int, int> stop, QString tooltipMessage)
@@ -1077,22 +1176,27 @@ QChar CodeEditor::charUnderCursor(int offset) const
 
 bool CodeEditor::isPositionInsideBlockComments(int position) const
 {
+    return true;
 }
 
 bool CodeEditor::isPositionInsideLineComments(int position) const
 {
+    return true;
 }
 
 bool CodeEditor::isPositionInsideSingleQuotes(int position) const
 {
+    return true;
 }
 
 bool CodeEditor::isPositionInsideDoubleQuotes(int position) const
 {
+    return true;
 }
 
 bool CodeEditor::isPositionPartOfRawOrStringLiteral(int position) const
 {
+    return true;
 }
 
 void CodeEditor::insertFromMimeData(const QMimeData *source)
@@ -1204,7 +1308,7 @@ void CodeEditor::addInEachLineOfSelection(const QRegularExpression &regex, const
 
 void CodeEditor::updateExtraSelections()
 {
-    QTextEdit::setExtraSelections(currentLineExtraSelections + parenthesesExtraSelections +
+    QPlainTextEdit::setExtraSelections(currentLineExtraSelections + parenthesesExtraSelections +
                                        occurrencesExtraSelections + squigglesExtraSelections);
 }
 } // namespace Editor

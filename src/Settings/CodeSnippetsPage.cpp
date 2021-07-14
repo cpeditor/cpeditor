@@ -97,8 +97,8 @@ CodeSnippetsPage::CodeSnippetsPage(QString language, QWidget *parent)
     snippetNameLabel = new QLabel();
     snippetLayout->addWidget(snippetNameLabel);
 
-    editor = new CodeEditor();
-    connect(editor, &CodeEditor::textChanged, this, &CodeSnippetsPage::updateButtons);
+    editor = new Editor::CodeEditor();
+    connect(editor, &Editor::CodeEditor::textChanged, this, &CodeSnippetsPage::updateButtons);
     snippetLayout->addWidget(editor);
 
     noSnippetWidget = new QWidget();

@@ -43,7 +43,6 @@
 #define CODEEDITOR_HPP
 
 #include <QPlainTextEdit>
-#include <QTextEdit>
 #include <theme.h>
 #include <utility>
 
@@ -56,7 +55,7 @@ namespace Editor
 {
 class CodeEditorSidebar;
 
-class CodeEditor : public QTextEdit
+class CodeEditor : public QPlainTextEdit
 {
     Q_OBJECT
 
@@ -221,6 +220,8 @@ class CodeEditor : public QTextEdit
      * in fakevim mode.
      */
     void focusOutEvent(QFocusEvent *e) override;
+
+    void paintEvent(QPaintEvent* e) override;
 
     /**
      * @brief Method for tooltip generation

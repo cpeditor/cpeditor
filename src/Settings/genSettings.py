@@ -193,7 +193,7 @@ namespace SettingsHelper
                         mode="w", encoding="utf-8")
     setting_info.write(head)
     setting_info.write("""#include "Settings/SettingsInfo.hpp"
-#include "CodeEditor/KSHRepository.hpp"
+#include "Editor/KSHRepository.hpp"
 #include "Core/StyleManager.hpp"
 #include "Core/Translator.hpp"
 #include "Settings/PathItem.hpp"

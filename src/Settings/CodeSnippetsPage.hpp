@@ -21,7 +21,10 @@
 #include "Settings/PreferencesPage.hpp"
 #include <QMap>
 
+namespace Editor
+{
 class CodeEditor;
+}
 class QLineEdit;
 class QListWidget;
 class QListWidgetItem;
@@ -160,7 +163,7 @@ class CodeSnippetsPage : public PreferencesPage
     QStackedWidget *rightWidget = nullptr;
     QWidget *snippetWidget = nullptr;
     QLabel *snippetNameLabel = nullptr;
-    CodeEditor *editor = nullptr;
+    Editor::CodeEditor *editor = nullptr;
     QWidget *noSnippetWidget = nullptr;
     QLabel *noSnippetLabel = nullptr;
 

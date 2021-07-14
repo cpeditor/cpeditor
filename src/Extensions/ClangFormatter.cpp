@@ -28,7 +28,7 @@
 namespace Extensions
 {
 
-ClangFormatter::ClangFormatter(CodeEditor *editor, const QString &lang, bool selectionOnly, bool logOnNoChange,
+ClangFormatter::ClangFormatter(Editor::CodeEditor *editor, const QString &lang, bool selectionOnly, bool logOnNoChange,
                                MessageLogger *log, QObject *parent)
     : CodeFormatter(editor, lang, selectionOnly, logOnNoChange, log, parent)
 {

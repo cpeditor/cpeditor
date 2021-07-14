@@ -17,7 +17,7 @@
 
 #include "mainwindow.hpp"
 
-#include "CodeEditor/CodeEditor.hpp"
+#include "Editor/CodeEditor.hpp"
 #include "Core/Checker.hpp"
 #include "Core/Compiler.hpp"
 #include "Core/EventLogger.hpp"
@@ -109,18 +109,18 @@ MainWindow::~MainWindow()
 
 void MainWindow::setEditor()
 {
-    editor = new CodeEditor();
+    editor = new Editor::CodeEditor();
     editor->setSizePolicy(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Expanding);
     editor->setAcceptDrops(false);
 
     ui->editorArea->addWidget(editor);
 
-    connect(editor, &CodeEditor::textChanged, this, &MainWindow::onTextChanged);
-    connect(editor, &CodeEditor::fontChanged, this, &MainWindow::onEditorFontChanged);
+    connect(editor, &Editor::CodeEditor::textChanged, this, &MainWindow::onTextChanged);
+    connect(editor, &Editor::CodeEditor::fontChanged, this, &MainWindow::onEditorFontChanged);
     // cursorPositionChanged() does not imply selectionChanged() if you press Left with
     // a selection (and the cursor is at the begin of the selection)
-    connect(editor, &CodeEditor::cursorPositionChanged, this, &MainWindow::updateCursorInfo);
-    connect(editor, &CodeEditor::selectionChanged, this, &MainWindow::updateCursorInfo);
+    connect(editor, &Editor::CodeEditor::cursorPositionChanged, this, &MainWindow::updateCursorInfo);
+    connect(editor, &Editor::CodeEditor::selectionChanged, this, &MainWindow::updateCursorInfo);
 }
 
 void MainWindow::compile()
@@ -325,7 +325,7 @@ QString MainWindow::getTabTitle(bool complete, bool star, int removeLength)
     return tabTitle;
 }
 
-CodeEditor *MainWindow::getEditor() const
+Editor::CodeEditor *MainWindow::getEditor() const
 {
     return editor;
 }

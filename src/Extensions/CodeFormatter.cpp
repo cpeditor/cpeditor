@@ -27,7 +27,7 @@
 namespace Extensions
 {
 
-CodeFormatter::CodeFormatter(CodeEditor *editor, const QString &lang, bool selectionOnly, bool logOnNoChange,
+CodeFormatter::CodeFormatter(Editor::CodeEditor *editor, const QString &lang, bool selectionOnly, bool logOnNoChange,
                              MessageLogger *log, QObject *parent)
     : QObject(parent), m_editor(editor), m_lang(lang), m_selectionOnly(selectionOnly), m_logOnNoChange(logOnNoChange),
       log(log)
