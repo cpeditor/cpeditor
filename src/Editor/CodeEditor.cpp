@@ -92,6 +92,8 @@ void CodeEditor::applySettings(const QString &lang)
     else
         setWordWrapMode(QTextOption::NoWrap);
 
+    setHighlightCurrentLine(SettingsHelper::isHighlightCurrentLine());
+
     updateBottomMargin();
 
     if (language.isEmpty())
@@ -113,6 +115,8 @@ void CodeEditor::applySettings(const QString &lang)
         setTheme(KSyntaxHighlightingRepository::getSyntaxHighlightingRepository()->theme(
             SettingsHelper::getCodeEditorTheme()));
     }
+    if (vimCursor())
+        return;
 
     parentheses.clear();
 
