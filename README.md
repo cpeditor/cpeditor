@@ -9,6 +9,11 @@
 [![GitHub Sponsors](https://img.shields.io/github/sponsors/cpeditor?style=for-the-badge)](https://github.com/sponsors/cpeditor)
 <a href="https://www.producthunt.com/posts/cp-editor" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=283643&theme=dark" alt="Product Hunt" height="28"/></a>
 
+
+[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/cpeditor)
+
+
+
 **[Features](https://cpeditor.org) · [Documentation](https://cpeditor.org/docs) · [Changelog](CHANGELOG.md) · [Contributing](CONTRIBUTING.md) · [FAQ](https://cpeditor.org/docs/faq/)**
 
 [中文](README_zh-CN.md) · [Русский](README_ru-RU.md)
