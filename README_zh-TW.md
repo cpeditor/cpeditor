@@ -11,7 +11,7 @@
 
 **[特色功能](https://cpeditor.org) · [文件](https://cpeditor.org/docs) · [更新紀錄](CHANGELOG.md) · [貢獻指引](CONTRIBUTING_zh-TW.md) · [常見問題](https://cpeditor.org/docs/faq/)**
 
-[English](README.md) · [Русский](README_ru-RU.md)
+[简体中文](README_zh-CN.md) · [English](README.md) · [Русский](README_ru-RU.md)
 
 ![demo](assets/demo.gif)
 
