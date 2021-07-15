@@ -26,7 +26,6 @@ parts:
       - build-essential
       - qt515base
       - qt515tools
-      - git
       - libgl1-mesa-dev
     stage-packages:
       - qt515base
