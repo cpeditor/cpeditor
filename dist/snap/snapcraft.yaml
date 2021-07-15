@@ -27,6 +27,7 @@ parts:
       - qt515base
       - qt515tools
       - libgl1-mesa-dev
+      - git
     stage-packages:
       - qt515base
     source: .
