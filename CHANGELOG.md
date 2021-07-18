@@ -4,7 +4,7 @@
 
 -   Legacy setting entries from v6.7 and earlier are no longer automatically migrated to the new ones. Update to v6.11 and then v7.0 if you are using v6.7 or older versions.
 -   The command line option `--no-hot-exit` is renamed to `--no-restore-session`. (#928 and #947)
--   The application name is changed from "CP Editor" to "cpeditor". This affects the name of the config directory (the old config files are automatically migrated), and also things like window class name in Xorg.
+-   The application name is changed from "CP Editor" to "cpeditor". This affects the name of the config directory (the old config files are automatically migrated), and also things like window class name in Xorg. The log files are also moved to a new location (from `/tmp/cpeditorLogFiles` to `~/.cache/cpeditor/log` on Linux).
 
 ### Added
 
