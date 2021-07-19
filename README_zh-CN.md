@@ -11,7 +11,7 @@
 
 **[特性](https://cpeditor.org/zh) · [文档](https://cpeditor.org/zh/docs) · [更新日志](CHANGELOG.md) · [贡献指南](CONTRIBUTING_zh-CN.md) · [FAQ](https://cpeditor.org/zh/docs/faq/)**
 
-[English](README.md) · [Русский](README_ru-RU.md)
+[English](README.md) · [Русский](README_ru-RU.md) · [正體中文](README_zh-TW.md)
 
 ![demo](assets/demo.gif)
 
