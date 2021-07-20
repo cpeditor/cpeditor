@@ -1,47 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1">
+<TS version="2.1" language="zh_TW" sourcelanguage="en">
 <context>
     <name>AppWindow</name>
     <message>
         <source>Open Recent Files</source>
-        <translation type="unfinished"></translation>
+        <translation>開啟最近使用的檔案</translation>
     </message>
     <message>
         <source>No file is opened recently</source>
-        <translation type="unfinished"></translation>
+        <translation>沒有最近開啟的檔案</translation>
     </message>
     <message>
         <source>Clear Recent Files</source>
-        <translation type="unfinished"></translation>
+        <translation>清除最近使用的檔案</translation>
     </message>
     <message>
         <source>Hot Exit</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>參照 Visual Studio</translatorcomment>
+        <translation></translation>
     </message>
     <message>
         <source>In the last session, CP Editor was abnormally killed, do you want to restore the last session?</source>
-        <translation type="unfinished"></translation>
+        <translation>在上次的工作階段，CP Editor 被意外地終止了。要還原上次的工作階段嗎？</translation>
     </message>
     <message>
         <source>Show Main Window</source>
-        <translation type="unfinished"></translation>
+        <translation>顯示主視窗</translation>
     </message>
     <message>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>關於</translation>
     </message>
     <message>
         <source>Quit</source>
-        <translation type="unfinished"></translation>
+        <translation>退出</translation>
     </message>
     <message>
         <source>Opening Files</source>
-        <translation type="unfinished"></translation>
+        <translation>開啟檔案中</translation>
     </message>
     <message>
         <source>About CP Editor %1</source>
-        <translation type="unfinished"></translation>
+        <translation>關於 CP Editor %1</translation>
     </message>
     <message>
         <source>&lt;p&gt;&lt;b&gt;CP Editor&lt;/b&gt; is a native Qt-based code editor. It&apos;s specially designed for competitive programming, unlike other editors/IDEs which are mainly for developers. It helps you focus on your algorithm and automates the compilation, executing and testing. It even fetches test cases for you from different platforms and submits solutions to Codeforces!&lt;/p&gt;&lt;p&gt;Copyright (C) 2019-2021 Ashar Khan &amp;lt;ashar786khan@gmail.com&amp;gt;&lt;/p&gt;&lt;p&gt;This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. The source code for CP Editor is available at &lt;a href=&quot;https://github.com/cpeditor/cpeditor&quot;&gt; https://github.com/cpeditor/cpeditor&lt;/a&gt;.&lt;/p&gt;</source>
@@ -49,7 +50,7 @@
     </message>
     <message>
         <source>Build Info</source>
-        <translation type="unfinished"></translation>
+        <translation>建置資訊</translation>
     </message>
     <message>
         <source>App version: %1
@@ -57,103 +58,108 @@ Build type: %2
 Git commit hash: %3
 Build time: %4
 OS: %5</source>
-        <translation type="unfinished"></translation>
+        <translation>程式版本：%1
+建置類型：%2
+Git 提交雜湊值：%3
+建置時間：%4
+作業系統：%5</translation>
     </message>
     <message>
         <source>Portable Version</source>
-        <translation type="unfinished"></translation>
+        <translation>免安裝版</translation>
     </message>
     <message>
         <source>Setup Version</source>
-        <translation type="unfinished"></translation>
+        <translation>安裝版</translation>
     </message>
     <message>
         <source>Open Files</source>
-        <translation type="unfinished"></translation>
+        <translation>開啟檔案</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>儲存</translation>
     </message>
     <message>
         <source>Save All</source>
-        <translation type="unfinished"></translation>
+        <translation>儲存全部</translation>
     </message>
     <message>
         <source>Reset preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>重置偏好設定</translation>
     </message>
     <message>
         <source>Are you sure you want to reset the all preferences to default?</source>
-        <translation type="unfinished"></translation>
+        <translation>確定要將所有偏好設定重設為預設值？</translation>
     </message>
     <message>
         <source>Export settings to a file</source>
-        <translation type="unfinished"></translation>
+        <translation>將設定值匯出為檔案</translation>
     </message>
     <message>
         <source>CP Editor Settings File</source>
-        <translation type="unfinished"></translation>
+        <translation>CP Editor 設定檔</translation>
     </message>
     <message>
         <source>Import Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>匯入設定</translation>
     </message>
     <message>
         <source>All current settings will lose after importing settings from a file. Are you sure to continue?</source>
-        <translation type="unfinished"></translation>
+        <translation>從檔案匯入的設定值，會覆蓋現有的任何設定。確定要繼續？</translation>
     </message>
     <message>
         <source>Import settings from a file</source>
-        <translation type="unfinished"></translation>
+        <translation>從檔案匯入設定值</translation>
     </message>
     <message>
         <source>Export current session to a file</source>
-        <translation type="unfinished"></translation>
+        <translation>將目前的工作階段匯出為檔案
+將目前的工作階段匯出為檔案</translation>
     </message>
     <message>
         <source>CP Editor Session File</source>
-        <translation type="unfinished"></translation>
+        <translation>CP Editor 工作階段檔</translation>
     </message>
     <message>
         <source>Export Session</source>
-        <translation type="unfinished"></translation>
+        <translation>匯出工作階段</translation>
     </message>
     <message>
         <source>Failed to export the current session to [%1]</source>
-        <translation type="unfinished"></translation>
+        <translation>無法將目前的工作階段匯出到「%1」</translation>
     </message>
     <message>
         <source>Load Session</source>
-        <translation type="unfinished"></translation>
+        <translation>載入工作階段</translation>
     </message>
     <message>
         <source>Loading a session from a file will close all tabs in the current session without saving the files. Are you sure to continue?</source>
-        <translation type="unfinished"></translation>
+        <translation>從檔案載入工作階段，將會關閉目前工作階段中的所有分頁（包含未存檔的）。確定要繼續？</translation>
     </message>
     <message>
         <source>Load session from a file</source>
-        <translation type="unfinished"></translation>
+        <translation>從檔案載入工作階段</translation>
     </message>
     <message>
         <source>CP Editor: An editor specially designed for competitive programming</source>
-        <translation type="unfinished"></translation>
+        <translation>CP Editor：一款專為競程設計的編輯器</translation>
     </message>
     <message>
         <source>Snippets</source>
-        <translation type="unfinished"></translation>
+        <translation>程式碼片段</translation>
     </message>
     <message>
         <source>There are no snippets for %1. Please add snippets in the preference window.</source>
-        <translation type="unfinished"></translation>
+        <translation>沒有 %1 的程式碼片段。請在偏好設定視窗裡新增。</translation>
     </message>
     <message>
         <source>Use Snippets</source>
-        <translation type="unfinished"></translation>
+        <translation>使用程式碼片段</translation>
     </message>
     <message>
         <source>Choose a snippet:</source>
-        <translation type="unfinished"></translation>
+        <translation>選擇程式碼片段：</translation>
     </message>
     <message>
         <source>There is no snippet named %1 for %2</source>
@@ -161,19 +167,19 @@ OS: %5</source>
     </message>
     <message>
         <source>How to exit full-screen</source>
-        <translation type="unfinished"></translation>
+        <translation>如何退出全螢幕</translation>
     </message>
     <message>
         <source>Press F11 key to exit full-screen mode.</source>
-        <translation type="unfinished"></translation>
+        <translation>按下 F11 鍵來退出全螢幕模式。</translation>
     </message>
     <message>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>關閉</translation>
     </message>
     <message>
         <source>Close Others</source>
-        <translation type="unfinished"></translation>
+        <translation>關閉其他</translation>
     </message>
     <message>
         <source>Close to the Left</source>
@@ -185,51 +191,52 @@ OS: %5</source>
     </message>
     <message>
         <source>Close Saved</source>
-        <translation type="unfinished"></translation>
+        <translation>關閉已存檔的</translation>
     </message>
     <message>
         <source>Close All</source>
-        <translation type="unfinished"></translation>
+        <translation>關閉全部</translation>
     </message>
     <message>
         <source>Duplicate Tab</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>「複製」有疑義，應釐清與 Copy 的差異</translatorcomment>
+        <translation>複製分頁</translation>
     </message>
     <message>
         <source>Set Compile Command</source>
-        <translation type="unfinished"></translation>
+        <translation>設定編譯指令</translation>
     </message>
     <message>
         <source>Set Time Limit</source>
-        <translation type="unfinished"></translation>
+        <translation>限制執行時間</translation>
     </message>
     <message>
         <source>Source File</source>
-        <translation type="unfinished"></translation>
+        <translation>原始檔</translation>
     </message>
     <message>
         <source>Executable File</source>
-        <translation type="unfinished"></translation>
+        <translation>可執行檔</translation>
     </message>
     <message>
         <source>Copy File Path</source>
-        <translation type="unfinished"></translation>
+        <translation>複製檔案路徑</translation>
     </message>
     <message>
         <source>Open Problem in Browser</source>
-        <translation type="unfinished"></translation>
+        <translation>在瀏覽器中開啟題目</translation>
     </message>
     <message>
         <source>Copy Problem URL</source>
-        <translation type="unfinished"></translation>
+        <translation>複製題目網址</translation>
     </message>
     <message>
         <source>Set Codeforces URL</source>
-        <translation type="unfinished"></translation>
+        <translation>設定 Codeforces 網址</translation>
     </message>
     <message>
         <source>Set CF URL</source>
-        <translation type="unfinished"></translation>
+        <translation>設定 CF 網址</translation>
     </message>
     <message>
         <source>Enter the contest ID:</source>
@@ -237,11 +244,12 @@ OS: %5</source>
     </message>
     <message>
         <source>Enter the problem Code (A-Z):</source>
-        <translation type="unfinished"></translation>
+        <translation>輸入題目代號９
+輸入題目代號 (A-Z)：</translation>
     </message>
     <message>
         <source>Set Problem URL</source>
-        <translation type="unfinished"></translation>
+        <translation>設定題目網址</translation>
     </message>
     <message>
         <source>Enter the new problem URL:</source>
@@ -257,27 +265,27 @@ OS: %5</source>
     </message>
     <message>
         <source>New File</source>
-        <translation type="unfinished"></translation>
+        <translation>開新檔案</translation>
     </message>
     <message>
         <source>Open a new tab in the editor</source>
-        <translation type="unfinished"></translation>
+        <translation>在編輯器中開啟新分頁</translation>
     </message>
     <message>
         <source>Save the file on the disk</source>
-        <translation type="unfinished"></translation>
+        <translation>將檔案儲存到磁碟</translation>
     </message>
     <message>
         <source>Save As...</source>
-        <translation type="unfinished"></translation>
+        <translation>另存為…</translation>
     </message>
     <message>
         <source>Save as new file</source>
-        <translation type="unfinished"></translation>
+        <translation>另存新檔</translation>
     </message>
     <message>
         <source>Save all opened files</source>
-        <translation type="unfinished"></translation>
+        <translation>儲存所有開啟的檔案</translation>
     </message>
     <message>
         <source>Close Current</source>
@@ -285,27 +293,27 @@ OS: %5</source>
     </message>
     <message>
         <source>Close current tab</source>
-        <translation type="unfinished"></translation>
+        <translation>關閉目前分頁</translation>
     </message>
     <message>
         <source>Close saved tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>關閉已存檔的分頁</translation>
     </message>
     <message>
         <source>Close All the tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>關閉所有分頁</translation>
     </message>
     <message>
         <source>Quit the application</source>
-        <translation type="unfinished"></translation>
+        <translation>退出應用程式</translation>
     </message>
     <message>
         <source>Open File...</source>
-        <translation type="unfinished"></translation>
+        <translation>開啟檔案…</translation>
     </message>
     <message>
         <source>Open files</source>
-        <translation type="unfinished"></translation>
+        <translation>開啟檔案</translation>
     </message>
     <message>
         <source>Open Contest...</source>
@@ -317,11 +325,11 @@ OS: %5</source>
     </message>
     <message>
         <source>Indent</source>
-        <translation type="unfinished"></translation>
+        <translation>縮排</translation>
     </message>
     <message>
         <source>Unindent</source>
-        <translation type="unfinished"></translation>
+        <translation>取消縮排</translation>
     </message>
     <message>
         <source>Swap Line Up</source>
@@ -333,11 +341,11 @@ OS: %5</source>
     </message>
     <message>
         <source>Duplicate Line</source>
-        <translation type="unfinished"></translation>
+        <translation>複製整行</translation>
     </message>
     <message>
         <source>Delete Line</source>
-        <translation type="unfinished"></translation>
+        <translation>刪除整行</translation>
     </message>
     <message>
         <source>Toggle Comment</source>
@@ -349,19 +357,19 @@ OS: %5</source>
     </message>
     <message>
         <source>Compile</source>
-        <translation type="unfinished"></translation>
+        <translation>編譯</translation>
     </message>
     <message>
         <source>Compile and Run</source>
-        <translation type="unfinished"></translation>
+        <translation>編譯並執行</translation>
     </message>
     <message>
         <source>Run</source>
-        <translation type="unfinished"></translation>
+        <translation>執行</translation>
     </message>
     <message>
         <source>Format code</source>
-        <translation type="unfinished"></translation>
+        <translation>排版程式碼</translation>
     </message>
     <message>
         <source>Run Detached</source>
@@ -369,204 +377,207 @@ OS: %5</source>
     </message>
     <message>
         <source>Kill Processes</source>
-        <translation type="unfinished"></translation>
+        <translation>終止處理程序</translation>
     </message>
     <message>
         <source>Find and Replace</source>
-        <translation type="unfinished"></translation>
+        <translation>尋找及取代</translation>
     </message>
     <message>
         <source>Use Snippet...</source>
-        <translation type="unfinished"></translation>
+        <translation>使用程式碼片段…</translation>
     </message>
     <message>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>偏好設定</translation>
     </message>
     <message>
         <source>Reset Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>重置設定</translation>
     </message>
     <message>
         <source>Export Settings...</source>
-        <translation type="unfinished"></translation>
+        <translation>匯出設定…</translation>
     </message>
     <message>
         <source>Import Settings...</source>
-        <translation type="unfinished"></translation>
+        <translation>匯入設定…</translation>
     </message>
     <message>
         <source>Export Session...</source>
-        <translation type="unfinished"></translation>
+        <translation>匯出工作階段…</translation>
     </message>
     <message>
         <source>Load Session...</source>
-        <translation type="unfinished"></translation>
+        <translation>載入工作階段…</translation>
     </message>
     <message>
         <source>Manual</source>
-        <translation type="unfinished"></translation>
+        <translation>使用手冊</translation>
     </message>
     <message>
         <source>Report issues</source>
-        <translation type="unfinished"></translation>
+        <translation>回報問題</translation>
     </message>
     <message>
         <source>About Qt</source>
-        <translation type="unfinished"></translation>
+        <translation>關於 Qt</translation>
     </message>
     <message>
         <source>Check for updates</source>
-        <translation type="unfinished"></translation>
+        <translation>檢查更新</translation>
     </message>
     <message>
         <source>Support us</source>
-        <translation type="unfinished"></translation>
+        <translation>支持我們</translation>
     </message>
     <message>
         <source>Editor Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>編輯器模式</translation>
     </message>
     <message>
         <source>IO Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>IO 模式</translation>
     </message>
     <message>
         <source>Split Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>分割畫面</translation>
     </message>
     <message>
         <source>Full Screen</source>
-        <translation type="unfinished"></translation>
+        <translation>全螢幕</translation>
     </message>
     <message>
         <source>Show Log Files</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>參考自 microsoft terminology</translatorcomment>
+        <translation>顯示記錄檔</translation>
     </message>
     <message>
         <source>Delete Log Files</source>
-        <translation type="unfinished"></translation>
+        <translation>刪除記錄檔</translation>
     </message>
     <message>
         <source>&amp;File</source>
-        <translation type="unfinished"></translation>
+        <translation>檔案(&amp;F)</translation>
     </message>
     <message>
         <source>&amp;Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>編輯(&amp;E)</translation>
     </message>
     <message>
         <source>&amp;Actions</source>
-        <translation type="unfinished"></translation>
+        <translation>動作(&amp;A)</translation>
     </message>
     <message>
         <source>&amp;View</source>
-        <translation type="unfinished"></translation>
+        <translation>檢視(&amp;V)</translation>
     </message>
     <message>
         <source>&amp;Options</source>
-        <translation type="unfinished"></translation>
+        <translation>選項(&amp;O)</translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation type="unfinished"></translation>
+        <translation>說明(&amp;H)</translation>
     </message>
 </context>
 <context>
     <name>CodeSnippetsPage</name>
     <message>
         <source>Search...</source>
-        <translation type="unfinished"></translation>
+        <translation>搜尋…</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>新增</translation>
     </message>
     <message>
         <source>Del</source>
-        <translation type="unfinished"></translation>
+        <translation>刪除</translation>
     </message>
     <message>
         <source>Rename Snippet</source>
-        <translation type="unfinished"></translation>
+        <translation>重新命名程式碼片段</translation>
     </message>
     <message>
         <source>Load Snippets From Files</source>
-        <translation type="unfinished"></translation>
+        <translation>從檔案載入程式碼片段</translation>
     </message>
     <message>
         <source>Extract Snippets To Files</source>
-        <translation type="unfinished"></translation>
+        <translation>將程式碼片段打包為檔案</translation>
     </message>
     <message>
         <source>More</source>
-        <translation type="unfinished"></translation>
+        <translation>更多</translation>
     </message>
     <message>
         <source>No Snippet Selected</source>
-        <translation type="unfinished"></translation>
+        <translation>未選取程式碼片段</translation>
     </message>
     <message>
         <source>Unsaved Snippets</source>
-        <translation type="unfinished"></translation>
+        <translation>未儲存的程式碼片段</translation>
     </message>
     <message>
         <source>The snippet [%1] has been changed. Do you want to save it or discard the changes?</source>
-        <translation type="unfinished"></translation>
+        <translation>程式碼片段「%1」已變更。要儲存嗎？</translation>
     </message>
     <message>
         <source>Delete Snippet</source>
-        <translation type="unfinished"></translation>
+        <translation>刪除程式碼片段</translation>
     </message>
     <message>
         <source>Do you really want to delete the snippet [%1]?</source>
-        <translation type="unfinished"></translation>
+        <translation>確定要刪除程式碼片段「%1」？</translation>
     </message>
     <message>
         <source>Load Snippets</source>
-        <translation type="unfinished"></translation>
+        <translation>載入程式碼片段</translation>
     </message>
     <message>
         <source>Failed to open [%1]. Do I have read permission?</source>
-        <translation type="unfinished"></translation>
+        <translation>無法開啟「%1」。有讀取權限嗎？</translation>
     </message>
     <message>
         <source>Extract Snippets</source>
-        <translation type="unfinished"></translation>
+        <translation>打包程式碼片段</translation>
     </message>
     <message>
         <source>Extract Snippets: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>打包程式碼片段：%1</translation>
     </message>
     <message>
         <source>Failed to write to [%1]. Do I have write permission?</source>
-        <translation type="unfinished"></translation>
+        <translation>無法寫入「%1」。有寫入權限嗎？</translation>
     </message>
     <message>
         <source>Snippet name can&apos;t be empty.
 </source>
-        <translation type="unfinished"></translation>
+        <translation>程式碼片段名稱不可為空。
+</translation>
     </message>
     <message>
         <source>Snippet Name Conflict</source>
-        <translation type="unfinished"></translation>
+        <translation>程式碼片段名稱衝突</translation>
     </message>
     <message>
         <source>The name &quot;%1&quot; is already in use. Do you want to override it? (The old snippet with this name will be deleted.)</source>
-        <translation type="unfinished"></translation>
+        <translation>名稱「%1」已被使用。要覆寫嗎？（原先使用該名稱的程式碼片段將被刪除）</translation>
     </message>
     <message>
         <source>The name &quot;%1&quot; is already in use.
 </source>
-        <translation type="unfinished"></translation>
+        <translation>名稱「%1」已被使用。
+</translation>
     </message>
     <message>
         <source>Add Snippet</source>
-        <translation type="unfinished"></translation>
+        <translation>新增程式碼片段</translation>
     </message>
     <message>
         <source>New Snippet Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>新程式碼片段名稱：</translation>
     </message>
 </context>
 <context>
@@ -585,11 +596,11 @@ OS: %5</source>
     </message>
     <message>
         <source>Read testlib.h</source>
-        <translation type="unfinished"></translation>
+        <translation>讀取 testlib.h</translation>
     </message>
     <message>
         <source>Save testlib.h</source>
-        <translation type="unfinished"></translation>
+        <translation>儲存 testlib.h</translation>
     </message>
     <message>
         <source>Started compiling the checker</source>
@@ -610,7 +621,7 @@ OS: %5</source>
     </message>
     <message>
         <source>Time Limit Exceeded</source>
-        <translation type="unfinished"></translation>
+        <translation>執行時間過長</translation>
     </message>
     <message>
         <source>Checker exited with exit code %1</source>
@@ -637,26 +648,26 @@ OS: %5</source>
     <name>Core::Compiler</name>
     <message>
         <source>The source file [%1] doesn&apos;t exist</source>
-        <translation type="unfinished"></translation>
+        <translation>原始檔「%1」不存在</translation>
     </message>
     <message>
         <source>%1 is empty</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 為空</translation>
     </message>
     <message>
         <source>Unsupported programming language &quot;%1&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>不支援的程式語言：%1</translation>
     </message>
     <message>
         <source>Failed to start the compiler. Please check %1 or add the compiler in the PATH environment variable.</source>
-        <translation type="unfinished"></translation>
+        <translation>無法啟動編譯器，請將其加入 PATH 環境變數或檢查 %1 的設定。</translation>
     </message>
 </context>
 <context>
     <name>Core::Runner</name>
     <message>
         <source>The source file %1 doesn&apos;t exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>原始檔 %1 不存在。</translation>
     </message>
     <message>
         <source>Failed to get run command. It&apos;s probably a bug.</source>
@@ -677,29 +688,29 @@ Press any key to exit</source>
     </message>
     <message>
         <source>Failed to start running. Please compile first.</source>
-        <translation type="unfinished"></translation>
+        <translation>無法執行，請先編譯。</translation>
     </message>
 </context>
 <context>
     <name>Core::SessionManager</name>
     <message>
         <source>Restoring Last Session</source>
-        <translation type="unfinished"></translation>
+        <translation>正在還原上次的工作階段</translation>
     </message>
     <message>
         <source>Restoring: [%1]</source>
-        <translation type="unfinished"></translation>
+        <translation>正在還原： %1</translation>
     </message>
 </context>
 <context>
     <name>Extensions::CFTool</name>
     <message>
         <source>CF Tool</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>CF Tool was killed</source>
-        <translation type="unfinished"></translation>
+        <translation>CF Tool 已被終止</translation>
     </message>
     <message>
         <source>The problem code is 0, now use A automatically. If the actual problem code is not A, please set the problem code manually in the right-click menu of the current tab.</source>
@@ -707,50 +718,50 @@ Press any key to exit</source>
     </message>
     <message>
         <source>Failed to get the version of CF Tool. Have you set the correct path to CF Tool in Preferences?</source>
-        <translation type="unfinished"></translation>
+        <translation>無法取得 CF Tool 的版本資訊。已在偏好設定中正確設定 CF Tool 的路徑？</translation>
     </message>
     <message>
         <source>CF Tool has started</source>
-        <translation type="unfinished"></translation>
+        <translation>CF Tool 已啟動</translation>
     </message>
     <message>
         <source>Failed to start CF Tool in 2 seconds. Have you set the correct path to CF Tool in Preferences?</source>
-        <translation type="unfinished"></translation>
+        <translation>無法在兩秒內啟動 CF Tool。請確認是否已在偏好設定中正確指定 CF Tool 路徑？</translation>
     </message>
     <message>
         <source>Failed to parse the URL [%1]</source>
-        <translation type="unfinished"></translation>
+        <translation>無法解析網址「%1」</translation>
     </message>
     <message>
         <source>CF Tool failed</source>
-        <translation type="unfinished"></translation>
+        <translation>CF Tool 失敗</translation>
     </message>
     <message>
         <source>CF Tool finished with non-zero exit code %1</source>
-        <translation type="unfinished"></translation>
+        <translation>CF Tool 以回傳值 %1 結束</translation>
     </message>
     <message>
         <source>Contest %1 Problem %2</source>
-        <translation type="unfinished"></translation>
+        <translation>競賽 %1 題目 %2</translation>
     </message>
 </context>
 <context>
     <name>Extensions::CodeFormatter</name>
     <message>
         <source>Formatter</source>
-        <translation type="unfinished"></translation>
+        <translation>排版工具</translation>
     </message>
     <message>
         <source>Failed to create temporary directory</source>
-        <translation type="unfinished"></translation>
+        <translation>無法建立臨時目錄</translation>
     </message>
     <message>
         <source>Formatting completed</source>
-        <translation type="unfinished"></translation>
+        <translation>排版完成</translation>
     </message>
     <message>
         <source>The format process didn&apos;t finish in 2 seconds. This is probably because the %1 program is not found by CP Editor. You can set the path to the program at %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>排版工具的處理程序未能在 2 秒內結束。這或許是因為 CP Editor 找不到 %1 程式。您可以在 %2 設定該程式的路徑。</translation>
     </message>
     <message>
         <source>The format command [%1 %2] finished with exit code %3.</source>
@@ -781,15 +792,15 @@ Press any key to exit</source>
     </message>
     <message>
         <source>Server is closed</source>
-        <translation type="unfinished"></translation>
+        <translation>伺服器已關閉</translation>
     </message>
     <message>
         <source>Port is set to %1</source>
-        <translation type="unfinished"></translation>
+        <translation>已將連接埠設為 %1</translation>
     </message>
     <message>
         <source>Failed to listen to port %1. Is there another process listening?</source>
-        <translation type="unfinished"></translation>
+        <translation>無法偵聽連接埠 %1。可能有其他處理程序也在偵聽？</translation>
     </message>
     <message>
         <source>JSON parser reported errors:
@@ -805,38 +816,38 @@ Press any key to exit</source>
     <name>Extensions::LanguageServer</name>
     <message>
         <source>Language Server [%1]</source>
-        <translation type="unfinished"></translation>
+        <translation>Language Server 「%1」</translation>
     </message>
     <message>
         <source>Language server sent an error. Please check log for details.</source>
-        <translation type="unfinished"></translation>
+        <translation>Language server 發出錯誤訊息。關於更多細節，請查閱記錄檔。</translation>
     </message>
     <message>
         <source>Failed to start LSP Process. Have you set the path to the Language Server program at %1?</source>
-        <translation type="unfinished"></translation>
+        <translation>無法啟動 LSP 處理程序。已在 %1 設定 Language Server 程式的路徑？</translation>
     </message>
     <message>
         <source>LSP Process timed out</source>
-        <translation type="unfinished"></translation>
+        <translation>LSP 處理程序逾時</translation>
     </message>
     <message>
         <source>LSP Process Read Error</source>
-        <translation type="unfinished"></translation>
+        <translation>LSP 處理程序發生讀取錯誤</translation>
     </message>
     <message>
         <source>LSP Process Write Error</source>
-        <translation type="unfinished"></translation>
+        <translation>LSP 處理程序發生寫入錯誤</translation>
     </message>
     <message>
         <source>An unknown error has occurred in LSP Process</source>
-        <translation type="unfinished"></translation>
+        <translation>LSP 處理程序發生了未知的錯誤</translation>
     </message>
 </context>
 <context>
     <name>FindReplaceDialog</name>
     <message>
         <source>Find/Replace</source>
-        <translation type="unfinished"></translation>
+        <translation>尋找/取代</translation>
     </message>
 </context>
 <context>
@@ -847,11 +858,11 @@ Press any key to exit</source>
     </message>
     <message>
         <source>Find:</source>
-        <translation type="unfinished"></translation>
+        <translation>尋找：</translation>
     </message>
     <message>
         <source>Replace with:</source>
-        <translation type="unfinished"></translation>
+        <translation>取代為：</translation>
     </message>
     <message>
         <source>errorLabel</source>
@@ -859,7 +870,7 @@ Press any key to exit</source>
     </message>
     <message>
         <source>Direction</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">方向</translation>
     </message>
     <message>
         <source>Up</source>
@@ -871,15 +882,17 @@ Press any key to exit</source>
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished"></translation>
+        <translation>選項</translation>
     </message>
     <message>
         <source>Case sensitive</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>參考 Firefox 的翻譯</translatorcomment>
+        <translation>符合大小寫</translation>
     </message>
     <message>
         <source>Whole words only</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>參考 Firefox 的翻譯</translatorcomment>
+        <translation>整個文字</translation>
     </message>
     <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -894,34 +907,34 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Regular Expression</source>
-        <translation type="unfinished"></translation>
+        <translation>正規表達式</translation>
     </message>
     <message>
         <source>Find</source>
-        <translation type="unfinished"></translation>
+        <translation>尋找</translation>
     </message>
     <message>
         <source>Replace</source>
-        <translation type="unfinished"></translation>
+        <translation>取代</translation>
     </message>
     <message>
         <source>Replace All</source>
-        <translation type="unfinished"></translation>
+        <translation>全部取代</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
         <source>Auto Save</source>
-        <translation type="unfinished"></translation>
+        <translation>自動存檔</translation>
     </message>
     <message>
         <source>Compiler</source>
-        <translation type="unfinished"></translation>
+        <translation>編譯器</translation>
     </message>
     <message>
         <source>Please set the language</source>
-        <translation type="unfinished"></translation>
+        <translation>請設定語言</translation>
     </message>
     <message>
         <source>Runner</source>
@@ -937,7 +950,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Submit</source>
-        <translation type="unfinished"></translation>
+        <translation>送出</translation>
     </message>
     <message>
         <source>Sure to submit</source>
@@ -948,23 +961,26 @@ p, li { white-space: pre-wrap; }
 
  URL: %1
  Language: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>確定要送出答案至 Codeforces？
+
+ 網址：%1
+ 程式語言：%2</translation>
     </message>
     <message>
         <source>CF Tool</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Failed to save the temp file, and the solution is not submitted.</source>
-        <translation type="unfinished"></translation>
+        <translation>無法儲存暫存檔，答案尚未送出。</translation>
     </message>
     <message>
         <source>You need to install CF Tool to submit your code to Codeforces. If already installed, you can add it in the PATH environment variable or check your settings at %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>需要安裝 CF Tool 才能將您的程式碼交到 Codeforces。若已安裝，請將其加入 PATH 環境變數或檢查 %1 的設定。</translation>
     </message>
     <message>
         <source>Untitled-%1</source>
-        <translation type="unfinished"></translation>
+        <translation>無標題-%1</translation>
     </message>
     <message>
         <source>Unknown attribute: [%1]. Please check the head comments setting at %2.</source>
@@ -972,118 +988,122 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Save as</source>
-        <translation type="unfinished"></translation>
+        <translation>另存為</translation>
     </message>
     <message>
         <source>Open %1 Template</source>
-        <translation type="unfinished"></translation>
+        <translation>開啟 %1 樣板</translation>
     </message>
     <message>
         <source>Open File</source>
-        <translation type="unfinished"></translation>
+        <translation>開啟檔案</translation>
     </message>
     <message>
         <source>The file [%1] contains more than %2 characters, so it&apos;s not opened. You can change the open file length limit at %3.</source>
-        <translation type="unfinished"></translation>
+        <translation>檔案「%1」的字元數超過 %2，因此無法開啟。您可以在 %3 變更開啟檔案的長度限制。</translation>
     </message>
     <message>
         <source>Save File</source>
-        <translation type="unfinished"></translation>
+        <translation>儲存檔案</translation>
     </message>
     <message>
         <source>Temp File</source>
-        <translation type="unfinished"></translation>
+        <translation>暫存檔</translation>
     </message>
     <message>
         <source>Failed to create the temporary directory</source>
-        <translation type="unfinished"></translation>
+        <translation>無法建立暫存目錄</translation>
     </message>
     <message>
         <source>Set Compile Command</source>
-        <translation type="unfinished"></translation>
+        <translation>設定編譯指令</translation>
     </message>
     <message>
         <source>Custom compile command for this tab:</source>
-        <translation type="unfinished"></translation>
+        <translation>自訂此分頁的編譯指令：</translation>
     </message>
     <message>
         <source>Set Time Limit</source>
-        <translation type="unfinished"></translation>
+        <translation>限制執行時間</translation>
     </message>
     <message>
         <source>Custom time limit for this tab: (ms)</source>
-        <translation type="unfinished"></translation>
+        <translation>自訂此分頁的執行時間： (ms)</translation>
     </message>
     <message>
         <source>Read %1 Template</source>
-        <translation type="unfinished"></translation>
+        <translation>讀取 %1 樣板</translation>
     </message>
     <message>
         <source>Save changes</source>
-        <translation type="unfinished"></translation>
+        <translation>儲存變更</translation>
     </message>
     <message>
         <source>Save changes to [%1] before closing?</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>參考 Microsoft OneDrive 翻譯</translatorcomment>
+        <translation>關閉前先儲存「%1」？</translation>
     </message>
     <message>
         <source>New File</source>
-        <translation type="unfinished"></translation>
+        <translation>開新檔案</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>儲存</translation>
     </message>
     <message>
         <source>Set Tab language</source>
-        <translation type="unfinished"></translation>
+        <translation>設定分頁語言</translation>
     </message>
     <message>
         <source>Set the language to use in this Tab</source>
-        <translation type="unfinished"></translation>
+        <translation>設定此分頁使用的程式語言</translation>
     </message>
     <message>
         <source>Reload</source>
-        <translation type="unfinished"></translation>
+        <translation>重新載入</translation>
     </message>
     <message>
         <source>[%1]
 
 has been changed on disk.
 Do you want to reload it?</source>
-        <translation type="unfinished"></translation>
+        <translation>「%1」
+
+在磁碟上的內容已變更。
+要重新載入嗎？</translation>
     </message>
     <message>
         <source>Line %1, Column %2</source>
-        <translation type="unfinished"></translation>
+        <translation>第 %1 列，第 %2 行</translation>
     </message>
     <message>
         <source>%1 lines, %2 characters selected</source>
-        <translation type="unfinished"></translation>
+        <translation>已選取 %1 列，共 %2 個字元</translation>
     </message>
     <message>
         <source>%1 characters selected</source>
-        <translation type="unfinished"></translation>
+        <translation>已選取 %1 個字元</translation>
     </message>
     <message>
         <source>Compilation has started</source>
-        <translation type="unfinished"></translation>
+        <translation>已開始編譯</translation>
     </message>
     <message>
         <source>Compilation has finished</source>
-        <translation type="unfinished"></translation>
+        <translation>已完成編譯</translation>
     </message>
     <message>
         <source>Compile Warnings</source>
-        <translation type="unfinished"></translation>
+        <translation>編譯警告</translation>
     </message>
     <message>
         <source>Error occurred while compiling</source>
-        <translation type="unfinished"></translation>
+        <translation>編譯時發生錯誤</translation>
     </message>
     <message>
         <source>Compile Errors</source>
-        <translation type="unfinished"></translation>
+        <translation>編譯錯誤</translation>
     </message>
     <message>
         <source>Have you set a proper name for the main class in your solution? If not, you can set it at %1.</source>
@@ -1095,7 +1115,7 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>Compilation is killed</source>
-        <translation type="unfinished"></translation>
+        <translation>編譯被終止</translation>
     </message>
     <message>
         <source>Detached Runner</source>
@@ -1107,7 +1127,7 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>Execution has started</source>
-        <translation type="unfinished"></translation>
+        <translation>已開始執行</translation>
     </message>
     <message>
         <source>Execution for test case #%1 has finished in %2ms</source>
@@ -1115,7 +1135,7 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>Time Limit Exceeded</source>
-        <translation type="unfinished"></translation>
+        <translation>執行時間過長</translation>
     </message>
     <message>
         <source>Execution for test case #%1 has finished with non-zero exitcode %2 in %3ms</source>
@@ -1123,7 +1143,7 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>/stderr</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer than the output length limit, so the process is killed. You can change the output length limit at %4.</source>
@@ -1131,7 +1151,7 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>%1 has been killed</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 已被終止</translation>
     </message>
     <message>
         <source>Detached runner</source>
@@ -1143,7 +1163,7 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>CP Editor</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>cursor info</source>
@@ -1151,27 +1171,27 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>Compile</source>
-        <translation type="unfinished"></translation>
+        <translation>編譯</translation>
     </message>
     <message>
         <source>Run</source>
-        <translation type="unfinished"></translation>
+        <translation>執行</translation>
     </message>
     <message>
         <source>Compile and Run</source>
-        <translation type="unfinished"></translation>
+        <translation>編譯並執行</translation>
     </message>
     <message>
         <source>Messages</source>
-        <translation type="unfinished"></translation>
+        <translation>訊息</translation>
     </message>
     <message>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>清除</translation>
     </message>
     <message>
         <source>C++</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -1179,7 +1199,8 @@ Do you want to reload it?</source>
     <message>
         <source>
 ... The message is too long</source>
-        <translation type="unfinished"></translation>
+        <translation>
+… 訊息過長</translation>
     </message>
 </context>
 <context>
@@ -1214,7 +1235,7 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>Do you really want to delete the parenthesis %1?</source>
-        <translation type="unfinished"></translation>
+        <translation>確定要刪除括號 %1？</translation>
     </message>
 </context>
 <context>
@@ -1230,11 +1251,11 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>Auto Complete</source>
-        <translation type="unfinished"></translation>
+        <translation>自動完成</translation>
     </message>
     <message>
         <source>Auto Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>自動移除</translation>
     </message>
     <message>
         <source>Tab Jump Out</source>
@@ -1245,30 +1266,30 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <name>PathItem</name>
     <message>
         <source>Choose a file</source>
-        <translation type="unfinished"></translation>
+        <translation>選擇檔案</translation>
     </message>
     <message>
         <source>Excutable Files</source>
-        <translation type="unfinished"></translation>
+        <translation>可執行檔</translation>
     </message>
     <message>
         <source>Choose a %1 source file</source>
-        <translation type="unfinished"></translation>
+        <translation>選擇 %1 原始檔</translation>
     </message>
     <message>
         <source>Choose an excutable file</source>
-        <translation type="unfinished"></translation>
+        <translation>選擇可執行檔</translation>
     </message>
 </context>
 <context>
     <name>PreferencesHomePage</name>
     <message>
         <source>Welcome to CP Editor! Let&apos;s get started.</source>
-        <translation type="unfinished"></translation>
+        <translation>歡迎使用 CP Editor！讓我們開始吧。</translation>
     </message>
     <message>
         <source>Code Editor Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>程式碼編輯器設定</translation>
     </message>
     <message>
         <source>C++ Compile and Run Commands</source>
@@ -1284,11 +1305,11 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>Appearance Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>介面設定</translation>
     </message>
     <message>
         <source>Font Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>字型設定</translation>
     </message>
     <message>
         <source>You can read the &lt;a href=&quot;%1&quot;&gt;documentation&lt;/a&gt; or go through the settings for more information.</source>
@@ -1299,54 +1320,55 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <name>PreferencesPage</name>
     <message>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>預設值</translation>
     </message>
     <message>
         <source>Reset</source>
-        <translation type="unfinished"></translation>
+        <translation>重設</translation>
     </message>
     <message>
         <source>Apply</source>
-        <translation type="unfinished"></translation>
+        <translation>套用</translation>
     </message>
     <message>
         <source>Restore the default settings on the current page. (Ctrl+D)</source>
-        <translation type="unfinished"></translation>
+        <translation>重置本頁的設定 (Ctrl+D)</translation>
     </message>
     <message>
         <source>Discard all changes on the current page. (Ctrl+R)</source>
-        <translation type="unfinished"></translation>
+        <translation>放棄本頁的所有變更 (Ctrl+R)</translation>
     </message>
     <message>
         <source>Save the changes on the current page. (Ctrl+S)</source>
-        <translation type="unfinished"></translation>
+        <translation>儲存本頁的所有變更 (Ctrl+S)</translation>
     </message>
     <message>
         <source>Unsaved Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>未儲存的設定</translation>
     </message>
     <message>
         <source>The settings are changed. Do you want to save the settings or discard them?</source>
-        <translation type="unfinished"></translation>
+        <translation>設定已變更。要儲存嗎？</translation>
     </message>
 </context>
 <context>
     <name>PreferencesWindow</name>
     <message>
         <source>Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>偏好設定</translation>
     </message>
     <message>
         <source>Search...</source>
-        <translation type="unfinished"></translation>
+        <translation>搜尋…</translation>
     </message>
     <message>
         <source>Home</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>暫譯</translatorcomment>
+        <translation>主畫面</translation>
     </message>
     <message>
         <source>Go to the home page</source>
-        <translation type="unfinished"></translation>
+        <translation>回到主畫面</translation>
     </message>
     <message>
         <source>Code Edit</source>
@@ -1358,11 +1380,11 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>一般</translation>
     </message>
     <message>
         <source>C++</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>%1 Commands</source>
@@ -1382,19 +1404,19 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>Java</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Python</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Appearance</source>
-        <translation type="unfinished"></translation>
+        <translation>介面</translation>
     </message>
     <message>
         <source>Font</source>
-        <translation type="unfinished"></translation>
+        <translation>字型</translation>
     </message>
     <message>
         <source>Actions</source>
@@ -1406,7 +1428,7 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>Auto Save</source>
-        <translation type="unfinished"></translation>
+        <translation>自動存檔</translation>
     </message>
     <message>
         <source>Detached Execution</source>
@@ -1414,15 +1436,15 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>Save Session</source>
-        <translation type="unfinished"></translation>
+        <translation>儲存工作階段</translation>
     </message>
     <message>
         <source>Bind file and problem</source>
-        <translation type="unfinished"></translation>
+        <translation>繫結檔案及題目</translation>
     </message>
     <message>
         <source>Test Cases</source>
-        <translation type="unfinished"></translation>
+        <translation>測資</translation>
     </message>
     <message>
         <source>Load External File Changes</source>
@@ -1430,23 +1452,23 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>Extensions</source>
-        <translation type="unfinished"></translation>
+        <translation>擴充功能</translation>
     </message>
     <message>
         <source>Code Formatting</source>
-        <translation type="unfinished"></translation>
+        <translation>程式碼排版</translation>
     </message>
     <message>
         <source>Clang Format</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>YAPF</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Language Server</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>%1 Server</source>
@@ -1454,23 +1476,23 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>Competitive Companion</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>CF Tool</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>File Path</source>
-        <translation type="unfinished"></translation>
+        <translation>檔案路徑</translation>
     </message>
     <message>
         <source>Testcases</source>
-        <translation type="unfinished"></translation>
+        <translation>測資</translation>
     </message>
     <message>
         <source>Problem URL</source>
-        <translation type="unfinished"></translation>
+        <translation>題目網址</translation>
     </message>
     <message>
         <source>Default Paths</source>
@@ -1478,11 +1500,11 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>Key Bindings</source>
-        <translation type="unfinished"></translation>
+        <translation>快捷鍵</translation>
     </message>
     <message>
         <source>Advanced</source>
-        <translation type="unfinished"></translation>
+        <translation>進階</translation>
     </message>
     <message>
         <source>Update</source>
@@ -1494,78 +1516,79 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>Network Proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>網路 Proxy</translation>
     </message>
 </context>
 <context>
     <name>SettingsInfo</name>
     <message>
         <source>Tab Width</source>
-        <translation type="unfinished"></translation>
+        <translation>Tab 寬度</translation>
     </message>
     <message>
         <source>The width of the tab character, or the number of spaces of an indent</source>
-        <translation type="unfinished"></translation>
+        <translation>指定 Tab 字元的寬度，即縮排的空格數</translation>
     </message>
     <message>
         <source>Cursor Width</source>
-        <translation type="unfinished"></translation>
+        <translation>游標寬度</translation>
     </message>
     <message>
         <source>The width of the cursor in pixels</source>
-        <translation type="unfinished"></translation>
+        <translation>以像素計算的游標寬度</translation>
     </message>
     <message>
         <source>Editor Font</source>
-        <translation type="unfinished"></translation>
+        <translation>編輯器字型</translation>
     </message>
     <message>
         <source>The font of the code editor</source>
-        <translation type="unfinished"></translation>
+        <translation>程式碼編輯器顯示的字型</translation>
     </message>
     <message>
         <source>Use Custom Application Font</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>參考簡體版翻譯</translatorcomment>
+        <translation>使用自訂全域字型</translation>
     </message>
     <message>
         <source>Use a custom font for the whole application instead of the default system font.</source>
-        <translation type="unfinished"></translation>
+        <translation>在整個應用程式中使用自訂的字型，而不是系統預設字型。</translation>
     </message>
     <message>
         <source>Custom Application Font</source>
-        <translation type="unfinished"></translation>
+        <translation>自訂應用程式字型</translation>
     </message>
     <message>
         <source>The custom font for the whole application</source>
-        <translation type="unfinished"></translation>
+        <translation>在整個應用程式中使用的自訂字型</translation>
     </message>
     <message>
         <source>Default Language</source>
-        <translation type="unfinished"></translation>
+        <translation>預設語言</translation>
     </message>
     <message>
         <source>The default language used when opening new tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>開新分頁時預設的語言</translation>
     </message>
     <message>
         <source>Clang Format Program</source>
-        <translation type="unfinished"></translation>
+        <translation>Clang Format 程式</translation>
     </message>
     <message>
         <source>The path to the Clang Format executable file</source>
-        <translation type="unfinished"></translation>
+        <translation>Clang Format 的可執行檔路徑</translation>
     </message>
     <message>
         <source>Clang Format Arguments</source>
-        <translation type="unfinished"></translation>
+        <translation>Clang Format 引數</translation>
     </message>
     <message>
         <source>The arguments passed to clang-format. It should NOT contain &quot;-i&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>傳入 clang-format 的引數。不可包含「-i」。</translation>
     </message>
     <message>
         <source>Clang Format Style</source>
-        <translation type="unfinished"></translation>
+        <translation>Clang Format 樣式</translation>
     </message>
     <message>
         <source>The Clang Format style options, which are usually saved in a .clang-format configuration file.
@@ -1574,7 +1597,7 @@ You can learn about it at &lt;https://clang.llvm.org/docs/ClangFormatStyleOption
     </message>
     <message>
         <source>YAPF Program</source>
-        <translation type="unfinished"></translation>
+        <translation>YAPF 程式</translation>
     </message>
     <message>
         <source>The program of YAPF. It could be `yapf` (which doesn&apos;t need arguments) or `python` (which needs `-m yapf` as the arguments).</source>
@@ -1582,15 +1605,15 @@ You can learn about it at &lt;https://clang.llvm.org/docs/ClangFormatStyleOption
     </message>
     <message>
         <source>YAPF Arguments</source>
-        <translation type="unfinished"></translation>
+        <translation>YAPF 引數</translation>
     </message>
     <message>
         <source>The arguments passed to the YAPF program. It should NOT contain &quot;-i&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>傳入YAPF 程式的引數。不可包含「-i」。</translation>
     </message>
     <message>
         <source>YAPF Style</source>
-        <translation type="unfinished"></translation>
+        <translation>YAPF 樣式</translation>
     </message>
     <message>
         <source>The YAPF style options, which are usually saved in a .style.yapf or setup.conf configuration file.
@@ -1599,19 +1622,19 @@ You can learn about it by running `yapf --style-help`.</source>
     </message>
     <message>
         <source>Format code on manual save</source>
-        <translation type="unfinished"></translation>
+        <translation>於手動存檔時排版程式碼</translation>
     </message>
     <message>
         <source>Format the code when saving it manually.</source>
-        <translation type="unfinished"></translation>
+        <translation>當手動存檔時，對程式碼進行排版。</translation>
     </message>
     <message>
         <source>Format code on auto-save</source>
-        <translation type="unfinished"></translation>
+        <translation>於自動存檔時排版程式碼</translation>
     </message>
     <message>
         <source>Format the code when auto-saving it.</source>
-        <translation type="unfinished"></translation>
+        <translation>當自動存檔時，對程式碼進行排版。</translation>
     </message>
     <message>
         <source>%1 Template Path</source>
@@ -1649,15 +1672,15 @@ The cursor will be at the end of the template if there&apos;s no match of the re
     </message>
     <message>
         <source>%1 Compile Command</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 編譯指令</translation>
     </message>
     <message>
         <source>The command used to compile C++. It should NOT include the path to the source file or &quot;-o &lt;output file&gt;&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>編譯 C++ 使用的指令。不可包含原始檔的路徑或者「-o &lt;輸出檔&gt;」。</translation>
     </message>
     <message>
         <source>%1 Executable File Path</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 可執行檔路徑</translation>
     </message>
     <message>
         <source>The path of the compiled executable file.
@@ -1727,19 +1750,19 @@ You can use &quot;${filename}&quot; for the complete file name,
     </message>
     <message>
         <source>The command to start a Python program. It should NOT include the path to the source file.</source>
-        <translation type="unfinished"></translation>
+        <translation>啟動 Python 程式的指令。不可包含原始檔的路徑。</translation>
     </message>
     <message>
         <source>Editor Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>編輯器佈景</translation>
     </message>
     <message>
         <source>The syntax highlight theme of the code editor</source>
-        <translation type="unfinished"></translation>
+        <translation>程式碼編輯器的語法標示佈景</translation>
     </message>
     <message>
         <source>Terminal Program</source>
-        <translation type="unfinished"></translation>
+        <translation>終端機程式</translation>
     </message>
     <message>
         <source>The terminal emulator to use when running in detached mode.
@@ -1749,7 +1772,7 @@ Some possible values are konsole, gnome-terminal, xfce-terminal, xterm or any ot
     </message>
     <message>
         <source>Terminal Arguments</source>
-        <translation type="unfinished"></translation>
+        <translation>終端機引數</translation>
     </message>
     <message>
         <source>Arguments used to execute a given command in the terminal emulator.
@@ -1759,7 +1782,7 @@ Consult your terminal emulator for the suitable arguments.</source>
     </message>
     <message>
         <source>Auto Complete Parentheses</source>
-        <translation type="unfinished"></translation>
+        <translation>自動完成括弧</translation>
     </message>
     <message>
         <source>Automatically complete a pair of parentheses when typing the left element of it,
@@ -1769,7 +1792,7 @@ This can be overridden for each parenthesis in each language.</source>
     </message>
     <message>
         <source>Auto Remove Parentheses</source>
-        <translation type="unfinished"></translation>
+        <translation>自動刪除括弧</translation>
     </message>
     <message>
         <source>Automatically delete the whole pair of parentheses when deleting
@@ -1789,31 +1812,31 @@ This can be overridden for each parenthesis in each language.</source>
     </message>
     <message>
         <source>Auto Indent</source>
-        <translation type="unfinished"></translation>
+        <translation>自動縮排</translation>
     </message>
     <message>
         <source>Add an indent when entering a new line after a &quot;{&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>在「{」後換行時縮排。</translation>
     </message>
     <message>
         <source>Enable Auto Save</source>
-        <translation type="unfinished"></translation>
+        <translation>啟用自動存檔</translation>
     </message>
     <message>
         <source>Automatically save the file every 3 seconds.</source>
-        <translation type="unfinished"></translation>
+        <translation>每 3 秒自動存檔。</translation>
     </message>
     <message>
         <source>Auto Save Interval (ms)</source>
-        <translation type="unfinished"></translation>
+        <translation>自動存檔間隔 (ms)</translation>
     </message>
     <message>
         <source>The time interval between a modification and an auto-save, or between two auto-saves.</source>
-        <translation type="unfinished"></translation>
+        <translation>檔案變更後與自動存檔間，或兩次自動存檔間的時間間隔。</translation>
     </message>
     <message>
         <source>Auto Save Interval Type</source>
-        <translation type="unfinished"></translation>
+        <translation>自動存檔間隔類型</translation>
     </message>
     <message>
         <source>After the last modification: the timer will be reset after a modification to the code.
@@ -1823,27 +1846,28 @@ Without modification: auto-save happens with a constant interval no matter there
     </message>
     <message>
         <source>Wrap Text</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>參考 VS Code 翻譯</translatorcomment>
+        <translation>自動換行</translation>
     </message>
     <message>
         <source>Wrap a line into several lines if it doesn&apos;t fit into the screen.</source>
-        <translation type="unfinished"></translation>
+        <translation>當文字內容超出螢幕範圍時，將其分為幾列顯示。</translation>
     </message>
     <message>
         <source>Use the beta version</source>
-        <translation type="unfinished"></translation>
+        <translation>使用 Beta 版本</translation>
     </message>
     <message>
         <source>Check for updates marked as pre-releases, which are considered not very stable but have more features.</source>
-        <translation type="unfinished"></translation>
+        <translation>檢查預覽版本的更新，預覽版包含更多功能，但並不是十分穩定。</translation>
     </message>
     <message>
         <source>Replace tabs by spaces</source>
-        <translation type="unfinished"></translation>
+        <translation>以空白代替 Tab</translation>
     </message>
     <message>
         <source>Use spaces instead of a tab character.</source>
-        <translation type="unfinished"></translation>
+        <translation>使用空白字元來取代 Tab 字元（\t）。</translation>
     </message>
     <message>
         <source>Save Testcases on Save</source>
@@ -1855,35 +1879,35 @@ Without modification: auto-save happens with a constant interval no matter there
     </message>
     <message>
         <source>Check for updates on startup</source>
-        <translation type="unfinished"></translation>
+        <translation>在程式啟動時檢查更新</translation>
     </message>
     <message>
         <source>Check whether there&apos;s a new version of CP Editor when starting CP Editor.</source>
-        <translation type="unfinished"></translation>
+        <translation>當 CP Editor 啟動時，檢查是否有新版本。</translation>
     </message>
     <message>
         <source>Opacity</source>
-        <translation type="unfinished"></translation>
+        <translation>不透明度</translation>
     </message>
     <message>
         <source>The opacity of the main window</source>
-        <translation type="unfinished"></translation>
+        <translation>主視窗的不透明度</translation>
     </message>
     <message>
         <source>Enable Competitive Companion</source>
-        <translation type="unfinished"></translation>
+        <translation>啟用 Competitive Companion</translation>
     </message>
     <message>
         <source>Receive data sent by Competitive Companion and load the example test cases.</source>
-        <translation type="unfinished"></translation>
+        <translation>接收 Competitive Companion 傳送的資料，並載入範例測資。</translation>
     </message>
     <message>
         <source>Connection Port</source>
-        <translation type="unfinished"></translation>
+        <translation>連接埠</translation>
     </message>
     <message>
         <source>The port used to receive data from Competitive Companion</source>
-        <translation type="unfinished"></translation>
+        <translation>從 Competitive Companion 接收資料用的連接埠</translation>
     </message>
     <message>
         <source>Open New Tabs</source>
@@ -1895,7 +1919,7 @@ Without modification: auto-save happens with a constant interval no matter there
     </message>
     <message>
         <source>Use the time limit from Competitive Companion</source>
-        <translation type="unfinished"></translation>
+        <translation>使用 Competitive Companion 的執行時間限制</translation>
     </message>
     <message>
         <source>Use the time limit parsed by Competitive Companion as the time limit of the corresponding tab.</source>
@@ -1903,7 +1927,7 @@ Without modification: auto-save happens with a constant interval no matter there
     </message>
     <message>
         <source>Content of the head comments</source>
-        <translation type="unfinished"></translation>
+        <translation>開頭註解的內容</translation>
     </message>
     <message>
         <source>The comments added at the head of the code when parsing a problem.
@@ -1914,7 +1938,7 @@ ${json.X.Y}: an attribute of the data provided by Competitive Companion, you can
     </message>
     <message>
         <source>Time format for the head comments</source>
-        <translation type="unfinished"></translation>
+        <translation>開頭註解的時間格式</translation>
     </message>
     <message>
         <source>The format of the ${time} place holder in the head comments.
@@ -1925,32 +1949,33 @@ https://doc.qt.io/qt-5/qtime.html#toString</source>
     </message>
     <message>
         <source>Add &quot;Powered By CP Editor&quot; in the head comments</source>
-        <translation type="unfinished"></translation>
+        <translation>在檔案開頭加上「Powered By CP Editor」註解</translation>
     </message>
     <message>
         <source>Add a line saying &quot;Powered By CP Editor&quot; in the head comments.
 This doesn&apos;t cost you anything, but helps more people to know CP Editor.</source>
-        <translation type="unfinished"></translation>
+        <translation>在檔案一開始的註解加上一行「Powered By CP Editor」。
+這可以讓您用最便宜的方式協助推廣 CP Editor。</translation>
     </message>
     <message>
         <source>Format Codes</source>
-        <translation type="unfinished"></translation>
+        <translation>排版程式碼</translation>
     </message>
     <message>
         <source>Kill All Processes</source>
-        <translation type="unfinished"></translation>
+        <translation>終止所有處理程序</translation>
     </message>
     <message>
         <source>Compile and Run</source>
-        <translation type="unfinished"></translation>
+        <translation>編譯並執行</translation>
     </message>
     <message>
         <source>Run Only</source>
-        <translation type="unfinished"></translation>
+        <translation>只執行</translation>
     </message>
     <message>
         <source>Compile Only</source>
-        <translation type="unfinished"></translation>
+        <translation>只編譯</translation>
     </message>
     <message>
         <source>Change View Mode</source>
@@ -1958,16 +1983,17 @@ This doesn&apos;t cost you anything, but helps more people to know CP Editor.</s
     </message>
     <message>
         <source>Use Snippets</source>
-        <translation type="unfinished"></translation>
+        <translation>使用程式碼片段</translation>
     </message>
     <message>
         <source>Restore last session at startup</source>
-        <translation type="unfinished"></translation>
+        <translation>啟動時還原上次的工作階段</translation>
     </message>
     <message>
         <source>Restore the last session when the application starts.
 When this is enabled, you won&apos;t be asked whether to save unsaved files when exiting.</source>
-        <translation type="unfinished"></translation>
+        <translation>在應用程式啟動時還原上次的工作階段。
+啟用了此功能，就不會在關閉程式時詢問是否儲存未存檔的檔案。</translation>
     </message>
     <message>
         <source>Auto-save the current session periodically</source>
@@ -1981,7 +2007,7 @@ kill the application with SIGKILL which could not be handled by the application.
     </message>
     <message>
         <source>Auto-save Session Interval</source>
-        <translation type="unfinished"></translation>
+        <translation>自動儲存工作階段間隔</translation>
     </message>
     <message>
         <source>The time interval between two auto-saves of the current session.</source>
@@ -1989,11 +2015,11 @@ kill the application with SIGKILL which could not be handled by the application.
     </message>
     <message>
         <source>Path</source>
-        <translation type="unfinished"></translation>
+        <translation>路徑</translation>
     </message>
     <message>
         <source>The path to the CF Tool executable file</source>
-        <translation type="unfinished"></translation>
+        <translation>CF Tool 可執行檔的路徑</translation>
     </message>
     <message>
         <source>Show toast messages for submission verdicts</source>
@@ -2005,7 +2031,7 @@ kill the application with SIGKILL which could not be handled by the application.
     </message>
     <message>
         <source>Show Compile And Run Only</source>
-        <translation type="unfinished"></translation>
+        <translation>只顯示編譯並執行</translation>
     </message>
     <message>
         <source>Hide the Compile Only button and the Run Only button under the code editor in the main window.</source>
@@ -2017,7 +2043,7 @@ kill the application with SIGKILL which could not be handled by the application.
     </message>
     <message>
         <source>Use &quot;¶&quot; to represent for the new line character in the HTML Diff Viewer.</source>
-        <translation type="unfinished"></translation>
+        <translation>在 HTML Diff 檢視器中以「¶」表示換行符號。</translation>
     </message>
     <message>
         <source>Save Files Faster</source>
@@ -2030,21 +2056,23 @@ This will be faster but with a little bit more risk of losing the file (with a v
     </message>
     <message>
         <source>Default Time Limit (ms)</source>
-        <translation type="unfinished"></translation>
+        <translation>預設執行時間限制 (ms)</translation>
     </message>
     <message>
         <source>The default time limit when executing the program.
 The program will be killed if it doesn&apos;t terminate in the time limit.</source>
-        <translation type="unfinished"></translation>
+        <translation>執行程式時的預設時間限制。
+若超出時間限制，程式仍在執行，則將其終止。</translation>
     </message>
     <message>
         <source>Output Length Limit</source>
-        <translation type="unfinished"></translation>
+        <translation>輸出長度限制</translation>
     </message>
     <message>
         <source>The maximum number of characters in the output of the program.
 The program will be killed if either of its stdout or stderr is too long.</source>
-        <translation type="unfinished"></translation>
+        <translation>程式輸出的字元數量上限。
+若 stdout 或 stderr 的輸出過長，則將其終止。</translation>
     </message>
     <message>
         <source>Output Display Length Limit</source>
@@ -2057,7 +2085,7 @@ If the output is too long, it will be elided.</source>
     </message>
     <message>
         <source>Message Length Limit</source>
-        <translation type="unfinished"></translation>
+        <translation>訊息長度限制</translation>
     </message>
     <message>
         <source>The maximum number of characters in each message in the top-right corner of the main window.
@@ -2093,19 +2121,19 @@ A test case will be elided and read-only if it&apos;s too long.</source>
     </message>
     <message>
         <source>Path to LSP executable</source>
-        <translation type="unfinished"></translation>
+        <translation>LSP 可執行檔的路徑</translation>
     </message>
     <message>
         <source>The path to the C++ Language Server executable</source>
-        <translation type="unfinished"></translation>
+        <translation>C++ Language Server 可執行檔的路徑</translation>
     </message>
     <message>
         <source>The path to the Java Language Server executable</source>
-        <translation type="unfinished"></translation>
+        <translation>Java Language Server 可執行檔的路徑</translation>
     </message>
     <message>
         <source>The path to the Python Language Server executable</source>
-        <translation type="unfinished"></translation>
+        <translation>Python Language Server 可執行檔的路徑</translation>
     </message>
     <message>
         <source>Use Linting with Language Server</source>
@@ -2113,23 +2141,23 @@ A test case will be elided and read-only if it&apos;s too long.</source>
     </message>
     <message>
         <source>Show Error, Warning, Information and Hints in Code Editor for C++ Language</source>
-        <translation type="unfinished"></translation>
+        <translation>在程式碼編輯器中顯示 C++ 的錯誤、警告、資訊及提示</translation>
     </message>
     <message>
         <source>Show Error, Warning, Information and Hints in Code Editor for Java Language</source>
-        <translation type="unfinished"></translation>
+        <translation>在程式碼編輯器中顯示 Java 的錯誤、警告、資訊及提示</translation>
     </message>
     <message>
         <source>Show Error, Warning, Information and Hints in Code Editor for Python Language</source>
-        <translation type="unfinished"></translation>
+        <translation>在程式碼編輯器中顯示 Python 的錯誤、警告、資訊及提示</translation>
     </message>
     <message>
         <source>Use auto-complete with Language Server</source>
-        <translation type="unfinished"></translation>
+        <translation>使用 Language Server 提供的自動完成</translation>
     </message>
     <message>
         <source>Use autocomplete results from Language server</source>
-        <translation type="unfinished"></translation>
+        <translation>使用 Language Server 提供的自動完成結果</translation>
     </message>
     <message>
         <source>Delay in Linting (ms)</source>
@@ -2158,7 +2186,7 @@ Each pair of regular expressions represents a test case.</source>
     </message>
     <message>
         <source>Input Regex</source>
-        <translation type="unfinished"></translation>
+        <translation>輸入正則表達式</translation>
     </message>
     <message>
         <source>The regular expression which matches the whole input file name</source>
@@ -2209,7 +2237,7 @@ You can use &quot;${filename}&quot; for the complete file name,
     </message>
     <message>
         <source>Problem URL</source>
-        <translation type="unfinished"></translation>
+        <translation>題目 URL</translation>
     </message>
     <message>
         <source>The regular expression which matches a part of the problem URL</source>
@@ -2217,7 +2245,7 @@ You can use &quot;${filename}&quot; for the complete file name,
     </message>
     <message>
         <source>File Path</source>
-        <translation type="unfinished"></translation>
+        <translation>檔案路徑</translation>
     </message>
     <message>
         <source>The replace expression for the file path, without file name suffix.
@@ -2226,15 +2254,15 @@ You can use &quot;\1&quot; for the first captured group.</source>
     </message>
     <message>
         <source>Test Cases Font</source>
-        <translation type="unfinished"></translation>
+        <translation>測資字型</translation>
     </message>
     <message>
         <source>The font of test cases</source>
-        <translation type="unfinished"></translation>
+        <translation>顯示測資用的字型</translation>
     </message>
     <message>
         <source>Add extra margin at the bottom of the code editor</source>
-        <translation type="unfinished"></translation>
+        <translation>在程式碼編輯器的底部加上額外的邊距</translation>
     </message>
     <message>
         <source>Add an extra margin with the height of a page at the bottom of the code editor.
@@ -2259,7 +2287,7 @@ Due to technical reasons, changing the height of the margin affects the undo his
     </message>
     <message>
         <source>Save File On Execution</source>
-        <translation type="unfinished"></translation>
+        <translation>在執行程式時存檔</translation>
     </message>
     <message>
         <source>Save the source file when running it. It won&apos;t be saved if the tab is untitled.</source>
@@ -2285,19 +2313,19 @@ from Competitive Companion again, the old file will be opened.</source>
     </message>
     <message>
         <source>UI Language</source>
-        <translation type="unfinished"></translation>
+        <translation>UI 語言</translation>
     </message>
     <message>
         <source>The language displayed in the UI.</source>
-        <translation type="unfinished"></translation>
+        <translation>顯示於使用者介面的語言。</translation>
     </message>
     <message>
         <source>Change Locale</source>
-        <translation type="unfinished"></translation>
+        <translation>變更語系</translation>
     </message>
     <message>
         <source>You need to restart the application to completely apply the locale change.</source>
-        <translation type="unfinished"></translation>
+        <translation>需要重新啟動應用程式以確實套用語系變更。</translation>
     </message>
     <message>
         <source>UI Style</source>
@@ -2305,7 +2333,7 @@ from Competitive Companion again, the old file will be opened.</source>
     </message>
     <message>
         <source>The style of the whole application.</source>
-        <translation type="unfinished"></translation>
+        <translation>整個應用程式的外觀樣式。</translation>
     </message>
     <message>
         <source>Run your codes on empty test cases</source>
@@ -2333,11 +2361,11 @@ from Competitive Companion again, the old file will be opened.</source>
     </message>
     <message>
         <source>Enable Proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>啟用 Proxy</translation>
     </message>
     <message>
         <source>Enable proxy for checking updates</source>
-        <translation type="unfinished"></translation>
+        <translation>在檢查更新時使用 Proxy</translation>
     </message>
     <message>
         <source>network-proxy</source>
@@ -2372,11 +2400,11 @@ from Competitive Companion again, the old file will be opened.</source>
     </message>
     <message>
         <source>Port</source>
-        <translation type="unfinished"></translation>
+        <translation>連接埠</translation>
     </message>
     <message>
         <source>The port of the proxy, e.g. 1080</source>
-        <translation type="unfinished"></translation>
+        <translation>Proxy 的連接埠，如：1080</translation>
     </message>
     <message>
         <source>network-proxy</source>
@@ -2385,11 +2413,11 @@ from Competitive Companion again, the old file will be opened.</source>
     </message>
     <message>
         <source>User</source>
-        <translation type="unfinished"></translation>
+        <translation>帳號</translation>
     </message>
     <message>
         <source>The user of the proxy server. It can be empty if the proxy server doesn&apos;t require authentication.</source>
-        <translation type="unfinished"></translation>
+        <translation>Proxy 伺服器的帳號。若 Proxy 伺服器毋須認證，可以留空。</translation>
     </message>
     <message>
         <source>network-proxy</source>
@@ -2398,11 +2426,11 @@ from Competitive Companion again, the old file will be opened.</source>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished"></translation>
+        <translation>密碼</translation>
     </message>
     <message>
         <source>The password of the proxy server. It can be empty if the proxy server doesn&apos;t require authentication.</source>
-        <translation type="unfinished"></translation>
+        <translation>Proxy 伺服器的密碼。若 Proxy 伺服器毋須認證，可以留空。</translation>
     </message>
     <message>
         <source>network-proxy</source>
@@ -2460,11 +2488,11 @@ If this is disabled, external file changes will be ignored unless they are loade
     </message>
     <message>
         <source>Show Only Monospaced Font</source>
-        <translation type="unfinished"></translation>
+        <translation>只顯示等寬字型</translation>
     </message>
     <message>
         <source>Show only monospaced fonts when choosing a font</source>
-        <translation type="unfinished"></translation>
+        <translation>當選擇字型時，只列出等寬字型</translation>
     </message>
     <message>
         <source>Auto Uncheck Accepted Testcases</source>
@@ -2480,7 +2508,7 @@ If this is disabled, external file changes will be ignored unless they are loade
     </message>
     <message>
         <source>Open File</source>
-        <translation type="unfinished"></translation>
+        <translation>開啟檔案</translation>
     </message>
     <message>
         <source>The default path used when choosing a path for %1.
@@ -2498,7 +2526,7 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Save File</source>
-        <translation type="unfinished"></translation>
+        <translation>儲存檔案</translation>
     </message>
     <message>
         <source>It can be overridden by %1.</source>
@@ -2510,7 +2538,7 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Load Single Test Case</source>
-        <translation type="unfinished"></translation>
+        <translation>載入單筆測資</translation>
     </message>
     <message>
         <source>Add Pairs Of Test Cases</source>
@@ -2548,92 +2576,92 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     <name>StringListsItem</name>
     <message>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>新增</translation>
     </message>
     <message>
         <source>Insert a row (Ctrl+N)</source>
-        <translation type="unfinished"></translation>
+        <translation>插入一列 (Ctrl+N)</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>移除</translation>
     </message>
     <message>
         <source>Delete the current row (Ctrl+W)</source>
-        <translation type="unfinished"></translation>
+        <translation>刪除目前這列 (Ctrl+W)</translation>
     </message>
     <message>
         <source>Remove Item</source>
-        <translation type="unfinished"></translation>
+        <translation>移除項目</translation>
     </message>
     <message>
         <source>Do you really want to delete the current row?</source>
-        <translation type="unfinished"></translation>
+        <translation>確定要刪除目前這列？</translation>
     </message>
     <message>
         <source>Move Up</source>
-        <translation type="unfinished"></translation>
+        <translation>上移</translation>
     </message>
     <message>
         <source>Move the current row up (Ctrl+Shift+Up)</source>
-        <translation type="unfinished"></translation>
+        <translation>將目前這列向上移動 (Ctrl+Shift+Up)</translation>
     </message>
     <message>
         <source>Move Down</source>
-        <translation type="unfinished"></translation>
+        <translation>下移</translation>
     </message>
     <message>
         <source>Move the current row down (Ctrl+Shift+Down)</source>
-        <translation type="unfinished"></translation>
+        <translation>將目前這列向下移動 (Ctrl+Shift+Down)</translation>
     </message>
 </context>
 <context>
     <name>SupportEntry</name>
     <message>
         <source>Donate</source>
-        <translation type="unfinished"></translation>
+        <translation>贊助</translation>
     </message>
 </context>
 <context>
     <name>SupportUsDialog</name>
     <message>
         <source>Like CP Editor?</source>
-        <translation type="unfinished"></translation>
+        <translation>喜歡 CP Editor 嗎？</translation>
     </message>
     <message>
         <source>Thank you for using CP Editor!</source>
-        <translation type="unfinished"></translation>
+        <translation>謝謝您使用 CP Editor！</translation>
     </message>
     <message>
         <source>To support us, you can:</source>
-        <translation type="unfinished"></translation>
+        <translation>如果您想要支持我們的工作，可以：</translation>
     </message>
     <message>
         <source>Give us a star on GitHub</source>
-        <translation type="unfinished"></translation>
+        <translation>在 GitHub 上給我們按個星星</translation>
     </message>
     <message>
         <source>Share CP Editor with your friends</source>
-        <translation type="unfinished"></translation>
+        <translation>跟您的朋友介紹 CP Editor</translation>
     </message>
     <message>
         <source>I&apos;m using @cpeditor_, an IDE specially designed for competitive programmers, which is awesome!</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Financially support us</source>
-        <translation type="unfinished"></translation>
+        <translation>提供我們金錢上的援助</translation>
     </message>
     <message>
         <source>Provide some suggestions to help us do better</source>
-        <translation type="unfinished"></translation>
+        <translation>提供一些建議，讓我們做得更好</translation>
     </message>
 </context>
 <context>
     <name>Telemetry::UpdateChecker</name>
     <message>
         <source>This error is probably caused by the lack of the OpenSSL library. You can visit &lt;a href=&quot;https://wiki.openssl.org/index.php/Binaries&quot;&gt;the OpenSSLWiki&lt;/a&gt; to find a binary to install, or install it via your favourite package manager. You have to install a version compatible with this version: [%1]</source>
-        <translation type="unfinished"></translation>
+        <translation>此錯誤可能是因為缺少 OpenSSL 函式庫引起的。您可以參考 &lt;a href=&quot;https://wiki.openssl.org/index.php/Binaries&quot;&gt;the OpenSSLWiki&lt;/a&gt; 來取得安裝檔，或了解如何透過套件管理安裝。您必須安裝與此版本「%1」相容的版本</translation>
     </message>
     <message>
         <source>No release is found.</source>
@@ -2652,19 +2680,19 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Failed to open [%1]. Do I have write permission?</source>
-        <translation type="unfinished"></translation>
+        <translation>無法開啟「%1」。有寫入權限嗎？</translation>
     </message>
     <message>
         <source>Failed to save to [%1]. Do I have write permission?</source>
-        <translation type="unfinished"></translation>
+        <translation>無法儲存「%1」。有寫入權限嗎？</translation>
     </message>
     <message>
         <source>The file [%1] does not exist</source>
-        <translation type="unfinished"></translation>
+        <translation>檔案「%1」不存在</translation>
     </message>
     <message>
         <source>Failed to open [%1]. Do I have read permission?</source>
-        <translation type="unfinished"></translation>
+        <translation>無法開啟「%1」。有讀取權限嗎？</translation>
     </message>
     <message>
         <source>Open Containing Folder of %1</source>
@@ -2672,22 +2700,23 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Reveal %1 in Finder</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>for macOS</translatorcomment>
+        <translation>在 Finder 中顯示 %1</translation>
     </message>
     <message>
         <source>Reveal %1 in Explorer</source>
-        <translation type="unfinished"></translation>
+        <translation>在檔案總管顯示 %1</translation>
     </message>
     <message>
         <source>Reveal %1 in File Manager</source>
-        <translation type="unfinished"></translation>
+        <translation>在檔案管理員中顯示 %1</translation>
     </message>
 </context>
 <context>
     <name>Widgets::ContestDialog</name>
     <message>
         <source>Create a new contest</source>
-        <translation type="unfinished"></translation>
+        <translation>建立新競賽</translation>
     </message>
     <message>
         <source>Contest Details</source>
@@ -2695,11 +2724,11 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Main Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>主目錄</translation>
     </message>
     <message>
         <source>Subdirectory</source>
-        <translation type="unfinished"></translation>
+        <translation>子目錄</translation>
     </message>
     <message>
         <source>Save Path</source>
@@ -2707,31 +2736,31 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>程式語言</translation>
     </message>
     <message>
         <source>Number of Problems</source>
-        <translation type="unfinished"></translation>
+        <translation>題目數量</translation>
     </message>
     <message>
         <source>Main Directory doesn&apos;t exist</source>
-        <translation type="unfinished"></translation>
+        <translation>主目錄不存在</translation>
     </message>
     <message>
         <source>The Main Directory [%1] doesn&apos;t exist. Do you want to create it and continue?</source>
-        <translation type="unfinished"></translation>
+        <translation>主目錄「%1」不存在。要建立並繼續嗎？</translation>
     </message>
     <message>
         <source>Failed to create directory</source>
-        <translation type="unfinished"></translation>
+        <translation>無法建立目錄</translation>
     </message>
     <message>
         <source>Failed to create the directory [%1].</source>
-        <translation type="unfinished"></translation>
+        <translation>無法建立目錄「%1」。</translation>
     </message>
     <message>
         <source>Choose Main Directory</source>
-        <translation type="unfinished"></translation>
+        <translation>選擇主目錄</translation>
     </message>
 </context>
 <context>
@@ -2753,19 +2782,19 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     <name>Widgets::TestCase</name>
     <message>
         <source>Input</source>
-        <translation type="unfinished"></translation>
+        <translation>輸入</translation>
     </message>
     <message>
         <source>Output</source>
-        <translation type="unfinished"></translation>
+        <translation>輸出</translation>
     </message>
     <message>
         <source>Expected</source>
-        <translation type="unfinished"></translation>
+        <translation>答案</translation>
     </message>
     <message>
         <source>Run</source>
-        <translation type="unfinished"></translation>
+        <translation>執行</translation>
     </message>
     <message>
         <source>Del</source>
@@ -2781,11 +2810,11 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Input #%1</source>
-        <translation type="unfinished"></translation>
+        <translation>輸入 #%1</translation>
     </message>
     <message>
         <source>Output #%1</source>
-        <translation type="unfinished"></translation>
+        <translation>輸出 #%1</translation>
     </message>
     <message>
         <source>Expected #%1</source>
@@ -2797,7 +2826,7 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Are you sure you want to delete test case #%1?</source>
-        <translation type="unfinished"></translation>
+        <translation>確定要刪除測資 #%1？</translation>
     </message>
     <message>
         <source>Diff Viewer[%1]</source>
@@ -2812,31 +2841,31 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     <name>Widgets::TestCaseEdit</name>
     <message>
         <source>Input</source>
-        <translation type="unfinished"></translation>
+        <translation>輸入</translation>
     </message>
     <message>
         <source>Output</source>
-        <translation type="unfinished"></translation>
+        <translation>輸出</translation>
     </message>
     <message>
         <source>Expected</source>
-        <translation type="unfinished"></translation>
+        <translation>答案</translation>
     </message>
     <message>
         <source>Only the first %1 characters are shown. Now the test case editor is read-only. You can set the length limit at %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>僅顯示前 %1 個字元。現在測資編輯器是唯讀狀態。您可以在 %2 設定長度限制。</translation>
     </message>
     <message>
         <source>Save to file</source>
-        <translation type="unfinished"></translation>
+        <translation>儲存為檔案</translation>
     </message>
     <message>
         <source>Save test case to file</source>
-        <translation type="unfinished"></translation>
+        <translation>將測資存為檔案</translation>
     </message>
     <message>
         <source>Load From File</source>
-        <translation type="unfinished"></translation>
+        <translation>從檔案載入</translation>
     </message>
     <message>
         <source>Edit in Bigger Window</source>
@@ -2844,18 +2873,18 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Edit Testcase</source>
-        <translation type="unfinished"></translation>
+        <translation>編輯測資</translation>
     </message>
     <message>
         <source>Copy Output to Expected</source>
-        <translation type="unfinished"></translation>
+        <translation>複製輸出至預期結果</translation>
     </message>
 </context>
 <context>
     <name>Widgets::TestCases</name>
     <message>
         <source>Test Cases</source>
-        <translation type="unfinished"></translation>
+        <translation>測資</translation>
     </message>
     <message>
         <source>Checker:</source>
@@ -2875,7 +2904,7 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Unaccepted / Accepted / Total</source>
-        <translation type="unfinished"></translation>
+        <translation>未通過 / 通過 / 總計</translation>
     </message>
     <message>
         <source>Add a custom testlib checker</source>
@@ -2887,15 +2916,15 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Choose Testcase Files</source>
-        <translation type="unfinished"></translation>
+        <translation>選擇測資檔案</translation>
     </message>
     <message>
         <source>Testcases</source>
-        <translation type="unfinished"></translation>
+        <translation>測資</translation>
     </message>
     <message>
         <source>Load Testcases</source>
-        <translation type="unfinished"></translation>
+        <translation>載入測資</translation>
     </message>
     <message>
         <source>A pair of testcases [%1] and [%2] is loaded</source>
@@ -2912,28 +2941,28 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     <message>
         <source>Check All</source>
         <extracomment>Here &quot;Check&quot; means to check the checkbox</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>核選全部</translation>
     </message>
     <message>
         <source>Uncheck All</source>
-        <translation type="unfinished"></translation>
+        <translation>取消核選全部</translation>
     </message>
     <message>
         <source>Uncheck Accepted</source>
-        <translation type="unfinished"></translation>
+        <translation>取消核選已通過的</translation>
     </message>
     <message>
         <source>Invert</source>
         <extracomment>This action checks the checkboxes which were not checked, and unchecks the ones which were checked</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>反轉核選</translation>
     </message>
     <message>
         <source>Delete All</source>
-        <translation type="unfinished"></translation>
+        <translation>刪除全部</translation>
     </message>
     <message>
         <source>Are you sure you want to delete all test cases?</source>
-        <translation type="unfinished"></translation>
+        <translation>確定要刪除全部測資？</translation>
     </message>
     <message>
         <source>Delete Empty</source>
@@ -2946,15 +2975,15 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Are you sure you want to delete all checked test cases?</source>
-        <translation type="unfinished"></translation>
+        <translation>確定刪除所有核選的測資？</translation>
     </message>
     <message>
         <source>Copy Test Cases</source>
-        <translation type="unfinished"></translation>
+        <translation>複製測資</translation>
     </message>
     <message>
         <source>Paste Test Cases</source>
-        <translation type="unfinished"></translation>
+        <translation>貼上測資</translation>
     </message>
     <message>
         <source>Copy Output to Expected</source>
@@ -2963,11 +2992,11 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     <message>
         <source>Are you sure you want to copy all checked output to their corresponding expected?</source>
         <extracomment>Here &quot;checked&quot; means the checkbox is checked</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>確定要複製所有核選的輸出至對應的答案？</translation>
     </message>
     <message>
         <source>Ignore trailing spaces</source>
-        <translation type="unfinished"></translation>
+        <translation>忽略結尾的空格</translation>
     </message>
     <message>
         <source>Strictly the same</source>
@@ -2999,15 +3028,15 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Add Test Case</source>
-        <translation type="unfinished"></translation>
+        <translation>新增測資</translation>
     </message>
     <message>
         <source>There are already %1 test cases, you can&apos;t add more.</source>
-        <translation type="unfinished"></translation>
+        <translation>已有 %1 組測資，無法再新增。</translation>
     </message>
     <message>
         <source>Input #%1</source>
-        <translation type="unfinished"></translation>
+        <translation>輸入 #%1</translation>
     </message>
     <message>
         <source>Expected #%1</source>
@@ -3030,58 +3059,58 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     <name>Widgets::UpdatePresenter</name>
     <message>
         <source>Download</source>
-        <translation type="unfinished"></translation>
+        <translation>下載</translation>
     </message>
     <message>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>關閉</translation>
     </message>
     <message>
         <source>New update available</source>
-        <translation type="unfinished"></translation>
+        <translation>更新可供使用</translation>
     </message>
     <message>
         <source>A new %1 update &lt;a href=&quot;%2&quot;&gt;%3&lt;/a&gt; is available. See below for the changelog.&lt;br /&gt;We highly recommend you keep the editor up to date so that you won&apos;t miss the awesome new features and bug fixes.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1更新 &lt;a href=&quot;%2&quot;&gt;%3&lt;/a&gt; 已可供使用。更新紀錄請見下方。&lt;br /&gt;我們非常建議讓編輯器保持最新版本，以享受酷酷的新功能及 bug 修補。</translation>
     </message>
     <message>
         <source>beta</source>
-        <translation type="unfinished"></translation>
+        <translation>Beta</translation>
     </message>
     <message>
         <source>stable</source>
-        <translation type="unfinished"></translation>
+        <translation>穩定版</translation>
     </message>
 </context>
 <context>
     <name>Widgets::UpdateProgressDialog</name>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>取消</translation>
     </message>
     <message>
         <source>Close this dialog and abort the update check</source>
-        <translation type="unfinished"></translation>
+        <translation>關閉此對話窗並中止更新檢查</translation>
     </message>
     <message>
         <source>Update Checker</source>
-        <translation type="unfinished"></translation>
+        <translation>檢查更新幫手</translation>
     </message>
     <message>
         <source>Fetching the list of releases...</source>
-        <translation type="unfinished"></translation>
+        <translation>取得版本列表中…</translation>
     </message>
     <message>
         <source>Error: %1&lt;br /&gt;&lt;br /&gt;Updater failed to check for update. Please manually check for update at&lt;br /&gt;&lt;a href=&quot;https://cpeditor.org/download&quot;&gt;https://cpeditor.org/download&lt;/a&gt; or &lt;a href=&quot;https://github.com/cpeditor/cpeditor/releases&quot;&gt;https://github.com/cpeditor/cpeditor/releases&lt;/a&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>錯誤：%1&lt;br /&gt;&lt;br /&gt;檢查更新失敗。請到以下網站自行檢查更新&lt;br /&gt;&lt;a href=&quot;https://cpeditor.org/download&quot;&gt;https://cpeditor.org/download&lt;/a&gt; 或 &lt;a href=&quot;https://github.com/cpeditor/cpeditor/releases&quot;&gt;https://github.com/cpeditor/cpeditor/releases&lt;/a&gt;。</translation>
     </message>
     <message>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>關閉</translation>
     </message>
     <message>
         <source>Hooray!! You are already using the latest release of CP Editor.</source>
-        <translation type="unfinished"></translation>
+        <translation>很棒喔！您使用的已經是最新版的 CP Editor。</translation>
     </message>
 </context>
 </TS>
