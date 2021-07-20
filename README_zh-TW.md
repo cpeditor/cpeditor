@@ -9,7 +9,7 @@
 [![GitHub Sponsors](https://img.shields.io/github/sponsors/cpeditor?style=for-the-badge)](https://github.com/sponsors/cpeditor)
 <a href="https://www.producthunt.com/posts/cp-editor" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=283643&theme=dark" alt="Product Hunt" height="28"/></a>
 
-**[特色功能](https://cpeditor.org) · [文件](https://cpeditor.org/docs) · [更新紀錄](CHANGELOG.md) · [貢獻指引](CONTRIBUTING_zh-TW.md) · [常見問題](https://cpeditor.org/docs/faq/)**
+**[特色功能](https://cpeditor.org/zh_tw) · [文件](https://cpeditor.org/zh_tw/docs) · [更新紀錄](CHANGELOG.md) · [貢獻指引](CONTRIBUTING_zh-TW.md) · [常見問題](https://cpeditor.org/zh_tw/docs/faq/)**
 
 [简体中文](README_zh-CN.md) · [English](README.md) · [Русский](README_ru-RU.md)
 
@@ -54,7 +54,7 @@
 
 [![Packaging status](https://repology.org/badge/vertical-allrepos/cpeditor.svg)](https://repology.org/project/cpeditor/versions)
 
-我們很樂意向軟體庫的套件維護者提供協助，例如可以在 CI/CD 的工作流程中加入一些指令稿。
+我們很樂意向軟體庫的套件維護者提供協助，例如可以在 CI/CD 的工作流程中加入一些指令碼。
 
 ## 所有貢獻者
 

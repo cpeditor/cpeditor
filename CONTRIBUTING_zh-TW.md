@@ -1,7 +1,7 @@
 ## 您的首次貢獻
 
 -   [How to contribute to an open source project on GitHub](https://app.egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github)
--   [自原始碼建置 CP Editor](https://cpeditor.org/docs/installation/build-from-source/)
+-   [自原始碼建置 CP Editor](https://cpeditor.org/zh_tw/docs/installation/build-from-source/)
 -   [Qt 說明文件](https://doc.qt.io/)
 -   [Discover issues](https://github.com/cpeditor/cpeditor/contribute)
 
