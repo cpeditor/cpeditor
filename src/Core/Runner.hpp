@@ -175,9 +175,9 @@ class Runner : public QObject
     QProcess *runProcess = nullptr;          // the process to run the program
     QTimer *killTimer = nullptr;             // the timer used to kill the process when the time limit is reached
     QElapsedTimer *runTimer = nullptr;       // the timer used to measure how much time did the execution use
-    QString processStdout;                   // the stdout of the process
-    QString processStderr;                   // the stderr of the process
-    QString processInput;                    // the input from the test cases
+    QByteArray processStdout;                // the stdout of the process
+    QByteArray processStderr;                // the stderr of the process
+    QByteArray processInput;                 // the input from the test cases
     bool outputLimitExceededEmitted = false; // whether runOutputLimitExceeded is emitted or not
     bool timeLimitExceeded = false;
     bool isDetachedRun = false;
