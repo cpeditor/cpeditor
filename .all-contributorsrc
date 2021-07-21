@@ -2,7 +2,8 @@
   "files": [
     "README.md",
     "README_zh-CN.md",
-    "README_ru-RU.md"
+    "README_ru-RU.md",
+    "README_zh-TW.md"
   ],
   "imageSize": 100,
   "commit": false,
