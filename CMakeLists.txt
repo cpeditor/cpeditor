@@ -4,7 +4,7 @@ if(APPLE)
   set(CMAKE_OSX_DEPLOYMENT_TARGET "10.14" CACHE STRING "Minimum OS X deployment version")
 endif()
 
-project(cpeditor LANGUAGES CXX VERSION 6.9.2)
+project(cpeditor LANGUAGES CXX VERSION 6.9.3)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 

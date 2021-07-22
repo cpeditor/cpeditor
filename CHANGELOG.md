@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+## 6.9.3 (Beta)
+
 ### Fixed
 
 -   Fix that there's no suffix when using Default File Path For Problem URLs. (#894)
