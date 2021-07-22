@@ -30,7 +30,7 @@ head="/*
 filepath=${1%/*}
 filename=${1#$filepath/}
 define=${filename}_hpp
-DEFINE=${define^^}
+DEFINE=`echo ${define} | tr [:lower:] [:upper:]`
 
 cd "$(dirname "$0")"/..
 

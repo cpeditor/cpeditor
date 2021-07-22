@@ -20,7 +20,19 @@
 
 #include <QDialog>
 
-class QTextBrowser;
+class SupportEntry : public QWidget
+{
+    Q_OBJECT
+
+  public:
+    explicit SupportEntry(const QString &text, const QString &iconPath, QString url, QWidget *parent = nullptr);
+
+  private slots:
+    void onLinkClicked();
+
+  private:
+    QString url;
+};
 
 class SupportUsDialog : public QDialog
 {
@@ -28,12 +40,6 @@ class SupportUsDialog : public QDialog
 
   public:
     explicit SupportUsDialog(QWidget *parent = nullptr);
-
-  private slots:
-    void onAnchorClicked(const QUrl &url);
-
-  private:
-    QTextBrowser *textBrowser = nullptr;
 };
 
 #endif // SUPPORTUSDIALOG_HPP
