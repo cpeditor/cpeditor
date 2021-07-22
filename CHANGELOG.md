@@ -11,6 +11,7 @@
 -   Change the swap-line shortcuts on macOS from `Ctrl+Shift+Up/Down` to `Command+Control+Up/Down` to fix that the old shortcuts were unusable on macOS. (#863 and #876)
 -   Fix that the icon is not in the center on macOS. (#880)
 -   Fix that there's no suffix when using Default File Path For Problem URLs. (#894)
+-   Fix that there's no space between checkbox and text in macintosh theme. (#871 and #902)
 
 ## v6.9
 
