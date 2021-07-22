@@ -30,7 +30,7 @@ jobs:
 
           echo ::set-output name=version::$VERSION
           STABLE_VERSION=$(cat dist/STABLE_VERSION)
-          if [[ VERSION == "$STABLE_VERSION"* ]]; then
+          if [[ $VERSION == "$STABLE_VERSION"* ]]; then
             echo ::set-output name=ISSTABLE::true
           else
             echo ::set-output name=ISSTABLE::false

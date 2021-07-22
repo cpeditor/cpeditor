@@ -11,6 +11,7 @@
 -   Change the swap-line shortcuts on macOS from `Ctrl+Shift+Up/Down` to `Command+Control+Up/Down` to fix that the old shortcuts were unusable on macOS. (#863 and #876)
 -   Fix that the icon is not in the center on macOS. (#880)
 -   Fix that there's no suffix when using Default File Path For Problem URLs. (#894)
+-   Fix that when "Save Test Case To A File" the elided version instead of the full content of a test case was saved to the file.
 
 ## v6.9
 
