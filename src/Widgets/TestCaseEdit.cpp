@@ -165,7 +165,7 @@ void TestCaseEdit::onCustomContextMenuRequested(const QPoint &pos)
         QString fileName =
             DefaultPathManager::getSaveFileName("Save Test Case To A File", this, tr("Save test case to file"));
         if (!fileName.isEmpty())
-            Util::saveFile(fileName, toPlainText(), tr("Save test case to file"), true, log);
+            Util::saveFile(fileName, getText(), tr("Save test case to file"), true, log);
     });
 
     if (role != Output)
