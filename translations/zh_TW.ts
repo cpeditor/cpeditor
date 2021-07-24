@@ -1377,8 +1377,7 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>Code Edit</source>
-        <translation>程式碼
-編輯程式碼</translation>
+        <translation>程式碼編輯</translation>
     </message>
     <message>
         <source>Language</source>
@@ -1698,7 +1697,7 @@ You can use &quot;${filename}&quot; for the complete file name,
 &quot;${basename}&quot; for the base file name without the suffix,
 &quot;${tmpdir}&quot; or &quot;${tempdir}&quot; for the absolute path of the temporary directory.</source>
         <translation>編譯後的可執行檔路徑。
-此為原始檔的相對路徑或暫存目錄（當分頁為無標題時）。
+此為原始檔的相對路徑或暫存目錄（當分頁為無標題時）路徑。
 不需要在結尾加上「.exe」。
 您可以使用「${filename}」代入檔案名稱；
 使用「${basename}」代入不含後綴的檔名；
@@ -1735,7 +1734,7 @@ It should NOT include the path to the source file or the path of the compiled cl
     </message>
     <message>
         <source>%1 Class Name</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 Class 名稱</translation>
     </message>
     <message>
         <source>The name of the main class of your solution.</source>
@@ -1751,7 +1750,12 @@ It&apos;s relative to the source file, or the temporary directory if the tab is 
 You can use &quot;${filename}&quot; for the complete file name,
 &quot;${basename}&quot; for the base file name without the suffix,
 &quot;${tmpdir}&quot; or &quot;${tempdir}&quot; for the absolute path of the temporary directory.</source>
-        <translation type="unfinished"></translation>
+        <translation>編譯後的 class 檔案之上層目錄路徑。
+此為原始檔的相對路徑或暫存目錄（當分頁為無標題時）路徑。
+不需要在結尾加上「.exe」。
+您可以使用「${filename}」代入檔案名稱；
+使用「${basename}」代入不含後綴的檔名；
+使用「${tmpdir}」或「${tempdir}」代入臨時目錄的絕對路徑。</translation>
     </message>
     <message>
         <source>The template used when creating a new Python file</source>
@@ -1793,7 +1797,9 @@ Some possible values are konsole, gnome-terminal, xfce-terminal, xterm or any ot
         <source>Arguments used to execute a given command in the terminal emulator.
 This is &quot;-e&quot; for most terminal emulators, including konsole, xterm, xfce-terminal but can be &quot;--&quot; for gnome-terminal.
 Consult your terminal emulator for the suitable arguments.</source>
-        <translation type="unfinished"></translation>
+        <translation>用於在終端機程式中執行指令的引數。
+對 konsole、xterm、xfce-terminal 而言此值為「-e」，但 gnome-terminal 為「--」。
+請查詢您使用的終端機的相關資料，以使用對應的引數。</translation>
     </message>
     <message>
         <source>Auto Complete Parentheses</source>
@@ -1827,7 +1833,8 @@ This can be overridden for each parenthesis in each language.</source>
         <source>When this is enabled, you can use Tab instead of the
 closing parenthesis to jump out of a parenthesis.
 This can be overridden for each parenthesis in each language.</source>
-        <translation type="unfinished"></translation>
+        <translation>啟用此功能時，您可以按 Tab 鍵來代替右括號以跳出括號。
+此功能可被各程式語言的括號設定覆寫。</translation>
     </message>
     <message>
         <source>Auto Indent</source>
@@ -1932,11 +1939,11 @@ Without modification：不論程式碼是否被修改，每經一段時間自動
     </message>
     <message>
         <source>Open New Tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>在新分頁中開啟</translation>
     </message>
     <message>
         <source>Open a new tab for each problem parsed by Competitive Companion.</source>
-        <translation type="unfinished"></translation>
+        <translation>總是在新分頁開啟 Competitive Companion 傳來的題目。</translation>
     </message>
     <message>
         <source>Use the time limit from Competitive Companion</source>
@@ -1944,7 +1951,7 @@ Without modification：不論程式碼是否被修改，每經一段時間自動
     </message>
     <message>
         <source>Use the time limit parsed by Competitive Companion as the time limit of the corresponding tab.</source>
-        <translation type="unfinished"></translation>
+        <translation>為對應的分頁套用 Competitive Companion 傳遞的時間限制。</translation>
     </message>
     <message>
         <source>Content of the head comments</source>
@@ -2049,11 +2056,11 @@ kill the application with SIGKILL which could not be handled by the application.
     </message>
     <message>
         <source>Show toast messages for submission verdicts</source>
-        <translation type="unfinished"></translation>
+        <translation>顯示評判結果的快顯通知</translation>
     </message>
     <message>
         <source>Show a toast message when the verdict of a submission is known. You can see the message outside of CP Editor.</source>
-        <translation type="unfinished"></translation>
+        <translation>當評判結果揭曉時，顯示快顯通知。此通知在 CP Editor 以外也能見到。</translation>
     </message>
     <message>
         <source>Show Compile And Run Only</source>
@@ -2128,7 +2135,8 @@ The message will be elided if it&apos;s too long.</source>
     <message>
         <source>The maximum number of characters in the HTML Diff Viewer.
 The Diff Viewer will fall back to plain text if either of the output or the expected output is too long.</source>
-        <translation type="unfinished"></translation>
+        <translation>HTML Diff 檢視器的最大顯示字元數。
+內容過長時，將以純文字顯示。</translation>
     </message>
     <message>
         <source>Open File Length Limit</source>
@@ -2147,7 +2155,8 @@ A source file won&apos;t be opened if it&apos;s too long.</source>
     <message>
         <source>The maximum number of characters in a test case to be displayed.
 A test case will be elided and read-only if it&apos;s too long.</source>
-        <translation type="unfinished"></translation>
+        <translation>測資的顯示字元數量上限。
+內容過長時將其省略，並變成唯讀。</translation>
     </message>
     <message>
         <source>Path to LSP executable</source>
@@ -2207,7 +2216,7 @@ A test case will be elided and read-only if it&apos;s too long.</source>
     </message>
     <message>
         <source>Testcases Matching Rules</source>
-        <translation type="unfinished"></translation>
+        <translation>測資比對規則</translation>
     </message>
     <message>
         <source>Pairs of regular expressions used when adding pairs of test cases from files.
@@ -2216,11 +2225,11 @@ Each pair of regular expressions represents a test case.</source>
     </message>
     <message>
         <source>Input Regex</source>
-        <translation>輸入正則表達式</translation>
+        <translation>輸入檔正則表達式</translation>
     </message>
     <message>
         <source>The regular expression which matches the whole input file name</source>
-        <translation type="unfinished"></translation>
+        <translation>用於比對整個輸入檔名的正則表達式</translation>
     </message>
     <message>
         <source>Answer Replace</source>
@@ -2229,7 +2238,9 @@ Each pair of regular expressions represents a test case.</source>
     <message>
         <source>The replace expression for the answer file name.
 You can use &quot;\1&quot; for the first captured group.</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>captured group 之翻譯待定</translatorcomment>
+        <translation>用於答案檔名的替換表達式。
+可使用「\1」表示首個符合的組別。</translation>
     </message>
     <message>
         <source>Input File Save Path</source>
@@ -2259,19 +2270,19 @@ You can use &quot;${filename}&quot; for the complete file name,
     </message>
     <message>
         <source>Default File Paths For Problem URLs</source>
-        <translation type="unfinished"></translation>
+        <translation>對應題目網址的預設存檔路徑</translation>
     </message>
     <message>
         <source>The default file path used when saving a new file while the problem URL is set</source>
-        <translation type="unfinished"></translation>
+        <translation>當設定題目網址時，用於儲存檔案的預設路徑</translation>
     </message>
     <message>
         <source>Problem URL</source>
-        <translation>題目 URL</translation>
+        <translation>題目網址</translation>
     </message>
     <message>
         <source>The regular expression which matches a part of the problem URL</source>
-        <translation type="unfinished"></translation>
+        <translation>用於比對部分題目網址的正則表達式</translation>
     </message>
     <message>
         <source>File Path</source>
@@ -2387,7 +2398,7 @@ from Competitive Companion again, the old file will be opened.</source>
     </message>
     <message>
         <source>The maximum height of a test case without a scrollbar in pixels.</source>
-        <translation type="unfinished"></translation>
+        <translation>在捲軸不出現的情況下，可允許顯示的最多像素數。</translation>
     </message>
     <message>
         <source>Enable Proxy</source>
@@ -2487,7 +2498,7 @@ They can be either manually set or automatically changed after choosing a path f
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>名稱</translation>
     </message>
     <message>
         <source>The name of a default path</source>
@@ -2499,11 +2510,11 @@ They can be either manually set or automatically changed after choosing a path f
     </message>
     <message>
         <source>Auto-load external file changes if there&apos;s no unsaved modification</source>
-        <translation type="unfinished"></translation>
+        <translation>若目前沒有未存檔的內容，自動載入外部的檔案變更</translation>
     </message>
     <message>
         <source>Automatically load file changes that are not made in CP Editor if there&apos;s no unsaved modification in CP Editor.</source>
-        <translation type="unfinished"></translation>
+        <translation>當檔案沒有未存檔的內容且在 CP Editor 外發生了變更，則自動將其載入。</translation>
     </message>
     <message>
         <source>Ask whether to load external file changes</source>
