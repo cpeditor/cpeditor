@@ -46,7 +46,7 @@
     </message>
     <message>
         <source>&lt;p&gt;&lt;b&gt;CP Editor&lt;/b&gt; is a native Qt-based code editor. It&apos;s specially designed for competitive programming, unlike other editors/IDEs which are mainly for developers. It helps you focus on your algorithm and automates the compilation, executing and testing. It even fetches test cases for you from different platforms and submits solutions to Codeforces!&lt;/p&gt;&lt;p&gt;Copyright (C) 2019-2021 Ashar Khan &amp;lt;ashar786khan@gmail.com&amp;gt;&lt;/p&gt;&lt;p&gt;This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. The source code for CP Editor is available at &lt;a href=&quot;https://github.com/cpeditor/cpeditor&quot;&gt; https://github.com/cpeditor/cpeditor&lt;/a&gt;.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;&lt;b&gt;CP Editor&lt;/b&gt; 是一款建基於 Qt 的程式碼編輯器。針對競程用途專門設計，是讓它與其他編輯器或 IDE 如此不同的原因。CP Editor 將編譯、執行、測試的過程自動化，讓您可以專注在設計演算法。不僅如此，它甚至可以從其他平台取得測試資料，並繳交程式碼至 Codeforces。&lt;/p&gt;&lt;p&gt;Copyright (C) 2019-2021 Ashar Khan &amp;lt;ashar786khan@gmail.com&amp;gt;&lt;/p&gt;&lt;p&gt;本程式為自由軟體，請參見原始碼的版權聲明。本軟體不負任何擔保責任，包括對適售性或特定目的適用性所為的擔保。您可以在 &lt;a href=&quot;https://github.com/cpeditor/cpeditor&quot;&gt; https://github.com/cpeditor/cpeditor&lt;/a&gt; 取得 CP Editor 的原始碼。&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Build Info</source>
@@ -60,7 +60,7 @@ Build time: %4
 OS: %5</source>
         <translation>程式版本：%1
 建置類型：%2
-Git 提交雜湊值：%3
+Git commit hash：%3
 建置時間：%4
 作業系統：%5</translation>
     </message>
@@ -151,7 +151,7 @@ Git 提交雜湊值：%3
     </message>
     <message>
         <source>There are no snippets for %1. Please add snippets in the preference window.</source>
-        <translation>沒有 %1 的程式碼片段。請在偏好設定視窗裡新增。</translation>
+        <translation>沒有 %1 的程式碼片段。請在偏好設定視窗裡新增一個。</translation>
     </message>
     <message>
         <source>Use Snippets</source>
@@ -163,7 +163,7 @@ Git 提交雜湊值：%3
     </message>
     <message>
         <source>There is no snippet named %1 for %2</source>
-        <translation type="unfinished"></translation>
+        <translation>%2 沒有名為「%1」的程式碼片段</translation>
     </message>
     <message>
         <source>How to exit full-screen</source>
@@ -183,11 +183,12 @@ Git 提交雜湊值：%3
     </message>
     <message>
         <source>Close to the Left</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>參考 Firefox 翻譯</translatorcomment>
+        <translation>關閉左方分頁</translation>
     </message>
     <message>
         <source>Close to the Right</source>
-        <translation type="unfinished"></translation>
+        <translation>關閉右方分頁</translation>
     </message>
     <message>
         <source>Close Saved</source>
@@ -240,7 +241,7 @@ Git 提交雜湊值：%3
     </message>
     <message>
         <source>Enter the contest ID:</source>
-        <translation type="unfinished"></translation>
+        <translation>輸入競賽 ID：</translation>
     </message>
     <message>
         <source>Enter the problem Code (A-Z):</source>
@@ -253,15 +254,15 @@ Git 提交雜湊值：%3
     </message>
     <message>
         <source>Enter the new problem URL:</source>
-        <translation type="unfinished"></translation>
+        <translation>輸入新題目網址：</translation>
     </message>
     <message>
         <source>EventLogger</source>
-        <translation type="unfinished"></translation>
+        <translation>事件紀錄</translation>
     </message>
     <message>
         <source>All logs except for current session has been deleted</source>
-        <translation type="unfinished"></translation>
+        <translation>除了目前工作階段的所有記錄檔已被刪除</translation>
     </message>
     <message>
         <source>New File</source>
@@ -289,7 +290,7 @@ Git 提交雜湊值：%3
     </message>
     <message>
         <source>Close Current</source>
-        <translation type="unfinished"></translation>
+        <translation>關閉目前分頁</translation>
     </message>
     <message>
         <source>Close current tab</source>
@@ -317,11 +318,11 @@ Git 提交雜湊值：%3
     </message>
     <message>
         <source>Open Contest...</source>
-        <translation type="unfinished"></translation>
+        <translation>建立競賽…</translation>
     </message>
     <message>
         <source>Open a Contest</source>
-        <translation type="unfinished"></translation>
+        <translation>建立競賽</translation>
     </message>
     <message>
         <source>Indent</source>
@@ -333,11 +334,11 @@ Git 提交雜湊值：%3
     </message>
     <message>
         <source>Swap Line Up</source>
-        <translation type="unfinished"></translation>
+        <translation>上移一列</translation>
     </message>
     <message>
         <source>Swap Line Down</source>
-        <translation type="unfinished"></translation>
+        <translation>下移一列</translation>
     </message>
     <message>
         <source>Duplicate Line</source>
@@ -349,11 +350,11 @@ Git 提交雜湊值：%3
     </message>
     <message>
         <source>Toggle Comment</source>
-        <translation type="unfinished"></translation>
+        <translation>切換註解</translation>
     </message>
     <message>
         <source>Toggle Block Comment</source>
-        <translation type="unfinished"></translation>
+        <translation>切換區塊註解</translation>
     </message>
     <message>
         <source>Compile</source>
@@ -373,7 +374,7 @@ Git 提交雜湊值：%3
     </message>
     <message>
         <source>Run Detached</source>
-        <translation type="unfinished"></translation>
+        <translation>在終端機中執行</translation>
     </message>
     <message>
         <source>Kill Processes</source>
@@ -588,11 +589,11 @@ Git 提交雜湊值：%3
     </message>
     <message>
         <source>Checker</source>
-        <translation type="unfinished"></translation>
+        <translation>評判程式</translation>
     </message>
     <message>
         <source>Failed to create temporary directory</source>
-        <translation type="unfinished"></translation>
+        <translation>無法建立臨時目錄</translation>
     </message>
     <message>
         <source>Read testlib.h</source>
@@ -604,20 +605,21 @@ Git 提交雜湊值：%3
     </message>
     <message>
         <source>Started compiling the checker</source>
-        <translation type="unfinished"></translation>
+        <translation>已開始編譯評判程式</translation>
     </message>
     <message>
         <source>The checker is compiled</source>
-        <translation type="unfinished"></translation>
+        <translation>已編譯評判程式</translation>
     </message>
     <message>
         <source>Error occurred while compiling the checker:
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>編譯評判程式時發生錯誤：
+%1</translation>
     </message>
     <message>
         <source>Failed to compile the checker: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>無法編譯評判程式：%1</translation>
     </message>
     <message>
         <source>Time Limit Exceeded</source>
@@ -625,11 +627,11 @@ Git 提交雜湊值：%3
     </message>
     <message>
         <source>Checker exited with exit code %1</source>
-        <translation type="unfinished"></translation>
+        <translation>評判程式以回傳值 %1 結束執行</translation>
     </message>
     <message>
         <source>Checker exited with unknown exit code %1</source>
-        <translation type="unfinished"></translation>
+        <translation>評判程式以未知的回傳值 %1 結束執行</translation>
     </message>
     <message>
         <source>The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer than the output length limit, so the process is killed. You can change the output length limit at %4.</source>
@@ -637,11 +639,11 @@ Git 提交雜湊值：%3
     </message>
     <message>
         <source>The checker is killed</source>
-        <translation type="unfinished"></translation>
+        <translation>評判程式被終止了</translation>
     </message>
     <message>
         <source>Checker[%1]</source>
-        <translation type="unfinished"></translation>
+        <translation>評判程式[%1]</translation>
     </message>
 </context>
 <context>
@@ -671,20 +673,21 @@ Git 提交雜湊值：%3
     </message>
     <message>
         <source>Failed to get run command. It&apos;s probably a bug.</source>
-        <translation type="unfinished"></translation>
+        <translation>無法取得執行指令。這可能是軟體錯誤。</translation>
     </message>
     <message>
         <source>Program finished with exit code %1
 Press any key to exit</source>
-        <translation type="unfinished"></translation>
+        <translation>程式以回傳值 %1 結束
+按下任意鍵以離開</translation>
     </message>
     <message>
         <source>Detached execution is not supported on your platform</source>
-        <translation type="unfinished"></translation>
+        <translation>「在終端機中執行」不支援此平台</translation>
     </message>
     <message>
         <source>Failed to start detached execution. Please check your terminal emulator settings in %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>無法啟動「在終端機中執行」。請於 %1 檢查終端機程式的設定。</translation>
     </message>
     <message>
         <source>Failed to start running. Please compile first.</source>
@@ -765,15 +768,15 @@ Press any key to exit</source>
     </message>
     <message>
         <source>The format command [%1 %2] finished with exit code %3.</source>
-        <translation type="unfinished"></translation>
+        <translation>排版命令 [%1 %2] 以回傳值 %3 結束執行。</translation>
     </message>
     <message>
         <source>Formatter[stdout]</source>
-        <translation type="unfinished"></translation>
+        <translation>排版工具 [stdout]</translation>
     </message>
     <message>
         <source>Formatter[stderr]</source>
-        <translation type="unfinished"></translation>
+        <translation>排版工具 [stderr]</translation>
     </message>
     <message>
         <source>The output of the format process is empty. Please ensure there is no in-place modification option in the formatting arguments.</source>
@@ -788,7 +791,7 @@ Press any key to exit</source>
     </message>
     <message>
         <source>The request received is not JSON</source>
-        <translation type="unfinished"></translation>
+        <translation>接收的請求資料不是 JSON 格式</translation>
     </message>
     <message>
         <source>Server is closed</source>
@@ -805,11 +808,12 @@ Press any key to exit</source>
     <message>
         <source>JSON parser reported errors:
 %1</source>
-        <translation type="unfinished"></translation>
+        <translation>JSON 剖析器回報錯誤：
+%1</translation>
     </message>
     <message>
         <source>Stopped Server</source>
-        <translation type="unfinished"></translation>
+        <translation>已停止伺服器</translation>
     </message>
 </context>
 <context>
@@ -854,7 +858,8 @@ Press any key to exit</source>
     <name>FindReplaceForm</name>
     <message>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>表單？</translatorcomment>
+        <translation></translation>
     </message>
     <message>
         <source>Find:</source>
@@ -870,15 +875,15 @@ Press any key to exit</source>
     </message>
     <message>
         <source>Direction</source>
-        <translation type="unfinished">方向</translation>
+        <translation>方向</translation>
     </message>
     <message>
         <source>Up</source>
-        <translation type="unfinished"></translation>
+        <translation>向上</translation>
     </message>
     <message>
         <source>Down</source>
-        <translation type="unfinished"></translation>
+        <translation>向下</translation>
     </message>
     <message>
         <source>Options</source>
@@ -954,14 +959,14 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Sure to submit</source>
-        <translation type="unfinished"></translation>
+        <translation>確認送出</translation>
     </message>
     <message>
         <source>Are you sure you want to submit this solution to Codeforces?
 
  URL: %1
  Language: %2</source>
-        <translation>確定要送出答案至 Codeforces？
+        <translation>確定要送出程式碼至 Codeforces？
 
  網址：%1
  程式語言：%2</translation>
@@ -972,7 +977,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Failed to save the temp file, and the solution is not submitted.</source>
-        <translation>無法儲存暫存檔，答案尚未送出。</translation>
+        <translation>無法儲存暫存檔，程式碼未能送出。</translation>
     </message>
     <message>
         <source>You need to install CF Tool to submit your code to Codeforces. If already installed, you can add it in the PATH environment variable or check your settings at %1.</source>
@@ -1045,7 +1050,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>New File</source>
-        <translation>開新檔案</translation>
+        <translation>新檔案</translation>
     </message>
     <message>
         <source>Save</source>
@@ -1107,11 +1112,11 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>Have you set a proper name for the main class in your solution? If not, you can set it at %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>是否已正確設定程式碼中 main class 的名稱？若沒有，您可在 %1 進行設定。</translation>
     </message>
     <message>
         <source>Failed to start compilation: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>無法啟動編譯：%1</translation>
     </message>
     <message>
         <source>Compilation is killed</source>
@@ -1131,7 +1136,7 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>Execution for test case #%1 has finished in %2ms</source>
-        <translation type="unfinished"></translation>
+        <translation>程式在測資 #%1 上執行了 %2ms 後結束</translation>
     </message>
     <message>
         <source>Time Limit Exceeded</source>
@@ -1139,7 +1144,7 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>Execution for test case #%1 has finished with non-zero exitcode %2 in %3ms</source>
-        <translation type="unfinished"></translation>
+        <translation>程式在測資 #%1 上執行了 %3ms 後，以回傳值 %2 結束</translation>
     </message>
     <message>
         <source>/stderr</source>
@@ -1259,7 +1264,7 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>Tab Jump Out</source>
-        <translation type="unfinished"></translation>
+        <translation>按 Tab 鍵跳出</translation>
     </message>
 </context>
 <context>
@@ -1293,15 +1298,15 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>C++ Compile and Run Commands</source>
-        <translation type="unfinished"></translation>
+        <translation>C++ 編譯及執行指令</translation>
     </message>
     <message>
         <source>Java Compile and Run Commands</source>
-        <translation type="unfinished"></translation>
+        <translation>Java 編譯及執行指令</translation>
     </message>
     <message>
         <source>Python Run Commands</source>
-        <translation type="unfinished"></translation>
+        <translation>Python 執行指令</translation>
     </message>
     <message>
         <source>Appearance Settings</source>
@@ -1313,7 +1318,7 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>You can read the &lt;a href=&quot;%1&quot;&gt;documentation&lt;/a&gt; or go through the settings for more information.</source>
-        <translation type="unfinished"></translation>
+        <translation>您可以閱讀 &lt;a href=&quot;%1&quot;&gt;說明文件&lt;/a&gt; 或瀏覽設定以了解更多資訊。</translation>
     </message>
 </context>
 <context>
@@ -1372,11 +1377,12 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>Code Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>程式碼
+編輯程式碼</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation type="unfinished"></translation>
+        <translation>程式語言</translation>
     </message>
     <message>
         <source>General</source>
@@ -1388,19 +1394,19 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>%1 Commands</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 指令</translation>
     </message>
     <message>
         <source>%1 Template</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 樣板</translation>
     </message>
     <message>
         <source>%1 Snippets</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 程式碼片段</translation>
     </message>
     <message>
         <source>%1 Parentheses</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 括號設定</translation>
     </message>
     <message>
         <source>Java</source>
@@ -1420,11 +1426,11 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>Actions</source>
-        <translation type="unfinished"></translation>
+        <translation>動作</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>存檔</translation>
     </message>
     <message>
         <source>Auto Save</source>
@@ -1432,7 +1438,7 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>Detached Execution</source>
-        <translation type="unfinished"></translation>
+        <translation>終端機內執行</translation>
     </message>
     <message>
         <source>Save Session</source>
@@ -1448,7 +1454,7 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>Load External File Changes</source>
-        <translation type="unfinished"></translation>
+        <translation>載入外部的檔案變更</translation>
     </message>
     <message>
         <source>Extensions</source>
@@ -1472,7 +1478,7 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>%1 Server</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Competitive Companion</source>
@@ -1496,7 +1502,7 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>Default Paths</source>
-        <translation type="unfinished"></translation>
+        <translation>預設路徑</translation>
     </message>
     <message>
         <source>Key Bindings</source>
@@ -1508,11 +1514,11 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>Update</source>
-        <translation type="unfinished"></translation>
+        <translation>更新</translation>
     </message>
     <message>
         <source>Limits</source>
-        <translation type="unfinished"></translation>
+        <translation>限制</translation>
     </message>
     <message>
         <source>Network Proxy</source>
@@ -1556,7 +1562,7 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>Custom Application Font</source>
-        <translation>自訂應用程式字型</translation>
+        <translation>自訂全域字型</translation>
     </message>
     <message>
         <source>The custom font for the whole application</source>
@@ -1593,7 +1599,8 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <source>The Clang Format style options, which are usually saved in a .clang-format configuration file.
 You can learn about it at &lt;https://clang.llvm.org/docs/ClangFormatStyleOptions.html&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Clang Format 的排版樣式選項，通常儲存為 .clang-format 組態檔案。
+您可在 &lt;https://clang.llvm.org/docs/ClangFormatStyleOptions.html&gt; 了解更多。</translation>
     </message>
     <message>
         <source>YAPF Program</source>
@@ -1601,7 +1608,7 @@ You can learn about it at &lt;https://clang.llvm.org/docs/ClangFormatStyleOption
     </message>
     <message>
         <source>The program of YAPF. It could be `yapf` (which doesn&apos;t need arguments) or `python` (which needs `-m yapf` as the arguments).</source>
-        <translation type="unfinished"></translation>
+        <translation>YAPF 的程式。可為 `yapf` （不需引數）或 `python` （需要 `-m yapf` 引數）。</translation>
     </message>
     <message>
         <source>YAPF Arguments</source>
@@ -1618,7 +1625,8 @@ You can learn about it at &lt;https://clang.llvm.org/docs/ClangFormatStyleOption
     <message>
         <source>The YAPF style options, which are usually saved in a .style.yapf or setup.conf configuration file.
 You can learn about it by running `yapf --style-help`.</source>
-        <translation type="unfinished"></translation>
+        <translation>YAPF 的排版樣式選項，通常儲存為 .style.yapf 或 setup.conf 組態檔案。
+您可以執行 `yapf --style-help` 以了解更多。</translation>
     </message>
     <message>
         <source>Format code on manual save</source>
@@ -1638,11 +1646,11 @@ You can learn about it by running `yapf --style-help`.</source>
     </message>
     <message>
         <source>%1 Template Path</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 樣板路徑</translation>
     </message>
     <message>
         <source>The template used when creating a new C++ file</source>
-        <translation type="unfinished"></translation>
+        <translation>建立 C++ 檔案時使用的樣板</translation>
     </message>
     <message>
         <source>%1 Template Cursor Position Regex</source>
@@ -1689,36 +1697,41 @@ No &quot;.exe&quot; is needed.
 You can use &quot;${filename}&quot; for the complete file name,
 &quot;${basename}&quot; for the base file name without the suffix,
 &quot;${tmpdir}&quot; or &quot;${tempdir}&quot; for the absolute path of the temporary directory.</source>
-        <translation type="unfinished"></translation>
+        <translation>編譯後的可執行檔路徑。
+此為原始檔的相對路徑或暫存目錄（當分頁為無標題時）。
+不需要在結尾加上「.exe」。
+您可以使用「${filename}」代入檔案名稱；
+使用「${basename}」代入不含後綴的檔名；
+使用「${tmpdir}」或「${tempdir}」代入臨時目錄的絕對路徑。</translation>
     </message>
     <message>
         <source>%1 Run Arguments</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 執行引數</translation>
     </message>
     <message>
         <source>The runtime arguments when executing a C++ program</source>
-        <translation type="unfinished"></translation>
+        <translation>執行 C++ 程式時的引數</translation>
     </message>
     <message>
         <source>The template used when creating a new Java file</source>
-        <translation type="unfinished"></translation>
+        <translation>建立 Java 檔案時使用的樣板</translation>
     </message>
     <message>
         <source>The command used to compile Java.
 It should NOT include the path to the source file or the path of the compiled class file.</source>
-        <translation type="unfinished"></translation>
+        <translation>編譯 Java 程式碼所用的指令。不可包含原始檔及輸出的 class 檔路徑。</translation>
     </message>
     <message>
         <source>The runtime arguments when executing a Java program</source>
-        <translation type="unfinished"></translation>
+        <translation>執行 Java 程式時的引數</translation>
     </message>
     <message>
         <source>%1 Run Command</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 執行指令</translation>
     </message>
     <message>
         <source>The command to start a Java program. It should NOT include &quot;-classpath &lt;path&gt; &lt;class name&gt;&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>啟動 Java 程式的指令。不可包含「-classpath &lt;path&gt; &lt;class name&gt;」。</translation>
     </message>
     <message>
         <source>%1 Class Name</source>
@@ -1726,11 +1739,11 @@ It should NOT include the path to the source file or the path of the compiled cl
     </message>
     <message>
         <source>The name of the main class of your solution.</source>
-        <translation type="unfinished"></translation>
+        <translation>程式碼的 main class 名稱。</translation>
     </message>
     <message>
         <source>%1 Class Path</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 Class 路徑</translation>
     </message>
     <message>
         <source>The path of the parent directory of the compiled class file.
@@ -1742,11 +1755,11 @@ You can use &quot;${filename}&quot; for the complete file name,
     </message>
     <message>
         <source>The template used when creating a new Python file</source>
-        <translation type="unfinished"></translation>
+        <translation>建立新 Python 檔案時使用的樣板</translation>
     </message>
     <message>
         <source>The runtime arguments when executing a Python program</source>
-        <translation type="unfinished"></translation>
+        <translation>執行 Python 程式時提供的引數</translation>
     </message>
     <message>
         <source>The command to start a Python program. It should NOT include the path to the source file.</source>
@@ -1754,7 +1767,7 @@ You can use &quot;${filename}&quot; for the complete file name,
     </message>
     <message>
         <source>Editor Theme</source>
-        <translation>編輯器佈景</translation>
+        <translation>編輯器色彩佈景主題</translation>
     </message>
     <message>
         <source>The syntax highlight theme of the code editor</source>
@@ -1768,7 +1781,9 @@ You can use &quot;${filename}&quot; for the complete file name,
         <source>The terminal emulator to use when running in detached mode.
 This is usually the name or the path of the terminal emulator.
 Some possible values are konsole, gnome-terminal, xfce-terminal, xterm or any other terminal emulator program.</source>
-        <translation type="unfinished"></translation>
+        <translation>「在終端機中執行」使用的終端機程式。
+通常填入終端機程式的名稱或路徑。
+可能的值為 konsole、gnome-terminal、xfce-terminal、xterm 或其他的終端機程式。</translation>
     </message>
     <message>
         <source>Terminal Arguments</source>
@@ -1788,7 +1803,9 @@ Consult your terminal emulator for the suitable arguments.</source>
         <source>Automatically complete a pair of parentheses when typing the left element of it,
 and move out of it when typing the right element of it.
 This can be overridden for each parenthesis in each language.</source>
-        <translation type="unfinished"></translation>
+        <translation>輸入左括號時，自動完成右括號，
+並在輸入右括號時跳出。
+此設定可被各程式語言的括號設定覆寫。</translation>
     </message>
     <message>
         <source>Auto Remove Parentheses</source>
@@ -1798,11 +1815,13 @@ This can be overridden for each parenthesis in each language.</source>
         <source>Automatically delete the whole pair of parentheses when deleting
 the left element of it if the two elements are adjacent.
 This can be overridden for each parenthesis in each language.</source>
-        <translation type="unfinished"></translation>
+        <translation>當一對括號相鄰，且刪除左括號時
+自動將右括號一併刪除。
+此設定可被各程式語言的括號設定覆寫。</translation>
     </message>
     <message>
         <source>Jump out of a parenthesis by pressing Tab</source>
-        <translation type="unfinished"></translation>
+        <translation>按下 Tab 時從一對括號跳出</translation>
     </message>
     <message>
         <source>When this is enabled, you can use Tab instead of the
@@ -1842,7 +1861,9 @@ This can be overridden for each parenthesis in each language.</source>
         <source>After the last modification: the timer will be reset after a modification to the code.
 After the first modification: the timer will start after a modification if at that time the timer is not running.
 Without modification: auto-save happens with a constant interval no matter there are modifications or not.</source>
-        <translation type="unfinished"></translation>
+        <translation>After the last modification：編輯程式碼時，歸零計時器。
+After the first modification：計時器僅在編輯程式碼時運作。
+Without modification：不論程式碼是否被修改，每經一段時間自動儲存一次。</translation>
     </message>
     <message>
         <source>Wrap Text</source>
@@ -1871,11 +1892,11 @@ Without modification: auto-save happens with a constant interval no matter there
     </message>
     <message>
         <source>Save Testcases on Save</source>
-        <translation type="unfinished"></translation>
+        <translation>存檔時一同儲存測資</translation>
     </message>
     <message>
         <source>Save the test cases on the disk when saving a file, and load the saved test cases when opening a file.</source>
-        <translation type="unfinished"></translation>
+        <translation>存檔時一同儲存測試資料，並於開啟檔案時將其載入。</translation>
     </message>
     <message>
         <source>Check for updates on startup</source>
@@ -1945,7 +1966,11 @@ ${json.X.Y}: an attribute of the data provided by Competitive Companion, you can
 You can read the Qt documentation for available expressions:
 https://doc.qt.io/qt-5/qdate.html#toString
 https://doc.qt.io/qt-5/qtime.html#toString</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>參考微軟產品翻譯</translatorcomment>
+        <translation>開頭註解中 ${time} 預留位置文字的格式。
+您可以閱讀 Qt 的說明文件，以了解可用的表達式：
+https://doc.qt.io/qt-5/qdate.html#toString
+https://doc.qt.io/qt-5/qtime.html#toString</translation>
     </message>
     <message>
         <source>Add &quot;Powered By CP Editor&quot; in the head comments</source>
@@ -1971,15 +1996,15 @@ This doesn&apos;t cost you anything, but helps more people to know CP Editor.</s
     </message>
     <message>
         <source>Run Only</source>
-        <translation>只執行</translation>
+        <translation>執行</translation>
     </message>
     <message>
         <source>Compile Only</source>
-        <translation>只編譯</translation>
+        <translation>編譯</translation>
     </message>
     <message>
         <source>Change View Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>變更檢視模式</translation>
     </message>
     <message>
         <source>Use Snippets</source>
@@ -1997,21 +2022,22 @@ When this is enabled, you won&apos;t be asked whether to save unsaved files when
     </message>
     <message>
         <source>Auto-save the current session periodically</source>
-        <translation type="unfinished"></translation>
+        <translation>定期自動儲存目前工作階段</translation>
     </message>
     <message>
         <source>Auto-save the current session periodically instead of only save when the application exists.
 This is useful if your computer is frozen and you have to cut off the power or
 kill the application with SIGKILL which could not be handled by the application.</source>
-        <translation type="unfinished"></translation>
+        <translation>定期儲存目前的工作階段，而不是只在關閉應用程式時儲存。
+這對於電腦當機以至於需要切斷電源或程式遭到 SIGKILL 終止的狀況很有效。</translation>
     </message>
     <message>
         <source>Auto-save Session Interval</source>
-        <translation>自動儲存工作階段間隔</translation>
+        <translation>自動儲存工作階段的間隔</translation>
     </message>
     <message>
         <source>The time interval between two auto-saves of the current session.</source>
-        <translation type="unfinished"></translation>
+        <translation>自動儲存目前工作階段的時間間隔。</translation>
     </message>
     <message>
         <source>Path</source>
@@ -2035,11 +2061,11 @@ kill the application with SIGKILL which could not be handled by the application.
     </message>
     <message>
         <source>Hide the Compile Only button and the Run Only button under the code editor in the main window.</source>
-        <translation type="unfinished"></translation>
+        <translation>隱藏主視窗的程式碼編輯器底下的「編譯」及「執行」按鈕。</translation>
     </message>
     <message>
         <source>Display EOLN In Diff</source>
-        <translation type="unfinished"></translation>
+        <translation>在 Diff 中顯示 EOLN</translation>
     </message>
     <message>
         <source>Use &quot;¶&quot; to represent for the new line character in the HTML Diff Viewer.</source>
@@ -2047,12 +2073,13 @@ kill the application with SIGKILL which could not be handled by the application.
     </message>
     <message>
         <source>Save Files Faster</source>
-        <translation type="unfinished"></translation>
+        <translation>更快的存檔</translation>
     </message>
     <message>
         <source>Always use QFile instead of QSaveFile to save files.
 This will be faster but with a little bit more risk of losing the file (with a very small possibility).</source>
-        <translation type="unfinished"></translation>
+        <translation>總是使用 QFile 而非 QSaveFile 進行存檔。
+可以使存檔更快速，然而遺失檔案的風險會稍微增加。</translation>
     </message>
     <message>
         <source>Default Time Limit (ms)</source>
@@ -2076,12 +2103,13 @@ The program will be killed if either of its stdout or stderr is too long.</sourc
     </message>
     <message>
         <source>Output Display Length Limit</source>
-        <translation type="unfinished"></translation>
+        <translation>輸出顯示長度限制</translation>
     </message>
     <message>
         <source>The maximum number of characters to be displayed for the output of the program.
 If the output is too long, it will be elided.</source>
-        <translation type="unfinished"></translation>
+        <translation>程式輸出的顯示字元數量上限。
+輸出內容過長時將其省略。</translation>
     </message>
     <message>
         <source>Message Length Limit</source>
@@ -2090,11 +2118,12 @@ If the output is too long, it will be elided.</source>
     <message>
         <source>The maximum number of characters in each message in the top-right corner of the main window.
 The message will be elided if it&apos;s too long.</source>
-        <translation type="unfinished"></translation>
+        <translation>主視窗右上角對話窗格的最大訊息長度。
+訊息內容過長時將其省略。</translation>
     </message>
     <message>
         <source>HTML Diff Viewer Length Limit</source>
-        <translation type="unfinished"></translation>
+        <translation>HTML Diff 檢視器長度限制</translation>
     </message>
     <message>
         <source>The maximum number of characters in the HTML Diff Viewer.
@@ -2103,16 +2132,17 @@ The Diff Viewer will fall back to plain text if either of the output or the expe
     </message>
     <message>
         <source>Open File Length Limit</source>
-        <translation type="unfinished"></translation>
+        <translation>開啟檔案的長度限制</translation>
     </message>
     <message>
         <source>The maximum number of characters in a source file to open.
 A source file won&apos;t be opened if it&apos;s too long.</source>
-        <translation type="unfinished"></translation>
+        <translation>開啟原始檔時，可接受的最大字元數。
+不會開啟過長的原始檔。</translation>
     </message>
     <message>
         <source>Display Test Case Length Limit</source>
-        <translation type="unfinished"></translation>
+        <translation>測資長度顯示限制</translation>
     </message>
     <message>
         <source>The maximum number of characters in a test case to be displayed.
@@ -2169,11 +2199,11 @@ A test case will be elided and read-only if it&apos;s too long.</source>
     </message>
     <message>
         <source>Arguments for Language Server</source>
-        <translation type="unfinished"></translation>
+        <translation>Language Server 引數</translation>
     </message>
     <message>
         <source>Arguments to pass to Language server executable</source>
-        <translation type="unfinished"></translation>
+        <translation>傳遞給 Language Server 程式的引數</translation>
     </message>
     <message>
         <source>Testcases Matching Rules</source>
@@ -2203,7 +2233,7 @@ You can use &quot;\1&quot; for the first captured group.</source>
     </message>
     <message>
         <source>Input File Save Path</source>
-        <translation type="unfinished"></translation>
+        <translation>輸入檔儲存路徑</translation>
     </message>
     <message>
         <source>The path where the input files are saved.
@@ -2262,7 +2292,7 @@ You can use &quot;\1&quot; for the first captured group.</source>
     </message>
     <message>
         <source>Add extra margin at the bottom of the code editor</source>
-        <translation>在程式碼編輯器的底部加上額外的邊距</translation>
+        <translation>在程式碼編輯器的底部加上額外邊距</translation>
     </message>
     <message>
         <source>Add an extra margin with the height of a page at the bottom of the code editor.
@@ -2271,19 +2301,19 @@ Due to technical reasons, changing the height of the margin affects the undo his
     </message>
     <message>
         <source>Message Logger Font</source>
-        <translation type="unfinished"></translation>
+        <translation>訊息字型</translation>
     </message>
     <message>
         <source>The font of the message logger</source>
-        <translation type="unfinished"></translation>
+        <translation>顯示訊息紀錄用的字型</translation>
     </message>
     <message>
         <source>Save File On Compilation</source>
-        <translation type="unfinished"></translation>
+        <translation>在編譯程式時存檔</translation>
     </message>
     <message>
         <source>Save the source file when compiling it. It won&apos;t be saved if the tab is untitled.</source>
-        <translation type="unfinished"></translation>
+        <translation>除了無標題的分頁，編譯原始檔時順便存檔。</translation>
     </message>
     <message>
         <source>Save File On Execution</source>
@@ -2291,7 +2321,7 @@ Due to technical reasons, changing the height of the margin affects the undo his
     </message>
     <message>
         <source>Save the source file when running it. It won&apos;t be saved if the tab is untitled.</source>
-        <translation type="unfinished"></translation>
+        <translation>除了無標題的分頁，執行程式時順便存檔。</translation>
     </message>
     <message>
         <source>Restore the problem URL when opening a file</source>
@@ -2329,7 +2359,7 @@ from Competitive Companion again, the old file will be opened.</source>
     </message>
     <message>
         <source>UI Style</source>
-        <translation type="unfinished"></translation>
+        <translation>UI 佈景</translation>
     </message>
     <message>
         <source>The style of the whole application.</source>
@@ -2337,23 +2367,23 @@ from Competitive Companion again, the old file will be opened.</source>
     </message>
     <message>
         <source>Run your codes on empty test cases</source>
-        <translation type="unfinished"></translation>
+        <translation>測資輸入為空時依然執行</translation>
     </message>
     <message>
         <source>Run your code on all non-hidden test cases even if the input is empty.</source>
-        <translation type="unfinished"></translation>
+        <translation>即使測資的輸入為空，還是執行程式。</translation>
     </message>
     <message>
         <source>Check your answer on test cases with empty output</source>
-        <translation type="unfinished"></translation>
+        <translation>測資輸出為空時依然評判答案</translation>
     </message>
     <message>
         <source>Check your answer even if your output or the expected output is empty.</source>
-        <translation type="unfinished"></translation>
+        <translation>即使輸出結果或答案為空，還是進行評判。</translation>
     </message>
     <message>
         <source>Test Case Maximum Height</source>
-        <translation type="unfinished"></translation>
+        <translation>測資顯示最大高度</translation>
     </message>
     <message>
         <source>The maximum height of a test case without a scrollbar in pixels.</source>
@@ -2370,33 +2400,33 @@ from Competitive Companion again, the old file will be opened.</source>
     <message>
         <source>network-proxy</source>
         <comment>the anchor of Enable Proxy on the corresponding page of https://cpeditor.org/docs/preferences</comment>
-        <translation type="unfinished"></translation>
+        <translation>網路 Proxy</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation type="unfinished"></translation>
+        <translation>類型</translation>
     </message>
     <message>
         <source>The type of the proxy. &quot;System&quot; for using the system proxy.</source>
-        <translation type="unfinished"></translation>
+        <translation>Proxy 的類型。選用「System」以依循系統設定。</translation>
     </message>
     <message>
         <source>network-proxy</source>
         <comment>the anchor of Type on the corresponding page of https://cpeditor.org/docs/preferences</comment>
-        <translation type="unfinished"></translation>
+        <translation>網路 Proxy</translation>
     </message>
     <message>
         <source>Host Name</source>
-        <translation type="unfinished"></translation>
+        <translation>位址</translation>
     </message>
     <message>
         <source>The hostname of the proxy, e.g. 127.0.0.1</source>
-        <translation type="unfinished"></translation>
+        <translation>Proxy 伺服器的位址，如：127.0.0.1</translation>
     </message>
     <message>
         <source>network-proxy</source>
         <comment>the anchor of Host Name on the corresponding page of https://cpeditor.org/docs/preferences</comment>
-        <translation type="unfinished"></translation>
+        <translation>網路 Proxy</translation>
     </message>
     <message>
         <source>Port</source>
@@ -2409,7 +2439,7 @@ from Competitive Companion again, the old file will be opened.</source>
     <message>
         <source>network-proxy</source>
         <comment>the anchor of Port on the corresponding page of https://cpeditor.org/docs/preferences</comment>
-        <translation type="unfinished"></translation>
+        <translation>網路 Proxy</translation>
     </message>
     <message>
         <source>User</source>
@@ -2422,7 +2452,7 @@ from Competitive Companion again, the old file will be opened.</source>
     <message>
         <source>network-proxy</source>
         <comment>the anchor of User on the corresponding page of https://cpeditor.org/docs/preferences</comment>
-        <translation type="unfinished"></translation>
+        <translation>網路 Proxy</translation>
     </message>
     <message>
         <source>Password</source>
@@ -2435,19 +2465,19 @@ from Competitive Companion again, the old file will be opened.</source>
     <message>
         <source>network-proxy</source>
         <comment>the anchor of Password on the corresponding page of https://cpeditor.org/docs/preferences</comment>
-        <translation type="unfinished"></translation>
+        <translation>網路 Proxy</translation>
     </message>
     <message>
         <source>%1 Compiler Output Codec</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 編譯器輸出字元集</translation>
     </message>
     <message>
         <source>Text codec of the compiler output (errors, warnings, etc.)</source>
-        <translation type="unfinished"></translation>
+        <translation>編譯器輸出（錯誤、警告等）的文字編碼</translation>
     </message>
     <message>
         <source>Default Path Names And Paths</source>
-        <translation type="unfinished"></translation>
+        <translation>預設路徑及名稱</translation>
     </message>
     <message>
         <source>A list of default paths.
@@ -2461,11 +2491,11 @@ They can be either manually set or automatically changed after choosing a path f
     </message>
     <message>
         <source>The name of a default path</source>
-        <translation type="unfinished"></translation>
+        <translation>預設路徑之名稱</translation>
     </message>
     <message>
         <source>The path of a default path</source>
-        <translation type="unfinished"></translation>
+        <translation>預設路徑的位址</translation>
     </message>
     <message>
         <source>Auto-load external file changes if there&apos;s no unsaved modification</source>
@@ -2477,7 +2507,7 @@ They can be either manually set or automatically changed after choosing a path f
     </message>
     <message>
         <source>Ask whether to load external file changes</source>
-        <translation type="unfinished"></translation>
+        <translation>詢問我是否要載入外部的檔案變更</translation>
     </message>
     <message>
         <source>When there are file changes that are not made in CP Editor and is not automatically loaded by
@@ -2496,15 +2526,15 @@ If this is disabled, external file changes will be ignored unless they are loade
     </message>
     <message>
         <source>Auto Uncheck Accepted Testcases</source>
-        <translation type="unfinished"></translation>
+        <translation>自動取消核選已通過的測資</translation>
     </message>
     <message>
         <source>Automatically uncheck test cases when they get accepted.</source>
-        <translation type="unfinished"></translation>
+        <translation>當某筆測資評判通過，將其取消核選。</translation>
     </message>
     <message>
         <source>Default path used for %1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 使用的預設路徑</translation>
     </message>
     <message>
         <source>Open File</source>
@@ -2530,11 +2560,11 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>It can be overridden by %1.</source>
-        <translation type="unfinished"></translation>
+        <translation>這會被 %1 的設定覆寫。</translation>
     </message>
     <message>
         <source>Open Contest</source>
-        <translation type="unfinished"></translation>
+        <translation>建立競賽</translation>
     </message>
     <message>
         <source>Load Single Test Case</source>
@@ -2542,19 +2572,19 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Add Pairs Of Test Cases</source>
-        <translation type="unfinished"></translation>
+        <translation>新增多筆測資</translation>
     </message>
     <message>
         <source>Save Test Case To A File</source>
-        <translation type="unfinished"></translation>
+        <translation>將測資存為檔案</translation>
     </message>
     <message>
         <source>Custom Checker</source>
-        <translation type="unfinished"></translation>
+        <translation>自訂評判程式</translation>
     </message>
     <message>
         <source>Export And Import Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>匯出及匯入設定值</translation>
     </message>
     <message>
         <source>Export And Load Session</source>
@@ -2569,7 +2599,7 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     <name>ShortcutItem</name>
     <message>
         <source>Clear the shortcut</source>
-        <translation type="unfinished"></translation>
+        <translation>清除快捷鍵</translation>
     </message>
 </context>
 <context>
@@ -2665,18 +2695,18 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>No release is found.</source>
-        <translation type="unfinished"></translation>
+        <translation>未有新版本。</translation>
     </message>
     <message>
         <source>No download URL of the version [%1] is found.</source>
-        <translation type="unfinished"></translation>
+        <translation>未發現版本 %1 的下載網址。</translation>
     </message>
 </context>
 <context>
     <name>Util::FileUtil</name>
     <message>
         <source>%1Source Files (%2)</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 原始檔（%2）</translation>
     </message>
     <message>
         <source>Failed to open [%1]. Do I have write permission?</source>
@@ -2696,7 +2726,7 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Open Containing Folder of %1</source>
-        <translation type="unfinished"></translation>
+        <translation>開啟 %1 所在的資料夾</translation>
     </message>
     <message>
         <source>Reveal %1 in Finder</source>
@@ -2720,7 +2750,7 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Contest Details</source>
-        <translation type="unfinished"></translation>
+        <translation>競賽內容</translation>
     </message>
     <message>
         <source>Main Directory</source>
@@ -2732,7 +2762,7 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Save Path</source>
-        <translation type="unfinished"></translation>
+        <translation>儲存路徑</translation>
     </message>
     <message>
         <source>Language</source>
@@ -2767,15 +2797,15 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     <name>Widgets::DiffViewer</name>
     <message>
         <source>Diff Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>Diff 檢視器</translation>
     </message>
     <message>
         <source>Output</source>
-        <translation type="unfinished"></translation>
+        <translation>輸出</translation>
     </message>
     <message>
         <source>Expected</source>
-        <translation type="unfinished"></translation>
+        <translation>答案</translation>
     </message>
 </context>
 <context>
@@ -2798,15 +2828,15 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Del</source>
-        <translation type="unfinished"></translation>
+        <translation>刪除</translation>
     </message>
     <message>
         <source>Test on a single testcase</source>
-        <translation type="unfinished"></translation>
+        <translation>測試單筆測資</translation>
     </message>
     <message>
         <source>Open the Diff Viewer</source>
-        <translation type="unfinished"></translation>
+        <translation>開啟 Diff 檢視器</translation>
     </message>
     <message>
         <source>Input #%1</source>
@@ -2818,11 +2848,11 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Expected #%1</source>
-        <translation type="unfinished"></translation>
+        <translation>答案 #%1</translation>
     </message>
     <message>
         <source>Delete Testcase</source>
-        <translation type="unfinished"></translation>
+        <translation>刪除測資</translation>
     </message>
     <message>
         <source>Are you sure you want to delete test case #%1?</source>
@@ -2830,11 +2860,11 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Diff Viewer[%1]</source>
-        <translation type="unfinished"></translation>
+        <translation>Diff 檢視器「%1」</translation>
     </message>
     <message>
         <source>The output/expected contains more than %1 characters, HTML diff viewer is disabled. You can change the length limit at %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>輸出或答案內容超過 %1 字元，因此不啟用 HTML Diff 檢視器。您可以在 %2 變更長度限制。</translation>
     </message>
 </context>
 <context>
@@ -2869,7 +2899,7 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Edit in Bigger Window</source>
-        <translation type="unfinished"></translation>
+        <translation>在大視窗中編輯</translation>
     </message>
     <message>
         <source>Edit Testcase</source>
@@ -2877,7 +2907,7 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Copy Output to Expected</source>
-        <translation>複製輸出至預期結果</translation>
+        <translation>複製輸出至答案</translation>
     </message>
 </context>
 <context>
@@ -2888,19 +2918,19 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Checker:</source>
-        <translation type="unfinished"></translation>
+        <translation>評判程式：</translation>
     </message>
     <message>
         <source>Add Test</source>
-        <translation type="unfinished"></translation>
+        <translation>新增測資點</translation>
     </message>
     <message>
         <source>More</source>
-        <translation type="unfinished"></translation>
+        <translation>更多</translation>
     </message>
     <message>
         <source>Add Checker</source>
-        <translation type="unfinished"></translation>
+        <translation>新增評判程式</translation>
     </message>
     <message>
         <source>Unaccepted / Accepted / Total</source>
@@ -2908,11 +2938,11 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Add a custom testlib checker</source>
-        <translation type="unfinished"></translation>
+        <translation>新增自訂 testlib 評判程式</translation>
     </message>
     <message>
         <source>Add Pairs of Testcases From Files</source>
-        <translation type="unfinished"></translation>
+        <translation>從檔案匯入測資</translation>
     </message>
     <message>
         <source>Choose Testcase Files</source>
@@ -2928,15 +2958,15 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>A pair of testcases [%1] and [%2] is loaded</source>
-        <translation type="unfinished"></translation>
+        <translation>已載入一對測資 [%1] 及 [%2]</translation>
     </message>
     <message>
         <source>An input [%1] is loaded</source>
-        <translation type="unfinished"></translation>
+        <translation>已載入輸入內容 [%1]</translation>
     </message>
     <message>
         <source>The following files are not loaded because they are not matched:%1. You can set the matching rules at %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>檔案 %1 因不符合比對規則，而沒有被載入。您可在 %2 調整比對規則。</translation>
     </message>
     <message>
         <source>Check All</source>
@@ -2962,16 +2992,16 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Are you sure you want to delete all test cases?</source>
-        <translation>確定要刪除全部測資？</translation>
+        <translation>確定要刪除全部測資點？</translation>
     </message>
     <message>
         <source>Delete Empty</source>
-        <translation type="unfinished"></translation>
+        <translation>刪除空測資點</translation>
     </message>
     <message>
         <source>Delete Checked</source>
         <extracomment>Here &quot;checked&quot; means the checkbox is checked</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>刪除核選的</translation>
     </message>
     <message>
         <source>Are you sure you want to delete all checked test cases?</source>
@@ -2979,15 +3009,15 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Copy Test Cases</source>
-        <translation>複製測資</translation>
+        <translation>複製測資點</translation>
     </message>
     <message>
         <source>Paste Test Cases</source>
-        <translation>貼上測資</translation>
+        <translation>貼上測資點</translation>
     </message>
     <message>
         <source>Copy Output to Expected</source>
-        <translation type="unfinished"></translation>
+        <translation>複製輸出至答案</translation>
     </message>
     <message>
         <source>Are you sure you want to copy all checked output to their corresponding expected?</source>
@@ -3000,31 +3030,31 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Strictly the same</source>
-        <translation type="unfinished"></translation>
+        <translation>嚴格相同</translation>
     </message>
     <message>
         <source>ncmp - Compare int64s</source>
-        <translation type="unfinished"></translation>
+        <translation>ncmp - 比對 int64</translation>
     </message>
     <message>
         <source>rcmp4 - Compare doubles, max error 1e-4</source>
-        <translation type="unfinished"></translation>
+        <translation>rcmp4 - 比對雙精度浮點數（最大誤差 1e-4）</translation>
     </message>
     <message>
         <source>rcmp6 - Compare doubles, max error 1e-6</source>
-        <translation type="unfinished"></translation>
+        <translation>rcmp6 - 比對雙精度浮點數（最大誤差 1e-6）</translation>
     </message>
     <message>
         <source>rcmp9 - Compare doubles, max error 1e-9</source>
-        <translation type="unfinished"></translation>
+        <translation>rcmp9 - 比對雙精度浮點數（最大誤差 1e-9）</translation>
     </message>
     <message>
         <source>wcmp - Compare tokens</source>
-        <translation type="unfinished"></translation>
+        <translation>wcmp - 比對字串</translation>
     </message>
     <message>
         <source>nyesno - Compare YES/NOs, case insensitive</source>
-        <translation type="unfinished"></translation>
+        <translation>nyesno - 比對YES、NO（區分大小寫）</translation>
     </message>
     <message>
         <source>Add Test Case</source>
@@ -3032,7 +3062,7 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>There are already %1 test cases, you can&apos;t add more.</source>
-        <translation>已有 %1 組測資，無法再新增。</translation>
+        <translation>已有 %1 筆測資，無法再新增。</translation>
     </message>
     <message>
         <source>Input #%1</source>
@@ -3040,19 +3070,19 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Expected #%1</source>
-        <translation type="unfinished"></translation>
+        <translation>答案 #%1</translation>
     </message>
     <message>
         <source>Save Input #%1</source>
-        <translation type="unfinished"></translation>
+        <translation>儲存輸入 #%1</translation>
     </message>
     <message>
         <source>Save Expected #%1</source>
-        <translation type="unfinished"></translation>
+        <translation>儲存答案 #%1</translation>
     </message>
     <message>
         <source>Load %1</source>
-        <translation type="unfinished"></translation>
+        <translation>載入 %1</translation>
     </message>
 </context>
 <context>
@@ -3071,7 +3101,7 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>A new %1 update &lt;a href=&quot;%2&quot;&gt;%3&lt;/a&gt; is available. See below for the changelog.&lt;br /&gt;We highly recommend you keep the editor up to date so that you won&apos;t miss the awesome new features and bug fixes.</source>
-        <translation>%1更新 &lt;a href=&quot;%2&quot;&gt;%3&lt;/a&gt; 已可供使用。更新紀錄請見下方。&lt;br /&gt;我們非常建議讓編輯器保持最新版本，以享受酷酷的新功能及 bug 修補。</translation>
+        <translation>%1更新 &lt;a href=&quot;%2&quot;&gt;%3&lt;/a&gt; 已可供使用。更新紀錄請見下方。&lt;br /&gt;我們非常建議讓編輯器保持最新版本，以享受酷酷的新功能及錯誤修正。</translation>
     </message>
     <message>
         <source>beta</source>
