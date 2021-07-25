@@ -28,6 +28,7 @@
 #include <QProcess>
 
 class QElapsedTimer;
+class QTemporaryFile;
 class QTimer;
 
 namespace Core
@@ -173,11 +174,11 @@ class Runner : public QObject
 
     const int runnerIndex;                   // the index of the testcase
     QProcess *runProcess = nullptr;          // the process to run the program
+    QTemporaryFile *inputFile = nullptr;     // redirect stdin to this file
     QTimer *killTimer = nullptr;             // the timer used to kill the process when the time limit is reached
     QElapsedTimer *runTimer = nullptr;       // the timer used to measure how much time did the execution use
     QByteArray processStdout;                // the stdout of the process
     QByteArray processStderr;                // the stderr of the process
-    QByteArray processInput;                 // the input from the test cases
     bool outputLimitExceededEmitted = false; // whether runOutputLimitExceeded is emitted or not
     bool timeLimitExceeded = false;
     bool isDetachedRun = false;
