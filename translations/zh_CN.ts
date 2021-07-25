@@ -687,6 +687,10 @@ Press any key to exit</source>
         <source>Detached execution is not supported on your platform</source>
         <translation>你的平台上不支持在终端中运行</translation>
     </message>
+    <message>
+        <source>Failed to create temporary file.</source>
+        <translation>未能成功创建临时文件。</translation>
+    </message>
 </context>
 <context>
     <name>Core::SessionManager</name>

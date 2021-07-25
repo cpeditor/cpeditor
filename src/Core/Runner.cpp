@@ -18,8 +18,10 @@
 #include "Core/Runner.hpp"
 #include "Core/Compiler.hpp"
 #include "Core/EventLogger.hpp"
+#include "Util/FileUtil.hpp"
 #include <QElapsedTimer>
 #include <QFileInfo>
+#include <QTemporaryFile>
 #include <QTimer>
 #include <generated/SettingsHelper.hpp>
 
@@ -82,6 +84,19 @@ void Runner::run(const QString &tmpFilePath, const QString &sourceFilePath, cons
     connect(runProcess, &QProcess::readyReadStandardOutput, this, &Runner::onReadyReadStandardOutput);
     connect(runProcess, &QProcess::readyReadStandardError, this, &Runner::onReadyReadStandardError);
 
+    QString program = command.takeFirst();
+
+    setWorkingDirectory(tmpFilePath, sourceFilePath, lang);
+
+    inputFile = new QTemporaryFile(this);
+    if (!inputFile->open())
+    {
+        emit failedToStartRun(runnerIndex, tr("Failed to create temporary file."));
+        return;
+    }
+    Util::saveFile(inputFile->fileName(), input, "Runner Input", false);
+    runProcess->setStandardInputFile(inputFile->fileName());
+
     killTimer = new QTimer(runProcess);
     killTimer->setSingleShot(true);
     killTimer->setInterval(timeLimit);
@@ -90,13 +105,6 @@ void Runner::run(const QString &tmpFilePath, const QString &sourceFilePath, cons
     runTimer = new QElapsedTimer();
 
     killTimer->start();
-    runTimer->start();
-
-    QString program = command.takeFirst();
-
-    setWorkingDirectory(tmpFilePath, sourceFilePath, lang);
-
-    processInput = input;
 
     runProcess->start(program, command);
 }
@@ -143,18 +151,15 @@ void Runner::runDetached(const QString &tmpFilePath, const QString &sourceFilePa
 
 void Runner::onFinished(int exitCode, QProcess::ExitStatus exitStatus)
 {
+    const auto timeUsed = runTimer->isValid() ? runTimer->elapsed() : 0;
     emit runFinished(runnerIndex, processStdout + runProcess->readAllStandardOutput(),
-                     processStderr + runProcess->readAllStandardError(), exitCode, runTimer->elapsed(),
-                     timeLimitExceeded);
+                     processStderr + runProcess->readAllStandardError(), exitCode, timeUsed, timeLimitExceeded);
 }
 
 void Runner::onStarted()
 {
     if (!isDetachedRun)
-    {
-        runProcess->write(processInput.toUtf8());
-        runProcess->closeWriteChannel();
-    }
+        runTimer->start();
     emit runStarted(runnerIndex);
 }
 
