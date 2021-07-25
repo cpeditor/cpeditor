@@ -30,7 +30,7 @@
     </message>
     <message>
         <source>About</source>
-        <translation>關於</translation>
+        <translation>關於本程式</translation>
     </message>
     <message>
         <source>Quit</source>
@@ -585,7 +585,7 @@ Git commit hash：%3
     <name>Core::Checker</name>
     <message>
         <source>Read Checker</source>
-        <translation type="unfinished"></translation>
+        <translation>讀取評判程式原始碼</translation>
     </message>
     <message>
         <source>Checker</source>
@@ -605,11 +605,11 @@ Git commit hash：%3
     </message>
     <message>
         <source>Started compiling the checker</source>
-        <translation>已開始編譯評判程式</translation>
+        <translation>開始編譯評判程式</translation>
     </message>
     <message>
         <source>The checker is compiled</source>
-        <translation>已編譯評判程式</translation>
+        <translation>完成編譯評判程式</translation>
     </message>
     <message>
         <source>Error occurred while compiling the checker:
@@ -635,7 +635,7 @@ Git commit hash：%3
     </message>
     <message>
         <source>The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer than the output length limit, so the process is killed. You can change the output length limit at %4.</source>
-        <translation type="unfinished"></translation>
+        <translation>在執行測資 #%2 時 %1 含有多於 %3 個字元，超出了輸出長度限制，因此被終止了。您可以在 %4 變更輸出長度限制。</translation>
     </message>
     <message>
         <source>The checker is killed</source>
@@ -717,7 +717,7 @@ Press any key to exit</source>
     </message>
     <message>
         <source>The problem code is 0, now use A automatically. If the actual problem code is not A, please set the problem code manually in the right-click menu of the current tab.</source>
-        <translation type="unfinished"></translation>
+        <translation>題目編號為 0，將自動以 A 作為題號。若實際題號非為 A，請於目前分頁的右鍵選單中設定題號。</translation>
     </message>
     <message>
         <source>Failed to get the version of CF Tool. Have you set the correct path to CF Tool in Preferences?</source>
@@ -733,7 +733,7 @@ Press any key to exit</source>
     </message>
     <message>
         <source>Failed to parse the URL [%1]</source>
-        <translation>無法解析網址「%1」</translation>
+        <translation>無法剖析網址「%1」</translation>
     </message>
     <message>
         <source>CF Tool failed</source>
@@ -780,14 +780,14 @@ Press any key to exit</source>
     </message>
     <message>
         <source>The output of the format process is empty. Please ensure there is no in-place modification option in the formatting arguments.</source>
-        <translation type="unfinished"></translation>
+        <translation>排版工具的處理程序輸出為空。請確保沒有使用就地修改的選項。</translation>
     </message>
 </context>
 <context>
     <name>Extensions::CompanionServer</name>
     <message>
         <source>A %1 request is received and ignored</source>
-        <translation type="unfinished"></translation>
+        <translation>收到並忽略了 %1 請求</translation>
     </message>
     <message>
         <source>The request received is not JSON</source>
@@ -858,8 +858,8 @@ Press any key to exit</source>
     <name>FindReplaceForm</name>
     <message>
         <source>Form</source>
-        <translatorcomment>表單？</translatorcomment>
-        <translation></translation>
+        <translatorcomment>存疑</translatorcomment>
+        <translation>表單</translation>
     </message>
     <message>
         <source>Find:</source>
@@ -871,7 +871,7 @@ Press any key to exit</source>
     </message>
     <message>
         <source>errorLabel</source>
-        <translation type="unfinished"></translation>
+        <translation>錯誤訊息</translation>
     </message>
     <message>
         <source>Direction</source>
@@ -908,7 +908,14 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You may want to take a look at the syntax of regular expressions:&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://doc.trolltech.com/qregexp.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://doc.trolltech.com/qregexp.html&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;若勾選，填入搜尋框的內容將被視為正規表達式&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;您可能會想看看正規表達式的語法：&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://doc.trolltech.com/qregexp.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://doc.trolltech.com/qregexp.html&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Regular Expression</source>
@@ -943,15 +950,16 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Runner</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>runner 譯名暫用微軟的「執行器」</translatorcomment>
+        <translation>執行器</translation>
     </message>
     <message>
         <source>Wrong language, please set the language</source>
-        <translation type="unfinished"></translation>
+        <translation>語言錯誤，請設定正確的程式語言</translation>
     </message>
     <message>
         <source>All inputs are empty, nothing to run</source>
-        <translation type="unfinished"></translation>
+        <translation>所有輸入內容為空，因此不執行</translation>
     </message>
     <message>
         <source>Submit</source>
@@ -989,7 +997,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Unknown attribute: [%1]. Please check the head comments setting at %2.</source>
-        <translation type="unfinished"></translation>
+        <translation>未知的屬性：[%1]。請於 %2 確認開頭註解的設定。</translation>
     </message>
     <message>
         <source>Save as</source>
@@ -1124,11 +1132,11 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>Detached Runner</source>
-        <translation type="unfinished"></translation>
+        <translation>分離式執行器</translation>
     </message>
     <message>
         <source>Runner[%1]</source>
-        <translation type="unfinished"></translation>
+        <translation>執行器 [%1]</translation>
     </message>
     <message>
         <source>Execution has started</source>
@@ -1152,7 +1160,7 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer than the output length limit, so the process is killed. You can change the output length limit at %4.</source>
-        <translation type="unfinished"></translation>
+        <translation>在執行測資 #%2 時 %1 含有多於 %3 個字元，超出了輸出長度限制，因此被終止了。您可以在 %4 變更輸出長度限制。</translation>
     </message>
     <message>
         <source>%1 has been killed</source>
@@ -1160,11 +1168,12 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>Detached runner</source>
-        <translation type="unfinished"></translation>
+        <translation>分離式執行器</translation>
     </message>
     <message>
         <source>Runner for testcase #%1</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>runner 譯名暫用微軟的「執行器」</translatorcomment>
+        <translation>測資 #%1 的執行器</translation>
     </message>
     <message>
         <source>CP Editor</source>
@@ -1172,7 +1181,7 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>cursor info</source>
-        <translation type="unfinished"></translation>
+        <translation>游標資訊</translation>
     </message>
     <message>
         <source>Compile</source>
@@ -1212,31 +1221,32 @@ Do you want to reload it?</source>
     <name>ParenthesesPage</name>
     <message>
         <source>%1 Parentheses</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 括號</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>新增</translation>
     </message>
     <message>
         <source>Del</source>
-        <translation type="unfinished"></translation>
+        <translation>刪除</translation>
     </message>
     <message>
         <source>No Parenthesis Selected</source>
-        <translation type="unfinished"></translation>
+        <translation>未選擇括號</translation>
     </message>
     <message>
         <source>New Parenthesis</source>
-        <translation type="unfinished"></translation>
+        <translation>新括號</translation>
     </message>
     <message>
         <source>Enter a parenthesis (e.g. {}):</source>
-        <translation type="unfinished"></translation>
+        <translation>輸入一對括號（如：{}）：</translation>
     </message>
     <message>
         <source>Delete Parenthesis</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>需要再檢視</translatorcomment>
+        <translation>刪除括號</translation>
     </message>
     <message>
         <source>Do you really want to delete the parenthesis %1?</source>
@@ -1247,12 +1257,13 @@ Do you want to reload it?</source>
     <name>ParenthesisWidget</name>
     <message>
         <source>Parenthesis: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>括號：%1</translation>
     </message>
     <message>
         <source>Enable %1 for %2 in %3.
 If it&apos;s partially checked, the global setting in Code Edit will be used.</source>
-        <translation type="unfinished"></translation>
+        <translation>在 %3 中啟用 %1 以使用 %2。
+若沒有全部勾選，將適用程式碼編輯的全域設定。</translation>
     </message>
     <message>
         <source>Auto Complete</source>
@@ -1532,7 +1543,7 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>The width of the tab character, or the number of spaces of an indent</source>
-        <translation>指定 Tab 字元的寬度，即縮排的空格數</translation>
+        <translation>指定 Tab 字元的寬度，即縮排的空間</translation>
     </message>
     <message>
         <source>Cursor Width</source>
@@ -1653,29 +1664,31 @@ You can learn about it by running `yapf --style-help`.</source>
     </message>
     <message>
         <source>%1 Template Cursor Position Regex</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 樣板游標初始位置的正規表達式</translation>
     </message>
     <message>
         <source>The regular expression which matches a part of the code template.
 When opening a template, the position of the cursor is the position of the regex with an offset.
 The cursor will be at the end of the template if there&apos;s no match of the regex.</source>
-        <translation type="unfinished"></translation>
+        <translation>用於比對部分程式碼樣板的正規表達式。
+使用樣板時，游標的初始位置為正規表達式位置加上位移量。
+若沒有符合正規表達式的程式碼，游標將被置於樣板結尾。</translation>
     </message>
     <message>
         <source>%1 Template Cursor Position Offset Type</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 樣板游標位置位移類型</translation>
     </message>
     <message>
         <source>Whether the offset is relative to the start of the regex or the end of the regex.</source>
-        <translation type="unfinished"></translation>
+        <translation>決定位移的參考點為相對於正規表達式的開始或結尾。</translation>
     </message>
     <message>
         <source>%1 Template Cursor Position Offset Characters</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 樣板游標位置位移數量</translation>
     </message>
     <message>
         <source>The offset relative to the match of the regex in the number of characters, including white spaces.</source>
-        <translation type="unfinished"></translation>
+        <translation>相對於符合正規表達式內容的位移字元數（包含空格）。</translation>
     </message>
     <message>
         <source>%1 Compile Command</source>
@@ -1962,7 +1975,10 @@ Without modification：不論程式碼是否被修改，每經一段時間自動
 Available place holders are:
 ${time}: the time when parsing the problem
 ${json.X.Y}: an attribute of the data provided by Competitive Companion, you can read more at https://github.com/jmerle/competitive-companion#explanation</source>
-        <translation type="unfinished"></translation>
+        <translation>剖析題目時在程式碼開頭加上的註解。
+可用的預留文字為：
+${time}：剖析題目的時間
+${json.X.Y}：由 Competitive Companion 提供的屬性，您可以於 https://github.com/jmerle/competitive-companion#explanation 閱讀更多資訊</translation>
     </message>
     <message>
         <source>Time format for the head comments</source>
@@ -2176,7 +2192,7 @@ A test case will be elided and read-only if it&apos;s too long.</source>
     </message>
     <message>
         <source>Use Linting with Language Server</source>
-        <translation type="unfinished"></translation>
+        <translation>使用 Language Server 的 Linting</translation>
     </message>
     <message>
         <source>Show Error, Warning, Information and Hints in Code Editor for C++ Language</source>
@@ -2200,11 +2216,11 @@ A test case will be elided and read-only if it&apos;s too long.</source>
     </message>
     <message>
         <source>Delay in Linting (ms)</source>
-        <translation type="unfinished"></translation>
+        <translation>Linting 延遲（ms）</translation>
     </message>
     <message>
         <source>Delay in linting in milliseconds after last modification to code</source>
-        <translation type="unfinished"></translation>
+        <translation>控制 Linting 在修改之後延遲的時間</translation>
     </message>
     <message>
         <source>Arguments for Language Server</source>
@@ -2221,7 +2237,8 @@ A test case will be elided and read-only if it&apos;s too long.</source>
     <message>
         <source>Pairs of regular expressions used when adding pairs of test cases from files.
 Each pair of regular expressions represents a test case.</source>
-        <translation type="unfinished"></translation>
+        <translation>用於從檔案加入多筆測資時的正規表達式。
+每對正規表達式代表一筆測資。</translation>
     </message>
     <message>
         <source>Input Regex</source>
@@ -2233,7 +2250,7 @@ Each pair of regular expressions represents a test case.</source>
     </message>
     <message>
         <source>Answer Replace</source>
-        <translation type="unfinished"></translation>
+        <translation>答案替換</translation>
     </message>
     <message>
         <source>The replace expression for the answer file name.
@@ -2253,11 +2270,17 @@ You can use &quot;${filename}&quot; for the complete file name,
 &quot;${basename}&quot; for the base file name without the suffix,
 &quot;${0-index}&quot; for the index of the test case started from 0,
 &quot;${1-index}&quot; for the index of the test case started from 1.</source>
-        <translation type="unfinished"></translation>
+        <translation>輸入檔的儲存路徑。
+此為原始檔的相對路徑。
+不需要在結尾加上「.exe」。
+您可以使用「${filename}」代入檔案名稱；
+使用「${basename}」代入不含後綴的檔名；
+使用「${0-index}」以索引值 0 開始代入測資。
+使用「${1-index}」以索引值 1 開始代入測資。</translation>
     </message>
     <message>
         <source>Answer File Save Path</source>
-        <translation type="unfinished"></translation>
+        <translation>答案檔儲存路徑</translation>
     </message>
     <message>
         <source>The path where the answer files are saved.
@@ -2266,7 +2289,13 @@ You can use &quot;${filename}&quot; for the complete file name,
 &quot;${basename}&quot; for the base file name without the suffix,
 &quot;${0-index}&quot; for the index of the test case started from 0,
 &quot;${1-index}&quot; for the index of the test case started from 1.</source>
-        <translation type="unfinished"></translation>
+        <translation>答案檔的儲存路徑。
+此為原始檔的相對路徑。
+不需要在結尾加上「.exe」。
+您可以使用「${filename}」代入檔案名稱；
+使用「${basename}」代入不含後綴的檔名；
+使用「${0-index}」以索引值 0 開始代入測資。
+使用「${1-index}」以索引值 1 開始代入測資。</translation>
     </message>
     <message>
         <source>Default File Paths For Problem URLs</source>
@@ -2291,7 +2320,8 @@ You can use &quot;${filename}&quot; for the complete file name,
     <message>
         <source>The replace expression for the file path, without file name suffix.
 You can use &quot;\1&quot; for the first captured group.</source>
-        <translation type="unfinished"></translation>
+        <translation>用於存檔路徑的替換表達式（不需檔名後綴）。
+可使用「\1」表示首個符合的組別。</translation>
     </message>
     <message>
         <source>Test Cases Font</source>
@@ -2308,7 +2338,8 @@ You can use &quot;\1&quot; for the first captured group.</source>
     <message>
         <source>Add an extra margin with the height of a page at the bottom of the code editor.
 Due to technical reasons, changing the height of the margin affects the undo history.</source>
-        <translation type="unfinished"></translation>
+        <translation>在程式碼編輯器的底部加上額外邊距。
+由於技術原因，改變邊距會影響復原記錄。</translation>
     </message>
     <message>
         <source>Message Logger Font</source>
@@ -2336,21 +2367,23 @@ Due to technical reasons, changing the height of the margin affects the undo his
     </message>
     <message>
         <source>Restore the problem URL when opening a file</source>
-        <translation type="unfinished"></translation>
+        <translation>開啟檔案時還原該題網址</translation>
     </message>
     <message>
         <source>If a problem URL was set for a file, when you open
 that file again, the problem URL will be restored.</source>
-        <translation type="unfinished"></translation>
+        <translation>若檔案有設定題目網址，當再次
+開啟時，也會繼續使用該網址。</translation>
     </message>
     <message>
         <source>Open the old file when parsing an old problem URL</source>
-        <translation type="unfinished"></translation>
+        <translation>遇到已剖析過的題目網址時開啟對應檔案</translation>
     </message>
     <message>
         <source>If a problem URL was set for a file, when parsing that problem
 from Competitive Companion again, the old file will be opened.</source>
-        <translation type="unfinished"></translation>
+        <translation>若檔案有設定題目網址，當再次由
+Competitive Companion 開啟時，也會繼續使用該網址。</translation>
     </message>
     <message>
         <source>UI Language</source>
@@ -2494,7 +2527,9 @@ from Competitive Companion again, the old file will be opened.</source>
         <source>A list of default paths.
 They can be used in actions&apos; corresponding default paths by using ${&lt;default path name&gt;} as a place holder.
 They can be either manually set or automatically changed after choosing a path for an action.</source>
-        <translation type="unfinished"></translation>
+        <translation>預設路徑的清單。
+可以使用 ${&lt;default path name&gt;} 預留文字，將它們用於一些動作對應的預設路徑中。
+它們可以被手動設定，或在選擇動作的路徑後自動改變。</translation>
     </message>
     <message>
         <source>Name</source>
@@ -2525,7 +2560,9 @@ They can be either manually set or automatically changed after choosing a path f
 &quot;%1&quot;, ask for whether to load the changes.
 If this is disabled, external file changes will be ignored unless they are loaded by
 &quot;%1&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>當檔案發生了非 CP Editor 造成的變更，且「%1」
+沒有自動載入時，詢問我是否要將其載入。
+此功能關閉時，不透過「%1」載入的變更都會被忽略。</translation>
     </message>
     <message>
         <source>Show Only Monospaced Font</source>
@@ -2554,16 +2591,18 @@ If this is disabled, external file changes will be ignored unless they are loade
     <message>
         <source>The default path used when choosing a path for %1.
 You can use ${&lt;default path name&gt;} as a place holder.</source>
-        <translation type="unfinished"></translation>
+        <translation>為 %1 選擇路徑時的預設值。
+您可以使用 ${&lt;default path name&gt;} 當作預留位置。</translation>
     </message>
     <message>
         <source>Default paths changed by %1</source>
-        <translation type="unfinished"></translation>
+        <translation>由 %1 變更的預設路徑</translation>
     </message>
     <message>
         <source>The default paths changed after choosing a path for %1.
 It is a list of &lt;default path name&gt;s, separated by commas, and can be empty.</source>
-        <translation type="unfinished"></translation>
+        <translation>選擇 %1 的路徑後變更的預設路徑。
+此為 &lt;default path name&gt; 的清單，以「,」隔開，亦可留空。</translation>
     </message>
     <message>
         <source>Save File</source>
@@ -2599,11 +2638,11 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Export And Load Session</source>
-        <translation type="unfinished"></translation>
+        <translation>匯出及載入工作階段</translation>
     </message>
     <message>
         <source>Extract And Load Snippets</source>
-        <translation type="unfinished"></translation>
+        <translation>打包及載入程式碼片段</translation>
     </message>
 </context>
 <context>
@@ -2933,7 +2972,7 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Add Test</source>
-        <translation>新增測資點</translation>
+        <translation>新增測資</translation>
     </message>
     <message>
         <source>More</source>
