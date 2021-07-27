@@ -119,12 +119,27 @@ jobs:
           version: ${{ env.QT_VERSION }}
           arch: ${{ matrix.config.qtarch }}
 
+      - name: "[Windows] Download yaml-cpp"
+        if: startsWith(matrix.config.os, 'windows')
+        run: |
+          vcpkg install yaml-cpp:x64-windows
+
+      - name: "[Linux] Download yaml-cpp"
+        if: startsWith(matrix.config.os, 'ubuntu')
+        run: |
+          sudo apt-get install libyaml-cpp-dev
+
+      - name: "[macOS] Download yaml-cpp"
+        if: startsWith(matrix.config.os, 'macos')
+        run: |
+          brew install yaml-cpp
+
       - name: "[Windows] Build"
         if: matrix.config.os == 'windows-latest'
         run: |
           mkdir build
           cd build
-          cmake .. -A ${{ matrix.config.platform }} -DPORTABLE_VERSION=${{ matrix.config.portable-option }}
+          cmake .. -A ${{ matrix.config.platform }} -DPORTABLE_VERSION=${{ matrix.config.portable-option }} -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake
           cmake --build . --config Release -j4
 
       - name: "[Linux/macOS] Build"
@@ -275,6 +290,7 @@ jobs:
         run: |
           mkdir build/out
           mv build/Release/cpeditor.exe build/out
+          cp "C:/vcpkg/installed/x64-windows/bin/yaml-cpp.dll" build/out
           ../Qt/*/*/bin/windeployqt.exe build/out/cpeditor.exe --no-translations
           cd "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Redist/MSVC"
           echo "VC_REDIST_VERSION=$(ls -dr *.* | head -n1)" >> $GITHUB_ENV
