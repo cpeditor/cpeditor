@@ -54,13 +54,8 @@ jobs:
 
       - name: "[Windows] Download yaml-cpp"
         if: startsWith(matrix.config.os, 'windows')
-        uses: lukka/run-vcpkg@v7
-        id: runvcpkg
-        with:
-          vcpkgArguments: yaml-cpp:x64-windows
-          vcpkgDirectory: ${{ runner.workspace }}/vcpkg/
-          vcpkgTriplet: x64-windows
-          vcpkgGitCommitId: 7bc5b8cdfaf35329c1520b2af8d368e2b1cb78e6
+        run: |
+          vcpkg install yaml-cpp:x64-windows
 
       - name: "[Linux] Download yaml-cpp"
         if: startsWith(matrix.config.os, 'ubuntu')
@@ -81,7 +76,7 @@ jobs:
       - name: "[Windows] Build"
         if: startsWith(matrix.config.os, 'windows')
         run: |
-          cmake -B build -S . -D USE_CLANG_TIDY=On -DCMAKE_TOOLCHAIN_FILE=${{ runner.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake
+          cmake -B build -S . -D USE_CLANG_TIDY=On -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake
           cmake --build build -j4 --config Release
 
       - name: Upload Artifact
