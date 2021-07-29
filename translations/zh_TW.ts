@@ -22,7 +22,7 @@
     </message>
     <message>
         <source>In the last session, CP Editor was abnormally killed, do you want to restore the last session?</source>
-        <translation>在上次的工作階段，CP Editor 被意外地終止了。要還原上次的工作階段嗎？</translation>
+        <translation>在上次的工作階段 CP Editor 被意外地終止了。要還原工作階段嗎？</translation>
     </message>
     <message>
         <source>Show Main Window</source>
@@ -106,7 +106,7 @@ Git commit hash：%3
     </message>
     <message>
         <source>All current settings will lose after importing settings from a file. Are you sure to continue?</source>
-        <translation>從檔案匯入的設定值，會覆蓋現有的任何設定。確定要繼續？</translation>
+        <translation>從檔案匯入的設定值將覆蓋現有的任何設定。確定要繼續？</translation>
     </message>
     <message>
         <source>Import settings from a file</source>
@@ -114,8 +114,7 @@ Git commit hash：%3
     </message>
     <message>
         <source>Export current session to a file</source>
-        <translation>將目前的工作階段匯出為檔案
-將目前的工作階段匯出為檔案</translation>
+        <translation>將目前的工作階段匯出為檔案</translation>
     </message>
     <message>
         <source>CP Editor Session File</source>
@@ -201,7 +200,7 @@ Git commit hash：%3
     <message>
         <source>Duplicate Tab</source>
         <translatorcomment>「複製」有疑義，應釐清與 Copy 的差異</translatorcomment>
-        <translation>複製分頁</translation>
+        <translation>建立分頁副本</translation>
     </message>
     <message>
         <source>Set Compile Command</source>
@@ -326,11 +325,11 @@ Git commit hash：%3
     </message>
     <message>
         <source>Indent</source>
-        <translation>縮排</translation>
+        <translation>增加縮排</translation>
     </message>
     <message>
         <source>Unindent</source>
-        <translation>取消縮排</translation>
+        <translation>退縮排</translation>
     </message>
     <message>
         <source>Swap Line Up</source>
@@ -342,7 +341,7 @@ Git commit hash：%3
     </message>
     <message>
         <source>Duplicate Line</source>
-        <translation>複製整行</translation>
+        <translation>建立本行副本</translation>
     </message>
     <message>
         <source>Delete Line</source>
@@ -564,7 +563,8 @@ Git commit hash：%3
     </message>
     <message>
         <source>The name &quot;%1&quot; is already in use. Do you want to override it? (The old snippet with this name will be deleted.)</source>
-        <translation>名稱「%1」已被使用。要覆寫嗎？（原先使用該名稱的程式碼片段將被刪除）</translation>
+        <translatorcomment>it&apos;s ok to ignore the warning</translatorcomment>
+        <translation>名稱「%1」已被使用。要覆寫現有的片段嗎？</translation>
     </message>
     <message>
         <source>The name &quot;%1&quot; is already in use.
@@ -593,7 +593,7 @@ Git commit hash：%3
     </message>
     <message>
         <source>Failed to create temporary directory</source>
-        <translation>無法建立臨時目錄</translation>
+        <translation>無法建立暫存目錄</translation>
     </message>
     <message>
         <source>Read testlib.h</source>
@@ -702,7 +702,7 @@ Press any key to exit</source>
     </message>
     <message>
         <source>Restoring: [%1]</source>
-        <translation>正在還原： %1</translation>
+        <translation>正在還原：%1</translation>
     </message>
 </context>
 <context>
@@ -721,7 +721,7 @@ Press any key to exit</source>
     </message>
     <message>
         <source>Failed to get the version of CF Tool. Have you set the correct path to CF Tool in Preferences?</source>
-        <translation>無法取得 CF Tool 的版本資訊。已在偏好設定中正確設定 CF Tool 的路徑？</translation>
+        <translation>無法取得 CF Tool 的版本資訊。是否已在偏好設定中正確設定 CF Tool 的路徑？</translation>
     </message>
     <message>
         <source>CF Tool has started</source>
@@ -729,10 +729,11 @@ Press any key to exit</source>
     </message>
     <message>
         <source>Failed to start CF Tool in 2 seconds. Have you set the correct path to CF Tool in Preferences?</source>
-        <translation>無法在兩秒內啟動 CF Tool。請確認是否已在偏好設定中正確指定 CF Tool 路徑？</translation>
+        <translation>無法在兩秒內啟動 CF Tool。是否已在偏好設定中正確指定 CF Tool 路徑？</translation>
     </message>
     <message>
         <source>Failed to parse the URL [%1]</source>
+        <translatorcomment>parse 一詞的翻譯參考自Microsoft Language Portal</translatorcomment>
         <translation>無法剖析網址「%1」</translation>
     </message>
     <message>
@@ -756,7 +757,7 @@ Press any key to exit</source>
     </message>
     <message>
         <source>Failed to create temporary directory</source>
-        <translation>無法建立臨時目錄</translation>
+        <translation>無法建立暫存目錄</translation>
     </message>
     <message>
         <source>Formatting completed</source>
@@ -764,7 +765,7 @@ Press any key to exit</source>
     </message>
     <message>
         <source>The format process didn&apos;t finish in 2 seconds. This is probably because the %1 program is not found by CP Editor. You can set the path to the program at %2.</source>
-        <translation>排版工具的處理程序未能在 2 秒內結束。這或許是因為 CP Editor 找不到 %1 程式。您可以在 %2 設定該程式的路徑。</translation>
+        <translation>排版工具的處理程序未能在 2 秒內結束。這可能是因為 CP Editor 找不到 %1 程式。您可以在 %2 設定該程式的路徑。</translation>
     </message>
     <message>
         <source>The format command [%1 %2] finished with exit code %3.</source>
@@ -803,7 +804,7 @@ Press any key to exit</source>
     </message>
     <message>
         <source>Failed to listen to port %1. Is there another process listening?</source>
-        <translation>無法偵聽連接埠 %1。可能有其他處理程序也在偵聽？</translation>
+        <translation>無法偵聽連接埠 %1。可能已被其他處理程序佔用？</translation>
     </message>
     <message>
         <source>JSON parser reported errors:
@@ -820,15 +821,15 @@ Press any key to exit</source>
     <name>Extensions::LanguageServer</name>
     <message>
         <source>Language Server [%1]</source>
-        <translation>Language Server 「%1」</translation>
+        <translation>Language Server「%1」</translation>
     </message>
     <message>
         <source>Language server sent an error. Please check log for details.</source>
-        <translation>Language server 發出錯誤訊息。關於更多細節，請查閱記錄檔。</translation>
+        <translation>Language Server 發出錯誤訊息。關於更多細節，請查閱記錄檔。</translation>
     </message>
     <message>
         <source>Failed to start LSP Process. Have you set the path to the Language Server program at %1?</source>
-        <translation>無法啟動 LSP 處理程序。已在 %1 設定 Language Server 程式的路徑？</translation>
+        <translation>無法啟動 LSP 處理程序。是否已在 %1 設定 Language Server 程式的路徑？</translation>
     </message>
     <message>
         <source>LSP Process timed out</source>
@@ -959,7 +960,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>All inputs are empty, nothing to run</source>
-        <translation>所有輸入內容為空，因此不執行</translation>
+        <translation>輸入內容皆為空，因此不執行</translation>
     </message>
     <message>
         <source>Submit</source>
@@ -1132,7 +1133,8 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>Detached Runner</source>
-        <translation>分離式執行器</translation>
+        <translatorcomment>Review required</translatorcomment>
+        <translation type="unfinished">分離式執行器</translation>
     </message>
     <message>
         <source>Runner[%1]</source>
