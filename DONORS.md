@@ -1,6 +1,6 @@
 ## GitHub Sponsors
 
-None.
+- [cosenza987](https://github.com/cosenza987)
 
 ## Open Collective
 
