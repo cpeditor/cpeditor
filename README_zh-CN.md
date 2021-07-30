@@ -254,6 +254,9 @@ Package maintainers can contact us if any help on packaging is needed. For examp
     <td align="center">
       <a href="https://github.com/Mooos-MoSheng"><img src="https://avatars.githubusercontent.com/u/46639923?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/Mooos-MoSheng"><sub><b>墨笙_Mooos</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/commits?author=Mooos-MoSheng" title="Code">💻</a> <a href="https://github.com/cpeditor/cpeditor/issues?q=author%3AMooos-MoSheng" title="Bug reports">🐛</a>
     </td>
+    <td align="center">
+      <a href="https://github.com/toto6038"><img src="https://avatars.githubusercontent.com/u/50100922?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/toto6038"><sub><b>toto6038</b></sub></a><br /><a href="#translation-toto6038" title="Translation">🌍</a>
+    </td>
   </tr>
 </table>
 
