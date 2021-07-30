@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+## 6.8.4
+
+This release only affects the building process, so there's no need to upgrade if you don't build CP Editor by yourself or if you can successfully build CP Editor.
+
 ### Fixed
 
 -   Fix that when building with CMake 3.21.1 and Ninja, it results in dupbuild or dependency cycle error. (#941)
