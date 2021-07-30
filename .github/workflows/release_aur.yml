@@ -57,23 +57,14 @@ jobs:
           sha256sum=$(shasum -a 256 cpeditor-${{ steps.get_version.outputs.version }}-full-source.tar.gz | cut -d ' ' -f 1)
           cd cpeditor
           cp ../.ci/aur/stable/PKGBUILD .
-          cp ../.ci/aur/stable/.SRCINFO .
-          sed -i "s/@PROJECT_VERSION@/${{ steps.get_version.outputs.version }}/g" PKGBUILD .SRCINFO
-          sed -i "s/SKIP/${sha256sum}/g" PKGBUILD .SRCINFO
+          sed -i "s/@PROJECT_VERSION@/${{ steps.get_version.outputs.version }}/g" PKGBUILD
+          sed -i "s/SKIP/${sha256sum}/g" PKGBUILD
 
       - name: Check PKGBUILD
         if: steps.get_version.outputs.ISSTABLE == 'true'
-        uses: 2m/arch-pkgbuild-builder@v1.16
+        uses: ouuan/pkgbuild-action@master
         with:
-          target: "pkgbuild"
-          pkgname: "cpeditor"
-
-      - name: "Check .SRCINFO"
-        if: steps.get_version.outputs.ISSTABLE == 'true'
-        uses: 2m/arch-pkgbuild-builder@v1.16
-        with:
-          target: "srcinfo"
-          pkgname: "cpeditor"
+          path: cpeditor
 
       - name: Publish to AUR
         if: steps.get_version.outputs.ISSTABLE == 'true'
