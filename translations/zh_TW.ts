@@ -692,6 +692,10 @@ Press any key to exit</source>
         <source>Failed to start running. Please compile first.</source>
         <translation>無法執行，請先編譯。</translation>
     </message>
+    <message>
+        <source>Failed to create temporary file.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Core::SessionManager</name>
