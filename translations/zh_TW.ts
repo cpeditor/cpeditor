@@ -78,7 +78,7 @@ Git commit hash：%3
     </message>
     <message>
         <source>Save</source>
-        <translation>儲存</translation>
+        <translation>儲存檔案</translation>
     </message>
     <message>
         <source>Save All</source>
@@ -240,12 +240,11 @@ Git commit hash：%3
     </message>
     <message>
         <source>Enter the contest ID:</source>
-        <translation>輸入競賽 ID：</translation>
+        <translation>輸入比賽 ID：</translation>
     </message>
     <message>
         <source>Enter the problem Code (A-Z):</source>
-        <translation>輸入題目代號９
-輸入題目代號 (A-Z)：</translation>
+        <translation>輸入題目代號 (A-Z)：</translation>
     </message>
     <message>
         <source>Set Problem URL</source>
@@ -265,7 +264,7 @@ Git commit hash：%3
     </message>
     <message>
         <source>New File</source>
-        <translation>開新檔案</translation>
+        <translation>新檔案</translation>
     </message>
     <message>
         <source>Open a new tab in the editor</source>
@@ -277,7 +276,7 @@ Git commit hash：%3
     </message>
     <message>
         <source>Save As...</source>
-        <translation>另存為…</translation>
+        <translation>另存新檔…</translation>
     </message>
     <message>
         <source>Save as new file</source>
@@ -321,7 +320,7 @@ Git commit hash：%3
     </message>
     <message>
         <source>Open a Contest</source>
-        <translation>建立競賽</translation>
+        <translation>建立比賽</translation>
     </message>
     <message>
         <source>Indent</source>
@@ -341,11 +340,11 @@ Git commit hash：%3
     </message>
     <message>
         <source>Duplicate Line</source>
-        <translation>建立本行副本</translation>
+        <translation>建立此列副本</translation>
     </message>
     <message>
         <source>Delete Line</source>
-        <translation>刪除整行</translation>
+        <translation>刪除整列</translation>
     </message>
     <message>
         <source>Toggle Comment</source>
@@ -913,7 +912,7 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;若勾選，填入搜尋框的內容將被視為正規表達式&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;若勾選，填入尋找框的內容將被視為正規表達式&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;您可能會想看看正規表達式的語法：&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://doc.trolltech.com/qregexp.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://doc.trolltech.com/qregexp.html&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
@@ -1002,7 +1001,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Save as</source>
-        <translation>另存為</translation>
+        <translation>另存新檔</translation>
     </message>
     <message>
         <source>Open %1 Template</source>
@@ -1134,7 +1133,7 @@ Do you want to reload it?</source>
     <message>
         <source>Detached Runner</source>
         <translatorcomment>Review required</translatorcomment>
-        <translation type="unfinished">分離式執行器</translation>
+        <translation>分離式執行器</translation>
     </message>
     <message>
         <source>Runner[%1]</source>
@@ -1216,7 +1215,7 @@ Do you want to reload it?</source>
         <source>
 ... The message is too long</source>
         <translation>
-… 訊息過長</translation>
+…訊息過長</translation>
     </message>
 </context>
 <context>
@@ -1243,11 +1242,11 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>Enter a parenthesis (e.g. {}):</source>
+        <translatorcomment>標點符號？</translatorcomment>
         <translation>輸入一對括號（如：{}）：</translation>
     </message>
     <message>
         <source>Delete Parenthesis</source>
-        <translatorcomment>需要再檢視</translatorcomment>
         <translation>刪除括號</translation>
     </message>
     <message>
@@ -1265,7 +1264,7 @@ Do you want to reload it?</source>
         <source>Enable %1 for %2 in %3.
 If it&apos;s partially checked, the global setting in Code Edit will be used.</source>
         <translation>在 %3 中啟用 %1 以使用 %2。
-若沒有全部勾選，將適用程式碼編輯的全域設定。</translation>
+若沒有全部勾選，將使用程式碼編輯的全域設定。</translation>
     </message>
     <message>
         <source>Auto Complete</source>
@@ -1381,7 +1380,6 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>Home</source>
-        <translatorcomment>暫譯</translatorcomment>
         <translation>主畫面</translation>
     </message>
     <message>
@@ -1450,7 +1448,7 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>Detached Execution</source>
-        <translation>終端機內執行</translation>
+        <translation>在終端機中執行</translation>
     </message>
     <message>
         <source>Save Session</source>
@@ -2720,7 +2718,7 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Give us a star on GitHub</source>
-        <translation>在 GitHub 上給我們按個星星</translation>
+        <translation>在 GitHub 上幫我們按個星星</translation>
     </message>
     <message>
         <source>Share CP Editor with your friends</source>
@@ -2728,7 +2726,8 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>I&apos;m using @cpeditor_, an IDE specially designed for competitive programmers, which is awesome!</source>
-        <translation></translation>
+        <translatorcomment>It&apos;s ok to ignore Qt Linguist warning.</translatorcomment>
+        <translation>我在用一款很讚的IDE @cpeditor_</translation>
     </message>
     <message>
         <source>Financially support us</source>
@@ -2743,7 +2742,8 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     <name>Telemetry::UpdateChecker</name>
     <message>
         <source>This error is probably caused by the lack of the OpenSSL library. You can visit &lt;a href=&quot;https://wiki.openssl.org/index.php/Binaries&quot;&gt;the OpenSSLWiki&lt;/a&gt; to find a binary to install, or install it via your favourite package manager. You have to install a version compatible with this version: [%1]</source>
-        <translation>此錯誤可能是因為缺少 OpenSSL 函式庫引起的。您可以參考 &lt;a href=&quot;https://wiki.openssl.org/index.php/Binaries&quot;&gt;the OpenSSLWiki&lt;/a&gt; 來取得安裝檔，或了解如何透過套件管理安裝。您必須安裝與此版本「%1」相容的版本</translation>
+        <translatorcomment>It&apos;s ok to ignore Qt Linguist warning</translatorcomment>
+        <translation>此錯誤可能是因為缺少 OpenSSL 函式庫引起的。您可以參考 &lt;a href=&quot;https://wiki.openssl.org/index.php/Binaries&quot;&gt;the OpenSSLWiki&lt;/a&gt; 來取得安裝檔，或了解如何透過套件管理安裝。您必須安裝與此版本「%1」相容的版本。</translation>
     </message>
     <message>
         <source>No release is found.</source>
@@ -2751,7 +2751,7 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>No download URL of the version [%1] is found.</source>
-        <translation>未發現版本 %1 的下載網址。</translation>
+        <translation>未發現 %1 版的下載網址。</translation>
     </message>
 </context>
 <context>
@@ -2787,6 +2787,7 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Reveal %1 in Explorer</source>
+        <translatorcomment>for Windows</translatorcomment>
         <translation>在檔案總管顯示 %1</translation>
     </message>
     <message>
@@ -2798,11 +2799,11 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     <name>Widgets::ContestDialog</name>
     <message>
         <source>Create a new contest</source>
-        <translation>建立新競賽</translation>
+        <translation>建立新比賽</translation>
     </message>
     <message>
         <source>Contest Details</source>
-        <translation>競賽內容</translation>
+        <translation>比賽內容</translation>
     </message>
     <message>
         <source>Main Directory</source>
@@ -3086,7 +3087,7 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>ncmp - Compare int64s</source>
-        <translation>ncmp - 比對 int64</translation>
+        <translation>ncmp - 比對多個 int64</translation>
     </message>
     <message>
         <source>rcmp4 - Compare doubles, max error 1e-4</source>
@@ -3106,7 +3107,7 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>nyesno - Compare YES/NOs, case insensitive</source>
-        <translation>nyesno - 比對YES、NO（區分大小寫）</translation>
+        <translation>nyesno - 比對 YES、NO（區分大小寫）</translation>
     </message>
     <message>
         <source>Add Test Case</source>
