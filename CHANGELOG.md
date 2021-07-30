@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+### Fixed
+
+-   Fix that when building with CMake 3.21.1 and Ninja, it results in dupbuild or dependency cycle error. (#941)
+
 ## 6.8.3
 
 ### Fixed
