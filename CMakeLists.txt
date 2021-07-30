@@ -19,7 +19,6 @@ if(WIN32)
   set(GUI_TYPE WIN32)
 endif()
 
-find_package(Qt5 COMPONENTS Core REQUIRED)
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt5 COMPONENTS Network REQUIRED)
 find_package(Qt5 COMPONENTS LinguistTools REQUIRED)
@@ -37,8 +36,7 @@ add_subdirectory(third_party/lsp-cpp)
 
 add_subdirectory(third_party/qhttp)
 
-add_library(diff_match_patch
-	third_party/diff_match_patch/diff_match_patch.cpp)
+add_subdirectory(third_party/diff_match_patch)
 
 option(PORTABLE_VERSION "Build the portable version" Off)
 option(USE_CLANG_TIDY "Use clang-tidy to lint the files" Off)
@@ -266,7 +264,6 @@ target_link_libraries(cpeditor PRIVATE Qt5::Widgets)
 target_link_libraries(cpeditor PRIVATE QtFindReplaceDialog)
 target_link_libraries(cpeditor PRIVATE SingleApplication)
 target_link_libraries(cpeditor PRIVATE QHttp)
-target_link_libraries(diff_match_patch PRIVATE Qt5::Core)
 target_link_libraries(cpeditor PRIVATE diff_match_patch)
 
 if(MSVC)
