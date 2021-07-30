@@ -542,6 +542,15 @@
         "code",
         "bug"
       ]
+    },
+    {
+      "login": "toto6038",
+      "name": "toto6038",
+      "avatar_url": "https://avatars.githubusercontent.com/u/50100922?v=4",
+      "profile": "https://github.com/toto6038",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 6,
