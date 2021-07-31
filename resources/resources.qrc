@@ -4,6 +4,7 @@
         <file>../DONATE.md</file>
         <file>../DONATE_zh-CN.md</file>
         <file>../DONATE_ru-RU.md</file>
+        <file>language_config.json</file>
         <file alias="testlib/testlib.h">../third_party/testlib/testlib.h</file>
         <file alias="testlib/checkers/ncmp.cpp">../third_party/testlib/checkers/ncmp.cpp</file>
         <file alias="testlib/checkers/rcmp4.cpp">../third_party/testlib/checkers/rcmp4.cpp</file>

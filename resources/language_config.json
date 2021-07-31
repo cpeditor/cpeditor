@@ -1,0 +1,26 @@
+{
+    "Cpp":
+    {
+        "singleToken": "'",
+        "doubleQuoteToken": "\"",
+        "singleLineCommentToken": "//",
+        "blockCommentTokens":["/*", "*\\"],
+        "rawStringTokens":["R\"(", ")"]
+    },
+    "Java":
+    {
+        "singleToken": "'",
+        "doubleQuoteToken": "\"",
+        "singleLineCommentToken": "//",
+        "blockCommentTokens":["/*", "*\\"],
+        "rawStringTokens":["\"\"\"", "\"\"\""]
+    },
+    "Python":
+    {
+        "singleToken": "'",
+        "doubleQuoteToken": "\"",
+        "singleLineCommentToken": "#",
+        "blockCommentTokens":["", ""],
+        "rawStringTokens":["'''", "'''"]
+    }
+}
