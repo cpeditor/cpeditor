@@ -41,7 +41,7 @@ If you want to go a step further: The translated strings are wrapped in `tr()` i
 The basic structure of the settings system is:
 
 1.  The information of the settings are stored in [settings.yaml](src/Settings/settings.yaml).
-2.  `settings.yaml` is translated to `SettingsHelper.hpp`, `SettingsInfo.cpp` and `PreferencesWindow.cpp` by [genSettings.cpp](src/Settings/genSettings.cpp).
+2.  `settings.yaml` is translated to `SettingsHelper.hpp`, `SettingsInfo.cpp` and `PreferencesWindow.cpp` by [genSettings.cpp](src/Settings/gen/genSettings.cpp).
 3.  Settings are displayed in [PreferencesWindow](src/Settings/PreferencesWindow.hpp) and separated into several [PreferencesPage](src/Settings/PreferencesPage.hpp)s. Most of the settings are displayed in [PreferencesTemplate](src/Settings/PreferencesTemplate.hpp) which uses `SettingsInfo` to generate the page.
 4.  In other parts of CP Editor, you can get the settings via the functions in `SettingsHelper.hpp` or use [SettingsManager](src/Settings/SettingsManager.hpp) to manage the settings. The purpose of `SettingsHelper.hpp` is to enable auto-complete during development and reduce the chance of misspelling the name of a setting. We strongly recommend you not to use `SettingsManager`, unless there is a special reason.
 

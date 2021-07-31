@@ -38,7 +38,7 @@ add_subdirectory(third_party/qhttp)
 
 add_subdirectory(third_party/diff_match_patch)
 
-add_subdirectory(src/Settings)
+add_subdirectory(src/Settings/gen)
 
 option(PORTABLE_VERSION "Build the portable version" Off)
 option(USE_CLANG_TIDY "Use clang-tidy to lint the files" Off)
