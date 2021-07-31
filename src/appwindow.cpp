@@ -278,7 +278,8 @@ void AppWindow::setConnections()
     connect(trayIcon, &QSystemTrayIcon::activated, this, &AppWindow::onTrayIconActivated);
     connect(trayIcon, &QSystemTrayIcon::messageClicked, this, &AppWindow::showOnTop);
 
-    connect(qobject_cast<Application *>(qApp), &Application::requestOpenFile, [=](const QString& path){ this->openTab(path);});
+    connect(qobject_cast<Application *>(qApp), &Application::requestOpenFile,
+            [=](const QString &path) { this->openTab(path); });
 }
 
 void AppWindow::allocate()
