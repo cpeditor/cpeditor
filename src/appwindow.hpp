@@ -51,9 +51,12 @@ class UpdateChecker;
 namespace Core
 {
 class SessionManager;
+}
+namespace Editor
+{
 class FakeVimCommand;
 class FakeVimProxy;
-} // namespace Core
+} // namespace Editor
 
 class AppWindow : public QMainWindow
 {
@@ -265,8 +268,8 @@ class AppWindow : public QMainWindow
     int tabCount() const;
 
     friend class Core::SessionManager;
-    friend class Core::FakeVimCommand;
-    friend class Core::FakeVimProxy;
+    friend class Editor::FakeVimCommand;
+    friend class Editor::FakeVimProxy;
 };
 
 #endif // APPWINDOW_HPP

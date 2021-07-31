@@ -55,7 +55,7 @@ void PreferencesHomePage::init()
     layout->addSpacing(20);
 
     // add buttons
-    addButton("Code Edit", tr("Code Editor Settings"));
+    addButton("Code Editing", tr("Code Editor Settings"));
     addButton("Language/C++/C++ Commands", tr("C++ Compile and Run Commands"));
     addButton("Language/Java/Java Commands", tr("Java Compile and Run Commands"));
     addButton("Language/Python/Python Commands", tr("Python Run Commands"));

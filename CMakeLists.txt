@@ -140,10 +140,6 @@ add_executable(cpeditor
     src/Core/Compiler.hpp
     src/Core/EventLogger.cpp
     src/Core/EventLogger.hpp 
-    src/Core/FakeVimProxy.cpp
-    src/Core/FakeVimProxy.hpp 
-    src/Core/FakeVimCommand.cpp
-    src/Core/FakeVimCommand.hpp
     src/Core/MessageLogger.cpp
     src/Core/MessageLogger.hpp
     src/Core/Runner.cpp
@@ -161,6 +157,10 @@ add_executable(cpeditor
     src/Editor/CodeEditor.hpp
     src/Editor/CodeEditorSideBar.cpp
     src/Editor/CodeEditorSideBar.hpp
+    src/Editor/FakeVimProxy.cpp
+    src/Editor/FakeVimProxy.hpp 
+    src/Editor/FakeVimCommand.cpp
+    src/Editor/FakeVimCommand.hpp
     src/Editor/KSHRepository.cpp
     src/Editor/KSHRepository.hpp
     src/Editor/LanguageRepository.cpp
@@ -266,8 +266,6 @@ add_executable(cpeditor
 
 include_directories("generated/")
 include_directories("src/")
-
-target_link_libraries(diff_match_patch PRIVATE Qt5::Core)
 
 target_link_libraries(cpeditor PRIVATE LSPClient)
 target_link_libraries(cpeditor PRIVATE Qt5::Network)

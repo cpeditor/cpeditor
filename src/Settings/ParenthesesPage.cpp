@@ -57,7 +57,7 @@ ParenthesisWidget::ParenthesisWidget(QString language, QChar leftParenthesis, QC
         checkBox->setTristate(true);
         checkBox->setCheckState(state);
         checkBox->setToolTip(
-            tr("Enable %1 for %2 in %3.\nIf it's partially checked, the global setting in Code Edit will be used.")
+            tr("Enable %1 for %2 in %3.\nIf it's partially checked, the global setting in Code Editing will be used.")
                 .arg(name.toLower())
                 .arg(parenthesis())
                 .arg(lang));

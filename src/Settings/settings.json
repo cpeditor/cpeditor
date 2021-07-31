@@ -5,6 +5,12 @@
     "default": 4,
     "param": "QVariantList {1,16}",
     "tip": "The width of the tab character, or the number of spaces of an indent",
+    "depends": [
+        {
+            "name": "FakeVim/Enable",
+            "check":"return !var.toBool();"
+        }
+    ],
     "old": ["tab_stop"]
   },
   {
@@ -363,25 +369,49 @@
     "type": "bool",
     "default": true,
     "tip": "Automatically complete a pair of parentheses when typing the left element of it,\nand move out of it when typing the right element of it.\nThis can be overridden for each parenthesis in each language.",
+    "depends": [
+        {
+            "name": "FakeVim/Enable",
+            "check":"return !var.toBool();"
+        }
+    ],
     "old": ["auto_parenthesis"]
   },
   {
     "name": "Auto Remove Parentheses",
     "type": "bool",
     "default": true,
-    "tip": "Automatically delete the whole pair of parentheses when deleting\nthe left element of it if the two elements are adjacent.\nThis can be overridden for each parenthesis in each language."
+    "tip": "Automatically delete the whole pair of parentheses when deleting\nthe left element of it if the two elements are adjacent.\nThis can be overridden for each parenthesis in each language.",
+    "depends": [
+        {
+            "name": "FakeVim/Enable",
+            "check":"return !var.toBool();"
+        }
+    ]
   },
   {
     "name": "Tab Jump Out Parentheses",
     "desc": "Jump out of a parenthesis by pressing Tab",
     "type": "bool",
-    "tip": "When this is enabled, you can use Tab instead of the\nclosing parenthesis to jump out of a parenthesis.\nThis can be overridden for each parenthesis in each language."
+    "tip": "When this is enabled, you can use Tab instead of the\nclosing parenthesis to jump out of a parenthesis.\nThis can be overridden for each parenthesis in each language.",
+    "depends": [
+        {
+            "name": "FakeVim/Enable",
+            "check":"return !var.toBool();"
+        }
+    ]
   },
   {
     "name": "Auto Indent",
     "type": "bool",
     "default": true,
-    "tip": "Add an indent when entering a new line after a \"{\"."
+    "tip": "Add an indent when entering a new line after a \"{\".",
+    "depends": [
+        {
+            "name": "FakeVim/Enable",
+            "check":"return !var.toBool();"
+        }
+    ]
   },
   {
     "name": "Auto Save",
@@ -431,7 +461,13 @@
     "name": "Replace Tabs",
     "desc": "Replace tabs by spaces",
     "type": "bool",
-    "tip": "Use spaces instead of a tab character."
+    "tip": "Use spaces instead of a tab character.",
+    "depends": [
+        {
+            "name": "FakeVim/Enable",
+            "check":"return !var.toBool();"
+        }
+    ]
   },
   {
     "name": "Save Tests",
@@ -1183,5 +1219,36 @@
     "type": "bool",
     "default": false,
     "notr": true
+  },
+  {
+    "name": "FakeVim/Enable",
+    "desc": "Enable Vim Emulation",
+    "type": "bool",
+    "tip": "Enable vim emulation in Code Editor"
+  },
+  {
+      "name": "FakeVim/RC",
+      "desc": "Vim Configuration",
+      "type": "QString",
+      "default": "set noexpandtab\nset autoindent\nset smartindent\nset tabstop=4\nset shiftwidth=4",
+      "ui": "QPlainTextEdit",
+      "tip": "The contents of Vim RC. It is loaded everytime vim emulation starts. \nNot all vim commands are supported, please check https://github.com/cpeditor/FakeVim for list of supported commands",
+      "depends": [
+          {
+              "name": "FakeVim/Enable"
+          }
+      ]
+  },
+  {
+      "name": "Highlight Current Line",
+      "type": "bool",
+      "default": "true",
+      "tip": "Highlight the line where cursor exists.\nIn, vim emulation current line is never highlighed",
+      "depends": [
+          {
+              "name": "FakeVim/Enable",
+              "check": "return !var.toBool();"
+          }
+      ]
   }
 ]

@@ -73,7 +73,7 @@ class SettingsInfo
   private:
     static QList<SettingInfo> settings;
 
-    friend class SettingsUpdater;
+    friend struct SettingsUpdater;
 };
 
 #endif // SETTINGSINFO_HPP

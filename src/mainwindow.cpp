@@ -20,7 +20,7 @@
 #include "Core/Checker.hpp"
 #include "Core/Compiler.hpp"
 #include "Core/EventLogger.hpp"
-#include "Core/FakeVimProxy.hpp"
+#include "Editor/FakeVimProxy.hpp"
 #include "Core/MessageLogger.hpp"
 #include "Core/Runner.hpp"
 #include "Editor/CodeEditor.hpp"
@@ -611,11 +611,11 @@ void MainWindow::applySettings(const QString &pagePath)
             {
                 fakevimHandler = new FakeVim::Internal::FakeVimHandler(editor, nullptr);
 
-                Core::FakeVimProxy::connectSignals(fakevimHandler, editor, this, appWindow);
-                Core::FakeVimProxy::initHandler(fakevimHandler);
-                Core::FakeVimProxy::sourceVimRc(fakevimHandler);
+                Editor::FakeVimProxy::connectSignals(fakevimHandler, editor, this, appWindow);
+                Editor::FakeVimProxy::initHandler(fakevimHandler);
+                Editor::FakeVimProxy::sourceVimRc(fakevimHandler);
             }
-            Core::FakeVimProxy::clearUndoRedo(editor);
+            Editor::FakeVimProxy::clearUndoRedo(editor);
         }
         editor->applySettings(language);
     }
