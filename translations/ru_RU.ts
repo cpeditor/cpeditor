@@ -846,6 +846,37 @@ Press any key to exit</source>
     </message>
 </context>
 <context>
+    <name>FakeVimCommand</name>
+    <message>
+        <source>`new` requires no argument or one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos;, got [%1]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>[%1] is not C++, Python or Java source file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>[%1] does not exist. To open a tab with a non-existing file, use `open!` instead</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>[%1] is not a number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 is out of range [1, %2]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>[%1] is not a valid view mode. It should be one of &apos;split&apos; and &apos;edit&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 is not a valid language name. It should be one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>FindReplaceDialog</name>
     <message>
         <source>Find/Replace</source>
@@ -1251,12 +1282,6 @@ Do you want to reload it?</source>
         <translation>Скобки: %1</translation>
     </message>
     <message>
-        <source>Enable %1 for %2 in %3.
-If it&apos;s partially checked, the global setting in Code Edit will be used.</source>
-        <translation>Активировано %1 для %2 в %3.
-Выбрано частично, будут использованы глобальные настройки в Code Edit.</translation>
-    </message>
-    <message>
         <source>Auto Complete</source>
         <translation>Автозавершение</translation>
     </message>
@@ -1267,6 +1292,11 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <source>Tab Jump Out</source>
         <translation>Tab Jump Out</translation>
+    </message>
+    <message>
+        <source>Enable %1 for %2 in %3.
+If it&apos;s partially checked, the global setting in Code Editing will be used.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1375,10 +1405,6 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <source>Go to the home page</source>
         <translation>Назад на основную страницу</translation>
-    </message>
-    <message>
-        <source>Code Edit</source>
-        <translation>Редактирование кода</translation>
     </message>
     <message>
         <source>Language</source>
@@ -1524,6 +1550,10 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <source>Test Cases</source>
         <translation type="unfinished">Тесткейсы</translation>
     </message>
+    <message>
+        <source>Code Editing</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsInfo</name>
@@ -1542,10 +1572,6 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <source>The width of the cursor in pixels</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Editor Font</source>
-        <translation>Шрифт редактора</translation>
     </message>
     <message>
         <source>The font of the code editor</source>
@@ -2426,10 +2452,6 @@ If the output is too long, it will be elided.</source>
         <translation>Показывать всплывающие уведомления, когда известен вердикт отправки. Вы сможете видеть сообщения за пределами CP Editor.</translation>
     </message>
     <message>
-        <source>The style of the code syntax highlighting.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Code Editor Font</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2633,6 +2655,36 @@ You can learn about it by running `yapf --style-help`.</source>
     </message>
     <message>
         <source>Automatically uncheck test cases when they get accepted.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The syntax highlight theme of the code editor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable Vim Emulation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable vim emulation in Code Editor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Vim Configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The contents of Vim RC. It is loaded everytime vim emulation starts. 
+Not all vim commands are supported, please check https://github.com/cpeditor/FakeVim for list of supported commands</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Highlight Current Line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Highlight the line where cursor exists.
+In, vim emulation current line is never highlighed</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
