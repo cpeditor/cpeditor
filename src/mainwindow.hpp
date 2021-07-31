@@ -44,11 +44,11 @@ namespace Core
 class Checker;
 class Compiler;
 class Runner;
-}
+} // namespace Core
 namespace Editor
 {
 class FakeVimCommand;
-} // namespace Core
+} // namespace Editor
 
 namespace Extensions
 {
