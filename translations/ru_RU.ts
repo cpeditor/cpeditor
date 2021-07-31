@@ -687,6 +687,10 @@ Press any key to exit</source>
         <source>Detached execution is not supported on your platform</source>
         <translation>Отдельный запуск не поддерживается на вашей системе</translation>
     </message>
+    <message>
+        <source>Failed to create temporary file.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Core::SessionManager</name>

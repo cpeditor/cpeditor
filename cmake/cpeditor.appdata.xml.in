@@ -7,9 +7,11 @@
   <summary>Code editor for competitive programming</summary>
   <summary xml:lang="ru">Редактор кода для спортивного программирования</summary>
   <summary xml:lang="zh_CN">算法竞赛代码编辑器</summary>
+  <summary xml:lang="zh_TW">競程程式碼編輯器</summary>
   <description>CP Editor is a Qt-based, lightweight and cross-platform code editor specially designed for competitive programming. </description>
   <description xml:lang="ru">CP Editor - это легкий кросс-платформенный редактор кода на базе Qt, специально разработанный для спортивного программирования.</description>
   <description xml:lang="zh_CN">CP Editor 是一个基于 Qt 的轻量级跨平台代码编辑器，专为算法竞赛设计。</description>
+  <description xml:lang="zh_TW">CP Editor 是一款採用 Qt 的輕巧型跨平台程式碼編輯器，專為競程使用設計。</description>
   <url type="homepage">https://cpeditor.org</url>
   <url type="bugtracker">https://github.com/cpeditor/cpeditor/issues</url>
   <url type="help">https://github.com/cpeditor/cpeditor/discussions</url>

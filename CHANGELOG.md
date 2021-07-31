@@ -11,6 +11,10 @@
 -   Change the swap-line shortcuts on macOS from `Ctrl+Shift+Up/Down` to `Command+Control+Up/Down` to fix that the old shortcuts were unusable on macOS. (#863 and #876)
 -   Fix that the icon is not in the center on macOS. (#880)
 -   Fix that there's no suffix when using Default File Path For Problem URLs. (#894)
+-   Fix that when "Save Test Case To A File" the elided version instead of the full content of a test case was saved to the file.
+-   Fix that, on Windows, when there are large test cases, small test cases also take a long time to finish. (#789 and #938)
+-   Fix that, on Windows, when there are large test cases and the user's code is blocking, CP Editor also blocks. (#938)
+-   Fix that when building with CMake 3.21.1 and Ninja, it results in dupbuild or dependency cycle error. (#941)
 
 ## v6.9
 
