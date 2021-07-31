@@ -38,6 +38,8 @@ add_subdirectory(third_party/qhttp)
 
 add_subdirectory(third_party/diff_match_patch)
 
+add_subdirectory(src/Settings)
+
 option(PORTABLE_VERSION "Build the portable version" Off)
 option(USE_CLANG_TIDY "Use clang-tidy to lint the files" Off)
 
@@ -101,10 +103,6 @@ endif()
 configure_file(cmake/version.hpp.in ${CMAKE_BINARY_DIR}/generated/version.hpp)
 configure_file(cmake/portable.hpp.in ${CMAKE_BINARY_DIR}/generated/portable.hpp)
 configure_file(cmake/cpeditor.appdata.xml.in ${PROJECT_SOURCE_DIR}/dist/linux/cpeditor.appdata.xml)
-
-add_executable(gen_settings src/Settings/genSettings.cpp)
-
-target_link_libraries(gen_settings PRIVATE yaml-cpp)
 
 add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMAKE_BINARY_DIR}/generated/SettingsInfo.cpp ${CMAKE_BINARY_DIR}/generated/PreferencesWindow.cpp
                    COMMAND gen_settings ${PROJECT_SOURCE_DIR}/src/Settings/settings.yaml
