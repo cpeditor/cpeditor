@@ -285,7 +285,6 @@ target_link_libraries(cpeditor PRIVATE QtFindReplaceDialog)
 target_link_libraries(cpeditor PRIVATE SingleApplication)
 target_link_libraries(cpeditor PRIVATE QHttp)
 target_link_libraries(cpeditor PRIVATE yaml-cpp)
-target_link_libraries(diff_match_patch PRIVATE Qt5::Core)
 target_link_libraries(cpeditor PRIVATE diff_match_patch)
 
 if(MSVC)
