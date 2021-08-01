@@ -54,9 +54,9 @@
 #include <QUrl>
 #include <findreplacedialog.h>
 
-AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(new Ui::AppWindow)
+AppWindow::AppWindow(bool noRestoreSession, QWidget *parent) : QMainWindow(parent), ui(new Ui::AppWindow)
 {
-    LOG_INFO(BOOL_INFO_OF(noHotExit))
+    LOG_INFO(BOOL_INFO_OF(noRestoreSession))
     ui->setupUi(this);
     setAcceptDrops(true);
     allocate();
@@ -113,7 +113,7 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
     if (SettingsHelper::isCheckUpdate())
         updateChecker->checkUpdate(true);
 
-    if (noHotExit || (!SettingsHelper::isForceClose() && !SettingsHelper::isHotExitEnable()))
+    if (noRestoreSession || (!SettingsHelper::isForceClose() && !SettingsHelper::isHotExitEnable()))
         return;
 
     SettingsHelper::setForceClose(false);
@@ -136,16 +136,16 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
     sessionManager->restoreSession(lastSessionPath);
 }
 
-AppWindow::AppWindow(int depth, bool cpp, bool java, bool python, bool noHotExit, const QStringList &paths,
+AppWindow::AppWindow(int depth, bool cpp, bool java, bool python, bool noRestoreSession, const QStringList &paths,
                      QWidget *parent)
-    : AppWindow(noHotExit, parent)
+    : AppWindow(noRestoreSession, parent)
 {
     openPaths(paths, cpp, java, python, depth);
     finishConstruction();
 }
 
-AppWindow::AppWindow(bool cpp, bool java, bool python, bool noHotExit, int number, const QString &path, QWidget *parent)
-    : AppWindow(noHotExit, parent)
+AppWindow::AppWindow(bool cpp, bool java, bool python, bool noRestoreSession, int number, const QString &path, QWidget *parent)
+    : AppWindow(noRestoreSession, parent)
 {
     QString lang = SettingsHelper::getDefaultLanguage();
     if (cpp)
