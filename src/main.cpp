@@ -132,7 +132,8 @@ int main(int argc, char *argv[])
          {"java", "Open Java files in given directories. / Use Java for open contests."},
          {"python", "Open Python files in given directories. / Use Python for open contests."},
          {"verbose", "Dump all logs to stderr of the application. (use only for debug purpose)"},
-         {"no-restore-session", "Do not load hot exit in this session. You won't be able to load the last session again."}});
+         {"no-restore-session",
+          "Do not load hot exit in this session. You won't be able to load the last session again."}});
     parser.setOptionsAfterPositionalArgumentsMode(QCommandLineParser::ParseAsOptions);
     parser.setSingleDashWordOptionMode(QCommandLineParser::ParseAsLongOptions);
     parser.process(app);
