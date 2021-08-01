@@ -54,6 +54,7 @@ class SyntaxHighlighter;
 namespace Editor
 {
 class CodeEditorSidebar;
+class LanguageRepository;
 
 class CodeEditor : public QPlainTextEdit
 {
@@ -368,6 +369,8 @@ class CodeEditor : public QPlainTextEdit
     CodeEditorSidebar *sideBar = nullptr;
 
     QString language;
+
+    LanguageRepository *languageRepo;
 
     friend class CodeEditorSidebar;
 };

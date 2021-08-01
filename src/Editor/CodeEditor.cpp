@@ -43,6 +43,7 @@
 #include "Core/EventLogger.hpp"
 #include "Editor/CodeEditorSideBar.hpp"
 #include "Editor/KSHRepository.hpp"
+#include "Editor/LanguageRepository.hpp"
 #include "Settings/SettingsManager.hpp"
 #include "generated/SettingsHelper.hpp"
 #include <QApplication>
@@ -65,6 +66,7 @@ CodeEditor::CodeEditor(QWidget *widget) : QPlainTextEdit(widget)
 {
     highlighter = new KSyntaxHighlighting::SyntaxHighlighter(document());
     sideBar = new CodeEditorSidebar(this);
+    languageRepo = new LanguageRepository(SettingsHelper::getDefaultLanguage(), this);
 
     connect(document(), &QTextDocument::blockCountChanged, this, &CodeEditor::updateBottomMargin);
     connect(document(), &QTextDocument::blockCountChanged, this, &CodeEditor::updateSidebarGeometry);
@@ -81,6 +83,7 @@ void CodeEditor::applySettings(const QString &lang)
     LOG_INFO("Applying settings to a CodeEditor");
 
     language = lang;
+    languageRepo->changeLanguage(lang);
 
     m_tabReplace = QString(SettingsHelper::getTabWidth(), ' ');
     setTabStopDistance(fontMetrics().horizontalAdvance(QString(SettingsHelper::getTabWidth() * 200, ' ')) / 200.0);
@@ -647,7 +650,7 @@ void CodeEditor::duplicate()
 
 void CodeEditor::toggleComment()
 {
-    const QString comment = language == "Python" ? "#" : "//";
+    const QString comment = languageRepo->singleLineCommentToken();
 
     if (!removeInEachLineOfSelection(QRegularExpression("^\\s*(" + comment + " ?)"), false))
     {
@@ -657,8 +660,8 @@ void CodeEditor::toggleComment()
 
 void CodeEditor::toggleBlockComment()
 {
-    const QString commentStart = language == "Python" ? "'''" : "/*";
-    const QString commentEnd = language == "Python" ? "'''" : "*/";
+    const QString commentStart = languageRepo->blockCommentTokens().first;
+    const QString commentEnd = languageRepo->blockCommentTokens().second;
 
     if (commentStart.isEmpty() || commentEnd.isEmpty())
         return;
@@ -1180,6 +1183,7 @@ QChar CodeEditor::charUnderCursor(int offset) const
 
 bool CodeEditor::isPositionInsideBlockComments(int position) const
 {
+    QString code = document()->toPlainText();
     return true;
 }
 
@@ -1200,6 +1204,7 @@ bool CodeEditor::isPositionInsideDoubleQuotes(int position) const
 
 bool CodeEditor::isPositionPartOfRawOrStringLiteral(int position) const
 {
+
     return true;
 }
 

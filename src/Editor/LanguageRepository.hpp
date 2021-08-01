@@ -18,32 +18,32 @@
 #ifndef LANGUAGEREPOSITORY_HPP
 #define LANGUAGEREPOSITORY_HPP
 
+#include <QJsonDocument>
+#include <QJsonObject>
 #include <QObject>
 
-class QRegularExpression;
+class QRegExp;
 
 namespace Editor
 {
 class LanguageRepository : public QObject
 {
   public:
-    LanguageRepository(QString language, QObject *parent = nullptr);
-    void changeLanguage(QString newLang);
+    LanguageRepository(const QString &language, QObject *parent = nullptr);
+    void changeLanguage(const QString &newLang);
 
-    QString singleQuoteToken() const;
-    QString doubleQuoteToken() const;
     QString singleLineCommentToken() const;
     QPair<QString, QString> blockCommentTokens() const;
     QPair<QString, QString> rawStringTokens() const;
 
-    QRegularExpression singleQuoteRegEx() const;
-    QRegularExpression doubleQuoteRegEx() const;
-    QRegularExpression singleLineCommentRegEx() const;
-    QPair<QRegularExpression, QRegularExpression> blockCommentRegExes() const;
-    QPair<QRegularExpression, QRegularExpression> rawStringRegExes() const;
+    QRegExp singleLineCommentRegEx() const;
+    QRegExp blockCommentRegEx() const;
+    QRegExp rawStringRegEx() const;
 
   private:
     QString language;
+    QJsonDocument doc;
+    QJsonObject obj;
 };
 
 } // namespace Editor
