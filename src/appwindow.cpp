@@ -144,7 +144,8 @@ AppWindow::AppWindow(int depth, bool cpp, bool java, bool python, bool noRestore
     finishConstruction();
 }
 
-AppWindow::AppWindow(bool cpp, bool java, bool python, bool noRestoreSession, int number, const QString &path, QWidget *parent)
+AppWindow::AppWindow(bool cpp, bool java, bool python, bool noRestoreSession, int number, const QString &path,
+                     QWidget *parent)
     : AppWindow(noRestoreSession, parent)
 {
     QString lang = SettingsHelper::getDefaultLanguage();
