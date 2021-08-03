@@ -27,7 +27,7 @@ class WakaTime : public QObject
     Q_OBJECT
 
   public:
-    WakaTime(const QString &path, const QString &key, QObject *parent=nullptr);
+    WakaTime(const QString &path, const QString &key, QObject *parent = nullptr);
     void sendHeartBeat(const QString &filePath, bool isWrite);
     void update(const QString &path, const QString &key);
 
