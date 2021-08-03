@@ -320,7 +320,7 @@ void AppWindow::allocate()
 
     sessionManager = new Core::SessionManager(this);
 
-    wakaTime = new Extensions::WakaTime(SettingsHelper::getWakaTimePath());
+    wakaTime = new Extensions::WakaTime(SettingsHelper::getWakaTimePath(), SettingsHelper::getWakaTimeApiKey());
 }
 
 void AppWindow::applySettings()
@@ -1088,7 +1088,7 @@ void AppWindow::onSettingsApplied(const QString &pagePath)
 
     if (pageChanged("Extensions/WakaTime"))
     {
-        wakaTime->updatePath(SettingsHelper::getWakaTimePath());
+        wakaTime->update(SettingsHelper::getWakaTimePath(), SettingsHelper::getWakaTimeApiKey());
     }
 
     if (pageChanged("Actions/Save Session"))

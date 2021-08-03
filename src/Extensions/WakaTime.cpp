@@ -16,6 +16,7 @@
  */
 
 #include "Extensions/WakaTime.hpp"
+#include "Core/EventLogger.hpp"
 #include "Settings/SettingsManager.hpp"
 #include "generated/SettingsHelper.hpp"
 #include <QObject>
@@ -24,25 +25,27 @@
 namespace Extensions
 {
 
-WakaTime::WakaTime(const QString &path) : wakaTimePath(path)
+WakaTime::WakaTime(const QString &path, const QString &key) : wakaTimePath(path), apiKey(key)
 {
+    LOG_INFO(INFO_OF(path));
+    LOG_INFO(INFO_OF(key));
 }
 
-void WakaTime::updatePath(const QString &path)
+void WakaTime::update(const QString &path, const QString &key)
 {
     wakaTimePath = path;
+    apiKey = key;
 }
 
-void WakaTime::sendHeartBeat(QString filePath, bool isWrite)
+void WakaTime::sendHeartBeat(const QString &filePath, bool isWrite)
 {
     QTime now = QTime::currentTime();
     if (!isWrite && filePath == lastFilePath && lastHeartBeat.isValid() && lastHeartBeat.msecsTo(now) > 2 * 60 * 1000)
         return;
     lastHeartBeat = now;
-    QProcess *wakaTimeProcess = new QProcess();
+    auto *wakaTimeProcess = new QProcess();
     wakaTimeProcess->setProgram(wakaTimePath);
-    QStringList arg = {"--file",   filePath,           "--key", SettingsHelper::getWakaTimeApiKey(),
-                       "--plugin", "cpeditor-wakatime"};
+    QStringList arg = {"--file", filePath, "--key", apiKey, "--plugin", "cpeditor-wakatime"};
     if (isWrite)
         arg.append("--write");
     wakaTimeProcess->setArguments(arg);

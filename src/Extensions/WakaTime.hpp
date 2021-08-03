@@ -28,13 +28,14 @@ class WakaTime : public QObject
     Q_OBJECT
 
   public:
-    WakaTime(const QString &path);
-    void sendHeartBeat(QString filePath, bool isWrite);
-    void updatePath(const QString &path);
+    WakaTime(const QString &path, const QString &key);
+    void sendHeartBeat(const QString &filePath, bool isWrite);
+    void update(const QString &path, const QString &key);
 
   private:
     QString wakaTimePath;
     QString lastFilePath;
+    QString apiKey;
     QTime lastHeartBeat;
 };
 } // namespace Extensions
