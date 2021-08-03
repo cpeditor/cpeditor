@@ -27,6 +27,7 @@
 #include "Extensions/CompanionServer.hpp"
 #include "Extensions/EditorTheme.hpp"
 #include "Extensions/LanguageServer.hpp"
+#include "Extensions/WakaTime.hpp"
 #include "Settings/DefaultPathManager.hpp"
 #include "Settings/FileProblemBinder.hpp"
 #include "Settings/PreferencesWindow.hpp"
@@ -317,6 +318,8 @@ void AppWindow::allocate()
     trayIcon->show();
 
     sessionManager = new Core::SessionManager(this);
+
+    wakaTime = new Extensions::WakaTime(SettingsHelper::getWakaTimePath());
 }
 
 void AppWindow::applySettings()
@@ -423,6 +426,7 @@ void AppWindow::openTab(MainWindow *window)
     connect(window, &MainWindow::requestToastMessage, trayIcon,
             [this](QString const &head, QString const &body) { trayIcon->showMessage(head, body); });
     connect(window, &MainWindow::compileOrRunTriggered, this, &AppWindow::onCompileOrRunTriggered);
+    connect(window, &MainWindow::fileSaved, this, &AppWindow::onFileSaved);
 
     ui->tabWidget->setCurrentIndex(ui->tabWidget->addTab(window, window->getTabTitle(false, true)));
 
@@ -891,6 +895,11 @@ void AppWindow::onTabChanged(int index)
         connect(tmp->getSplitter(), &QSplitter::splitterMoved, this, &AppWindow::onSplitterMoved);
     activeRightSplitterMoveConnection =
         connect(tmp->getRightSplitter(), &QSplitter::splitterMoved, this, &AppWindow::onRightSplitterMoved);
+
+    if (SettingsHelper::isWakaTimeEnable())
+    {
+        wakaTime->sendHeartBeat(tmp->getFilePath(), false);
+    }
 }
 
 void AppWindow::onEditorFileChanged()
@@ -954,6 +963,11 @@ void AppWindow::onEditorTextChanged(MainWindow *window)
             lspTimerJava->start();
         else
             lspTimerPython->start();
+
+        if (SettingsHelper::isWakaTimeEnable())
+        {
+            wakaTime->sendHeartBeat(window->getFilePath(), true);
+        }
     }
 }
 
@@ -1588,4 +1602,12 @@ void AppWindow::onCompileOrRunTriggered()
 {
     if (ui->actionEditorMode->isChecked())
         on_actionSplitMode_triggered();
+}
+
+void AppWindow::onFileSaved(const QString &path)
+{
+    if (SettingsHelper::isWakaTimeEnable())
+    {
+        wakaTime->sendHeartBeat(path, false);
+    }
 }

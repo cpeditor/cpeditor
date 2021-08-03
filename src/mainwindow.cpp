@@ -1014,6 +1014,8 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
 
     saveTests(safe);
 
+    emit fileSaved(filePath);
+
     return true;
 }
 

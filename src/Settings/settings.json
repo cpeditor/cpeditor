@@ -1182,5 +1182,23 @@
     "type": "bool",
     "default": false,
     "notr": true
+  },
+  {
+    "name": "WakaTime/Path",
+    "desc": "Path",
+    "type": "QString",
+    "default": "wakatime",
+    "ui": "PathItem",
+    "param": "PathItem::Executable",
+    "tip": "The path to the WakaTime executable file"
+  },
+  {
+    "name": "WakaTime/Api Key",
+    "type": "QString"
+  },
+  {
+    "name": "WakaTime/Enable",
+    "type": "bool",
+    "default": false
   }
 ]
