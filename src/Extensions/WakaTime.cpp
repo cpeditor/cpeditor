@@ -17,15 +17,13 @@
 
 #include "Extensions/WakaTime.hpp"
 #include "Core/EventLogger.hpp"
-#include "Settings/SettingsManager.hpp"
-#include "generated/SettingsHelper.hpp"
-#include <QObject>
 #include <QProcess>
 
 namespace Extensions
 {
 
-WakaTime::WakaTime(const QString &path, const QString &key) : wakaTimePath(path), apiKey(key)
+WakaTime::WakaTime(const QString &path, const QString &key, QObject *parent)
+    : QObject(parent), wakaTimePath(path), apiKey(key)
 {
     LOG_INFO(INFO_OF(path));
     LOG_INFO(INFO_OF(key));

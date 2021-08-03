@@ -2647,6 +2647,10 @@ You can learn about it by running `yapf --style-help`.</source>
         <source>Enable WakaTime</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Can be found at https://wakatime.com/settings/account</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ShortcutItem</name>

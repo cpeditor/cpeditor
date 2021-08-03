@@ -2639,6 +2639,10 @@ You can learn about it by running `yapf --style-help`.</source>
         <source>Enable WakaTime</source>
         <translation>启用 WakaTime</translation>
     </message>
+    <message>
+        <source>Can be found at https://wakatime.com/settings/account</source>
+        <translation>可以在 https://wakatime.com/settings/account 找到</translation>
+    </message>
 </context>
 <context>
     <name>ShortcutItem</name>

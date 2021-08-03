@@ -18,7 +18,6 @@
 #ifndef WAKATIME_HPP
 #define WAKATIME_HPP
 #include <QObject>
-#include <QProcess>
 #include <QTime>
 
 namespace Extensions
@@ -28,7 +27,7 @@ class WakaTime : public QObject
     Q_OBJECT
 
   public:
-    WakaTime(const QString &path, const QString &key);
+    WakaTime(const QString &path, const QString &key, QObject *parent=nullptr);
     void sendHeartBeat(const QString &filePath, bool isWrite);
     void update(const QString &path, const QString &key);
 

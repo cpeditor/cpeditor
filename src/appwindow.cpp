@@ -320,7 +320,7 @@ void AppWindow::allocate()
 
     sessionManager = new Core::SessionManager(this);
 
-    wakaTime = new Extensions::WakaTime(SettingsHelper::getWakaTimePath(), SettingsHelper::getWakaTimeApiKey());
+    wakaTime = new Extensions::WakaTime(SettingsHelper::getWakaTimePath(), SettingsHelper::getWakaTimeApiKey(), this);
 }
 
 void AppWindow::applySettings()

@@ -1190,12 +1190,23 @@
     "default": "wakatime",
     "ui": "PathItem",
     "param": "PathItem::Executable",
-    "tip": "The path to the WakaTime executable file"
+    "tip": "The path to the WakaTime executable file",
+    "depends":[
+      {
+        "name":"WakaTime/Enable"
+      }
+    ]
   },
   {
     "name": "WakaTime/Api Key",
     "desc": "Api Key",
-    "type": "QString"
+    "type": "QString",
+    "depends":[
+      {
+        "name":"WakaTime/Enable"
+      }
+    ],
+    "tip": "Can be found at https://wakatime.com/settings/account"
   },
   {
     "name": "WakaTime/Enable",
