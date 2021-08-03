@@ -1194,10 +1194,12 @@
   },
   {
     "name": "WakaTime/Api Key",
+    "desc": "Api Key",
     "type": "QString"
   },
   {
     "name": "WakaTime/Enable",
+    "desc": "Enable WakaTime",
     "type": "bool",
     "default": false
   }

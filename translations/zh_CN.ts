@@ -1524,6 +1524,10 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <source>Test Cases</source>
         <translation>测试用例</translation>
     </message>
+    <message>
+        <source>WakaTime</source>
+        <translation></translation>
+    </message>
 </context>
 <context>
     <name>SettingsInfo</name>
@@ -2622,6 +2626,18 @@ You can learn about it by running `yapf --style-help`.</source>
     <message>
         <source>Automatically uncheck test cases when they get accepted.</source>
         <translation>在测试点通过测试时自动取消选中。</translation>
+    </message>
+    <message>
+        <source>The path to the WakaTime executable file</source>
+        <translation>WakaTime 可执行文件的路径</translation>
+    </message>
+    <message>
+        <source>Api Key</source>
+        <translation>Api 密钥</translation>
+    </message>
+    <message>
+        <source>Enable WakaTime</source>
+        <translation>启用 WakaTime</translation>
     </message>
 </context>
 <context>
