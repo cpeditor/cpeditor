@@ -214,6 +214,7 @@ AppWindow::~AppWindow()
     delete server;
     delete findReplaceDialog;
     delete sessionManager;
+    delete wakaTime;
 
     SettingsManager::deinit();
 
@@ -1083,6 +1084,10 @@ void AppWindow::onSettingsApplied(const QString &pagePath)
     {
         pythonServer->updateSettings();
         lspTimerPython->setInterval(SettingsHelper::getLSPDelayPython());
+    }
+
+    if(pageChanged("Extensions/WakaTime")){
+        wakaTime->updatePath(SettingsHelper::getWakaTimePath());
     }
 
     if (pageChanged("Actions/Save Session"))
