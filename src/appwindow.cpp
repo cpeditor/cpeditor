@@ -1086,7 +1086,8 @@ void AppWindow::onSettingsApplied(const QString &pagePath)
         lspTimerPython->setInterval(SettingsHelper::getLSPDelayPython());
     }
 
-    if(pageChanged("Extensions/WakaTime")){
+    if (pageChanged("Extensions/WakaTime"))
+    {
         wakaTime->updatePath(SettingsHelper::getWakaTimePath());
     }
 
