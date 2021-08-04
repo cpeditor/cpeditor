@@ -63,15 +63,15 @@ class FileProblemBinder
     static bool containsProblem(const QString &problem);
 
     /**
-     * @brief dump the binding to a QVariant
+     * @brief dump the binding to a QStringList
      */
-    static QVariant toVariant();
+    static QStringList toList();
 
     /**
-     * @brief load the binding from a QVariant
-     * @param var the QVariant to load from
+     * @brief load the binding from a QStringList
+     * @param list the QStringList to load from
      */
-    static void fromVariant(const QVariant &var);
+    static void fromList(const QStringList &list);
 
   private:
     static QMap<QString, QString> fileForProblem;
