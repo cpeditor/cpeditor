@@ -41,6 +41,7 @@ void WakaTime::sendHeartBeat(const QString &filePath, bool isWrite)
     if (!isWrite && filePath == lastFilePath && lastHeartBeat.isValid() && lastHeartBeat.msecsTo(now) > 2 * 60 * 1000)
         return;
     lastHeartBeat = now;
+    lastFilePath = filePath;
     auto *wakaTimeProcess = new QProcess();
     wakaTimeProcess->setProgram(wakaTimePath);
     QStringList arg = {"--file", filePath, "--key", apiKey, "--plugin", "cpeditor-wakatime"};
