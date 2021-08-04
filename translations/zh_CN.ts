@@ -477,105 +477,6 @@ git 提交编号: %3
     </message>
 </context>
 <context>
-    <name>CodeSnippetsPage</name>
-    <message>
-        <source>Search...</source>
-        <translation>搜索...</translation>
-    </message>
-    <message>
-        <source>Add</source>
-        <translation>添加</translation>
-    </message>
-    <message>
-        <source>Del</source>
-        <translation>删除</translation>
-    </message>
-    <message>
-        <source>Rename Snippet</source>
-        <translation>重命名</translation>
-    </message>
-    <message>
-        <source>Load Snippets From Files</source>
-        <translation>从文件中加载代码片段</translation>
-    </message>
-    <message>
-        <source>Extract Snippets To Files</source>
-        <translation>导出代码片段到文件</translation>
-    </message>
-    <message>
-        <source>More</source>
-        <translation>更多</translation>
-    </message>
-    <message>
-        <source>No Snippet Selected</source>
-        <translation>无代码片段被选择</translation>
-    </message>
-    <message>
-        <source>Unsaved Snippets</source>
-        <translation>未保存的代码片段</translation>
-    </message>
-    <message>
-        <source>The snippet [%1] has been changed. Do you want to save it or discard the changes?</source>
-        <translation>代码片段 [%1] 已被更改。你希望保存更改还是丢弃更改？</translation>
-    </message>
-    <message>
-        <source>Delete Snippet</source>
-        <translation>删除代码片段</translation>
-    </message>
-    <message>
-        <source>Do you really want to delete the snippet [%1]?</source>
-        <translation>你真的要删除代码片段 [%1] 吗？</translation>
-    </message>
-    <message>
-        <source>Load Snippets</source>
-        <translation>加载代码片段</translation>
-    </message>
-    <message>
-        <source>Failed to open [%1]. Do I have read permission?</source>
-        <translation>打开 [%1] 失败。你拥有读取权限吗？</translation>
-    </message>
-    <message>
-        <source>Extract Snippets</source>
-        <translation>导出代码片段</translation>
-    </message>
-    <message>
-        <source>Extract Snippets: %1</source>
-        <translation>导出代码片段：%1</translation>
-    </message>
-    <message>
-        <source>Failed to write to [%1]. Do I have write permission?</source>
-        <translation>写入 [%1] 失败。你拥有写入权限吗？</translation>
-    </message>
-    <message>
-        <source>Snippet name can&apos;t be empty.
-</source>
-        <translation>代码片段的名称不能为空白。
-</translation>
-    </message>
-    <message>
-        <source>Snippet Name Conflict</source>
-        <translation>代码片段名称冲突</translation>
-    </message>
-    <message>
-        <source>The name &quot;%1&quot; is already in use. Do you want to override it? (The old snippet with this name will be deleted.)</source>
-        <translation>名称 &quot;%1&quot; 已经被使用了。你希望覆盖吗？（对应旧片段将会被删除。）</translation>
-    </message>
-    <message>
-        <source>The name &quot;%1&quot; is already in use.
-</source>
-        <translation>名称 &quot;%1&quot; 已经被使用了。
-</translation>
-    </message>
-    <message>
-        <source>Add Snippet</source>
-        <translation>添加代码片段</translation>
-    </message>
-    <message>
-        <source>New Snippet Name:</source>
-        <translation>新代码片段的名称：</translation>
-    </message>
-</context>
-<context>
     <name>Core::Checker</name>
     <message>
         <source>Read Checker</source>
@@ -1201,20 +1102,7 @@ Do you want to reload it?</source>
     </message>
 </context>
 <context>
-    <name>MessageLogger</name>
-    <message>
-        <source>
-... The message is too long</source>
-        <translation>
-……消息过长</translation>
-    </message>
-</context>
-<context>
-    <name>ParenthesesPage</name>
-    <message>
-        <source>%1 Parentheses</source>
-        <translation>%1 括号</translation>
-    </message>
+    <name>MapWrapper</name>
     <message>
         <source>Add</source>
         <translation>添加</translation>
@@ -1224,49 +1112,49 @@ Do you want to reload it?</source>
         <translation>删除</translation>
     </message>
     <message>
-        <source>No Parenthesis Selected</source>
-        <translation>没有括号对被选择</translation>
+        <source>More</source>
+        <translation>更多</translation>
     </message>
     <message>
-        <source>New Parenthesis</source>
-        <translation>新的括号对</translation>
+        <source>Add %1</source>
+        <translation>添加 %1</translation>
     </message>
     <message>
-        <source>Enter a parenthesis (e.g. {}):</source>
-        <translation>输入一对括号（例如: {}）：</translation>
+        <source>Add failed</source>
+        <translation>添加失败</translation>
     </message>
     <message>
-        <source>Delete Parenthesis</source>
-        <translation>删除括号对</translation>
+        <source>All possible names have been used.</source>
+        <translation>所有可能的名称均已被使用。</translation>
     </message>
     <message>
-        <source>Do you really want to delete the parenthesis %1?</source>
-        <translation>你真的要删除括号对 %1 吗？</translation>
+        <source>Select %1</source>
+        <translation>选择 %1</translation>
+    </message>
+    <message>
+        <source>%1 %2 already exists</source>
+        <translation>%1 %2 已经存在</translation>
+    </message>
+    <message>
+        <source>rename</source>
+        <translation>重命名</translation>
+    </message>
+    <message>
+        <source>Key &apos;/&apos; is not supported</source>
+        <translation>不支持使用键 “/”</translation>
+    </message>
+    <message>
+        <source>Select or add an item to start</source>
+        <translation>选择或添加一个项目来开始</translation>
     </message>
 </context>
 <context>
-    <name>ParenthesisWidget</name>
+    <name>MessageLogger</name>
     <message>
-        <source>Parenthesis: %1</source>
-        <translation>括号对：%1</translation>
-    </message>
-    <message>
-        <source>Enable %1 for %2 in %3.
-If it&apos;s partially checked, the global setting in Code Edit will be used.</source>
-        <translation>在 %3 中为括号对 %2 启用 %1。
-如果复选框被部分选择，则会使用全局设置。</translation>
-    </message>
-    <message>
-        <source>Auto Complete</source>
-        <translation>自动补全</translation>
-    </message>
-    <message>
-        <source>Auto Remove</source>
-        <translation>自动删除</translation>
-    </message>
-    <message>
-        <source>Tab Jump Out</source>
-        <translation>按 Tab 键跳出</translation>
+        <source>
+... The message is too long</source>
+        <translation>
+……消息过长</translation>
     </message>
 </context>
 <context>
@@ -1299,18 +1187,6 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation>代码编辑器设置</translation>
     </message>
     <message>
-        <source>C++ Compile and Run Commands</source>
-        <translation>C++ 编译运行命令</translation>
-    </message>
-    <message>
-        <source>Java Compile and Run Commands</source>
-        <translation>Java 编译运行命令</translation>
-    </message>
-    <message>
-        <source>Python Run Commands</source>
-        <translation>Python 运行命令</translation>
-    </message>
-    <message>
         <source>You can read the &lt;a href=&quot;%1&quot;&gt;documentation&lt;/a&gt; or go through the settings for more information.</source>
         <translation>你可以阅读 &lt;a href=&quot;%1&quot;&gt;文档&lt;/a&gt; 或在设置中浏览以获取更多信息。</translation>
     </message>
@@ -1321,6 +1197,10 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <source>Font Settings</source>
         <translation>字体设置</translation>
+    </message>
+    <message>
+        <source>Compile and Run Commands</source>
+        <translation>编译和运行指令</translation>
     </message>
 </context>
 <context>
@@ -1389,18 +1269,6 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation>通用</translation>
     </message>
     <message>
-        <source>C++</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Java</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Python</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Appearance</source>
         <translation>外观</translation>
     </message>
@@ -1421,31 +1289,7 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation>扩展</translation>
     </message>
     <message>
-        <source>Clang Format</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Language Server</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>%1 Commands</source>
-        <translation>%1 命令</translation>
-    </message>
-    <message>
-        <source>%1 Template</source>
-        <translation>%1 模板</translation>
-    </message>
-    <message>
-        <source>%1 Snippets</source>
-        <translation>%1 代码片段</translation>
-    </message>
-    <message>
-        <source>%1 Parentheses</source>
-        <translation>%1 括号</translation>
-    </message>
-    <message>
-        <source>%1 Server</source>
         <translation></translation>
     </message>
     <message>
@@ -1513,10 +1357,6 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation>字体</translation>
     </message>
     <message>
-        <source>YAPF</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Code Formatting</source>
         <translation>代码格式化</translation>
     </message>
@@ -1564,18 +1404,10 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation>路径</translation>
     </message>
     <message>
-        <source>The path to the Clang Format executable file</source>
-        <translation>Clang Format 可执行文件的路径</translation>
-    </message>
-    <message>
         <source>The Clang Format style options, which are usually saved in a .clang-format configuration file.
 You can learn about it at &lt;https://clang.llvm.org/docs/ClangFormatStyleOptions.html&gt;.</source>
         <translation>Clang Format 格式化所用风格，通常存储为 .clang-format。
 你可以在 &lt;https://clang.llvm.org/docs/ClangFormatStyleOptions.html&gt; 上了解更多。</translation>
-    </message>
-    <message>
-        <source>The template used when creating a new C++ file</source>
-        <translation>新建 C++ 代码时所用模板的路径</translation>
     </message>
     <message>
         <source>The regular expression which matches a part of the code template.
@@ -1592,67 +1424,6 @@ The cursor will be at the end of the template if there&apos;s no match of the re
     <message>
         <source>The offset relative to the match of the regex in the number of characters, including white spaces.</source>
         <translation>包含空白字符的偏移字符数，相对于正则表达式的匹配位置。</translation>
-    </message>
-    <message>
-        <source>The command used to compile C++. It should NOT include the path to the source file or &quot;-o &lt;output file&gt;&quot;.</source>
-        <translation>编译 C++ 代码所用命令。这里不应该包含源代码路径或是&quot;-o &lt;output file&gt;&quot;。</translation>
-    </message>
-    <message>
-        <source>The runtime arguments when executing a C++ program</source>
-        <translation>执行 C++ 程序时提供的命令行参数</translation>
-    </message>
-    <message>
-        <source>The template used when creating a new Java file</source>
-        <translation>新建 Java 代码时所用模板的路径</translation>
-    </message>
-    <message>
-        <source>The command used to compile Java.
-It should NOT include the path to the source file or the path of the compiled class file.</source>
-        <translation>编译 Java 代码所用命令。这里不应该包含源代码路径或是输出的 class 文件路径。</translation>
-    </message>
-    <message>
-        <source>The runtime arguments when executing a Java program</source>
-        <translation>执行 Java 程序时提供的命令行参数</translation>
-    </message>
-    <message>
-        <source>The command to start a Java program. It should NOT include &quot;-classpath &lt;path&gt; &lt;class name&gt;&quot;.</source>
-        <translation>执行 Java 程序时的命令。这里不应该包含&quot;-classpath &lt;path&gt; &lt;class name&gt;&quot;。</translation>
-    </message>
-    <message>
-        <source>%1 Run Command</source>
-        <translation>%1 运行命令</translation>
-    </message>
-    <message>
-        <source>%1 Class Name</source>
-        <translation>%1 类名称</translation>
-    </message>
-    <message>
-        <source>%1 Class Path</source>
-        <translation>%1 类路径</translation>
-    </message>
-    <message>
-        <source>The path of the parent directory of the compiled class file.
-It&apos;s relative to the source file, or the temporary directory if the tab is untitled.
-You can use &quot;${filename}&quot; for the complete file name,
-&quot;${basename}&quot; for the base file name without the suffix,
-&quot;${tmpdir}&quot; or &quot;${tempdir}&quot; for the absolute path of the temporary directory.</source>
-        <translation>编译后生成的类文件所在的目录。
-是一个相对于源代码所在路径的相对路径。如果当前页未命名，则相对于临时目录。
-你可以使用 &quot;${filename}&quot; 来代指完整的源文件名；
-使用 &quot;${basename}&quot; 来代指无后缀的源文件名；
-使用 &quot;${tmpdir}&quot; 或 &quot;${tempdir}&quot; 来代指临时目录的绝对路径。</translation>
-    </message>
-    <message>
-        <source>The template used when creating a new Python file</source>
-        <translation>新建 Python 代码时所用模板的路径</translation>
-    </message>
-    <message>
-        <source>The runtime arguments when executing a Python program</source>
-        <translation>执行 Python 程序时提供的命令行参数</translation>
-    </message>
-    <message>
-        <source>The command to start a Python program. It should NOT include the path to the source file.</source>
-        <translation>执行 Python 程序时的命令。这里不应该包含源代码路径。</translation>
     </message>
     <message>
         <source>Editor Theme</source>
@@ -1714,48 +1485,6 @@ and move out of it when typing the right element of it.
 This can be overridden for each parenthesis in each language.</source>
         <translation>自动在输入左括号时添加右括号，在紧接着输入右括号时自动移出。
 此设置可以被各个语言的设置所覆盖。</translation>
-    </message>
-    <message>
-        <source>%1 Template Path</source>
-        <translation>%1 模板路径</translation>
-    </message>
-    <message>
-        <source>%1 Template Cursor Position Regex</source>
-        <translation>使用 %1 模板时光标初始位置定位使用的正则表达式</translation>
-    </message>
-    <message>
-        <source>%1 Template Cursor Position Offset Type</source>
-        <translation>使用 %1 模板时光标初始位置的偏移类型</translation>
-    </message>
-    <message>
-        <source>%1 Template Cursor Position Offset Characters</source>
-        <translation>使用 %1 模板时光标初始位置的偏移字符量</translation>
-    </message>
-    <message>
-        <source>%1 Compile Command</source>
-        <translation>%1 编译命令</translation>
-    </message>
-    <message>
-        <source>%1 Executable File Path</source>
-        <translation>%1 可执行文件路径</translation>
-    </message>
-    <message>
-        <source>The path of the compiled executable file.
-It&apos;s relative to the source file, or the temporary directory if the tab is untitled.
-No &quot;.exe&quot; is needed.
-You can use &quot;${filename}&quot; for the complete file name,
-&quot;${basename}&quot; for the base file name without the suffix,
-&quot;${tmpdir}&quot; or &quot;${tempdir}&quot; for the absolute path of the temporary directory.</source>
-        <translation>编译后生成的可执行文件的路径。
-是一个相对于源代码所在路径的相对路径。如果当前页未命名，则相对于临时目录。
-不需要 &quot;.exe&quot; 后缀。
-你可以使用 &quot;${filename}&quot; 来代指完整的源文件名；
-使用 &quot;${basename}&quot; 来代指无后缀的源文件名；
-使用 &quot;${tmpdir}&quot; 或 &quot;${tempdir}&quot; 来代指临时目录的绝对路径。</translation>
-    </message>
-    <message>
-        <source>%1 Run Arguments</source>
-        <translation>%1 运行参数</translation>
     </message>
     <message>
         <source>The name of the main class of your solution.</source>
@@ -1934,36 +1663,8 @@ A source file won&apos;t be opened if it&apos;s too long.</source>
 如果超长，将不会打开。</translation>
     </message>
     <message>
-        <source>Path to LSP executable</source>
-        <translation>路径</translation>
-    </message>
-    <message>
-        <source>The path to the C++ Language Server executable</source>
-        <translation>C++ Language Server 可执行文件的路径</translation>
-    </message>
-    <message>
-        <source>The path to the Java Language Server executable</source>
-        <translation>Java Language Server 可执行文件的路径</translation>
-    </message>
-    <message>
-        <source>The path to the Python Language Server executable</source>
-        <translation>Python Language Server 可执行文件的路径</translation>
-    </message>
-    <message>
         <source>Use Linting with Language Server</source>
         <translation>启用 Language Server</translation>
-    </message>
-    <message>
-        <source>Show Error, Warning, Information and Hints in Code Editor for C++ Language</source>
-        <translation>在编辑器中为 C++ 显示错误、警告、信息和提示</translation>
-    </message>
-    <message>
-        <source>Show Error, Warning, Information and Hints in Code Editor for Java Language</source>
-        <translation>在编辑器中为 Java 显示错误、警告、信息和提示</translation>
-    </message>
-    <message>
-        <source>Show Error, Warning, Information and Hints in Code Editor for Python Language</source>
-        <translation>在编辑器中为 Python 显示错误、警告、信息和提示</translation>
     </message>
     <message>
         <source>Use auto-complete with Language Server</source>
@@ -2290,16 +1991,8 @@ kill the application with SIGKILL which could not be handled by the application.
         <translation>整个 CP Editor 使用的自定义字体</translation>
     </message>
     <message>
-        <source>%1 Compiler Output Codec</source>
-        <translation>%1 编译器输出编码</translation>
-    </message>
-    <message>
         <source>Text codec of the compiler output (errors, warnings, etc.)</source>
         <translation>编译器输出（错误，警告等）的文字编码</translation>
-    </message>
-    <message>
-        <source>Default Path Names And Paths</source>
-        <translation>默认路径的名称和路径</translation>
     </message>
     <message>
         <source>A list of default paths.
@@ -2310,40 +2003,8 @@ They can be either manually set or automatically changed after choosing a path f
 它们可以被手动设置，也可以在为一个动作选择路径后被自动设置。</translation>
     </message>
     <message>
-        <source>Name</source>
-        <translation>名称</translation>
-    </message>
-    <message>
-        <source>The name of a default path</source>
-        <translation>一个默认路径的名称</translation>
-    </message>
-    <message>
-        <source>The path of a default path</source>
-        <translation>一个默认路径的路径</translation>
-    </message>
-    <message>
-        <source>Default path used for %1</source>
-        <translation>用于 %1 的默认路径</translation>
-    </message>
-    <message>
         <source>Open File</source>
         <translation>打开文件</translation>
-    </message>
-    <message>
-        <source>The default path used when choosing a path for %1.
-You can use ${&lt;default path name&gt;} as a place holder.</source>
-        <translation>选择 %1 的路径时使用的默认路径。
-你可以使用 ${&lt;默认路径名称&gt;} 来作为占位符。</translation>
-    </message>
-    <message>
-        <source>Default paths changed by %1</source>
-        <translation>被 %1 改变的默认路径</translation>
-    </message>
-    <message>
-        <source>The default paths changed after choosing a path for %1.
-It is a list of &lt;default path name&gt;s, separated by commas, and can be empty.</source>
-        <translation>为 %1 选择一个路径后被改变的默认路径。
-它是一个 &lt;默认路径名称&gt; 的列表，相邻两项之间用半角逗号隔开，可以为空。</translation>
     </message>
     <message>
         <source>Save File</source>
@@ -2376,10 +2037,6 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     <message>
         <source>Extract And Load Snippets</source>
         <translation>导出和加载代码片段</translation>
-    </message>
-    <message>
-        <source>It can be overridden by %1.</source>
-        <translation>它可以被 %1 覆盖。</translation>
     </message>
     <message>
         <source>Format code on manual save</source>
@@ -2532,48 +2189,6 @@ A test case will be elided and read-only if it&apos;s too long.</source>
         <translation>会显示出来的测试用例的最大字符数。如果测试用例过长，超长部分会被省略，且测试用例会变得只读。</translation>
     </message>
     <message>
-        <source>Clang Format Program</source>
-        <translation>Clang Format 程序</translation>
-    </message>
-    <message>
-        <source>Clang Format Arguments</source>
-        <translation>Clang Format 参数</translation>
-    </message>
-    <message>
-        <source>The arguments passed to clang-format. It should NOT contain &quot;-i&quot;.</source>
-        <translation>传递给 clang-format 的参数。它不应包含 &quot;-i&quot;。</translation>
-    </message>
-    <message>
-        <source>Clang Format Style</source>
-        <translation>Clang Format 风格</translation>
-    </message>
-    <message>
-        <source>YAPF Program</source>
-        <translation>YAPF 程序</translation>
-    </message>
-    <message>
-        <source>The program of YAPF. It could be `yapf` (which doesn&apos;t need arguments) or `python` (which needs `-m yapf` as the arguments).</source>
-        <translation>YAPF 的程序。它可以是 `yapf`（无需额外设置参数）或 `python`（需要 `-m yapf` 作为参数）。</translation>
-    </message>
-    <message>
-        <source>YAPF Arguments</source>
-        <translation>YAPF 参数</translation>
-    </message>
-    <message>
-        <source>The arguments passed to the YAPF program. It should NOT contain &quot;-i&quot;.</source>
-        <translation>传递给 YAPF 程序的参数。它不应包含 &quot;-i&quot;。</translation>
-    </message>
-    <message>
-        <source>YAPF Style</source>
-        <translation>YAPF 风格</translation>
-    </message>
-    <message>
-        <source>The YAPF style options, which are usually saved in a .style.yapf or setup.conf configuration file.
-You can learn about it by running `yapf --style-help`.</source>
-        <translation>YAPF 格式化所用风格，通常存储为 .style.yapf 或 setup.conf。
-你可以运行 `yapf --style-help` 以了解更多。</translation>
-    </message>
-    <message>
         <source>Format the code when saving it manually.</source>
         <translation>手动保存时格式化代码。</translation>
     </message>
@@ -2622,6 +2237,238 @@ You can learn about it by running `yapf --style-help`.</source>
     <message>
         <source>Automatically uncheck test cases when they get accepted.</source>
         <translation>在测试点通过测试时自动取消选中。</translation>
+    </message>
+    <message>
+        <source>Auto Complete</source>
+        <translation>自动补全</translation>
+    </message>
+    <message>
+        <source>Auto Remove</source>
+        <translation>自动删除</translation>
+    </message>
+    <message>
+        <source>Tab Jump Out</source>
+        <translation>按 Tab 键跳出</translation>
+    </message>
+    <message>
+        <source>Parentheses</source>
+        <translation>括号</translation>
+    </message>
+    <message>
+        <source>Parentheses sequence should contains exactly two character.</source>
+        <translation>括号序列应该恰好两个字符。</translation>
+    </message>
+    <message>
+        <source>Code</source>
+        <translation>代码</translation>
+    </message>
+    <message>
+        <source>Load Snippet From File</source>
+        <translation>从文件中加载代码片段</translation>
+    </message>
+    <message>
+        <source>Extract Snippet To File</source>
+        <translation>导出代码片段到文件</translation>
+    </message>
+    <message>
+        <source>Snippet</source>
+        <translation>代码片段</translation>
+    </message>
+    <message>
+        <source>Language Config</source>
+        <translation>语言配置</translation>
+    </message>
+    <message>
+        <source>Enable @0 for @1 in @3.
+If it&apos;s partially checked, the global setting in Code Edit will be used.</source>
+        <translation>在 @3 中为括号对 @1 启用 @0。
+如果复选框被部分选择，则会使用全局设置。</translation>
+    </message>
+    <message>
+        <source>Template Path</source>
+        <translation>模板路径</translation>
+    </message>
+    <message>
+        <source>The template used when creating a new @1 file</source>
+        <translation>新建 @1 代码时所用模板的路径</translation>
+    </message>
+    <message>
+        <source>Template Cursor Position Regex</source>
+        <translation>使用模板时光标初始位置定位使用的正则表达式</translation>
+    </message>
+    <message>
+        <source>Template Cursor Position Offset Type</source>
+        <translation>使用模板时光标初始位置的偏移类型</translation>
+    </message>
+    <message>
+        <source>Template Cursor Position Offset Characters</source>
+        <translation>使用模板时光标初始位置的偏移字符量</translation>
+    </message>
+    <message>
+        <source>Template</source>
+        <translation>模板</translation>
+    </message>
+    <message>
+        <source>Compile Command</source>
+        <translation>编译命令</translation>
+    </message>
+    <message>
+        <source>The command used to compile @1. It should NOT include the path to the source file or any core params.</source>
+        <translation>编译 @1 代码所用命令。这里不应该包含源代码路径或任何核心参数。</translation>
+    </message>
+    <message>
+        <source>Compiler Output Codec</source>
+        <translation>编译器输出编码</translation>
+    </message>
+    <message>
+        <source>Executable File Path</source>
+        <translation>可执行文件路径</translation>
+    </message>
+    <message>
+        <source>Run Arguments</source>
+        <translation>运行参数</translation>
+    </message>
+    <message>
+        <source>Run Command</source>
+        <translation>运行命令</translation>
+    </message>
+    <message>
+        <source>The command to start a @1 program. It should NOT include core params.</source>
+        <translation>执行 @1 程序时的命令。这里不应该包含任何核心参数。</translation>
+    </message>
+    <message>
+        <source>Class Name</source>
+        <translation>类名</translation>
+    </message>
+    <message>
+        <source>Commands</source>
+        <translation>命令</translation>
+    </message>
+    <message>
+        <source>The runtime arguments when executing a @1 program.</source>
+        <translation>执行 @1 程序时提供的命令行参数。</translation>
+    </message>
+    <message>
+        <source>The path of the compiled file.
+It&apos;s relative to the source file, or the temporary directory if the tab is untitled.
+You can use &quot;${filename}&quot; for the complete file name,
+&quot;${basename}&quot; for the base file name without the suffix,
+&quot;${tmpdir}&quot; or &quot;${tempdir}&quot; for the absolute path of the temporary directory.</source>
+        <translation>编译后生成的文件的路径。
+是一个相对于源代码所在路径的相对路径。如果当前页未命名，则相对于临时目录。
+你可以使用 &quot;${filename}&quot; 来代指完整的源文件名；
+使用 &quot;${basename}&quot; 来代指无后缀的源文件名；
+使用 &quot;${tmpdir}&quot; 或 &quot;${tempdir}&quot; 来代指临时目录的绝对路径。</translation>
+    </message>
+    <message>
+        <source>Program</source>
+        <translation>程序</translation>
+    </message>
+    <message>
+        <source>The path to the clang-format executable file.</source>
+        <translation>Clang Format 可执行文件路径</translation>
+    </message>
+    <message>
+        <source>The program of YAPF. It could be `yapf` (which doesn&apos;t need arguments) or `python`
+(which needs `-m yapf` as the arguments).</source>
+        <translation>YAPF 可执行文件。可以是“yapf”（不需要 参数）或“python”，（需要 参数 “-m yapf”）</translation>
+    </message>
+    <message>
+        <source>Arguments</source>
+        <translation>参数</translation>
+    </message>
+    <message>
+        <source>The arguments passed to @1. It should NOT contain &quot;-i&quot;.</source>
+        <translation>传给 @1 的参数。不应该包含“-i”。</translation>
+    </message>
+    <message>
+        <source>Style</source>
+        <translation>格式</translation>
+    </message>
+    <message>
+        <source>Formatter</source>
+        <translation>格式化工具</translation>
+    </message>
+    <message>
+        <source>Default path used for</source>
+        <translation>默认路径将用于</translation>
+    </message>
+    <message>
+        <source>The default path used when choosing a path for @1.
+You can use ${&lt;default path name&gt;} as a place holder.</source>
+        <translation>当为动作 @1 选择一个路径时所使用的路径。
+你可以使用 ${&lt;默认路径名&gt;} 来作为一个占位符。</translation>
+    </message>
+    <message>
+        <source>The default path used when choosing a path for @1.
+You can use ${&lt;default path name&gt;} as a place holder.
+It can be overridden by Default File Paths For Problem URLs</source>
+        <translation>当为动作 @1 选择一个路径时所使用的默认路径。
+你可以使用 ${&lt;默认路径名&gt;} 来作为一个占位符。
+它可以被 针对题目链接的默认保存路径 所覆盖。</translation>
+    </message>
+    <message>
+        <source>Default paths changed by</source>
+        <translation>默认路径将会被修改于</translation>
+    </message>
+    <message>
+        <source>The default paths changed after choosing a path for @1.
+It is a list of &lt;default path name&gt;s, separated by commas, and can be empty.</source>
+        <translation>当为动作 @1 选择一个路径后将会被修改的默认路径。
+这里是一个通过英文逗号分隔的&lt;默认路径名&gt;列表，可以为空。</translation>
+    </message>
+    <message>
+        <source>Default Path Action</source>
+        <translation>默认路径动作</translation>
+    </message>
+    <message>
+        <source>Path to LSP excutable</source>
+        <translation>Language Server 可执行文件路径</translation>
+    </message>
+    <message>
+        <source>The path to the @1 Language Server executable</source>
+        <translation>@1 Language Server 可执行文件的路径</translation>
+    </message>
+    <message>
+        <source>Show Error, Warning, Information and Hints in Code Editor for @1 Language</source>
+        <translation>在编辑器中为 @1 显示错误、警告、信息和提示</translation>
+    </message>
+    <message>
+        <source>LSP</source>
+        <translation>LSP</translation>
+    </message>
+    <message>
+        <source>Default Path</source>
+        <translation>默认路径</translation>
+    </message>
+    <message>
+        <source>The YAPF style options, which are usually saved in a .style.yapf or setup.conf configuration file.
+You can learn about it by running `yapf --style-help`.</source>
+        <translation>YAPF 的格式化选项，通常保存在一个名叫 .style.yapf 或 setup.conf 的配置文件里。
+你可以通过执行“yapf --style-help”来了解更多。</translation>
+    </message>
+</context>
+<context>
+    <name>SettingsMethods</name>
+    <message>
+        <source>Load Snippets</source>
+        <translation>加载代码片段</translation>
+    </message>
+    <message>
+        <source>Failed to open [%1]. Do I have read permission?</source>
+        <translation>打开 [%1] 失败。你拥有读取权限吗？</translation>
+    </message>
+    <message>
+        <source>Extract Snippets</source>
+        <translation>导出代码片段</translation>
+    </message>
+    <message>
+        <source>Extract Snippets: %1</source>
+        <translation>导出代码片段：%1</translation>
+    </message>
+    <message>
+        <source>Failed to write to [%1]. Do I have write permission?</source>
+        <translation>写入 [%1] 失败。你拥有写入权限吗？</translation>
     </message>
 </context>
 <context>
