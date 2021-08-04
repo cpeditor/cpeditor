@@ -188,9 +188,6 @@ void AppWindow::finishConstruction()
             dialog->move(geometry().center().x() - dialog->width() / 2, geometry().center().y() - dialog->height() / 2);
             SettingsHelper::setPromotionDialogShown(true);
         }
-
-        wakaTime = new Extensions::WakaTime(this); // init WakaTime later to prevent unnecessary heartbeats
-        triggerWakaTime(currentWindow());
     });
 }
 
@@ -322,6 +319,8 @@ void AppWindow::allocate()
     trayIcon->show();
 
     sessionManager = new Core::SessionManager(this);
+
+    wakaTime = new Extensions::WakaTime(this);
 }
 
 void AppWindow::applySettings()

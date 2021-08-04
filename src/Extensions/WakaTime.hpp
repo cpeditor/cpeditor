@@ -21,6 +21,8 @@
 #include <QDateTime>
 #include <QObject>
 
+class QTimer;
+
 namespace Extensions
 {
 class WakaTime : public QObject
@@ -31,9 +33,15 @@ class WakaTime : public QObject
     explicit WakaTime(QObject *parent = nullptr);
     void sendHeartBeat(const QString &filePath, const QString &problemURL, const QString &language, bool isWrite);
 
+  private slots:
+    void onDebounceTimeout();
+
   private:
+    QStringList args;
+    QString argsStr;
     QString lastEntity;
     QDateTime lastTime; // QTime may result in bugs if in different days
+    QTimer *debounce;
 };
 } // namespace Extensions
 #endif // WAKATIME_HPP

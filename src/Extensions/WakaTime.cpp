@@ -20,12 +20,17 @@
 #include "generated/SettingsHelper.hpp"
 #include "generated/version.hpp"
 #include <QProcess>
+#include <QTimer>
 
 namespace Extensions
 {
 
 WakaTime::WakaTime(QObject *parent) : QObject(parent)
 {
+    debounce = new QTimer(this);
+    debounce->setSingleShot(true);
+    debounce->setInterval(200);
+    connect(debounce, &QTimer::timeout, this, &WakaTime::onDebounceTimeout);
 }
 
 void WakaTime::sendHeartBeat(const QString &filePath, const QString &problemURL, const QString &language, bool isWrite)
@@ -49,7 +54,8 @@ void WakaTime::sendHeartBeat(const QString &filePath, const QString &problemURL,
     lastTime = now;
     lastEntity = entity;
 
-    QStringList args;
+    args.clear();
+
     args << "--plugin"
          << "cpeditor-wakatime/" APP_VERSION;
 
@@ -79,11 +85,16 @@ void WakaTime::sendHeartBeat(const QString &filePath, const QString &problemURL,
         args << "--proxy" << proxyStr;
     }
 
-    auto argsStr = args.join(' ');
+    argsStr = args.join(' ');
     if (!key.isEmpty())
         argsStr.replace(key, "***[hidden]***");
-    LOG_INFO(INFO_OF(argsStr));
 
+    debounce->start();
+}
+
+void WakaTime::onDebounceTimeout()
+{
+    LOG_INFO(INFO_OF(argsStr));
     auto *wakaTimeProcess = new QProcess();
     connect(wakaTimeProcess, qOverload<int, QProcess::ExitStatus>(&QProcess::finished), wakaTimeProcess,
             &QObject::deleteLater);
