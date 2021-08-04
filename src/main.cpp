@@ -131,7 +131,8 @@ int main(int argc, char *argv[])
          {"java", "Open Java files in given directories. / Use Java for open contests."},
          {"python", "Open Python files in given directories. / Use Python for open contests."},
          {"verbose", "Dump all logs to stderr of the application. (use only for debug purpose)"},
-         {"no-hot-exit", "Do not load hot exit in this session. You won't be able to load the last session again."}});
+         {"no-restore-session",
+          "Do not load hot exit in this session. You won't be able to load the last session again."}});
     parser.setOptionsAfterPositionalArgumentsMode(QCommandLineParser::ParseAsOptions);
     parser.setSingleDashWordOptionMode(QCommandLineParser::ParseAsLongOptions);
     parser.process(app);
@@ -142,7 +143,7 @@ int main(int argc, char *argv[])
     GETSET(python);
     GETSET(contest);
 #undef GETSET
-    bool noHotExit = parser.isSet("no-hot-exit");
+    bool noRestoreSession = parser.isSet("no-restore-session");
     bool shouldDumpTostderr = parser.isSet("verbose");
 
     auto instance = app.instanceId();
@@ -215,10 +216,10 @@ int main(int argc, char *argv[])
         }
 
         LOG_INFO("Launching the new Appwindow with args: " << BOOL_INFO_OF(cpp) << BOOL_INFO_OF(java)
-                                                           << BOOL_INFO_OF(python) << BOOL_INFO_OF(noHotExit)
+                                                           << BOOL_INFO_OF(python) << BOOL_INFO_OF(noRestoreSession)
                                                            << INFO_OF(number) << INFO_OF(path));
 
-        AppWindow w(cpp, java, python, noHotExit, number, path);
+        AppWindow w(cpp, java, python, noRestoreSession, number, path);
         LOG_INFO("Launched window connecting this window to onReceiveMessage()");
         QObject::connect(&app, &Application::receivedMessage, &w, &AppWindow::onReceivedMessage);
         LOG_INFO("Showing the application window and beginning the event loop");
@@ -269,10 +270,10 @@ int main(int argc, char *argv[])
         return 1;
     }
     LOG_INFO("Launching the new Appwindow with args: " << INFO_OF(depth) << BOOL_INFO_OF(cpp) << BOOL_INFO_OF(java)
-                                                       << BOOL_INFO_OF(python) << BOOL_INFO_OF(noHotExit)
+                                                       << BOOL_INFO_OF(python) << BOOL_INFO_OF(noRestoreSession)
                                                        << INFO_OF(args.join(", ")));
 
-    AppWindow w(depth, cpp, java, python, noHotExit, args);
+    AppWindow w(depth, cpp, java, python, noRestoreSession, args);
     LOG_INFO("Launched window connecting this window to onReceiveMessage()");
     QObject::connect(&app, &Application::receivedMessage, &w, &AppWindow::onReceivedMessage);
     LOG_INFO("Showing the application window and beginning the event loop");

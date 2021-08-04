@@ -1,5 +1,11 @@
 ## UNRELEASED
 
+### Changed
+
+-   The command line option `--no-hot-exit` is renamed to `--no-restore-session`. (#928 and #947)
+
+## master
+
 ### Added
 
 -   Now the winlibs release on Windows includes LLVM. If you use the `clangd` in this release as the C++ Language Server, `<bits/stdc++.h>` should be properly recognized. (#878)
