@@ -7,7 +7,7 @@ Source: https://github.com/cpeditor/cpeditor
 Homepage: https://cpeditor.org/
 Architecture: amd64
 Priority: optional
-Depends: openssl (>=1.1.1)
+Depends: openssl (>=1.1.1), libyaml-cpp0.5v5 (>=0.5.1)
 Description: CP Editor is a Qt-based, lightweight and cross-platform code editor specially designed for competitive programming.
  It makes your competitive coding life easier by automating many things for you.
 
