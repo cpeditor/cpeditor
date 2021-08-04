@@ -1,0 +1,25 @@
+name: Update Donors
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  update-donors:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+      - run: pip install requests
+      - name: Update donors
+        run: python tools/update-donors.py ${{ secrets.GITHUB_TOKEN }}
+      - name: Check diff
+        run: git diff --exit-code HEAD
+      - name: Create Pull Request
+        if: failure()
+        uses: peter-evans/create-pull-request@v3
+        with:
+          commit-message: "chore: update donor list"
+          title: "chore: update donor list"
+          branch: "auto-pr/donors"

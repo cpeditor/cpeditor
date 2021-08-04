@@ -1,10 +1,12 @@
 ## GitHub Sponsors
 
-- [cosenza987](https://github.com/cosenza987)
+<!-- START: GitHub Sponsors -->
+<!-- END: GitHub Sponsors -->
 
 ## Open Collective
 
-- [GoMage](https://www.gomage.com/)
+<!-- START: OpenCollective Contributors -->
+<!-- END: OpenCollective Contributors -->
 
 ## WeChat
 
