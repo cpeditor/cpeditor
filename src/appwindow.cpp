@@ -171,8 +171,8 @@ void AppWindow::finishConstruction()
         setWindowOpacity(1);
 #endif
 
-    // The window needs time to make its geometry stable. We wait it to display the new dialogs in correct positions
     QTimer::singleShot(200, [this] {
+        // The window needs time to make its geometry stable. We wait it to display the new dialogs in correct positions
         if (SettingsHelper::isFirstTimeUser())
         {
             LOG_INFO("Is first-time user");
@@ -188,6 +188,9 @@ void AppWindow::finishConstruction()
             dialog->move(geometry().center().x() - dialog->width() / 2, geometry().center().y() - dialog->height() / 2);
             SettingsHelper::setPromotionDialogShown(true);
         }
+
+        wakaTime = new Extensions::WakaTime(this); // init WakaTime later to prevent unnecessary heartbeats
+        triggerWakaTime(currentWindow());
     });
 }
 
@@ -319,8 +322,6 @@ void AppWindow::allocate()
     trayIcon->show();
 
     sessionManager = new Core::SessionManager(this);
-
-    wakaTime = new Extensions::WakaTime(SettingsHelper::getWakaTimePath(), SettingsHelper::getWakaTimeApiKey(), this);
 }
 
 void AppWindow::applySettings()
@@ -897,10 +898,7 @@ void AppWindow::onTabChanged(int index)
     activeRightSplitterMoveConnection =
         connect(tmp->getRightSplitter(), &QSplitter::splitterMoved, this, &AppWindow::onRightSplitterMoved);
 
-    if (SettingsHelper::isWakaTimeEnable())
-    {
-        wakaTime->sendHeartBeat(tmp->getFilePath(), false);
-    }
+    triggerWakaTime(tmp);
 }
 
 void AppWindow::onEditorFileChanged()
@@ -958,16 +956,16 @@ void AppWindow::onEditorTextChanged(MainWindow *window)
             title += " *";
         ui->tabWidget->setTabText(index, title);
 
-        if (window->getLanguage() == "C++")
-            lspTimerCpp->start();
-        else if (window->getLanguage() == "Java")
-            lspTimerJava->start();
-        else
-            lspTimerPython->start();
-
-        if (SettingsHelper::isWakaTimeEnable())
+        if (window == currentWindow())
         {
-            wakaTime->sendHeartBeat(window->getFilePath(), true);
+            if (window->getLanguage() == "C++")
+                lspTimerCpp->start();
+            else if (window->getLanguage() == "Java")
+                lspTimerJava->start();
+            else
+                lspTimerPython->start();
+
+            triggerWakaTime(window);
         }
     }
 }
@@ -989,6 +987,7 @@ void AppWindow::onEditorLanguageChanged(MainWindow *window)
 {
     if (currentWindow() == window)
         reAttachLanguageServer(window);
+    triggerWakaTime(window);
 }
 
 void AppWindow::onLSPTimerElapsedCpp()
@@ -1084,11 +1083,6 @@ void AppWindow::onSettingsApplied(const QString &pagePath)
     {
         pythonServer->updateSettings();
         lspTimerPython->setInterval(SettingsHelper::getLSPDelayPython());
-    }
-
-    if (pageChanged("Extensions/WakaTime"))
-    {
-        wakaTime->update(SettingsHelper::getWakaTimePath(), SettingsHelper::getWakaTimeApiKey());
     }
 
     if (pageChanged("Actions/Save Session"))
@@ -1610,10 +1604,13 @@ void AppWindow::onCompileOrRunTriggered()
         on_actionSplitMode_triggered();
 }
 
-void AppWindow::onFileSaved(const QString &path)
+void AppWindow::onFileSaved(MainWindow *window)
 {
-    if (SettingsHelper::isWakaTimeEnable())
-    {
-        wakaTime->sendHeartBeat(path, false);
-    }
+    triggerWakaTime(window, true);
+}
+
+void AppWindow::triggerWakaTime(MainWindow *window, bool isWrite)
+{
+    if (window && wakaTime)
+        wakaTime->sendHeartBeat(window->getFilePath(), window->getProblemURL(), window->getLanguage(), isWrite);
 }

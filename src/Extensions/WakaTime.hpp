@@ -17,8 +17,9 @@
 
 #ifndef WAKATIME_HPP
 #define WAKATIME_HPP
+
+#include <QDateTime>
 #include <QObject>
-#include <QTime>
 
 namespace Extensions
 {
@@ -27,15 +28,12 @@ class WakaTime : public QObject
     Q_OBJECT
 
   public:
-    WakaTime(const QString &path, const QString &key, QObject *parent = nullptr);
-    void sendHeartBeat(const QString &filePath, bool isWrite);
-    void update(const QString &path, const QString &key);
+    explicit WakaTime(QObject *parent = nullptr);
+    void sendHeartBeat(const QString &filePath, const QString &problemURL, const QString &language, bool isWrite);
 
   private:
-    QString wakaTimePath;
-    QString lastFilePath;
-    QString apiKey;
-    QTime lastHeartBeat;
+    QString lastEntity;
+    QDateTime lastTime; // QTime may result in bugs if in different days
 };
 } // namespace Extensions
 #endif // WAKATIME_HPP

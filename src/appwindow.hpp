@@ -212,7 +212,7 @@ class AppWindow : public QMainWindow
 
     void openTab(const QString &path);
 
-    void onFileSaved(const QString &path);
+    void onFileSaved(MainWindow *window);
 
   private:
     Ui::AppWindow *ui;
@@ -259,6 +259,7 @@ class AppWindow : public QMainWindow
     bool quit();
     int getNewUntitledIndex();
     void reAttachLanguageServer(MainWindow *window);
+    void triggerWakaTime(MainWindow *window, bool isWrite = false);
 
     MainWindow *currentWindow();
     MainWindow *windowAt(int index);

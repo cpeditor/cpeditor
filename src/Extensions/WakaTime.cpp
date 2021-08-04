@@ -17,37 +17,73 @@
 
 #include "Extensions/WakaTime.hpp"
 #include "Core/EventLogger.hpp"
+#include "generated/SettingsHelper.hpp"
+#include "generated/version.hpp"
 #include <QProcess>
 
 namespace Extensions
 {
 
-WakaTime::WakaTime(const QString &path, const QString &key, QObject *parent)
-    : QObject(parent), wakaTimePath(path), apiKey(key)
+WakaTime::WakaTime(QObject *parent) : QObject(parent)
 {
-    LOG_INFO(INFO_OF(path));
-    LOG_INFO(INFO_OF(key));
 }
 
-void WakaTime::update(const QString &path, const QString &key)
+void WakaTime::sendHeartBeat(const QString &filePath, const QString &problemURL, const QString &language, bool isWrite)
 {
-    wakaTimePath = path;
-    apiKey = key;
-}
-
-void WakaTime::sendHeartBeat(const QString &filePath, bool isWrite)
-{
-    QTime now = QTime::currentTime();
-    if (!isWrite && filePath == lastFilePath && lastHeartBeat.isValid() && lastHeartBeat.msecsTo(now) > 2 * 60 * 1000)
+    if (!SettingsHelper::isWakaTimeEnable())
         return;
-    lastHeartBeat = now;
-    lastFilePath = filePath;
-    auto *wakaTimeProcess = new QProcess();
-    wakaTimeProcess->setProgram(wakaTimePath);
-    QStringList arg = {"--file", filePath, "--key", apiKey, "--plugin", "cpeditor-wakatime"};
+
+    const auto now = QDateTime::currentDateTime();
+
+    QString entity;
+
+    if (!filePath.isEmpty())
+        entity = filePath;
+    else if (!problemURL.isEmpty())
+        entity = problemURL;
+    else
+        return; // no need to send an unsaved non-problem file
+
+    if (!(isWrite || entity != lastEntity || lastTime.isNull() || lastTime.secsTo(now) > 2 * 60))
+        return;
+    lastTime = now;
+    lastEntity = entity;
+
+    QStringList args;
+    args << "--plugin"
+         << "cpeditor-wakatime/" APP_VERSION;
+
+    if (filePath.isEmpty())
+        args << "--entity-type"
+             << "domain";
+    args << "--entity" << entity;
+
+    if (!language.isEmpty())
+        args << "--language" << language;
+
+    const auto key = SettingsHelper::getWakaTimeApiKey();
+    if (!key.isEmpty()) // wakatime-cli uses ~/.wakatime.cfg by default
+        args << "--key" << key;
+
     if (isWrite)
-        arg.append("--write");
-    wakaTimeProcess->setArguments(arg);
-    wakaTimeProcess->start();
+        args << "--write";
+
+    if (SettingsHelper::isWakaTimeProxy() && QStringList{"Http", "Socks5"}.contains(SettingsHelper::getProxyType()))
+    {
+        QString proxyStr = SettingsHelper::getProxyType().toLower() + "://";
+        const auto user = SettingsHelper::getProxyUser();
+        const auto passwd = SettingsHelper::getProxyPassword();
+        if (!user.isEmpty() && !passwd.isEmpty())
+            proxyStr += QString("%1:%2").arg(user, passwd);
+        proxyStr += QString("%1:%2").arg(SettingsHelper::getProxyHostName()).arg(SettingsHelper::getProxyPort());
+        args << "--proxy" << proxyStr;
+    }
+
+    LOG_INFO(INFO_OF(args.join(' ')));
+
+    auto *wakaTimeProcess = new QProcess();
+    connect(wakaTimeProcess, qOverload<int, QProcess::ExitStatus>(&QProcess::finished), wakaTimeProcess,
+            &QObject::deleteLater);
+    wakaTimeProcess->start(SettingsHelper::getWakaTimePath(), args);
 }
 } // namespace Extensions
