@@ -2230,14 +2230,6 @@ kill the application with SIGKILL which could not be handled by the application.
         <translation>无需滚动条时一个测试用例的最大高度，以像素为单位。</translation>
     </message>
     <message>
-        <source>Enable Proxy</source>
-        <translation>启用代理</translation>
-    </message>
-    <message>
-        <source>Enable proxy for checking updates</source>
-        <translation>检查更新时启用代理</translation>
-    </message>
-    <message>
         <source>The hostname of the proxy, e.g. 127.0.0.1</source>
         <translation>代理的主机名，例如：127.0.0.1</translation>
     </message>
@@ -2591,11 +2583,6 @@ You can learn about it by running `yapf --style-help`.</source>
     </message>
     <message>
         <source>network-proxy</source>
-        <comment>the anchor of Enable Proxy on the corresponding page of https://cpeditor.org/docs/preferences</comment>
-        <translation>网络代理</translation>
-    </message>
-    <message>
-        <source>network-proxy</source>
         <comment>the anchor of Type on the corresponding page of https://cpeditor.org/docs/preferences</comment>
         <translation>网络代理</translation>
     </message>
@@ -2640,8 +2627,31 @@ You can learn about it by running `yapf --style-help`.</source>
         <translation>启用 WakaTime</translation>
     </message>
     <message>
-        <source>Can be found at https://wakatime.com/settings/account</source>
-        <translation>可以在 https://wakatime.com/settings/account 找到</translation>
+        <source>Enable proxy to connect to GitHub while checking updates</source>
+        <translation>在检查更新时使用代理连接到 GitHub</translation>
+    </message>
+    <message>
+        <source>Can be found at https://wakatime.com/settings/account.
+It can be empty if you have the global wakatime config file ~/.wakatime.cfg.</source>
+        <translation>可以在 https://wakatime.com/settings/account 查看。
+如果有 WakaTime 的全局配置文件 ~/.wakatime.cfg 则可以留空。</translation>
+    </message>
+    <message>
+        <source>Use Proxy</source>
+        <translation>使用代理</translation>
+    </message>
+    <message>
+        <source>Use Advanced-&gt;Network Proxy to send data to WakaTime.</source>
+        <translation>使用 高级-&gt;网络代理 将数据发送给 WakaTime。</translation>
+    </message>
+    <message>
+        <source>Enable proxy for checking updates</source>
+        <translation>为检查更新启用代理</translation>
+    </message>
+    <message>
+        <source>network-proxy</source>
+        <comment>the anchor of Enable proxy for checking updates on the corresponding page of https://cpeditor.org/docs/preferences</comment>
+        <translation>网络代理</translation>
     </message>
 </context>
 <context>

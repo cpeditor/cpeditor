@@ -1015,7 +1015,7 @@
   },
   {
     "name": "Proxy/Enabled",
-    "desc": "Enable Proxy for checking updates",
+    "desc": "Enable proxy for checking updates",
     "type": "bool",
     "default": "true",
     "docAnchor": "network-proxy",
