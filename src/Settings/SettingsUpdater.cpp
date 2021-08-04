@@ -19,12 +19,15 @@
 #include "Core/SessionManager.hpp"
 #include "Settings/SettingsManager.hpp"
 #include "generated/SettingsHelper.hpp"
-#include <QJsonArray>
-#include <QJsonDocument>
-#include <QJsonObject>
+#include <QDebug>
+#include <QSet>
 #include <QSettings>
 
-void SettingsUpdater::updateSetting(QSettings &setting)
+void SettingsUpdater::updateSetting()
+{
+}
+
+void SettingsUpdater::updateSetting_INI(QSettings &setting)
 {
 #ifdef QT_DEBUG
     // Check for key conflicts
@@ -39,80 +42,168 @@ void SettingsUpdater::updateSetting(QSettings &setting)
 
     for (const auto &si : qAsConst(SettingsInfo::settings))
     {
-        addKey(si.key());
-        std::for_each(si.old.begin(), si.old.end(), addKey);
+        addKey(si.name);
     }
 #endif
+    // Remove all fixes.
 
-    for (const auto &si : qAsConst(SettingsInfo::settings))
+#define QAS(o, n, t)                                                                                                   \
+    if (setting.contains(o))                                                                                           \
+        c.set##n(setting.value(o).value<t>());
+
+    QMap<QString, QString> formatters{{"clang_format", "Clang Format"}, {"yapf", "YAPF"}};
+    for (const auto &key : formatters.keys())
     {
-        if (!SettingsManager::contains(si.name))
+        if (setting.childGroups().contains(key))
         {
-            for (const auto &old : qAsConst(si.old))
-            {
-                if (setting.contains(old))
-                {
-                    SettingsManager::set(si.name, setting.value(old));
-                    break;
-                }
-            }
+            setting.beginGroup(key);
+            auto c = SettingsHelper::getFormatter(formatters[key]);
+            QAS("program", Program, QString)
+            QAS("style", Style, QString)
+            QAS("arguments", Arguments, QString)
+            setting.endGroup();
         }
     }
 
-    if (setting.childGroups().contains("snippets"))
+    QMap<QString, QString> langs{{"cpp", "C++"}, {"java", "Java"}, {"python", "Python"}};
+    for (const auto &key : langs.keys())
     {
-        setting.beginGroup("snippets");
-        auto langs = setting.childGroups();
-        for (const QString &lang : langs)
+        if (setting.childGroups().contains(key))
         {
-            setting.beginGroup(lang);
-            auto obj = SettingsHelper::getLanguageConfig(lang == "Cpp" ? "C++" : lang);
-            QStringList used = obj.getSnippets();
-            for (const QString &key : setting.childKeys())
+            auto c = SettingsHelper::getLanguageConfig(langs[key]);
+            setting.beginGroup(key);
+            QAS("template_path", TemplatePath, QString)
+            QAS("template_cursor_position_regex", TemplateCursorPositionRegex, QString)
+            QAS("template_cursor_position_offset_type", TemplateCursorPositionOffsetType, QString)
+            QAS("template_cursor_position_offset_characters", TemplateCursorPositionOffsetCharacters, int)
+            QAS("run_arguments", RunArguments, QString)
+            if (key != "python")
             {
-                if (!used.contains(key))
-                    obj.setSnippet(key, setting.value(key).toString());
+                QAS("compile_command", CompileCommand, QString)
+                QAS("compiler_output_codec", CompilerOutputCodec, QString)
+                QAS("output_path", OutputPath, QString)
+            }
+            if (key != "cpp")
+            {
+                QAS("run_command", RunCommand, QString)
+            }
+            if (key == "java")
+            {
+                QAS("class_name", ClassName, QString)
+            }
+            if (setting.contains("parentheses"))
+            {
+                auto l = setting.value("parentheses").toList();
+                QStringList ks;
+                for (const auto &v : l)
+                {
+                    auto vl = v.toList();
+                    if (vl.size() != 5)
+                        continue;
+                    auto b = vl[0].toChar();
+                    auto e = vl[1].toChar();
+                    ks.push_back(QString("%1%2").arg(b).arg(e));
+                    auto ac = vl[2].toInt();
+                    auto ar = vl[3].toInt();
+                    auto tj = vl[4].toInt();
+                    auto p = c.getParentheses(ks.back());
+                    p.setAutoComplete(ac);
+                    p.setAutoRemove(ar);
+                    p.setTabJumpOut(tj);
+                }
+                c.setParentheses(ks);
+            }
+            setting.endGroup();
+        }
+        if (setting.childGroups().contains("lsp"))
+        {
+            setting.beginGroup("lsp");
+            auto l = SettingsHelper::getLSP(langs[key]);
+#define T(o, n, t)                                                                                                     \
+    if (setting.contains(o "_" + key))                                                                                 \
+        l.set##n(setting.value(o "_" + key).value<t>());
+
+            T("path", Path, QString)
+            T("use_linting", UseLinting, bool)
+            T("use_autocomplete", UseAutocomplete, bool)
+            T("delay", Delay, int)
+            T("args", Args, QString)
+            setting.endGroup();
+        }
+    }
+
+    if (setting.childGroups().contains("Language Config"))
+    {
+        setting.beginGroup("Language Config");
+        for (const auto &key : langs.values())
+        {
+            if (setting.childGroups().contains(key))
+            {
+                auto c = SettingsHelper::getLanguageConfig(key);
+                setting.beginGroup(key);
+                if (setting.childGroups().contains("snippet"))
+                {
+                    setting.beginGroup("snippet");
+                    auto ks = setting.childKeys();
+                    for (const auto &k : ks)
+                        c.getSnippet(k).setCode(setting.value(k).toString());
+                    c.setSnippet(ks);
+                    setting.endGroup();
+                }
+                setting.endGroup();
+            }
+        }
+        setting.endGroup();
+    }
+
+    if (setting.childGroups().contains("default_path"))
+    {
+        setting.beginGroup("default_path");
+        if (setting.contains("names_and_paths"))
+        {
+            auto l = setting.value("names_and_paths").toList();
+            QStringList ks;
+            for (const auto &v : l)
+            {
+                auto vl = v.toList();
+                if (vl.size() != 2)
+                    continue;
+                auto k = vl[0].toString();
+                auto p = vl[1].toString();
+                ks.push_back(k);
+                SettingsHelper::getDefaultPath(k).setPath(p);
+            }
+            SettingsHelper::setDefaultPath(ks);
+        }
+        if (setting.childGroups().contains("action"))
+        {
+            setting.beginGroup("action");
+            QMap<QString, QString> acts = {
+                {"open_file", "Open File"},
+                {"save_file", "Save File"},
+                {"open_contest", "Open Contest"},
+                {"load_single_test_case", "Load Single Test Case"},
+                {"add_pairs_of_test_cases", "Add Pairs Of Test Cases"},
+                {"save_test_case_to_a_file", "Save Test Case To A File"},
+                {"custom_checker", "Custom Checker"},
+                {"export_and_import_settings", "Export And Import Settings"},
+                {"export_and_load_session", "Export And Load Session"},
+                {"extract_and_load_snippets", "Extract And Load Snippets"},
+            };
+            for (const auto &key : acts.keys())
+            {
+                if (setting.contains(key + "/uses"))
+                    SettingsHelper::getDefaultPathAction(acts[key]).setUses(setting.value(key + "/uses").toString());
+                if (setting.contains(key + "/changes"))
+                    SettingsHelper::getDefaultPathAction(acts[key]).setChanges(
+                        setting.value(key + "/changes").toString());
             }
             setting.endGroup();
         }
         setting.endGroup();
     }
+}
 
-    if (setting.childGroups().contains("editor_status") && Core::SessionManager::lastSessionPath().isEmpty())
-    {
-        QJsonObject json;
-        json.insert("currentIndex", setting.contains("hot_exit/current_index")
-                                        ? setting.value("hot_exit/current_index").toInt()
-                                        : setting.value("current_index").toInt());
-
-        QJsonArray arr;
-
-        setting.beginGroup("editor_status");
-        auto indices = setting.childKeys();
-        for (const auto &index : indices)
-        {
-            arr.push_back(QJsonDocument::fromVariant(setting.value(index).toMap()).object());
-        }
-        setting.endGroup();
-
-        json.insert("tabs", arr);
-
-        Core::SessionManager::saveSession(QJsonDocument(json).toJson());
-    }
-
-    if (setting.contains("save_path"))
-    {
-        if (SettingsHelper::getDefaultPathNamesAndPaths().isEmpty())
-        {
-            SettingsHelper::setDefaultPathNamesAndPaths(
-                QVariantList{QStringList{"file", setting.value("save_path").toString()}});
-        }
-    }
-
-    QString theme = SettingsManager::get("Editor Theme")
-                        .toString()
-                        .replace("Monkai", "Monokai")
-                        .replace("Drakula", "Dracula")
-                        .replace("Solarised", "Solarized");
-    SettingsManager::set("Editor Theme", theme);
+void SettingsUpdater::updateSettingFinal()
+{
 }
