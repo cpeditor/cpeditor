@@ -167,6 +167,10 @@ class PreferencesWindow : public QMainWindow
      */
     int nextNonHiddenPage(int index, int direction = 1, bool includingSelf = false) const;
 
+    /* genereated by genSettings.py */
+
+    void addPages();
+
     /**
      * The GUI:
      *
