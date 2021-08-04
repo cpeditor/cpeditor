@@ -33,9 +33,10 @@ namespace Core
 {
 const static QStringList sessionFileLocations = {
 #ifdef PORTABLE_VERSION
+    "$BINARY/session.json"
     "$BINARY/cp_editor_session.json",
 #endif
-    "$APPCONFIG/cp_editor_session.json"};
+    "$APPCONFIG/session.json", "$OLDAPPCONFIG/cp_editor_session.json"};
 
 SessionManager::SessionManager(AppWindow *appwindow) : QObject(appwindow), app(appwindow)
 {

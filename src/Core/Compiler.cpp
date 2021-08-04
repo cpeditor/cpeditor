@@ -75,7 +75,7 @@ void Compiler::start(const QString &tmpFilePath, const QString &sourceFilePath, 
 
     if (args.isEmpty())
     {
-        emit compilationFailed(tr("%1 is empty").arg(SettingsManager::getPathText(lang + "/Compile Command")));
+        emit compilationFailed(tr("%1 is empty").arg(SettingsHelper::getLanguageConfig(lang).pathOfCompileCommand()));
         return;
     }
 
@@ -112,8 +112,8 @@ QString Compiler::outputPath(const QString &tmpFilePath, const QString &sourceFi
         return tmpFilePath;
 
     QFileInfo fileInfo(sourceFilePath.isEmpty() ? tmpFilePath : sourceFilePath);
-    QString res = fileInfo.dir().filePath(SettingsManager::get(lang + "/Output Path")
-                                              .toString()
+    QString res = fileInfo.dir().filePath(SettingsHelper::getLanguageConfig(lang)
+                                              .getOutputPath()
                                               .replace("${filename}", fileInfo.fileName())
                                               .replace("${basename}", fileInfo.completeBaseName())
                                               .replace("${tmpdir}", QFileInfo(tmpFilePath).absolutePath())
@@ -139,7 +139,7 @@ QString Compiler::outputFilePath(const QString &tmpFilePath, const QString &sour
     const auto &path = outputPath(tmpFilePath, sourceFilePath, lang, createDirectory);
 
     if (lang == "Java")
-        return QDir(path).filePath(SettingsHelper::getJavaClassName() + ".class");
+        return QDir(path).filePath(SettingsHelper::getLanguageConfig("Java").getClassName() + ".class");
 
     return path;
 }
@@ -147,10 +147,8 @@ QString Compiler::outputFilePath(const QString &tmpFilePath, const QString &sour
 void Compiler::onProcessFinished(int exitCode, QProcess::ExitStatus e)
 {
     QString codecName = "UTF-8";
-    if (lang == "C++")
-        codecName = SettingsHelper::getCppCompilerOutputCodec();
-    else if (lang == "Java")
-        codecName = SettingsHelper::getJavaCompilerOutputCodec();
+    if (lang == "C++" || lang == "Java")
+        codecName = SettingsHelper::getLanguageConfig(lang).getCompilerOutputCodec();
     QTextCodec *codec = QTextCodec::codecForName(codecName.toUtf8());
     if (!codec)
         codec = QTextCodec::codecForName("UTF-8");
@@ -169,7 +167,7 @@ void Compiler::onProcessErrorOccurred(QProcess::ProcessError error)
     {
         emit compilationFailed(
             tr("Failed to start the compiler. Please check %1 or add the compiler in the PATH environment variable.")
-                .arg(SettingsManager::getPathText(lang + "/Compile Command")));
+                .arg(SettingsHelper::getLanguageConfig(lang).pathOfCompileCommand()));
     }
 }
 

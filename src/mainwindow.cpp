@@ -201,9 +201,8 @@ void MainWindow::run(int index)
     connect(tmp, &Core::Runner::failedToStartRun, this, &MainWindow::onFailedToStartRun);
     connect(tmp, &Core::Runner::runOutputLimitExceeded, this, &MainWindow::onRunOutputLimitExceeded);
     connect(tmp, &Core::Runner::runKilled, this, &MainWindow::onRunKilled);
-    tmp->run(tmpPath(), filePath, language, SettingsManager::get(QString("%1/Run Command").arg(language)).toString(),
-             SettingsManager::get(QString("%1/Run Arguments").arg(language)).toString(), testcases->input(index),
-             timeLimit());
+    tmp->run(tmpPath(), filePath, language, SettingsHelper::getLanguageConfig(language).getRunCommand(),
+             SettingsHelper::getLanguageConfig(language).getRunArguments(), testcases->input(index), timeLimit());
     runner.push_back(tmp);
 }
 
@@ -590,11 +589,10 @@ void MainWindow::applySettings(const QString &pagePath)
         }
     }
 
-    if (pageChanged("Code Edit") || pagePath.startsWith("Appearance/") ||
-        pageChanged(QString("Language/%1/%1 Parentheses").arg(language)))
+    if (pageChanged("Code Edit") || pagePath.startsWith("Appearance/") || pageChanged("Language"))
         Util::applySettingsToEditor(editor, language);
 
-    if (!isLanguageSet && pageChanged("Language/General"))
+    if (!isLanguageSet && pageChanged("Language"))
     {
         setLanguage(SettingsHelper::getDefaultLanguage());
     }
@@ -611,7 +609,7 @@ void MainWindow::applySettings(const QString &pagePath)
         testcases->setTestCaseEditFont(SettingsHelper::getTestCasesFont());
     }
 
-    if (pageChanged("Language/C++/C++ Commands"))
+    if (pageChanged("Language"))
         updateChecker();
 
     if (pageChanged("Actions/Auto Save"))
@@ -704,7 +702,7 @@ void MainWindow::setLanguage(const QString &lang)
     {
         QString templateContent;
         if (!language.isEmpty())
-            templateContent = Util::readFile(SettingsManager::get(QString("%1/Template Path").arg(language)).toString(),
+            templateContent = Util::readFile(SettingsHelper::getLanguageConfig(language).getTemplatePath(),
                                              tr("Open %1 Template").arg(language), log);
         if (templateContent == editor->toPlainText())
         {
@@ -839,7 +837,7 @@ void MainWindow::loadFile(const QString &loadPath)
 
     if (!QFile::exists(path))
     {
-        QString templatePath = SettingsManager::get(QString("%1/Template Path").arg(language)).toString();
+        QString templatePath = SettingsHelper::getLanguageConfig(language).getTemplatePath();
 
         QFile f(templatePath);
 
@@ -882,14 +880,14 @@ void MainWindow::loadFile(const QString &loadPath)
 
     if (isTemplate)
     {
-        auto match = QRegularExpression(SettingsManager::get(language + "/Template Cursor Position Regex").toString())
+        auto match = QRegularExpression(SettingsHelper::getLanguageConfig(language).getTemplateCursorPositionRegex())
                          .match(content);
         if (match.hasMatch())
         {
-            int pos = SettingsManager::get(language + "/Template Cursor Position Offset Type").toString() == "start"
+            int pos = SettingsHelper::getLanguageConfig(language).getTemplateCursorPositionOffsetType() == "start"
                           ? match.capturedStart()
                           : match.capturedEnd();
-            pos += SettingsManager::get(language + "/Template Cursor Position Offset Characters").toInt();
+            pos += SettingsHelper::getLanguageConfig(language).getTemplateCursorPositionOffsetCharacters();
             pos = qMax(pos, 0);
             pos = qMin(pos, content.length());
             auto cursor = editor->textCursor();
@@ -1036,7 +1034,7 @@ QString MainWindow::tmpPath()
     if (language == "C++")
         name = "sol." + Util::cppSuffix.first();
     else if (language == "Java")
-        name = SettingsHelper::getJavaClassName() + "." + Util::javaSuffix.first();
+        name = SettingsHelper::getLanguageConfig("Java").getClassName() + "." + Util::javaSuffix.first();
     else if (language == "Python")
         name = "sol." + Util::pythonSuffix.first();
     else
@@ -1080,7 +1078,7 @@ bool MainWindow::isTextChanged() const
 {
     if (isUntitled())
     {
-        auto content = Util::readFile(SettingsManager::get(QString("%1/Template Path").arg(language)).toString(),
+        auto content = Util::readFile(SettingsHelper::getLanguageConfig(language).getTemplatePath(),
                                       tr("Read %1 Template").arg(language), log);
         if (content.isNull())
             return !editor->toPlainText().isEmpty();
@@ -1245,7 +1243,7 @@ void MainWindow::updateChecker()
     else
         checker = new Core::Checker(testcases->checkerType(), log, this);
     connect(checker, &Core::Checker::checkFinished, testcases, &Widgets::TestCases::setVerdict);
-    checker->prepare(SettingsManager::get(QString("C++/Compile Command")).toString());
+    checker->prepare(SettingsHelper::getLanguageConfig("C++").getCompileCommand());
 }
 
 QSplitter *MainWindow::getSplitter()
@@ -1261,7 +1259,7 @@ QSplitter *MainWindow::getRightSplitter()
 QString MainWindow::compileCommand() const
 {
     if (customCompileCommand.isEmpty())
-        return SettingsManager::get(QString("%1/Compile Command").arg(language)).toString();
+        return SettingsHelper::getLanguageConfig(language).getCompileCommand();
     return customCompileCommand;
 }
 
@@ -1337,8 +1335,8 @@ void MainWindow::onCompilationFinished(const QString &warning)
         connect(detachedRunner, &Core::Runner::failedToStartRun, this, &MainWindow::onFailedToStartRun);
         connect(detachedRunner, &Core::Runner::runKilled, this, &MainWindow::onRunKilled);
         detachedRunner->runDetached(tmpPath(), filePath, language,
-                                    SettingsManager::get(QString("%1/Run Command").arg(language)).toString(),
-                                    SettingsManager::get(QString("%1/Run Arguments").arg(language)).toString());
+                                    SettingsHelper::getLanguageConfig(language).getRunCommand(),
+                                    SettingsHelper::getLanguageConfig(language).getRunArguments());
     }
 }
 
@@ -1353,7 +1351,7 @@ void MainWindow::onCompilationErrorOccurred(const QString &error)
             log->warn(
                 tr("Compile Errors"),
                 tr("Have you set a proper name for the main class in your solution? If not, you can set it at %1.")
-                    .arg(SettingsHelper::pathOfJavaClassName()),
+                    .arg(SettingsHelper::getLanguageConfig_Java().pathOfClassName()),
                 false);
         }
     }
