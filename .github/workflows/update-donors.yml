@@ -15,9 +15,13 @@ jobs:
       - name: Update donors
         run: python tools/getDonors.py ${{ secrets.GITHUB_TOKEN }}
       - name: Check diff
-        run: git diff --exit-code HEAD
+        id: diff
+        run: |
+          diff=0
+          git diff --exit-code HEAD || diff=1
+          echo "::set-output name=diff::$diff"
       - name: Create Pull Request
-        if: failure()
+        if: steps.diff.outputs.diff == 1
         uses: peter-evans/create-pull-request@v3
         with:
           commit-message: "chore: update donor list"
