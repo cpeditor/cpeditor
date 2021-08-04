@@ -22,6 +22,7 @@ optdepends=(
     'java-environment: compile Java'
     'java-runtime: execute Java'
     'python: execute Python'
+    'wakatime: track coding stats'
 )
 provides=('cpeditor')
 conflicts=("cpeditor")
