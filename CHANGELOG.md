@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+### Breaking Changes
+
+-   The command line option `--no-hot-exit` is renamed to `--no-restore-session`. (#928 and #947)
+
 ### Added
 
 -   Use [Kate's Syntax highlighter](https://api.kde.org/frameworks/syntax-highlighting/html/) engine for Code Highlighting. (#1101)
