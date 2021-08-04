@@ -37,7 +37,7 @@ class WakaTime : public QObject
     void onDebounceTimeout();
 
   private:
-    QStringList args;
+    QStringList arguments;
     QString argsStr;
     QString lastEntity;
     QDateTime lastTime; // QTime may result in bugs if in different days

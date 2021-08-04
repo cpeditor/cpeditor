@@ -54,7 +54,7 @@ void WakaTime::sendHeartBeat(const QString &filePath, const QString &problemURL,
     lastTime = now;
     lastEntity = entity;
 
-    args.clear();
+    QStringList args;
 
     args << "--plugin"
          << "cpeditor-wakatime/" APP_VERSION;
@@ -85,6 +85,7 @@ void WakaTime::sendHeartBeat(const QString &filePath, const QString &problemURL,
         args << "--proxy" << proxyStr;
     }
 
+    arguments = args;
     argsStr = args.join(' ');
     if (!key.isEmpty())
         argsStr.replace(key, "***[hidden]***");
@@ -98,6 +99,6 @@ void WakaTime::onDebounceTimeout()
     auto *wakaTimeProcess = new QProcess();
     connect(wakaTimeProcess, qOverload<int, QProcess::ExitStatus>(&QProcess::finished), wakaTimeProcess,
             &QObject::deleteLater);
-    wakaTimeProcess->start(SettingsHelper::getWakaTimePath(), args);
+    wakaTimeProcess->start(SettingsHelper::getWakaTimePath(), arguments);
 }
 } // namespace Extensions
