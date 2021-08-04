@@ -22,19 +22,28 @@
 
 class QSettings;
 
+namespace YAML
+{
+class Node;
+class Emitter;
+}; // namespace YAML
+
 class SettingsManager
 {
   private:
-    static void load(QSettings &setting, const QString &prefix, const QList<SettingsInfo::SettingInfo> &infos);
-    static void save(QSettings &setting, const QString &prefix, const QList<SettingsInfo::SettingInfo> &infos);
+    static void load(const YAML::Node &setting, const QString &prefix, const QList<SettingsInfo::SettingInfo> &infos);
+    static void load_INI(QSettings &setting, const QString &prefix, const QList<SettingsInfo::SettingInfo> &infos);
+    static void save(YAML::Emitter &setting, const QString &prefix, const QList<SettingsInfo::SettingInfo> &infos);
 
   public:
     static void init();
     static void deinit();
 
+    static void fillWithDefault(const SettingsInfo::SettingIter &pos);
     static void generateDefaultSettings();
 
     static void loadSettings(const QString &path);
+    static void loadSettings_INI(const QString &path);
 
     /**
      * @brief save settings to the given path
@@ -42,8 +51,8 @@ class SettingsManager
      */
     static void saveSettings(const QString &path);
 
-    static QVariant get(QString const &key, bool alwaysDefault = false);
-    static bool contains(const QString &key, bool includingDefault = false);
+    static QVariant get(QString const &key);
+    static bool contains(const QString &key);
     static void set(const QString &key, QVariant const &value);
     static void remove(QStringList const &keys);
     static void reset();
@@ -71,7 +80,6 @@ class SettingsManager
 
   private:
     static QVariantMap *cur;
-    static QVariantMap *def;
     static QMap<QString, QString> *settingPath;
     static QMap<QString, QString> *settingTrPath;
     static QMap<QString, QString> *pathSetting;
