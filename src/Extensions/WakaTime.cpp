@@ -79,7 +79,10 @@ void WakaTime::sendHeartBeat(const QString &filePath, const QString &problemURL,
         args << "--proxy" << proxyStr;
     }
 
-    LOG_INFO(INFO_OF(args.join(' ')));
+    auto argsStr = args.join(' ');
+    if (!key.isEmpty())
+        argsStr.replace(key, "***[hidden]***");
+    LOG_INFO(INFO_OF(argsStr));
 
     auto *wakaTimeProcess = new QProcess();
     connect(wakaTimeProcess, qOverload<int, QProcess::ExitStatus>(&QProcess::finished), wakaTimeProcess,
