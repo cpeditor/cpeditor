@@ -30,6 +30,11 @@ jobs:
           cached: ${{ steps.cache-qt.outputs.cache-hit }}
           version: ${{ env.QT_VERSION }}
 
+      - name: "Install yaml-cpp"
+        run: |
+          sudo apt-get update
+          sudo apt-get install libyaml-cpp-dev
+
       - name: Build
         run: |
           cmake -B build -S . -D CMAKE_BUILD_TYPE=Release

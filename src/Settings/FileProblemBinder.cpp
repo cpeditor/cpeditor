@@ -62,7 +62,7 @@ bool FileProblemBinder::containsProblem(const QString &problem)
     return fileForProblem.contains(problem);
 }
 
-QVariant FileProblemBinder::toVariant()
+QStringList FileProblemBinder::toList()
 {
     QStringList res;
     res.reserve(problemForFile.count() * 2);
@@ -74,9 +74,8 @@ QVariant FileProblemBinder::toVariant()
     return res;
 }
 
-void FileProblemBinder::fromVariant(const QVariant &var)
+void FileProblemBinder::fromList(const QStringList &list)
 {
-    auto list = var.toStringList();
     for (int i = 0; i + 1 < list.count(); i += 2)
         set(list[i], list[i + 1]);
 }

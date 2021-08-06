@@ -39,7 +39,8 @@ class QLayoutItem;
 class QPushButton;
 class QScrollArea;
 class QVBoxLayout;
-class ValueWidget;
+
+struct SettingBase;
 
 class PreferencesPage : public QWidget
 {
@@ -79,7 +80,7 @@ class PreferencesPage : public QWidget
      * @brief a virtual destructor that does nothing
      * @note the widgets are destructed by Qt, so we shouldn't destruct them in the codes
      */
-    virtual ~PreferencesPage(){};
+    ~PreferencesPage() override = default;
 
     /**
      * @brief ask the user whether to save, discard or cancel if there are unsaved changes
@@ -149,7 +150,8 @@ class PreferencesPage : public QWidget
      */
     void addItem(QLayoutItem *item);
 
-    void registerWidget(const QString &key, ValueWidget *widget) const;
+    void registerWidget(const QString &key, SettingBase *widget) const;
+    void registerWidgets(const QString &key, QList<SettingBase *> widgets) const;
 
   protected slots:
     /**

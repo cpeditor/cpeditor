@@ -23,7 +23,9 @@ class QSettings;
 class SettingsUpdater
 {
   public:
-    static void updateSetting(QSettings &setting);
+    static void updateSetting();
+    static void updateSetting_INI(QSettings &setting);
+    static void updateSettingFinal();
 };
 
 #endif // SETTINGSUPDATER_HPP

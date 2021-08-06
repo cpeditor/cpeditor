@@ -131,6 +131,7 @@ RichTextCheckBox::RichTextCheckBox(const QString &text, QWidget *parent) : QWidg
     connect(label, &ClickableLabel::left, checkBox, &HoverCheckBox::clearStates);
     connect(checkBox, &HoverCheckBox::toggled, this, &RichTextCheckBox::toggled);
     connect(checkBox, &HoverCheckBox::clicked, this, &RichTextCheckBox::clicked);
+    connect(checkBox, &HoverCheckBox::stateChanged, this, &RichTextCheckBox::stateChanged);
     connect(label, &ClickableLabel::released, this, &RichTextCheckBox::clicked);
 }
 

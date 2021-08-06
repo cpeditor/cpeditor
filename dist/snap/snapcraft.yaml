@@ -27,9 +27,11 @@ parts:
       - qt515base
       - qt515tools
       - libgl1-mesa-dev
+      - libyaml-cpp-dev
       - git
     stage-packages:
       - qt515base
+      - libyaml-cpp-dev
     source: .
     cmake-parameters:
       - -DCMAKE_INSTALL_PREFIX=/usr

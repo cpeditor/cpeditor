@@ -33,7 +33,7 @@ PathItem::PathItem(Type type, QWidget *parent) : QWidget(parent), fileType(type)
     layout->setContentsMargins(0, 0, 0, 0);
 
     lineEdit = new QLineEdit();
-    lineEdit->setMinimumWidth(400);
+    lineEdit->setMinimumWidth(200);
     layout->addWidget(lineEdit);
 
     toolButton = new QToolButton();

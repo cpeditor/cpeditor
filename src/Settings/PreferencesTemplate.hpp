@@ -15,18 +15,21 @@
  *
  */
 
-#ifndef PREFERENCESPAGETEMPLATE_HPP
-#define PREFERENCESPAGETEMPLATE_HPP
+#ifndef PREFERENCESTEMPLATE_HPP
+#define PREFERENCESTEMPLATE_HPP
 
-#include "Settings/PreferencesGridPage.hpp"
+#include "Settings/PreferencesPage.hpp"
+#include "Settings/SettingWidget.hpp"
 
-class PreferencesPageTemplate : public PreferencesGridPage
+struct SettingsWrapper;
+
+class PreferencesTemplate : public PreferencesPage
 {
     Q_OBJECT
 
   public:
-    explicit PreferencesPageTemplate(QStringList opts, const QString &path, const QString &trPath, bool alignTop = true,
-                                     QWidget *parent = nullptr);
+    explicit PreferencesTemplate(const QStringList &opts, const QString &path, const QString &trPath,
+                                 bool alignTop = true, QWidget *parent = nullptr);
 
     QStringList content() override;
 
@@ -36,11 +39,9 @@ class PreferencesPageTemplate : public PreferencesGridPage
     void makeUITheSameAsSettings() override;
     void makeSettingsTheSameAsUI() override;
 
-    void onDependencyUpdated(const QString &settingName);
-
   private:
-    QStringList options;
-    QVector<ValueWidget *> widgets;
+    QList<QStringList> options;
+    QList<SettingsWrapper *> wraps;
 };
 
 #endif // PREFERENCESPAGETEMPLATE_HPP

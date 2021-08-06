@@ -477,105 +477,6 @@ Git commit hash: %3
     </message>
 </context>
 <context>
-    <name>CodeSnippetsPage</name>
-    <message>
-        <source>Search...</source>
-        <translation>Search...</translation>
-    </message>
-    <message>
-        <source>Add</source>
-        <translation>Добавить</translation>
-    </message>
-    <message>
-        <source>Del</source>
-        <translation>Удалить</translation>
-    </message>
-    <message>
-        <source>Rename Snippet</source>
-        <translation>Переименовать сниппет</translation>
-    </message>
-    <message>
-        <source>Load Snippets From Files</source>
-        <translation>Загрузить сниппет из файлов</translation>
-    </message>
-    <message>
-        <source>Extract Snippets To Files</source>
-        <translation>Извлечь сниппет в файлы</translation>
-    </message>
-    <message>
-        <source>More</source>
-        <translation>Еще</translation>
-    </message>
-    <message>
-        <source>No Snippet Selected</source>
-        <translation>Сниппет не выбран</translation>
-    </message>
-    <message>
-        <source>Unsaved Snippets</source>
-        <translation>Несохраненные сниппеты</translation>
-    </message>
-    <message>
-        <source>The snippet [%1] has been changed. Do you want to save it or discard the changes?</source>
-        <translation>Сниппет [%1] был изменен. Вы хотите сохранить изменения или отменить их?</translation>
-    </message>
-    <message>
-        <source>Delete Snippet</source>
-        <translation>Удалить сниппет</translation>
-    </message>
-    <message>
-        <source>Do you really want to delete the snippet [%1]?</source>
-        <translation>Вы действительно хотите удалить сниппет [%1]?</translation>
-    </message>
-    <message>
-        <source>Load Snippets</source>
-        <translation>Загрузить сниппет</translation>
-    </message>
-    <message>
-        <source>Failed to open [%1]. Do I have read permission?</source>
-        <translation>Не удалось открыть [%1]. Предоставлен ли доступ к чтению файла?</translation>
-    </message>
-    <message>
-        <source>Extract Snippets</source>
-        <translation>Дополнительные сниппеты</translation>
-    </message>
-    <message>
-        <source>Extract Snippets: %1</source>
-        <translation>Дополнительные сниппеты: %1</translation>
-    </message>
-    <message>
-        <source>Failed to write to [%1]. Do I have write permission?</source>
-        <translation>Не удалось записать изменения в файл [%1]. Предоставлен ли доступ к изменению фалйла?</translation>
-    </message>
-    <message>
-        <source>Snippet name can&apos;t be empty.
-</source>
-        <translation>Название сниппета не может пустым.
-</translation>
-    </message>
-    <message>
-        <source>Snippet Name Conflict</source>
-        <translation>Конфликт названий сниппетов</translation>
-    </message>
-    <message>
-        <source>The name &quot;%1&quot; is already in use. Do you want to override it? (The old snippet with this name will be deleted.)</source>
-        <translation>Название &quot;%1&quot; уже используется. Вы хотите перезаписать сниппет с таким именем? (Старый сниппет будет удален.)</translation>
-    </message>
-    <message>
-        <source>The name &quot;%1&quot; is already in use.
-</source>
-        <translation>Название &quot;%1&quot; уже используется.
-</translation>
-    </message>
-    <message>
-        <source>Add Snippet</source>
-        <translation>Добавить сниппет</translation>
-    </message>
-    <message>
-        <source>New Snippet Name:</source>
-        <translation>Новое имя сниппета:</translation>
-    </message>
-</context>
-<context>
     <name>Core::Checker</name>
     <message>
         <source>Read Checker</source>
@@ -1201,72 +1102,59 @@ Do you want to reload it?</source>
     </message>
 </context>
 <context>
+    <name>MapWrapper</name>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished">Добавить</translation>
+    </message>
+    <message>
+        <source>Del</source>
+        <translation type="unfinished">Удалить</translation>
+    </message>
+    <message>
+        <source>More</source>
+        <translation type="unfinished">Ещё</translation>
+    </message>
+    <message>
+        <source>Add %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All possible names have been used.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 %2 already exists</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>rename</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Key &apos;/&apos; is not supported</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select or add an item to start</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MessageLogger</name>
     <message>
         <source>
 ... The message is too long</source>
         <translation>
 ... Это сообщение слишком длинное</translation>
-    </message>
-</context>
-<context>
-    <name>ParenthesesPage</name>
-    <message>
-        <source>%1 Parentheses</source>
-        <translation>Скобки %1</translation>
-    </message>
-    <message>
-        <source>Add</source>
-        <translation>Добавить</translation>
-    </message>
-    <message>
-        <source>Del</source>
-        <translation>Удалить</translation>
-    </message>
-    <message>
-        <source>No Parenthesis Selected</source>
-        <translation>Нет выбранных скобок</translation>
-    </message>
-    <message>
-        <source>New Parenthesis</source>
-        <translation>Новые скобки</translation>
-    </message>
-    <message>
-        <source>Enter a parenthesis (e.g. {}):</source>
-        <translation>Введите скобки (например, {}):</translation>
-    </message>
-    <message>
-        <source>Delete Parenthesis</source>
-        <translation>Удалить скобки</translation>
-    </message>
-    <message>
-        <source>Do you really want to delete the parenthesis %1?</source>
-        <translation>Вы действительно хотите удалить скобки %1?</translation>
-    </message>
-</context>
-<context>
-    <name>ParenthesisWidget</name>
-    <message>
-        <source>Parenthesis: %1</source>
-        <translation>Скобки: %1</translation>
-    </message>
-    <message>
-        <source>Enable %1 for %2 in %3.
-If it&apos;s partially checked, the global setting in Code Edit will be used.</source>
-        <translation>Активировано %1 для %2 в %3.
-Выбрано частично, будут использованы глобальные настройки в Code Edit.</translation>
-    </message>
-    <message>
-        <source>Auto Complete</source>
-        <translation>Автозавершение</translation>
-    </message>
-    <message>
-        <source>Auto Remove</source>
-        <translation>Автоудаление</translation>
-    </message>
-    <message>
-        <source>Tab Jump Out</source>
-        <translation>Tab Jump Out</translation>
     </message>
 </context>
 <context>
@@ -1299,18 +1187,6 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation>Настройки редактора кода</translation>
     </message>
     <message>
-        <source>C++ Compile and Run Commands</source>
-        <translation>Команды компиляции и запуска на С++</translation>
-    </message>
-    <message>
-        <source>Java Compile and Run Commands</source>
-        <translation>Команды компиляции и запуска на Java</translation>
-    </message>
-    <message>
-        <source>Python Run Commands</source>
-        <translation>Команды запуска на Python</translation>
-    </message>
-    <message>
         <source>You can read the &lt;a href=&quot;%1&quot;&gt;documentation&lt;/a&gt; or go through the settings for more information.</source>
         <translation>Вы можете почитать &lt;a href=&quot;%1&quot;&gt;документация&lt;/a&gt; или просмотреть настройки для более подробной информации.</translation>
     </message>
@@ -1321,6 +1197,10 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <source>Font Settings</source>
         <translation>Настройки шрифтов</translation>
+    </message>
+    <message>
+        <source>Compile and Run Commands</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1389,18 +1269,6 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation>Основное</translation>
     </message>
     <message>
-        <source>C++</source>
-        <translation>C++</translation>
-    </message>
-    <message>
-        <source>Java</source>
-        <translation>Java</translation>
-    </message>
-    <message>
-        <source>Python</source>
-        <translation>Python</translation>
-    </message>
-    <message>
         <source>Appearance</source>
         <translation>Внешний вид</translation>
     </message>
@@ -1421,32 +1289,8 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation>Расширения</translation>
     </message>
     <message>
-        <source>Clang Format</source>
-        <translation>Clang Format</translation>
-    </message>
-    <message>
         <source>Language Server</source>
         <translation>Language Server</translation>
-    </message>
-    <message>
-        <source>%1 Commands</source>
-        <translation>%1 Команды</translation>
-    </message>
-    <message>
-        <source>%1 Template</source>
-        <translation>%1 Шаблоны</translation>
-    </message>
-    <message>
-        <source>%1 Snippets</source>
-        <translation>%1 Сниппеты</translation>
-    </message>
-    <message>
-        <source>%1 Parentheses</source>
-        <translation>%1 Скобки</translation>
-    </message>
-    <message>
-        <source>%1 Server</source>
-        <translation>%1 Сервер</translation>
     </message>
     <message>
         <source>Competitive Companion</source>
@@ -1513,10 +1357,6 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation>Шрифт</translation>
     </message>
     <message>
-        <source>YAPF</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Code Formatting</source>
         <translation>Форматирование кода</translation>
     </message>
@@ -1564,18 +1404,10 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation>Путь</translation>
     </message>
     <message>
-        <source>The path to the Clang Format executable file</source>
-        <translation>Путь до исполняемых файлов Clang Format</translation>
-    </message>
-    <message>
         <source>The Clang Format style options, which are usually saved in a .clang-format configuration file.
 You can learn about it at &lt;https://clang.llvm.org/docs/ClangFormatStyleOptions.html&gt;.</source>
         <translation>Опции Clang Format style, который обычно сохраняются в файле .clang-format.
 Больше информации на &lt;https://clang.llvm.org/docs/ClangFormatStyleOptions.html&gt;.</translation>
-    </message>
-    <message>
-        <source>The template used when creating a new C++ file</source>
-        <translation>Шаблон, используемый для создании нового C++ файла</translation>
     </message>
     <message>
         <source>The regular expression which matches a part of the code template.
@@ -1592,68 +1424,6 @@ The cursor will be at the end of the template if there&apos;s no match of the re
     <message>
         <source>The offset relative to the match of the regex in the number of characters, including white spaces.</source>
         <translation>Смещение относительно совпадения регулярного выражения по количеству символов, включая пробелы.</translation>
-    </message>
-    <message>
-        <source>The command used to compile C++. It should NOT include the path to the source file or &quot;-o &lt;output file&gt;&quot;.</source>
-        <translation>Команда, используемая для компиляции C ++. Она НЕ должен включать путь к исходному файлу или &quot;-o &lt;output file&gt;&quot;.</translation>
-    </message>
-    <message>
-        <source>The runtime arguments when executing a C++ program</source>
-        <translation>Аргументы при выполнении программы на C++</translation>
-    </message>
-    <message>
-        <source>The template used when creating a new Java file</source>
-        <translation>Шаблон, используемый при создании нового файла Java</translation>
-    </message>
-    <message>
-        <source>The command used to compile Java.
-It should NOT include the path to the source file or the path of the compiled class file.</source>
-        <translation>Команда, используемая для компиляции Java.
-Она НЕ должна включать путь к исходному файлу или путь к скомпилированному файлу класса.</translation>
-    </message>
-    <message>
-        <source>The runtime arguments when executing a Java program</source>
-        <translation>Аргументы при выполнении программы на Java</translation>
-    </message>
-    <message>
-        <source>The command to start a Java program. It should NOT include &quot;-classpath &lt;path&gt; &lt;class name&gt;&quot;.</source>
-        <translation>Команда для запуска программы на Java. НЕ должна включать &quot;-classpath &lt;path&gt; &lt;class name&gt;&quot;.</translation>
-    </message>
-    <message>
-        <source>%1 Run Command</source>
-        <translation>%1 Run Command</translation>
-    </message>
-    <message>
-        <source>%1 Class Name</source>
-        <translation>%1 Имя класса</translation>
-    </message>
-    <message>
-        <source>%1 Class Path</source>
-        <translation>%1 Путь класса</translation>
-    </message>
-    <message>
-        <source>The path of the parent directory of the compiled class file.
-It&apos;s relative to the source file, or the temporary directory if the tab is untitled.
-You can use &quot;${filename}&quot; for the complete file name,
-&quot;${basename}&quot; for the base file name without the suffix,
-&quot;${tmpdir}&quot; or &quot;${tempdir}&quot; for the absolute path of the temporary directory.</source>
-        <translation>Путь к родительскому каталогу скомпилированного файла класса.
-Путь относительно исходного файла или временного каталога, если вкладка не имеет названия.
-Вы можете использовать &quot;${filename}&quot; для полного имени файла,
-&quot;${basename}&quot; для базового имени файла без суффикса,
-&quot;${tmpdir}&quot; или &quot;${tempdir}&quot; для абсолютного пути к временному каталогу.</translation>
-    </message>
-    <message>
-        <source>The template used when creating a new Python file</source>
-        <translation>Шаблон, используемый при создании нового файла Python</translation>
-    </message>
-    <message>
-        <source>The runtime arguments when executing a Python program</source>
-        <translation>Аргументы, используемые при запуске программы на Python</translation>
-    </message>
-    <message>
-        <source>The command to start a Python program. It should NOT include the path to the source file.</source>
-        <translation>Команда для запуска программы на Python. Она НЕ должна включать путь к исходному файлу.</translation>
     </message>
     <message>
         <source>Editor Theme</source>
@@ -1716,48 +1486,6 @@ This can be overridden for each parenthesis in each language.</source>
         <translation>Автоматически дополнить пару скобок при наборе левого элемента,
 и отступить при наборе нужного элемента.
 Это может быть переопределено для каждой скобки на каждом языке.</translation>
-    </message>
-    <message>
-        <source>%1 Template Path</source>
-        <translation>%1 Путь шаблона</translation>
-    </message>
-    <message>
-        <source>%1 Template Cursor Position Regex</source>
-        <translation>%1 Шаблон-регулярное выражение положения курсора</translation>
-    </message>
-    <message>
-        <source>%1 Template Cursor Position Offset Type</source>
-        <translation>%1 Шаблон типа отступа позиции курсора</translation>
-    </message>
-    <message>
-        <source>%1 Template Cursor Position Offset Characters</source>
-        <translation>%1 Шаблон символа отступа позиции курсора</translation>
-    </message>
-    <message>
-        <source>%1 Compile Command</source>
-        <translation>%1 Команда компиляции</translation>
-    </message>
-    <message>
-        <source>%1 Executable File Path</source>
-        <translation>%1 Путь к исполняемому файлу</translation>
-    </message>
-    <message>
-        <source>The path of the compiled executable file.
-It&apos;s relative to the source file, or the temporary directory if the tab is untitled.
-No &quot;.exe&quot; is needed.
-You can use &quot;${filename}&quot; for the complete file name,
-&quot;${basename}&quot; for the base file name without the suffix,
-&quot;${tmpdir}&quot; or &quot;${tempdir}&quot; for the absolute path of the temporary directory.</source>
-        <translation>Путь к скомпилированному исполняемому файлу.
-Имеет значение пути к файлу исходного кода или временной директории, если вкладка не определена.
-Не нужно указывать расширение &quot;.exe&quot;.
-Вы можете использовать &quot;${filename}&quot; для полного имени файла,
-&quot;${basename}&quot; для основного файла без суффикса,
-&quot;${tmpdir}&quot; или &quot;${tempdir}&quot; для абсолютного пути к временной директории.</translation>
-    </message>
-    <message>
-        <source>%1 Run Arguments</source>
-        <translation>%1 Run Arguments</translation>
     </message>
     <message>
         <source>The name of the main class of your solution.</source>
@@ -1938,36 +1666,8 @@ A source file won&apos;t be opened if it&apos;s too long.</source>
 Исходный файл не будет открыт, если он слишком длинный.</translation>
     </message>
     <message>
-        <source>Path to LSP executable</source>
-        <translation>Путь до исполняемого файла LSP</translation>
-    </message>
-    <message>
-        <source>The path to the C++ Language Server executable</source>
-        <translation>Путь до исполняемого файла C++ Language Server</translation>
-    </message>
-    <message>
-        <source>The path to the Java Language Server executable</source>
-        <translation>Путь до исполняемого файла Java Language Server</translation>
-    </message>
-    <message>
-        <source>The path to the Python Language Server executable</source>
-        <translation>Путь до исполняемого файла Python Language Server</translation>
-    </message>
-    <message>
         <source>Use Linting with Language Server</source>
         <translation>Использовать функцию Linting с Language Server</translation>
-    </message>
-    <message>
-        <source>Show Error, Warning, Information and Hints in Code Editor for C++ Language</source>
-        <translation>Показывать ошибки, предупреждения, информацию и подсказки в редакторе кода для языка C++</translation>
-    </message>
-    <message>
-        <source>Show Error, Warning, Information and Hints in Code Editor for Java Language</source>
-        <translation>Показывать ошибки, предупреждения, информацию и подсказки в редакторе кода для языка Java</translation>
-    </message>
-    <message>
-        <source>Show Error, Warning, Information and Hints in Code Editor for Python Language</source>
-        <translation>Показывать ошибки, предупреждения, информацию и подсказки в редакторе кода для языка Python</translation>
     </message>
     <message>
         <source>Use auto-complete with Language Server</source>
@@ -2294,16 +1994,8 @@ kill the application with SIGKILL which could not be handled by the application.
         <translation>Кастомный шрифт для всего приложения</translation>
     </message>
     <message>
-        <source>%1 Compiler Output Codec</source>
-        <translation>%1 Кодек выхода компилятора</translation>
-    </message>
-    <message>
         <source>Text codec of the compiler output (errors, warnings, etc.)</source>
         <translation>Текстовый кодек выхода компилятора (ошибки, предупреждения и т.д.)</translation>
-    </message>
-    <message>
-        <source>Default Path Names And Paths</source>
-        <translation>Сделать названия путей по умолчанию</translation>
     </message>
     <message>
         <source>A list of default paths.
@@ -2314,32 +2006,8 @@ They can be either manually set or automatically changed after choosing a path f
 Они могут быть установлены вручную или автоматически изменены после выбора пути для действия.</translation>
     </message>
     <message>
-        <source>Name</source>
-        <translation>Название</translation>
-    </message>
-    <message>
-        <source>The name of a default path</source>
-        <translation>Название стандартного пути</translation>
-    </message>
-    <message>
-        <source>The path of a default path</source>
-        <translation>Стандартный путь</translation>
-    </message>
-    <message>
         <source>Open File</source>
         <translation>Открыть файл</translation>
-    </message>
-    <message>
-        <source>The default path used when choosing a path for %1.
-You can use ${&lt;default path name&gt;} as a place holder.</source>
-        <translation>Путь по умолчанию, используемый при выборе пути для %1.
-Вы можете использовать ${&lt;default path name&gt;} в качестве заполнителя.</translation>
-    </message>
-    <message>
-        <source>The default paths changed after choosing a path for %1.
-It is a list of &lt;default path name&gt;s, separated by commas, and can be empty.</source>
-        <translation>Стандратные пути изменятся после выбора пути для %1.
-Это список &lt;default path name&gt;s, разделенный запятыми, который не может быть пустым.</translation>
     </message>
     <message>
         <source>Save File</source>
@@ -2372,18 +2040,6 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     <message>
         <source>Extract And Load Snippets</source>
         <translation>Экспорт и загрузка сниппетов</translation>
-    </message>
-    <message>
-        <source>Default path used for %1</source>
-        <translation>Стандартный путь для %1</translation>
-    </message>
-    <message>
-        <source>Default paths changed by %1</source>
-        <translation>Стандартные пути могут быть изменены %1</translation>
-    </message>
-    <message>
-        <source>It can be overridden by %1.</source>
-        <translation>Может быть перезаписан %1.</translation>
     </message>
     <message>
         <source>Format code on manual save</source>
@@ -2540,48 +2196,6 @@ A test case will be elided and read-only if it&apos;s too long.</source>
 Если тесткейс будет слишком большой, он будет пропущен и доступен только для чтения.</translation>
     </message>
     <message>
-        <source>Clang Format Program</source>
-        <translation>Программа Clang Format</translation>
-    </message>
-    <message>
-        <source>Clang Format Arguments</source>
-        <translation>Аргументы Clang Format</translation>
-    </message>
-    <message>
-        <source>The arguments passed to clang-format. It should NOT contain &quot;-i&quot;.</source>
-        <translation>Аргументы, применяемы для Clang Format. Они НЕ должны содержать &quot;-i&quot;.</translation>
-    </message>
-    <message>
-        <source>Clang Format Style</source>
-        <translation>Стиль Clang Format</translation>
-    </message>
-    <message>
-        <source>YAPF Program</source>
-        <translation>Программа YAPF</translation>
-    </message>
-    <message>
-        <source>The program of YAPF. It could be `yapf` (which doesn&apos;t need arguments) or `python` (which needs `-m yapf` as the arguments).</source>
-        <translation>Программа для YAPF. Это может быть &quot;yapf&quot; (который не требует аргументы) или &quot;python&quot; (который требует аргумент &quot;-m yapf&quot;).</translation>
-    </message>
-    <message>
-        <source>YAPF Arguments</source>
-        <translation>Аргументы YAPF</translation>
-    </message>
-    <message>
-        <source>The arguments passed to the YAPF program. It should NOT contain &quot;-i&quot;.</source>
-        <translation>Аргументы, применяемы для программы YAPF. Они не должны содержать &quot;-i&quot;.</translation>
-    </message>
-    <message>
-        <source>YAPF Style</source>
-        <translation>Стиль YAPF</translation>
-    </message>
-    <message>
-        <source>The YAPF style options, which are usually saved in a .style.yapf or setup.conf configuration file.
-You can learn about it by running `yapf --style-help`.</source>
-        <translation>Параметры стиля YAPF, которые обычно сохраняются в конфигурационный файл .style.yapf or setup.conf.
-Вы можете узнать больше об этом запустив &quot;yapf --style-help&quot;.</translation>
-    </message>
-    <message>
         <source>Format the code when saving it manually.</source>
         <translation>Форматировать код, когда он сохраняется вручную.</translation>
     </message>
@@ -2630,6 +2244,228 @@ You can learn about it by running `yapf --style-help`.</source>
     <message>
         <source>Automatically uncheck test cases when they get accepted.</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto Complete</source>
+        <translation type="unfinished">Автозавершение</translation>
+    </message>
+    <message>
+        <source>Auto Remove</source>
+        <translation type="unfinished">Автоудаление</translation>
+    </message>
+    <message>
+        <source>Tab Jump Out</source>
+        <translation type="unfinished">Tab Jump Out</translation>
+    </message>
+    <message>
+        <source>Parentheses</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Parentheses sequence should contains exactly two character.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Load Snippet From File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Extract Snippet To File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Snippet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Language Config</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable @0 for @1 in @3.
+If it&apos;s partially checked, the global setting in Code Edit will be used.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Template Path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The template used when creating a new @1 file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Template Cursor Position Regex</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Template Cursor Position Offset Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Template Cursor Position Offset Characters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Compile Command</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The command used to compile @1. It should NOT include the path to the source file or any core params.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Compiler Output Codec</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Executable File Path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Run Arguments</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Run Command</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The command to start a @1 program. It should NOT include core params.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Class Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The runtime arguments when executing a @1 program.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The path of the compiled file.
+It&apos;s relative to the source file, or the temporary directory if the tab is untitled.
+You can use &quot;${filename}&quot; for the complete file name,
+&quot;${basename}&quot; for the base file name without the suffix,
+&quot;${tmpdir}&quot; or &quot;${tempdir}&quot; for the absolute path of the temporary directory.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Program</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The path to the clang-format executable file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The program of YAPF. It could be `yapf` (which doesn&apos;t need arguments) or `python`
+(which needs `-m yapf` as the arguments).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Arguments</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The arguments passed to @1. It should NOT contain &quot;-i&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Style</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Formatter</source>
+        <translation type="unfinished">Форматирование</translation>
+    </message>
+    <message>
+        <source>Default path used for</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The default path used when choosing a path for @1.
+You can use ${&lt;default path name&gt;} as a place holder.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The default path used when choosing a path for @1.
+You can use ${&lt;default path name&gt;} as a place holder.
+It can be overridden by Default File Paths For Problem URLs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default paths changed by</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The default paths changed after choosing a path for @1.
+It is a list of &lt;default path name&gt;s, separated by commas, and can be empty.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default Path Action</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Path to LSP excutable</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The path to the @1 Language Server executable</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show Error, Warning, Information and Hints in Code Editor for @1 Language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LSP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default Path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The YAPF style options, which are usually saved in a .style.yapf or setup.conf configuration file.
+You can learn about it by running `yapf --style-help`.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Commands</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SettingsMethods</name>
+    <message>
+        <source>Load Snippets</source>
+        <translation type="unfinished">Загрузить сниппет</translation>
+    </message>
+    <message>
+        <source>Failed to open [%1]. Do I have read permission?</source>
+        <translation type="unfinished">Не удалось открыть файл [%1]. Предоставлен ли доступ к чтению фалйла?</translation>
+    </message>
+    <message>
+        <source>Extract Snippets</source>
+        <translation type="unfinished">Дополнительные сниппеты</translation>
+    </message>
+    <message>
+        <source>Extract Snippets: %1</source>
+        <translation type="unfinished">Дополнительные сниппеты: %1</translation>
+    </message>
+    <message>
+        <source>Failed to write to [%1]. Do I have write permission?</source>
+        <translation type="unfinished">Не удалось записать изменения в файл [%1]. Предоставлен ли доступ к изменению фалйла?</translation>
     </message>
 </context>
 <context>

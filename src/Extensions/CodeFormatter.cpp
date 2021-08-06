@@ -18,8 +18,8 @@
 #include "Extensions/CodeFormatter.hpp"
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
-#include "Settings/SettingsManager.hpp"
 #include "Util/FileUtil.hpp"
+#include "generated/SettingsHelper.hpp"
 #include "third_party/QCodeEditor/include/QCodeEditor"
 #include <QProcess>
 #include <QTemporaryDir>
@@ -48,7 +48,7 @@ CodeFormatter::CodeFormatter(QCodeEditor *editor, const QString &lang, bool sele
 
 void CodeFormatter::format() const
 {
-    QStringList args = arguments() << QProcess::splitCommand(getSetting("Arguments").toString());
+    QStringList args = arguments() << QProcess::splitCommand(SettingsHelper::getFormatter(settingKey()).getArguments());
 
     if (formatSelectionOnly())
         args.append(rangeArgs());
@@ -66,7 +66,8 @@ void CodeFormatter::format() const
     if (!Util::saveFile(tmpPath, m_editor->toPlainText(), tr("Formatter"), true, log))
         return;
 
-    if (!Util::saveFile(tmpDir.filePath(styleFileName()), getSetting("Style").toString(), tr("Formatter"), true, log))
+    if (!Util::saveFile(tmpDir.filePath(styleFileName()), SettingsHelper::getFormatter(settingKey()).getStyle(),
+                        tr("Formatter"), true, log))
         return;
 
     auto res = runProcess(args);
@@ -94,7 +95,7 @@ void CodeFormatter::format() const
 QString CodeFormatter::runProcess(const QStringList &args) const
 {
     QProcess formatProcess;
-    formatProcess.start(getSetting("Program").toString(), args);
+    formatProcess.start(SettingsHelper::getFormatter(settingKey()).getProgram(), args);
     LOG_INFO(INFO_OF(formatProcess.program()) << INFO_OF(formatProcess.arguments().join(' ')));
 
     bool finished = formatProcess.waitForFinished(2000); // blocks main Thread
@@ -105,7 +106,7 @@ QString CodeFormatter::runProcess(const QStringList &args) const
                    tr("The format process didn't finish in 2 seconds. This is probably because the %1 program is not "
                       "found by CP Editor. You can set the path to the program at %2.")
                        .arg(settingKey())
-                       .arg(SettingsManager::getPathText(settingKey() + "/Program")),
+                       .arg(SettingsHelper::getFormatter(settingKey()).pathOfProgram()),
                    false);
         return QString();
     }
@@ -144,11 +145,6 @@ QString CodeFormatter::runProcess(const QStringList &args) const
 bool CodeFormatter::formatSelectionOnly() const
 {
     return m_selectionOnly && m_cursorPos != m_anchorPos;
-}
-
-QVariant CodeFormatter::getSetting(const QString &key) const
-{
-    return SettingsManager::get(settingKey() + "/" + key);
 }
 
 } // namespace Extensions

@@ -63,26 +63,11 @@ class DefaultPathManager
                                    const QString &filter = QString(), QString *selectedFilter = nullptr,
                                    QFileDialog::Options options = QFileDialog::Options());
 
-    /**
-     * @brief restore the default paths from a QVariant
-     */
-    static void fromVariantList(const QVariantList &list);
-
-    /**
-     * @brief get a list of all action settings, in a correct order instead of the lexicographical order
-     */
-    static QStringList actionSettingsList();
-
   private:
     /**
      * @brief get the path from *str*, replace place holders with default paths
      */
     static QString convertPath(const QString &str);
-
-    /**
-     * @brief dump the default paths to a QVariant
-     */
-    static QVariantList toVariantList();
 
   private:
     static QMap<QString, QString> defaultPath;

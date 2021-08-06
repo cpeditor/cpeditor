@@ -17,11 +17,9 @@
 
 #include "Settings/PreferencesWindow.hpp"
 #include "Core/EventLogger.hpp"
-#include "Settings/CodeSnippetsPage.hpp"
 #include "Settings/DefaultPathManager.hpp"
-#include "Settings/ParenthesesPage.hpp"
 #include "Settings/PreferencesHomePage.hpp"
-#include "Settings/PreferencesPageTemplate.hpp"
+#include "Settings/PreferencesTemplate.hpp"
 #include "Util/Util.hpp"
 #include "generated/SettingsHelper.hpp"
 #include <QApplication>
@@ -38,7 +36,7 @@
 
 AddPageHelper &AddPageHelper::page(const QString &key, const QString &trkey, const QStringList &content, bool alignTop)
 {
-    return page(key, trkey, new PreferencesPageTemplate(content, pathFor(key), trPathFor(trkey), alignTop, window));
+    return page(key, trkey, new PreferencesTemplate(content, pathFor(key), trPathFor(trkey), alignTop, window));
 }
 
 AddPageHelper &AddPageHelper::page(const QString &key, const QString &trkey, PreferencesPage *newpage)
@@ -183,105 +181,7 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
     connect(travelBackShortcut, &QShortcut::activated,
             [this]() { switchToPage(stackedWidget->widget(nextNonHiddenPage(stackedWidget->currentIndex(), -1))); });
 
-    // clang-format off
-
-#define TRKEY(x) x, tr(x)
-
-    AddPageHelper(this)
-        .page(TRKEY("Code Edit"),
-              {"Tab Width", "Cursor Width", "Auto Indent", "Wrap Text", "Auto Complete Parentheses", "Auto Remove Parentheses",
-               "Tab Jump Out Parentheses", "Replace Tabs"})
-        .dir(TRKEY("Language"))
-            .page(TRKEY("General"), {"Default Language"})
-            .dir(TRKEY("C++"))
-                .page("C++ Commands", tr("%1 Commands").arg(tr("C++")),
-                      {"C++/Compile Command", "C++/Output Path", "C++/Run Arguments", "C++/Compiler Output Codec"})
-                .page("C++ Template", tr("%1 Template").arg(tr("C++")),
-                      {"C++/Template Path", "C++/Template Cursor Position Regex",
-                       "C++/Template Cursor Position Offset Type", "C++/Template Cursor Position Offset Characters"})
-                .page("C++ Snippets", tr("%1 Snippets").arg(tr("C++")), new CodeSnippetsPage("C++"),
-                      {"C++ Snippets", "C++ Code Snippets", "Cpp Snippets", "Cpp Code Snippets"})
-                .page("C++ Parentheses", tr("%1 Parentheses").arg(tr("C++")), new ParenthesesPage("C++"),
-                      {"C++ Parentheses", "C++ Brackets", "C++ Braces", "C++ Auto Complete", "C++ Auto Remove",
-                       "C++ Tab Jump Out"})
-            .end()
-            .dir(TRKEY("Java"))
-                .page("Java Commands", tr("%1 Commands").arg(tr("Java")),
-                      {"Java/Compile Command", "Java/Output Path", "Java/Class Name", "Java/Run Command", "Java/Run Arguments", "Java/Compiler Output Codec"})
-                .page("Java Template", tr("%1 Template").arg(tr("Java")),
-                      {"Java/Template Path", "Java/Template Cursor Position Regex", "Java/Template Cursor Position Offset Type",
-                       "Java/Template Cursor Position Offset Characters"})
-                .page("Java Snippets", tr("%1 Snippets").arg(tr("Java")), new CodeSnippetsPage("Java"),
-                      {"Java Snippets", "Java Code Snippets"})
-                .page("Java Parentheses", tr("%1 Parentheses").arg(tr("Java")), new ParenthesesPage("Java"),
-                      {"Java Parentheses", "Java Brackets", "Java Braces", "Java Auto Complete", "Java Auto Remove",
-                       "Java Tab Jump Out"})
-            .end()
-            .dir(TRKEY("Python"))
-                .page("Python Commands", tr("%1 Commands").arg(tr("Python")),
-                      {"Python/Run Command", "Python/Run Arguments"})
-                .page("Python Template", tr("%1 Template").arg(tr("Python")),
-                      {"Python/Template Path", "Python/Template Cursor Position Regex", "Python/Template Cursor Position Offset Type",
-                      "Python/Template Cursor Position Offset Characters"})
-                .page("Python Snippets", tr("%1 Snippets").arg(tr("Python")), new CodeSnippetsPage("Python"),
-                      {"Python Snippets", "Python Code Snippets"})
-                .page("Python Parentheses", tr("%1 Parentheses").arg(tr("Python")), new ParenthesesPage("Python"),
-                      {"Python Parentheses", "Python Brackets", "Python Braces", "Python Auto Complete", "Python Auto Remove",
-                       "Python Tab Jump Out"})
-            .end()
-        .end()
-        .dir(TRKEY("Appearance"))
-            .page(TRKEY("General"),{"Locale", "UI Style", "Editor Theme", "Opacity", "Test Case Maximum Height",
-                                    "Show Compile And Run Only", "Display EOLN In Diff", "Extra Bottom Margin"})
-            .page(TRKEY("Font"), {"Show Only Monospaced Font", "Editor Font", "Test Cases Font", "Message Logger Font",
-                                  "Use Custom Application Font", "Custom Application Font"})
-        .end()
-        .dir(TRKEY("Actions"))
-            .page(TRKEY("Save"), {"Save Faster", "Save File On Compilation", "Save File On Execution", "Save Tests"})
-            .page(TRKEY("Auto Save"), {"Auto Save", "Auto Save Interval", "Auto Save Interval Type"})
-#if defined(Q_OS_UNIX) && (!defined(Q_OS_MACOS))
-            .page(TRKEY("Detached Execution"), {"Detached Run Terminal Program", "Detached Run Terminal Arguments"})
-#endif
-            .page(TRKEY("Save Session"), {"Hot Exit/Enable", "Hot Exit/Auto Save", "Hot Exit/Auto Save Interval"})
-            .page(TRKEY("Bind file and problem"), {"Restore Old Problem Url", "Open Old File For Old Problem Url"})
-            .page(TRKEY("Test Cases"), {"Run On Empty Testcase", "Check On Testcases With Empty Output", "Auto Uncheck Accepted Testcases"})
-            .page(TRKEY("Load External File Changes"), {"Auto Load External Changes If No Unsaved Modification", "Ask For Loading External Changes"})
-        .end()
-        .dir(TRKEY("Extensions"))
-            .dir(TRKEY("Code Formatting"))
-                .page(TRKEY("General"), {"Format On Manual Save", "Format On Auto Save"})
-                .page(TRKEY("Clang Format"), {"Clang Format/Program", "Clang Format/Arguments", "Clang Format/Style"}, false)
-                .page(TRKEY("YAPF"), {"YAPF/Program", "YAPF/Arguments", "YAPF/Style"}, false)
-            .end()
-            .dir(TRKEY("Language Server"))
-                .page("C++ Server", tr("%1 Server").arg(tr("C++")), {"LSP/Use Linting C++", "LSP/Delay C++", "LSP/Path C++", "LSP/Args C++"})
-                .page("Java Server", tr("%1 Server").arg(tr("Java")), {"LSP/Use Linting Java", "LSP/Delay Java", "LSP/Path Java", "LSP/Args Java"})
-                .page("Python Server", tr("%1 Server").arg(tr("Python")), {"LSP/Use Linting Python", "LSP/Delay Python", "LSP/Path Python", "LSP/Args Python"})
-            .end()
-            .page(TRKEY("Competitive Companion"), {"Competitive Companion/Enable", "Competitive Companion/Open New Tab",
-                "Competitive Companion/Set Time Limit For Tab", "Competitive Companion/Connection Port",
-                "Competitive Companion/Head Comments", "Competitive Companion/Head Comments Time Format",
-                "Competitive Companion/Head Comments Powered By CP Editor"}, false)
-            .page(TRKEY("CF Tool"), {"CF/Path", "CF/Show Toast Messages"})
-        .end()
-        .dir(TRKEY("File Path"))
-            .page(TRKEY("Testcases"), {"Input File Save Path", "Answer File Save Path", "Testcases Matching Rules"})
-            .page(TRKEY("Problem URL"), {"Default File Paths For Problem URLs"})
-            .page(TRKEY("Default Paths"), DefaultPathManager::actionSettingsList() << "Default Path/Names And Paths")
-        .end()
-        .page(TRKEY("Key Bindings"), {"Hotkey/Compile", "Hotkey/Run", "Hotkey/Compile Run", "Hotkey/Format", "Hotkey/Kill",
-                                   "Hotkey/Change View Mode", "Hotkey/Snippets"})
-        .dir(TRKEY("Advanced"))
-            .page(TRKEY("Update"), {"Check Update", "Beta"})
-            .page(TRKEY("Limits"), {"Default Time Limit", "Output Length Limit", "Output Display Length Limit", "Message Length Limit",
-                                    "HTML Diff Viewer Length Limit", "Open File Length Limit", "Display Test Case Length Limit"})
-            .page(TRKEY("Network Proxy"), {"Proxy/Enabled", "Proxy/Type", "Proxy/Host Name", "Proxy/Port", "Proxy/User", "Proxy/Password"})
-        .end()
-    .ensureAtTop();
-
-#undef TRKEY
-
-    // clang-format on
+    addPages();
 
     homePage->init();
 }
@@ -295,6 +195,7 @@ void PreferencesWindow::display()
 {
     bool hidden = isHidden();
     Util::showWidgetOnTop(this);
+
     if (hidden)
     {
         switchToPage(homePage);
@@ -343,9 +244,17 @@ bool PreferencesWindow::switchToPage(QWidget *page, bool force)
     if (page == nullptr)
         return false;
 
+    auto *preferencesPage = qobject_cast<PreferencesPage *>(page);
+
     // return if there's no need to switch
     if (stackedWidget->currentWidget() == page)
+    {
+        if (preferencesPage)
+        {
+            preferencesPage->loadSettings();
+        }
         return true;
+    }
 
     // ask for saving changes or not if not force
     if (!force)
@@ -361,7 +270,6 @@ bool PreferencesWindow::switchToPage(QWidget *page, bool force)
     // switch if everything is OK
     stackedWidget->setCurrentWidget(page);
 
-    auto *preferencesPage = qobject_cast<PreferencesPage *>(page);
     if (preferencesPage != nullptr)
     {
         pageTreeItem[preferencesPage]->setSelected(true);

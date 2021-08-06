@@ -16,8 +16,8 @@
  */
 
 #include "Settings/PreferencesPage.hpp"
+#include "Settings/SettingWidget.hpp"
 #include "Settings/SettingsManager.hpp"
-#include "Settings/ValueWrapper.hpp"
 #include <QApplication>
 #include <QFormLayout>
 #include <QLabel>
@@ -146,12 +146,20 @@ void PreferencesPage::addItem(QLayoutItem *item)
     settingsLayout->addItem(item);
 }
 
-void PreferencesPage::registerWidget(const QString &key, ValueWidget *widget) const
+void PreferencesPage::registerWidget(const QString &key, SettingBase *widget) const
 {
     // PreferencesPageTemplate::PreferencesPageTemplate uses Qt::DirectConnection
-    QObject::connect(widget, &ValueWidget::valueChanged, this, &PreferencesPage::updateButtons, Qt::QueuedConnection);
+    QObject::connect(widget, &SettingBase::valueChanged, this, &PreferencesPage::updateButtons, Qt::QueuedConnection);
 
-    SettingsManager::setWidget(key, widget->coreWidget());
+    SettingsManager::setWidget(key, widget->rootWidget());
+}
+
+void PreferencesPage::registerWidgets(const QString &key, QList<SettingBase *> widgets) const
+{
+    for (auto *w : widgets)
+        QObject::connect(w, &SettingBase::valueChanged, this, &PreferencesPage::updateButtons, Qt::QueuedConnection);
+
+    SettingsManager::setWidget(key, widgets.front()->rootWidget());
 }
 
 void PreferencesPage::loadDefault()
