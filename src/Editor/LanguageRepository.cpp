@@ -17,12 +17,12 @@
 
 #include "Editor/LanguageRepository.hpp"
 #include "Util/FileUtil.hpp"
+#include <QDebug>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonValue>
 #include <QString>
-#include <QDebug>
 
 namespace Editor
 {
