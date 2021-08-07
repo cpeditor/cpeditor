@@ -1,14 +1,14 @@
 {
-    "Cpp":
+    "C++":
     {
         "singleLineCommentToken": "//",
-        "blockCommentTokens":["/*", "*\\"],
-        "rawStringTokens":["R\"(", ")"]
+        "blockCommentTokens":["/*", "*/"],
+        "rawStringTokens":["R\"(", ")\""]
     },
     "Java":
     {
         "singleLineCommentToken": "//",
-        "blockCommentTokens":["/*", "*\\"],
+        "blockCommentTokens":["/*", "*/"],
         "rawStringTokens":["\"\"\"", "\"\"\""]
     },
     "Python":

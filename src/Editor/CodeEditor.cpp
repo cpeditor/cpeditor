@@ -1194,12 +1194,49 @@ bool CodeEditor::isPositionInsideLineComments(int position) const
 
 bool CodeEditor::isPositionInsideSingleQuotes(int position) const
 {
-    return true;
+    return surroundedByCharInSingleLine('\'', position, true);
 }
 
 bool CodeEditor::isPositionInsideDoubleQuotes(int position) const
 {
-    return true;
+    return surroundedByCharInSingleLine('"', position, true);
+}
+
+bool CodeEditor::surroundedByCharInSingleLine(QChar c, int position, bool espace) const
+{
+    bool foundStart = false;
+    bool foundStop = false;
+    int start = position - 1;
+    int stop = position + 1;
+    QString code = document()->toPlainText();
+    const int size = code.size();
+    while (stop < size && start >= 0)
+    {
+
+        if (code[stop] == '\n' || code[start] == '\n')
+            break;
+
+        if (code[start] == c)
+        {
+            if (start > 0 && code[start - 1] == '\\' && espace)
+                start--;
+            else
+                foundStart = true;
+        }
+        else
+            start--;
+
+        if (code[stop] == c)
+        {
+            if (stop < size && code[stop - 1] == '\\' && espace)
+                stop++;
+            else
+                foundStop = true;
+        }
+        else
+            stop++;
+    }
+    return foundStart && foundStop;
 }
 
 bool CodeEditor::isPositionPartOfRawOrStringLiteral(int position) const

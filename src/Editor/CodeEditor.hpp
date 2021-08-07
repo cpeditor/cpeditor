@@ -303,6 +303,7 @@ class CodeEditor : public QPlainTextEdit
      */
 
     bool isPositionPartOfRawOrStringLiteral(int position) const;
+    bool surroundedByCharInSingleLine(QChar c, int position, bool espace = true) const;
 
     /**
      * @brief Method for remove the first group of regex
