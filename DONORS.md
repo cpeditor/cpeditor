@@ -14,3 +14,7 @@
 ## WeChat
 
 None.
+
+## AliPay
+
+None.
