@@ -639,6 +639,10 @@ git 提交编号: %3
         <source>Failed to compile the checker: %1</source>
         <translation>未能成功编译评测器：%1</translation>
     </message>
+    <message>
+        <source>The source code of the checker has changed, recompiling...</source>
+        <translation>评测器的源代码发生改变，正在重新编译...</translation>
+    </message>
 </context>
 <context>
     <name>Core::Compiler</name>

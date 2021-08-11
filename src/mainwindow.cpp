@@ -1248,7 +1248,7 @@ void MainWindow::updateChecker()
     else
         checker = new Core::Checker(testcases->checkerType(), log, this);
     connect(checker, &Core::Checker::checkFinished, testcases, &Widgets::TestCases::setVerdict);
-    checker->prepare(SettingsManager::get(QString("C++/Compile Command")).toString());
+    checker->prepare();
 }
 
 QSplitter *MainWindow::getSplitter()

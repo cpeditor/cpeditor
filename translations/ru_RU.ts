@@ -639,6 +639,10 @@ Git commit hash: %3
         <source>Failed to compile the checker: %1</source>
         <translation>Ошибка компиляции символа: %1</translation>
     </message>
+    <message>
+        <source>The source code of the checker has changed, recompiling...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Core::Compiler</name>
