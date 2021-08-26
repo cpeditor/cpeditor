@@ -27,3 +27,4 @@ jobs:
           commit-message: "chore: update donor list"
           title: "chore: update donor list"
           branch: "auto-pr/donors"
+          author: "GitHub Action <action@github.com>"
