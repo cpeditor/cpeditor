@@ -196,7 +196,8 @@ bool SettingsManager::contains(const QString &key, bool includingDefault)
 
 void SettingsManager::set(const QString &key, QVariant const &value)
 {
-    LOG_INFO_IF(!key.startsWith("Language Config/"), INFO_OF(key) << INFO_OF(value.toString()));
+    if (!key.startsWith("Language Config/") && key != "WakaTime/Api Key")
+        LOG_INFO(INFO_OF(key) << INFO_OF(value.toString()));
     cur->insert(key, value);
 }
 

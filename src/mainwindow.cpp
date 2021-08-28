@@ -995,6 +995,8 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
         else if (Util::pythonSuffix.contains(suffix))
             setLanguage("Python");
 
+        Q_EMIT fileSaved(this); // when using "emit", clangd complains "Misleading indentation"
+
         beforeReturn(true);
     }
     else if (!isUntitled())
@@ -1010,6 +1012,7 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
     }
 
     setFilePath(filePath); // make sure that the file path is the canonical file path and the file watcher is working
+    emit fileSaved(this);
     emit editorTextChanged(this); // make sure that the tab title is updated
 
     saveTests(safe);

@@ -27,6 +27,7 @@
 #include "Extensions/CompanionServer.hpp"
 #include "Extensions/EditorTheme.hpp"
 #include "Extensions/LanguageServer.hpp"
+#include "Extensions/WakaTime.hpp"
 #include "Settings/DefaultPathManager.hpp"
 #include "Settings/FileProblemBinder.hpp"
 #include "Settings/PreferencesWindow.hpp"
@@ -170,8 +171,8 @@ void AppWindow::finishConstruction()
         setWindowOpacity(1);
 #endif
 
-    // The window needs time to make its geometry stable. We wait it to display the new dialogs in correct positions
     QTimer::singleShot(200, [this] {
+        // The window needs time to make its geometry stable. We wait it to display the new dialogs in correct positions
         if (SettingsHelper::isFirstTimeUser())
         {
             LOG_INFO("Is first-time user");
@@ -213,6 +214,7 @@ AppWindow::~AppWindow()
     delete server;
     delete findReplaceDialog;
     delete sessionManager;
+    delete wakaTime;
 
     SettingsManager::deinit();
 
@@ -317,6 +319,8 @@ void AppWindow::allocate()
     trayIcon->show();
 
     sessionManager = new Core::SessionManager(this);
+
+    wakaTime = new Extensions::WakaTime(this);
 }
 
 void AppWindow::applySettings()
@@ -423,6 +427,7 @@ void AppWindow::openTab(MainWindow *window)
     connect(window, &MainWindow::requestToastMessage, trayIcon,
             [this](QString const &head, QString const &body) { trayIcon->showMessage(head, body); });
     connect(window, &MainWindow::compileOrRunTriggered, this, &AppWindow::onCompileOrRunTriggered);
+    connect(window, &MainWindow::fileSaved, this, &AppWindow::onFileSaved);
 
     ui->tabWidget->setCurrentIndex(ui->tabWidget->addTab(window, window->getTabTitle(false, true)));
 
@@ -891,6 +896,8 @@ void AppWindow::onTabChanged(int index)
         connect(tmp->getSplitter(), &QSplitter::splitterMoved, this, &AppWindow::onSplitterMoved);
     activeRightSplitterMoveConnection =
         connect(tmp->getRightSplitter(), &QSplitter::splitterMoved, this, &AppWindow::onRightSplitterMoved);
+
+    triggerWakaTime(tmp);
 }
 
 void AppWindow::onEditorFileChanged()
@@ -948,12 +955,17 @@ void AppWindow::onEditorTextChanged(MainWindow *window)
             title += " *";
         ui->tabWidget->setTabText(index, title);
 
-        if (window->getLanguage() == "C++")
-            lspTimerCpp->start();
-        else if (window->getLanguage() == "Java")
-            lspTimerJava->start();
-        else
-            lspTimerPython->start();
+        if (window == currentWindow())
+        {
+            if (window->getLanguage() == "C++")
+                lspTimerCpp->start();
+            else if (window->getLanguage() == "Java")
+                lspTimerJava->start();
+            else
+                lspTimerPython->start();
+
+            triggerWakaTime(window);
+        }
     }
 }
 
@@ -974,6 +986,7 @@ void AppWindow::onEditorLanguageChanged(MainWindow *window)
 {
     if (currentWindow() == window)
         reAttachLanguageServer(window);
+    triggerWakaTime(window);
 }
 
 void AppWindow::onLSPTimerElapsedCpp()
@@ -1588,4 +1601,15 @@ void AppWindow::onCompileOrRunTriggered()
 {
     if (ui->actionEditorMode->isChecked())
         on_actionSplitMode_triggered();
+}
+
+void AppWindow::onFileSaved(MainWindow *window)
+{
+    triggerWakaTime(window, true);
+}
+
+void AppWindow::triggerWakaTime(MainWindow *window, bool isWrite)
+{
+    if (window && wakaTime)
+        wakaTime->sendHeartBeat(window->getFilePath(), window->getProblemURL(), window->getLanguage(), isWrite);
 }
