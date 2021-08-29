@@ -28,16 +28,40 @@
 namespace Core
 {
 
-Checker::Checker(CheckerType type, MessageLogger *logger, QObject *parent) : QObject(parent)
+Checker::Checker(CheckerType type, MessageLogger *logger, QObject *parent)
+    : QObject(parent), checkerType(type), log(logger), compiled(false)
 {
     LOG_INFO("Checker of type " << type << "created");
-    checkerType = type;
-    log = logger;
+    switch (checkerType)
+    {
+    case IgnoreTrailingSpaces:
+    case Strict:
+    case Custom:
+        break;
+    case Ncmp:
+        checkerOriginalPath = ":/testlib/checkers/ncmp.cpp";
+        break;
+    case Rcmp4:
+        checkerOriginalPath = ":/testlib/checkers/rcmp4.cpp";
+        break;
+    case Rcmp6:
+        checkerOriginalPath = ":/testlib/checkers/rcmp6.cpp";
+        break;
+    case Rcmp9:
+        checkerOriginalPath = ":/testlib/checkers/rcmp9.cpp";
+        break;
+    case Wcmp:
+        checkerOriginalPath = ":/testlib/checkers/wcmp.cpp";
+        break;
+    case Nyesno:
+        checkerOriginalPath = ":/testlib/checkers/nyesno.cpp";
+        break;
+    }
 }
 
 Checker::Checker(const QString &path, MessageLogger *logger, QObject *parent) : Checker(Custom, logger, parent)
 {
-    checkerPath = path;
+    checkerOriginalPath = path;
     LOG_INFO("Updated checker path to " << path);
 }
 
@@ -50,86 +74,50 @@ Checker::~Checker()
     LOG_INFO("Destroyed checker of type " << checkerType);
 }
 
-void Checker::prepare(const QString &compileCommand)
+void Checker::prepare()
 {
-    clearTasks();
-
-    if (!compiled)
+    if (checkerType == IgnoreTrailingSpaces || checkerType == Strict)
     {
-        LOG_INFO("Compiling checker with command " << compileCommand);
-        // compile the checker if it's not compiled
-
-        QString checkerResource;
-
-        // get the checker resource
-        switch (checkerType)
-        {
-        case IgnoreTrailingSpaces:
-        case Strict:
-            onCompilationFinished(); // terminate compilation if this is a built-in checker
-            return;
-        case Ncmp:
-            checkerResource = ":/testlib/checkers/ncmp.cpp";
-            break;
-        case Rcmp4:
-            checkerResource = ":/testlib/checkers/rcmp4.cpp";
-            break;
-        case Rcmp6:
-            checkerResource = ":/testlib/checkers/rcmp6.cpp";
-            break;
-        case Rcmp9:
-            checkerResource = ":/testlib/checkers/rcmp9.cpp";
-            break;
-        case Wcmp:
-            checkerResource = ":/testlib/checkers/wcmp.cpp";
-            break;
-        case Nyesno:
-            checkerResource = ":/testlib/checkers/nyesno.cpp";
-            break;
-        case Custom:
-            checkerResource = checkerPath;
-            break;
-        }
-
-        // get the code of the checker
-        QString checkerCode = Util::readFile(checkerResource, tr("Read Checker"), log);
-        if (checkerCode.isNull())
-            return;
-
-        // create a temporary directory
-        tmpDir = new QTemporaryDir();
-        if (!tmpDir->isValid())
-        {
-            log->error(tr("Checker"), tr("Failed to create temporary directory"));
-            return;
-        }
-
-        // save the checker source file on the disk
-        checkerPath = tmpDir->filePath("checker.cpp");
-        if (!Util::saveFile(checkerPath, checkerCode, tr("Checker"), false, log))
-            return;
-
-        // save testlib.h on the disk
-        auto testlib_h = Util::readFile(":/testlib/testlib.h", tr("Read testlib.h"), log);
-        if (testlib_h.isNull())
-            return;
-        if (!Util::saveFile(tmpDir->filePath("testlib.h"), testlib_h, tr("Save testlib.h"), false, log))
-            return;
-
-        // start the compilation of the checker
-        delete compiler;
-        compiler = new Compiler();
-        connect(compiler, &Compiler::compilationStarted, this, &Checker::onCompilationStarted);
-        connect(compiler, &Compiler::compilationFinished, this, &Checker::onCompilationFinished);
-        connect(compiler, &Compiler::compilationErrorOccurred, this, &Checker::onCompilationErrorOccurred);
-        connect(compiler, &Compiler::compilationFailed, this, &Checker::onCompilationFailed);
-        connect(compiler, &Compiler::compilationKilled, this, &Checker::onCompilationKilled);
-        compiler->start(checkerPath, "", compileCommand, "C++");
+        compiled = true;
+        return;
     }
+
+    compiled = false;
+
+    checkerCode = Util::readFile(checkerOriginalPath, tr("Read Checker"), log);
+    if (checkerCode.isNull())
+        return;
+
+    tmpDir = new QTemporaryDir();
+    if (!tmpDir->isValid())
+    {
+        log->error(tr("Checker"), tr("Failed to create temporary directory"));
+        return;
+    }
+
+    checkerTmpPath = tmpDir->filePath("checker.cpp");
+    if (!Util::saveFile(checkerTmpPath, checkerCode, tr("Checker"), false, log))
+        return;
+
+    auto testlib_h = Util::readFile(":/testlib/testlib.h", tr("Read testlib.h"), log);
+    if (testlib_h.isNull())
+        return;
+    if (!Util::saveFile(tmpDir->filePath("testlib.h"), testlib_h, tr("Save testlib.h"), false, log))
+        return;
+
+    delete compiler;
+    compiler = new Compiler();
+    connect(compiler, &Compiler::compilationStarted, this, &Checker::onCompilationStarted);
+    connect(compiler, &Compiler::compilationFinished, this, &Checker::onCompilationFinished);
+    connect(compiler, &Compiler::compilationErrorOccurred, this, &Checker::onCompilationErrorOccurred);
+    connect(compiler, &Compiler::compilationFailed, this, &Checker::onCompilationFailed);
+    connect(compiler, &Compiler::compilationKilled, this, &Checker::onCompilationKilled);
+    compiler->start(checkerTmpPath, "", SettingsHelper::getCppCompileCommand(), "C++");
 }
 
 void Checker::reqeustCheck(int index, const QString &input, const QString &output, const QString &expected)
 {
+    recompileIfChanged();
     LOG_INFO(BOOL_INFO_OF(compiled));
     if (compiled)
         check(index, input, output, expected); // check immediately if the checker is compiled
@@ -146,15 +134,18 @@ void Checker::clearTasks()
 {
     pendingTasks.clear();
     for (auto &t : runners)
+    {
         delete t;
+    }
     runners.clear();
 }
 
 void Checker::onCompilationFinished()
 {
-    compiled = true; // mark that the checker is compiled
-    if (checkerType >= Ncmp)
-        log->info(tr("Checker"), tr("The checker is compiled"));
+    if (recompileIfChanged())
+        return;
+    compiled = true;
+    log->info(tr("Checker"), tr("The checker is compiled"));
     for (auto const &t : pendingTasks)
         check(t.index, t.input, t.output, t.expected); // solve the pending tasks
     pendingTasks.clear();
@@ -318,7 +309,7 @@ void Checker::check(int index, const QString &input, const QString &output, cons
             connect(tmp, &Runner::failedToStartRun, this, &Checker::onFailedToStartRun);
             connect(tmp, &Runner::runOutputLimitExceeded, this, &Checker::onRunOutputLimitExceeded);
             connect(tmp, &Runner::runKilled, this, &Checker::onRunKilled);
-            tmp->run(checkerPath, "", "C++", "",
+            tmp->run(checkerTmpPath, "", "C++", "",
                      "\"" + inputPath + "\" \"" + outputPath + "\" \"" + expectedPath + "\"", "",
                      SettingsHelper::getDefaultTimeLimit());
         }
@@ -329,6 +320,19 @@ void Checker::check(int index, const QString &input, const QString &output, cons
 QString Checker::head(int index)
 {
     return tr("Checker[%1]").arg(index + 1);
+}
+
+bool Checker::recompileIfChanged()
+{
+    if (checkerOriginalPath.isEmpty())
+        return false;
+    const QString currentCheckerCode = Util::readFile(checkerOriginalPath, "Read Checker", log);
+    if (currentCheckerCode.isNull() || currentCheckerCode == checkerCode)
+        return false;
+    LOG_INFO("Recompiling checker");
+    log->info(tr("Checker"), tr("The source code of the checker has changed, recompiling..."));
+    prepare();
+    return true;
 }
 
 } // namespace Core

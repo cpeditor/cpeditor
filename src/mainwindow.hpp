@@ -178,6 +178,7 @@ class MainWindow : public QMainWindow
     void requestToastMessage(const QString &head, const QString &body);
     void editorLanguageChanged(MainWindow *window);
     void compileOrRunTriggered();
+    void fileSaved(MainWindow *window);
 
   private:
     enum SaveMode
