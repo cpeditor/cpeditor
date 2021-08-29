@@ -644,6 +644,10 @@ Git commit hash：%3
         <source>Checker[%1]</source>
         <translation>評判程式[%1]</translation>
     </message>
+    <message>
+        <source>The source code of the checker has changed, recompiling...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Core::Compiler</name>
@@ -1537,6 +1541,10 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <source>Network Proxy</source>
         <translation>網路 Proxy</translation>
+    </message>
+    <message>
+        <source>WakaTime</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2438,17 +2446,8 @@ Competitive Companion 開啟時，也會繼續使用該網址。</translation>
         <translation>在捲軸不出現的情況下，可允許顯示的最多像素數。</translation>
     </message>
     <message>
-        <source>Enable Proxy</source>
-        <translation>啟用 Proxy</translation>
-    </message>
-    <message>
         <source>Enable proxy for checking updates</source>
         <translation>在檢查更新時使用 Proxy</translation>
-    </message>
-    <message>
-        <source>network-proxy</source>
-        <comment>the anchor of Enable Proxy on the corresponding page of https://cpeditor.org/docs/preferences</comment>
-        <translation>網路 Proxy</translation>
     </message>
     <message>
         <source>Type</source>
@@ -2647,6 +2646,40 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     <message>
         <source>Extract And Load Snippets</source>
         <translation>打包及載入程式碼片段</translation>
+    </message>
+    <message>
+        <source>Enable proxy to connect to GitHub while checking updates</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>network-proxy</source>
+        <comment>the anchor of Enable proxy for checking updates on the corresponding page of https://cpeditor.org/docs/preferences</comment>
+        <translation type="unfinished">網路 Proxy</translation>
+    </message>
+    <message>
+        <source>The path to the WakaTime executable file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Api Key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Can be found at https://wakatime.com/settings/account.
+It can be empty if you have the global wakatime config file ~/.wakatime.cfg.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable WakaTime</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use Proxy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use Advanced-&gt;Network Proxy to send data to WakaTime.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
