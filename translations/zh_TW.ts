@@ -22,7 +22,7 @@
     </message>
     <message>
         <source>In the last session, CP Editor was abnormally killed, do you want to restore the last session?</source>
-        <translation>在上次的工作階段 CP Editor 被意外地終止了。要還原工作階段嗎？</translation>
+        <translation>在上次的工作階段中 CP Editor 被異常地終止了。要還原工作階段嗎？</translation>
     </message>
     <message>
         <source>Show Main Window</source>
@@ -46,7 +46,7 @@
     </message>
     <message>
         <source>&lt;p&gt;&lt;b&gt;CP Editor&lt;/b&gt; is a native Qt-based code editor. It&apos;s specially designed for competitive programming, unlike other editors/IDEs which are mainly for developers. It helps you focus on your algorithm and automates the compilation, executing and testing. It even fetches test cases for you from different platforms and submits solutions to Codeforces!&lt;/p&gt;&lt;p&gt;Copyright (C) 2019-2021 Ashar Khan &amp;lt;ashar786khan@gmail.com&amp;gt;&lt;/p&gt;&lt;p&gt;This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. The source code for CP Editor is available at &lt;a href=&quot;https://github.com/cpeditor/cpeditor&quot;&gt; https://github.com/cpeditor/cpeditor&lt;/a&gt;.&lt;/p&gt;</source>
-        <translation>&lt;p&gt;&lt;b&gt;CP Editor&lt;/b&gt; 是一款建基於 Qt 的程式碼編輯器。針對競程用途專門設計，是讓它與其他編輯器或 IDE 如此不同的原因。CP Editor 將編譯、執行、測試的過程自動化，讓您可以專注在設計演算法。不僅如此，它甚至可以從其他平台取得測試資料，並繳交程式碼至 Codeforces。&lt;/p&gt;&lt;p&gt;Copyright (C) 2019-2021 Ashar Khan &amp;lt;ashar786khan@gmail.com&amp;gt;&lt;/p&gt;&lt;p&gt;本程式為自由軟體，請參見原始碼的版權聲明。本軟體不負任何擔保責任，包括對適售性或特定目的適用性所為的擔保。您可以在 &lt;a href=&quot;https://github.com/cpeditor/cpeditor&quot;&gt; https://github.com/cpeditor/cpeditor&lt;/a&gt; 取得 CP Editor 的原始碼。&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;&lt;b&gt;CP Editor&lt;/b&gt; 是一款基於 Qt 技術的程式碼編輯器。針對競程用途專門設計，是讓它與其他編輯器或 IDE 如此不同的原因。CP Editor 將編譯、執行、測試的過程自動化，讓您可以專注在設計演算法。不僅如此，它甚至可以從其他平台取得測試資料，並繳交程式碼至 Codeforces。&lt;/p&gt;&lt;p&gt;Copyright (C) 2019-2021 Ashar Khan &amp;lt;ashar786khan@gmail.com&amp;gt;&lt;/p&gt;&lt;p&gt;本程式為自由軟體，請參見原始碼的版權聲明。本軟體不負任何擔保責任，包括對適售性或特定目的適用性所為的擔保。您可以在 &lt;a href=&quot;https://github.com/cpeditor/cpeditor&quot;&gt; https://github.com/cpeditor/cpeditor&lt;/a&gt; 取得 CP Editor 的原始碼。&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Build Info</source>
@@ -90,7 +90,7 @@ Git commit hash：%3
     </message>
     <message>
         <source>Are you sure you want to reset the all preferences to default?</source>
-        <translation>確定要將所有偏好設定重設為預設值？</translation>
+        <translation>確定要將所有偏好設定重置為預設值？</translation>
     </message>
     <message>
         <source>Export settings to a file</source>
@@ -106,7 +106,7 @@ Git commit hash：%3
     </message>
     <message>
         <source>All current settings will lose after importing settings from a file. Are you sure to continue?</source>
-        <translation>從檔案匯入的設定值將覆蓋現有的任何設定。確定要繼續？</translation>
+        <translation>從檔案匯入的設定值將覆蓋現有的狀態。確定要繼續？</translation>
     </message>
     <message>
         <source>Import settings from a file</source>
@@ -134,7 +134,7 @@ Git commit hash：%3
     </message>
     <message>
         <source>Loading a session from a file will close all tabs in the current session without saving the files. Are you sure to continue?</source>
-        <translation>從檔案載入工作階段，將會關閉目前工作階段中的所有分頁（包含未存檔的）。確定要繼續？</translation>
+        <translation>從檔案載入工作階段，將會關閉目前工作階段中包含未存檔的所有分頁。確定要繼續？</translation>
     </message>
     <message>
         <source>Load session from a file</source>
@@ -204,7 +204,7 @@ Git commit hash：%3
     </message>
     <message>
         <source>Set Compile Command</source>
-        <translation>設定編譯指令</translation>
+        <translation>設定編譯命令</translation>
     </message>
     <message>
         <source>Set Time Limit</source>
@@ -324,7 +324,7 @@ Git commit hash：%3
     </message>
     <message>
         <source>Indent</source>
-        <translation>增加縮排</translation>
+        <translation>增縮排</translation>
     </message>
     <message>
         <source>Unindent</source>
@@ -504,7 +504,7 @@ Git commit hash：%3
     </message>
     <message>
         <source>Extract Snippets To Files</source>
-        <translation>將程式碼片段打包為檔案</translation>
+        <translation>將程式碼片段匯出為檔案</translation>
     </message>
     <message>
         <source>More</source>
@@ -540,11 +540,11 @@ Git commit hash：%3
     </message>
     <message>
         <source>Extract Snippets</source>
-        <translation>打包程式碼片段</translation>
+        <translation>匯出程式碼片段</translation>
     </message>
     <message>
         <source>Extract Snippets: %1</source>
-        <translation>打包程式碼片段：%1</translation>
+        <translation>匯出程式碼片段：%1</translation>
     </message>
     <message>
         <source>Failed to write to [%1]. Do I have write permission?</source>
@@ -646,7 +646,7 @@ Git commit hash：%3
     </message>
     <message>
         <source>The source code of the checker has changed, recompiling...</source>
-        <translation type="unfinished"></translation>
+        <translation>評判工具的程式碼已變更，重新編譯中…</translation>
     </message>
 </context>
 <context>
@@ -698,7 +698,7 @@ Press any key to exit</source>
     </message>
     <message>
         <source>Failed to create temporary file.</source>
-        <translation type="unfinished"></translation>
+        <translation>無法建立暫存檔。</translation>
     </message>
 </context>
 <context>
@@ -866,7 +866,6 @@ Press any key to exit</source>
     <name>FindReplaceForm</name>
     <message>
         <source>Form</source>
-        <translatorcomment>存疑</translatorcomment>
         <translation>表單</translation>
     </message>
     <message>
@@ -1037,7 +1036,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Set Compile Command</source>
-        <translation>設定編譯指令</translation>
+        <translation>設定編譯命令</translation>
     </message>
     <message>
         <source>Custom compile command for this tab:</source>
@@ -1544,7 +1543,7 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>WakaTime</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -1704,7 +1703,7 @@ The cursor will be at the end of the template if there&apos;s no match of the re
     </message>
     <message>
         <source>%1 Compile Command</source>
-        <translation>%1 編譯指令</translation>
+        <translation>%1 編譯命令</translation>
     </message>
     <message>
         <source>The command used to compile C++. It should NOT include the path to the source file or &quot;-o &lt;output file&gt;&quot;.</source>
@@ -2645,41 +2644,42 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Extract And Load Snippets</source>
-        <translation>打包及載入程式碼片段</translation>
+        <translation>匯出及載入程式碼片段</translation>
     </message>
     <message>
         <source>Enable proxy to connect to GitHub while checking updates</source>
-        <translation type="unfinished"></translation>
+        <translation>在連線至 GitHub 檢查更新時使用 Proxy</translation>
     </message>
     <message>
         <source>network-proxy</source>
         <comment>the anchor of Enable proxy for checking updates on the corresponding page of https://cpeditor.org/docs/preferences</comment>
-        <translation type="unfinished">網路 Proxy</translation>
+        <translation>網路 Proxy</translation>
     </message>
     <message>
         <source>The path to the WakaTime executable file</source>
-        <translation type="unfinished"></translation>
+        <translation>WakaTime 可執行檔的路徑</translation>
     </message>
     <message>
         <source>Api Key</source>
-        <translation type="unfinished"></translation>
+        <translation>API 金鑰</translation>
     </message>
     <message>
         <source>Can be found at https://wakatime.com/settings/account.
 It can be empty if you have the global wakatime config file ~/.wakatime.cfg.</source>
-        <translation type="unfinished"></translation>
+        <translation>可於 https://wakatime.com/settings/account 取得。
+若您有 ~/.wakatime.cfg 組態檔，可以留空。</translation>
     </message>
     <message>
         <source>Enable WakaTime</source>
-        <translation type="unfinished"></translation>
+        <translation>啟用 WakaTime</translation>
     </message>
     <message>
         <source>Use Proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>使用 Proxy</translation>
     </message>
     <message>
         <source>Use Advanced-&gt;Network Proxy to send data to WakaTime.</source>
-        <translation type="unfinished"></translation>
+        <translation>傳送資料給 WakaTime 時使用 進階-&gt;網路 Proxy。</translation>
     </message>
 </context>
 <context>
