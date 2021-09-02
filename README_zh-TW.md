@@ -251,6 +251,9 @@
     <td align="center">
       <a href="https://github.com/toto6038"><img src="https://avatars.githubusercontent.com/u/50100922?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/toto6038"><sub><b>toto6038</b></sub></a><br /><a href="#translation-toto6038" title="Translation">🌍</a>
     </td>
+    <td align="center">
+      <a href="https://github.com/RysteQ"><img src="https://avatars.githubusercontent.com/u/34135554?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/RysteQ"><sub><b>RysteQ</b></sub></a><br /><a href="#translation-RysteQ" title="Translation">🌍</a>
+    </td>
   </tr>
 </table>
 
