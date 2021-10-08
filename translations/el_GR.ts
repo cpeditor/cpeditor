@@ -25,7 +25,7 @@
     </message>
     <message>
         <source>&lt;p&gt;&lt;b&gt;CP Editor&lt;/b&gt; is a native Qt-based code editor. It&apos;s specially designed for competitive programming, unlike other editors/IDEs which are mainly for developers. It helps you focus on your algorithm and automates the compilation, executing and testing. It even fetches test cases for you from different platforms and submits solutions to Codeforces!&lt;/p&gt;&lt;p&gt;Copyright (C) 2019-2021 Ashar Khan &amp;lt;ashar786khan@gmail.com&amp;gt;&lt;/p&gt;&lt;p&gt;This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. The source code for CP Editor is available at &lt;a href=&quot;https://github.com/cpeditor/cpeditor&quot;&gt; https://github.com/cpeditor/cpeditor&lt;/a&gt;.&lt;/p&gt;</source>
-        <translation>&lt;p&gt;&lt;b&gt;Ο CP συντάκτης&lt;/b&gt; είναι μία εφαρμογή βασισμένη πάνω στο Qt συντάκτη κώδικα. Είναι ειδικά σχεδιασμένο για ανταγωνιστικό προγραμματισμό αντιθέτως με άλλους συντάκτες κώδικα. Ο συντάκτης σας βοηθάει να είστε συγκεντρωμένοι στον αλγοριθμό σας και σας βοηθάει με την αυτοματοποίηση, εκτέλεση και δοκιμή του κώδικα. Μπορεί ακόμα να δοκιμάσει το πρόγραμμα με δοκιμή υποθέσεων από διαφορετικές πλατφόρμες και να στέλνει τις απαντήσεις στο Codeforces!&lt;/p&gt;&lt;p&gt;Copyright (C) 2019-2021 Ashar Khan &amp;lt;ashar786khan@gmail.com&amp;gt;&lt;/p&gt;&lt;p&gt;Αυτό είναι δωρεάν λογισμικό, δείτε την πηγή για την πνευματική ιδιοκτησία. ΔΕΝ υπάρχει εγγύηση, ούτε για ΕΜΠΟΡΕΥΣΙΜΟΤΗΤΑ ή για ΙΚΑΝΟΤΗΤΑ ΓΙΑ ΣΥΓΚΕΚΡΙΜΕΝΟ ΣΚΟΠΟ. Ο πηγαίος κώδικας του CP κώδικα είναι διαθέσιμος στην ιστοσελίδα &lt;a href=&quot;https://github.com/cpeditor/cpeditor&quot;&gt; https://github.com/cpeditor/cpeditor&lt;/a&gt;.&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;&lt;b&gt;Ο CP συντάκτης&lt;/b&gt; είναι μια εφαρμογή βασισμένη πάνω στο Qt συντάκτη κώδικα. Είναι ειδικά σχεδιασμένο για ανταγωνιστικό προγραμματισμό αντιθέτως με άλλους συντάκτες κώδικα. Ο συντάκτης σας βοηθάει να είστε συγκεντρωμένοι στον αλγοριθμό σας και σας βοηθάει με την αυτοματοποίηση, εκτέλεση και δοκιμή του κώδικα. Μπορεί ακόμα να δοκιμάσει το πρόγραμμα με δοκιμή υποθέσεων από διαφορετικές πλατφόρμες και να στέλνει τις απαντήσεις στο Codeforces!&lt;/p&gt;&lt;p&gt;Copyright (C) 2019-2021 Ashar Khan &amp;lt;ashar786khan@gmail.com&amp;gt;&lt;/p&gt;&lt;p&gt;Αυτό είναι δωρεάν λογισμικό, δείτε την πηγή για την πνευματική ιδιοκτησία. ΔΕΝ υπάρχει εγγύηση, ούτε για ΕΜΠΟΡΕΥΣΙΜΟΤΗΤΑ ή για ΙΚΑΝΟΤΗΤΑ ΓΙΑ ΣΥΓΚΕΚΡΙΜΕΝΟ ΣΚΟΠΟ. Ο πηγαίος κώδικας του CP κώδικα είναι διαθέσιμος στην ιστοσελίδα &lt;a href=&quot;https://github.com/cpeditor/cpeditor&quot;&gt; https://github.com/cpeditor/cpeditor&lt;/a&gt;.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Open Files</source>
@@ -37,7 +37,7 @@
     </message>
     <message>
         <source>Are you sure you want to reset the all preferences to default?</source>
-        <translation>Είστε σίγουρη ότι θέλετε να επαναφέρεται όλες τις προτιμήσεις στης προκαθορισμένες προτιμήσεις;</translation>
+        <translation>Είστε σίγουροι ότι θέλετε να επαναφέρεται όλες τις προτιμήσεις στης προκαθορισμένες προτιμήσεις;</translation>
     </message>
     <message>
         <source>Snippets</source>
@@ -121,23 +121,23 @@
     </message>
     <message>
         <source>Save</source>
-        <translation>απόθήκευση</translation>
+        <translation>Αποθήκευση</translation>
     </message>
     <message>
         <source>Save As...</source>
-        <translation>απόθήκευση ως...</translation>
+        <translation>Αποθήκευση ως...</translation>
     </message>
     <message>
         <source>Save as new file</source>
-        <translation>απόθήκευση ως καινούργιο αρχείο</translation>
+        <translation>Αποθήκευση ως καινούργιο αρχείο</translation>
     </message>
     <message>
         <source>Save All</source>
-        <translation>απόθήκευση όλων</translation>
+        <translation>Αποθήκευση όλων</translation>
     </message>
     <message>
         <source>Save all opened files</source>
-        <translation>απόθήκευση όλων τον ανοιχτών αρχείων</translation>
+        <translation>Αποθήκευση όλων τον ανοιχτών αρχείων</translation>
     </message>
     <message>
         <source>Close Current</source>
@@ -273,7 +273,7 @@
     </message>
     <message>
         <source>Save the file on the disk</source>
-        <translation>απόθήκευση του αρχείου στον δίσκο</translation>
+        <translation>Αποθήκευση του αρχείου στον δίσκο</translation>
     </message>
     <message>
         <source>Use Snippet...</source>
@@ -369,7 +369,7 @@
     </message>
     <message>
         <source>Loading a session from a file will close all tabs in the current session without saving the files. Are you sure to continue?</source>
-        <translation>Η φόρτωση μιας συνεδρίασης από κάποιο αρχείο θα κλείσει όλες της καρτέλες χωρίς να απόθηκεύση τα αρχεία. Είστε σίγουρη;</translation>
+        <translation>Η φόρτωση μιας συνεδρίασης από κάποιο αρχείο θα κλείσει όλες της καρτέλες χωρίς να απόθηκεύση τα αρχεία. Είστε σίγουροι;</translation>
     </message>
     <message>
         <source>Load session from a file</source>
@@ -401,7 +401,7 @@
     </message>
     <message>
         <source>All current settings will lose after importing settings from a file. Are you sure to continue?</source>
-        <translation>Όλες οι ρυθμίσεις θα χαθούνε αφότου εισαχθούνε οι ρυθμίσεις από το αρχείο. Είστε σίγουρη ότι θέλετε να συνεχίσεται;</translation>
+        <translation>Όλες οι ρυθμίσεις θα χαθούνε αφότου εισαχθούνε οι ρυθμίσεις από το αρχείο. Είστε σίγουροι ότι θέλετε να συνεχίσεται;</translation>
     </message>
     <message>
         <source>Duplicate Tab</source>
@@ -524,7 +524,7 @@ Build time: %4
     </message>
     <message>
         <source>Do you really want to delete the snippet [%1]?</source>
-        <translation>Είστε σίγουρη ότι θέλετε να διαγράψετε το απόσπασμα [%1]?</translation>
+        <translation>Είστε σίγουροι ότι θέλετε να διαγράψετε το απόσπασμα [%1]?</translation>
     </message>
     <message>
         <source>Load Snippets</source>
@@ -595,7 +595,7 @@ Build time: %4
     </message>
     <message>
         <source>Save testlib.h</source>
-        <translation>απόθήκευση testlib.h</translation>
+        <translation>Αποθήκευση testlib.h</translation>
     </message>
     <message>
         <source>Error occurred while compiling the checker:
@@ -961,14 +961,14 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Sure to submit</source>
-        <translation>Είστε σίγουρος ότι θέλετε να το παραδώσετε</translation>
+        <translation>Είστε σίγουροι ότι θέλετε να το παραδώσετε</translation>
     </message>
     <message>
         <source>Are you sure you want to submit this solution to Codeforces?
 
  URL: %1
  Language: %2</source>
-        <translation>Είστε σίγουρος ότι θέλετε να παραδώσετε τον κωδικό στο Codeforces;
+        <translation>Είστε σίγουροι ότι θέλετε να παραδώσετε τον κωδικό στο Codeforces;
 
  URL: %1
  Γλώσσα: %2</translation>
@@ -979,7 +979,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Failed to save the temp file, and the solution is not submitted.</source>
-        <translation>Υπήρξε σφάλμα απόθήκευσης προσωρινού αρχείου, η απάντηση δεν παραδόθηκε.</translation>
+        <translation>Υπήρξε σφάλμα κατά την αποθήκευση του προσωρινού αρχείου, η απάντηση δεν παραδόθηκε.</translation>
     </message>
     <message>
         <source>Untitled-%1</source>
@@ -987,7 +987,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Save as</source>
-        <translation>απόθήκευση ως</translation>
+        <translation>Αποθήκευση ως</translation>
     </message>
     <message>
         <source>Open %1 Template</source>
@@ -1003,7 +1003,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Save File</source>
-        <translation>απόθήκευση αρχείου</translation>
+        <translation>Αποθήκευση αρχείου</translation>
     </message>
     <message>
         <source>Temp File</source>
@@ -1019,11 +1019,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Save changes</source>
-        <translation>απόθήκευση αλλαγών</translation>
+        <translation>Αποθήκευση αλλαγών</translation>
     </message>
     <message>
         <source>Save changes to [%1] before closing?</source>
-        <translation>απόθήκευση αλλαγών στο [%1] πρίν το κλείσιμο;</translation>
+        <translation>Αποθήκευση αλλαγών στο [%1] πρίν το κλείσιμο;</translation>
     </message>
     <message>
         <source>New File</source>
@@ -1031,7 +1031,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Save</source>
-        <translation>απόθήκευση</translation>
+        <translation>Αποθήκευση</translation>
     </message>
     <message>
         <source>Set Tab language</source>
@@ -1053,7 +1053,7 @@ Do you want to reload it?</source>
         <translation>[%1]
 
 Έχει αλλάξει στον δίσκο.
-Είστε σίγουρος ότι θέλετε να το φορτώσετε πάλι;</translation>
+Είστε σίγουροι ότι θέλετε να το φορτώσετε πάλι;</translation>
     </message>
     <message>
         <source>Line %1, Column %2</source>
@@ -1169,7 +1169,7 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>Auto Save</source>
-        <translation>Αυτόματη απόθήκευση</translation>
+        <translation>Αυτόματη αποθήκευση</translation>
     </message>
     <message>
         <source>Have you set a proper name for the main class in your solution? If not, you can set it at %1.</source>
@@ -1237,7 +1237,7 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>Enter a parenthesis (e.g. {}):</source>
-        <translation>Εισάγετε μία παρένθεση (π.χ. {}):</translation>
+        <translation>Εισάγετε μια παρένθεση (π.χ. {}):</translation>
     </message>
     <message>
         <source>Delete Parenthesis</source>
@@ -1245,7 +1245,7 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>Do you really want to delete the parenthesis %1?</source>
-        <translation>Είστε σίγουρος ότι θέλετε να διαγράψετε την παρένθεση %1;</translation>
+        <translation>Είστε σίγουροι ότι θέλετε να διαγράψετε την παρένθεση %1;</translation>
     </message>
 </context>
 <context>
@@ -1351,7 +1351,7 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>Save the changes on the current page. (Ctrl+S)</source>
-        <translation>απόθήκευση αλλαγών στην τωρινή σελίδα. (Ctrl+S)</translation>
+        <translation>Αποθήκευση αλλαγών στην τωρινή σελίδα. (Ctrl+S)</translation>
     </message>
     <message>
         <source>Unsaved Settings</source>
@@ -1414,7 +1414,7 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>Save</source>
-        <translation>απόθήκευση</translation>
+        <translation>Αποθήκευση</translation>
     </message>
     <message>
         <source>Bind file and problem</source>
@@ -1490,11 +1490,11 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>Auto Save</source>
-        <translation>Αυτόματη απόθήκευση</translation>
+        <translation>Αυτόματη αποθήκευση</translation>
     </message>
     <message>
         <source>Save Session</source>
-        <translation>απόθήκευση συνεδρίασης</translation>
+        <translation>Αποθήκευση συνεδρίασης</translation>
     </message>
     <message>
         <source>Network Proxy</source>
@@ -1541,7 +1541,7 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>The width of the tab character, or the number of spaces of an indent</source>
-        <translation>Το πλάτος των χαρακτήρων σε καρτέλες ή ο αριθμός τον κενών σε μία εσοχή</translation>
+        <translation>Το πλάτος των χαρακτήρων σε καρτέλες ή ο αριθμός τον κενών σε μια εσοχή</translation>
     </message>
     <message>
         <source>Cursor Width</source>
@@ -1591,7 +1591,7 @@ When opening a template, the position of the cursor is the position of the regex
 The cursor will be at the end of the template if there&apos;s no match of the regex.</source>
         <translation>Η προκαθορισμένη έκφραση όπου ταιριάζει ένα κομμάτι κώδικα με το πρότυπο κώδικα.
 Όταν ανοίγεται ένα πρότυπο, η θέση του κέρσορα είναι η θέση του regex με ένα αντιστάθμισμα.
-Ο κέρσορας θα είναι στο τέλος του προτύπου αν δεν υπάρχει καμία αναφορά στο regex.</translation>
+Ο κέρσορας θα είναι στο τέλος του προτύπου αν δεν υπάρχει καμια αναφορά στο regex.</translation>
     </message>
     <message>
         <source>Whether the offset is relative to the start of the regex or the end of the regex.</source>
@@ -1689,11 +1689,11 @@ You can use &quot;${filename}&quot; for the complete file name,
     </message>
     <message>
         <source>Enable Auto Save</source>
-        <translation>Επιτροπή αυτόματης απόθήκευσης</translation>
+        <translation>Επιτροπή αυτόματης αποθήκευσης</translation>
     </message>
     <message>
         <source>Automatically save the file every 3 seconds.</source>
-        <translation>Αυτόματη απόθήκευση αρχείου ανά 3 δευτερόλεπτα.</translation>
+        <translation>Αυτόματη αποθήκευση αρχείου ανά 3 δευτερόλεπτα.</translation>
     </message>
     <message>
         <source>Wrap Text</source>
@@ -1715,7 +1715,7 @@ You can use &quot;${filename}&quot; for the complete file name,
         <source>Pairs of regular expressions used when adding pairs of test cases from files.
 Each pair of regular expressions represents a test case.</source>
         <translation>Τα ζευγάρια τακτικών εκφράσεων χρησιμοποιούνται όταν προστίθενται ζευγάρια δοκιμών από αρχεία.
-Κάθε ζευγάρι τακτικής έκφρασης αναπαριστά μία δοκιμή.</translation>
+Κάθε ζευγάρι τακτικής έκφρασης αναπαριστά μια δοκιμή.</translation>
     </message>
     <message>
         <source>Automatically complete a pair of parentheses when typing the left element of it,
@@ -1798,11 +1798,11 @@ This can be overridden for each parenthesis in each language.</source>
     </message>
     <message>
         <source>Save Testcases on Save</source>
-        <translation>απόθήκευση δοκιμών κατά την απόθήκευση</translation>
+        <translation>Αποθήκευση δοκιμών κατά την αποθήκευση</translation>
     </message>
     <message>
         <source>Save the test cases on the disk when saving a file, and load the saved test cases when opening a file.</source>
-        <translation>απόθήκευση τον δοκιμών στον δίσκο όταν απόθηκεύεται κάποιο αρχείο, και φώρτοση τον παλιών δοκιμών όταν ανοίξει κάποιο αρχείο.</translation>
+        <translation>Αποθήκευση τον δοκιμών στον δίσκο όταν απόθηκεύεται κάποιο αρχείο, και φώρτοση τον παλιών δοκιμών όταν ανοίξει κάποιο αρχείο.</translation>
     </message>
     <message>
         <source>Check for updates on startup</source>
@@ -1894,13 +1894,13 @@ This can be overridden for each parenthesis in each language.</source>
     </message>
     <message>
         <source>Save Files Faster</source>
-        <translation>απόθήκευση αρχείων γρηγορότερα</translation>
+        <translation>Αποθήκευση αρχείων γρηγορότερα</translation>
     </message>
     <message>
         <source>Always use QFile instead of QSaveFile to save files.
 This will be faster but with a little bit more risk of losing the file (with a very small possibility).</source>
-        <translation>Πάντα χρησιμοποίησε το QFile αντί του QSaveFile για απόθήκευση αρχείων.
-Αυτό θα είναι πιο γρήγορο για την απόθήκευση αρχείων αλλά υπάρχει μια πιθανότητα να χαθεί το αρχείο (η πιθανότητα είναι πολύ μικρή).</translation>
+        <translation>Πάντα χρησιμοποίησε το QFile αντί του QSaveFile για αποθήκευση αρχείων.
+Αυτό θα είναι πιο γρήγορο για την αποθήκευση αρχείων αλλά υπάρχει μια πιθανότητα να χαθεί το αρχείο (η πιθανότητα είναι πολύ μικρή).</translation>
     </message>
     <message>
         <source>Output Length Limit</source>
@@ -2022,7 +2022,7 @@ You can use &quot;\1&quot; for the first captured group.</source>
     </message>
     <message>
         <source>Input File Save Path</source>
-        <translation>Είσοδος διαδρομής απόθήκευσης αρχείου</translation>
+        <translation>Είσοδος διαδρομής αποθήκευσης αρχείου</translation>
     </message>
     <message>
         <source>The path where the input files are saved.
@@ -2040,7 +2040,7 @@ You can use &quot;${filename}&quot; for the complete file name,
     </message>
     <message>
         <source>Answer File Save Path</source>
-        <translation>Απάντηση διαδρομής απόθήκευσης αρχείου</translation>
+        <translation>Απάντηση διαδρομής αποθήκευσης αρχείου</translation>
     </message>
     <message>
         <source>The path where the answer files are saved.
@@ -2110,19 +2110,19 @@ Due to technical reasons, changing the height of the margin affects the undo his
     </message>
     <message>
         <source>Save File On Compilation</source>
-        <translation>απόθήκευση αρχείου μετά την μεταγλώττιση</translation>
+        <translation>Αποθήκευση αρχείου μετά την μεταγλώττιση</translation>
     </message>
     <message>
         <source>Save the source file when compiling it. It won&apos;t be saved if the tab is untitled.</source>
-        <translation>απόθήκευση πηγαίου αρχείου κατα την μεταγλώττιση του. Το αρχείο δεν θα απόθηκευτή αν η καρτέλα δεν έχει όνομα.</translation>
+        <translation>Αποθήκευση πηγαίου αρχείου κατα την μεταγλώττιση του. Το αρχείο δεν θα απόθηκευτή αν η καρτέλα δεν έχει όνομα.</translation>
     </message>
     <message>
         <source>Save File On Execution</source>
-        <translation>απόθήκευση αρχείου μετά την εκτέλεση</translation>
+        <translation>Αποθήκευση αρχείου μετά την εκτέλεση</translation>
     </message>
     <message>
         <source>Save the source file when running it. It won&apos;t be saved if the tab is untitled.</source>
-        <translation>απόθήκευση του πηγαίου αρχείου κατά την εκτέλεση του. Δεν θα απόθηκευτή αν η καρτέλα δεν έχει όνομα.</translation>
+        <translation>Αποθήκευση του πηγαίου αρχείου κατά την εκτέλεση του. Δεν θα απόθηκευτή αν η καρτέλα δεν έχει όνομα.</translation>
     </message>
     <message>
         <source>Restore the problem URL when opening a file</source>
@@ -2178,15 +2178,15 @@ from Competitive Companion again, the old file will be opened.</source>
     </message>
     <message>
         <source>Auto Save Interval (ms)</source>
-        <translation>Διάστημα αυτόματης απόθήκευσης (ms)</translation>
+        <translation>Διάστημα αυτόματης αποθήκευσης (ms)</translation>
     </message>
     <message>
         <source>The time interval between a modification and an auto-save, or between two auto-saves.</source>
-        <translation>Το χρονικό διάστημα ανάμεσα σε μία τροποποίηση και σε αυτόματη απόθήκευση, ή ανάμεσα σε δύο αυτόματες απόθηκεύσης.</translation>
+        <translation>Το χρονικό διάστημα ανάμεσα σε μια τροποποίηση και σε αυτόματη αποθήκευση, ή ανάμεσα σε δύο αυτόματες απόθηκεύσης.</translation>
     </message>
     <message>
         <source>Auto Save Interval Type</source>
-        <translation>Τύπο αυτόματου διάστημα απόθήκευσης</translation>
+        <translation>Τύπο αυτόματου διάστημα αποθήκευσης</translation>
     </message>
     <message>
         <source>After the last modification: the timer will be reset after a modification to the code.
@@ -2194,7 +2194,7 @@ After the first modification: the timer will start after a modification if at th
 Without modification: auto-save happens with a constant interval no matter there are modifications or not.</source>
         <translation>Μετά από την τελευταία τροποποίηση ο χρονομετρητής θα επαναφερθεί μετά μια τροποποίηση στον κώδικα.
 Μετά από την πρώτη τροποποίηση ο χρονομετρητής θα αρχίσει αν ο χρονομετρητής δεν έχει ίδη αρχίσει.
-Χωρίς τροποποίηση μία αυτόματη απόθήκευση με σταθερό διάστημα ανεξαρτήτως αν υπάρχει τροποποίηση ή όχι.</translation>
+Χωρίς τροποποίηση μια αυτόματη αποθήκευση με σταθερό διάστημα ανεξαρτήτως αν υπάρχει τροποποίηση ή όχι.</translation>
     </message>
     <message>
         <source>Restore last session at startup</source>
@@ -2208,19 +2208,19 @@ When this is enabled, you won&apos;t be asked whether to save unsaved files when
     </message>
     <message>
         <source>Auto-save the current session periodically</source>
-        <translation>Αυτόματη απόθήκευση τις τορινής συνεδρίασης περιοδικά</translation>
+        <translation>Αυτόματη αποθήκευση τις τορινής συνεδρίασης περιοδικά</translation>
     </message>
     <message>
         <source>Auto-save the current session periodically instead of only save when the application exists.
 This is useful if your computer is frozen and you have to cut off the power or
 kill the application with SIGKILL which could not be handled by the application.</source>
-        <translation>Η αυτόματη απόθήκευση της τωρινής συνεδρίασης περιοδικά αντιθέτως από την απόθήκευση μόνο όταν η εφαρμογή είναι ενεργεί.
+        <translation>Η αυτόματη αποθήκευση της τωρινής συνεδρίασης περιοδικά αντιθέτως από την Αποθήκευση μόνο όταν η εφαρμογή είναι ενεργεί.
 Αυτό είναι χρήσιμο αν ο υπολογιστής έχει παγώσει και πρέπει να κλείσετε τον υπολογυστή ή
 να κλείσετε την εφαρμογή.</translation>
     </message>
     <message>
         <source>Auto-save Session Interval</source>
-        <translation>Αυτόματη απόθήκευση συνεδρίασης περιοδικά</translation>
+        <translation>Αυτόματη αποθήκευση συνεδρίασης περιοδικά</translation>
     </message>
     <message>
         <source>The time interval between two auto-saves of the current session.</source>
@@ -2280,7 +2280,7 @@ kill the application with SIGKILL which could not be handled by the application.
     </message>
     <message>
         <source>Use a custom font for the whole application instead of the default system font.</source>
-        <translation>Χρησιμοποιήστε μία προσαρμοσμένη γραμματοσειρά για ολόκληρη την εφαρμογή αντιθέτος από την προκαθορισμένη γραμματοσειρά του συστηματός σας.</translation>
+        <translation>Χρησιμοποιήστε μια προσαρμοσμένη γραμματοσειρά για ολόκληρη την εφαρμογή αντιθέτος από την προκαθορισμένη γραμματοσειρά του συστηματός σας.</translation>
     </message>
     <message>
         <source>Custom Application Font</source>
@@ -2308,7 +2308,7 @@ They can be used in actions&apos; corresponding default paths by using ${&lt;def
 They can be either manually set or automatically changed after choosing a path for an action.</source>
         <translation>Η λίστα από τις προκαθορισμένες διαδρομές.
 Μπορούν να χρησιμοποιηθούν στις ενέργειες που απασχολούν τις προκαθορισμένες διαδρομές χρησιμοποιώντας το ${&lt;default path name&gt;}.
-Μπορούν να οριστούν χειροκίνητα ή αυτόματα αφότου οριστεί μια διαδρομή για μία δράση.</translation>
+Μπορούν να οριστούν χειροκίνητα ή αυτόματα αφότου οριστεί μια διαδρομή για μια δράση.</translation>
     </message>
     <message>
         <source>Name</source>
@@ -2329,7 +2329,7 @@ They can be either manually set or automatically changed after choosing a path f
     <message>
         <source>The default path used when choosing a path for %1.
 You can use ${&lt;default path name&gt;} as a place holder.</source>
-        <translation>Η προκαθορισμένη διαδρομή χρησιμοποιείται όταν επιλέγεται μία διαδρομή για %1.
+        <translation>Η προκαθορισμένη διαδρομή χρησιμοποιείται όταν επιλέγεται μια διαδρομή για %1.
 Μπορείτε να χρησιμοποιήσετε ${&lt;default path name&gt;}.</translation>
     </message>
     <message>
@@ -2340,7 +2340,7 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Save File</source>
-        <translation>απόθήκευση αρχείου</translation>
+        <translation>Αποθήκευση αρχείου</translation>
     </message>
     <message>
         <source>Open Contest</source>
@@ -2384,11 +2384,11 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Format code on manual save</source>
-        <translation>Μορφοποίηση κώδικα από μη αυτόματη απόθήκευση</translation>
+        <translation>Μορφοποίηση κώδικα από μη αυτόματη αποθήκευση</translation>
     </message>
     <message>
         <source>Format code on auto-save</source>
-        <translation>Μορφοποίηση κώδικα στην αυτόματη απόθήκευση</translation>
+        <translation>Μορφοποίηση κώδικα στην αυτόματη αποθήκευση</translation>
     </message>
     <message>
         <source>Auto-load external file changes if there&apos;s no unsaved modification</source>
@@ -2456,7 +2456,7 @@ Consult your terminal emulator for the suitable arguments.</source>
     </message>
     <message>
         <source>Save Test Case To A File</source>
-        <translation>απόθήκευση δοκιμών σε ένα αρχείο</translation>
+        <translation>Αποθήκευση δοκιμών σε ένα αρχείο</translation>
     </message>
     <message>
         <source>The comments added at the head of the code when parsing a problem.
@@ -2694,7 +2694,7 @@ It can be empty if you have the global wakatime config file ~/.wakatime.cfg.</so
     </message>
     <message>
         <source>Do you really want to delete the current row?</source>
-        <translation>Είστε σίγουρος ότι θέλετε να διαγράψετε την τωρινή σειρά;</translation>
+        <translation>Είστε σίγουροι ότι θέλετε να διαγράψετε την τωρινή σειρά;</translation>
     </message>
     <message>
         <source>Move Up</source>
@@ -2782,7 +2782,7 @@ It can be empty if you have the global wakatime config file ~/.wakatime.cfg.</so
     </message>
     <message>
         <source>Failed to save to [%1]. Do I have write permission?</source>
-        <translation>Απέτυχε η απόθήκευση του [%1]. Έχετε άδεια εγγραφής;</translation>
+        <translation>Απέτυχε η αποθήκευση του [%1]. Έχετε άδεια εγγραφής;</translation>
     </message>
     <message>
         <source>The file [%1] does not exist</source>
@@ -2849,7 +2849,7 @@ It can be empty if you have the global wakatime config file ~/.wakatime.cfg.</so
     </message>
     <message>
         <source>Save Path</source>
-        <translation>απόθήκευση διαδρομής</translation>
+        <translation>Αποθήκευση διαδρομής</translation>
     </message>
     <message>
         <source>Language</source>
@@ -2923,7 +2923,7 @@ It can be empty if you have the global wakatime config file ~/.wakatime.cfg.</so
     </message>
     <message>
         <source>Are you sure you want to delete test case #%1?</source>
-        <translation>Είστε σίγουρος ότι θέλετε να διαγράψετε την δοκιμή #%1?</translation>
+        <translation>Είστε σίγουροι ότι θέλετε να διαγράψετε την δοκιμή #%1?</translation>
     </message>
     <message>
         <source>Diff Viewer[%1]</source>
@@ -2962,11 +2962,11 @@ It can be empty if you have the global wakatime config file ~/.wakatime.cfg.</so
     </message>
     <message>
         <source>Save to file</source>
-        <translation>απόθήκευση σε αρχείο</translation>
+        <translation>Αποθήκευση σε αρχείο</translation>
     </message>
     <message>
         <source>Save test case to file</source>
-        <translation>απόθήκευση δοκιμής σε αρχείο</translation>
+        <translation>Αποθήκευση δοκιμής σε αρχείο</translation>
     </message>
     <message>
         <source>Only the first %1 characters are shown. Now the test case editor is read-only. You can set the length limit at %2.</source>
@@ -3029,7 +3029,7 @@ It can be empty if you have the global wakatime config file ~/.wakatime.cfg.</so
     </message>
     <message>
         <source>Are you sure you want to delete all test cases?</source>
-        <translation>Είστε σίγουρος ότι θέλετε να διαγράψετε όλες τις δοκιμές;</translation>
+        <translation>Είστε σίγουροι ότι θέλετε να διαγράψετε όλες τις δοκιμές;</translation>
     </message>
     <message>
         <source>Invert</source>
@@ -3132,7 +3132,7 @@ It can be empty if you have the global wakatime config file ~/.wakatime.cfg.</so
     </message>
     <message>
         <source>Are you sure you want to delete all checked test cases?</source>
-        <translation>Είστε σίγουρος ότι θέλετε να διαγράψετε όλες τις τσεκαρισμένες δοκιμές;</translation>
+        <translation>Είστε σίγουροι ότι θέλετε να διαγράψετε όλες τις τσεκαρισμένες δοκιμές;</translation>
     </message>
     <message>
         <source>Copy Test Cases</source>
@@ -3149,7 +3149,7 @@ It can be empty if you have the global wakatime config file ~/.wakatime.cfg.</so
     <message>
         <source>Are you sure you want to copy all checked output to their corresponding expected?</source>
         <extracomment>Here &quot;checked&quot; means the checkbox is checked</extracomment>
-        <translation>Είστε σίγουρος ότι θέλετε να αντιγράψετε όλη την τσεκαρισμένη έξοδο στα αντοίστιχα αναμενόμενα;</translation>
+        <translation>Είστε σίγουροι ότι θέλετε να αντιγράψετε όλη την τσεκαρισμένη έξοδο στα αντοίστιχα αναμενόμενα;</translation>
     </message>
 </context>
 <context>
@@ -3168,7 +3168,7 @@ It can be empty if you have the global wakatime config file ~/.wakatime.cfg.</so
     </message>
     <message>
         <source>A new %1 update &lt;a href=&quot;%2&quot;&gt;%3&lt;/a&gt; is available. See below for the changelog.&lt;br /&gt;We highly recommend you keep the editor up to date so that you won&apos;t miss the awesome new features and bug fixes.</source>
-        <translation>Μία νέα %1 έκδωση &lt;a href=&quot;%2&quot;&gt;%3&lt;/a&gt; είναι διαθέσιμη. Δείτε παρακάτω για τις αλλαγε.&lt;br /&gt; Συστίνουμε να κρατήσετε τον συντάκτη ενημερομένο ώστε να μην χάσεται νέες λειτουργίες.</translation>
+        <translation>μια νέα %1 έκδωση &lt;a href=&quot;%2&quot;&gt;%3&lt;/a&gt; είναι διαθέσιμη. Δείτε παρακάτω για τις αλλαγε.&lt;br /&gt; Συστίνουμε να κρατήσετε τον συντάκτη ενημερομένο ώστε να μην χάσεται νέες λειτουργίες.</translation>
     </message>
     <message>
         <source>beta</source>
