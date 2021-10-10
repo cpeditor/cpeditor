@@ -14,6 +14,6 @@ fi
 
 SOURCES=(src build/generated build/cpeditor_autogen/ui build/third_party/QtFindReplaceDialog/dialogs/QtFindReplaceDialog_autogen)
 
-for i in ru_RU zh_CN zh_TW; do
+for i in el_GR ru_RU zh_CN zh_TW; do
 	lupdate -no-obsolete "${SOURCES[@]}" -locations "$LOCATIONS" -tr-function-alias tr+=TRKEY -ts translations/$i.ts
 done

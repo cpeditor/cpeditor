@@ -11,7 +11,11 @@
 
 **[Возможности](https://cpeditor.org/ru) · [Документация](https://cpeditor.org/ru/docs/) · [Список изменений](CHANGELOG.md) · [Сотрудничество](CONTRIBUTING_ru-RU.md) · [FAQ](https://cpeditor.org/ru/docs/faq/)**
 
-[English](README.md) | Русский | [简体中文](README_zh-CN.md) | [正體中文](README_zh-TW.md)
+[Νέα Ελληνικά](README_el-GR.md) |
+[English](README.md) |
+Русский |
+[简体中文](README_zh-CN.md) |
+[正體中文](README_zh-TW.md)
 
 ![demo](assets/demo.gif)
 
