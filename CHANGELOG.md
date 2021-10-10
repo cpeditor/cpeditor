@@ -5,6 +5,7 @@
 -   Now the winlibs release on Windows includes LLVM. If you use the `clangd` in this release as the C++ Language Server, `<bits/stdc++.h>` should be properly recognized. (#878)
 -   Now custom checkers will be automatically recompiled if it's changed. (#843 and #898)
 -   Support [WakaTime](https://wakatime.com/). You can enable it at Preferences-\>Extensions-\>WakaTime. The `wakatime` executable requires manual installation. (#918 and #953)
+-   Add Modern Greek translations. (#984)
 
 ### Fixed
 
