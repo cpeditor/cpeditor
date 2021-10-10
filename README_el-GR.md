@@ -11,7 +11,11 @@
 
 **[Χαρακτηριστικά](https://cpeditor.org) · [Τεκμηρίωση](https://cpeditor.org/docs) · [Έγγραφο Αλλαγών](CHANGELOG.md) · [Συνεισφορά](CONTRIBUTING.md) · [Συχνά ερωτόμενες ερωτήσεις](https://cpeditor.org/docs/faq/)**
 
-Ελληνικά | [English](README.md)  | [Русский](README_ru-RU.md) | [简体中文](README_zh-CN.md) | [正體中文](README_zh-TW.md)
+Νέα Ελληνικά |
+[English](README.md) |
+[Русский](README_ru-RU.md) |
+[简体中文](README_zh-CN.md) |
+[正體中文](README_zh-TW.md)
 
 ![Δείγμα](assets/demo.gif)
 
