@@ -39,6 +39,7 @@ namespace Core
 class Checker;
 class Compiler;
 class Runner;
+class Stopwatch;
 } // namespace Core
 
 namespace Extensions
@@ -157,6 +158,8 @@ class MainWindow : public QMainWindow
     void updateChecker();
     void runTestCase(int index);
 
+    void updateStopwatch(int time);
+
     // UI Slots
 
     void on_compile_clicked();
@@ -168,6 +171,10 @@ class MainWindow : public QMainWindow
     void on_clearMessagesButton_clicked();
 
     void on_changeLanguageButton_clicked();
+
+    void on_stopwatchResetButton_clicked();
+
+    void on_stopwatchStartStopButton_clicked();
 
   signals:
     void editorFileChanged();
@@ -204,6 +211,7 @@ class MainWindow : public QMainWindow
     QVector<Core::Runner *> runner;
     Core::Checker *checker = nullptr;
     Core::Runner *detachedRunner = nullptr;
+    Core::Stopwatch *stopwatch = nullptr;
     QTemporaryDir *tmpDir = nullptr;
     AfterCompile afterCompile = Nothing;
 
@@ -248,5 +256,7 @@ class MainWindow : public QMainWindow
     QString compileCommand() const;
     int timeLimit() const;
     void updateCompileAndRunButtons() const;
+    void setStopwatch();
+    void updateStopwatchButtons();
 };
 #endif // MAINWINDOW_HPP

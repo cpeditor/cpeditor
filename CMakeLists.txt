@@ -156,6 +156,8 @@ add_executable(cpeditor
     src/Core/TestCasesCopyPaster.hpp
     src/Core/Translator.cpp
     src/Core/Translator.hpp
+    src/Core/Stopwatch.cpp
+    src/Core/Stopwatch.hpp
 
     src/Extensions/CFTool.cpp
     src/Extensions/CFTool.hpp

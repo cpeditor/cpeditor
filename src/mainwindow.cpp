@@ -22,6 +22,7 @@
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
 #include "Core/Runner.hpp"
+#include "Core/Stopwatch.hpp"
 #include "Extensions/CFTool.hpp"
 #include "Extensions/ClangFormatter.hpp"
 #include "Extensions/CompanionServer.hpp"
@@ -70,6 +71,7 @@ MainWindow::MainWindow(int index, AppWindow *parent)
     connect(testcases, &Widgets::TestCases::requestRun, this, &MainWindow::runTestCase);
 
     setEditor();
+    setStopwatch();
     connect(fileWatcher, &QFileSystemWatcher::fileChanged, this, &MainWindow::onFileWatcherChanged);
     connect(
         autoSaveTimer, &QTimer::timeout, autoSaveTimer, [this] { saveFile(AutoSave, tr("Auto Save"), false); },
@@ -122,6 +124,14 @@ void MainWindow::setEditor()
     // a selection (and the cursor is at the begin of the selection)
     connect(editor, &QCodeEditor::cursorPositionChanged, this, &MainWindow::updateCursorInfo);
     connect(editor, &QCodeEditor::selectionChanged, this, &MainWindow::updateCursorInfo);
+}
+
+void MainWindow::setStopwatch()
+{
+    stopwatch = new Core::Stopwatch{this};
+    updateStopwatchButtons();
+
+    connect(stopwatch, &Core::Stopwatch::time, this, &MainWindow::updateStopwatch);
 }
 
 void MainWindow::compile()
@@ -655,6 +665,20 @@ void MainWindow::on_run_clicked()
 {
     LOG_INFO("Run button clicked");
     compileAndRun();
+}
+
+void MainWindow::on_stopwatchResetButton_clicked()
+{
+    LOG_INFO("Stopwatch reset button clicked");
+    stopwatch->reset();
+    updateStopwatchButtons();
+}
+
+void MainWindow::on_stopwatchStartStopButton_clicked()
+{
+    LOG_INFO("Stopwatch start/stop button clicked");
+    stopwatch->isRunning() ? stopwatch->pause() : stopwatch->start();
+    updateStopwatchButtons();
 }
 
 void MainWindow::compileOnly()
@@ -1444,4 +1468,19 @@ void MainWindow::onRunKilled(int index)
     log->error(getRunnerHead(index),
                tr("%1 has been killed")
                    .arg(index == -1 ? tr("Detached runner") : tr("Runner for testcase #%1").arg(index + 1)));
+}
+
+// --------------------- Stopwatch SLOTS ----------------------------
+
+void MainWindow::updateStopwatchButtons()
+{
+    ui->stopwatchResetButton->setDisabled(stopwatch->isInactive());
+
+    stopwatch->isRunning() ? ui->stopwatchStartStopButton->setText("Stop")
+                           : ui->stopwatchStartStopButton->setText("Start");
+}
+
+void MainWindow::updateStopwatch(int time)
+{
+    ui->stopwatch->setText(QTime(0, 0).addMSecs(time).toString("hh:mm:ss"));
 }

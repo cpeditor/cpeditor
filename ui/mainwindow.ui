@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1203</width>
-    <height>600</height>
+    <height>916</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -80,6 +80,37 @@
        <layout class="QVBoxLayout" name="rightPane">
         <item>
          <layout class="QVBoxLayout" name="inputOutputArea">
+          <item>
+           <layout class="QHBoxLayout" name="stopWatchLayout">
+            <item>
+             <widget class="QLabel" name="stopwatch">
+              <property name="text">
+               <string>00:00:00</string>
+              </property>
+              <property name="textFormat">
+               <enum>Qt::MarkdownText</enum>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="stopwatchStartStopButton">
+              <property name="text">
+               <string>Start</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="stopwatchResetButton">
+              <property name="text">
+               <string>Reset</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
           <item>
            <layout class="QHBoxLayout" name="inputOutputActions">
             <item>
