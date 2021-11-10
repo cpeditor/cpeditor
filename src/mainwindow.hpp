@@ -18,6 +18,8 @@
 #ifndef MAINWINDOW_HPP
 #define MAINWINDOW_HPP
 
+#include "Core/Stopwatch.hpp"
+
 #include <QMainWindow>
 
 class AppWindow;
@@ -159,6 +161,7 @@ class MainWindow : public QMainWindow
     void runTestCase(int index);
 
     void updateStopwatch(int time);
+    void updateStopwatchButtons(Core::Stopwatch::State state);
 
     // UI Slots
 
@@ -173,7 +176,6 @@ class MainWindow : public QMainWindow
     void on_changeLanguageButton_clicked();
 
     void on_stopwatchResetButton_clicked();
-
     void on_stopwatchStartStopButton_clicked();
 
   signals:
@@ -257,6 +259,8 @@ class MainWindow : public QMainWindow
     int timeLimit() const;
     void updateCompileAndRunButtons() const;
     void setStopwatch();
-    void updateStopwatchButtons();
+
+    void hideEvent(QHideEvent *event);
+    void showEvent(QShowEvent *event);
 };
 #endif // MAINWINDOW_HPP

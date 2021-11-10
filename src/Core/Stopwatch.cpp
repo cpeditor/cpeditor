@@ -16,6 +16,7 @@
  */
 
 #include "Core/Stopwatch.hpp"
+#include "generated/SettingsHelper.hpp"
 
 #include <QCoreApplication>
 #include <QTimerEvent>
@@ -74,6 +75,7 @@ void Stopwatch::start()
 
     currentState = State::Running;
     emit time(accumulator);
+    emit stateChanged(State::Running);
 }
 
 void Stopwatch::pause()
@@ -86,6 +88,7 @@ void Stopwatch::pause()
     elapsedTimer.invalidate();
     currentState = State::Paused;
     emit time(accumulator);
+    emit stateChanged(State::Paused);
 }
 
 void Stopwatch::reset()
@@ -94,6 +97,7 @@ void Stopwatch::reset()
     QCoreApplication::processEvents();
     emit time(0);
     currentState = State::Inactive;
+    emit stateChanged(State::Inactive);
 }
 
 void Stopwatch::timerEvent(QTimerEvent *event)

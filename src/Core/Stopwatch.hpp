@@ -30,17 +30,24 @@ class Stopwatch : public QObject
   public:
     enum class Granularity : int
     {
-        Milliseconds = 1, // Stopwatch refreshed every msec.
-        Hundredths = 10,  // Stopwatch refreshed every 10 msec.
-        Tenths = 100,     // Stopwatch refreshed every 100 msec.
-        Seconds = 1000    // Stopwatch refreshed every sec.
+        Milliseconds = 1, // Stopwatch refreshed every msec
+        Hundredths = 10,  // Stopwatch refreshed every 10 msec
+        Tenths = 100,     // Stopwatch refreshed every 100 msec
+        Seconds = 1000    // Stopwatch refreshed every sec
+    };
+
+    enum class State : int
+    {
+        Inactive,
+        Paused,
+        Running
     };
 
     explicit Stopwatch(QObject *parent = nullptr);
 
     /**
      * @brief set the stopwatch refresh granularity
-     * @param g The granularity to be set.
+     * @param g The granularity to be set
      */
     void setGranularity(Granularity g);
 
@@ -81,21 +88,20 @@ class Stopwatch : public QObject
   signals:
     /**
      * Emits a signal with the current stopwatch time.
-     * @param t Current stopwatch time.
+     * @param t Current stopwatch time
      */
     void time(int t);
+
+    /**
+     * Emits a signal when state of the stopwatch is changed.
+     * @param s Current start of the stopwatch
+     */
+    void stateChanged(State s);
 
   protected:
     void timerEvent(QTimerEvent *event) override;
 
   private:
-    enum class State
-    {
-        Inactive,
-        Paused,
-        Running
-    };
-
     int getGranularity() const;
 
     static constexpr int INACTIVE_TIMER_ID = -1;

@@ -83,30 +83,39 @@
           <item>
            <layout class="QHBoxLayout" name="stopWatchLayout">
             <item>
-             <widget class="QLabel" name="stopwatch">
-              <property name="text">
-               <string>00:00:00</string>
+             <widget class="QWidget" name="stopwatchWidget" native="true">
+              <property name="enabled">
+               <bool>true</bool>
               </property>
-              <property name="textFormat">
-               <enum>Qt::MarkdownText</enum>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="stopwatchStartStopButton">
-              <property name="text">
-               <string>Start</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="stopwatchResetButton">
-              <property name="text">
-               <string>Reset</string>
-              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout_2">
+               <item>
+                <widget class="QLabel" name="stopwatch">
+                 <property name="text">
+                  <string>00:00:00</string>
+                 </property>
+                 <property name="textFormat">
+                  <enum>Qt::MarkdownText</enum>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="stopwatchStartStopButton">
+                 <property name="text">
+                  <string>Start</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="stopwatchResetButton">
+                 <property name="text">
+                  <string>Reset</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
              </widget>
             </item>
            </layout>

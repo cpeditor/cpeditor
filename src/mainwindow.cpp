@@ -128,10 +128,17 @@ void MainWindow::setEditor()
 
 void MainWindow::setStopwatch()
 {
-    stopwatch = new Core::Stopwatch{this};
-    updateStopwatchButtons();
+    if (!SettingsHelper::isDisplayStopwatch())
+    {
+        ui->stopwatchWidget->setVisible(false);
+        return;
+    }
 
+    stopwatch = new Core::Stopwatch{this};
     connect(stopwatch, &Core::Stopwatch::time, this, &MainWindow::updateStopwatch);
+    connect(stopwatch, &Core::Stopwatch::stateChanged, this, &MainWindow::updateStopwatchButtons);
+
+    updateStopwatchButtons(Core::Stopwatch::State::Inactive);
 }
 
 void MainWindow::compile()
@@ -635,6 +642,11 @@ void MainWindow::applySettings(const QString &pagePath)
         else
             autoSaveTimer->stop();
     }
+
+    if (pageChanged("Actions/Stopwatch"))
+    {
+        ui->stopwatchWidget->setVisible(SettingsHelper::isDisplayStopwatch());
+    }
 }
 
 bool MainWindow::save(bool force, const QString &head, bool safe)
@@ -671,14 +683,12 @@ void MainWindow::on_stopwatchResetButton_clicked()
 {
     LOG_INFO("Stopwatch reset button clicked");
     stopwatch->reset();
-    updateStopwatchButtons();
 }
 
 void MainWindow::on_stopwatchStartStopButton_clicked()
 {
     LOG_INFO("Stopwatch start/stop button clicked");
     stopwatch->isRunning() ? stopwatch->pause() : stopwatch->start();
-    updateStopwatchButtons();
 }
 
 void MainWindow::compileOnly()
@@ -1324,6 +1334,34 @@ void MainWindow::updateCompileAndRunButtons() const
     }
 }
 
+void MainWindow::hideEvent(QHideEvent *event)
+{
+    if (event->spontaneous())
+    {
+        QWidget::hideEvent(event);
+        return;
+    }
+
+    if (SettingsHelper::isStartStopStopwatchOnTabSwitch() && stopwatch->isRunning())
+        stopwatch->pause();
+
+    QWidget::hideEvent(event);
+}
+
+void MainWindow::showEvent(QShowEvent *event)
+{
+    if (event->spontaneous())
+    {
+        QWidget::showEvent(event);
+        return;
+    }
+
+    if (SettingsHelper::isStartStopStopwatchOnTabSwitch() && stopwatch->isPaused())
+        stopwatch->start();
+
+    QWidget::showEvent(event);
+}
+
 // -------------------- COMPILER SLOTS ---------------------------
 
 void MainWindow::onCompilationStarted()
@@ -1472,7 +1510,7 @@ void MainWindow::onRunKilled(int index)
 
 // --------------------- Stopwatch SLOTS ----------------------------
 
-void MainWindow::updateStopwatchButtons()
+void MainWindow::updateStopwatchButtons(Core::Stopwatch::State state)
 {
     ui->stopwatchResetButton->setDisabled(stopwatch->isInactive());
 

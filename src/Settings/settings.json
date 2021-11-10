@@ -1174,9 +1174,9 @@
     "ui": "PathItem",
     "param": "PathItem::Executable",
     "tip": "The path to the WakaTime executable file",
-    "depends":[
+    "depends": [
       {
-        "name":"WakaTime/Enable"
+        "name": "WakaTime/Enable"
       }
     ]
   },
@@ -1184,9 +1184,9 @@
     "name": "WakaTime/Api Key",
     "desc": "Api Key",
     "type": "QString",
-    "depends":[
+    "depends": [
       {
-        "name":"WakaTime/Enable"
+        "name": "WakaTime/Enable"
       }
     ],
     "tip": "Can be found at https://wakatime.com/settings/account.\nIt can be empty if you have the global wakatime config file ~/.wakatime.cfg."
@@ -1206,6 +1206,22 @@
     "depends": [
       {
         "name": "WakaTime/Enable"
+      }
+    ]
+  },
+  {
+    "name": "Display Stopwatch",
+    "type": "bool",
+    "default": false
+  },
+  {
+    "name": "Start/Stop Stopwatch On Tab Switch",
+    "type": "bool",
+    "default": false,
+    "tip": "Automatically start stopwatch when switched to this tab and stop when switched to other tabs.",
+    "depends": [
+      {
+        "name": "Display Stopwatch"
       }
     ]
   }
