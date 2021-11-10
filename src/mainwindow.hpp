@@ -260,7 +260,7 @@ class MainWindow : public QMainWindow
     void updateCompileAndRunButtons() const;
     void setStopwatch();
 
-    void hideEvent(QHideEvent *event);
-    void showEvent(QShowEvent *event);
+    virtual void hideEvent(QHideEvent *event) override;
+    virtual void showEvent(QShowEvent *event) override;
 };
 #endif // MAINWINDOW_HPP

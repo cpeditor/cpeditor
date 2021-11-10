@@ -82,7 +82,7 @@ void Stopwatch::pause()
 {
     if (elapsedTimer.isValid())
     {
-        accumulator += elapsedTimer.elapsed();
+        accumulator += (int)elapsedTimer.elapsed();
     }
 
     elapsedTimer.invalidate();
@@ -110,7 +110,7 @@ void Stopwatch::timerEvent(QTimerEvent *event)
 
     if (elapsedTimer.isValid())
     {
-        emit time(accumulator + elapsedTimer.elapsed());
+        emit time(accumulator + (int)elapsedTimer.elapsed());
     }
     else
     {
