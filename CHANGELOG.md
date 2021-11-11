@@ -6,6 +6,7 @@
 -   Now custom checkers will be automatically recompiled if it's changed. (#843 and #898)
 -   Support [WakaTime](https://wakatime.com/). You can enable it at Preferences-\>Extensions-\>WakaTime. The `wakatime` executable requires manual installation. (#918 and #953)
 -   Add Modern Greek translations. (#984)
+-   Added stopwatch. You can enable it at Preferences-\>Actions-\>Stopwatch. (#1009)
 
 ### Fixed
 
