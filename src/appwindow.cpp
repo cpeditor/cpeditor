@@ -1179,7 +1179,7 @@ void AppWindow::openTab(const QString &path, const QString &lang)
     }
     else
     {
-        QString langFromFile = SettingsHelper::getDefaultLanguage();
+        QString langFromFile;
 
         const auto suffix = QFileInfo(path).suffix();
 
@@ -1190,7 +1190,7 @@ void AppWindow::openTab(const QString &path, const QString &lang)
         else if (Util::pythonSuffix.contains(suffix))
             langFromFile = "Python";
 
-        newWindow->setLanguage(lang);
+        newWindow->setLanguage(langFromFile.isEmpty() ? SettingsHelper::getDefaultLanguage() : langFromFile);
     }
 
     openTab(newWindow);
