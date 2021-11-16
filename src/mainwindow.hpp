@@ -18,8 +18,6 @@
 #ifndef MAINWINDOW_HPP
 #define MAINWINDOW_HPP
 
-#include "Core/Stopwatch.hpp"
-
 #include <QMainWindow>
 
 class AppWindow;
@@ -41,7 +39,6 @@ namespace Core
 class Checker;
 class Compiler;
 class Runner;
-class Stopwatch;
 } // namespace Core
 
 namespace Extensions
@@ -53,7 +50,8 @@ struct CompanionData;
 namespace Widgets
 {
 class TestCases;
-}
+class Stopwatch;
+} // namespace Widgets
 
 class MainWindow : public QMainWindow
 {
@@ -159,10 +157,6 @@ class MainWindow : public QMainWindow
     void updateCursorInfo();
     void updateChecker();
     void runTestCase(int index);
-
-    void updateStopwatch(int time);
-    void updateStopwatchButtons(Core::Stopwatch::State state);
-
     // UI Slots
 
     void on_compile_clicked();
@@ -174,9 +168,6 @@ class MainWindow : public QMainWindow
     void on_clearMessagesButton_clicked();
 
     void on_changeLanguageButton_clicked();
-
-    void on_stopwatchResetButton_clicked();
-    void on_stopwatchStartStopButton_clicked();
 
   signals:
     void editorFileChanged();
@@ -213,7 +204,6 @@ class MainWindow : public QMainWindow
     QVector<Core::Runner *> runner;
     Core::Checker *checker = nullptr;
     Core::Runner *detachedRunner = nullptr;
-    Core::Stopwatch *stopwatch = nullptr;
     QTemporaryDir *tmpDir = nullptr;
     AfterCompile afterCompile = Nothing;
 
@@ -235,6 +225,7 @@ class MainWindow : public QMainWindow
     Extensions::CFTool *cftool = nullptr;
 
     Widgets::TestCases *testcases = nullptr;
+    Widgets::Stopwatch *stopwatch = nullptr;
 
     QTimer *autoSaveTimer = nullptr;
 

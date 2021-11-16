@@ -22,7 +22,6 @@
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
 #include "Core/Runner.hpp"
-#include "Core/Stopwatch.hpp"
 #include "Extensions/CFTool.hpp"
 #include "Extensions/ClangFormatter.hpp"
 #include "Extensions/CompanionServer.hpp"
@@ -32,6 +31,7 @@
 #include "Settings/PreferencesWindow.hpp"
 #include "Util/FileUtil.hpp"
 #include "Util/QCodeEditorUtil.hpp"
+#include "Widgets/Stopwatch.hpp"
 #include "Widgets/TestCases.hpp"
 #include "appwindow.hpp"
 #include "generated/SettingsHelper.hpp"
@@ -108,6 +108,7 @@ MainWindow::~MainWindow()
     delete fileWatcher;
     delete editor;
     delete log;
+    delete stopwatch;
 }
 
 void MainWindow::setEditor()
@@ -128,17 +129,9 @@ void MainWindow::setEditor()
 
 void MainWindow::setStopwatch()
 {
-    if (!SettingsHelper::isDisplayStopwatch())
-    {
-        ui->stopwatchWidget->setVisible(false);
-        return;
-    }
-
-    stopwatch = new Core::Stopwatch{this};
-    connect(stopwatch, &Core::Stopwatch::time, this, &MainWindow::updateStopwatch);
-    connect(stopwatch, &Core::Stopwatch::stateChanged, this, &MainWindow::updateStopwatchButtons);
-
-    updateStopwatchButtons(Core::Stopwatch::State::Inactive);
+    stopwatch = new Widgets::Stopwatch{this};
+    ui->stopWatchLayout->addWidget(stopwatch);
+    stopwatch->setVisible(SettingsHelper::isDisplayStopwatch());
 }
 
 void MainWindow::compile()
@@ -645,7 +638,7 @@ void MainWindow::applySettings(const QString &pagePath)
 
     if (pageChanged("Actions/Stopwatch"))
     {
-        ui->stopwatchWidget->setVisible(SettingsHelper::isDisplayStopwatch());
+        stopwatch->setVisible(SettingsHelper::isDisplayStopwatch());
     }
 }
 
@@ -677,18 +670,6 @@ void MainWindow::on_run_clicked()
 {
     LOG_INFO("Run button clicked");
     compileAndRun();
-}
-
-void MainWindow::on_stopwatchResetButton_clicked()
-{
-    LOG_INFO("Stopwatch reset button clicked");
-    stopwatch->reset();
-}
-
-void MainWindow::on_stopwatchStartStopButton_clicked()
-{
-    LOG_INFO("Stopwatch start/stop button clicked");
-    stopwatch->isRunning() ? stopwatch->pause() : stopwatch->start();
 }
 
 void MainWindow::compileOnly()
@@ -1506,19 +1487,4 @@ void MainWindow::onRunKilled(int index)
     log->error(getRunnerHead(index),
                tr("%1 has been killed")
                    .arg(index == -1 ? tr("Detached runner") : tr("Runner for testcase #%1").arg(index + 1)));
-}
-
-// --------------------- Stopwatch SLOTS ----------------------------
-
-void MainWindow::updateStopwatchButtons(Core::Stopwatch::State state)
-{
-    ui->stopwatchResetButton->setDisabled(stopwatch->isInactive());
-
-    stopwatch->isRunning() ? ui->stopwatchStartStopButton->setText("Stop")
-                           : ui->stopwatchStartStopButton->setText("Start");
-}
-
-void MainWindow::updateStopwatch(int time)
-{
-    ui->stopwatch->setText(QTime(0, 0).addMSecs(time).toString("hh:mm:ss"));
 }
