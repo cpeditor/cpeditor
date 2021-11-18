@@ -49,7 +49,7 @@ void WakaTime::sendHeartBeat(const QString &filePath, const QString &problemURL,
     else
         return; // no need to send an unsaved non-problem file
 
-    if (!(isWrite || entity != lastEntity || lastTime.isNull() || lastTime.secsTo(now) > 2 * 60))
+    if (!(isWrite || entity != lastEntity || lastTime.isNull() || lastTime.secsTo(now) > (qint64)2 * 60))
         return;
     lastTime = now;
     lastEntity = entity;
