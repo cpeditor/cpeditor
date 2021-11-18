@@ -216,7 +216,7 @@ void SettingsManager::setPath(const QString &key, const QString &path, const QSt
 {
     settingPath->insert(key, path);
     settingTrPath->insert(key, trPath);
-    pathSetting->insert(path, key);
+    pathSetting->insert(path, key); // NOLINT: 1st argument looks like it might be swapped with the 2nd
 }
 
 QString SettingsManager::getPathText(const QString &key, bool parent)
