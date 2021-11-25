@@ -72,3 +72,6 @@ resources/translations/*.qm
 
 # macOS
 .DS_Store
+
+# Codespaces
+.venv
