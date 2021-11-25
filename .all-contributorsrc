@@ -1,8 +1,9 @@
 {
   "files": [
     "README.md",
-    "README_zh-CN.md",
+    "README_el-GR.md",
     "README_ru-RU.md",
+    "README_zh-CN.md",
     "README_zh-TW.md"
   ],
   "imageSize": 100,
@@ -548,6 +549,15 @@
       "name": "toto6038",
       "avatar_url": "https://avatars.githubusercontent.com/u/50100922?v=4",
       "profile": "https://github.com/toto6038",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "RysteQ",
+      "name": "RysteQ",
+      "avatar_url": "https://avatars.githubusercontent.com/u/34135554?v=4",
+      "profile": "https://github.com/RysteQ",
       "contributions": [
         "translation"
       ]

@@ -11,7 +11,11 @@
 
 **[特色功能](https://cpeditor.org/zh_tw) · [文件](https://cpeditor.org/zh_tw/docs) · [更新紀錄](CHANGELOG.md) · [貢獻指引](CONTRIBUTING_zh-TW.md) · [常見問題](https://cpeditor.org/zh_tw/docs/faq/)**
 
-[简体中文](README_zh-CN.md) · [English](README.md) · [Русский](README_ru-RU.md)
+[Νέα Ελληνικά](README_el-GR.md) |
+[English](README.md) |
+[Русский](README_ru-RU.md) |
+[简体中文](README_zh-CN.md) |
+正體中文
 
 ![demo](assets/demo.gif)
 
@@ -250,6 +254,9 @@
     </td>
     <td align="center">
       <a href="https://github.com/toto6038"><img src="https://avatars.githubusercontent.com/u/50100922?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/toto6038"><sub><b>toto6038</b></sub></a><br /><a href="#translation-toto6038" title="Translation">🌍</a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/RysteQ"><img src="https://avatars.githubusercontent.com/u/34135554?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/RysteQ"><sub><b>RysteQ</b></sub></a><br /><a href="#translation-RysteQ" title="Translation">🌍</a>
     </td>
   </tr>
 </table>

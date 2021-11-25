@@ -19,6 +19,6 @@
         <file>donate/star.svg</file>
         <file>donate/twitter.svg</file>
         <file>donate/wrench.svg</file>
-        <file>donate/wechat-donate.png</file>
+        <file>donate/wechat-and-alipay-donate-256.png</file>
     </qresource>
 </RCC>

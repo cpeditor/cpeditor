@@ -11,7 +11,11 @@
 
 **[Возможности](https://cpeditor.org/ru) · [Документация](https://cpeditor.org/ru/docs/) · [Список изменений](CHANGELOG.md) · [Сотрудничество](CONTRIBUTING_ru-RU.md) · [FAQ](https://cpeditor.org/ru/docs/faq/)**
 
-[English](README.md) · [简体中文](README_zh-CN.md) · [正體中文](README_zh-TW.md)
+[Νέα Ελληνικά](README_el-GR.md) |
+[English](README.md) |
+Русский |
+[简体中文](README_zh-CN.md) |
+[正體中文](README_zh-TW.md)
 
 ![demo](assets/demo.gif)
 
@@ -250,6 +254,9 @@ Thanks go to these wonderful people: (if we forget to add you as a contributor, 
     </td>
     <td align="center">
       <a href="https://github.com/toto6038"><img src="https://avatars.githubusercontent.com/u/50100922?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/toto6038"><sub><b>toto6038</b></sub></a><br /><a href="#translation-toto6038" title="Translation">🌍</a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/RysteQ"><img src="https://avatars.githubusercontent.com/u/34135554?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/RysteQ"><sub><b>RysteQ</b></sub></a><br /><a href="#translation-RysteQ" title="Translation">🌍</a>
     </td>
   </tr>
 </table>

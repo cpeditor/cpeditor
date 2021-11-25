@@ -2,24 +2,24 @@
 
 <img src=assets/icon.ico width="128">
 
-**CP Editor - 提升你的算法竞赛编程体验！**
+**Συντάκτης CP - Βελτιώστε την εμπειρία σας με τον ανταγωνιστικό προγραμματισμό!**
 
 [![downloads](https://img.shields.io/github/downloads/cpeditor/cpeditor/total?style=for-the-badge)](https://github.com/cpeditor/cpeditor/releases)
 [![All Contributors](https://img.shields.io/github/all-contributors/cpeditor/cpeditor?style=for-the-badge)](#all-contributors)
 [![GitHub Sponsors](https://img.shields.io/github/sponsors/cpeditor?style=for-the-badge)](https://github.com/sponsors/cpeditor)
 <a href="https://www.producthunt.com/posts/cp-editor" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=283643&theme=dark" alt="Product Hunt" height="28"/></a>
 
-**[特性](https://cpeditor.org/zh) · [文档](https://cpeditor.org/zh/docs) · [更新日志](CHANGELOG.md) · [贡献指南](CONTRIBUTING_zh-CN.md) · [FAQ](https://cpeditor.org/zh/docs/faq/)**
+**[Χαρακτηριστικά](https://cpeditor.org) · [Τεκμηρίωση](https://cpeditor.org/docs) · [Έγγραφο Αλλαγών](CHANGELOG.md) · [Συνεισφορά](CONTRIBUTING.md) · [Συχνά ερωτόμενες ερωτήσεις](https://cpeditor.org/docs/faq/)**
 
-[Νέα Ελληνικά](README_el-GR.md) |
+Νέα Ελληνικά |
 [English](README.md) |
 [Русский](README_ru-RU.md) |
-简体中文 |
+[简体中文](README_zh-CN.md) |
 [正體中文](README_zh-TW.md)
 
-![demo](assets/demo.gif)
+![Δείγμα](assets/demo.gif)
 
-|  类型  |                            分支                            |                                                                                                        构建                                                                                                        |                                                                     下载量                                                                     |                                                         AUR                                                         |                                                snap                                                  |
+|  Τύπος  |                           Κλάδος                           |                                                                                                       Έκδοση                                                                                                        |                                                                   Λήψεις                                                                    |                                                         AUR                                                         |                                                snap                                                  |
 | :----: | :--------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------: |
 | alpha  | [master](https://github.com/cpeditor/cpeditor/tree/master) | [![GitHub Workflow Status](https://github.com/cpeditor/cpeditor/workflows/CI:%20Build%20Test/badge.svg?branch=master&event=push)](https://github.com/cpeditor/cpeditor/actions?query=event%3Apush+branch%3Amaster) |                                                                       -                                                                        | [![AUR version](https://img.shields.io/aur/version/cpeditor-git)](https://aur.archlinux.org/packages/cpeditor-git/) |  [![snap version](https://badgen.net/snapcraft/v/cpeditor/amd64/edge)](https://snapcraft.io/cpeditor)
 |  beta  |   [v6.9](https://github.com/cpeditor/cpeditor/tree/v6.9)   |   [![GitHub Workflow Status](https://github.com/cpeditor/cpeditor/workflows/CI:%20Build%20Test/badge.svg?branch=v6.9&event=push)](https://github.com/cpeditor/cpeditor/actions?query=event%3Apush+branch%3Av6.9)   | [![Downloads](https://img.shields.io/github/downloads/cpeditor/cpeditor/6.9.3/total)](https://github.com/cpeditor/cpeditor/releases/tag/6.9.3) |                                                          -                                                          |                                                   -
@@ -27,48 +27,42 @@
 
 </div>
 
-## 开始使用
+## Ξεκινήστε
 
--   [发行版](https://github.com/cpeditor/cpeditor/releases) ([Gitee 镜像](https://gitee.com/ouuan/cpeditor/releases))
--   [安装](https://cpeditor.org/zh/docs/installation/)
--   [开始使用](https://cpeditor.org/zh/docs/setup/)
--   [设置](https://cpeditor.org/zh/docs/preferences)
--   [使用提示](https://cpeditor.org/zh/docs/tips/)
+-   [Εκδόσεις](https://github.com/cpeditor/cpeditor/releases)
+-   [Εγκατάσταση](https://cpeditor.org/docs/installation/)
+-   [Ξεκινήστε](https://cpeditor.org/docs/setup/)
+-   [Προτιμήσεις](https://cpeditor.org/docs/preferences)
+-   [Συμβουλές](https://cpeditor.org/docs/tips/)
 
-## 捐赠
+## Δωρεά
 
--   [如何捐赠](DONATE_zh-CN.md)
--   [捐赠者列表](DONORS.md)
+-   [Πως να κάνετε μια δωρεά](DONATE.md)
+-   [Λίστα δωρητών](DONORS.md)
 
-## 做出贡献
+## Συνεισφορά
 
--   [贡献指南](CONTRIBUTING_zh-CN.md)
--   [适合新手解决的 issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
--   [需要帮助的 issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
+-   [Οδηγίες για συνεισφορά](CONTRIBUTING.md)
+-   [Καλές πρώτες συνειφορές](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
+-   [Διάφορα θέματα που θέλουμε βοήθεια](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
 
-## 反馈
+## Aναπληροφόρηση
 
--   提问：开一个 Q&A 类别的 [新讨论](https://github.com/cpeditor/cpeditor/discussions/new)。请在得到答复后将最有用的回答 Mark as Answer。
--   提供想法：开一个 Ideas 类别的 [新讨论](https://github.com/cpeditor/cpeditor/discussions/new)。
--   正式的功能请求/bug 报告：[开一个 issue](https://github.com/cpeditor/cpeditor/issues/new/choose)，带有详细的描述以及尽可能多的信息。
--   [表达感谢](https://github.com/cpeditor/cpeditor/discussions/755)
--   [随意吐槽](https://github.com/cpeditor/cpeditor/discussions/760)
+-   Ρωτήστε ερωτήσεις: [Ανοίξτε μια νέα συζήτηση](https://github.com/cpeditor/cpeditor/discussions/new) στην κατηγωρία ερωτήσεις και απαντήσεις. Παρακαλούμε, αν βρήκατε μια απάντησει ικανοποιητική, να την μαρκάρετε.
+-   Αναφέρετε ιδέες: [Ανοίξτε μια νέα συζήτηση](https://github.com/cpeditor/cpeditor/discussions/new) in the Ideas category.
+-   Αναφορά προβλημάτων ή νέων χαρακτηριστικών: [Ανοίξτε ένα νέο θέμα](https://github.com/cpeditor/cpeditor/issues/new/choose) με μια λεπτομερείς περιγραφή και όσο περισσότερες πληροφορίες γίνεται.
+-   [Πες ευχαριστώ](https://github.com/cpeditor/cpeditor/discussions/755)
+-   [Κάνε παράπονα](https://github.com/cpeditor/cpeditor/discussions/760)
 
-## 打包情况
+## Κατάσταση πακέτου
 
 [![Packaging status](https://repology.org/badge/vertical-allrepos/cpeditor.svg)](https://repology.org/project/cpeditor/versions)
 
-如果需要帮助，软件包维护者可以联系我们。例如，我们可以在我们的 CI/CD 工作流中加入一些脚本。
+Οι συντηρητές του πακέτου μπορούν να μας ενημερώσουν αν χρειάζεται βοήθεια. Για παράδειγμα, μπορούμε να προσθέσουμε κάποια σκριπτάκια στο CI/CD workflow μας.
 
-Package maintainers can contact us if any help on packaging is needed. For example, we may add scripts in our CI workflow.
+## Όλοι οι συνεισφορείς
 
-## 关于 Gitee
-
-本项目同时在 [GitHub](https://github.com/cpeditor/cpeditor) 和 [Gitee](https://gitee.com/ouuan/cpeditor) 上进行托管，其中 Gitee 仓库仅作为镜像使用，不保证总是与 GitHub 仓库同步，不开放 Issues / Pull Requests，如有需要请移步 [GitHub](https://github.com/cpeditor/cpeditor)，也可以进入 [QQ 群](https://jq.qq.com/?_wv=1027&k=50eq8yF) (1081647997) 来交流讨论。
-
-## All Contributors
-
-感谢下面这些人的贡献：（如果我们忘记将你添加为贡献者，你可以[自行添加](https://allcontributors.org/docs/zh-cn/bot/usage)）
+Ευχαριστούμε όλα αυτά τα φανταστικά άτομα: (αν ξεχάσουμε να σε βάλουμε στην λίστα, μπορείς να βάλεις το [εαυτό σου μόνος σου](https://allcontributors.org/docs/en/bot/usage))
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
@@ -272,8 +266,8 @@ Package maintainers can contact us if any help on packaging is needed. For examp
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
-本项目使用 [all-contributors](https://github.com/all-contributors/all-contributors)，欢迎各种形式的贡献！
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
 
-### 许可证
+## License
 
 [GNU General Public License Version 3.0](LICENSE)

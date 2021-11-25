@@ -968,7 +968,7 @@
     "type": "QString",
     "ui": "QComboBox",
     "default": "system",
-    "param": "QStringList { \"system\", \"English\", \"Русский\", \"简体中文\" }",
+    "param": "QStringList { \"system\", \"Νέα Ελληνικά\", \"English\", \"Русский\", \"简体中文\", \"正體中文\" }",
     "tip": "The language displayed in the UI.",
     "onApply": "Core::Translator::setLocale(); QMessageBox::warning(parent, tr(\"Change Locale\"), tr(\"You need to restart the application to completely apply the locale change.\"));"
   },
@@ -1015,11 +1015,11 @@
   },
   {
     "name": "Proxy/Enabled",
-    "desc": "Enable Proxy",
+    "desc": "Enable proxy for checking updates",
     "type": "bool",
     "default": "true",
     "docAnchor": "network-proxy",
-    "tip": "Enable proxy for checking updates"
+    "tip": "Enable proxy to connect to GitHub while checking updates"
   },
   {
     "name": "Proxy/Type",
@@ -1028,11 +1028,6 @@
     "default": "System",
     "ui": "QComboBox",
     "param": "QStringList { \"System\", \"Http\", \"Socks5\" }",
-    "depends": [
-      {
-        "name": "Proxy/Enabled"
-      }
-    ],
     "docAnchor": "network-proxy",
     "tip": "The type of the proxy. \"System\" for using the system proxy."
   },
@@ -1042,9 +1037,6 @@
     "type": "QString",
     "default": "127.0.0.1",
     "depends": [
-      {
-        "name": "Proxy/Enabled"
-      },
       {
         "name": "Proxy/Type",
         "check": "return var.toString() != \"System\";"
@@ -1061,9 +1053,6 @@
     "param": "QVariantList {1024,49151}",
     "depends": [
       {
-        "name": "Proxy/Enabled"
-      },
-      {
         "name": "Proxy/Type",
         "check": "return var.toString() != \"System\";"
       }
@@ -1077,9 +1066,6 @@
     "type": "QString",
     "depends": [
       {
-        "name": "Proxy/Enabled"
-      },
-      {
         "name": "Proxy/Type",
         "check": "return var.toString() != \"System\";"
       }
@@ -1092,9 +1078,6 @@
     "desc": "Password",
     "type": "QString",
     "depends": [
-      {
-        "name": "Proxy/Enabled"
-      },
       {
         "name": "Proxy/Type",
         "check": "return var.toString() != \"System\";"
@@ -1182,5 +1165,48 @@
     "type": "bool",
     "default": false,
     "notr": true
+  },
+  {
+    "name": "WakaTime/Path",
+    "desc": "Path",
+    "type": "QString",
+    "default": "wakatime",
+    "ui": "PathItem",
+    "param": "PathItem::Executable",
+    "tip": "The path to the WakaTime executable file",
+    "depends":[
+      {
+        "name":"WakaTime/Enable"
+      }
+    ]
+  },
+  {
+    "name": "WakaTime/Api Key",
+    "desc": "Api Key",
+    "type": "QString",
+    "depends":[
+      {
+        "name":"WakaTime/Enable"
+      }
+    ],
+    "tip": "Can be found at https://wakatime.com/settings/account.\nIt can be empty if you have the global wakatime config file ~/.wakatime.cfg."
+  },
+  {
+    "name": "WakaTime/Enable",
+    "desc": "Enable WakaTime",
+    "type": "bool",
+    "default": false
+  },
+  {
+    "name": "WakaTime/Proxy",
+    "desc": "Use Proxy",
+    "type": "bool",
+    "default": false,
+    "tip": "Use Advanced->Network Proxy to send data to WakaTime.",
+    "depends": [
+      {
+        "name": "WakaTime/Enable"
+      }
+    ]
   }
 ]

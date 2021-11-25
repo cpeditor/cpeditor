@@ -41,6 +41,7 @@ namespace Extensions
 class CompanionServer;
 struct CompanionData;
 class LanguageServer;
+class WakaTime;
 } // namespace Extensions
 
 namespace Telemetry
@@ -211,6 +212,8 @@ class AppWindow : public QMainWindow
 
     void openTab(const QString &path);
 
+    void onFileSaved(MainWindow *window);
+
   private:
     Ui::AppWindow *ui;
     MessageLogger *activeLogger = nullptr;
@@ -235,6 +238,8 @@ class AppWindow : public QMainWindow
     Extensions::LanguageServer *javaServer = nullptr;
     Extensions::LanguageServer *pythonServer = nullptr;
 
+    Extensions::WakaTime *wakaTime = nullptr;
+
     explicit AppWindow(bool noHotExit, QWidget *parent = nullptr);
     void finishConstruction();
 
@@ -254,6 +259,7 @@ class AppWindow : public QMainWindow
     bool quit();
     int getNewUntitledIndex();
     void reAttachLanguageServer(MainWindow *window);
+    void triggerWakaTime(MainWindow *window, bool isWrite = false);
 
     MainWindow *currentWindow();
     MainWindow *windowAt(int index);
