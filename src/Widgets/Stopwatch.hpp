@@ -23,7 +23,6 @@
 
 class QLabel;
 class QPushButton;
-class QLayout;
 
 namespace Widgets
 {
@@ -80,14 +79,6 @@ class Stopwatch : public QWidget
     bool isInactive() const;
 
   private:
-    enum class Granularity : int
-    {
-        Milliseconds = 1, // Stopwatch refreshed every msec
-        Hundredths = 10,  // Stopwatch refreshed every 10 msec
-        Tenths = 100,     // Stopwatch refreshed every 100 msec
-        Seconds = 1000    // Stopwatch refreshed every sec
-    };
-
     enum class State : int
     {
         Inactive,
@@ -103,14 +94,13 @@ class Stopwatch : public QWidget
      *  - startPauseButton
      *  - resetButton
      */
-    QLayout *mainLayout = nullptr;
     QLabel *timeLabel = nullptr;
     QPushButton *startPauseButton = nullptr;
     QPushButton *resetButton = nullptr;
 
     int accumulator = 0; // milisecond internal counter
     State currentState = State::Inactive;
-    Granularity granularity = Granularity::Seconds;
+    int granularity = 1000; // (In milisecond) Stopwatch refreshed every second.
 
     QElapsedTimer elapsedTimer; // Stopwatch core class
     QTimer *timer;

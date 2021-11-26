@@ -1337,7 +1337,7 @@ void MainWindow::showEvent(QShowEvent *event)
         return;
     }
 
-    if (SettingsHelper::isStartStopStopwatchOnTabSwitch() && stopwatch->isPaused())
+    if (SettingsHelper::isStartStopStopwatchOnTabSwitch() && !stopwatch->isRunning())
         stopwatch->start();
 
     QWidget::showEvent(event);

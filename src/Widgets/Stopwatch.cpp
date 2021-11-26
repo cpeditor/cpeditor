@@ -21,6 +21,7 @@
 #include <QCoreApplication>
 #include <QHBoxLayout>
 #include <QLabel>
+#include <QLayout>
 #include <QPushButton>
 #include <QString>
 #include <QTime>
@@ -32,7 +33,7 @@ namespace Widgets
 Stopwatch::Stopwatch(QWidget *parent) : QWidget(parent)
 {
     // construct widgets
-    mainLayout = new QHBoxLayout(this);
+    QLayout *mainLayout = new QHBoxLayout(this);
     timeLabel = new QLabel("00:00:00");
     timeLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     startPauseButton = new QPushButton("Start");
@@ -45,7 +46,7 @@ Stopwatch::Stopwatch(QWidget *parent) : QWidget(parent)
 
     // set up timer
     timer = new QTimer(this);
-    timer->setInterval(getGranularity());
+    timer->setInterval(granularity);
     timer->callOnTimeout(this, &Stopwatch::update);
 
     connect(startPauseButton, &QPushButton::clicked, this, &Stopwatch::startOrPauseStopwatch);
@@ -70,7 +71,6 @@ void Stopwatch::start()
     {
         accumulator = 0;
         elapsedTimer.start();
-        startTimer(getGranularity());
     }
     else if (isPaused())
     {
@@ -145,11 +145,6 @@ void Stopwatch::updateUi(int ms)
         break;
     }
     startPauseButton->setText(buttonText);
-}
-
-int Stopwatch::getGranularity() const
-{
-    return static_cast<int>(granularity);
 }
 
 } // namespace Widgets
