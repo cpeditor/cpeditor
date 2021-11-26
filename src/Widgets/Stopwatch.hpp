@@ -39,6 +39,8 @@ class Stopwatch : public QWidget
     void update();
     void updateUi(int ms);
 
+    void setupSingleShot();
+
   public:
     /**
      * @brief construct a Stopwatch

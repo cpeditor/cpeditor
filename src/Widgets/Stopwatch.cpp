@@ -46,7 +46,6 @@ Stopwatch::Stopwatch(QWidget *parent) : QWidget(parent)
 
     // set up timer
     timer = new QTimer(this);
-    timer->setInterval(granularity);
     timer->callOnTimeout(this, &Stopwatch::update);
 
     connect(startPauseButton, &QPushButton::clicked, this, &Stopwatch::startOrPauseStopwatch);
@@ -76,7 +75,7 @@ void Stopwatch::start()
     {
         elapsedTimer.restart();
     }
-    timer->start();
+    setupSingleShot();
 
     currentState = State::Running;
 }
@@ -123,6 +122,7 @@ void Stopwatch::update()
         updateUi(accumulator + (int)elapsedTimer.elapsed());
     else
         updateUi(accumulator);
+    setupSingleShot();
 }
 
 void Stopwatch::updateUi(int ms)
@@ -145,6 +145,17 @@ void Stopwatch::updateUi(int ms)
         break;
     }
     startPauseButton->setText(buttonText);
+}
+
+void Stopwatch::setupSingleShot()
+{
+    if (!timer)
+        return;
+
+    timer->setInterval(granularity + 10 - accumulator % granularity);
+    timer->setSingleShot(true);
+    if (isRunning())
+        timer->start();
 }
 
 } // namespace Widgets
