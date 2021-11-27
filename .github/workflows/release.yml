@@ -254,9 +254,13 @@ jobs:
         if: startsWith(matrix.config.os, 'macos')
         run: |
           cd build
-          ../../Qt/*/*/bin/macdeployqt cpeditor.app
-          cp ../dist/mac/cpeditor.icns cpeditor.app/Contents/Resources
-          hdiutil create -volname cpeditor-${{ steps.get_version.outputs.VERSION }}-x64 -srcfolder cpeditor.app -ov -format UDZO cpeditor-${{ steps.get_version.outputs.VERSION }}-macos-x64.dmg
+          mkdir dmg
+          cd dmg
+          mv ../cpeditor.app cpeditor.app 
+          ../../../Qt/*/*/bin/macdeployqt cpeditor.app
+          cp ../../dist/mac/cpeditor.icns cpeditor.app/Contents/Resources
+          ln -s /Applications Applications
+          hdiutil create -volname cpeditor-${{ steps.get_version.outputs.VERSION }}-x64 -srcfolder . -ov -format UDZO cpeditor-${{ steps.get_version.outputs.VERSION }}-macos-x64.dmg
 
       - name: "[macOS] Release"
         if: startsWith(matrix.config.os, 'macos')
@@ -264,7 +268,7 @@ jobs:
         with:
           draft: true
           prerelease: ${{ steps.get_version.outputs.ISBETA }}
-          files: build/cpeditor-${{ steps.get_version.outputs.VERSION }}-macos-x64.dmg
+          files: build/dmg/cpeditor-${{ steps.get_version.outputs.VERSION }}-macos-x64.dmg
           name: CP Editor ${{ steps.get_version.outputs.VERSION }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
