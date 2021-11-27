@@ -163,8 +163,6 @@ add_executable(cpeditor
     src/Extensions/ClangFormatter.hpp
     src/Extensions/CodeFormatter.cpp
     src/Extensions/CodeFormatter.hpp
-    src/Extensions/YAPFormatter.cpp
-    src/Extensions/YAPFormatter.hpp
     src/Extensions/CompanionServer.cpp
     src/Extensions/CompanionServer.hpp
     src/Extensions/EditorTheme.cpp
@@ -173,6 +171,8 @@ add_executable(cpeditor
     src/Extensions/LanguageServer.hpp
     src/Extensions/WakaTime.cpp
     src/Extensions/WakaTime.hpp
+    src/Extensions/YAPFormatter.cpp
+    src/Extensions/YAPFormatter.hpp
 
     src/Settings/CodeSnippetsPage.cpp
     src/Settings/CodeSnippetsPage.hpp
@@ -224,6 +224,8 @@ add_executable(cpeditor
     src/Widgets/DiffViewer.hpp
     src/Widgets/RichTextCheckBox.cpp
     src/Widgets/RichTextCheckBox.hpp
+    src/Widgets/Stopwatch.cpp
+    src/Widgets/Stopwatch.hpp
     src/Widgets/SupportUsDialog.cpp
     src/Widgets/SupportUsDialog.hpp
     src/Widgets/TestCase.cpp
@@ -232,25 +234,25 @@ add_executable(cpeditor
     src/Widgets/TestCaseEdit.hpp
     src/Widgets/TestCases.cpp
     src/Widgets/TestCases.hpp
-    src/Widgets/UpdatePresenter.hpp
     src/Widgets/UpdatePresenter.cpp
-    src/Widgets/UpdateProgressDialog.hpp
+    src/Widgets/UpdatePresenter.hpp
     src/Widgets/UpdateProgressDialog.cpp
+    src/Widgets/UpdateProgressDialog.hpp
 
+    src/application.cpp
+    src/application.hpp
     src/appwindow.cpp
     src/appwindow.hpp
     src/mainwindow.cpp
     src/mainwindow.hpp
-    src/application.cpp
-    src/application.hpp
 
     src/SignalHandler.cpp
     src/SignalHandler.hpp
 
     src/main.cpp
 
-    ui/mainwindow.ui
     ui/appwindow.ui
+    ui/mainwindow.ui
 
     ${CMAKE_BINARY_DIR}/generated/version.hpp
     ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp

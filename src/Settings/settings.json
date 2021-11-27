@@ -1174,9 +1174,9 @@
     "ui": "PathItem",
     "param": "PathItem::Executable",
     "tip": "The path to the WakaTime executable file",
-    "depends":[
+    "depends": [
       {
-        "name":"WakaTime/Enable"
+        "name": "WakaTime/Enable"
       }
     ]
   },
@@ -1184,9 +1184,9 @@
     "name": "WakaTime/Api Key",
     "desc": "Api Key",
     "type": "QString",
-    "depends":[
+    "depends": [
       {
-        "name":"WakaTime/Enable"
+        "name": "WakaTime/Enable"
       }
     ],
     "tip": "Can be found at https://wakatime.com/settings/account.\nIt can be empty if you have the global wakatime config file ~/.wakatime.cfg."
@@ -1206,6 +1206,35 @@
     "depends": [
       {
         "name": "WakaTime/Enable"
+      }
+    ]
+  },
+  {
+    "name": "Display Stopwatch",
+    "type": "bool",
+    "default": false
+  },
+  {
+    "name": "Toggle Stopwatch On Tab Switch",
+    "desc": "Start/Stop stopwatch on tab switch",
+    "type": "bool",
+    "default": false,
+    "tip": "When switching to a different tab, automatically start the stopwatch\non the current tab and pause the stopwatch on the previous tab.",
+    "depends": [
+      {
+        "name": "Display Stopwatch"
+      }
+    ]
+  },
+  {
+    "name": "Hide Stopwatch Result",
+    "desc": "Show stopwatch result only when the button is pressed",
+    "type": "bool",
+    "default": false,
+    "tip": "Hide the time of the stopwatch and only show the time when the \"Show\" button is pressed.\nThis may reduce distractions caused by stopwatch updates.",
+    "depends": [
+      {
+        "name": "Display Stopwatch"
       }
     ]
   }

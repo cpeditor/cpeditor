@@ -50,7 +50,8 @@ struct CompanionData;
 namespace Widgets
 {
 class TestCases;
-}
+class Stopwatch;
+} // namespace Widgets
 
 class MainWindow : public QMainWindow
 {
@@ -156,7 +157,6 @@ class MainWindow : public QMainWindow
     void updateCursorInfo();
     void updateChecker();
     void runTestCase(int index);
-
     // UI Slots
 
     void on_compile_clicked();
@@ -225,6 +225,7 @@ class MainWindow : public QMainWindow
     Extensions::CFTool *cftool = nullptr;
 
     Widgets::TestCases *testcases = nullptr;
+    Widgets::Stopwatch *stopwatch = nullptr;
 
     QTimer *autoSaveTimer = nullptr;
 
@@ -248,5 +249,9 @@ class MainWindow : public QMainWindow
     QString compileCommand() const;
     int timeLimit() const;
     void updateCompileAndRunButtons() const;
+    void setStopwatch();
+
+    virtual void hideEvent(QHideEvent *event) override;
+    virtual void showEvent(QShowEvent *event) override;
 };
 #endif // MAINWINDOW_HPP

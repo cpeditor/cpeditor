@@ -7,6 +7,7 @@
 -   Support [WakaTime](https://wakatime.com/). You can enable it at Preferences-\>Extensions-\>WakaTime. The `wakatime` executable requires manual installation. (#918 and #953)
 -   Add Tranditional Chinese translations. (#930 and #978)
 -   Add Modern Greek translations. (#984)
+-   Added stopwatch. You can enable it at Preferences-\>Actions-\>Stopwatch. (#1009)
 
 ### Fixed
 

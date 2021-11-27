@@ -31,6 +31,7 @@
 #include "Settings/PreferencesWindow.hpp"
 #include "Util/FileUtil.hpp"
 #include "Util/QCodeEditorUtil.hpp"
+#include "Widgets/Stopwatch.hpp"
 #include "Widgets/TestCases.hpp"
 #include "appwindow.hpp"
 #include "generated/SettingsHelper.hpp"
@@ -70,6 +71,7 @@ MainWindow::MainWindow(int index, AppWindow *parent)
     connect(testcases, &Widgets::TestCases::requestRun, this, &MainWindow::runTestCase);
 
     setEditor();
+    setStopwatch();
     connect(fileWatcher, &QFileSystemWatcher::fileChanged, this, &MainWindow::onFileWatcherChanged);
     connect(
         autoSaveTimer, &QTimer::timeout, autoSaveTimer, [this] { saveFile(AutoSave, tr("Auto Save"), false); },
@@ -106,6 +108,7 @@ MainWindow::~MainWindow()
     delete fileWatcher;
     delete editor;
     delete log;
+    delete stopwatch;
 }
 
 void MainWindow::setEditor()
@@ -122,6 +125,13 @@ void MainWindow::setEditor()
     // a selection (and the cursor is at the begin of the selection)
     connect(editor, &QCodeEditor::cursorPositionChanged, this, &MainWindow::updateCursorInfo);
     connect(editor, &QCodeEditor::selectionChanged, this, &MainWindow::updateCursorInfo);
+}
+
+void MainWindow::setStopwatch()
+{
+    stopwatch = new Widgets::Stopwatch{this};
+    ui->stopWatchLayout->addWidget(stopwatch);
+    stopwatch->setVisible(SettingsHelper::isDisplayStopwatch());
 }
 
 void MainWindow::compile()
@@ -624,6 +634,12 @@ void MainWindow::applySettings(const QString &pagePath)
         }
         else
             autoSaveTimer->stop();
+    }
+
+    if (pageChanged("Actions/Stopwatch"))
+    {
+        stopwatch->setVisible(SettingsHelper::isDisplayStopwatch());
+        stopwatch->updateHideResult();
     }
 }
 
@@ -1298,6 +1314,34 @@ void MainWindow::updateCompileAndRunButtons() const
             ui->compile->show();
         }
     }
+}
+
+void MainWindow::hideEvent(QHideEvent *event)
+{
+    if (event->spontaneous())
+    {
+        QWidget::hideEvent(event);
+        return;
+    }
+
+    if (SettingsHelper::isToggleStopwatchOnTabSwitch() && stopwatch->isRunning())
+        stopwatch->pause();
+
+    QWidget::hideEvent(event);
+}
+
+void MainWindow::showEvent(QShowEvent *event)
+{
+    if (event->spontaneous())
+    {
+        QWidget::showEvent(event);
+        return;
+    }
+
+    if (SettingsHelper::isToggleStopwatchOnTabSwitch() && !stopwatch->isRunning())
+        stopwatch->start();
+
+    QWidget::showEvent(event);
 }
 
 // -------------------- COMPILER SLOTS ---------------------------
