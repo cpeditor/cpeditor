@@ -102,7 +102,6 @@ void Stopwatch::reset()
     elapsedTimer.invalidate();
     accumulator = 0;
     timer->stop();
-    QCoreApplication::processEvents();
     currentState = State::Inactive;
 
     update();
