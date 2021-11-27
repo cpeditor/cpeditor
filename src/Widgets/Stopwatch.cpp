@@ -118,10 +118,7 @@ bool Stopwatch::isInactive() const
 
 void Stopwatch::update()
 {
-    if (elapsedTimer.isValid())
-        updateUi(accumulator + (int)elapsedTimer.elapsed());
-    else
-        updateUi(accumulator);
+    updateUi(totalMilliseconds());
     setupSingleShot();
 }
 
@@ -152,10 +149,17 @@ void Stopwatch::setupSingleShot()
     if (!timer)
         return;
 
-    timer->setInterval(granularity + 10 - accumulator % granularity);
+    timer->setInterval(granularity + 10 - totalMilliseconds() % granularity);
     timer->setSingleShot(true);
     if (isRunning())
         timer->start();
+}
+
+int Stopwatch::totalMilliseconds() const
+{
+    if (elapsedTimer.isValid())
+        return accumulator + (int)elapsedTimer.elapsed();
+    return accumulator;
 }
 
 } // namespace Widgets
