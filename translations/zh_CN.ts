@@ -2674,6 +2674,15 @@ It can be empty if you have the global wakatime config file ~/.wakatime.cfg.</so
 on the current tab and pause the stopwatch on the previous tab.</source>
         <translation>切换标签页后，暂停原来那个标签页的计时器并启动当前标签页的计时器。</translation>
     </message>
+    <message>
+        <source>Show stopwatch result only when the button is pressed</source>
+        <translation>只在按钮按下时显示计时结果</translation>
+    </message>
+    <message>
+        <source>Hide the time of the stopwatch and only show the time when the &quot;Show&quot; button is pressed.
+This may reduce distractions caused by stopwatch updates.</source>
+        <translation>隐藏计时结果，只在“显示”按钮按下时显示。这或许可以避免计时结果更新使人分心。</translation>
+    </message>
 </context>
 <context>
     <name>ShortcutItem</name>
@@ -2908,6 +2917,10 @@ on the current tab and pause the stopwatch on the previous tab.</source>
     <message>
         <source>Stopwatch</source>
         <translation>计时器</translation>
+    </message>
+    <message>
+        <source>Show</source>
+        <translation>显示</translation>
     </message>
 </context>
 <context>

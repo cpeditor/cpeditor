@@ -37,12 +37,14 @@ Stopwatch::Stopwatch(QWidget *parent) : QWidget(parent)
     auto *stopwatchLabel = new QLabel(tr("Stopwatch"));
     timeLabel = new QLabel("00:00:00");
     timeLabel->setAlignment(Qt::AlignVCenter);
+    showButton = new QPushButton(tr("Show"));
     startPauseButton = new QPushButton(tr("Start"));
     resetButton = new QPushButton(tr("Reset"));
 
     // set up UI
     mainLayout->addWidget(stopwatchLabel);
     mainLayout->addWidget(timeLabel);
+    mainLayout->addWidget(showButton);
     mainLayout->addWidget(startPauseButton);
     mainLayout->addWidget(resetButton);
 
@@ -50,8 +52,12 @@ Stopwatch::Stopwatch(QWidget *parent) : QWidget(parent)
     timer = new QTimer(this);
     timer->callOnTimeout(this, &Stopwatch::update);
 
+    connect(showButton, &QPushButton::pressed, this, &Stopwatch::updateUi);
+    connect(showButton, &QPushButton::released, this, &Stopwatch::updateUi);
     connect(startPauseButton, &QPushButton::clicked, this, &Stopwatch::startOrPause);
     connect(resetButton, &QPushButton::clicked, this, &Stopwatch::reset);
+
+    updateHideResult();
 }
 
 void Stopwatch::startOrPause()
@@ -117,20 +123,36 @@ bool Stopwatch::isInactive() const
     return currentState == State::Inactive;
 }
 
+void Stopwatch::updateHideResult()
+{
+    showButton->setVisible(SettingsHelper::isHideStopwatchResult());
+    updateUi();
+}
+
 void Stopwatch::update()
 {
-    updateUi(totalMilliseconds());
+    updateUi();
     setupSingleShot();
 }
 
-void Stopwatch::updateUi(qint64 ms)
+void Stopwatch::updateUi()
 {
+    const qint64 ms = totalMilliseconds();
+
     static const int SECSPERHOUR = 60 * 60 * 1000;
-    if (ms < 24LL * SECSPERHOUR)
-        timeLabel->setText(QTime(0, 0).addMSecs(int(ms)).toString("hh:mm:ss"));
+
+    if (!showButton->isDown() && SettingsHelper::isHideStopwatchResult())
+    {
+        timeLabel->setText("**:**:**");
+    }
     else
-        timeLabel->setText(QString::number(ms / SECSPERHOUR) +
-                           QTime(0, 0).addMSecs(int(ms % SECSPERHOUR)).toString(":mm:ss"));
+    {
+        if (ms < 24LL * SECSPERHOUR)
+            timeLabel->setText(QTime(0, 0).addMSecs(int(ms)).toString("hh:mm:ss"));
+        else
+            timeLabel->setText(QString::number(ms / SECSPERHOUR) +
+                               QTime(0, 0).addMSecs(int(ms % SECSPERHOUR)).toString(":mm:ss"));
+    }
 
     resetButton->setDisabled(isInactive());
 

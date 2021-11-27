@@ -1225,5 +1225,17 @@
         "name": "Display Stopwatch"
       }
     ]
+  },
+  {
+    "name": "Hide Stopwatch Result",
+    "desc": "Show stopwatch result only when the button is pressed",
+    "type": "bool",
+    "default": false,
+    "tip": "Hide the time of the stopwatch and only show the time when the \"Show\" button is pressed.\nThis may reduce distractions caused by stopwatch updates.",
+    "depends": [
+      {
+        "name": "Display Stopwatch"
+      }
+    ]
   }
 ]

@@ -30,14 +30,6 @@ class Stopwatch : public QWidget
 {
     Q_OBJECT
 
-  private:
-    void update();
-    void updateUi(qint64 ms);
-
-    void setupSingleShot();
-
-    qint64 totalMilliseconds() const;
-
   public:
     /**
      * @brief construct a Stopwatch
@@ -62,6 +54,11 @@ class Stopwatch : public QWidget
      */
     bool isInactive() const;
 
+    /**
+     * @brief update according to the "Hide Stopwatch Result" setting
+     */
+    void updateHideResult();
+
   public slots:
     /**
      * @brief start the stopwatch, if inactive or paused.
@@ -84,6 +81,16 @@ class Stopwatch : public QWidget
     void startOrPause();
 
   private:
+    void update();
+
+    void setupSingleShot();
+
+    qint64 totalMilliseconds() const;
+
+  private slots:
+    void updateUi();
+
+  private:
     enum class State : int
     {
         Inactive,
@@ -102,6 +109,7 @@ class Stopwatch : public QWidget
     QLabel *timeLabel = nullptr;
     QPushButton *startPauseButton = nullptr;
     QPushButton *resetButton = nullptr;
+    QPushButton *showButton = nullptr;
 
     qint64 accumulator = 0; // milisecond internal counter
     State currentState = State::Inactive;

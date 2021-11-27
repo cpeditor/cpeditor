@@ -639,6 +639,7 @@ void MainWindow::applySettings(const QString &pagePath)
     if (pageChanged("Actions/Stopwatch"))
     {
         stopwatch->setVisible(SettingsHelper::isDisplayStopwatch());
+        stopwatch->updateHideResult();
     }
 }
 

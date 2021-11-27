@@ -2681,6 +2681,15 @@ It can be empty if you have the global wakatime config file ~/.wakatime.cfg.</so
 on the current tab and pause the stopwatch on the previous tab.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Show stopwatch result only when the button is pressed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide the time of the stopwatch and only show the time when the &quot;Show&quot; button is pressed.
+This may reduce distractions caused by stopwatch updates.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ShortcutItem</name>
@@ -2914,6 +2923,10 @@ on the current tab and pause the stopwatch on the previous tab.</source>
     </message>
     <message>
         <source>Stopwatch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
