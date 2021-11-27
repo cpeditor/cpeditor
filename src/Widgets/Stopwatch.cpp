@@ -173,7 +173,7 @@ void Stopwatch::setupSingleShot()
     if (!timer)
         return;
 
-    timer->setInterval(granularity + 10 - int(totalMilliseconds() % granularity));
+    timer->setInterval(GRANULARITY + 10 - int(totalMilliseconds() % GRANULARITY));
     timer->setSingleShot(true);
     if (isRunning())
         timer->start();
