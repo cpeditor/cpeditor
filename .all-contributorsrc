@@ -561,6 +561,16 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "hitanshu-mehta",
+      "name": "Hitanshu Mehta",
+      "avatar_url": "https://avatars.githubusercontent.com/u/44025541?v=4",
+      "profile": "https://github.com/hitanshu-mehta",
+      "contributions": [
+        "ideas",
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 6,
