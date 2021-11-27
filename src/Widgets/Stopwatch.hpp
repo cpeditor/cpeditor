@@ -32,11 +32,11 @@ class Stopwatch : public QWidget
 
   private:
     void update();
-    void updateUi(int ms);
+    void updateUi(qint64 ms);
 
     void setupSingleShot();
 
-    int totalMilliseconds() const;
+    qint64 totalMilliseconds() const;
 
   public:
     /**
@@ -103,7 +103,7 @@ class Stopwatch : public QWidget
     QPushButton *startPauseButton = nullptr;
     QPushButton *resetButton = nullptr;
 
-    int accumulator = 0; // milisecond internal counter
+    qint64 accumulator = 0; // milisecond internal counter
     State currentState = State::Inactive;
     static const int granularity = 1000; // stopwatch refreshes every second
 

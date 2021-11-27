@@ -81,7 +81,7 @@ void Stopwatch::pause()
 {
     if (elapsedTimer.isValid())
     {
-        accumulator += (int)elapsedTimer.elapsed();
+        accumulator += elapsedTimer.elapsed();
     }
 
     elapsedTimer.invalidate();
@@ -123,9 +123,14 @@ void Stopwatch::update()
     setupSingleShot();
 }
 
-void Stopwatch::updateUi(int ms)
+void Stopwatch::updateUi(qint64 ms)
 {
-    timeLabel->setText(QTime(0, 0).addMSecs(ms).toString("hh:mm:ss"));
+    static const int SECSPERHOUR = 60 * 60 * 1000;
+    if (ms < 24LL * SECSPERHOUR)
+        timeLabel->setText(QTime(0, 0).addMSecs(int(ms)).toString("hh:mm:ss"));
+    else
+        timeLabel->setText(QString::number(ms / SECSPERHOUR) +
+                           QTime(0, 0).addMSecs(int(ms % SECSPERHOUR)).toString(":mm:ss"));
 
     resetButton->setDisabled(isInactive());
 
@@ -150,16 +155,16 @@ void Stopwatch::setupSingleShot()
     if (!timer)
         return;
 
-    timer->setInterval(granularity + 10 - totalMilliseconds() % granularity);
+    timer->setInterval(granularity + 10 - int(totalMilliseconds() % granularity));
     timer->setSingleShot(true);
     if (isRunning())
         timer->start();
 }
 
-int Stopwatch::totalMilliseconds() const
+qint64 Stopwatch::totalMilliseconds() const
 {
     if (elapsedTimer.isValid())
-        return accumulator + (int)elapsedTimer.elapsed();
+        return accumulator + elapsedTimer.elapsed();
     return accumulator;
 }
 
