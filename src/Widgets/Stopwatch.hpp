@@ -103,13 +103,14 @@ class Stopwatch : public QWidget
      *
      * mainLayout:
      *  - timeLabel
+     *  - showButton
      *  - startPauseButton
      *  - resetButton
      */
     QLabel *timeLabel = nullptr;
+    QPushButton *showButton = nullptr;
     QPushButton *startPauseButton = nullptr;
     QPushButton *resetButton = nullptr;
-    QPushButton *showButton = nullptr;
 
     qint64 accumulator = 0; // milisecond internal counter
     State currentState = State::Inactive;
