@@ -258,6 +258,9 @@ Thanks go to these wonderful people: (if we forget to add you as a contributor, 
     <td align="center">
       <a href="https://github.com/RysteQ"><img src="https://avatars.githubusercontent.com/u/34135554?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/RysteQ"><sub><b>RysteQ</b></sub></a><br /><a href="#translation-RysteQ" title="Translation">🌍</a>
     </td>
+    <td align="center">
+      <a href="https://github.com/hitanshu-mehta"><img src="https://avatars.githubusercontent.com/u/44025541?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/hitanshu-mehta"><sub><b>Hitanshu Mehta</b></sub></a><br /><a href="#ideas-hitanshu-mehta" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/cpeditor/cpeditor/commits?author=hitanshu-mehta" title="Code">💻</a>
+    </td>
   </tr>
 </table>
 
