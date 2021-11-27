@@ -18,12 +18,9 @@
 #include "Widgets/Stopwatch.hpp"
 #include "generated/SettingsHelper.hpp"
 
-#include <QCoreApplication>
 #include <QHBoxLayout>
 #include <QLabel>
-#include <QLayout>
 #include <QPushButton>
-#include <QString>
 #include <QTime>
 #include <QTimer>
 
