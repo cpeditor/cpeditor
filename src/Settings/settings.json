@@ -1215,10 +1215,11 @@
     "default": false
   },
   {
-    "name": "Start/Stop Stopwatch On Tab Switch",
+    "name": "Toggle Stopwatch On Tab Switch",
+    "desc": "Start/Stop stopwatch on tab switch",
     "type": "bool",
     "default": false,
-    "tip": "Automatically start stopwatch when switched to this tab and stop when switched to other tabs.",
+    "tip": "When switching to a different tab, automatically start the stopwatch\non the current tab and pause the stopwatch on the previous tab.",
     "depends": [
       {
         "name": "Display Stopwatch"

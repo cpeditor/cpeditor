@@ -1532,6 +1532,10 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <source>WakaTime</source>
         <translation></translation>
     </message>
+    <message>
+        <source>Stopwatch</source>
+        <translation>计时器</translation>
+    </message>
 </context>
 <context>
     <name>SettingsInfo</name>
@@ -2657,6 +2661,19 @@ It can be empty if you have the global wakatime config file ~/.wakatime.cfg.</so
         <comment>the anchor of Enable proxy for checking updates on the corresponding page of https://cpeditor.org/docs/preferences</comment>
         <translation>网络代理</translation>
     </message>
+    <message>
+        <source>Display Stopwatch</source>
+        <translation>显示计时器</translation>
+    </message>
+    <message>
+        <source>Start/Stop stopwatch on tab switch</source>
+        <translation>切换标签页时启动/暂停计时器</translation>
+    </message>
+    <message>
+        <source>When switching to a different tab, automatically start the stopwatch
+on the current tab and pause the stopwatch on the previous tab.</source>
+        <translation>切换标签页后，暂停原来那个标签页的计时器并启动当前标签页的计时器。</translation>
+    </message>
 </context>
 <context>
     <name>ShortcutItem</name>
@@ -2868,6 +2885,21 @@ It can be empty if you have the global wakatime config file ~/.wakatime.cfg.</so
     <message>
         <source>Expected</source>
         <translation>答案</translation>
+    </message>
+</context>
+<context>
+    <name>Widgets::Stopwatch</name>
+    <message>
+        <source>Start</source>
+        <translation>启动</translation>
+    </message>
+    <message>
+        <source>Pause</source>
+        <translation>暂停</translation>
+    </message>
+    <message>
+        <source>Resume</source>
+        <translation>继续</translation>
     </message>
 </context>
 <context>

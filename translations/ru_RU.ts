@@ -1532,6 +1532,10 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <source>WakaTime</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Stopwatch</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsInfo</name>
@@ -2664,6 +2668,19 @@ It can be empty if you have the global wakatime config file ~/.wakatime.cfg.</so
         <comment>the anchor of Enable proxy for checking updates on the corresponding page of https://cpeditor.org/docs/preferences</comment>
         <translation type="unfinished">прокси сети</translation>
     </message>
+    <message>
+        <source>Display Stopwatch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start/Stop stopwatch on tab switch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>When switching to a different tab, automatically start the stopwatch
+on the current tab and pause the stopwatch on the previous tab.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ShortcutItem</name>
@@ -2875,6 +2892,21 @@ It can be empty if you have the global wakatime config file ~/.wakatime.cfg.</so
     <message>
         <source>Expected</source>
         <translation>Ожидаемо</translation>
+    </message>
+</context>
+<context>
+    <name>Widgets::Stopwatch</name>
+    <message>
+        <source>Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pause</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Resume</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
