@@ -105,9 +105,9 @@ class Stopwatch : public QWidget
 
     int accumulator = 0; // milisecond internal counter
     State currentState = State::Inactive;
-    static const int granularity = 1000; // (In milisecond) Stopwatch refreshed every second.
+    static const int granularity = 1000; // stopwatch refreshes every second
 
-    QElapsedTimer elapsedTimer; // Stopwatch core class
+    QElapsedTimer elapsedTimer;
     QTimer *timer;
 };
 

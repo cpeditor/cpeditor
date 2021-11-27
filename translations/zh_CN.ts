@@ -2905,6 +2905,10 @@ on the current tab and pause the stopwatch on the previous tab.</source>
         <source>Reset</source>
         <translation>重置</translation>
     </message>
+    <message>
+        <source>Stopwatch</source>
+        <translation>计时器</translation>
+    </message>
 </context>
 <context>
     <name>Widgets::TestCase</name>

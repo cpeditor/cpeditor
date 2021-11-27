@@ -2910,6 +2910,10 @@ on the current tab and pause the stopwatch on the previous tab.</source>
         <source>Reset</source>
         <translation type="unfinished">Επαναφόρτωση</translation>
     </message>
+    <message>
+        <source>Stopwatch</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Widgets::TestCase</name>
