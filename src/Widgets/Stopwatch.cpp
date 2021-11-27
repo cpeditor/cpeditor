@@ -48,20 +48,13 @@ Stopwatch::Stopwatch(QWidget *parent) : QWidget(parent)
     timer = new QTimer(this);
     timer->callOnTimeout(this, &Stopwatch::update);
 
-    connect(startPauseButton, &QPushButton::clicked, this, &Stopwatch::startOrPauseStopwatch);
-    connect(resetButton, &QPushButton::clicked, this, &Stopwatch::resetStopwatch);
+    connect(startPauseButton, &QPushButton::clicked, this, &Stopwatch::startOrPause);
+    connect(resetButton, &QPushButton::clicked, this, &Stopwatch::reset);
 }
 
-void Stopwatch::startOrPauseStopwatch()
+void Stopwatch::startOrPause()
 {
     isRunning() ? pause() : start();
-    update();
-}
-
-void Stopwatch::resetStopwatch()
-{
-    reset();
-    update();
 }
 
 void Stopwatch::start()
@@ -78,6 +71,8 @@ void Stopwatch::start()
     setupSingleShot();
 
     currentState = State::Running;
+
+    update();
 }
 
 void Stopwatch::pause()
@@ -90,6 +85,8 @@ void Stopwatch::pause()
     elapsedTimer.invalidate();
     timer->stop();
     currentState = State::Paused;
+
+    update();
 }
 
 void Stopwatch::reset()
@@ -99,6 +96,8 @@ void Stopwatch::reset()
     timer->stop();
     QCoreApplication::processEvents();
     currentState = State::Inactive;
+
+    update();
 }
 
 bool Stopwatch::isRunning() const

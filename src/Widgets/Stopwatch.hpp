@@ -31,9 +31,6 @@ class Stopwatch : public QWidget
     Q_OBJECT
 
   private:
-    void startOrPauseStopwatch();
-    void resetStopwatch();
-
     void update();
     void updateUi(int ms);
 
@@ -46,21 +43,6 @@ class Stopwatch : public QWidget
      * @brief construct a Stopwatch
      */
     explicit Stopwatch(QWidget *parent = nullptr);
-
-    /**
-     * @brief start the stopwatch, if inactive or paused.
-     */
-    void start();
-
-    /**
-     * @brief pause the stopwatch, if running.
-     */
-    void pause();
-
-    /**
-     * @brief reset to stopwatch to inactive state.
-     */
-    void reset();
 
     /**
      * @brief check if the stopwatch is running.
@@ -79,6 +61,27 @@ class Stopwatch : public QWidget
      * @return true if inactive, false otherwise
      */
     bool isInactive() const;
+
+  public slots:
+    /**
+     * @brief start the stopwatch, if inactive or paused.
+     */
+    void start();
+
+    /**
+     * @brief pause the stopwatch, if running.
+     */
+    void pause();
+
+    /**
+     * @brief reset to stopwatch to inactive state.
+     */
+    void reset();
+
+    /**
+     * @brief start the stopwatch if inactive or paused, pause the stopwatch if running
+     */
+    void startOrPause();
 
   private:
     enum class State : int
