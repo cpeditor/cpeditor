@@ -36,8 +36,8 @@ Stopwatch::Stopwatch(QWidget *parent) : QWidget(parent)
     QLayout *mainLayout = new QHBoxLayout(this);
     timeLabel = new QLabel("00:00:00");
     timeLabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
-    startPauseButton = new QPushButton("Start");
-    resetButton = new QPushButton("Reset");
+    startPauseButton = new QPushButton(tr("Start"));
+    resetButton = new QPushButton(tr("Reset"));
 
     // set up UI
     mainLayout->addWidget(timeLabel);
