@@ -261,6 +261,9 @@
     <td align="center">
       <a href="https://github.com/hitanshu-mehta"><img src="https://avatars.githubusercontent.com/u/44025541?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/hitanshu-mehta"><sub><b>Hitanshu Mehta</b></sub></a><br /><a href="#ideas-hitanshu-mehta" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/cpeditor/cpeditor/commits?author=hitanshu-mehta" title="Code">💻</a>
     </td>
+    <td align="center">
+      <a href="https://github.com/eltociear"><img src="https://avatars.githubusercontent.com/u/22633385?v=4" width="100px;" alt=""/></a><br /><a href="https://bandism.net/"><sub><b>Ikko Ashimine</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/commits?author=eltociear" title="Documentation">📖</a>
+    </td>
   </tr>
 </table>
 
