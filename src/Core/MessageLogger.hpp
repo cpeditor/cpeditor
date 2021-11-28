@@ -52,7 +52,7 @@ class MessageLogger : public QTextBrowser
     void warn(const QString &head, const QString &body, bool htmlEscaped = true);
 
     /**
-     * @brief show a infomation message
+     * @brief show a information message
      * @param head the head of the message, indicates where the message is from
      * @param body the main part of the message
      * @param htmlEscaped convert the message to the HTML escaped format to avoid hidden "<>" and wrong spaces
