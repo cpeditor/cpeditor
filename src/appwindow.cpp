@@ -283,7 +283,7 @@ void AppWindow::setConnections()
     connect(trayIcon, &QSystemTrayIcon::messageClicked, this, &AppWindow::showOnTop);
 
     connect(qobject_cast<Application *>(qApp), &Application::requestOpenFile, this,
-            qOverload<const QString &>(&AppWindow::openTab));
+            [this](const QString &path) { openTab(path); });
 }
 
 void AppWindow::allocate()
@@ -416,7 +416,7 @@ void AppWindow::saveSettings()
     // findReplaceDialog->writeSettings(*SettingsHelper::settings()); FIX IT!!!
 }
 
-void AppWindow::openTab(MainWindow *window)
+void AppWindow::openTab(MainWindow *window, MainWindow *after)
 {
     connect(window, &MainWindow::confirmTriggered, this, &AppWindow::onConfirmTriggered);
     connect(window, &MainWindow::editorFileChanged, this, &AppWindow::onEditorFileChanged);
@@ -429,16 +429,18 @@ void AppWindow::openTab(MainWindow *window)
     connect(window, &MainWindow::compileOrRunTriggered, this, &AppWindow::onCompileOrRunTriggered);
     connect(window, &MainWindow::fileSaved, this, &AppWindow::onFileSaved);
 
-    ui->tabWidget->setCurrentIndex(ui->tabWidget->addTab(window, window->getTabTitle(false, true)));
+    ui->tabWidget->setCurrentIndex(
+        ui->tabWidget->insertTab(after ? ui->tabWidget->indexOf(after) + 1 : ui->tabWidget->currentIndex() + 1, window,
+                                 window->getTabTitle(false, true)));
 
     window->getEditor()->setFocus();
     onEditorFileChanged();
 }
 
-void AppWindow::openTab(const MainWindow::EditorStatus &status, bool duplicate)
+void AppWindow::openTab(const MainWindow::EditorStatus &status, bool duplicate, MainWindow *after)
 {
     auto *newWindow = new MainWindow(status, duplicate, getNewUntitledIndex(), this);
-    openTab(newWindow);
+    openTab(newWindow, after);
 }
 
 void AppWindow::openTabs(const QStringList &paths)
@@ -1162,7 +1164,7 @@ void AppWindow::onRightSplitterMoved()
     SettingsHelper::setRightSplitterSize(splitter->saveState());
 }
 
-void AppWindow::openTab(const QString &path)
+void AppWindow::openTab(const QString &path, MainWindow *after)
 {
     LOG_INFO("OpenTab Path is " << path);
     if (!path.isEmpty())
@@ -1194,7 +1196,7 @@ void AppWindow::openTab(const QString &path)
 
     newWindow->setLanguage(lang);
 
-    openTab(newWindow);
+    openTab(newWindow, after);
 }
 
 /************************* ACTIONS ************************/
@@ -1443,7 +1445,7 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
 
         tabMenu->addSeparator();
 
-        tabMenu->addAction(tr("Duplicate Tab"), [window, this] { openTab(window->toStatus(), true); });
+        tabMenu->addAction(tr("Duplicate Tab"), [window, this] { openTab(window->toStatus(), true, window); });
 
         tabMenu->addSeparator();
 

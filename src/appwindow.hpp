@@ -210,7 +210,7 @@ class AppWindow : public QMainWindow
 
     void onViewModeToggle();
 
-    void openTab(const QString &path);
+    void openTab(const QString &path, MainWindow *after = nullptr);
 
     void onFileSaved(MainWindow *window);
 
@@ -250,8 +250,8 @@ class AppWindow : public QMainWindow
     QVector<QShortcut *> hotkeyObjects;
     void maybeSetHotkeys();
     bool closeTab(int index);
-    void openTab(MainWindow *window);
-    void openTab(const MainWindow::EditorStatus &status, bool duplicate = false);
+    void openTab(MainWindow *window, MainWindow *after = nullptr);
+    void openTab(const MainWindow::EditorStatus &status, bool duplicate = false, MainWindow *after = nullptr);
     void openTabs(const QStringList &paths);
     void openPaths(const QStringList &paths, bool cpp = true, bool java = true, bool python = true, int depth = -1);
     QStringList openFolder(const QString &path, bool cpp, bool java, bool python, int depth);
