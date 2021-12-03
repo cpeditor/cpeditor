@@ -21,6 +21,10 @@
 -   Fix that, on Windows, when there are large test cases and the user's code is blocking, CP Editor also blocks. (#938)
 -   Fix that when building with CMake 3.21.1 and Ninja, it results in dupbuild or dependency cycle error. (#941)
 
+### Changed
+
+-   New tabs were opened at the end of the tab list. Now they are opened next to the current tab, or the original tab if the new tab is a duplicate. (#1021)
+
 ## v6.9
 
 ### Added
