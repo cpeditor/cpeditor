@@ -3,6 +3,7 @@
 <!-- START: GitHub Sponsors -->
 -   [Dazz](https://github.com/npvq)
 -   [mateus sze cosenza](https://github.com/cosenza987)
+-   [Marhoosh](https://github.com/Marhoosh)
 <!-- END: GitHub Sponsors -->
 
 ## Open Collective

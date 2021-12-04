@@ -9,6 +9,7 @@ def queryGitHub(q):
         headers = {
             "Authorization": "token " + sys.argv[1]
         })
+    print(res.text)
     return res.json()["data"]
 
 def getGitHub(donors):
@@ -53,6 +54,7 @@ def queryOpenCollective(q):
         headers = {
             "content-type": "application/json"
         })
+    print(res.text)
     return res.json()["data"]
 
 def getOpenCollective(donors):
