@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+## v6.10
+
 ### Added
 
 -   Now the winlibs release on Windows includes LLVM. If you use the `clangd` in this release as the C++ Language Server, `<bits/stdc++.h>` should be properly recognized. (#878)
@@ -19,7 +21,7 @@
 -   Fix that when "Save Test Case To A File" the elided version instead of the full content of a test case was saved to the file.
 -   Fix that, on Windows, when there are large test cases, small test cases also take a long time to finish. (#789 and #938)
 -   Fix that, on Windows, when there are large test cases and the user's code is blocking, CP Editor also blocks. (#938)
--   Fix that when building with CMake 3.21.1 and Ninja, it results in dupbuild or dependency cycle error. (#941)
+-   Fix that when built with CMake 3.21.1 and Ninja, it results in dupbuild or dependency cycle error. (#941)
 
 ### Changed
 
