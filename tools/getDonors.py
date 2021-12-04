@@ -4,11 +4,14 @@ import requests
 import sys
 
 def queryGitHub(q):
+    print('GitHub query:')
+    print(q)
     res = requests.post("https://api.github.com/graphql",
         data = json.dumps({"query": q}),
         headers = {
             "Authorization": "token " + sys.argv[1]
         })
+    print('GitHub response:')
     print(res.text)
     return res.json()["data"]
 
@@ -49,11 +52,14 @@ def getGitHub(donors):
         after = sponsors["pageInfo"]["endCursor"]
 
 def queryOpenCollective(q):
+    print('OpenCollective query:')
+    print(q)
     res = requests.post("https://opencollective.com/api/graphql/v2",
         data = json.dumps({"query": q}),
         headers = {
             "content-type": "application/json"
         })
+    print('OpenCollective response:')
     print(res.text)
     return res.json()["data"]
 
