@@ -7,9 +7,9 @@ on:
 
 env:
   QT_VERSION: 5.15.2
-  WINLIBS_GCC: 11.1.0
-  WINLIBS_LLVM: 12.0.0
-  WINLIBS_MINGW: 9.0.0-r2
+  WINLIBS_GCC: 11.2.0
+  WINLIBS_LLVM: 12.0.1
+  WINLIBS_MINGW: 9.0.0-r1
 
 jobs:
   # "env" is only available in jobs, we need to convert them to outputs so that they can be used in the matrix
