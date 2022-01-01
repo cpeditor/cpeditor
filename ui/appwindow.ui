@@ -93,6 +93,7 @@
     <addaction name="separator"/>
     <addaction name="actionFormatCode"/>
     <addaction name="actionUseSnippets"/>
+    <addaction name="actionStressTesting"/>
    </widget>
    <widget class="QMenu" name="menuView">
     <property name="title">
@@ -376,6 +377,11 @@
    </property>
    <property name="shortcut">
     <string notr="true">Ctrl+T</string>
+   </property>
+  </action>
+  <action name="actionStressTesting">
+   <property name="text">
+    <string>Stress Testing...</string>
    </property>
   </action>
   <action name="actionSettings">

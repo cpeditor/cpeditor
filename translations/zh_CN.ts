@@ -475,6 +475,10 @@ git 提交编号: %3
         <source>Press F11 key to exit full-screen mode.</source>
         <translation>按下 F11 以退出全屏模式。</translation>
     </message>
+    <message>
+        <source>Stress Testing...</source>
+        <translation>压力测试...</translation>
+    </message>
 </context>
 <context>
     <name>CodeSnippetsPage</name>
@@ -2921,6 +2925,145 @@ This may reduce distractions caused by stopwatch updates.</source>
     <message>
         <source>Show</source>
         <translation>显示</translation>
+    </message>
+</context>
+<context>
+    <name>Widgets::StressTesting</name>
+    <message>
+        <source>Stress Testing</source>
+        <translation>压力测试</translation>
+    </message>
+    <message>
+        <source>Generator Path:</source>
+        <translation>数据生成器路径:</translation>
+    </message>
+    <message>
+        <source>Generator Arguments Pattern:</source>
+        <translation>生成器参数模式:</translation>
+    </message>
+    <message>
+        <source>Example: &quot;10 [5..100] abacaba&quot;</source>
+        <translation>例如:&quot;10 [5..100] abacaba&quot;</translation>
+    </message>
+    <message>
+        <source>Standard Program Path:</source>
+        <translation>标准程序路径</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>开始</translation>
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation>停止</translation>
+    </message>
+    <message>
+        <source>Invalid arguments pattern</source>
+        <translation>参数模式无效</translation>
+    </message>
+    <message>
+        <source>Read Generator</source>
+        <translation>读取数据生成器代码</translation>
+    </message>
+    <message>
+        <source>Read Standard Program</source>
+        <translation>读取标准程序代码</translation>
+    </message>
+    <message>
+        <source>Failed to open generator</source>
+        <translation>打开数据生成器失败</translation>
+    </message>
+    <message>
+        <source>Failed to open standard program</source>
+        <translation>打开标准程序失败</translation>
+    </message>
+    <message>
+        <source>Failed to create temporary directory</source>
+        <translation>未能成功创建临时目录</translation>
+    </message>
+    <message>
+        <source>Read testlib.h</source>
+        <translation>读取 testlib.h</translation>
+    </message>
+    <message>
+        <source>Save testlib.h</source>
+        <translation>保存 testlib.h</translation>
+    </message>
+    <message>
+        <source>Compiler</source>
+        <translation>编译器</translation>
+    </message>
+    <message>
+        <source>Generator compilation has started</source>
+        <translation>数据生成器编译已开始</translation>
+    </message>
+    <message>
+        <source>Generator compilation has finished</source>
+        <translation>数据生成器编译已结束</translation>
+    </message>
+    <message>
+        <source>User program compilation has started</source>
+        <translation>用户程序编译已开始</translation>
+    </message>
+    <message>
+        <source>User program compilation has finished</source>
+        <translation>用户程序编译已结束</translation>
+    </message>
+    <message>
+        <source>Standard program compilation has started</source>
+        <translation>标准程序编译已开始</translation>
+    </message>
+    <message>
+        <source>Standard program compilation has finished</source>
+        <translation>标准程序编译已结束</translation>
+    </message>
+    <message>
+        <source>All tests finished, no countertest found</source>
+        <translation>所有测试结束，未发现错误</translation>
+    </message>
+    <message>
+        <source>Running with arguments &quot;%1&quot;</source>
+        <translation>使用运行参数 &quot;%1&quot; 测试</translation>
+    </message>
+    <message>
+        <source>Generator</source>
+        <translation>数据生成器</translation>
+    </message>
+    <message>
+        <source>User program</source>
+        <translation>用户程序</translation>
+    </message>
+    <message>
+        <source>Standard program</source>
+        <translation>标准程序</translation>
+    </message>
+    <message>
+        <source>Execution has finished in %1ms</source>
+        <translation>程序运行 %1ms 后终止了</translation>
+    </message>
+    <message>
+        <source>Time Limit Exceeded</source>
+        <translation>超出时间限制</translation>
+    </message>
+    <message>
+        <source>Execution has finished with non-zero exitcode %1 in %2ms</source>
+        <translation>程序在运行 %1ms 后以非零返回值 %2 终止了</translation>
+    </message>
+    <message>
+        <source>The program was killed</source>
+        <translation>程序已被终止运行</translation>
+    </message>
+    <message>
+        <source>Output limit exceeded</source>
+        <translation>超出输出长度限制</translation>
+    </message>
+    <message>
+        <source>Accepted</source>
+        <translation>通过</translation>
+    </message>
+    <message>
+        <source>Wrong Answer</source>
+        <translation>答案错误</translation>
     </message>
 </context>
 <context>

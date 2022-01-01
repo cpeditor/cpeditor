@@ -475,6 +475,10 @@ Build time: %4
         <source>Press F11 key to exit full-screen mode.</source>
         <translation>Πατήστε το F11 κουμπί για να βγείτε από πλήρες οθόνη.</translation>
     </message>
+    <message>
+        <source>Stress Testing...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CodeSnippetsPage</name>
@@ -2925,6 +2929,145 @@ This may reduce distractions caused by stopwatch updates.</source>
     </message>
     <message>
         <source>Show</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Widgets::StressTesting</name>
+    <message>
+        <source>Stress Testing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Generator Path:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Generator Arguments Pattern:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Example: &quot;10 [5..100] abacaba&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Standard Program Path:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid arguments pattern</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Read Generator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Read Standard Program</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to open generator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to open standard program</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to create temporary directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Read testlib.h</source>
+        <translation type="unfinished">Ανάγνωση testlib.h</translation>
+    </message>
+    <message>
+        <source>Save testlib.h</source>
+        <translation type="unfinished">Αποθήκευση testlib.h</translation>
+    </message>
+    <message>
+        <source>Compiler</source>
+        <translation type="unfinished">Μεταγλωττιστής</translation>
+    </message>
+    <message>
+        <source>Generator compilation has started</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Generator compilation has finished</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User program compilation has started</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User program compilation has finished</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Standard program compilation has started</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Standard program compilation has finished</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All tests finished, no countertest found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Running with arguments &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Generator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User program</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Standard program</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Execution has finished in %1ms</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Time Limit Exceeded</source>
+        <translation type="unfinished">Ξεπεράστηκε το χρονικό περιθώριο (TLE)</translation>
+    </message>
+    <message>
+        <source>Execution has finished with non-zero exitcode %1 in %2ms</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The program was killed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Output limit exceeded</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Accepted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wrong Answer</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

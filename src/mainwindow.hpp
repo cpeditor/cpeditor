@@ -18,6 +18,7 @@
 #ifndef MAINWINDOW_HPP
 #define MAINWINDOW_HPP
 
+#include "Widgets/TestCase.hpp"
 #include <QMainWindow>
 
 class AppWindow;
@@ -51,6 +52,7 @@ namespace Widgets
 {
 class TestCases;
 class Stopwatch;
+class StressTesting;
 } // namespace Widgets
 
 class MainWindow : public QMainWindow
@@ -86,7 +88,9 @@ class MainWindow : public QMainWindow
     QString getProblemURL() const;
     QString getCompleteTitle() const;
     QString getTabTitle(bool complete, bool star, int removeLength = 0);
+    QString compileCommand() const;
     QCodeEditor *getEditor() const;
+    Core::Checker *getChecker() const;
     bool isUntitled() const;
 
     void setProblemURL(const QString &url);
@@ -138,6 +142,10 @@ class MainWindow : public QMainWindow
      */
     void updateTimeLimit();
 
+    void showStressTesting();
+
+    int timeLimit() const;
+
   private slots:
     void onCompilationStarted();
     void onCompilationFinished(const QString &warning);
@@ -157,6 +165,8 @@ class MainWindow : public QMainWindow
     void updateCursorInfo();
     void updateChecker();
     void runTestCase(int index);
+
+    void onCheckFinished(int index, Widgets::TestCase::Verdict verdict);
     // UI Slots
 
     void on_compile_clicked();
@@ -226,6 +236,7 @@ class MainWindow : public QMainWindow
 
     Widgets::TestCases *testcases = nullptr;
     Widgets::Stopwatch *stopwatch = nullptr;
+    Widgets::StressTesting *stressTesting = nullptr;
 
     QTimer *autoSaveTimer = nullptr;
 
@@ -246,8 +257,6 @@ class MainWindow : public QMainWindow
     bool saveFile(SaveMode mode, const QString &head, bool safe);
     void performCompileAndRunDiagonistics();
     static QString getRunnerHead(int index);
-    QString compileCommand() const;
-    int timeLimit() const;
     void updateCompileAndRunButtons() const;
     void setStopwatch();
 

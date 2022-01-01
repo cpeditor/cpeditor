@@ -31,7 +31,10 @@
 #include "Settings/PreferencesWindow.hpp"
 #include "Util/FileUtil.hpp"
 #include "Util/QCodeEditorUtil.hpp"
+#include "Util/Util.hpp"
 #include "Widgets/Stopwatch.hpp"
+#include "Widgets/StressTesting.hpp"
+#include "Widgets/TestCase.hpp"
 #include "Widgets/TestCases.hpp"
 #include "appwindow.hpp"
 #include "generated/SettingsHelper.hpp"
@@ -78,6 +81,12 @@ MainWindow::MainWindow(int index, AppWindow *parent)
         Qt::DirectConnection);
     applySettings("");
     QTimer::singleShot(0, [this] { setLanguage(language); }); // See issue #187 for more information
+
+    stressTesting = new Widgets::StressTesting(this);
+    connect(stressTesting, &Widgets::StressTesting::compilationErrorOccurred, this,
+            &MainWindow::onCompilationErrorOccurred);
+    connect(stressTesting, &Widgets::StressTesting::compilationKilled, this, &MainWindow::onCompilationKilled);
+    connect(stressTesting, &Widgets::StressTesting::compilationFailed, this, &MainWindow::onCompilationFailed);
 }
 
 MainWindow::MainWindow(const QString &fileOpen, int index, AppWindow *parent) : MainWindow(index, parent)
@@ -132,6 +141,11 @@ void MainWindow::setStopwatch()
     stopwatch = new Widgets::Stopwatch{this};
     ui->stopWatchLayout->addWidget(stopwatch);
     stopwatch->setVisible(SettingsHelper::isDisplayStopwatch());
+}
+
+void MainWindow::showStressTesting()
+{
+    Util::showWidgetOnTop(stressTesting);
 }
 
 void MainWindow::compile()
@@ -231,6 +245,18 @@ void MainWindow::runTestCase(int index)
     }
 
     run(index);
+}
+
+void MainWindow::onCheckFinished(int index, Widgets::TestCase::Verdict verdict)
+{
+    if (index != -1)
+    {
+        testcases->setVerdict(index, verdict);
+    }
+    else
+    {
+        stressTesting->onCheckFinished(verdict);
+    }
 }
 
 void MainWindow::loadTests()
@@ -339,6 +365,11 @@ QString MainWindow::getTabTitle(bool complete, bool star, int removeLength)
 QCodeEditor *MainWindow::getEditor() const
 {
     return editor;
+}
+
+Core::Checker *MainWindow::getChecker() const
+{
+    return checker;
 }
 
 bool MainWindow::isUntitled() const
@@ -1263,7 +1294,7 @@ void MainWindow::updateChecker()
         checker = new Core::Checker(testcases->checkerText(), log, this);
     else
         checker = new Core::Checker(testcases->checkerType(), log, this);
-    connect(checker, &Core::Checker::checkFinished, testcases, &Widgets::TestCases::setVerdict);
+    connect(checker, &Core::Checker::checkFinished, this, &MainWindow::onCheckFinished);
     checker->prepare();
 }
 
