@@ -138,9 +138,9 @@ void StressTesting::start()
             if (!ok)
                 break;
 
-            argumentsRange.append(qMakePair(argumentsCount == 1 ? left - 1 : left, right));
+            argumentsRange.append(qMakePair(left, right));
 
-            currentValue.push_back(left);
+            currentValue.push_back(argumentsCount == 1 ? left - 1 : left);
 
             leftBracketPos = -1;
         }
