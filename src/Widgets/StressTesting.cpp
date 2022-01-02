@@ -342,7 +342,7 @@ void StressTesting::nextTest()
 
     runFinishedCount = 0;
 
-    generatorRunner = new Core::Runner(0);
+    generatorRunner = new Core::Runner(SourceType::Generator);
     connect(generatorRunner, &Core::Runner::runFinished, this, &StressTesting::onRunFinished);
     connect(generatorRunner, &Core::Runner::runOutputLimitExceeded, this, &StressTesting::onRunOutputLimitExceeded);
     connect(generatorRunner, &Core::Runner::runKilled, this, &StressTesting::onRunKilled);
@@ -367,33 +367,21 @@ void StressTesting::onCompilationKilled()
     emit compilationKilled();
 }
 
-void StressTesting::onRunFinished(int index, const QString &out, const QString & /*unused*/, int exitCode,
+void StressTesting::onRunFinished(int type, const QString &out, const QString & /*unused*/, int exitCode,
                                   qint64 timeUsed, bool tle)
 {
-    QString head;
-    if (index == 0)
-    {
-        head = tr("Generator");
-    }
-    else if (index == 1)
-    {
-        head = tr("User program");
-    }
-    else if (index == 2)
-    {
-        head = tr("Standard program");
-    }
+    QString head = getHead((StressTesting::SourceType)type);
 
     if (exitCode == 0)
     {
         log->info(head, tr("Execution has finished in %1ms").arg(timeUsed));
-        if (index == 0)
+        if (type == SourceType::Generator)
         { // Generator
 
             in = out;
 
             QString language = mainWindow->getLanguage();
-            stdRunner = new Core::Runner(1);
+            stdRunner = new Core::Runner(SourceType::Standard);
             connect(stdRunner, &Core::Runner::runFinished, this, &StressTesting::onRunFinished);
             connect(stdRunner, &Core::Runner::runOutputLimitExceeded, this, &StressTesting::onRunOutputLimitExceeded);
             connect(stdRunner, &Core::Runner::runKilled, this, &StressTesting::onRunKilled);
@@ -402,7 +390,7 @@ void StressTesting::onRunFinished(int index, const QString &out, const QString &
                            SettingsManager::get(QString("%1/Run Arguments").arg(language)).toString(), in,
                            mainWindow->timeLimit());
 
-            userRunner = new Core::Runner(2);
+            userRunner = new Core::Runner(SourceType::User);
             connect(userRunner, &Core::Runner::runFinished, this, &StressTesting::onRunFinished);
             connect(userRunner, &Core::Runner::runOutputLimitExceeded, this, &StressTesting::onRunOutputLimitExceeded);
             connect(userRunner, &Core::Runner::runKilled, this, &StressTesting::onRunKilled);
@@ -414,9 +402,9 @@ void StressTesting::onRunFinished(int index, const QString &out, const QString &
         else
         {
             runFinishedCount++;
-            if (index == 1)
+            if (type == SourceType::Standard)
                 stdOut = out;
-            else
+            else if (type == SourceType::User)
                 userOut = out;
             if (runFinishedCount == 2)
             {
@@ -436,42 +424,18 @@ void StressTesting::onRunFinished(int index, const QString &out, const QString &
     }
 }
 
-void StressTesting::onRunKilled(int index)
+void StressTesting::onRunKilled(int type)
 {
-    QString head;
-    if (index == 0)
-    {
-        head = tr("Generator");
-    }
-    else if (index == 1)
-    {
-        head = tr("User program");
-    }
-    else if (index == 2)
-    {
-        head = tr("Standard program");
-    }
+    QString head = getHead((StressTesting::SourceType)type);
 
     log->error(head, tr("The program was killed"));
 
     stop();
 }
 
-void StressTesting::onRunOutputLimitExceeded(int index)
+void StressTesting::onRunOutputLimitExceeded(int type)
 {
-    QString head;
-    if (index == 0)
-    {
-        head = tr("Generator");
-    }
-    else if (index == 1)
-    {
-        head = tr("User program");
-    }
-    else if (index == 2)
-    {
-        head = tr("Standard program");
-    }
+    QString head = getHead((StressTesting::SourceType)type);
 
     log->warn(head, tr("Output limit exceeded"));
 
@@ -501,6 +465,23 @@ void StressTesting::onCheckFinished(TestCase::Verdict verdict)
             stop();
         }
     }
+}
+
+QString StressTesting::getHead(StressTesting::SourceType type)
+{
+    if (type == StressTesting::SourceType::Generator)
+    {
+        return tr("Generator");
+    }
+    if (type == StressTesting::SourceType::User)
+    {
+        return tr("User program");
+    }
+    if (type == StressTesting::SourceType::Standard)
+    {
+        return tr("Standard program");
+    }
+    return QString();
 }
 
 } // namespace Widgets

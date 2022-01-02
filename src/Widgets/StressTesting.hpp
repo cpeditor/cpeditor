@@ -44,6 +44,12 @@ class StressTesting : public QMainWindow
     Q_OBJECT
 
   public:
+    enum SourceType
+    {
+        Generator,
+        User,
+        Standard
+    };
     explicit StressTesting(QWidget *parent = nullptr);
     void onCheckFinished(TestCase::Verdict verdict);
 
@@ -77,6 +83,7 @@ class StressTesting : public QMainWindow
     int argumentsCount;
     std::atomic<bool> stopping;
 
+    static QString getHead(SourceType type);
   signals:
     void compilationErrorOccurred(const QString &error);
     void compilationFailed(const QString &reason);
@@ -95,9 +102,9 @@ class StressTesting : public QMainWindow
     void onStdCompilationFinished();
     void onUserCompilationStarted();
     void onUserCompilationFinished();
-    void onRunFinished(int index, const QString &out, const QString &err, int exitCode, qint64 timeUsed, bool tle);
-    void onRunOutputLimitExceeded(int index);
-    void onRunKilled(int index);
+    void onRunFinished(int type, const QString &out, const QString &err, int exitCode, qint64 timeUsed, bool tle);
+    void onRunOutputLimitExceeded(int type);
+    void onRunKilled(int type);
 };
 } // namespace Widgets
 
