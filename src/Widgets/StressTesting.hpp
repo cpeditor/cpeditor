@@ -26,6 +26,7 @@ class QLabel;
 class MainWindow;
 class QLineEdit;
 class QPushButton;
+class QCheckBox;
 class MessageLogger;
 class QTemporaryDir;
 
@@ -52,6 +53,7 @@ class StressTesting : public QMainWindow
     QLabel *generatorLable = nullptr, *stdLabel = nullptr, *argumentsPatternLabel = nullptr;
     QLineEdit *argumentsPattern = nullptr;
     QPushButton *startButton = nullptr, *stopButton = nullptr;
+    QCheckBox *continueAfterCountertest = nullptr, *addCountertest = nullptr;
     QVector<QPair<unsigned long long, unsigned long long>> argumentsRange;
     QVector<unsigned long long> currentValue;
     Core::Runner *generatorRunner = nullptr;

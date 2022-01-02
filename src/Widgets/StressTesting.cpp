@@ -26,6 +26,7 @@
 #include "Widgets/TestCase.hpp"
 #include "generated/SettingsHelper.hpp"
 #include "mainwindow.hpp"
+#include <QCheckBox>
 #include <QCodeEditor>
 #include <QHBoxLayout>
 #include <QLabel>
@@ -85,6 +86,12 @@ StressTesting::StressTesting(QWidget *parent)
     controlLayout->addWidget(stopButton);
 
     layout->addLayout(controlLayout);
+
+    continueAfterCountertest = new QCheckBox(tr("Countinue after found countertest"));
+    layout->addWidget(continueAfterCountertest);
+
+    addCountertest = new QCheckBox(tr("Add countertest to testcases"));
+    layout->addWidget(addCountertest);
 }
 
 void StressTesting::start()
@@ -480,7 +487,14 @@ void StressTesting::onCheckFinished(TestCase::Verdict verdict)
     else
     {
         log->message(tr("Stress Testing"), tr("Wrong Answer"), "red");
-        stop();
+        if (continueAfterCountertest->checkState())
+        {
+            nextTest();
+        }
+        else
+        {
+            stop();
+        }
     }
 }
 
