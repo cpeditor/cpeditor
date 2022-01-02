@@ -3093,6 +3093,14 @@ This may reduce distractions caused by stopwatch updates.</source>
         <source>Wrong Answer</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Countinue after found countertest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add countertest to testcases</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Widgets::TestCase</name>

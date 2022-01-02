@@ -24,6 +24,7 @@
 #include "Settings/PathItem.hpp"
 #include "Util/FileUtil.hpp"
 #include "Widgets/TestCase.hpp"
+#include "Widgets/TestCases.hpp"
 #include "generated/SettingsHelper.hpp"
 #include "mainwindow.hpp"
 #include <QCheckBox>
@@ -76,6 +77,12 @@ StressTesting::StressTesting(QWidget *parent)
 
     layout->addLayout(stdLayout);
 
+    continueAfterCountertest = new QCheckBox(tr("Countinue after found countertest"));
+    layout->addWidget(continueAfterCountertest);
+
+    addCountertest = new QCheckBox(tr("Add countertest to testcases"));
+    layout->addWidget(addCountertest);
+
     auto *controlLayout = new QHBoxLayout();
     startButton = new QPushButton(tr("Start"));
     connect(startButton, &QPushButton::clicked, this, &StressTesting::start);
@@ -86,12 +93,6 @@ StressTesting::StressTesting(QWidget *parent)
     controlLayout->addWidget(stopButton);
 
     layout->addLayout(controlLayout);
-
-    continueAfterCountertest = new QCheckBox(tr("Countinue after found countertest"));
-    layout->addWidget(continueAfterCountertest);
-
-    addCountertest = new QCheckBox(tr("Add countertest to testcases"));
-    layout->addWidget(addCountertest);
 }
 
 void StressTesting::start()
@@ -487,7 +488,11 @@ void StressTesting::onCheckFinished(TestCase::Verdict verdict)
     else
     {
         log->message(tr("Stress Testing"), tr("Wrong Answer"), "red");
-        if (continueAfterCountertest->checkState())
+        if (addCountertest->checkState() == Qt::CheckState::Checked)
+        {
+            mainWindow->getTestCases()->addTestCase(in, stdOut);
+        }
+        if (continueAfterCountertest->checkState() == Qt::CheckState::Checked)
         {
             nextTest();
         }

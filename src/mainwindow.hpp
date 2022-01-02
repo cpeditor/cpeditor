@@ -91,6 +91,8 @@ class MainWindow : public QMainWindow
     QString compileCommand() const;
     QCodeEditor *getEditor() const;
     Core::Checker *getChecker() const;
+    Widgets::TestCases *getTestCases() const;
+
     bool isUntitled() const;
 
     void setProblemURL(const QString &url);

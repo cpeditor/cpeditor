@@ -372,6 +372,11 @@ Core::Checker *MainWindow::getChecker() const
     return checker;
 }
 
+Widgets::TestCases *MainWindow::getTestCases() const
+{
+    return testcases;
+}
+
 bool MainWindow::isUntitled() const
 {
     return filePath.isEmpty();
