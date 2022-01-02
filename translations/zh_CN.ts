@@ -3018,10 +3018,6 @@ This may reduce distractions caused by stopwatch updates.</source>
         <translation>标准程序编译已结束</translation>
     </message>
     <message>
-        <source>All tests finished, no countertest found</source>
-        <translation>所有测试结束，未发现错误</translation>
-    </message>
-    <message>
         <source>Running with arguments &quot;%1&quot;</source>
         <translation>使用运行参数 &quot;%1&quot; 测试</translation>
     </message>
@@ -3071,6 +3067,10 @@ This may reduce distractions caused by stopwatch updates.</source>
     </message>
     <message>
         <source>Add countertest to testcases</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All tests finished</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

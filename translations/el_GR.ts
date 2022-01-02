@@ -3023,10 +3023,6 @@ This may reduce distractions caused by stopwatch updates.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>All tests finished, no countertest found</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Running with arguments &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3076,6 +3072,10 @@ This may reduce distractions caused by stopwatch updates.</source>
     </message>
     <message>
         <source>Add countertest to testcases</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All tests finished</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

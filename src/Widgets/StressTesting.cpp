@@ -322,7 +322,7 @@ void StressTesting::nextTest()
         if (i == argumentsCount && (argumentsCount != 0 || currentValue[0]))
         {
             stop();
-            log->info(tr("Stress Testing"), tr("All tests finished, no countertest found"));
+            log->info(tr("Stress Testing"), tr("All tests finished"));
             return;
         }
         if (currentValue[i] != argumentsRange[i].second)
