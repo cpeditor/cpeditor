@@ -264,6 +264,9 @@
     <td align="center">
       <a href="https://github.com/eltociear"><img src="https://avatars.githubusercontent.com/u/22633385?v=4" width="100px;" alt=""/></a><br /><a href="https://bandism.net/"><sub><b>Ikko Ashimine</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/commits?author=eltociear" title="Documentation">📖</a>
     </td>
+    <td align="center">
+      <a href="https://github.com/Sriram-L"><img src="https://avatars.githubusercontent.com/u/60982834?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/Sriram-L"><sub><b>Sriram-L</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3ASriram-L" title="Bug reports">🐛</a>
+    </td>
   </tr>
 </table>
 
