@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+### Fixed
+
+-   Now you can undo a whole Replace All in a single step instead of one word per undo. (#1036 and #1037)
+
 ## v6.10
 
 ### Added
