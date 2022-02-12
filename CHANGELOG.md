@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+### Added
+
+-   Brazilian Portuguese translations (#1050)
+
 ### Fixed
 
 -   Now you can undo a whole Replace All in a single step instead of one word per undo. (#1036 and #1037)
