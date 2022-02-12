@@ -797,7 +797,7 @@ Pressionar qualquer tecla para sair</translation>
     </message>
     <message>
         <source>Failed to listen to port %1. Is there another process listening?</source>
-        <translation>Falha ao receber na porta. Há outro processo na recepção?</translation>
+        <translation>Falha ao receber na porta %1. Há outro processo na recepção?</translation>
     </message>
     <message>
         <source>Stopped Server</source>
@@ -953,7 +953,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>All inputs are empty, nothing to run</source>
-        <translation>Todas as entradas estão vazias, nada a fazer.</translation>
+        <translation>Todas as entradas estão vazias, nada a fazer</translation>
     </message>
     <message>
         <source>Submit</source>
@@ -1489,10 +1489,6 @@ Se for parcialmente desejada, a escolha em Editar Código será usada.</translat
         <translation>Limites</translation>
     </message>
     <message>
-        <source>Auto-save</source>
-        <translation>Salvar automaticamente</translation>
-    </message>
-    <message>
         <source>Save Session</source>
         <translation>Salvar sessão</translation>
     </message>
@@ -1535,6 +1531,10 @@ Se for parcialmente desejada, a escolha em Editar Código será usada.</translat
     <message>
         <source>Stopwatch</source>
         <translation>Cronômetro</translation>
+    </message>
+    <message>
+        <source>Auto Save</source>
+        <translation>Salvamento automático</translation>
     </message>
 </context>
 <context>
@@ -1709,7 +1709,7 @@ Poderá usar &quot;${filename}&quot; para o nome completo do arquivo,
     </message>
     <message>
         <source>Use the beta version</source>
-        <translation>Usar versão beta.</translation>
+        <translation>Usar versão beta</translation>
     </message>
     <message>
         <source>Check for updates marked as pre-releases, which are considered not very stable but have more features.</source>
@@ -1966,7 +1966,7 @@ O arquivo fonte não será aberto se for muito extenso.</translation>
     </message>
     <message>
         <source>Use Linting with Language Server</source>
-        <translation>Usar "linting" com o servidor de linguagem</translation>
+        <translation>Usar &quot;linting&quot; com o servidor de linguagem</translation>
     </message>
     <message>
         <source>Show Error, Warning, Information and Hints in Code Editor for C++ Language</source>
@@ -1990,11 +1990,11 @@ O arquivo fonte não será aberto se for muito extenso.</translation>
     </message>
     <message>
         <source>Delay in Linting (ms)</source>
-        <translation>Atraso no "linting" (ms)</translation>
+        <translation>Atraso no &quot;linting&quot; (ms)</translation>
     </message>
     <message>
         <source>Delay in linting in milliseconds after last modification to code</source>
-        <translation>Atraso no "linting" (ms) após a última modificação de código</translation>
+        <translation>Atraso no &quot;linting&quot; (ms) após a última modificação de código</translation>
     </message>
     <message>
         <source>Arguments for Language Server</source>
