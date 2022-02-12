@@ -589,6 +589,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "crcpucmg",
+      "name": "crcpucmg",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6436564?v=4",
+      "profile": "https://crc.pucminas.br",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 6,
