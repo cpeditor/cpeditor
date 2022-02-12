@@ -268,6 +268,11 @@ Thanks go to these wonderful people: (if we forget to add you as a contributor, 
       <a href="https://github.com/Sriram-L"><img src="https://avatars.githubusercontent.com/u/60982834?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/Sriram-L"><sub><b>Sriram-L</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3ASriram-L" title="Bug reports">🐛</a>
     </td>
   </tr>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/crcpucmg"><img src="https://avatars.githubusercontent.com/u/6436564?v=4" width="100px;" alt=""/></a><br /><a href="https://crc.pucminas.br"><sub><b>crcpucmg</b></sub></a><br /><a href="#translation-crcpucmg" title="Translation">🌍</a>
+    </td>
+  </tr>
 </table>
 
 <!-- markdownlint-restore -->
