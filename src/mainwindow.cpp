@@ -517,7 +517,15 @@ void MainWindow::loadStatus(const EditorStatus &status, bool duplicate)
                 if (appWindow->isInitialized())
                     onFileWatcherChanged(filePath);
                 else
-                    connect(appWindow, &AppWindow::initialized, [this] { onFileWatcherChanged(filePath); });
+                {
+                    // Change this to Qt::SingleShotConnection after migrating to Qt 6
+                    auto *connection = new QMetaObject::Connection;
+                    *connection = connect(appWindow, &AppWindow::initialized, [this, connection] {
+                        onFileWatcherChanged(filePath);
+                        disconnect(*connection);
+                        delete connection;
+                    });
+                }
             }
         }
     }

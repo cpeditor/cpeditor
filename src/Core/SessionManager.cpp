@@ -65,6 +65,8 @@ void SessionManager::restoreSession(const QString &path)
         return;
     }
 
+    app->setInitialized(false);
+
     while (app->ui->tabWidget->count() > 0)
     {
         auto *tmp = app->windowAt(0);
@@ -103,6 +105,8 @@ void SessionManager::restoreSession(const QString &path)
 
     if (currentIndex >= 0 && currentIndex < app->ui->tabWidget->count())
         app->ui->tabWidget->setCurrentIndex(currentIndex);
+
+    app->setInitialized();
 }
 
 void SessionManager::setAutoUpdateSession(bool shouldAutoUpdate)

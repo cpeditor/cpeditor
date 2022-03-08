@@ -1625,8 +1625,9 @@ bool AppWindow::isInitialized() const
     return _isInitialized;
 }
 
-void AppWindow::setInitialized()
+void AppWindow::setInitialized(bool flag)
 {
-    _isInitialized = true;
-    emit initialized();
+    _isInitialized = flag;
+    if (flag)
+        emit initialized();
 }

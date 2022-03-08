@@ -69,6 +69,8 @@ class AppWindow : public QMainWindow
 
     bool isInitialized() const;
 
+    void setInitialized(bool flag = true);
+
   protected:
     void closeEvent(QCloseEvent *event) override;
     void dropEvent(QDropEvent *event) override;
@@ -215,8 +217,6 @@ class AppWindow : public QMainWindow
     void openTab(const QString &path, MainWindow *after = nullptr);
 
     void onFileSaved(MainWindow *window);
-
-    void setInitialized();
 
   signals:
     void initialized();
