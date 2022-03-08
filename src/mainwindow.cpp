@@ -396,6 +396,7 @@ void MainWindow::setUntitledIndex(int index)
 MainWindow::EditorStatus::EditorStatus(const QMap<QString, QVariant> &status)
 {
     LOG_INFO("Window status from map");
+    FROMSTATUS(timestamp).toLongLong();
     FROMSTATUS(isLanguageSet).toInt();
     FROMSTATUS(filePath).toString();
     FROMSTATUS(savedText).toString();
@@ -423,6 +424,7 @@ QMap<QString, QVariant> MainWindow::EditorStatus::toMap() const
 {
     LOG_INFO("Window status to hashmap");
     QMap<QString, QVariant> status;
+    TOSTATUS(timestamp);
     TOSTATUS(isLanguageSet);
     TOSTATUS(filePath);
     TOSTATUS(savedText);
@@ -450,22 +452,25 @@ MainWindow::EditorStatus MainWindow::toStatus() const
 {
     EditorStatus status;
 
+    status.timestamp = QDateTime::currentMSecsSinceEpoch();
+
     status.isLanguageSet = isLanguageSet;
     status.filePath = filePath;
+    status.savedText = savedText;
     status.problemURL = problemURL;
+    status.editorText = editor->toPlainText();
     status.language = language;
     status.customCompileCommand = customCompileCommand;
-    status.untitledIndex = untitledIndex;
-    status.checkerIndex = testcases->checkerIndex();
-    status.customCheckers = testcases->customCheckers();
-    status.editorText = editor->toPlainText();
     status.editorCursor = editor->textCursor().position();
     status.editorAnchor = editor->textCursor().anchor();
     status.horizontalScrollBarValue = editor->horizontalScrollBar()->value();
     status.verticalScrollbarValue = editor->verticalScrollBar()->value();
+    status.untitledIndex = untitledIndex;
+    status.checkerIndex = testcases->checkerIndex();
     status.customTimeLimit = customTimeLimit;
     status.input = testcases->inputs();
     status.expected = testcases->expecteds();
+    status.customCheckers = testcases->customCheckers();
     for (int i = 0; i < testcases->count(); ++i)
         status.testcasesIsShow.push_back(testcases->isChecked(i));
     status.testCaseSplitterStates = testcases->splitterStates();
@@ -500,6 +505,22 @@ void MainWindow::loadStatus(const EditorStatus &status, bool duplicate)
     for (int i = 0; i < status.testcasesIsShow.count() && i < testcases->count(); ++i)
         testcases->setChecked(i, status.testcasesIsShow[i].toBool());
     testcases->restoreSplitterStates(status.testCaseSplitterStates);
+
+    if (!isUntitled())
+    {
+        const auto info = QFileInfo(filePath);
+        if (info.exists())
+        {
+            const auto mTime = info.fileTime(QFile::FileModificationTime);
+            if (mTime.isValid() && mTime.toMSecsSinceEpoch() > status.timestamp)
+            {
+                if (appWindow->isInitialized())
+                    onFileWatcherChanged(filePath);
+                else
+                    connect(appWindow, &AppWindow::initialized, [this] { onFileWatcherChanged(filePath); });
+            }
+        }
+    }
 }
 
 void MainWindow::applyCompanion(const Extensions::CompanionData &data)
