@@ -3,6 +3,8 @@
 ### Fixed
 
 -   Now you can undo a whole Replace All in a single step instead of one word per undo. (#1036 and #1037)
+-   Now external file changes when CP Editor is not running is properly handled when "Restore last session at startup" is enabled. (#1061)
+-   Fix that saved file content was not restored after abnormal exit when "Restore last session at startup" is enabled. (#1059 and #1061)
 
 ## v6.10
 
