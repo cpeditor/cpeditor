@@ -272,6 +272,9 @@
     <td align="center">
       <a href="https://github.com/crcpucmg"><img src="https://avatars.githubusercontent.com/u/6436564?v=4" width="100px;" alt=""/></a><br /><a href="https://crc.pucminas.br"><sub><b>crcpucmg</b></sub></a><br /><a href="#translation-crcpucmg" title="Translation">🌍</a>
     </td>
+    <td align="center">
+      <a href="https://github.com/Acfboy"><img src="https://avatars.githubusercontent.com/u/36621731?v=4" width="100px;" alt=""/></a><br /><a href="http://acfboy.pw"><sub><b>Acfboy</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3AAcfboy" title="Bug reports">🐛</a>
+    </td>
   </tr>
 </table>
 
