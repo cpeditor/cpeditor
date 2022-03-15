@@ -607,6 +607,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "TLEBOT",
+      "name": "TLEBOT",
+      "avatar_url": "https://avatars.githubusercontent.com/u/97983181?v=4",
+      "profile": "https://github.com/TLEBOT",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 6,

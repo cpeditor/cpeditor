@@ -275,6 +275,9 @@
     <td align="center">
       <a href="https://github.com/Acfboy"><img src="https://avatars.githubusercontent.com/u/36621731?v=4" width="100px;" alt=""/></a><br /><a href="http://acfboy.pw"><sub><b>Acfboy</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3AAcfboy" title="Bug reports">🐛</a>
     </td>
+    <td align="center">
+      <a href="https://github.com/TLEBOT"><img src="https://avatars.githubusercontent.com/u/97983181?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/TLEBOT"><sub><b>TLEBOT</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3ATLEBOT" title="Bug reports">🐛</a>
+    </td>
   </tr>
 </table>
 
