@@ -1262,6 +1262,7 @@ void AppWindow::on_actionUseSnippets_triggered()
     {
         QString lang = current->getLanguage();
         QStringList names = SettingsHelper::getLanguageConfig(lang).getSnippets();
+        names.sort(Qt::CaseInsensitive);
         if (names.isEmpty())
         {
             activeLogger->warn(
