@@ -27,13 +27,13 @@ optdepends=(
 provides=('cpeditor')
 conflicts=("cpeditor")
 
-source=('git://github.com/cpeditor/cpeditor.git'
-    'git://github.com/cpeditor/QCodeEditor.git'
-    'git://github.com/cpeditor/QtFindReplaceDialog.git'
-    'git://github.com/cpeditor/lsp-cpp.git'
-    'git://github.com/itay-grudev/singleapplication.git'
-    'git://github.com/MikeMirzayanov/testlib.git'
-    'git://github.com/cpeditor/qhttp.git')
+source=('git+https://github.com/cpeditor/cpeditor.git'
+    'git+https://github.com/cpeditor/QCodeEditor.git'
+    'git+https://github.com/cpeditor/QtFindReplaceDialog.git'
+    'git+https://github.com/cpeditor/lsp-cpp.git'
+    'git+https://github.com/itay-grudev/singleapplication.git'
+    'git+https://github.com/MikeMirzayanov/testlib.git'
+    'git+https://github.com/cpeditor/qhttp.git')
 
 md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP')
 
