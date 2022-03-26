@@ -178,16 +178,20 @@ void AppWindow::finishConstruction()
             LOG_INFO("Is first-time user");
             preferencesWindow->display();
             SettingsHelper::setFirstTimeUser(false);
+            setInitialized();
         }
         else if (!SettingsHelper::isPromotionDialogShown() &&
                  SettingsHelper::getTotalUsageTime() >= 10 * 60 * 60) // 10 hours or above
         {
             LOG_INFO("Show promotion dialog");
             auto *dialog = new SupportUsDialog(this);
+            connect(dialog, &QDialog::finished, this, &AppWindow::setInitialized);
             dialog->open();
             dialog->move(geometry().center().x() - dialog->width() / 2, geometry().center().y() - dialog->height() / 2);
             SettingsHelper::setPromotionDialogShown(true);
         }
+        else
+            setInitialized();
     });
 }
 
@@ -1615,4 +1619,16 @@ void AppWindow::triggerWakaTime(MainWindow *window, bool isWrite)
 {
     if (window && wakaTime)
         wakaTime->sendHeartBeat(window->getFilePath(), window->getProblemURL(), window->getLanguage(), isWrite);
+}
+
+bool AppWindow::isInitialized() const
+{
+    return _isInitialized;
+}
+
+void AppWindow::setInitialized(bool flag)
+{
+    _isInitialized = flag;
+    if (flag)
+        emit initialized();
 }

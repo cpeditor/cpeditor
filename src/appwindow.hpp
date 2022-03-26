@@ -67,6 +67,10 @@ class AppWindow : public QMainWindow
 
     PreferencesWindow *getPreferencesWindow() const;
 
+    bool isInitialized() const;
+
+    void setInitialized(bool flag = true);
+
   protected:
     void closeEvent(QCloseEvent *event) override;
     void dropEvent(QDropEvent *event) override;
@@ -214,6 +218,9 @@ class AppWindow : public QMainWindow
 
     void onFileSaved(MainWindow *window);
 
+  signals:
+    void initialized();
+
   private:
     Ui::AppWindow *ui;
     MessageLogger *activeLogger = nullptr;
@@ -239,6 +246,8 @@ class AppWindow : public QMainWindow
     Extensions::LanguageServer *pythonServer = nullptr;
 
     Extensions::WakaTime *wakaTime = nullptr;
+
+    std::atomic_bool _isInitialized{false};
 
     explicit AppWindow(bool noHotExit, QWidget *parent = nullptr);
     void finishConstruction();

@@ -60,6 +60,8 @@ class MainWindow : public QMainWindow
   public:
     struct EditorStatus
     {
+        qint64 timestamp = 0; // MSecsSinceEpoch when the status was recorded
+
         bool isLanguageSet{};
         QString filePath, savedText, problemURL, editorText, language, customCompileCommand;
         int editorCursor{}, editorAnchor{}, horizontalScrollBarValue{}, verticalScrollbarValue{}, untitledIndex{},
