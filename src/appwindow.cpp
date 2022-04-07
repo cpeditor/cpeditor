@@ -313,6 +313,7 @@ void AppWindow::allocate()
     lspTimerJava->setInterval(SettingsHelper::getLSPDelayJava());
     lspTimerPython->setInterval(SettingsHelper::getLSPDelayPython());
 
+#ifndef Q_OS_MACOS
     trayIconMenu = new QMenu();
     trayIconMenu->addAction(tr("Show Main Window"), this, &AppWindow::showOnTop);
     trayIconMenu->addAction(tr("About"), this, &AppWindow::on_actionAbout_triggered);
@@ -321,6 +322,7 @@ void AppWindow::allocate()
     trayIcon->setIcon(QIcon(":/icon.png"));
     trayIcon->setContextMenu(trayIconMenu);
     trayIcon->show();
+#endif
 
     sessionManager = new Core::SessionManager(this);
 
