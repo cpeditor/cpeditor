@@ -53,7 +53,8 @@ jobs:
 
       - uses: snapcore/action-publish@v1
         if: steps.get_version.outputs.ISSTABLE == 'true'
+        env:
+          SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.STORE_LOGIN }}
         with:
-          store_login: ${{ secrets.STORE_LOGIN }}
           snap: ${{ steps.build.outputs.snap }}
           release: stable
