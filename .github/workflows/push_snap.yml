@@ -30,7 +30,7 @@ jobs:
       - uses: snapcore/action-build@v1
         id: build
 
-      - uses: snapcore/action-publish@v1
+      - uses: snapcore/action-publish@7fe468c9de12396a9c8964af5d0dfd1d5b493bd7
         env:
           SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.STORE_LOGIN }}
         with:
