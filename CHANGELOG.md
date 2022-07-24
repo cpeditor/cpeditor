@@ -8,7 +8,25 @@
 
 ### Added
 
+-   Brazilian Portuguese translations (#1050)
+
+### Fixed
+
+-   Now you can undo a whole Replace All in a single step instead of one word per undo. (#1036 and #1037)
+-   Now external file changes when CP Editor is not running is properly handled when "Restore last session at startup" is enabled. (#1061)
+-   Fix that saved file content was not restored after abnormal exit when "Restore last session at startup" is enabled. (#1059 and #1061)
+-   Now the snippet names are sorted case-insensitively when choosing snippets. (#1063 and #1065)
+
+## v6.10
+
+### Added
+
 -   Now the winlibs release on Windows includes LLVM. If you use the `clangd` in this release as the C++ Language Server, `<bits/stdc++.h>` should be properly recognized. (#878)
+-   Now custom checkers will be automatically recompiled if it's changed. (#843 and #898)
+-   Support [WakaTime](https://wakatime.com/). You can enable it at Preferences-\>Extensions-\>WakaTime. The `wakatime` executable requires manual installation. (#918 and #953)
+-   Add Tranditional Chinese translations. (#930 and #978)
+-   Add Modern Greek translations. (#984)
+-   Added stopwatch. You can enable it at Preferences-\>Actions-\>Stopwatch. (#1009)
 
 ### Fixed
 
@@ -20,7 +38,11 @@
 -   Fix that when "Save Test Case To A File" the elided version instead of the full content of a test case was saved to the file.
 -   Fix that, on Windows, when there are large test cases, small test cases also take a long time to finish. (#789 and #938)
 -   Fix that, on Windows, when there are large test cases and the user's code is blocking, CP Editor also blocks. (#938)
--   Fix that when building with CMake 3.21.1 and Ninja, it results in dupbuild or dependency cycle error. (#941)
+-   Fix that when built with CMake 3.21.1 and Ninja, it results in dupbuild or dependency cycle error. (#941)
+
+### Changed
+
+-   New tabs were opened at the end of the tab list. Now they are opened next to the current tab, or the original tab if the new tab is a duplicate. (#1021)
 
 ## v6.9
 

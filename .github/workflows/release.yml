@@ -7,9 +7,9 @@ on:
 
 env:
   QT_VERSION: 5.15.2
-  WINLIBS_GCC: 11.1.0
-  WINLIBS_LLVM: 12.0.0
-  WINLIBS_MINGW: 9.0.0-r2
+  WINLIBS_GCC: 11.2.0
+  WINLIBS_LLVM: 12.0.1
+  WINLIBS_MINGW: 9.0.0-r1
 
 jobs:
   # "env" is only available in jobs, we need to convert them to outputs so that they can be used in the matrix
@@ -109,7 +109,7 @@ jobs:
             mingw-arch: mingw32
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           submodules: recursive
 
@@ -284,9 +284,13 @@ jobs:
         if: startsWith(matrix.config.os, 'macos')
         run: |
           cd build
-          ../../Qt/*/*/bin/macdeployqt cpeditor.app
-          cp ../dist/mac/cpeditor.icns cpeditor.app/Contents/Resources
-          hdiutil create -volname cpeditor-${{ steps.get_version.outputs.VERSION }}-x64 -srcfolder cpeditor.app -ov -format UDZO cpeditor-${{ steps.get_version.outputs.VERSION }}-macos-x64.dmg
+          mkdir dmg
+          cd dmg
+          mv ../cpeditor.app cpeditor.app 
+          ../../../Qt/*/*/bin/macdeployqt cpeditor.app
+          cp ../../dist/mac/cpeditor.icns cpeditor.app/Contents/Resources
+          ln -s /Applications Applications
+          hdiutil create -volname cpeditor-${{ steps.get_version.outputs.VERSION }}-x64 -srcfolder . -ov -format UDZO cpeditor-${{ steps.get_version.outputs.VERSION }}-macos-x64.dmg
 
       - name: "[macOS] Release"
         if: startsWith(matrix.config.os, 'macos')
@@ -294,7 +298,7 @@ jobs:
         with:
           draft: true
           prerelease: ${{ steps.get_version.outputs.ISBETA }}
-          files: build/cpeditor-${{ steps.get_version.outputs.VERSION }}-macos-x64.dmg
+          files: build/dmg/cpeditor-${{ steps.get_version.outputs.VERSION }}-macos-x64.dmg
           name: CP Editor ${{ steps.get_version.outputs.VERSION }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

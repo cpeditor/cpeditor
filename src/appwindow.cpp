@@ -26,6 +26,7 @@
 #include "Extensions/CFTool.hpp"
 #include "Extensions/CompanionServer.hpp"
 #include "Extensions/LanguageServer.hpp"
+#include "Extensions/WakaTime.hpp"
 #include "Settings/DefaultPathManager.hpp"
 #include "Settings/FileProblemBinder.hpp"
 #include "Settings/PreferencesWindow.hpp"
@@ -170,23 +171,27 @@ void AppWindow::finishConstruction()
         setWindowOpacity(1);
 #endif
 
-    // The window needs time to make its geometry stable. We wait it to display the new dialogs in correct positions
     QTimer::singleShot(200, [this] {
+        // The window needs time to make its geometry stable. We wait it to display the new dialogs in correct positions
         if (SettingsHelper::isFirstTimeUser())
         {
             LOG_INFO("Is first-time user");
             preferencesWindow->display();
             SettingsHelper::setFirstTimeUser(false);
+            setInitialized();
         }
         else if (!SettingsHelper::isPromotionDialogShown() &&
                  SettingsHelper::getTotalUsageTime() >= 10 * 60 * 60) // 10 hours or above
         {
             LOG_INFO("Show promotion dialog");
             auto *dialog = new SupportUsDialog(this);
+            connect(dialog, &QDialog::finished, this, &AppWindow::setInitialized);
             dialog->open();
             dialog->move(geometry().center().x() - dialog->width() / 2, geometry().center().y() - dialog->height() / 2);
             SettingsHelper::setPromotionDialogShown(true);
         }
+        else
+            setInitialized();
     });
 }
 
@@ -212,6 +217,7 @@ AppWindow::~AppWindow()
     delete server;
     delete findReplaceDialog;
     delete sessionManager;
+    delete wakaTime;
 
     SettingsManager::deinit();
 
@@ -281,6 +287,8 @@ void AppWindow::setConnections()
 
     connect(qobject_cast<Application *>(qApp), &Application::requestOpenFile,
             [=](const QString &path) { this->openTab(path); });
+    connect(qobject_cast<Application *>(qApp), &Application::requestOpenFile, this,
+            [this](const QString &path) { openTab(path); });
 }
 
 void AppWindow::allocate()
@@ -316,6 +324,8 @@ void AppWindow::allocate()
     trayIcon->show();
 
     sessionManager = new Core::SessionManager(this);
+
+    wakaTime = new Extensions::WakaTime(this);
 }
 
 void AppWindow::applySettings()
@@ -421,7 +431,7 @@ void AppWindow::saveSettings()
     // findReplaceDialog->writeSettings(*SettingsHelper::settings()); FIX IT!!!
 }
 
-void AppWindow::openTab(MainWindow *window)
+void AppWindow::openTab(MainWindow *window, MainWindow *after)
 {
     connect(window, &MainWindow::confirmTriggered, this, &AppWindow::onConfirmTriggered);
     connect(window, &MainWindow::editorFileChanged, this, &AppWindow::onEditorFileChanged);
@@ -432,17 +442,21 @@ void AppWindow::openTab(MainWindow *window)
     connect(window, &MainWindow::requestToastMessage, trayIcon,
             [this](QString const &head, QString const &body) { trayIcon->showMessage(head, body); });
     connect(window, &MainWindow::compileOrRunTriggered, this, &AppWindow::onCompileOrRunTriggered);
+    connect(window, &MainWindow::fileSaved, this, &AppWindow::onFileSaved);
 
     setTabAt(ui->tabWidget->addTab(window, window->getTabTitle(false, true)));
+    ui->tabWidget->setCurrentIndex(
+        ui->tabWidget->insertTab(after ? ui->tabWidget->indexOf(after) + 1 : ui->tabWidget->currentIndex() + 1, window,
+                                 window->getTabTitle(false, true)));
 
     window->getEditor()->setFocus();
     onEditorFileChanged();
 }
 
-void AppWindow::openTab(const MainWindow::EditorStatus &status, bool duplicate)
+void AppWindow::openTab(const MainWindow::EditorStatus &status, bool duplicate, MainWindow *after)
 {
     auto *newWindow = new MainWindow(status, duplicate, getNewUntitledIndex(), this);
-    openTab(newWindow);
+    openTab(newWindow, after);
 }
 
 void AppWindow::openTabs(const QStringList &paths)
@@ -896,6 +910,8 @@ void AppWindow::onTabChanged(int index)
     activeRightSplitterMoveConnection =
         connect(tmp->getRightSplitter(), &QSplitter::splitterMoved, this, &AppWindow::onRightSplitterMoved);
     tmp->getEditor()->setFocus();
+
+    triggerWakaTime(tmp);
 }
 
 void AppWindow::onEditorFileChanged()
@@ -953,12 +969,17 @@ void AppWindow::onEditorTextChanged(MainWindow *window)
             title += " *";
         ui->tabWidget->setTabText(index, title);
 
-        if (window->getLanguage() == "C++")
-            lspTimerCpp->start();
-        else if (window->getLanguage() == "Java")
-            lspTimerJava->start();
-        else
-            lspTimerPython->start();
+        if (window == currentWindow())
+        {
+            if (window->getLanguage() == "C++")
+                lspTimerCpp->start();
+            else if (window->getLanguage() == "Java")
+                lspTimerJava->start();
+            else
+                lspTimerPython->start();
+
+            triggerWakaTime(window);
+        }
     }
 }
 
@@ -979,6 +1000,7 @@ void AppWindow::onEditorLanguageChanged(MainWindow *window)
 {
     if (currentWindow() == window)
         reAttachLanguageServer(window);
+    triggerWakaTime(window);
 }
 
 void AppWindow::onLSPTimerElapsedCpp()
@@ -1154,7 +1176,7 @@ void AppWindow::onRightSplitterMoved()
     SettingsHelper::setRightSplitterSize(splitter->saveState());
 }
 
-void AppWindow::openTab(const QString &path, const QString &lang)
+void AppWindow::openTab(const QString &path, MainWindow *after)
 {
     LOG_INFO("OpenTab Path is " << path);
     if (!path.isEmpty())
@@ -1193,7 +1215,7 @@ void AppWindow::openTab(const QString &path, const QString &lang)
         newWindow->setLanguage(langFromFile.isEmpty() ? SettingsHelper::getDefaultLanguage() : langFromFile);
     }
 
-    openTab(newWindow);
+    openTab(newWindow, after);
 }
 
 /************************* ACTIONS ************************/
@@ -1259,6 +1281,7 @@ void AppWindow::on_actionUseSnippets_triggered()
     {
         QString lang = current->getLanguage();
         QStringList names = SettingsHelper::getLanguageConfig(lang).getSnippets();
+        names.sort(Qt::CaseInsensitive);
         if (names.isEmpty())
         {
             activeLogger->warn(
@@ -1442,7 +1465,7 @@ void AppWindow::onTabContextMenuRequested(const QPoint &pos)
 
         tabMenu->addSeparator();
 
-        tabMenu->addAction(tr("Duplicate Tab"), [window, this] { openTab(window->toStatus(), true); });
+        tabMenu->addAction(tr("Duplicate Tab"), [window, this] { openTab(window->toStatus(), true, window); });
 
         tabMenu->addSeparator();
 
@@ -1615,4 +1638,27 @@ void AppWindow::onCompileOrRunTriggered()
 {
     if (ui->actionEditorMode->isChecked())
         on_actionSplitMode_triggered();
+}
+
+void AppWindow::onFileSaved(MainWindow *window)
+{
+    triggerWakaTime(window, true);
+}
+
+void AppWindow::triggerWakaTime(MainWindow *window, bool isWrite)
+{
+    if (window && wakaTime)
+        wakaTime->sendHeartBeat(window->getFilePath(), window->getProblemURL(), window->getLanguage(), isWrite);
+}
+
+bool AppWindow::isInitialized() const
+{
+    return _isInitialized;
+}
+
+void AppWindow::setInitialized(bool flag)
+{
+    _isInitialized = flag;
+    if (flag)
+        emit initialized();
 }

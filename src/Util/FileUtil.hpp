@@ -52,6 +52,7 @@ bool saveFile(const QString &path, const QString &content, const QString &head =
  */
 QString readFile(const QString &path, const QString &head = "Read File", MessageLogger *log = nullptr,
                  bool notExistWarning = false);
+
 /**
  * @brief get the path of a configuration file
  * @param path the original path

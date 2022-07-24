@@ -51,7 +51,6 @@ class Checker : public QObject
         IgnoreTrailingSpaces, // Ignore blank characters at the end of lines and blank lines at the end.
         Strict,               // White space differences matters, except the differences between \n, \r and \r\n
         /* testlib checkers */
-        /* Ncmp should be the first one in the testlib checkers */
         Ncmp,   // ncmp.cpp in testlib, compare ordered sequences of signed int64 numbers
         Rcmp4,  // rcmp4.cpp in testlib, compare two sequences of doubles, max absolute or relative error = 1e-4
         Rcmp6,  // rcmp6.cpp in testlib, compare two sequences of doubles, max absolute or relative error = 1e-6
@@ -87,10 +86,9 @@ class Checker : public QObject
 
     /**
      * @brief prepare for checking
-     * @param compileCommand the command used to compile the checker
      * @note Testlib checkers will be compiled after calling this function. This should be called only once.
      */
-    void prepare(const QString &compileCommand);
+    void prepare();
 
     /**
      * @brief request the checker to check a testcase
@@ -167,6 +165,11 @@ class Checker : public QObject
      */
     static QString head(int index);
 
+    /**
+     * @returns if checker is changed, it starts recompilation and returns true; otherwise, returns false
+     */
+    bool recompileIfChanged();
+
     // a struct with the info of a testcase, or called a check task, used to save check requests
     struct Task
     {
@@ -188,14 +191,16 @@ class Checker : public QObject
     };
 
     CheckerType checkerType;         // the type of the checker
-    QString checkerPath;             // the file path to the custom checker
+    QString checkerTmpPath;          // the file path to checker file in the temp dir
+    QString checkerOriginalPath;     // the path to the original checker
+    QString checkerCode;             // the source code of the checker
     QTemporaryDir *tmpDir = nullptr; // the temp directory to save the I/O files, testlib.h and the compiled checker
                                      // It's not needed by built-in checkers
     MessageLogger *log = nullptr;    // the message logger to show messages to the user
     Compiler *compiler = nullptr;    // the compiler used to compile the checker
     QVector<Runner *> runners;       // the runners used to run the check processes
     QVector<Task> pendingTasks;      // the unsolved check requests
-    bool compiled = false;           // whether the testlib checker is compiled or not
+    std::atomic<bool> compiled;      // whether the testlib checker is compiled or not
                                      // It should be true for built-in checkers.
 };
 

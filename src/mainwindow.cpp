@@ -32,6 +32,8 @@
 #include "Settings/FileProblemBinder.hpp"
 #include "Settings/PreferencesWindow.hpp"
 #include "Util/FileUtil.hpp"
+#include "Util/QCodeEditorUtil.hpp"
+#include "Widgets/Stopwatch.hpp"
 #include "Widgets/TestCases.hpp"
 #include "appwindow.hpp"
 #include "generated/SettingsHelper.hpp"
@@ -70,6 +72,7 @@ MainWindow::MainWindow(int index, AppWindow *parent)
     connect(testcases, &Widgets::TestCases::requestRun, this, &MainWindow::runTestCase);
 
     setEditor();
+    setStopwatch();
     connect(fileWatcher, &QFileSystemWatcher::fileChanged, this, &MainWindow::onFileWatcherChanged);
     connect(
         autoSaveTimer, &QTimer::timeout, autoSaveTimer, [this] { saveFile(AutoSave, tr("Auto Save"), false); },
@@ -113,6 +116,7 @@ MainWindow::~MainWindow()
         fakevimHandler->deleteLater();
         fakevimHandler = nullptr;
     }
+    delete stopwatch;
 }
 
 void MainWindow::setEditor()
@@ -129,6 +133,13 @@ void MainWindow::setEditor()
     // a selection (and the cursor is at the begin of the selection)
     connect(editor, &Editor::CodeEditor::cursorPositionChanged, this, &MainWindow::updateCursorInfo);
     connect(editor, &Editor::CodeEditor::selectionChanged, this, &MainWindow::updateCursorInfo);
+}
+
+void MainWindow::setStopwatch()
+{
+    stopwatch = new Widgets::Stopwatch{this};
+    ui->stopWatchLayout->addWidget(stopwatch);
+    stopwatch->setVisible(SettingsHelper::isDisplayStopwatch());
 }
 
 void MainWindow::compile()
@@ -393,6 +404,7 @@ void MainWindow::setUntitledIndex(int index)
 MainWindow::EditorStatus::EditorStatus(const QMap<QString, QVariant> &status)
 {
     LOG_INFO("Window status from map");
+    FROMSTATUS(timestamp).toLongLong();
     FROMSTATUS(isLanguageSet).toInt();
     FROMSTATUS(filePath).toString();
     FROMSTATUS(savedText).toString();
@@ -420,6 +432,7 @@ QMap<QString, QVariant> MainWindow::EditorStatus::toMap() const
 {
     LOG_INFO("Window status to hashmap");
     QMap<QString, QVariant> status;
+    TOSTATUS(timestamp);
     TOSTATUS(isLanguageSet);
     TOSTATUS(filePath);
     TOSTATUS(savedText);
@@ -447,22 +460,25 @@ MainWindow::EditorStatus MainWindow::toStatus() const
 {
     EditorStatus status;
 
+    status.timestamp = QDateTime::currentMSecsSinceEpoch();
+
     status.isLanguageSet = isLanguageSet;
     status.filePath = filePath;
+    status.savedText = savedText;
     status.problemURL = problemURL;
+    status.editorText = editor->toPlainText();
     status.language = language;
     status.customCompileCommand = customCompileCommand;
-    status.untitledIndex = untitledIndex;
-    status.checkerIndex = testcases->checkerIndex();
-    status.customCheckers = testcases->customCheckers();
-    status.editorText = editor->toPlainText();
     status.editorCursor = editor->textCursor().position();
     status.editorAnchor = editor->textCursor().anchor();
     status.horizontalScrollBarValue = editor->horizontalScrollBar()->value();
     status.verticalScrollbarValue = editor->verticalScrollBar()->value();
+    status.untitledIndex = untitledIndex;
+    status.checkerIndex = testcases->checkerIndex();
     status.customTimeLimit = customTimeLimit;
     status.input = testcases->inputs();
     status.expected = testcases->expecteds();
+    status.customCheckers = testcases->customCheckers();
     for (int i = 0; i < testcases->count(); ++i)
         status.testcasesIsShow.push_back(testcases->isChecked(i));
     status.testCaseSplitterStates = testcases->splitterStates();
@@ -497,6 +513,30 @@ void MainWindow::loadStatus(const EditorStatus &status, bool duplicate)
     for (int i = 0; i < status.testcasesIsShow.count() && i < testcases->count(); ++i)
         testcases->setChecked(i, status.testcasesIsShow[i].toBool());
     testcases->restoreSplitterStates(status.testCaseSplitterStates);
+
+    if (!isUntitled())
+    {
+        const auto info = QFileInfo(filePath);
+        if (info.exists())
+        {
+            const auto mTime = info.fileTime(QFile::FileModificationTime);
+            if (mTime.isValid() && mTime.toMSecsSinceEpoch() > status.timestamp)
+            {
+                if (appWindow->isInitialized())
+                    onFileWatcherChanged(filePath);
+                else
+                {
+                    // Change this to Qt::SingleShotConnection after migrating to Qt 6
+                    auto *connection = new QMetaObject::Connection;
+                    *connection = connect(appWindow, &AppWindow::initialized, [this, connection] {
+                        onFileWatcherChanged(filePath);
+                        disconnect(*connection);
+                        delete connection;
+                    });
+                }
+            }
+        }
+    }
 }
 
 void MainWindow::applyCompanion(const Extensions::CompanionData &data)
@@ -650,6 +690,12 @@ void MainWindow::applySettings(const QString &pagePath)
         }
         else
             autoSaveTimer->stop();
+    }
+
+    if (pageChanged("Actions/Stopwatch"))
+    {
+        stopwatch->setVisible(SettingsHelper::isDisplayStopwatch());
+        stopwatch->updateHideResult();
     }
 }
 
@@ -1021,6 +1067,8 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
         else if (Util::pythonSuffix.contains(suffix))
             setLanguage("Python");
 
+        Q_EMIT fileSaved(this); // when using "emit", clangd complains "Misleading indentation"
+
         beforeReturn(true);
     }
     else if (!isUntitled())
@@ -1036,6 +1084,7 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
     }
 
     setFilePath(filePath); // make sure that the file path is the canonical file path and the file watcher is working
+    emit fileSaved(this);
     emit editorTextChanged(this); // make sure that the tab title is updated
 
     saveTests(safe);
@@ -1271,7 +1320,7 @@ void MainWindow::updateChecker()
     else
         checker = new Core::Checker(testcases->checkerType(), log, this);
     connect(checker, &Core::Checker::checkFinished, testcases, &Widgets::TestCases::setVerdict);
-    checker->prepare(SettingsManager::get(QString("C++/Compile Command")).toString());
+    checker->prepare();
 }
 
 QSplitter *MainWindow::getSplitter()
@@ -1321,6 +1370,34 @@ void MainWindow::updateCompileAndRunButtons() const
             ui->compile->show();
         }
     }
+}
+
+void MainWindow::hideEvent(QHideEvent *event)
+{
+    if (event->spontaneous())
+    {
+        QWidget::hideEvent(event);
+        return;
+    }
+
+    if (SettingsHelper::isToggleStopwatchOnTabSwitch() && stopwatch->isRunning())
+        stopwatch->pause();
+
+    QWidget::hideEvent(event);
+}
+
+void MainWindow::showEvent(QShowEvent *event)
+{
+    if (event->spontaneous())
+    {
+        QWidget::showEvent(event);
+        return;
+    }
+
+    if (SettingsHelper::isToggleStopwatchOnTabSwitch() && !stopwatch->isRunning())
+        stopwatch->start();
+
+    QWidget::showEvent(event);
 }
 
 // -------------------- COMPILER SLOTS ---------------------------

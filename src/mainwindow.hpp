@@ -67,6 +67,9 @@ namespace Internal
 class FakeVimHandler;
 }
 } // namespace FakeVim
+class Stopwatch;
+} // namespace Widgets
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -74,6 +77,8 @@ class MainWindow : public QMainWindow
   public:
     struct EditorStatus
     {
+        qint64 timestamp = 0; // MSecsSinceEpoch when the status was recorded
+
         bool isLanguageSet{};
         QString filePath, savedText, problemURL, editorText, language, customCompileCommand;
         int editorCursor{}, editorAnchor{}, horizontalScrollBarValue{}, verticalScrollbarValue{}, untitledIndex{},
@@ -171,7 +176,6 @@ class MainWindow : public QMainWindow
     void updateCursorInfo();
     void updateChecker();
     void runTestCase(int index);
-
     // UI Slots
 
     void on_compile_clicked();
@@ -193,6 +197,7 @@ class MainWindow : public QMainWindow
     void requestToastMessage(const QString &head, const QString &body);
     void editorLanguageChanged(MainWindow *window);
     void compileOrRunTriggered();
+    void fileSaved(MainWindow *window);
 
   private:
     enum SaveMode
@@ -240,6 +245,7 @@ class MainWindow : public QMainWindow
     FakeVim::Internal::FakeVimHandler *fakevimHandler = nullptr;
 
     Widgets::TestCases *testcases = nullptr;
+    Widgets::Stopwatch *stopwatch = nullptr;
 
     QTimer *autoSaveTimer = nullptr;
 
@@ -264,5 +270,9 @@ class MainWindow : public QMainWindow
     int timeLimit() const;
     void updateCompileAndRunButtons() const;
     friend class Editor::FakeVimCommand;
+    void setStopwatch();
+
+    virtual void hideEvent(QHideEvent *event) override;
+    virtual void showEvent(QShowEvent *event) override;
 };
 #endif // MAINWINDOW_HPP

@@ -11,15 +11,19 @@
 
 **[特性](https://cpeditor.org/zh) · [文档](https://cpeditor.org/zh/docs) · [更新日志](CHANGELOG.md) · [贡献指南](CONTRIBUTING_zh-CN.md) · [FAQ](https://cpeditor.org/zh/docs/faq/)**
 
-[English](README.md) · [Русский](README_ru-RU.md) · [正體中文](README_zh-TW.md)
+[Νέα Ελληνικά](README_el-GR.md) |
+[English](README.md) |
+[Русский](README_ru-RU.md) |
+简体中文 |
+[正體中文](README_zh-TW.md)
 
 ![demo](assets/demo.gif)
 
 |  类型  |                            分支                            |                                                                                                        构建                                                                                                        |                                                                     下载量                                                                     |                                                         AUR                                                         |                                                snap                                                  |
 | :----: | :--------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------: |
 | alpha  | [master](https://github.com/cpeditor/cpeditor/tree/master) | [![GitHub Workflow Status](https://github.com/cpeditor/cpeditor/workflows/CI:%20Build%20Test/badge.svg?branch=master&event=push)](https://github.com/cpeditor/cpeditor/actions?query=event%3Apush+branch%3Amaster) |                                                                       -                                                                        | [![AUR version](https://img.shields.io/aur/version/cpeditor-git)](https://aur.archlinux.org/packages/cpeditor-git/) |  [![snap version](https://badgen.net/snapcraft/v/cpeditor/amd64/edge)](https://snapcraft.io/cpeditor)
-|  beta  |   [v6.9](https://github.com/cpeditor/cpeditor/tree/v6.9)   |   [![GitHub Workflow Status](https://github.com/cpeditor/cpeditor/workflows/CI:%20Build%20Test/badge.svg?branch=v6.9&event=push)](https://github.com/cpeditor/cpeditor/actions?query=event%3Apush+branch%3Av6.9)   | [![Downloads](https://img.shields.io/github/downloads/cpeditor/cpeditor/6.9.3/total)](https://github.com/cpeditor/cpeditor/releases/tag/6.9.3) |                                                          -                                                          |                                                   -
-| stable |   [v6.8](https://github.com/cpeditor/cpeditor/tree/v6.8)   |   [![GitHub Workflow Status](https://github.com/cpeditor/cpeditor/workflows/CI:%20Build%20Test/badge.svg?branch=v6.8&event=push)](https://github.com/cpeditor/cpeditor/actions?query=event%3Apush+branch%3Av6.8)   | [![Downloads](https://img.shields.io/github/downloads/cpeditor/cpeditor/6.8.4/total)](https://github.com/cpeditor/cpeditor/releases/tag/6.8.4) |     [![AUR version](https://img.shields.io/aur/version/cpeditor)](https://aur.archlinux.org/packages/cpeditor/)     |  [![snap version](https://badgen.net/snapcraft/v/cpeditor/amd64/stable)](https://snapcraft.io/cpeditor)
+|  beta  |   [v6.10](https://github.com/cpeditor/cpeditor/tree/v6.10)   |   [![GitHub Workflow Status](https://github.com/cpeditor/cpeditor/workflows/CI:%20Build%20Test/badge.svg?branch=v6.10&event=push)](https://github.com/cpeditor/cpeditor/actions?query=event%3Apush+branch%3Av6.10)   | [![Downloads](https://img.shields.io/github/downloads/cpeditor/cpeditor/6.10.1/total)](https://github.com/cpeditor/cpeditor/releases/tag/6.10.1) |                                                          -                                                          |                                                   -
+| stable |   [v6.9](https://github.com/cpeditor/cpeditor/tree/v6.9)   |   [![GitHub Workflow Status](https://github.com/cpeditor/cpeditor/workflows/CI:%20Build%20Test/badge.svg?branch=v6.9&event=push)](https://github.com/cpeditor/cpeditor/actions?query=event%3Apush+branch%3Av6.9)   | [![Downloads](https://img.shields.io/github/downloads/cpeditor/cpeditor/6.9.4/total)](https://github.com/cpeditor/cpeditor/releases/tag/6.9.4) |     [![AUR version](https://img.shields.io/aur/version/cpeditor)](https://aur.archlinux.org/packages/cpeditor/)     |  [![snap version](https://badgen.net/snapcraft/v/cpeditor/amd64/stable)](https://snapcraft.io/cpeditor)
 
 </div>
 
@@ -256,6 +260,29 @@ Package maintainers can contact us if any help on packaging is needed. For examp
     </td>
     <td align="center">
       <a href="https://github.com/toto6038"><img src="https://avatars.githubusercontent.com/u/50100922?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/toto6038"><sub><b>toto6038</b></sub></a><br /><a href="#translation-toto6038" title="Translation">🌍</a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/RysteQ"><img src="https://avatars.githubusercontent.com/u/34135554?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/RysteQ"><sub><b>RysteQ</b></sub></a><br /><a href="#translation-RysteQ" title="Translation">🌍</a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/hitanshu-mehta"><img src="https://avatars.githubusercontent.com/u/44025541?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/hitanshu-mehta"><sub><b>Hitanshu Mehta</b></sub></a><br /><a href="#ideas-hitanshu-mehta" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/cpeditor/cpeditor/commits?author=hitanshu-mehta" title="Code">💻</a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/eltociear"><img src="https://avatars.githubusercontent.com/u/22633385?v=4" width="100px;" alt=""/></a><br /><a href="https://bandism.net/"><sub><b>Ikko Ashimine</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/commits?author=eltociear" title="Documentation">📖</a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/Sriram-L"><img src="https://avatars.githubusercontent.com/u/60982834?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/Sriram-L"><sub><b>Sriram-L</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3ASriram-L" title="Bug reports">🐛</a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/crcpucmg"><img src="https://avatars.githubusercontent.com/u/6436564?v=4" width="100px;" alt=""/></a><br /><a href="https://crc.pucminas.br"><sub><b>crcpucmg</b></sub></a><br /><a href="#translation-crcpucmg" title="Translation">🌍</a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/Acfboy"><img src="https://avatars.githubusercontent.com/u/36621731?v=4" width="100px;" alt=""/></a><br /><a href="http://acfboy.pw"><sub><b>Acfboy</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3AAcfboy" title="Bug reports">🐛</a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/TLEBOT"><img src="https://avatars.githubusercontent.com/u/97983181?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/TLEBOT"><sub><b>TLEBOT</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3ATLEBOT" title="Bug reports">🐛</a>
     </td>
   </tr>
 </table>

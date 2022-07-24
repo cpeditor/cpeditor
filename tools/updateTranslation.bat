@@ -12,7 +12,7 @@ if "%1" == "r" (
 
 set SOURCES=src build/generated build/cpeditor_autogen/ui build/third_party/QtFindReplaceDialog/dialogs/QtFindReplaceDialog_autogen
 
-(for %%i in (zh_CN ru_RU) do (
+(for %%i in (el_GR pt_BR ru_RU zh_CN zh_TW) do (
 	lupdate -no-obsolete %SOURCES% -locations %LOCATIONS% -tr-function-alias tr+=TRKEY -ts translations/%%i.ts
 ))
 

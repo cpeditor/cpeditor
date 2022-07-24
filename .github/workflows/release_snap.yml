@@ -17,7 +17,7 @@ jobs:
     if: github.repository_owner == 'cpeditor'
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
@@ -31,7 +31,7 @@ jobs:
 
           echo ::set-output name=version::$VERSION
           STABLE_VERSION=$(cat dist/STABLE_VERSION)
-          if [[ VERSION == "$STABLE_VERSION"* ]]; then
+          if [[ $VERSION == "$STABLE_VERSION"* ]]; then
             echo ::set-output name=ISSTABLE::true
           else
             echo ::set-output name=ISSTABLE::false
@@ -44,7 +44,7 @@ jobs:
           tar -xvf cpeditor-${{ steps.get_version.outputs.version }}-full-source.tar.gz
           cd cpeditor-${{ steps.get_version.outputs.version }}-full-source
           cp dist/snap/snapcraft.yaml snapcraft.yaml
-      
+
       - uses: snapcore/action-build@v1
         if: steps.get_version.outputs.ISSTABLE == 'true'
         id: build
@@ -53,7 +53,8 @@ jobs:
 
       - uses: snapcore/action-publish@v1
         if: steps.get_version.outputs.ISSTABLE == 'true'
+        env:
+          SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.STORE_LOGIN }}
         with:
-          store_login: ${{ secrets.STORE_LOGIN }}
           snap: ${{ steps.build.outputs.snap }}
           release: stable

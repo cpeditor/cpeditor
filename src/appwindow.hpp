@@ -41,6 +41,7 @@ namespace Extensions
 class CompanionServer;
 struct CompanionData;
 class LanguageServer;
+class WakaTime;
 } // namespace Extensions
 
 namespace Telemetry
@@ -70,6 +71,10 @@ class AppWindow : public QMainWindow
     ~AppWindow() override;
 
     PreferencesWindow *getPreferencesWindow() const;
+
+    bool isInitialized() const;
+
+    void setInitialized(bool flag = true);
 
   protected:
     void closeEvent(QCloseEvent *event) override;
@@ -216,6 +221,13 @@ class AppWindow : public QMainWindow
 
     void onViewModeToggle();
 
+    void openTab(const QString &path, MainWindow *after = nullptr);
+
+    void onFileSaved(MainWindow *window);
+
+  signals:
+    void initialized();
+
   private:
     Ui::AppWindow *ui;
     MessageLogger *activeLogger = nullptr;
@@ -242,6 +254,11 @@ class AppWindow : public QMainWindow
     Extensions::LanguageServer *pythonServer = nullptr;
 
     explicit AppWindow(bool noRestoreSession, QWidget *parent = nullptr);
+    Extensions::WakaTime *wakaTime = nullptr;
+
+    std::atomic_bool _isInitialized{false};
+
+    explicit AppWindow(bool noHotExit, QWidget *parent = nullptr);
     void finishConstruction();
 
     void setConnections();
@@ -253,6 +270,9 @@ class AppWindow : public QMainWindow
     void openTab(MainWindow *window);
     void openTab(const MainWindow::EditorStatus &status, bool duplicate = false);
     void openTab(const QString &path, const QString &lang = "");
+    bool closeTab(int index);
+    void openTab(MainWindow *window, MainWindow *after = nullptr);
+    void openTab(const MainWindow::EditorStatus &status, bool duplicate = false, MainWindow *after = nullptr);
     void openTabs(const QStringList &paths);
     void openPaths(const QStringList &paths, bool cpp = true, bool java = true, bool python = true, int depth = -1);
     QStringList openFolder(const QString &path, bool cpp, bool java, bool python, int depth);
@@ -260,6 +280,7 @@ class AppWindow : public QMainWindow
     bool quit();
     int getNewUntitledIndex();
     void reAttachLanguageServer(MainWindow *window);
+    void triggerWakaTime(MainWindow *window, bool isWrite = false);
 
     void setTabAt(int index);
     MainWindow *currentWindow();

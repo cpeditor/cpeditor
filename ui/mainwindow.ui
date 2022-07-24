@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1203</width>
-    <height>600</height>
+    <height>916</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -80,6 +80,9 @@
        <layout class="QVBoxLayout" name="rightPane">
         <item>
          <layout class="QVBoxLayout" name="inputOutputArea">
+          <item>
+           <layout class="QHBoxLayout" name="stopWatchLayout"/>
+          </item>
           <item>
            <layout class="QHBoxLayout" name="inputOutputActions">
             <item>

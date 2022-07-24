@@ -21,7 +21,7 @@ jobs:
             binary: cpeditor.app/Contents/MacOS/cpeditor
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           submodules: recursive
           fetch-depth: 0
@@ -95,7 +95,7 @@ jobs:
           cmake --build build -j4 --config Release
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v2.2.4
+        uses: actions/upload-artifact@v3
         with:
           name: "cpeditor-${{ matrix.config.os }}-${{ github.run_id }}"
           path: build/${{ matrix.config.binary }}

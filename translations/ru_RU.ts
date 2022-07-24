@@ -639,6 +639,10 @@ Git commit hash: %3
         <source>Failed to compile the checker: %1</source>
         <translation>Ошибка компиляции символа: %1</translation>
     </message>
+    <message>
+        <source>The source code of the checker has changed, recompiling...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Core::Compiler</name>
@@ -1554,6 +1558,14 @@ If it&apos;s partially checked, the global setting in Code Editing will be used.
         <source>Code Editing</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>WakaTime</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stopwatch</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsInfo</name>
@@ -2248,14 +2260,6 @@ kill the application with SIGKILL which could not be handled by the application.
         <translation>Максимальная высота тестового набора без полосы прокрутки в пикселях.</translation>
     </message>
     <message>
-        <source>Enable Proxy</source>
-        <translation>Включить прокси</translation>
-    </message>
-    <message>
-        <source>Enable proxy for checking updates</source>
-        <translation>Включить прокси для проверки обновлений</translation>
-    </message>
-    <message>
         <source>The hostname of the proxy, e.g. 127.0.0.1</source>
         <translation>Название хоста прокси, например 127.0.0.1</translation>
     </message>
@@ -2621,11 +2625,6 @@ You can learn about it by running `yapf --style-help`.</source>
     </message>
     <message>
         <source>network-proxy</source>
-        <comment>the anchor of Enable Proxy on the corresponding page of https://cpeditor.org/docs/preferences</comment>
-        <translation>прокси сети</translation>
-    </message>
-    <message>
-        <source>network-proxy</source>
         <comment>the anchor of Type on the corresponding page of https://cpeditor.org/docs/preferences</comment>
         <translation>прокси сети</translation>
     </message>
@@ -2685,6 +2684,63 @@ Not all vim commands are supported, please check https://github.com/cpeditor/Fak
     <message>
         <source>Highlight the line where cursor exists.
 In, vim emulation current line is never highlighed</source>
+        <source>The path to the WakaTime executable file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Api Key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable WakaTime</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable proxy to connect to GitHub while checking updates</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Can be found at https://wakatime.com/settings/account.
+It can be empty if you have the global wakatime config file ~/.wakatime.cfg.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use Proxy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use Advanced-&gt;Network Proxy to send data to WakaTime.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable proxy for checking updates</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>network-proxy</source>
+        <comment>the anchor of Enable proxy for checking updates on the corresponding page of https://cpeditor.org/docs/preferences</comment>
+        <translation type="unfinished">прокси сети</translation>
+    </message>
+    <message>
+        <source>Display Stopwatch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start/Stop stopwatch on tab switch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>When switching to a different tab, automatically start the stopwatch
+on the current tab and pause the stopwatch on the previous tab.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show stopwatch result only when the button is pressed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide the time of the stopwatch and only show the time when the &quot;Show&quot; button is pressed.
+This may reduce distractions caused by stopwatch updates.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2898,6 +2954,33 @@ In, vim emulation current line is never highlighed</source>
     <message>
         <source>Expected</source>
         <translation>Ожидаемо</translation>
+    </message>
+</context>
+<context>
+    <name>Widgets::Stopwatch</name>
+    <message>
+        <source>Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Pause</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Resume</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reset</source>
+        <translation type="unfinished">Сбросить</translation>
+    </message>
+    <message>
+        <source>Stopwatch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

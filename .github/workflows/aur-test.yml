@@ -16,7 +16,7 @@ jobs:
           - path: dist/aur/git
             name: cpeditor-git
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           submodules: recursive
           fetch-depth: 0
@@ -48,7 +48,7 @@ jobs:
           path: ${{ matrix.pkg.path }}
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: ${{ matrix.pkg.name }}-${{ github.run_id }}
           path: ${{ steps.build-pkg.outputs.pkgfile }}

@@ -23,11 +23,17 @@
 
 namespace Core
 {
-const static QMap<QString, QString> locales = {{"简体中文", "zh_CN"}, {"Русский", "ru_RU"}};
+const static QMap<QString, QString> locales = {{"Νέα Ελληνικά", "el_GR"},
+                                               {"Português brasileiro", "pt_BR"},
+                                               {"Русский", "ru_RU"},
+                                               {"简体中文", "zh_CN"},
+                                               {"正體中文", "zh_TW"}};
 
-const static QMap<QString, QString> suffixes = {{"zh_CN", "_zh-CN"}, {"ru_RU", "_ru-RU"}};
+const static QMap<QString, QString> suffixes = {
+    {"el_GR", ""}, {"pt_BR", ""}, {"ru_RU", "_ru-RU"}, {"zh_CN", "_zh-CN"}, {"zh_TW", "_zh-TW"}};
 
-const static QMap<QString, QString> code = {{"zh_CN", "zh"}, {"ru_RU", "ru"}};
+const static QMap<QString, QString> code = {
+    {"el_GR", ""}, {"pt_BR", ""}, {"ru_RU", "ru"}, {"zh_CN", "zh"}, {"zh_TW", "zh_TW"}};
 
 QTranslator *Translator::translator = nullptr;
 

@@ -1,8 +1,9 @@
 {
   "files": [
     "README.md",
-    "README_zh-CN.md",
+    "README_el-GR.md",
     "README_ru-RU.md",
+    "README_zh-CN.md",
     "README_zh-TW.md"
   ],
   "imageSize": 100,
@@ -550,6 +551,70 @@
       "profile": "https://github.com/toto6038",
       "contributions": [
         "translation"
+      ]
+    },
+    {
+      "login": "RysteQ",
+      "name": "RysteQ",
+      "avatar_url": "https://avatars.githubusercontent.com/u/34135554?v=4",
+      "profile": "https://github.com/RysteQ",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "hitanshu-mehta",
+      "name": "Hitanshu Mehta",
+      "avatar_url": "https://avatars.githubusercontent.com/u/44025541?v=4",
+      "profile": "https://github.com/hitanshu-mehta",
+      "contributions": [
+        "ideas",
+        "code"
+      ]
+    },
+    {
+      "login": "eltociear",
+      "name": "Ikko Ashimine",
+      "avatar_url": "https://avatars.githubusercontent.com/u/22633385?v=4",
+      "profile": "https://bandism.net/",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "Sriram-L",
+      "name": "Sriram-L",
+      "avatar_url": "https://avatars.githubusercontent.com/u/60982834?v=4",
+      "profile": "https://github.com/Sriram-L",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "crcpucmg",
+      "name": "crcpucmg",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6436564?v=4",
+      "profile": "https://crc.pucminas.br",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "Acfboy",
+      "name": "Acfboy",
+      "avatar_url": "https://avatars.githubusercontent.com/u/36621731?v=4",
+      "profile": "http://acfboy.pw",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "TLEBOT",
+      "name": "TLEBOT",
+      "avatar_url": "https://avatars.githubusercontent.com/u/97983181?v=4",
+      "profile": "https://github.com/TLEBOT",
+      "contributions": [
+        "bug"
       ]
     }
   ],

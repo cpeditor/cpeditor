@@ -1,0 +1,32 @@
+name: Update Donors
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  update-donors:
+    if: github.repository_owner == 'cpeditor'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+      - run: pip install requests
+      - name: Update donors
+        run: python tools/getDonors.py ${{ secrets.GITHUB_TOKEN }}
+      - name: Check diff
+        id: diff
+        run: |
+          diff=0
+          git diff --exit-code HEAD || diff=1
+          echo "::set-output name=diff::$diff"
+      - name: Create Pull Request
+        if: steps.diff.outputs.diff == 1
+        uses: peter-evans/create-pull-request@v4
+        with:
+          token: ${{ secrets.BOT_TOKEN }}
+          commit-message: "chore: update donor list"
+          title: "chore: update donor list"
+          branch: "auto-pr/donors"
+          author: "GitHub Action <action@github.com>"
