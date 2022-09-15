@@ -43,35 +43,35 @@ jobs:
           - os: "macos-latest"
             portable-option: "Off"
             winlibs: false
-          - os: "windows-latest"
+          - os: "windows-2019"
             arch: x64
             platform: x64
             qtarch: win64_msvc2019_64
             portable-option: "Off"
             filename-suffix: "setup.exe"
             winlibs: false
-          - os: "windows-latest"
+          - os: "windows-2019"
             arch: x64
             platform: x64
             qtarch: win64_msvc2019_64
             portable-option: "On"
             filename-suffix: "portable.zip"
             winlibs: false
-          - os: "windows-latest"
+          - os: "windows-2019"
             arch: x86
             platform: Win32
             qtarch: win32_msvc2019
             portable-option: "Off"
             filename-suffix: "setup.exe"
             winlibs: false
-          - os: "windows-latest"
+          - os: "windows-2019"
             arch: x86
             platform: Win32
             qtarch: win32_msvc2019
             portable-option: "On"
             filename-suffix: "portable.zip"
             winlibs: false
-          - os: "windows-latest"
+          - os: "windows-2019"
             arch: x64
             platform: x64
             qtarch: win64_msvc2019_64
@@ -80,7 +80,7 @@ jobs:
             winlibs: true
             winlibs-arch: x86_64-posix-seh
             mingw-arch: mingw64
-          - os: "windows-latest"
+          - os: "windows-2019"
             arch: x64
             platform: x64
             qtarch: win64_msvc2019_64
@@ -89,7 +89,7 @@ jobs:
             winlibs: true
             winlibs-arch: x86_64-posix-seh
             mingw-arch: mingw64
-          - os: "windows-latest"
+          - os: "windows-2019"
             arch: x86
             platform: Win32
             qtarch: win32_msvc2019
@@ -98,7 +98,7 @@ jobs:
             winlibs: true
             winlibs-arch: i686-posix-dwarf
             mingw-arch: mingw32
-          - os: "windows-latest"
+          - os: "windows-2019"
             arch: x86
             platform: Win32
             qtarch: win32_msvc2019
@@ -120,7 +120,7 @@ jobs:
           arch: ${{ matrix.config.qtarch }}
 
       - name: "[Windows] Build"
-        if: matrix.config.os == 'windows-latest'
+        if: matrix.config.os == 'windows-2019'
         run: |
           mkdir build
           cd build
@@ -128,7 +128,7 @@ jobs:
           cmake --build . --config Release -j4
 
       - name: "[Linux/macOS] Build"
-        if: matrix.config.os != 'windows-latest'
+        if: matrix.config.os != 'windows-2019'
         run: |
           mkdir build
           cd build
