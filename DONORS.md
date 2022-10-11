@@ -14,7 +14,7 @@
 
 ## WeChat
 
-None.
+-   gznpp
 
 ## AliPay
 
