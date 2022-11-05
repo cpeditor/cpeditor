@@ -53,7 +53,7 @@ prepare() {
     git config submodule.third_party/testlib.url "$srcdir/testlib"
     git config submodule.third_party/qhttp.url "$srcdir/qhttp"
 
-    git submodule update
+    git -c protocol.file.allow=always submodule update
 }
 
 build() {
