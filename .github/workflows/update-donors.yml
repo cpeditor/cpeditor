@@ -20,7 +20,7 @@ jobs:
         run: |
           diff=0
           git diff --exit-code HEAD || diff=1
-          echo "::set-output name=diff::$diff"
+          echo "diff=$diff" >> "$GITHUB_OUTPUT"
       - name: Create Pull Request
         if: steps.diff.outputs.diff == 1
         uses: peter-evans/create-pull-request@v4
