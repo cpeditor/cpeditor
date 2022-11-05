@@ -19,10 +19,10 @@ jobs:
       - name: Get winlibs outputs
         id: get
         run: |
-          echo ::set-output name=GCC::$WINLIBS_GCC
-          echo ::set-output name=LLVM::$WINLIBS_LLVM
-          echo ::set-output name=MINGW::$WINLIBS_MINGW
-          echo ::set-output name=tag::$WINLIBS_GCC-$WINLIBS_LLVM-$WINLIBS_MINGW
+          echo "GCC=$WINLIBS_GCC" >> "$GITHUB_OUTPUT"
+          echo "LLVM=$WINLIBS_LLVM" >> "$GITHUB_OUTPUT"
+          echo "MINGW=$WINLIBS_MINGW" >> "$GITHUB_OUTPUT"
+          echo "tag=$WINLIBS_GCC-$WINLIBS_LLVM-$WINLIBS_MINGW" >> "$GITHUB_OUTPUT"
     outputs:
       GCC: ${{ steps.get.outputs.GCC }}
       LLVM: ${{ steps.get.outputs.LLVM }}
@@ -140,12 +140,12 @@ jobs:
         shell: bash
         run: |
           VERSION=${GITHUB_REF/refs\/tags\//}
-          echo ::set-output name=VERSION::$VERSION
+          echo "VERSION=$VERSION" >> "$GITHUB_OUTPUT"
           STABLE_VERSION=$(cat dist/STABLE_VERSION)
           if [[ $VERSION == "$STABLE_VERSION"* ]]; then
-            echo ::set-output name=ISBETA::false
+            echo "ISBETA=false" >> "$GITHUB_OUTPUT"
           else
-            echo ::set-output name=ISBETA::true
+            echo "ISBETA=true" >> "$GITHUB_OUTPUT"
           fi
 
       - name: "[Linux] Pack to AppImage"
@@ -177,7 +177,7 @@ jobs:
         id: deb-package
         run: |
           pkgname="cpeditor-${{ steps.get_version.outputs.VERSION }}-linux-amd64"
-          echo "::set-output name=pkgname::${pkgname}"
+          echo "pkgname=${pkgname}" >> "$GITHUB_OUTPUT"
 
           mkdir -p ${pkgname}/usr/share/
           cd ${pkgname}/usr/share/
@@ -287,7 +287,7 @@ jobs:
         if: startsWith(matrix.config.os, 'windows') && matrix.config.winlibs
         id: winlibs
         shell: bash
-        run: echo "::set-output name=asset::winlibs-${{ matrix.config.winlibs-arch }}-gcc-${{ needs.get-winlibs-outputs.outputs.GCC }}-llvm-${{ needs.get-winlibs-outputs.outputs.LLVM }}-mingw-w64-${{ needs.get-winlibs-outputs.outputs.MINGW }}.7z"
+        run: echo "asset=winlibs-${{ matrix.config.winlibs-arch }}-gcc-${{ needs.get-winlibs-outputs.outputs.GCC }}-llvm-${{ needs.get-winlibs-outputs.outputs.LLVM }}-mingw-w64-${{ needs.get-winlibs-outputs.outputs.MINGW }}.7z" >> "$GITHUB_OUTPUT"
 
       - name: "[Windows] Download Winlibs"
         if: startsWith(matrix.config.os, 'windows') && matrix.config.winlibs
