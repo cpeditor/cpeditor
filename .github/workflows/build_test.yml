@@ -26,17 +26,10 @@ jobs:
           submodules: recursive
           fetch-depth: 0
 
-      - name: Restore Qt from cache
-        id: cache-qt
-        uses: actions/cache@v1
-        with:
-          path: ../Qt
-          key: Qt-${{ matrix.config.os }}-${{ env.QT_VERSION }}
-
       - name: Set up Qt environment
-        uses: jurplel/install-qt-action@v2
+        uses: jurplel/install-qt-action@v3
         with:
-          cached: ${{ steps.cache-qt.outputs.cache-hit }}
+          cache: true
           version: ${{ env.QT_VERSION }}
 
       - name: "[Linux] Download clang-tidy"

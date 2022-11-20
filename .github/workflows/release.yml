@@ -114,7 +114,7 @@ jobs:
           submodules: recursive
 
       - name: Set up Qt environment
-        uses: jurplel/install-qt-action@v2
+        uses: jurplel/install-qt-action@v3
         with:
           version: ${{ env.QT_VERSION }}
           arch: ${{ matrix.config.qtarch }}
