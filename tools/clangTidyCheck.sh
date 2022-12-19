@@ -4,8 +4,8 @@ set -euo pipefail
 
 if type clang-tidy >/dev/null 2>&1; then
 	CLANGTIDY="clang-tidy"
-elif type clang-tidy-9 >/dev/null 2>&1; then
-	CLANGTIDY="clang-tidy-9"
+elif type clang-tidy-14 >/dev/null 2>&1; then
+	CLANGTIDY="clang-tidy-14"
 else
 	echo "clang-tidy not installed!"
 	exit 1
