@@ -4,6 +4,7 @@
 -   [Dazz](https://github.com/npvq)
 -   [mateus sze cosenza](https://github.com/cosenza987)
 -   [Marhoosh](https://github.com/Marhoosh)
+-   [Dmytro Fedoriaka](https://github.com/fedimser)
 <!-- END: GitHub Sponsors -->
 
 ## Open Collective
