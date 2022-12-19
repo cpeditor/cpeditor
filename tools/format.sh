@@ -4,8 +4,8 @@ set -euo pipefail
 
 if type clang-format >/dev/null 2>&1; then
     CLANGFORMAT="clang-format"
-elif type clang-format-9 >/dev/null 2>&1; then
-    CLANGFORMAT="clang-format-9"
+elif type clang-format-14 >/dev/null 2>&1; then
+    CLANGFORMAT="clang-format-14"
 else
     echo "clang-format not installed!"
     exit 1
