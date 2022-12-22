@@ -109,6 +109,7 @@ add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMA
 
 set(TSS
 ${CMAKE_SOURCE_DIR}/translations/el_GR.ts
+${CMAKE_SOURCE_DIR}/translations/es_MX.ts
 ${CMAKE_SOURCE_DIR}/translations/pt_BR.ts
 ${CMAKE_SOURCE_DIR}/translations/ru_RU.ts
 ${CMAKE_SOURCE_DIR}/translations/zh_CN.ts
