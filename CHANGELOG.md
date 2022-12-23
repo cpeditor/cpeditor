@@ -3,6 +3,7 @@
 ### Added
 
 -   Brazilian Portuguese translations (#1050)
+-   Spanish (Mexico) translations (#1131)
 
 ### Fixed
 
