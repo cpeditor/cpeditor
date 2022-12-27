@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+## v6.11
+
 ### Added
 
 -   Brazilian Portuguese translations (#1050)
