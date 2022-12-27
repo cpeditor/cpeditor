@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+## 6.10.2
+
+This version is the same as 6.10.1, but it's considered stable now.
+
 ## 6.10.1 (Beta)
 
 ### Added
