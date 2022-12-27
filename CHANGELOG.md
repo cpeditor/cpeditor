@@ -1,6 +1,6 @@
 ## UNRELEASED
 
-## 6.11.1 (Beta)
+## v6.11
 
 ### Added
 
