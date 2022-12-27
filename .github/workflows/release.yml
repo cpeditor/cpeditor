@@ -293,11 +293,11 @@ jobs:
 
       - name: "[Windows] Download Winlibs"
         if: startsWith(matrix.config.os, 'windows') && matrix.config.winlibs
-        uses: robinraju/release-downloader@v1
-        with:
-          repository: brechtsanders/winlibs_mingw
-          tag: ${{ needs.get-winlibs-outputs.outputs.tag }}
-          fileName: ${{ steps.winlibs.outputs.asset }}
+        shell: bash
+        run: |
+          aria2c https://github.com/brechtsanders/winlibs_mingw/releases/download/${{ needs.get-winlibs-outputs.outputs.tag }}/${{ steps.winlibs.outputs.asset }}
+          aria2c https://github.com/brechtsanders/winlibs_mingw/releases/download/${{ needs.get-winlibs-outputs.outputs.tag }}/${{ steps.winlibs.outputs.asset }}.sha512
+          sha512sum -c ${{ steps.winlibs.outputs.asset }}.sha512
 
       - name: "[Windows] Extract Winlibs"
         if: startsWith(matrix.config.os, 'windows') && matrix.config.winlibs
