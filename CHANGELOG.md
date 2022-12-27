@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+## 6.11.1 (Beta)
+
 ### Added
 
 -   Brazilian Portuguese translations (#1050)
