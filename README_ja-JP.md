@@ -2,7 +2,7 @@
 
 <img src=assets/icon.ico width="128">
 
-**CP Editor - 競技プログラミングの経験値を上げよう!**
+**CP Editor - 競技プログラミングの経験値を上げよう！**
 
 [![downloads](https://img.shields.io/github/downloads/cpeditor/cpeditor/total?style=for-the-badge)](https://github.com/cpeditor/cpeditor/releases)
 [![All Contributors](https://img.shields.io/github/all-contributors/cpeditor/cpeditor?style=for-the-badge)](#all-contributors)
@@ -49,9 +49,9 @@
 
 ## フィードバック
 
--   質問する: Q&Aカテゴリの[新しいdiscussionを開く](https://github.com/cpeditor/cpeditor/discussions/new)。有益な回答が得られた場合は、回答としてマークしてください。
--   アイデアを提供する: アイデアカテゴリの[新しいdiscussionを開く](https://github.com/cpeditor/cpeditor/discussions/new)。
--   正式な機能要求/バグレポート: 詳細な説明と可能な限り多くの情報を添えて[issueを開いて](https://github.com/cpeditor/cpeditor/issues/new/choose)下さい。
+-   質問する: Q&Aカテゴリの[新しい discussion を開きます](https://github.com/cpeditor/cpeditor/discussions/new)。有益な回答が得られた場合は、回答としてマークしてください。
+-   アイデアを提供する: アイデアカテゴリの[新しい discussion を開きます](https://github.com/cpeditor/cpeditor/discussions/new)。
+-   正式な機能要求/バグレポート: 詳細な説明と可能な限り多くの情報を添えて[issue を開いて](https://github.com/cpeditor/cpeditor/issues/new/choose)下さい。
 -   [感謝を言う](https://github.com/cpeditor/cpeditor/discussions/755)
 -   [苦情を言う](https://github.com/cpeditor/cpeditor/discussions/760)
 
@@ -292,7 +292,7 @@
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
-このプロジェクトは[all-contributors](https://github.com/all-contributors/all-contributors)の仕様に準拠しています。どのような種類の貢献でも歓迎します！
+このプロジェクトは [all-contributors](https://github.com/all-contributors/all-contributors) の仕様に準拠しています。どのような種類の貢献でも歓迎します！
 
 ## ライセンス
 
