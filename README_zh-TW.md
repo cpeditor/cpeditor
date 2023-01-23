@@ -15,7 +15,8 @@
 [English](README.md) |
 [Русский](README_ru-RU.md) |
 [简体中文](README_zh-CN.md) |
-正體中文
+正體中文 |
+[日本語](README_ja-JP.md)
 
 ![demo](assets/demo.gif)
 
