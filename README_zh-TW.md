@@ -13,10 +13,10 @@
 
 [Νέα Ελληνικά](README_el-GR.md) |
 [English](README.md) |
+[日本語](README_ja-JP.md) |
 [Русский](README_ru-RU.md) |
 [简体中文](README_zh-CN.md) |
-正體中文 |
-[日本語](README_ja-JP.md)
+正體中文
 
 ![demo](assets/demo.gif)
 
