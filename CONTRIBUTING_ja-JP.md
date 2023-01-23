@@ -17,7 +17,7 @@
 
 -   目標は、開発者のためではなく、競技プログラマーのためのエディタを作ることであることを忘れないでください。
 -   1つのプルリクエストで1つのことを行う。もし、複数の機能を追加したい/複数のバグを修正したい場合で、それらが関連性のないものであれば、複数のプルリクエストを開いてください。複数のプルリクエストを開くために複数のブランチを作成する必要がある場合があります。gitのブランチ作成については[こちら](https://learngitbranching.js.org/)で学ぶことができます。
--   新機能の追加は master ブランチで行い、バグの修正はそのバグがある最新のアクティブな (master, beta, stable) ブランチで行います。バージョニングルール](VERSIONING.md)も参照してください。
+-   新機能の追加は master ブランチで行い、バグの修正はそのバグがある最新のアクティブな (master, beta, stable) ブランチで行います。[バージョニングルール](VERSIONING.md)も参照してください。
 -   [明確なコミットメッセージ](https://chris.beams.io/posts/git-commit/)を書いてください。また、[Conventional Commits](https://www.conventionalcommits.org/)を書くことをお勧めします。[プルリクエストのスカッシュとマージ](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/about-pull-request-merges#squash-and-merge-your-pull-request-commits)を行っているので、コミットメッセージはあまり重要ではなく、プルリクエストのタイトルや唯一のコミットのメッセージはより重要であると言えます。
 -   コードのフォーマットにはClang Formatと[`.clang-format`](.clang-format)を使ってください。もし、フォーマット中に何かおかしなことが起こったら、`clang-format`を[最新版](https://releases.llvm.org/download.html)に更新してみてください。
 -   必要でない限り、機能を削除しないでください。代わりに、それらを無効にするオプションを追加してください。
@@ -42,7 +42,7 @@
 
 1.  設定情報は、[settings.json](src/Settings/settings.json)に格納されています。
 2.  `settings.json`は、[genSettings.py](src/Settings/genSettings.py)によって`SettingsHelper.hpp`と`SettingsInfo.cpp`に変換されます。
-3.  設定は [PreferencesWindow] (src/Settings/PreferencesWindow.hpp)に表示され、いくつかの [PreferencesPage] (src/Settings/PreferencesPage.hpp) に分割されます。ほとんどの設定は、`SettingsInfo`を使ってページを生成する[PreferencesPageTemplate](src/Settings/PreferencesPageTemplate.hpp)に表示されます。
+3.  設定は[PreferencesWindow](src/Settings/PreferencesWindow.hpp)に表示され、いくつかの[PreferencesPage](src/Settings/PreferencesPage.hpp) に分割されます。ほとんどの設定は、`SettingsInfo`を使ってページを生成する[PreferencesPageTemplate](src/Settings/PreferencesPageTemplate.hpp)に表示されます。
 4.  CPエディタの他の部分では、`SettingsHelper.hpp`内の関数を使って設定を取得したり、[SettingsManager](src/Settings/SettingsManager.hpp)を使って設定を管理したりすることができます。`SettingsHelper.hpp`の目的は、開発中にオートコンプリートを有効にし、設定名のスペルを間違える可能性を減らすことです。`SettingsManager`は通常、設定名が変数である場合に使用します。例えば、`SettingsManager::get(QString("%1/Compile Command").arg(language)).toString()`。
 
 設定の追加・変更の方法は、他の設定を参考にするか、[ドキュメント](src/Settings/README.md)を読むとよいでしょう。基本的には、[PreferencesWindow.cpp](src/Settings/PreferencesWindow.cpp)の[settings.json](src/Settings/settings.json)と`AddPageHelper(this)`で始まる部分を変更する必要があります。
