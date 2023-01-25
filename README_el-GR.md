@@ -13,6 +13,7 @@
 
 Νέα Ελληνικά |
 [English](README.md) |
+[日本語](README_ja-JP.md) |
 [Русский](README_ru-RU.md) |
 [简体中文](README_zh-CN.md) |
 [正體中文](README_zh-TW.md)
