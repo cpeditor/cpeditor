@@ -1,5 +1,10 @@
 ## UNRELEASED
 
+### Changed
+
+-   Now the <kbd>Home</kbd> key moves to the first non-whitespace character. (#774 and #1149)
+-   Now when Wrap Text is enabled, <kbd>Home</kbd> and <kbd>End</kbd> moves to the start/end of the whole text line instead of the screen line. (#1149)
+
 ## v6.11
 
 ### Added
