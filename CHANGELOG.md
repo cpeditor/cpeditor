@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+## 6.10.3
+
 If you are a regular user and don't compile CP Editor by yourself, it will be the same as 6.10.1 and 6.10.2.
 
 -   Fixed compilation of CP Editor itself with CMake 3.26. (#1155)
