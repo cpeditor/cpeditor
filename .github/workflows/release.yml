@@ -151,7 +151,7 @@ jobs:
       - name: "[Linux] Pack to AppImage"
         if: startsWith(matrix.config.os, 'ubuntu')
         run: |
-          sudo apt install libxcb*
+          sudo apt install libxcb* libxkb*
           cd build
           wget -c "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
           chmod a+x linuxdeployqt*.AppImage
