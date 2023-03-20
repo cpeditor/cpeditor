@@ -46,6 +46,7 @@ jobs:
         id: build-pkg
         with:
           path: ${{ matrix.pkg.path }}
+          archive: 2023/03/13
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
