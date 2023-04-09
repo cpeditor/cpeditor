@@ -81,12 +81,11 @@ SignalHandler::SignalHandler(int mask) : _mask(mask)
                 handleSignal(logical);
                 sn->setEnabled(true);
             });
-            const int sig = POSIX_logicalToPhysical(logical);
             struct sigaction sa;              // NOLINT
             sa.sa_handler = POSIX_handleFunc; // NOLINT
             sigemptyset(&sa.sa_mask);
             sa.sa_flags = SA_RESTART;
-            assert(!sigaction(sig, &sa, nullptr));
+            assert(!sigaction(POSIX_logicalToPhysical(logical), &sa, nullptr));
 #endif //_WIN32
         }
     }
