@@ -27,6 +27,7 @@
 #include <QSocketNotifier>
 #include <csignal>
 #include <sys/socket.h>
+#include <unistd.h>
 
 #else
 
