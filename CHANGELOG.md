@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+### Fixied
+
+-   UNIX signal handler is now more robust. (#1166)
+
 ## v6.11
 
 ### Added

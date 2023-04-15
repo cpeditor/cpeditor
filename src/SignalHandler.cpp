@@ -16,7 +16,7 @@
  */
 
 /**
- * This class is based on https://stackoverflow.com/a/7582555/12601364
+ * based on https://stackoverflow.com/a/7582555/12601364 & https://doc.qt.io/qt-5/unix-signals.html
  */
 
 #include "SignalHandler.hpp"
@@ -24,7 +24,10 @@
 
 #ifndef _WIN32
 
+#include <QSocketNotifier>
 #include <csignal>
+#include <sys/socket.h>
+#include <unistd.h>
 
 #else
 
@@ -45,6 +48,7 @@ std::set<int> g_registry;
 
 #else //_WIN32
 
+static int socketFd[32][2];
 void POSIX_handleFunc(int signal);
 int POSIX_physicalToLogical(int signal);
 int POSIX_logicalToPhysical(int signal);
@@ -68,12 +72,20 @@ SignalHandler::SignalHandler(int mask) : _mask(mask)
 #ifdef _WIN32
             g_registry.insert(logical);
 #else
-            int sig = POSIX_logicalToPhysical(logical);
-            bool failed = signal(sig, POSIX_handleFunc) ==
-                          SIG_ERR; // NOLINT: do not use C-style cast to convert between unrelated types
-            assert(!failed);
-            (void)failed; // Silence the warning in non _DEBUG; TODO: something better
-
+            assert(!::socketpair(AF_UNIX, SOCK_STREAM, 0, socketFd[logical]));
+            auto *sn = new QSocketNotifier(socketFd[logical][1], QSocketNotifier::Read, this);
+            connect(sn, &QSocketNotifier::activated, this, [=] {
+                sn->setEnabled(false);
+                char tmp = 0;
+                ::read(socketFd[logical][1], &tmp, sizeof(tmp));
+                handleSignal(logical);
+                sn->setEnabled(true);
+            });
+            struct sigaction sa;              // NOLINT
+            sa.sa_handler = POSIX_handleFunc; // NOLINT
+            sigemptyset(&sa.sa_mask);
+            sa.sa_flags = SA_RESTART;
+            assert(!sigaction(POSIX_logicalToPhysical(logical), &sa, nullptr));
 #endif //_WIN32
         }
     }
@@ -185,7 +197,8 @@ void POSIX_handleFunc(int signal)
     if (g_handler)
     {
         int signo = POSIX_physicalToLogical(signal);
-        g_handler->handleSignal(signo);
+        char a = 1;
+        ::write(socketFd[signo][0], &a, sizeof(a));
     }
 }
 #endif //_WIN32
