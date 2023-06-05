@@ -45,6 +45,46 @@ jobs:
           brew install llvm
           ln -s "$(brew --prefix llvm)/bin/clang-tidy" "/usr/local/bin/clang-tidy"
 
+      - name: "[Windows] Install extra-cmake-modules"
+        if: startsWith(matrix.config.os, 'windows')
+        run: |
+          cd third_party/extra-cmake-modules
+          mkdir build
+          cd build &&
+            cmake .. -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF &&
+            cmake --build . --config Release --parallel $(nproc) &&
+            cmake --build . --target install
+
+      - name: "[Unix] Install extra-cmake-modules"
+        if: startsWith(matrix.config.os, 'ubuntu') || startsWith(matrix.config.os, 'macos')
+        run: |
+          cd third_party/extra-cmake-modules
+          mkdir build
+          cd build &&
+            cmake .. -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF &&
+            cmake --build . --parallel $(nproc) &&
+            sudo cmake --build . --target install
+
+      - name: "[Windows] Install ksyntax-highlighting"
+        if: startsWith(matrix.config.os, 'windows')
+        run: |
+          cd third_party/syntax-highlighting
+          mkdir build
+          cd build &&
+            cmake .. -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF  &&
+            cmake --build . --config Release --parallel $(nproc) &&
+            cmake --build . --target install
+
+      - name: "[Unix] Install ksyntax-highlighting"
+        if: startsWith(matrix.config.os, 'ubuntu') || startsWith(matrix.config.os, 'macos')
+        run: |
+          cd third_party/syntax-highlighting
+          mkdir build
+          cd build &&
+            cmake .. -DCMAKE_BUILD_TYPE=Release -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF 
+            cmake --build . --parallel $(nproc) &&
+            sudo cmake --build . --target install
+
       - name: "[Unix] Build"
         if: startsWith(matrix.config.os, 'ubuntu') || startsWith(matrix.config.os, 'macos')
         run: |
@@ -54,7 +94,7 @@ jobs:
       - name: "[Windows] Build"
         if: startsWith(matrix.config.os, 'windows')
         run: |
-          cmake -B build -S . -D USE_CLANG_TIDY=On
+          cmake -B build -S . -D USE_CLANG_TIDY=On -D "KF5SyntaxHighlighting_DIR=C:/Program Files (x86)/ECM/lib/cmake/KF5SyntaxHighlighting"
           cmake --build build -j4 --config Release
 
       - name: Upload Artifact
