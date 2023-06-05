@@ -338,9 +338,9 @@
   {
     "name": "Editor Theme",
     "type": "QString",
-    "default": "Light",
+    "default": "Default",
     "ui": "QComboBox",
-    "param": "QStringList {\"Light\", \"Dracula\", \"Monokai\", \"Solarized\", \"Solarized Dark\"}",
+    "param": "Editor::KSyntaxHighlightingRepository::themeNames()",
     "tip": "The syntax highlight theme of the code editor"
   },
   {
