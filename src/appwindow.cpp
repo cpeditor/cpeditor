@@ -880,8 +880,7 @@ void AppWindow::onTabChanged(int index)
 
     reAttachLanguageServer(tmp);
 
-    // FIXME
-    // findReplaceDialog->setTextEdit(tmp->getEditor());
+     findReplaceDialog->setTextEdit(tmp->getEditor());
 
     setWindowTitle(tmp->getCompleteTitle() + " - CP Editor");
 
