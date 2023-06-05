@@ -25,8 +25,6 @@ find_package(Qt5 COMPONENTS LinguistTools REQUIRED)
 find_package(Python3 COMPONENTS Interpreter REQUIRED)
 find_package(KF5SyntaxHighlighting REQUIRED)
 
-add_subdirectory(third_party/QCodeEditor)
-
 set(QAPPLICATION_CLASS QApplication CACHE STRING "Inheritance class for SingleApplication")
 
 add_subdirectory(third_party/singleapplication)

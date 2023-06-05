@@ -22,7 +22,6 @@
 #include <QObject>
 
 class MessageLogger;
-class QCodeEditor;
 class QTextCursor;
 
 namespace Extensions

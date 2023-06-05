@@ -28,14 +28,13 @@ provides=('cpeditor')
 conflicts=("cpeditor")
 
 source=('git+https://github.com/cpeditor/cpeditor.git'
-    'git+https://github.com/cpeditor/QCodeEditor.git'
     'git+https://github.com/cpeditor/QtFindReplaceDialog.git'
     'git+https://github.com/cpeditor/lsp-cpp.git'
     'git+https://github.com/itay-grudev/singleapplication.git'
     'git+https://github.com/MikeMirzayanov/testlib.git'
     'git+https://github.com/cpeditor/qhttp.git')
 
-md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP')
+md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP')
 
 pkgver() {
     cd "$_pkgname"
@@ -46,7 +45,6 @@ prepare() {
     cd "$_pkgname"
     git submodule init
 
-    git config submodule.third_party/QCodeEditor.url "$srcdir/QCodeEditor"
     git config submodule.third_party/QtFindReplaceDialog.url "$srcdir/QtFindReplaceDialog"
     git config submodule.third_party/lsp-cpp.url "$srcdir/lsp-cpp"
     git config submodule.third_party/singleapplication.url "$srcdir/singleapplication"

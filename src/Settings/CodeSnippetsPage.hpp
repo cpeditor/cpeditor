@@ -22,7 +22,6 @@
 #include "Settings/PreferencesPage.hpp"
 #include <QMap>
 
-class QCodeEditor;
 class QLineEdit;
 class QListWidget;
 class QListWidgetItem;
