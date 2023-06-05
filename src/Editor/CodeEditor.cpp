@@ -42,12 +42,13 @@
 #include "Editor/CodeEditor.hpp"
 #include "Core/EventLogger.hpp"
 #include "Editor/CodeEditorSideBar.hpp"
+#include "Editor/HighLighter.hpp"
 #include "Editor/KSHRepository.hpp"
 #include "Editor/LanguageRepository.hpp"
 #include "Settings/SettingsManager.hpp"
 #include "generated/SettingsHelper.hpp"
 #include <KSyntaxHighlighting/Definition>
-#include <KSyntaxHighlighting/SyntaxHighlighter>
+#include <KSyntaxHighlighting/Format>
 #include <QApplication>
 #include <QFontDatabase>
 #include <QMimeData>
@@ -64,7 +65,7 @@ namespace Editor
 {
 CodeEditor::CodeEditor(QWidget *widget) : QPlainTextEdit(widget)
 {
-    highlighter = new KSyntaxHighlighting::SyntaxHighlighter(document());
+    highlighter = new Highlighter(document());
     sideBar = new CodeEditorSidebar(this);
     languageRepo = new LanguageRepository(SettingsHelper::getDefaultLanguage(), this);
 
@@ -732,12 +733,25 @@ void CodeEditor::highlightParentheses()
             continue;
         }
 
+        auto counterStyle = highlighter->getFormat(position).textStyle();
+
+        using TextStyle = KSyntaxHighlighting::Theme::TextStyle;
+
+        auto needSame = [](const TextStyle &style) {
+            return style == TextStyle::Comment || style == TextStyle::String || style == TextStyle::Char;
+        };
+
         auto counter = 1;
 
         while (counter != 0 && position > 0 && position < (document()->characterCount() - 1))
         {
             // Moving position
             position += direction;
+
+            auto activeStyle = highlighter->getFormat(position).textStyle();
+            if (needSame(activeStyle) || needSame(counterStyle))
+                if (activeStyle != counterStyle)
+                    continue;
 
             auto character = document()->characterAt(position);
             // Checking symbol under position
@@ -1181,27 +1195,6 @@ QChar CodeEditor::charUnderCursor(int offset) const
     return text[index];
 }
 
-bool CodeEditor::isPositionInsideBlockComments(int position) const
-{
-    QString code = document()->toPlainText();
-    return true;
-}
-
-bool CodeEditor::isPositionInsideLineComments(int position)
-{
-    return true;
-}
-
-bool CodeEditor::isPositionInsideSingleQuotes(int position) const
-{
-    return surroundedByCharInSingleLine('\'', position, true);
-}
-
-bool CodeEditor::isPositionInsideDoubleQuotes(int position) const
-{
-    return surroundedByCharInSingleLine('"', position, true);
-}
-
 bool CodeEditor::surroundedByCharInSingleLine(QChar c, int position, bool espace) const
 {
     bool foundStart = false;
@@ -1237,12 +1230,6 @@ bool CodeEditor::surroundedByCharInSingleLine(QChar c, int position, bool espace
             stop++;
     }
     return foundStart && foundStop;
-}
-
-bool CodeEditor::isPositionPartOfRawOrStringLiteral(int position)
-{
-
-    return true;
 }
 
 void CodeEditor::insertFromMimeData(const QMimeData *source)

@@ -42,6 +42,7 @@
 #ifndef CODEEDITOR_HPP
 #define CODEEDITOR_HPP
 
+#include "HighLighter.hpp"
 #include <KSyntaxHighlighting/Theme>
 #include <QPlainTextEdit>
 #include <utility>
@@ -265,44 +266,6 @@ class CodeEditor : public QPlainTextEdit
      */
     QChar charUnderCursor(int offset = 0) const;
 
-    /**
-     * @brief Method to check if character at given position
-     * is inside a block comment. Return false if language does
-     * not have notion of block comments.
-     * @param the position to check
-     */
-    bool isPositionInsideBlockComments(int position) const;
-
-    /**
-     * @brief Method to check if character at given position
-     * is inside a line comment.
-     * @param the position to check
-     */
-
-    static bool isPositionInsideLineComments(int position);
-
-    /**
-     * @brief Method to check if character at given position
-     * is inside a single quote.
-     * @param the position to check
-     */
-    bool isPositionInsideSingleQuotes(int position) const;
-
-    /**
-     * @brief Method to check if character at given position
-     * is inside a Double quote.
-     * @param the position to check
-     */
-
-    bool isPositionInsideDoubleQuotes(int position) const;
-
-    /**
-     * @brief Method to check if character at given position
-     * is inside a Raw String or String literals quote.
-     * @param the position to check
-     */
-
-    static bool isPositionPartOfRawOrStringLiteral(int position);
     bool surroundedByCharInSingleLine(QChar c, int position, bool espace = true) const;
 
     /**
@@ -363,7 +326,7 @@ class CodeEditor : public QPlainTextEdit
 
     QVector<Parenthesis> parentheses;
 
-    KSyntaxHighlighting::SyntaxHighlighter *highlighter = nullptr;
+    Highlighter *highlighter = nullptr;
 
     KSyntaxHighlighting::Theme theme;
 
