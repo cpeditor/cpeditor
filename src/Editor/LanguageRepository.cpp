@@ -21,7 +21,6 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
-#include <QJsonValue>
 #include <QString>
 
 namespace Editor
@@ -30,7 +29,7 @@ LanguageRepository::LanguageRepository(const QString &language, QObject *parent)
 {
     QString jsonDoc = Util::readFile(":/language_config.json");
     doc = QJsonDocument::fromJson(jsonDoc.toLocal8Bit());
-    QJsonObject obj = doc[language].toObject();
+    QJsonObject jsonObject = doc[language].toObject();
 }
 
 void LanguageRepository::changeLanguage(const QString &newLang)
