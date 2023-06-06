@@ -105,7 +105,7 @@ class Highlighter : public QSyntaxHighlighter, public KSyntaxHighlighting::Abstr
      *
      *  @see findFoldingRegionEnd
      */
-    static bool startsFoldingRegion(const QTextBlock &startBlock) ;
+    static bool startsFoldingRegion(const QTextBlock &startBlock);
 
     /** Finds the end of the folding region starting at @p startBlock.
      *  If multiple folding regions begin at @p startBlock, the end of
@@ -119,7 +119,7 @@ class Highlighter : public QSyntaxHighlighter, public KSyntaxHighlighting::Abstr
      *
      *  @see startsFoldingRegion
      */
-    static QTextBlock findFoldingRegionEnd(const QTextBlock &startBlock) ;
+    static QTextBlock findFoldingRegionEnd(const QTextBlock &startBlock);
 
     KSyntaxHighlighting::Format getFormat(int pos);
 
