@@ -344,6 +344,12 @@
     "tip": "The syntax highlight theme of the code editor"
   },
   {
+    "name": "Highlight Error Line",
+    "type": "bool",
+    "default": false,
+    "tip": "Highlight lines containing diagnostics"
+  },
+  {
     "name": "Detached Run Terminal Program",
     "desc": "Terminal Program",
     "type": "QString",

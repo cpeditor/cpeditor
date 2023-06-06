@@ -190,7 +190,7 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
     AddPageHelper(this)
         .page(TRKEY("Code Edit"),
               {"Tab Width", "Cursor Width", "Auto Indent", "Wrap Text", "Auto Complete Parentheses", "Auto Remove Parentheses",
-               "Tab Jump Out Parentheses", "Replace Tabs"})
+               "Tab Jump Out Parentheses", "Replace Tabs", "Highlight Error Line"})
         .dir(TRKEY("Language"))
             .page(TRKEY("General"), {"Default Language"})
             .dir(TRKEY("C++"))

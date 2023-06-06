@@ -102,7 +102,9 @@ class CodeEditor : public QPlainTextEdit
      * @note QPair<int, int>: first -> Line number in 1-based indexing
      *                        second -> Character number in 0-based indexing
      */
-    void squiggle(SeverityLevel level, QPair<int, int>, QPair<int, int>, QString tooltipMessage);
+    void addSquiggle(SeverityLevel level, QPair<int, int> start, QPair<int, int> stop, const QString &tooltipMessage);
+
+    void highlightAllSquiggle();
 
     /**
      * @brief clearSquiggle, Clears complete squiggle from editor
@@ -303,26 +305,29 @@ class CodeEditor : public QPlainTextEdit
      */
     struct SquiggleInformation
     {
-        SquiggleInformation() = default;
-
-        SquiggleInformation(QPair<int, int> start, QPair<int, int> stop, QString text)
-            : m_startPos(start), m_stopPos(stop), m_tooltipText(std::move(text))
+        SquiggleInformation(SeverityLevel level_, QPair<int, int> start_, QPair<int, int> stop_, QString text_)
+            : level(level_), start(start_), stop(stop_), tooltip(std::move(text_))
         {
         }
 
-        QPair<int, int> m_startPos;
-        QPair<int, int> m_stopPos;
-        QString m_tooltipText;
+        SeverityLevel level;
+        QPair<int, int> start;
+        QPair<int, int> stop;
+        QString tooltip;
     };
 
+    void highlightSquiggle(const SquiggleInformation &info);
+
     QList<QTextEdit::ExtraSelection> currentLineExtraSelections, parenthesesExtraSelections, occurrencesExtraSelections,
-        squigglesExtraSelections;
+        squigglesExtraSelections, squigglesLineExtraSelections;
 
     QString m_tabReplace;
 
     bool m_vimCursor = false;
 
     bool m_highlightingCurrentLine = true;
+
+    bool m_highlightingErrorLine = false;
 
     QRect m_cursorRect;
 

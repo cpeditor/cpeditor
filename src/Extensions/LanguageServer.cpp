@@ -248,9 +248,11 @@ void LanguageServer::onLSPServerNotificationArrived(QString const &method, QJson
             stop.first = end["line"].toInt() + 1;
             stop.second = end["character"].toInt();
 
-            m_editor->squiggle(level, start, stop,
-                               tooltip.remove(" (fix available)")); // We do not provide quick fix so remove this text.
+            m_editor->addSquiggle(
+                level, start, stop,
+                tooltip.remove(" (fix available)")); // We do not provide quick fix so remove this text.
         }
+        m_editor->highlightAllSquiggle();
     }
 }
 

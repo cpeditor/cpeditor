@@ -96,6 +96,7 @@ void CodeEditor::applySettings(const QString &lang)
         setWordWrapMode(QTextOption::NoWrap);
 
     setHighlightCurrentLine(isHighlightingCurrentLine());
+    m_highlightingErrorLine = SettingsHelper::isHighlightErrorLine();
 
     updateBottomMargin();
 
@@ -178,6 +179,7 @@ void CodeEditor::setTheme(const KSyntaxHighlighting::Theme &newTheme)
     highlightCurrentLine();
     highlightOccurrences();
     highlightParentheses();
+    highlightAllSquiggle();
 }
 
 int CodeEditor::sidebarWidth() const
@@ -1102,12 +1104,12 @@ bool CodeEditor::event(QEvent *event)
         QString text;
         for (auto const &e : squiggles)
         {
-            if (e.m_startPos <= positionOfTooltip && e.m_stopPos >= positionOfTooltip)
+            if (e.start <= positionOfTooltip && e.stop >= positionOfTooltip)
             {
                 if (text.isEmpty())
-                    text = e.m_tooltipText;
+                    text = e.tooltip;
                 else
-                    text += "; " + e.m_tooltipText;
+                    text += "; " + e.tooltip;
             }
         }
 
@@ -1121,51 +1123,79 @@ bool CodeEditor::event(QEvent *event)
     return QPlainTextEdit::event(event);
 }
 
-void CodeEditor::squiggle(SeverityLevel level, QPair<int, int> start, QPair<int, int> stop, QString tooltipMessage)
+void CodeEditor::highlightAllSquiggle()
 {
-    if (stop < start)
-        return;
+    squigglesExtraSelections.clear();
+    squigglesLineExtraSelections.clear();
+    for (const auto &info : squiggles)
+    {
+        highlightSquiggle(info);
+    }
+    updateExtraSelections();
+}
 
-    SquiggleInformation info(start, stop, std::move(tooltipMessage));
-    squiggles.push_back(info);
+void CodeEditor::highlightSquiggle(const SquiggleInformation &info)
+{
 
     auto cursor = textCursor();
 
     cursor.movePosition(QTextCursor::Start);
-    cursor.movePosition(QTextCursor::NextBlock, QTextCursor::MoveAnchor, start.first - 1);
+    cursor.movePosition(QTextCursor::NextBlock, QTextCursor::MoveAnchor, info.start.first - 1);
     cursor.movePosition(QTextCursor::StartOfBlock);
-    cursor.movePosition(QTextCursor::NextCharacter, QTextCursor::MoveAnchor, start.second);
+    cursor.movePosition(QTextCursor::NextCharacter, QTextCursor::MoveAnchor, info.start.second);
 
-    if (stop.first > start.first)
-        cursor.movePosition(QTextCursor::NextBlock, QTextCursor::KeepAnchor, stop.first - start.first);
+    if (info.stop.first > info.start.first)
+        cursor.movePosition(QTextCursor::NextBlock, QTextCursor::KeepAnchor, info.stop.first - info.start.first);
 
     cursor.movePosition(QTextCursor::StartOfBlock, QTextCursor::KeepAnchor);
-    cursor.movePosition(QTextCursor::NextCharacter, QTextCursor::KeepAnchor, stop.second);
+    cursor.movePosition(QTextCursor::NextCharacter, QTextCursor::KeepAnchor, info.stop.second);
 
     QTextCharFormat newcharfmt = currentCharFormat();
     newcharfmt.setFontUnderline(true);
 
-    switch (level)
+    QColor color = getEditorColor(KSyntaxHighlighting::Theme::BackgroundColor);
+
+    switch (info.level)
     {
     case SeverityLevel::Error:
         newcharfmt.setUnderlineColor(getTextColor(KSyntaxHighlighting::Theme::Error));
         newcharfmt.setUnderlineStyle(QTextCharFormat::SpellCheckUnderline);
+        color = getEditorColor(KSyntaxHighlighting::Theme::MarkError);
         // newcharfmt.setUnderlineStyle(m_syntaxStyle->getFormat("Error").underlineStyle());
         break;
     case SeverityLevel::Warning:
         newcharfmt.setUnderlineColor(getTextColor(KSyntaxHighlighting::Theme::Warning));
         newcharfmt.setUnderlineStyle(QTextCharFormat::SpellCheckUnderline);
+        color = getEditorColor(KSyntaxHighlighting::Theme::MarkWarning);
         // newcharfmt.setUnderlineStyle(m_syntaxStyle->getFormat("Warning").underlineStyle());
         break;
     case SeverityLevel::Information:
     case SeverityLevel::Hint:
         newcharfmt.setUnderlineColor(getTextColor(KSyntaxHighlighting::Theme::Information));
         newcharfmt.setUnderlineStyle(QTextCharFormat::SpellCheckUnderline);
+        color = getEditorColor(KSyntaxHighlighting::Theme::MarkWarning);
     }
 
     squigglesExtraSelections.push_back({cursor, newcharfmt});
 
-    updateExtraSelections();
+    if (m_highlightingErrorLine)
+    {
+        QTextEdit::ExtraSelection newlinefmt;
+        color.setAlpha(int(color.alpha() * 0.2));
+        newlinefmt.format.setBackground(color);
+        newlinefmt.format.setProperty(QTextFormat::FullWidthSelection, true);
+        newlinefmt.cursor = cursor;
+        newlinefmt.cursor.clearSelection();
+        squigglesLineExtraSelections.push_back(newlinefmt);
+    }
+}
+
+void CodeEditor::addSquiggle(SeverityLevel level, QPair<int, int> start, QPair<int, int> stop,
+                             const QString &tooltipMessage)
+{
+    if (stop < start)
+        return;
+    squiggles.push_back({level, start, stop, tooltipMessage});
 }
 
 void CodeEditor::clearSquiggle()
@@ -1175,6 +1205,7 @@ void CodeEditor::clearSquiggle()
 
     squiggles.clear();
     squigglesExtraSelections.clear();
+    squigglesLineExtraSelections.clear();
 
     updateExtraSelections();
 }
@@ -1341,8 +1372,9 @@ void CodeEditor::addInEachLineOfSelection(const QRegularExpression &regex, const
 
 void CodeEditor::updateExtraSelections()
 {
-    QPlainTextEdit::setExtraSelections(currentLineExtraSelections + parenthesesExtraSelections +
-                                       occurrencesExtraSelections + squigglesExtraSelections);
+    QPlainTextEdit::setExtraSelections(squigglesLineExtraSelections + currentLineExtraSelections +
+                                       parenthesesExtraSelections + occurrencesExtraSelections +
+                                       squigglesExtraSelections);
 }
 
 QColor CodeEditor::getEditorColor(KSyntaxHighlighting::Theme::EditorColorRole role)
