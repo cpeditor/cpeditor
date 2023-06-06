@@ -57,7 +57,7 @@ namespace Editor
 
 KSH::FoldingRegion Highlighter::foldingRegion(const QTextBlock &startBlock)
 {
-    const auto data = dynamic_cast<TextBlockUserData *>(startBlock.userData());
+    auto *const data = dynamic_cast<TextBlockUserData *>(startBlock.userData());
     if (!data)
     {
         return KSH::FoldingRegion();
@@ -116,12 +116,12 @@ void Highlighter::setDefinition(const KSyntaxHighlighting::Definition &def)
     rehighlight();
 }
 
-bool Highlighter::startsFoldingRegion(const QTextBlock &startBlock) const
+bool Highlighter::startsFoldingRegion(const QTextBlock &startBlock)
 {
     return foldingRegion(startBlock).type() == KSH::FoldingRegion::Begin;
 }
 
-QTextBlock Highlighter::findFoldingRegionEnd(const QTextBlock &startBlock) const
+QTextBlock Highlighter::findFoldingRegionEnd(const QTextBlock &startBlock)
 {
     const auto region = foldingRegion(startBlock);
 
@@ -130,7 +130,7 @@ QTextBlock Highlighter::findFoldingRegionEnd(const QTextBlock &startBlock) const
     while (block.isValid())
     {
         block = block.next();
-        const auto data = dynamic_cast<TextBlockUserData *>(block.userData());
+        auto *const data = dynamic_cast<TextBlockUserData *>(block.userData());
         if (!data)
         {
             continue;
@@ -166,7 +166,7 @@ void Highlighter::highlightBlock(const QString &text)
     if (currentBlock().position() > 0)
     {
         const auto prevBlock = currentBlock().previous();
-        const auto prevData = dynamic_cast<TextBlockUserData *>(prevBlock.userData());
+        auto *const prevData = dynamic_cast<TextBlockUserData *>(prevBlock.userData());
         if (prevData)
         {
             state = prevData->state;
@@ -177,7 +177,7 @@ void Highlighter::highlightBlock(const QString &text)
 
     state = highlightLine(text, state);
 
-    auto data = dynamic_cast<TextBlockUserData *>(currentBlockUserData());
+    auto *data = dynamic_cast<TextBlockUserData *>(currentBlockUserData());
     if (!data)
     { // first time we highlight this
         data = new TextBlockUserData;
@@ -249,8 +249,8 @@ void Highlighter::applyFormat(int offset, int length, const KSyntaxHighlighting:
 
 void Highlighter::applyFolding(int offset, int length, KSH::FoldingRegion region)
 {
-    Q_UNUSED(offset);
-    Q_UNUSED(length);
+    Q_UNUSED(offset)
+    Q_UNUSED(length)
 
     if (region.type() == KSH::FoldingRegion::Begin)
     {
@@ -277,7 +277,7 @@ KSH::Format Highlighter::getFormat(int pos)
     auto block = document()->findBlock(pos);
     const auto *data = dynamic_cast<TextBlockUserData *>(block.userData());
     pos -= block.position();
-    auto &attr = data->attributes;
+    const auto &attr = data->attributes;
     auto found = std::upper_bound(attr.cbegin(), attr.cend(), pos,
                                   [](const int &p, const Attribute &x) { return p < x.offset + x.length; });
     if (found != attr.cend() && found->offset <= pos && pos < (found->offset + found->length))
