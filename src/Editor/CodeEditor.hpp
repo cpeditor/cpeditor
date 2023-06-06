@@ -240,7 +240,7 @@ class CodeEditor : public QPlainTextEdit
 
     QTextBlock blockAtPosition(int y) const;
 
-    bool isFoldable(const QTextBlock &block) const;
+    static bool isFoldable(const QTextBlock &block);
 
     static bool isFolded(const QTextBlock &block);
 

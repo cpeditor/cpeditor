@@ -81,8 +81,6 @@ class TextBlockUserData : public QTextBlockUserData
     std::vector<Attribute> attributes;
 };
 
-class SyntaxHighlighterPrivate;
-
 /** A QSyntaxHighlighter implementation for use with QTextDocument.
  *  This supports partial re-highlighting during editing and
  *  tracks syntax-based code folding regions.

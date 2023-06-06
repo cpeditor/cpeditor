@@ -170,10 +170,9 @@ void CodeEditor::setTheme(const KSyntaxHighlighting::Theme &newTheme)
         QRgb selectionBackground = theme.editorColor(KSyntaxHighlighting::Theme::TextSelection);
         QRgb textColor = theme.textColor(KSyntaxHighlighting::Theme::Normal);
 
-        setStyleSheet(QString("QPlainTextEdit { background-color: %1; selection-background-color: %2; color: %3; }")
-                          .arg(QColor(backgroundColor).name())
-                          .arg(QColor(selectionBackground).name())
-                          .arg(QColor(textColor).name()));
+        setStyleSheet(
+            QString("QPlainTextEdit { background-color: %1; selection-background-color: %2; color: %3; }")
+                .arg(QColor(backgroundColor).name(), QColor(selectionBackground).name(), QColor(textColor).name()));
     }
 
     highlighter->setTheme(theme);
@@ -286,9 +285,9 @@ QTextBlock CodeEditor::blockAtPosition(int y) const
     return QTextBlock();
 }
 
-bool CodeEditor::isFoldable(const QTextBlock &block) const
+bool CodeEditor::isFoldable(const QTextBlock &block)
 {
-    return highlighter->startsFoldingRegion(block);
+    return Editor::Highlighter::startsFoldingRegion(block);
 }
 
 bool CodeEditor::isFolded(const QTextBlock &block)
@@ -304,7 +303,7 @@ bool CodeEditor::isFolded(const QTextBlock &block)
 void CodeEditor::toggleFold(const QTextBlock &startBlock)
 {
     // we also want to fold the last line of the region, therefore the ".next()"
-    const auto endBlock = highlighter->findFoldingRegionEnd(startBlock).next();
+    const auto endBlock = Editor::Highlighter::findFoldingRegionEnd(startBlock).next();
 
     if (isFolded(startBlock))
     {
