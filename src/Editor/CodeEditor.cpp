@@ -106,19 +106,20 @@ void CodeEditor::applySettings(const QString &lang)
     highlighter->setDefinition(
         KSyntaxHighlightingRepository::getSyntaxHighlightingRepository()->definitionForName(language));
 
-    if (SettingsHelper::getEditorTheme() == "Default")
+    QString editorThemeName = SettingsHelper::getEditorTheme();
+    if (editorThemeName == "Default" || !KSyntaxHighlightingRepository::themeNames().contains(editorThemeName))
     {
-        setTheme(QColor(theme.editorColor(KSyntaxHighlighting::Theme::BackgroundColor)).lightness() < 128
-                     ? KSyntaxHighlightingRepository::getSyntaxHighlightingRepository()->defaultTheme(
-                           KSyntaxHighlighting::Repository::DarkTheme)
-                     : KSyntaxHighlightingRepository::getSyntaxHighlightingRepository()->defaultTheme(
-                           KSyntaxHighlighting::Repository::LightTheme));
+        bool isLight = QColor(theme.editorColor(KSyntaxHighlighting::Theme::BackgroundColor)).lightness() < 128;
+        auto defaultTheme = KSyntaxHighlightingRepository::getSyntaxHighlightingRepository()->defaultTheme(
+            isLight ? KSyntaxHighlighting::Repository::LightTheme : KSyntaxHighlighting::Repository::DarkTheme);
+        setTheme(defaultTheme);
+        SettingsHelper::setEditorTheme(defaultTheme.name());
     }
     else
     {
-        setTheme(
-            KSyntaxHighlightingRepository::getSyntaxHighlightingRepository()->theme(SettingsHelper::getEditorTheme()));
+        setTheme(KSyntaxHighlightingRepository::getSyntaxHighlightingRepository()->theme(editorThemeName));
     }
+
     if (vimCursor())
         return;
 
