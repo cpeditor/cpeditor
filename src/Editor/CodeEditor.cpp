@@ -1091,6 +1091,7 @@ bool CodeEditor::event(QEvent *event)
     {
         auto *helpEvent = dynamic_cast<QHelpEvent *>(event);
         auto point = helpEvent->pos();
+        point.setX(point.x() - sidebarWidth());
         QTextCursor cursor = cursorForPosition(point);
 
         auto lineNumber = cursor.blockNumber() + 1;
