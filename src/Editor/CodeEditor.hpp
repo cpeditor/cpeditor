@@ -294,6 +294,10 @@ class CodeEditor : public QPlainTextEdit
 
     void updateExtraSelections();
 
+    QColor getEditorColor(KSyntaxHighlighting::Theme::EditorColorRole role);
+
+    QColor getTextColor(KSyntaxHighlighting::Theme::TextStyle style);
+
     /**
      * @brief The SquiggleInformation struct, Line number will be index of vector+1;
      */

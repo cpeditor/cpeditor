@@ -54,7 +54,6 @@
 #include <QMimeData>
 #include <QPainter>
 #include <QRegularExpression>
-#include <QRgb>
 #include <QScrollBar>
 #include <QTextBlock>
 #include <QTextCharFormat>
@@ -109,7 +108,7 @@ void CodeEditor::applySettings(const QString &lang)
     QString editorThemeName = SettingsHelper::getEditorTheme();
     if (editorThemeName == "Default" || !KSyntaxHighlightingRepository::themeNames().contains(editorThemeName))
     {
-        bool isLight = QColor(theme.editorColor(KSyntaxHighlighting::Theme::BackgroundColor)).lightness() < 128;
+        bool isLight = getEditorColor(KSyntaxHighlighting::Theme::BackgroundColor).lightness() < 128;
         auto defaultTheme = KSyntaxHighlightingRepository::getSyntaxHighlightingRepository()->defaultTheme(
             isLight ? KSyntaxHighlighting::Repository::LightTheme : KSyntaxHighlighting::Repository::DarkTheme);
         setTheme(defaultTheme);
@@ -167,13 +166,11 @@ void CodeEditor::setTheme(const KSyntaxHighlighting::Theme &newTheme)
 
     if (theme.isValid())
     {
-        QRgb backgroundColor = theme.editorColor(KSyntaxHighlighting::Theme::BackgroundColor);
-        QRgb selectionBackground = theme.editorColor(KSyntaxHighlighting::Theme::TextSelection);
-        QRgb textColor = theme.textColor(KSyntaxHighlighting::Theme::Normal);
 
-        setStyleSheet(
-            QString("QPlainTextEdit { background-color: %1; selection-background-color: %2; color: %3; }")
-                .arg(QColor(backgroundColor).name(), QColor(selectionBackground).name(), QColor(textColor).name()));
+        setStyleSheet(QString("QPlainTextEdit { background-color: %1; selection-background-color: %2; color: %3; }")
+                          .arg(getEditorColor(KSyntaxHighlighting::Theme::BackgroundColor).name(),
+                               getEditorColor(KSyntaxHighlighting::Theme::TextSelection).name(),
+                               getTextColor(KSyntaxHighlighting::Theme::Normal).name()));
     }
 
     highlighter->setTheme(theme);
@@ -213,9 +210,9 @@ void CodeEditor::sidebarPaintEvent(QPaintEvent *event)
         if (block.isVisible() && bottom >= event->rect().top())
         {
             const auto number = QString::number(blockNumber + 1);
-            painter.setPen(highlighter->theme().editorColor((blockNumber == currentBlockNumber)
-                                                                ? KSyntaxHighlighting::Theme::CurrentLineNumber
-                                                                : KSyntaxHighlighting::Theme::LineNumbers));
+            painter.setPen(getEditorColor((blockNumber == currentBlockNumber)
+                                              ? KSyntaxHighlighting::Theme::CurrentLineNumber
+                                              : KSyntaxHighlighting::Theme::LineNumbers));
             painter.drawText(0, top, sideBar->width() - 2 - foldingMarkerSize, fontMetrics().height(), Qt::AlignRight,
                              number);
         }
@@ -239,7 +236,8 @@ void CodeEditor::sidebarPaintEvent(QPaintEvent *event)
             painter.save();
             painter.setRenderHint(QPainter::Antialiasing);
             painter.setPen(Qt::NoPen);
-            painter.setBrush(QColor(highlighter->theme().editorColor(KSyntaxHighlighting::Theme::CodeFolding)));
+            //            painter.setBrush(getEditorColor(KSyntaxHighlighting::Theme::CodeFolding));
+            painter.setBrush(getEditorColor(KSyntaxHighlighting::Theme::LineNumbers));
             painter.translate(sideBar->width() - foldingMarkerSize, top);
             painter.drawPolygon(polygon);
             painter.restore();
@@ -347,7 +345,10 @@ void CodeEditor::changeEvent(QEvent *e)
 {
     QPlainTextEdit::changeEvent(e);
     if (e->type() == QEvent::FontChange)
+    {
         updateBottomMargin();
+        updateSidebarGeometry();
+    }
 }
 
 void CodeEditor::paintEvent(QPaintEvent *e)
@@ -375,13 +376,13 @@ void CodeEditor::paintEvent(QPaintEvent *e)
                 rect.setWidth(fm.horizontalAdvance(c));
                 painter.setPen(Qt::NoPen);
 
-                painter.setBrush(QColor(highlighter->theme().textColor(KSyntaxHighlighting::Theme::Char)));
+                painter.setBrush(getTextColor(KSyntaxHighlighting::Theme::Char));
                 painter.setCompositionMode(QPainter::CompositionMode_Difference);
             }
             else
             {
                 rect.setWidth(cursorWidth());
-                painter.setPen(QColor(highlighter->theme().textColor(KSyntaxHighlighting::Theme::Char)));
+                painter.setPen(getTextColor(KSyntaxHighlighting::Theme::Char));
             }
 
             painter.drawRect(rect);
@@ -390,6 +391,7 @@ void CodeEditor::paintEvent(QPaintEvent *e)
     }
     QPlainTextEdit::paintEvent(e);
 }
+
 void CodeEditor::focusOutEvent(QFocusEvent *e)
 {
     if (m_vimCursor)
@@ -490,8 +492,7 @@ void CodeEditor::highlightOccurrences()
                 {
                     QTextEdit::ExtraSelection e;
                     e.cursor = cursor;
-                    e.format.setBackground(
-                        {highlighter->theme().editorColor(KSyntaxHighlighting::Theme::TextSelection)});
+                    e.format.setBackground(getEditorColor(KSyntaxHighlighting::Theme::TextSelection));
                     occurrencesExtraSelections.push_back(e);
                 }
                 cursor = doc->find(text, cursor, QTextDocument::FindWholeWords | QTextDocument::FindCaseSensitively);
@@ -772,8 +773,7 @@ void CodeEditor::highlightParentheses()
 
             auto directionEnum = direction < 0 ? QTextCursor::MoveOperation::Left : QTextCursor::MoveOperation::Right;
 
-            selection.format.setBackground(
-                {highlighter->theme().editorColor(KSyntaxHighlighting::Theme::BracketMatching)});
+            selection.format.setBackground(getEditorColor(KSyntaxHighlighting::Theme::BracketMatching));
             selection.cursor = textCursor();
             selection.cursor.clearSelection();
             selection.cursor.movePosition(directionEnum, QTextCursor::MoveMode::MoveAnchor,
@@ -804,7 +804,7 @@ void CodeEditor::highlightCurrentLine()
     {
         QTextEdit::ExtraSelection selection;
 
-        selection.format.setBackground({highlighter->theme().editorColor(KSyntaxHighlighting::Theme::CurrentLine)});
+        selection.format.setBackground(getEditorColor(KSyntaxHighlighting::Theme::CurrentLine));
         selection.format.setProperty(QTextFormat::FullWidthSelection, true);
         selection.cursor = textCursor();
         selection.cursor.clearSelection();
@@ -1147,20 +1147,19 @@ void CodeEditor::squiggle(SeverityLevel level, QPair<int, int> start, QPair<int,
     switch (level)
     {
     case SeverityLevel::Error:
-        newcharfmt.setUnderlineColor(highlighter->theme().textColor(KSyntaxHighlighting::Theme::Error));
+        newcharfmt.setUnderlineColor(getTextColor(KSyntaxHighlighting::Theme::Error));
+        newcharfmt.setUnderlineStyle(QTextCharFormat::SpellCheckUnderline);
         // newcharfmt.setUnderlineStyle(m_syntaxStyle->getFormat("Error").underlineStyle());
         break;
     case SeverityLevel::Warning:
-        newcharfmt.setUnderlineColor(highlighter->theme().textColor(KSyntaxHighlighting::Theme::Warning));
+        newcharfmt.setUnderlineColor(getTextColor(KSyntaxHighlighting::Theme::Warning));
+        newcharfmt.setUnderlineStyle(QTextCharFormat::SpellCheckUnderline);
         // newcharfmt.setUnderlineStyle(m_syntaxStyle->getFormat("Warning").underlineStyle());
         break;
     case SeverityLevel::Information:
-        newcharfmt.setUnderlineColor(highlighter->theme().textColor(KSyntaxHighlighting::Theme::Information));
-        newcharfmt.setUnderlineStyle(QTextCharFormat::DotLine);
-        break;
     case SeverityLevel::Hint:
-        newcharfmt.setUnderlineColor(highlighter->theme().textColor(KSyntaxHighlighting::Theme::Alert));
-        newcharfmt.setUnderlineStyle(QTextCharFormat::DotLine);
+        newcharfmt.setUnderlineColor(getTextColor(KSyntaxHighlighting::Theme::Information));
+        newcharfmt.setUnderlineStyle(QTextCharFormat::SpellCheckUnderline);
     }
 
     squigglesExtraSelections.push_back({cursor, newcharfmt});
@@ -1343,5 +1342,15 @@ void CodeEditor::updateExtraSelections()
 {
     QPlainTextEdit::setExtraSelections(currentLineExtraSelections + parenthesesExtraSelections +
                                        occurrencesExtraSelections + squigglesExtraSelections);
+}
+
+QColor CodeEditor::getEditorColor(KSyntaxHighlighting::Theme::EditorColorRole role)
+{
+    return QColor::fromRgba(theme.editorColor(role));
+}
+
+QColor CodeEditor::getTextColor(KSyntaxHighlighting::Theme::TextStyle style)
+{
+    return QColor::fromRgba(theme.textColor(style));
 }
 } // namespace Editor
