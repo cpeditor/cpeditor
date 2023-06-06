@@ -189,13 +189,14 @@ int CodeEditor::sidebarWidth() const
         ++digits;
         count /= 10;
     }
-    return 4 + fontMetrics().horizontalAdvance(QLatin1Char('9')) * digits + fontMetrics().lineSpacing();
+    return 4 + fontMetrics().horizontalAdvance(QLatin1Char('9')) * (digits + 1) + fontMetrics().lineSpacing();
 }
 
 void CodeEditor::sidebarPaintEvent(QPaintEvent *event)
 {
     QPainter painter(sideBar);
-    painter.fillRect(event->rect(), highlighter->theme().editorColor(KSyntaxHighlighting::Theme::IconBorder));
+    painter.fillRect(event->rect(), getEditorColor(KSyntaxHighlighting::Theme::IconBorder));
+    painter.setFont(font());
 
     auto block = firstVisibleBlock();
     auto blockNumber = block.blockNumber();
