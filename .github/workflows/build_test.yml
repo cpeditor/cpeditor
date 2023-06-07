@@ -14,7 +14,10 @@ jobs:
       matrix:
         config:
           - os: windows-latest
+            arch: x64
+            platform: x64
             binary: Release/cpeditor.exe
+            ecm-path: "C:/Program Files/ECM/"
           - os: ubuntu-latest
             binary: cpeditor
           - os: macos-latest
@@ -49,56 +52,49 @@ jobs:
         if: startsWith(matrix.config.os, 'windows')
         run: |
           cd third_party/extra-cmake-modules
-          mkdir build
-          cd build &&
-            cmake .. -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF &&
-            cmake --build . --config Release --parallel $(nproc) &&
-            cmake --build . --target install
+          cmake -B build -S . -A ${{ matrix.config.platform }}  -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
+          cmake --build build --config Release --parallel $(nproc) --target install
 
       - name: "[Unix] Install extra-cmake-modules"
         if: startsWith(matrix.config.os, 'ubuntu') || startsWith(matrix.config.os, 'macos')
         run: |
           cd third_party/extra-cmake-modules
-          mkdir build
-          cd build &&
-            cmake .. -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF &&
-            cmake --build . --parallel $(nproc) &&
-            sudo cmake --build . --target install
+          cmake -B build -S . -DCMAKE_BUILD_TYPE=Release -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
+          sudo cmake --build build --config Release --parallel $(nproc) --target install
 
       - name: "[Windows] Install ksyntax-highlighting"
         if: startsWith(matrix.config.os, 'windows')
         run: |
           cd third_party/syntax-highlighting
-          mkdir build
-          cd build &&
-            cmake .. -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF  &&
-            cmake --build . --config Release --parallel $(nproc) &&
-            cmake --build . --target install
+          cmake -B build -S . -A ${{ matrix.config.platform }} -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
+          cmake --build build --config Release --parallel $(nproc) --target install
 
       - name: "[Unix] Install ksyntax-highlighting"
         if: startsWith(matrix.config.os, 'ubuntu') || startsWith(matrix.config.os, 'macos')
         run: |
           cd third_party/syntax-highlighting
-          mkdir build
-          cd build &&
-            cmake .. -DCMAKE_BUILD_TYPE=Release -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF 
-            cmake --build . --parallel $(nproc) &&
-            sudo cmake --build . --target install
+          cmake -B build -S . -DCMAKE_BUILD_TYPE=Release -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
+          sudo cmake --build build --config Release --parallel $(nproc) --target install
 
       - name: "[Unix] Build"
         if: startsWith(matrix.config.os, 'ubuntu') || startsWith(matrix.config.os, 'macos')
         run: |
           cmake -B build -S . -D USE_CLANG_TIDY=On -D CMAKE_BUILD_TYPE=Release
-          cmake --build build -j4
+          cmake --build build --config Release -j4
+          mkdir build/out
+          cp build/${{ matrix.config.binary }} build/out
 
       - name: "[Windows] Build"
         if: startsWith(matrix.config.os, 'windows')
         run: |
-          cmake -B build -S . -D USE_CLANG_TIDY=On -D "KF5SyntaxHighlighting_DIR=C:/Program Files (x86)/ECM/lib/cmake/KF5SyntaxHighlighting"
+          cmake -B build -S . -A ${{ matrix.config.platform }} -D USE_CLANG_TIDY=On -D "KF5SyntaxHighlighting_DIR=${{ matrix.config.ecm-path }}/lib/cmake/KF5SyntaxHighlighting"
           cmake --build build -j4 --config Release
+          mkdir build/out
+          cp build/${{ matrix.config.binary }} build/out
+          cp "${{ matrix.config.ecm-path }}/bin/KF5SyntaxHighlighting.dll" build/out
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
           name: "cpeditor-${{ matrix.config.os }}-${{ github.run_id }}"
-          path: build/${{ matrix.config.binary }}
+          path: build/out
