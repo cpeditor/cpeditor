@@ -807,7 +807,9 @@ void CodeEditor::highlightCurrentLine()
     {
         QTextEdit::ExtraSelection selection;
 
-        selection.format.setBackground(getEditorColor(KSyntaxHighlighting::Theme::CurrentLine));
+        auto color = getEditorColor(KSyntaxHighlighting::Theme::CurrentLine);
+        color.setAlpha(int(color.alpha() * 0.6));
+        selection.format.setBackground(color);
         selection.format.setProperty(QTextFormat::FullWidthSelection, true);
         selection.cursor = textCursor();
         selection.cursor.clearSelection();
