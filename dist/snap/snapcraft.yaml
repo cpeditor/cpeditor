@@ -34,6 +34,18 @@ parts:
     cmake-parameters:
       - -DCMAKE_INSTALL_PREFIX=/usr
       - -DCMAKE_BUILD_TYPE=Release
+    override-build: |
+      export Qt5LinguistTools_DIR="/opt/qt515/lib/cmake/Qt5LinguistTools/"
+      cd $SNAPCRAFT_PART_SRC
+      cd third_party/extra-cmake-modules
+      cmake -B build -S . -DCMAKE_BUILD_TYPE=Release -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
+      sudo cmake --build build --config Release --parallel $(nproc) --target install
+      cd -
+      cd third_party/syntax-highlighting
+      cmake -B build -S . -DCMAKE_BUILD_TYPE=Release -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
+      sudo cmake --build build --config Release --parallel $(nproc) --target install
+      cd -
+      snapcraftctl build
     override-prime: |
         snapcraftctl prime
         sed -i 's|Icon=.*|Icon=${SNAP}/usr/share/icons/hicolor/512x512/apps/cpeditor.png|g' $SNAPCRAFT_PRIME/usr/share/applications/cpeditor.desktop
