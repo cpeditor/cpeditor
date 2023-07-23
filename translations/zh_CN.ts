@@ -2683,6 +2683,14 @@ on the current tab and pause the stopwatch on the previous tab.</source>
 This may reduce distractions caused by stopwatch updates.</source>
         <translation>隐藏计时结果，只在“显示”按钮按下时显示。这或许可以避免计时结果更新使人分心。</translation>
     </message>
+    <message>
+        <source>Highlight Error Line</source>
+        <translation>高亮错误行</translation>
+    </message>
+    <message>
+        <source>Highlight lines containing diagnostics</source>
+        <translation>高亮包含代码提示的行</translation>
+    </message>
 </context>
 <context>
     <name>ShortcutItem</name>

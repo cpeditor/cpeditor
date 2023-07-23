@@ -22,6 +22,7 @@
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
 #include "Core/Runner.hpp"
+#include "Editor/CodeEditor.hpp"
 #include "Extensions/CFTool.hpp"
 #include "Extensions/ClangFormatter.hpp"
 #include "Extensions/CompanionServer.hpp"
@@ -30,13 +31,11 @@
 #include "Settings/FileProblemBinder.hpp"
 #include "Settings/PreferencesWindow.hpp"
 #include "Util/FileUtil.hpp"
-#include "Util/QCodeEditorUtil.hpp"
 #include "Widgets/Stopwatch.hpp"
 #include "Widgets/TestCases.hpp"
 #include "appwindow.hpp"
 #include "generated/SettingsHelper.hpp"
 #include "generated/version.hpp"
-#include <QCodeEditor>
 #include <QFileSystemWatcher>
 #include <QInputDialog>
 #include <QMessageBox>
@@ -113,18 +112,18 @@ MainWindow::~MainWindow()
 
 void MainWindow::setEditor()
 {
-    editor = new QCodeEditor();
+    editor = new Editor::CodeEditor();
     editor->setSizePolicy(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Expanding);
     editor->setAcceptDrops(false);
 
     ui->editorArea->addWidget(editor);
 
-    connect(editor, &QCodeEditor::textChanged, this, &MainWindow::onTextChanged);
-    connect(editor, &QCodeEditor::fontChanged, this, &MainWindow::onEditorFontChanged);
+    connect(editor, &Editor::CodeEditor::textChanged, this, &MainWindow::onTextChanged);
+    connect(editor, &Editor::CodeEditor::fontChanged, this, &MainWindow::onEditorFontChanged);
     // cursorPositionChanged() does not imply selectionChanged() if you press Left with
     // a selection (and the cursor is at the begin of the selection)
-    connect(editor, &QCodeEditor::cursorPositionChanged, this, &MainWindow::updateCursorInfo);
-    connect(editor, &QCodeEditor::selectionChanged, this, &MainWindow::updateCursorInfo);
+    connect(editor, &Editor::CodeEditor::cursorPositionChanged, this, &MainWindow::updateCursorInfo);
+    connect(editor, &Editor::CodeEditor::selectionChanged, this, &MainWindow::updateCursorInfo);
 }
 
 void MainWindow::setStopwatch()
@@ -336,7 +335,7 @@ QString MainWindow::getTabTitle(bool complete, bool star, int removeLength)
     return tabTitle;
 }
 
-QCodeEditor *MainWindow::getEditor() const
+Editor::CodeEditor *MainWindow::getEditor() const
 {
     return editor;
 }
@@ -631,7 +630,7 @@ void MainWindow::applySettings(const QString &pagePath)
 
     if (pageChanged("Code Edit") || pagePath.startsWith("Appearance/") ||
         pageChanged(QString("Language/%1/%1 Parentheses").arg(language)))
-        Util::applySettingsToEditor(editor, language);
+        editor->applySettings(language);
 
     if (!isLanguageSet && pageChanged("Language/General"))
     {
@@ -760,7 +759,7 @@ void MainWindow::setLanguage(const QString &lang)
     language = lang;
     if (language != "Python" && language != "Java")
         language = "C++";
-    Util::applySettingsToEditor(editor, language);
+    editor->applySettings(language);
     customCompileCommand.clear();
     ui->changeLanguageButton->setText(language);
     updateCompileAndRunButtons();

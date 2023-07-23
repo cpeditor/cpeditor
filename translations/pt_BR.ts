@@ -2692,6 +2692,14 @@ This may reduce distractions caused by stopwatch updates.</source>
         <translation>Ocultar o tempo do cronômetro e apenas exibir o tempo quando o botão para mostrar for pressionado.
 Isso pode reduzir distrações causadas pelas atualizações do cronômetro.</translation>
     </message>
+    <message>
+        <source>Highlight Error Line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Highlight lines containing diagnostics</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ShortcutItem</name>

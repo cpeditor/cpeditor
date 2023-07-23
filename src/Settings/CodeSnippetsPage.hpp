@@ -18,10 +18,10 @@
 #ifndef CODESNIPPETSPAGE_HPP
 #define CODESNIPPETSPAGE_HPP
 
+#include "Editor/CodeEditor.hpp"
 #include "Settings/PreferencesPage.hpp"
 #include <QMap>
 
-class QCodeEditor;
 class QLineEdit;
 class QListWidget;
 class QListWidgetItem;
@@ -160,7 +160,7 @@ class CodeSnippetsPage : public PreferencesPage
     QStackedWidget *rightWidget = nullptr;
     QWidget *snippetWidget = nullptr;
     QLabel *snippetNameLabel = nullptr;
-    QCodeEditor *editor = nullptr;
+    Editor::CodeEditor *editor = nullptr;
     QWidget *noSnippetWidget = nullptr;
     QLabel *noSnippetLabel = nullptr;
 

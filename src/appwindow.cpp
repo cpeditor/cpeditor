@@ -25,7 +25,6 @@
 #include "Core/Translator.hpp"
 #include "Extensions/CFTool.hpp"
 #include "Extensions/CompanionServer.hpp"
-#include "Extensions/EditorTheme.hpp"
 #include "Extensions/LanguageServer.hpp"
 #include "Extensions/WakaTime.hpp"
 #include "Settings/DefaultPathManager.hpp"
@@ -205,7 +204,6 @@ AppWindow::~AppWindow()
         ui->tabWidget->removeTab(0);
         delete tmp;
     }
-    Extensions::EditorTheme::release();
     delete ui;
     delete preferencesWindow;
     delete lspTimerCpp;

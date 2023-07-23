@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+### Added
+
+-   Use [Kate's Syntax highlighter](https://api.kde.org/frameworks/syntax-highlighting/html/) engine for Code Highlighting. (#1101)
+
 ### Fixied
 
 -   UNIX signal handler is now more robust. (#1166)

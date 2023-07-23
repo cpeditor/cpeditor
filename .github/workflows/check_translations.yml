@@ -23,6 +23,24 @@ jobs:
           cache: true
           version: ${{ env.QT_VERSION }}
 
+      - name: "[Unix] Install extra-cmake-modules"
+        run: |
+          cd third_party/extra-cmake-modules
+          mkdir build
+          cd build &&
+            cmake .. -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF &&
+            cmake --build . --parallel $(nproc) &&
+            sudo cmake --build . --target install
+
+      - name: "[Unix] Install ksyntax-highlighting"
+        run: |
+          cd third_party/syntax-highlighting
+          mkdir build
+          cd build &&
+            cmake .. -DCMAKE_BUILD_TYPE=Release -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF 
+            cmake --build . --parallel $(nproc) &&
+            sudo cmake --build . --target install
+
       - name: Build
         run: |
           cmake -B build -S . -D CMAKE_BUILD_TYPE=Release

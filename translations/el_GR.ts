@@ -2688,6 +2688,14 @@ on the current tab and pause the stopwatch on the previous tab.</source>
 This may reduce distractions caused by stopwatch updates.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Highlight Error Line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Highlight lines containing diagnostics</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ShortcutItem</name>
