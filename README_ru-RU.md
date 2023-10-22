@@ -283,6 +283,9 @@ Thanks go to these wonderful people: (if we forget to add you as a contributor, 
       <td align="center" valign="top" width="16.66%">
       <a href="https://github.com/D4NZ-jpg"><img src="https://avatars.githubusercontent.com/u/57308957?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/D4NZ-jpg"><sub><b>Dan</b></sub></a><br /><a href="#translation-D4NZ-jpg" title="Translation">🌍</a>
     </td>
+      <td align="center" valign="top" width="16.66%">
+      <a href="https://github.com/rogeryoungh"><img src="https://avatars.githubusercontent.com/u/42564206?v=4" width="100px;" alt=""/></a><br /><a href="https://rogery.dev"><sub><b>rogeryoungh</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/commits?author=rogeryoungh" title="Code">💻</a>
+    </td>
     </tr>
   </tbody>
 </table>
