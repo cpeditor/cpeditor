@@ -76,13 +76,13 @@ void MessageLogger::info(const QString &head, const QString &body, bool htmlEsca
 void MessageLogger::warn(const QString &head, const QString &body, bool htmlEscaped)
 {
     LOG_INFO(INFO_OF(head) << INFO_OF(body));
-    message(head, body, "green", htmlEscaped);
+    message(head, body, SettingsHelper::getWarnMessageColor(), htmlEscaped);
 }
 
 void MessageLogger::error(const QString &head, const QString &body, bool htmlEscaped)
 {
     LOG_INFO(INFO_OF(head) << INFO_OF(body));
-    message(head, body, "red", htmlEscaped);
+    message(head, body, SettingsHelper::getErrorMessageColor(), htmlEscaped);
 }
 
 void MessageLogger::onAnchorClicked(const QUrl &link)
