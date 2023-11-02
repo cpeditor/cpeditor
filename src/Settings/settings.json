@@ -1243,5 +1243,23 @@
         "name": "Display Stopwatch"
       }
     ]
+  },
+  {
+    "name": "Error Message Color",
+    "desc": "Color of error messages",
+    "type": "QString",
+    "ui": "QComboBox",
+    "param": "QStringList {\"aqua\", \"black\", \"blue\", \"fuchsia\", \"gray\", \"green\", \"lime\", \"maroon\", \"navy\", \"olive\", \"orange\", \"purple\", \"red\", \"silver\", \"teal\", \"white\", \"yellow\"}",
+    "default": "red",
+    "tip": "Color of error messages"
+  },
+  {
+    "name": "Warn Message Color",
+    "desc": "Color of warning messages",
+    "type": "QString",
+    "ui": "QComboBox",
+    "param": "QStringList {\"aqua\", \"black\", \"blue\", \"fuchsia\", \"gray\", \"green\", \"lime\", \"maroon\", \"navy\", \"olive\", \"orange\", \"purple\", \"red\", \"silver\", \"teal\", \"white\", \"yellow\"}",
+    "default": "green",
+    "tip": "Color of warning messages"
   }
 ]
