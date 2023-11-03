@@ -2691,6 +2691,14 @@ This may reduce distractions caused by stopwatch updates.</source>
         <source>Highlight lines containing diagnostics</source>
         <translation>高亮包含代码提示的行</translation>
     </message>
+    <message>
+        <source>Color of error messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Color of warning messages</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ShortcutItem</name>

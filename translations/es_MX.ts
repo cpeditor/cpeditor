@@ -2701,6 +2701,14 @@ Es una lista de &lt;nombre de ruta predeterminada&gt;, separadas por comas, y pu
         <source>Highlight lines containing diagnostics</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Color of error messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Color of warning messages</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ShortcutItem</name>
