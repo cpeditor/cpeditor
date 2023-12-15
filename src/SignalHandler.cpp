@@ -74,7 +74,7 @@ SignalHandler::SignalHandler(int mask) : _mask(mask)
 #else
             assert(!::socketpair(AF_UNIX, SOCK_STREAM, 0, socketFd[logical]));
             auto *sn = new QSocketNotifier(socketFd[logical][1], QSocketNotifier::Read, this);
-            connect(sn, &QSocketNotifier::activated, this, [=] {
+            connect(sn, &QSocketNotifier::activated, this, [sn, logical, this] {
                 sn->setEnabled(false);
                 char tmp = 0;
                 ::read(socketFd[logical][1], &tmp, sizeof(tmp));
