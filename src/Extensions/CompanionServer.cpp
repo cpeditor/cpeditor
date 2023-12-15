@@ -66,7 +66,7 @@ bool CompanionServer::startListeningOn(int port)
         const bool isJson = req->headers().keyHasValue("content-type", "application/json");
         req->collectData();
 
-        req->onEnd([=] {
+        req->onEnd([res, methodType, this, isJson, req] {
             res->addHeader("connection", "close");
             res->addHeader("pragma", "no-cache");
 
