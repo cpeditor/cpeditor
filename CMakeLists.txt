@@ -164,6 +164,10 @@ add_executable(cpeditor
     src/Editor/CodeEditor.hpp
     src/Editor/CodeEditorSideBar.cpp
     src/Editor/CodeEditorSideBar.hpp
+    src/Editor/FakeVimProxy.cpp
+    src/Editor/FakeVimProxy.hpp 
+    src/Editor/FakeVimCommands.cpp
+    src/Editor/FakeVimCommands.hpp
     src/Editor/HighLighter.cpp
     src/Editor/HighLighter.hpp
     src/Editor/KSHRepository.cpp

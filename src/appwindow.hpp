@@ -35,6 +35,11 @@ namespace Ui
 {
 class AppWindow;
 }
+namespace Editor
+{
+class FakeVimCommands;
+class FakeVimProxy;
+} // namespace Editor
 
 namespace Extensions
 {
@@ -83,6 +88,10 @@ class AppWindow : public QMainWindow
     bool forceClose();
 
     void showOnTop();
+
+    bool closeTab(int index, bool noConfirmQuit = false);
+
+    bool closeWindow(MainWindow *window, bool noConfirmQuit = false);
 
   private slots:
     // UI Slots
@@ -194,8 +203,6 @@ class AppWindow : public QMainWindow
 
     void onEditorLanguageChanged(MainWindow *window);
 
-    void onTabCloseRequested(int);
-
     void onTabChanged(int);
 
     void onLSPTimerElapsedCpp();
@@ -214,7 +221,7 @@ class AppWindow : public QMainWindow
 
     void onViewModeToggle();
 
-    void openTab(const QString &path, MainWindow *after = nullptr);
+    void openTab(const QString &path, QString lang = "", MainWindow *after = nullptr);
 
     void onFileSaved(MainWindow *window);
 
@@ -258,7 +265,6 @@ class AppWindow : public QMainWindow
     void saveSettings();
     QVector<QShortcut *> hotkeyObjects;
     void maybeSetHotkeys();
-    bool closeTab(int index);
     void openTab(MainWindow *window, MainWindow *after = nullptr);
     void openTab(const MainWindow::EditorStatus &status, bool duplicate = false, MainWindow *after = nullptr);
     void openTabs(const QStringList &paths);
@@ -266,6 +272,9 @@ class AppWindow : public QMainWindow
     QStringList openFolder(const QString &path, bool cpp, bool java, bool python, int depth);
     void openContest(Widgets::ContestDialog::ContestData const &data);
     bool quit();
+    void setTabAt(int index);
+    int indexOfWindow(MainWindow *window);
+    int tabCount() const;
     int getNewUntitledIndex();
     void reAttachLanguageServer(MainWindow *window);
     void triggerWakaTime(MainWindow *window, bool isWrite = false);
@@ -274,6 +283,8 @@ class AppWindow : public QMainWindow
     MainWindow *windowAt(int index);
 
     friend class Core::SessionManager;
+    friend class Editor::FakeVimCommands;
+    friend class Editor::FakeVimProxy;
 };
 
 #endif // APPWINDOW_HPP
