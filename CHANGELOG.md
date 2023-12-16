@@ -4,6 +4,7 @@
 
 -   Use [Kate's Syntax highlighter](https://api.kde.org/frameworks/syntax-highlighting/html/) engine for Code Highlighting. (#1101)
 -   Add options to select error/warning messages colors for message logger. (#521 and #1247)
+-   Add vim emulation with [custom commands](to be updated after docs PR is ready). (#220 and #1270)
 
 ### Fixied
 
