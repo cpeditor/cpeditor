@@ -35,6 +35,8 @@ add_subdirectory(third_party/lsp-cpp)
 
 add_subdirectory(third_party/qhttp)
 
+add_subdirectory(third_party/FakeVim)
+
 add_subdirectory(third_party/diff_match_patch)
 
 option(PORTABLE_VERSION "Build the portable version" Off)
@@ -279,6 +281,7 @@ target_link_libraries(cpeditor PRIVATE Qt5::Network)
 target_link_libraries(cpeditor PRIVATE Qt5::Widgets)
 target_link_libraries(cpeditor PRIVATE QtFindReplaceDialog)
 target_link_libraries(cpeditor PRIVATE SingleApplication)
+target_link_libraries(cpeditor PRIVATE fakevim)
 target_link_libraries(cpeditor PRIVATE QHttp)
 target_link_libraries(cpeditor PRIVATE diff_match_patch)
 target_link_libraries(cpeditor PRIVATE KF5::SyntaxHighlighting)
