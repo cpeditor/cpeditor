@@ -2693,11 +2693,11 @@ This may reduce distractions caused by stopwatch updates.</source>
     </message>
     <message>
         <source>Color of error messages</source>
-        <translation type="unfinished"></translation>
+        <translation>错误信息的颜色</translation>
     </message>
     <message>
         <source>Color of warning messages</source>
-        <translation type="unfinished"></translation>
+        <translation>警告信息的颜色</translation>
     </message>
 </context>
 <context>
