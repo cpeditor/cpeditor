@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5
       - run: pip install requests
       - name: Update donors
         run: python tools/getDonors.py ${{ secrets.GITHUB_TOKEN }}
