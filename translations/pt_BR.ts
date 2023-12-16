@@ -2700,6 +2700,14 @@ Isso pode reduzir distrações causadas pelas atualizações do cronômetro.</tr
         <source>Highlight lines containing diagnostics</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Color of error messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Color of warning messages</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ShortcutItem</name>
