@@ -636,6 +636,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "brun0-matheus",
+      "name": "Bruno Matheus",
+      "avatar_url": "https://avatars.githubusercontent.com/u/32616717?v=4",
+      "profile": "https://github.com/brun0-matheus",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 6,
