@@ -286,6 +286,9 @@
       <td align="center" valign="top" width="16.66%">
       <a href="https://github.com/rogeryoungh"><img src="https://avatars.githubusercontent.com/u/42564206?v=4" width="100px;" alt=""/></a><br /><a href="https://rogery.dev"><sub><b>rogeryoungh</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/commits?author=rogeryoungh" title="Code">💻</a>
     </td>
+      <td align="center" valign="top" width="16.66%">
+      <a href="https://github.com/brun0-matheus"><img src="https://avatars.githubusercontent.com/u/32616717?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/brun0-matheus"><sub><b>Bruno Matheus</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/commits?author=brun0-matheus" title="Code">💻</a>
+    </td>
     </tr>
   </tbody>
 </table>
