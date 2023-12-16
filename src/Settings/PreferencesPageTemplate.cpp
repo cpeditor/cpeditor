@@ -91,7 +91,7 @@ PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, const QString
         {
             connect(
                 widget, &ValueWidget::valueChanged, this,
-                [=] {
+                [si, widget, this] {
                     SettingsManager::set(si.name, widget->getVariant());
                     emit settingsApplied(PreferencesPage::path());
                 },

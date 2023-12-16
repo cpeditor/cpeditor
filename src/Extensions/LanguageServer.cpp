@@ -211,6 +211,8 @@ Editor::CodeEditor::SeverityLevel LanguageServer::lspSeverity(int in)
         return Editor::CodeEditor::SeverityLevel::Information;
     case 4:
         return Editor::CodeEditor::SeverityLevel::Hint;
+    default:
+        return Editor::CodeEditor::SeverityLevel::Error;
     }
     // Nothing matched
     return Editor::CodeEditor::SeverityLevel::Error;
