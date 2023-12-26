@@ -645,6 +645,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "topazus",
+      "name": "topazus",
+      "avatar_url": "https://avatars.githubusercontent.com/u/77263945?v=4",
+      "profile": "https://github.com/topazus",
+      "contributions": [
+        "infra"
+      ]
     }
   ],
   "contributorsPerLine": 6,
