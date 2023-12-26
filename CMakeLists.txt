@@ -296,8 +296,8 @@ if(APPLE)
   )
 endif()
 
-include(GNUInstallDirs)
 if(UNIX AND NOT APPLE)
+  include(GNUInstallDirs)
   install(TARGETS cpeditor
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
