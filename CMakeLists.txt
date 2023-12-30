@@ -304,12 +304,14 @@ if(APPLE)
 endif()
 
 if(UNIX AND NOT APPLE)
+  include(GNUInstallDirs)
   install(TARGETS cpeditor
-          RUNTIME DESTINATION bin
-          LIBRARY DESTINATION lib)
-  install(FILES dist/linux/cpeditor.desktop DESTINATION share/applications)
-  install(FILES resources/icon.png DESTINATION share/icons/hicolor/512x512/apps RENAME cpeditor.png)
-  install(FILES dist/linux/cpeditor.appdata.xml DESTINATION share/metainfo)
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  install(FILES dist/linux/cpeditor.desktop DESTINATION ${CMAKE_INSTALL_DATADIR}/applications)
+  install(FILES resources/icon.png DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/512x512/apps RENAME cpeditor.png)
+  install(FILES dist/linux/cpeditor.appdata.xml DESTINATION ${CMAKE_INSTALL_DATADIR}/metainfo)
+  install(FILES ${QMFILES} DESTINATION ${CMAKE_INSTALL_DATADIR}/cpeditor/translations)
 endif()
 
 

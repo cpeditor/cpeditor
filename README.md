@@ -290,6 +290,11 @@ Thanks go to these wonderful people: (if we forget to add you as a contributor, 
       <a href="https://github.com/brun0-matheus"><img src="https://avatars.githubusercontent.com/u/32616717?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/brun0-matheus"><sub><b>Bruno Matheus</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/commits?author=brun0-matheus" title="Code">💻</a>
     </td>
     </tr>
+    <tr>
+      <td align="center" valign="top" width="16.66%">
+      <a href="https://github.com/topazus"><img src="https://avatars.githubusercontent.com/u/77263945?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/topazus"><sub><b>topazus</b></sub></a><br /><a href="#infra-topazus" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a>
+    </td>
+    </tr>
   </tbody>
 </table>
 
