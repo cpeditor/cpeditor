@@ -7,7 +7,7 @@
 
 ### Fixied
 
--   UNIX signal handler is now more robust. (#1166)
+-   UNIX signal handler is now more robust. (#1166 and #1304)
 
 ## v6.11
 
