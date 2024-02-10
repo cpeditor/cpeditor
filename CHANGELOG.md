@@ -5,9 +5,9 @@
 -   Use [Kate's Syntax highlighter](https://api.kde.org/frameworks/syntax-highlighting/html/) engine for Code Highlighting. (#1101)
 -   Add options to select error/warning messages colors for message logger. (#521 and #1247)
 
-### Fixied
+### Fixed
 
--   UNIX signal handler is now more robust. (#1166)
+-   UNIX signal handler is now more robust. (#1166 and #1304)
 
 ## v6.11
 

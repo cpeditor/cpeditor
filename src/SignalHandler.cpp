@@ -72,7 +72,8 @@ SignalHandler::SignalHandler(int mask) : _mask(mask)
 #ifdef _WIN32
             g_registry.insert(logical);
 #else
-            assert(!::socketpair(AF_UNIX, SOCK_STREAM, 0, socketFd[logical]));
+            if (::socketpair(AF_UNIX, SOCK_STREAM, 0, socketFd[logical]) != 0)
+                qFatal("Failed to create signal socket");
             auto *sn = new QSocketNotifier(socketFd[logical][1], QSocketNotifier::Read, this);
             connect(sn, &QSocketNotifier::activated, this, [sn, logical, this] {
                 sn->setEnabled(false);
@@ -85,7 +86,8 @@ SignalHandler::SignalHandler(int mask) : _mask(mask)
             sa.sa_handler = POSIX_handleFunc; // NOLINT
             sigemptyset(&sa.sa_mask);
             sa.sa_flags = SA_RESTART;
-            assert(!sigaction(POSIX_logicalToPhysical(logical), &sa, nullptr));
+            if (::sigaction(POSIX_logicalToPhysical(logical), &sa, nullptr) != 0)
+                qFatal("Failed to register signal handler");
 #endif //_WIN32
         }
     }
