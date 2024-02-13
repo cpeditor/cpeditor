@@ -39,7 +39,7 @@ const static QStringList configFileLocations = {
 #ifdef PORTABLE_VERSION
     "$BINARY/cp_editor_settings.ini",
 #endif
-    "$APPCONFIG/cp_editor_settings.ini", "$HOME/.cp_editor_settings.ini", "$HOME/cp_editor_settings.ini"};
+    "$APPCONFIG/settings.ini", "$OLDAPPCONFIG/cp_editor_settings.ini"};
 
 static const QStringList noUnknownKeyWarning = {"C++/Run Command", "Python/Compile Command"};
 
