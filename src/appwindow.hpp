@@ -64,9 +64,9 @@ class AppWindow : public QMainWindow
     Q_OBJECT
 
   public:
-    explicit AppWindow(int depth, bool cpp, bool java, bool python, bool noHotExit, const QStringList &paths,
+    explicit AppWindow(int depth, bool cpp, bool java, bool python, bool noRestoreSession, const QStringList &paths,
                        QWidget *parent = nullptr);
-    explicit AppWindow(bool cpp, bool java, bool python, bool noHotExit, int number, const QString &path,
+    explicit AppWindow(bool cpp, bool java, bool python, bool noRestoreSession, int number, const QString &path,
                        QWidget *parent = nullptr);
     ~AppWindow() override;
 
@@ -256,7 +256,8 @@ class AppWindow : public QMainWindow
 
     std::atomic_bool _isInitialized{false};
 
-    explicit AppWindow(bool noHotExit, QWidget *parent = nullptr);
+    explicit AppWindow(bool noRestoreSession, QWidget *parent = nullptr);
+
     void finishConstruction();
 
     void setConnections();
