@@ -116,6 +116,8 @@ class CodeEditor : public QPlainTextEdit
      */
     void setVimCursor(bool value);
 
+    void updateCursorWidth();
+
     /**
      * @brief Checks if cursor type is Vim Cursor
      */
