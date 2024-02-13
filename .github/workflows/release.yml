@@ -7,11 +7,12 @@ on:
 
 env:
   QT_VERSION: 5.15.2
-  WINLIBS_GCC: 12.2.0
-  WINLIBS_LLVM: 14.0.6
-  WINLIBS_MINGW_VERSION: 10.0.0
+  WINLIBS_GCC: 13.2.0
+  WINLIBS_THREADS: posix
+  WINLIBS_LLVM: 17.0.6
+  WINLIBS_MINGW_VERSION: 11.0.1
   WINLIBS_MINGW_LINKER: ucrt
-  WINLIBS_MINGW_REV: r2
+  WINLIBS_MINGW_REV: r5
 
 jobs:
   # "env" is only available in jobs, we need to convert them to outputs so that they can be used in the matrix
@@ -22,11 +23,13 @@ jobs:
         id: get
         run: |
           echo "GCC=$WINLIBS_GCC" >> "$GITHUB_OUTPUT"
+          echo "THREADS=$WINLIBS_THREADS" >> "$GITHUB_OUTPUT"
           echo "LLVM=$WINLIBS_LLVM" >> "$GITHUB_OUTPUT"
           echo "MINGW=$WINLIBS_MINGW_LINKER-$WINLIBS_MINGW_VERSION-$WINLIBS_MINGW_REV" >> "$GITHUB_OUTPUT"
-          echo "tag=$WINLIBS_GCC-$WINLIBS_LLVM-$WINLIBS_MINGW_VERSION-$WINLIBS_MINGW_LINKER-$WINLIBS_MINGW_REV" >> "$GITHUB_OUTPUT"
+          echo "tag=$WINLIBS_GCC$WINLIBS_THREADS-$WINLIBS_LLVM-$WINLIBS_MINGW_VERSION-$WINLIBS_MINGW_LINKER-$WINLIBS_MINGW_REV" >> "$GITHUB_OUTPUT"
     outputs:
       GCC: ${{ steps.get.outputs.GCC }}
+      THREADS: ${{ steps.get.outputs.THREADS }}
       LLVM: ${{ steps.get.outputs.LLVM }}
       MINGW: ${{ steps.get.outputs.MINGW }}
       tag: ${{ steps.get.outputs.tag }}
@@ -80,7 +83,8 @@ jobs:
             portable-option: "Off"
             filename-suffix: "setup-with-gcc-${{ needs.get-winlibs-outputs.outputs.GCC }}-LLVM-${{ needs.get-winlibs-outputs.outputs.LLVM }}.exe"
             winlibs: true
-            winlibs-arch: x86_64-posix-seh
+            winlibs-arch: x86_64
+            winlibs-exception: seh
             mingw-arch: mingw64
           - os: "windows-2019"
             arch: x64
@@ -89,7 +93,8 @@ jobs:
             portable-option: "On"
             filename-suffix: "portable-with-gcc-${{ needs.get-winlibs-outputs.outputs.GCC }}-LLVM-${{ needs.get-winlibs-outputs.outputs.LLVM }}.zip"
             winlibs: true
-            winlibs-arch: x86_64-posix-seh
+            winlibs-arch: x86_64
+            winlibs-exception: seh
             mingw-arch: mingw64
           - os: "windows-2019"
             arch: x86
@@ -98,7 +103,8 @@ jobs:
             portable-option: "Off"
             filename-suffix: "setup-with-gcc-${{ needs.get-winlibs-outputs.outputs.GCC }}-LLVM-${{ needs.get-winlibs-outputs.outputs.LLVM }}.exe"
             winlibs: true
-            winlibs-arch: i686-posix-dwarf
+            winlibs-arch: i686
+            winlibs-exception: dwarf
             mingw-arch: mingw32
           - os: "windows-2019"
             arch: x86
@@ -107,7 +113,8 @@ jobs:
             portable-option: "On"
             filename-suffix: "portable-with-gcc-${{ needs.get-winlibs-outputs.outputs.GCC }}-LLVM-${{ needs.get-winlibs-outputs.outputs.LLVM }}.zip"
             winlibs: true
-            winlibs-arch: i686-posix-dwarf
+            winlibs-arch: i686
+            winlibs-exception: dwarf
             mingw-arch: mingw32
 
     steps:
@@ -258,7 +265,7 @@ jobs:
           cd build
           mkdir dmg
           cd dmg
-          mv ../cpeditor.app cpeditor.app 
+          mv ../cpeditor.app cpeditor.app
           ../../../Qt/*/*/bin/macdeployqt cpeditor.app
           cp ../../dist/mac/cpeditor.icns cpeditor.app/Contents/Resources
           ln -s /Applications Applications
@@ -289,7 +296,7 @@ jobs:
         if: startsWith(matrix.config.os, 'windows') && matrix.config.winlibs
         id: winlibs
         shell: bash
-        run: echo "asset=winlibs-${{ matrix.config.winlibs-arch }}-gcc-${{ needs.get-winlibs-outputs.outputs.GCC }}-llvm-${{ needs.get-winlibs-outputs.outputs.LLVM }}-mingw-w64${{ needs.get-winlibs-outputs.outputs.MINGW }}.7z" >> "$GITHUB_OUTPUT"
+        run: echo "asset=winlibs-${{ matrix.config.winlibs-arch }}-${{ needs.get-winlibs-outputs.outputs.THREADS }}-${{ matrix.config.winlibs-exception }}-gcc-${{ needs.get-winlibs-outputs.outputs.GCC }}-llvm-${{ needs.get-winlibs-outputs.outputs.LLVM }}-mingw-w64${{ needs.get-winlibs-outputs.outputs.MINGW }}.7z" >> "$GITHUB_OUTPUT"
 
       - name: "[Windows] Download Winlibs"
         if: startsWith(matrix.config.os, 'windows') && matrix.config.winlibs
