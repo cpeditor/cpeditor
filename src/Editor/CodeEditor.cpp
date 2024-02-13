@@ -1084,6 +1084,13 @@ void CodeEditor::keyPressEvent(QKeyEvent *e)
         return;
     }
 
+    if (e->key() == Qt::Key_Escape && textCursor().hasSelection())
+    {
+        auto cursor = textCursor();
+        cursor.clearSelection();
+        setTextCursor(cursor);
+    }
+
     QPlainTextEdit::keyPressEvent(e);
 }
 
