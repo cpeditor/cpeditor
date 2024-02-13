@@ -14,6 +14,7 @@
 ### Fixed
 
 -   UNIX signal handler is now more robust. (#1166 and #1304)
+-   Now pressing `Home` goes to the first non-blank character. When lines are wrapped, now `Home` and `End` are based on text lines instead of visual lines. (#774 and #1310)
 
 ## v6.11
 
