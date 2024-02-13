@@ -68,13 +68,13 @@ CodeEditor::CodeEditor(QWidget *widget) : QPlainTextEdit(widget)
     sideBar = new CodeEditorSidebar(this);
     languageRepo = new LanguageRepository(SettingsHelper::getDefaultLanguage(), this);
 
-    connect(document(), &QTextDocument::blockCountChanged, this, &CodeEditor::updateBottomMargin);
     connect(document(), &QTextDocument::blockCountChanged, this, &CodeEditor::updateSidebarGeometry);
     connect(this, &QPlainTextEdit::updateRequest, this, &CodeEditor::updateSidebarArea);
     connect(this, &QPlainTextEdit::cursorPositionChanged, this, &CodeEditor::highlightCurrentLine);
     connect(this, &QPlainTextEdit::cursorPositionChanged, this, &CodeEditor::highlightParentheses);
     connect(this, &QPlainTextEdit::selectionChanged, this, &CodeEditor::highlightOccurrences);
 
+    setCenterOnScroll(true);
     setMouseTracking(true);
 }
 
@@ -98,7 +98,7 @@ void CodeEditor::applySettings(const QString &lang)
     setHighlightCurrentLine(isHighlightingCurrentLine());
     m_highlightingErrorLine = SettingsHelper::isHighlightErrorLine();
 
-    updateBottomMargin();
+    setCenterOnScroll(SettingsHelper::isExtraBottomMargin());
 
     if (language.isEmpty())
         return;
@@ -343,17 +343,13 @@ void CodeEditor::resizeEvent(QResizeEvent *e)
 {
     QPlainTextEdit::resizeEvent(e);
     updateSidebarGeometry();
-    updateBottomMargin();
 }
 
 void CodeEditor::changeEvent(QEvent *e)
 {
     QPlainTextEdit::changeEvent(e);
     if (e->type() == QEvent::FontChange)
-    {
-        updateBottomMargin();
         updateSidebarGeometry();
-    }
 }
 
 void CodeEditor::paintEvent(QPaintEvent *e)
@@ -469,26 +465,6 @@ void CodeEditor::wheelEvent(QWheelEvent *e)
     }
     else
         QPlainTextEdit::wheelEvent(e);
-}
-
-void CodeEditor::updateBottomMargin()
-{
-    auto *doc = document();
-    if (doc->blockCount() > 1)
-    {
-        // calling QTextFrame::setFrameFormat with an empty document makes the application crash
-        auto *rf = doc->rootFrame();
-        auto format = rf->frameFormat();
-        int documentMargin = static_cast<int>(doc->documentMargin());
-        int bottomMargin = SettingsHelper::isExtraBottomMargin()
-                               ? qMax(0, viewport()->height() - fontMetrics().height() - documentMargin)
-                               : documentMargin;
-        if (format.bottomMargin() != bottomMargin)
-        {
-            format.setBottomMargin(bottomMargin);
-            rf->setFrameFormat(format);
-        }
-    }
 }
 
 void CodeEditor::highlightOccurrences()
