@@ -2,6 +2,7 @@
 
 ### Breaking Changes
 
+-   Legacy setting entries from v6.7 and earlier are no longer automatically migrated to the new ones. Update to v6.11 and then v7.0 if you are using v6.7 or older versions.
 -   The command line option `--no-hot-exit` is renamed to `--no-restore-session`. (#928 and #947)
 
 ### Added
