@@ -1091,6 +1091,34 @@ void CodeEditor::keyPressEvent(QKeyEvent *e)
         setTextCursor(cursor);
     }
 
+    const auto shift = e->modifiers().testFlag(Qt::ShiftModifier);
+    e->setModifiers(e->modifiers() & ~Qt::ShiftModifier); // to match Shift+Home to MoveToStartOfLine
+
+    if (e->matches(QKeySequence::MoveToStartOfLine))
+    {
+        auto cursor = textCursor();
+        const auto line = cursor.block().text();
+        const auto leadingSpaceCount = QRegularExpression("^\\s*").match(line).capturedLength();
+        const auto cursorPos = cursor.positionInBlock();
+        const auto moveMode = shift ? QTextCursor::KeepAnchor : QTextCursor::MoveAnchor;
+        if (cursorPos > leadingSpaceCount)
+            cursor.movePosition(QTextCursor::PreviousCharacter, moveMode, cursorPos - leadingSpaceCount);
+        else
+            cursor.movePosition(QTextCursor::StartOfBlock, moveMode);
+        setTextCursor(cursor);
+        return;
+    }
+
+    if (e->matches(QKeySequence::MoveToEndOfLine))
+    {
+        auto cursor = textCursor();
+        cursor.movePosition(QTextCursor::EndOfBlock, shift ? QTextCursor::KeepAnchor : QTextCursor::MoveAnchor);
+        setTextCursor(cursor);
+        return;
+    }
+
+    e->setModifiers(e->modifiers() | (shift ? Qt::ShiftModifier : Qt::NoModifier));
+
     QPlainTextEdit::keyPressEvent(e);
 }
 
