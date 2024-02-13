@@ -120,6 +120,8 @@ void CodeEditor::applySettings(const QString &lang)
         setTheme(KSyntaxHighlightingRepository::getSyntaxHighlightingRepository()->theme(editorThemeName));
     }
 
+    updateCursorWidth();
+
     if (vimCursor())
         return;
 
@@ -414,7 +416,22 @@ void CodeEditor::setVimCursor(bool value)
     m_vimCursor = value;
 
     setOverwriteMode(false);
-    setCursorWidth(value ? 0 : 1);
+    updateCursorWidth();
+}
+
+void CodeEditor::updateCursorWidth()
+{
+    if (m_vimCursor || overwriteMode())
+    {
+        // setting the width to 0 also works, but would flicker when swithed to the narrow cursor
+        setCursorWidth(fontMetrics().maxWidth());
+    }
+    else
+    {
+        const auto oldRect = cursorRect();
+        setCursorWidth(SettingsHelper::getCursorWidth());
+        viewport()->update(oldRect); // prevent flickering
+    }
 }
 
 bool CodeEditor::isHighlightingCurrentLine() const
@@ -964,20 +981,7 @@ void CodeEditor::keyPressEvent(QKeyEvent *e)
     if (e->key() == Qt::Key_Insert && !m_vimCursor)
     {
         setOverwriteMode(!overwriteMode());
-        if (overwriteMode())
-        {
-            QFontMetrics fm(QPlainTextEdit::font());
-            const int position = QPlainTextEdit::textCursor().position();
-            const QChar c = QPlainTextEdit::document()->characterAt(position);
-            setCursorWidth(fm.horizontalAdvance(c));
-        }
-        else
-        {
-            auto rect = cursorRect();
-            setCursorWidth(1);
-            viewport()->update(rect);
-        }
-
+        updateCursorWidth();
         return;
     }
 
