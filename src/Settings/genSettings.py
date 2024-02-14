@@ -56,6 +56,8 @@ def writeInfo(f, obj, lst):
         docAnchor = t.get("docAnchor", "")
         if docAnchor == "":
             docAnchor = json.dumps("")
+        elif docAnchor == "default-paths":
+            docAnchor = f'tr("default-paths", {json.dumps(f"the anchor of Default Paths on https://cpeditor.org/docs/preferences/file-path")})'
         else:
             docAnchor = f"tr({json.dumps(docAnchor)}, {json.dumps(f'the anchor of {desc} on the corresponding page of https://cpeditor.org/docs/preferences')})"
         noDoc = t.get("noDoc", False)
