@@ -33,6 +33,7 @@ QStringList KSyntaxHighlightingRepository::themeNames()
     QStringList names;
     for (const auto &theme : repository.themes())
         names.push_back(theme.name());
+    names.sort(Qt::CaseInsensitive);
     return names;
 }
 } // namespace Editor
