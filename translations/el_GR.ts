@@ -1696,10 +1696,6 @@ You can use &quot;${filename}&quot; for the complete file name,
         <translation>Επιτροπή αυτόματης αποθήκευσης</translation>
     </message>
     <message>
-        <source>Automatically save the file every 3 seconds.</source>
-        <translation>Αυτόματη αποθήκευση αρχείου ανά 3 δευτερόλεπτα.</translation>
-    </message>
-    <message>
         <source>Wrap Text</source>
         <translation>Αναδίπλωση κειμένου</translation>
     </message>
@@ -2702,6 +2698,19 @@ This may reduce distractions caused by stopwatch updates.</source>
     </message>
     <message>
         <source>Color of warning messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use WakaTime to track your time usage. The WakaTime CLI needs to be installed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show a stopwatch in the UI. You can use it to track your time spent on solving a problem.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>default-paths</source>
+        <comment>the anchor of Default Paths on https://cpeditor.org/docs/preferences/file-path</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
