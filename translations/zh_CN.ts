@@ -2697,16 +2697,16 @@ This may reduce distractions caused by stopwatch updates.</source>
     </message>
     <message>
         <source>Use WakaTime to track your time usage. The WakaTime CLI needs to be installed.</source>
-        <translation type="unfinished"></translation>
+        <translation>使用 WakaTime 来记录你的时间使用情况。需要安装 WakaTime CLI。</translation>
     </message>
     <message>
         <source>Show a stopwatch in the UI. You can use it to track your time spent on solving a problem.</source>
-        <translation type="unfinished"></translation>
+        <translation>在 UI 中显示计时器。你可以用它来记录做题用时。</translation>
     </message>
     <message>
         <source>default-paths</source>
         <comment>the anchor of Default Paths on https://cpeditor.org/docs/preferences/file-path</comment>
-        <translation type="unfinished"></translation>
+        <translation>默认路径</translation>
     </message>
 </context>
 <context>
