@@ -37,7 +37,7 @@ void showWidgetOnTop(QWidget *widget)
 QString sanitizeAnchorName(const QString &str)
 {
     return str.trimmed()
-        .remove(QRegularExpression(R"([!"\#$%&'()*+,\-./:;<=>?@\[\\\]^_‘{|}~]|，|（|）|。)"))
+        .remove(QRegularExpression(R"([!"\#$%&'()*+,./:;<=>?@\[\\\]^_‘{|}~]|，|（|）|。)"))
         .toLower()
         .replace(' ', '-');
 }
