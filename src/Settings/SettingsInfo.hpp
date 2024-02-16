@@ -40,6 +40,7 @@ class SettingsInfo
         QString tip;              // translated tooltips
         QString untrTip;          // untranslated tooltips
         QString docAnchor;        // the anchor of the documentation
+        bool noDoc;               // this setting is very simple so it has no documentation on the website
         bool requireAllDepends{}; // false for one of the depends, true for all depends
         bool immediatelyApply{};
         std::function<void(SettingInfo *, ValueWidget *, QWidget *)> onApply;

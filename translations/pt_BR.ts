@@ -1696,10 +1696,6 @@ Poderá usar &quot;${filename}&quot; para o nome completo do arquivo,
         <translation>Habilitar salvamento automático</translation>
     </message>
     <message>
-        <source>Automatically save the file every 3 seconds.</source>
-        <translation>Salvar automaticamente o arquivo a cada 3 segundos.</translation>
-    </message>
-    <message>
         <source>Wrap Text</source>
         <translation>Quebra de texto</translation>
     </message>
@@ -2706,6 +2702,19 @@ Isso pode reduzir distrações causadas pelas atualizações do cronômetro.</tr
     </message>
     <message>
         <source>Color of warning messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use WakaTime to track your time usage. The WakaTime CLI needs to be installed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show a stopwatch in the UI. You can use it to track your time spent on solving a problem.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>default-paths</source>
+        <comment>the anchor of Default Paths on https://cpeditor.org/docs/preferences/file-path</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
