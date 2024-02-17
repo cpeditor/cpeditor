@@ -1,5 +1,10 @@
 ## UNRELEASED
 
+## 6.11.2
+
+-   AppImage is now based on Ubuntu 20.04 (upgraded from 18.04) libraries.
+-   Bundled winlibs (GCC/MinGW/Clang) are upgraded to the latest version.
+
 ## 6.11.1 (Beta)
 
 ### Added
