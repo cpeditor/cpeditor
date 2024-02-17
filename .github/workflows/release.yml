@@ -42,7 +42,7 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - os: "ubuntu-18.04"
+          - os: "ubuntu-20.04"
             portable-option: "Off"
             winlibs: false
           - os: "macos-latest"
