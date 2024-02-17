@@ -116,6 +116,8 @@ class CodeEditor : public QPlainTextEdit
      */
     void setVimCursor(bool value);
 
+    void updateCursorWidth();
+
     /**
      * @brief Checks if cursor type is Vim Cursor
      */
@@ -249,11 +251,6 @@ class CodeEditor : public QPlainTextEdit
     void toggleFold(const QTextBlock &block);
 
   private slots:
-    /**
-     * @brief Slot, that updates the bottom margin.
-     */
-    void updateBottomMargin();
-
     void highlightParentheses();
 
     void highlightOccurrences();

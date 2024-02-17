@@ -68,13 +68,13 @@ CodeEditor::CodeEditor(QWidget *widget) : QPlainTextEdit(widget)
     sideBar = new CodeEditorSidebar(this);
     languageRepo = new LanguageRepository(SettingsHelper::getDefaultLanguage(), this);
 
-    connect(document(), &QTextDocument::blockCountChanged, this, &CodeEditor::updateBottomMargin);
     connect(document(), &QTextDocument::blockCountChanged, this, &CodeEditor::updateSidebarGeometry);
     connect(this, &QPlainTextEdit::updateRequest, this, &CodeEditor::updateSidebarArea);
     connect(this, &QPlainTextEdit::cursorPositionChanged, this, &CodeEditor::highlightCurrentLine);
     connect(this, &QPlainTextEdit::cursorPositionChanged, this, &CodeEditor::highlightParentheses);
     connect(this, &QPlainTextEdit::selectionChanged, this, &CodeEditor::highlightOccurrences);
 
+    setCenterOnScroll(true);
     setMouseTracking(true);
 }
 
@@ -98,7 +98,7 @@ void CodeEditor::applySettings(const QString &lang)
     setHighlightCurrentLine(isHighlightingCurrentLine());
     m_highlightingErrorLine = SettingsHelper::isHighlightErrorLine();
 
-    updateBottomMargin();
+    setCenterOnScroll(SettingsHelper::isExtraBottomMargin());
 
     if (language.isEmpty())
         return;
@@ -119,6 +119,8 @@ void CodeEditor::applySettings(const QString &lang)
     {
         setTheme(KSyntaxHighlightingRepository::getSyntaxHighlightingRepository()->theme(editorThemeName));
     }
+
+    updateCursorWidth();
 
     if (vimCursor())
         return;
@@ -341,17 +343,13 @@ void CodeEditor::resizeEvent(QResizeEvent *e)
 {
     QPlainTextEdit::resizeEvent(e);
     updateSidebarGeometry();
-    updateBottomMargin();
 }
 
 void CodeEditor::changeEvent(QEvent *e)
 {
     QPlainTextEdit::changeEvent(e);
     if (e->type() == QEvent::FontChange)
-    {
-        updateBottomMargin();
         updateSidebarGeometry();
-    }
 }
 
 void CodeEditor::paintEvent(QPaintEvent *e)
@@ -414,7 +412,22 @@ void CodeEditor::setVimCursor(bool value)
     m_vimCursor = value;
 
     setOverwriteMode(false);
-    setCursorWidth(value ? 0 : 1);
+    updateCursorWidth();
+}
+
+void CodeEditor::updateCursorWidth()
+{
+    if (m_vimCursor || overwriteMode())
+    {
+        // setting the width to 0 also works, but would flicker when swithed to the narrow cursor
+        setCursorWidth(fontMetrics().maxWidth());
+    }
+    else
+    {
+        const auto oldRect = cursorRect();
+        setCursorWidth(SettingsHelper::getCursorWidth());
+        viewport()->update(oldRect); // prevent flickering
+    }
 }
 
 bool CodeEditor::isHighlightingCurrentLine() const
@@ -452,26 +465,6 @@ void CodeEditor::wheelEvent(QWheelEvent *e)
     }
     else
         QPlainTextEdit::wheelEvent(e);
-}
-
-void CodeEditor::updateBottomMargin()
-{
-    auto *doc = document();
-    if (doc->blockCount() > 1)
-    {
-        // calling QTextFrame::setFrameFormat with an empty document makes the application crash
-        auto *rf = doc->rootFrame();
-        auto format = rf->frameFormat();
-        int documentMargin = static_cast<int>(doc->documentMargin());
-        int bottomMargin = SettingsHelper::isExtraBottomMargin()
-                               ? qMax(0, viewport()->height() - fontMetrics().height() - documentMargin)
-                               : documentMargin;
-        if (format.bottomMargin() != bottomMargin)
-        {
-            format.setBottomMargin(bottomMargin);
-            rf->setFrameFormat(format);
-        }
-    }
 }
 
 void CodeEditor::highlightOccurrences()
@@ -964,20 +957,7 @@ void CodeEditor::keyPressEvent(QKeyEvent *e)
     if (e->key() == Qt::Key_Insert && !m_vimCursor)
     {
         setOverwriteMode(!overwriteMode());
-        if (overwriteMode())
-        {
-            QFontMetrics fm(QPlainTextEdit::font());
-            const int position = QPlainTextEdit::textCursor().position();
-            const QChar c = QPlainTextEdit::document()->characterAt(position);
-            setCursorWidth(fm.horizontalAdvance(c));
-        }
-        else
-        {
-            auto rect = cursorRect();
-            setCursorWidth(1);
-            viewport()->update(rect);
-        }
-
+        updateCursorWidth();
         return;
     }
 
@@ -1083,6 +1063,41 @@ void CodeEditor::keyPressEvent(QKeyEvent *e)
         setTextCursor(textCursor()); // scroll to the cursor
         return;
     }
+
+    if (e->key() == Qt::Key_Escape && textCursor().hasSelection())
+    {
+        auto cursor = textCursor();
+        cursor.clearSelection();
+        setTextCursor(cursor);
+    }
+
+    const auto shift = e->modifiers().testFlag(Qt::ShiftModifier);
+    e->setModifiers(e->modifiers() & ~Qt::ShiftModifier); // to match Shift+Home to MoveToStartOfLine
+
+    if (e->matches(QKeySequence::MoveToStartOfLine))
+    {
+        auto cursor = textCursor();
+        const auto line = cursor.block().text();
+        const auto leadingSpaceCount = QRegularExpression("^\\s*").match(line).capturedLength();
+        const auto cursorPos = cursor.positionInBlock();
+        const auto moveMode = shift ? QTextCursor::KeepAnchor : QTextCursor::MoveAnchor;
+        if (cursorPos > leadingSpaceCount)
+            cursor.movePosition(QTextCursor::PreviousCharacter, moveMode, cursorPos - leadingSpaceCount);
+        else
+            cursor.movePosition(QTextCursor::StartOfBlock, moveMode);
+        setTextCursor(cursor);
+        return;
+    }
+
+    if (e->matches(QKeySequence::MoveToEndOfLine))
+    {
+        auto cursor = textCursor();
+        cursor.movePosition(QTextCursor::EndOfBlock, shift ? QTextCursor::KeepAnchor : QTextCursor::MoveAnchor);
+        setTextCursor(cursor);
+        return;
+    }
+
+    e->setModifiers(e->modifiers() | (shift ? Qt::ShiftModifier : Qt::NoModifier));
 
     QPlainTextEdit::keyPressEvent(e);
 }

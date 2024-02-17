@@ -4,6 +4,6 @@ CP Editor 是自由软件，但我们不提供免费的劳动。我们提供给�
 
 -   [Open Collective](https://opencollective.com/cpeditor)
 
--   [向 ouuan 打赏（微信 & 支付宝）](https://ouuan.github.io/about#donate)
+-   [向 ouuan 打赏（微信/支付宝/ko-fi.com）](https://ouuan.moe/sponsor?utm_source=cpeditor)
 
-    ![微信 & 支付宝](resources/donate/wechat-and-alipay-donate-256.png)
+    ![微信或支付宝](resources/donate/ouuan-wechat-and-alipay.png)

@@ -1895,10 +1895,6 @@ Esto se puede sobrescribir para cada paréntesis en cada idioma.</translation>
         <translation>Habilitar Auto Guardado</translation>
     </message>
     <message>
-        <source>Automatically save the file every 3 seconds.</source>
-        <translation>Guarda automáticamente el archivo cada 3 segundos.</translation>
-    </message>
-    <message>
         <source>Auto Save Interval (ms)</source>
         <translation>Intervalo de auto-guardado (ms)</translation>
     </message>
@@ -2755,6 +2751,19 @@ Not all vim commands are supported, please check https://github.com/cpeditor/Fak
     </message>
     <message>
         <source>Color of warning messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use WakaTime to track your time usage. The WakaTime CLI needs to be installed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show a stopwatch in the UI. You can use it to track your time spent on solving a problem.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>default-paths</source>
+        <comment>the anchor of Default Paths on https://cpeditor.org/docs/preferences/file-path</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>

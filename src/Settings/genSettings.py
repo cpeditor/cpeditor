@@ -56,8 +56,14 @@ def writeInfo(f, obj, lst):
         docAnchor = t.get("docAnchor", "")
         if docAnchor == "":
             docAnchor = json.dumps("")
+        elif docAnchor == "default-paths":
+            docAnchor = f'tr("default-paths", {json.dumps(f"the anchor of Default Paths on https://cpeditor.org/docs/preferences/file-path")})'
         else:
             docAnchor = f"tr({json.dumps(docAnchor)}, {json.dumps(f'the anchor of {desc} on the corresponding page of https://cpeditor.org/docs/preferences')})"
+        noDoc = t.get("noDoc", False)
+        MUST_HAVE_ONE = ["noDoc", "docAnchor", "tip", "trtip", "notr"]
+        if not any(x in t for x in MUST_HAVE_ONE):
+            print(f'\033[93mWarning:\033[0m none of {MUST_HAVE_ONE} is set for the setting "{name}"')
         requireAllDepends = t.get("requireAllDepends", True)
         immediatelyApply = t.get("immediatelyApply", False)
         onApply = f'[](SettingInfo *info, ValueWidget *widget, QWidget *parent){{ {t.get("onApply", "")} }}'
@@ -80,7 +86,7 @@ def writeInfo(f, obj, lst):
         dependsString += "}"
         old = t.get("old", [])
         f.write(
-            f"    {lst}.append(SettingInfo {{{json.dumps(name)}, {trdesc}, {json.dumps(desc)}, \"{tempname}\", \"{ui}\", {trtip}, {json.dumps(tip)}, {docAnchor}, {json.dumps(requireAllDepends)}, {json.dumps(immediatelyApply)}, {onApply}, {dependsString}, {{{json.dumps(old)[1:-1]}}}, ")
+            f"    {lst}.append(SettingInfo {{{json.dumps(name)}, {trdesc}, {json.dumps(desc)}, \"{tempname}\", \"{ui}\", {trtip}, {json.dumps(tip)}, {docAnchor}, {json.dumps(noDoc)}, {json.dumps(requireAllDepends)}, {json.dumps(immediatelyApply)}, {onApply}, {dependsString}, {{{json.dumps(old)[1:-1]}}}, ")
         if typename != "Object":
             if "default" in t:
                 if typename == "QString":
@@ -129,6 +135,7 @@ def addDefaultPaths(obj):
             "trdesc": f'tr("Default path used for %1").arg(tr("{action[0]}"))',
             "type": "QString",
             "default": action[1],
+            "docAnchor": "default-paths",
             "trtip": f'tr("The default path used when choosing a path for %1.\\nYou can use ${{<default path name>}} as a place holder.").arg(tr("{action[0]}"))'
         })
         if action[0] == "Save File":
@@ -138,6 +145,7 @@ def addDefaultPaths(obj):
             "trdesc": f'tr("Default paths changed by %1").arg(tr("{action[0]}"))',
             "type": "QString",
             "default": action[2],
+            "docAnchor": "default-paths",
             "trtip": f'tr("The default paths changed after choosing a path for %1.\\nIt is a list of <default path name>s, separated by commas, and can be empty.").arg(tr("{action[0]}"))'
         })
 

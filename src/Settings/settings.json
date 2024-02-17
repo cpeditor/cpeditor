@@ -29,6 +29,7 @@
     "type": "QFont",
     "default": "[](){ QFont font = QFontDatabase::systemFont(QFontDatabase::FixedFont); font.setStyleHint(QFont::TypeWriter); return font; }()",
     "param": "true",
+    "noDoc": true,
     "tip": "The font of the code editor"
   },
   {
@@ -101,12 +102,14 @@
     "name": "Format On Manual Save",
     "desc": "Format code on manual save",
     "type": "bool",
+    "noDoc": true,
     "tip": "Format the code when saving it manually."
   },
   {
     "name": "Format On Auto Save",
     "desc": "Format code on auto-save",
     "type": "bool",
+    "noDoc": true,
     "tip": "Format the code when auto-saving it."
   },
   {
@@ -401,7 +404,7 @@
     "name": "Auto Save",
     "desc": "Enable Auto Save",
     "type": "bool",
-    "tip": "Automatically save the file every 3 seconds."
+    "noDoc": true
   },
   {
     "name": "Auto Save Interval",
@@ -499,6 +502,7 @@
     "desc": "Enable Competitive Companion",
     "type": "bool",
     "default": true,
+    "noDoc": true,
     "tip": "Receive data sent by Competitive Companion and load the example test cases."
   },
   {
@@ -572,48 +576,56 @@
         "name": "Competitive Companion/Enable"
       }
     ],
+    "noDoc": true,
     "tip": "Add a line saying \"Powered By CP Editor\" in the head comments.\nThis doesn't cost you anything, but helps more people to know CP Editor."
   },
   {
     "name": "Hotkey/Format",
     "desc": "Format Codes",
     "type": "QString",
+    "noDoc": true,
     "ui": "ShortcutItem"
   },
   {
     "name": "Hotkey/Kill",
     "desc": "Kill All Processes",
     "type": "QString",
+    "noDoc": true,
     "ui": "ShortcutItem"
   },
   {
     "name": "Hotkey/Compile Run",
     "desc": "Compile and Run",
     "type": "QString",
+    "noDoc": true,
     "ui": "ShortcutItem"
   },
   {
     "name": "Hotkey/Run",
     "desc": "Run Only",
     "type": "QString",
+    "noDoc": true,
     "ui": "ShortcutItem"
   },
   {
     "name": "Hotkey/Compile",
     "desc": "Compile Only",
     "type": "QString",
+    "noDoc": true,
     "ui": "ShortcutItem"
   },
   {
     "name": "Hotkey/Change View Mode",
     "desc": "Change View Mode",
     "type": "QString",
+    "noDoc": true,
     "ui": "ShortcutItem"
   },
   {
     "name": "Hotkey/Snippets",
     "desc": "Use Snippets",
     "type": "QString",
+    "noDoc": true,
     "ui": "ShortcutItem"
   },
   {
@@ -648,6 +660,7 @@
         "name": "Hot Exit/Auto Save"
       }
     ],
+    "noDoc": true,
     "tip": "The time interval between two auto-saves of the current session."
   },
   {
@@ -924,6 +937,7 @@
     "type": "QFont",
     "default": "[](){ QFont font = QFontDatabase::systemFont(QFontDatabase::FixedFont); font.setStyleHint(QFont::TypeWriter); return font; }()",
     "param": "true",
+    "noDoc": true,
     "tip": "The font of test cases"
   },
   {
@@ -937,17 +951,20 @@
     "type": "QFont",
     "default": "[](){ QFont font = QFontDatabase::systemFont(QFontDatabase::FixedFont); font.setStyleHint(QFont::TypeWriter); return font; }()",
     "param": "true",
+    "noDoc": true,
     "tip": "The font of the message logger"
   },
   {
     "name": "Save File On Compilation",
     "type": "bool",
     "default": "true",
+    "noDoc": true,
     "tip": "Save the source file when compiling it. It won't be saved if the tab is untitled."
   },
   {
     "name": "Save File On Execution",
     "type": "bool",
+    "noDoc": true,
     "tip": "Save the source file when running it. It won't be saved if the tab is untitled."
   },
   {
@@ -1104,6 +1121,7 @@
     "name": "Default Path/Names And Paths",
     "type": "QVariantList",
     "param": "QVariantList { QStringList { tr(\"Name\"), tr(\"The name of a default path\") }, QStringList { tr(\"Path\"), tr(\"The path of a default path\") } }",
+    "docAnchor": "default-paths",
     "tip": "A list of default paths.\nThey can be used in actions' corresponding default paths by using ${<default path name>} as a place holder.\nThey can be either manually set or automatically changed after choosing a path for an action."
   },
   {
@@ -1214,6 +1232,7 @@
     "name": "WakaTime/Enable",
     "desc": "Enable WakaTime",
     "type": "bool",
+    "tip": "Use WakaTime to track your time usage. The WakaTime CLI needs to be installed.",
     "default": false
   },
   {
@@ -1231,6 +1250,7 @@
   {
     "name": "Display Stopwatch",
     "type": "bool",
+    "tip": "Show a stopwatch in the UI. You can use it to track your time spent on solving a problem.",
     "default": false
   },
   {
@@ -1264,6 +1284,7 @@
     "ui": "QComboBox",
     "param": "QStringList {\"aqua\", \"black\", \"blue\", \"fuchsia\", \"gray\", \"green\", \"lime\", \"maroon\", \"navy\", \"olive\", \"orange\", \"purple\", \"red\", \"silver\", \"teal\", \"white\", \"yellow\"}",
     "default": "red",
+    "noDoc": true,
     "tip": "Color of error messages"
   },
   {
@@ -1273,6 +1294,7 @@
     "ui": "QComboBox",
     "param": "QStringList {\"aqua\", \"black\", \"blue\", \"fuchsia\", \"gray\", \"green\", \"lime\", \"maroon\", \"navy\", \"olive\", \"orange\", \"purple\", \"red\", \"silver\", \"teal\", \"white\", \"yellow\"}",
     "default": "green",
+    "noDoc": true,
     "tip": "Color of warning messages"
   }
 ]

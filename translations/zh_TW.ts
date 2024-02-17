@@ -1908,10 +1908,6 @@ This can be overridden for each parenthesis in each language.</source>
         <translation>啟用自動存檔</translation>
     </message>
     <message>
-        <source>Automatically save the file every 3 seconds.</source>
-        <translation>每 3 秒自動存檔。</translation>
-    </message>
-    <message>
         <source>Auto Save Interval (ms)</source>
         <translation>自動存檔間隔 (ms)</translation>
     </message>
@@ -2769,6 +2765,19 @@ Not all vim commands are supported, please check https://github.com/cpeditor/Fak
     </message>
     <message>
         <source>Color of warning messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use WakaTime to track your time usage. The WakaTime CLI needs to be installed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show a stopwatch in the UI. You can use it to track your time spent on solving a problem.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>default-paths</source>
+        <comment>the anchor of Default Paths on https://cpeditor.org/docs/preferences/file-path</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>

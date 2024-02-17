@@ -78,7 +78,7 @@ MainWindow::MainWindow(int index, AppWindow *parent)
         autoSaveTimer, &QTimer::timeout, autoSaveTimer, [this] { saveFile(AutoSave, tr("Auto Save"), false); },
         Qt::DirectConnection);
     applySettings("");
-    QTimer::singleShot(0, [this] { setLanguage(language); }); // See issue #187 for more information
+    QTimer::singleShot(0, [this] { editor->resize(0, 0); }); // refresh editor geometry
 }
 
 MainWindow::MainWindow(const QString &fileOpen, int index, AppWindow *parent) : MainWindow(index, parent)

@@ -1,20 +1,27 @@
 ## UNRELEASED
 
+## v7.0
+
+In this version, we have switched to [KSyntaxHighlighting](https://api.kde.org/frameworks/syntax-highlighting/html/), the same framework used by [the Kate editor](https://kate-editor.org/). This upgrade results in significantly improved syntax highlighting, a wider selection of [color themes](https://kate-editor.org/themes/), and additional features like code folding. However, due to extensive refactoring, some bugs may arise.
+
+We have also performed some cleanup, introducing several breaking changes. Most users will not be impacted. Only advanced users who depend on command-line options, setting file locations, etc., might experience disruptions. Additionally, if you are using v6.7 or an older version, you should first upgrade to v6.11 and then to v7.0 to prevent data loss.
+
 ### Breaking Changes
 
--   Legacy setting entries from v6.7 and earlier are no longer automatically migrated to the new ones. Update to v6.11 and then v7.0 if you are using v6.7 or older versions. (#1308)
+-   Legacy setting entries from v6.7 and earlier are no longer automatically migrated to the new ones. (#1308)
 -   The command line option `--no-hot-exit` is renamed to `--no-restore-session`. (#1308)
--   The application name is changed from "CP Editor" to "cpeditor". This affects the name of the config directory (the old config files are automatically migrated) and temporary directories, and also things like window class name in Xorg. The log files are also moved to a new location (from `/tmp/cpeditorLogFiles` to `~/.cache/cpeditor/log` on Linux). (#1308)
+-   The application name is changed from `CP Editor` to `cpeditor`. This affects the name of the config directory (the old config files are automatically migrated) and temporary directories, and also things like window class name in Xorg. The log files are also moved to a new location (from `/tmp/cpeditorLogFiles` to `~/.cache/cpeditor/log` on Linux). (#1308)
 
 ### Added
 
--   Use [Kate's Syntax highlighter](https://api.kde.org/frameworks/syntax-highlighting/html/) engine for Code Highlighting. (#1101)
+-   Use [KSyntaxHighlighting](https://api.kde.org/frameworks/syntax-highlighting/html/) for code highlighting. (#1101)
 -   Add options to select error/warning messages colors for message logger. (#521 and #1247)
 -   Add vim emulation with [custom commands](https://cpeditor.org/docs/preferences/code-edit/#custom-vim-commands). (#220 and #1270)
 
 ### Fixed
 
 -   UNIX signal handler is now more robust. (#1166 and #1304)
+-   Now pressing `Home` goes to the first non-blank character. When lines are wrapped, now `Home` and `End` are based on text lines instead of visual lines. (#774 and #1310)
 
 ## v6.11
 
