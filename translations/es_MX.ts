@@ -2690,10 +2690,6 @@ Es una lista de &lt;nombre de ruta predeterminada&gt;, separadas por comas, y pu
         <translation>Extraer y cargar snippets</translation>
     </message>
     <message>
-        <source>Highlight Error Line</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Highlight lines containing diagnostics</source>
         <translation type="unfinished"></translation>
     </message>
