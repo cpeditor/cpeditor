@@ -2689,10 +2689,6 @@ This may reduce distractions caused by stopwatch updates.</source>
 Isso pode reduzir distrações causadas pelas atualizações do cronômetro.</translation>
     </message>
     <message>
-        <source>Highlight Error Line</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Highlight lines containing diagnostics</source>
         <translation type="unfinished"></translation>
     </message>
