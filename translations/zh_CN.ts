@@ -2685,7 +2685,7 @@ This may reduce distractions caused by stopwatch updates.</source>
     </message>
     <message>
         <source>Highlight lines containing diagnostics</source>
-        <translation>高亮包含代码提示的行</translation>
+        <translation>高亮包含代码诊断信息的行</translation>
     </message>
     <message>
         <source>Color of error messages</source>
