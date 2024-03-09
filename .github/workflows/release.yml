@@ -208,7 +208,7 @@ jobs:
 
       - name: "[Linux] Release AppImage"
         if: startsWith(matrix.config.os, 'ubuntu')
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           draft: true
           prerelease: ${{ steps.get_version.outputs.ISBETA }}
@@ -265,7 +265,7 @@ jobs:
 
       - name: "[Linux] Release deb"
         if: startsWith(matrix.config.os, 'ubuntu')
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           draft: true
           prerelease: ${{ steps.get_version.outputs.ISBETA }}
@@ -286,7 +286,7 @@ jobs:
 
       - name: "[Linux] Release full source"
         if: startsWith(matrix.config.os, 'ubuntu')
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           draft: true
           prerelease: ${{ steps.get_version.outputs.ISBETA }}
@@ -309,7 +309,7 @@ jobs:
 
       - name: "[macOS] Release"
         if: startsWith(matrix.config.os, 'macos')
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           draft: true
           prerelease: ${{ steps.get_version.outputs.ISBETA }}
@@ -373,7 +373,7 @@ jobs:
 
       - name: "[Windows] Release"
         if: startsWith(matrix.config.os, 'windows')
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           draft: true
           prerelease: ${{ steps.get_version.outputs.ISBETA }}
