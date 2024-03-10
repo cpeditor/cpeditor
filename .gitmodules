@@ -19,3 +19,6 @@
 [submodule "third_party/syntax-highlighting"]
 	path = third_party/syntax-highlighting
 	url = https://github.com/KDE/syntax-highlighting.git
+[submodule "third_party/FakeVim"]
+	path = third_party/FakeVim
+	url = https://github.com/cpeditor/FakeVim
