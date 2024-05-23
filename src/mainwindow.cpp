@@ -536,9 +536,15 @@ void MainWindow::applyCompanion(const Extensions::CompanionData &data)
 
     if (isUntitled() && !isTextChanged())
     {
-        QString comments = SettingsHelper::getCompetitiveCompanionHeadComments().replace(
-            "${time}",
-            QDateTime::currentDateTime().toString(SettingsHelper::getCompetitiveCompanionHeadCommentsTimeFormat()));
+        // Create a QLocale object with the C locale to enforce Western Arabic numerals
+        QLocale cLocale(QLocale::C);
+
+        QDateTime currentDateTime = QDateTime::currentDateTime();
+        QString format = SettingsHelper::getCompetitiveCompanionHeadCommentsTimeFormat();
+
+        // Format the date and time using the C locale
+        QString formattedDateTime = cLocale.toString(currentDateTime, format);
+        QString comments = SettingsHelper::getCompetitiveCompanionHeadComments().replace("${time}", formattedDateTime);
 
         auto it = QRegularExpression(R"(\$\{json\..+?\})").globalMatch(comments);
 
