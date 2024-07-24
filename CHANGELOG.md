@@ -4,6 +4,10 @@
 
 -   Now the diff viewer uses the same font as the test cases (monospace by default). (#1396)
 
+### Changed
+
+-   Removed the function to scale the editor font via mouse wheel scroll, as it has been reported to have severe performance issues. (#1249 and #1388)
+
 ## v7.0
 
 In this version, we have switched to [KSyntaxHighlighting](https://api.kde.org/frameworks/syntax-highlighting/html/), the same framework used by [the Kate editor](https://kate-editor.org/). This upgrade results in significantly improved syntax highlighting, a wider selection of [color themes](https://kate-editor.org/themes/), and additional features like code folding. However, due to extensive refactoring, some bugs may arise.
