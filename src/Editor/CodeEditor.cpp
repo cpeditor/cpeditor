@@ -440,33 +440,6 @@ bool CodeEditor::vimCursor() const
     return m_vimCursor;
 }
 
-void CodeEditor::wheelEvent(QWheelEvent *e)
-{
-    if (e->modifiers() == Qt::ControlModifier)
-    {
-        const auto sizes = QFontDatabase::standardSizes();
-        if (sizes.isEmpty())
-        {
-            LOG_ERR("QFontDatabase::standardSizes() is empty");
-            return;
-        }
-        int newSize = font().pointSize();
-        if (e->angleDelta().y() > 0)
-            newSize = qMin(newSize + 1, sizes.last());
-        else if (e->angleDelta().y() < 0)
-            newSize = qMax(newSize - 1, sizes.first());
-        if (newSize != font().pointSize())
-        {
-            QFont newFont = font();
-            newFont.setPointSize(newSize);
-            setFont(newFont);
-            emit fontChanged(newFont);
-        }
-    }
-    else
-        QPlainTextEdit::wheelEvent(e);
-}
-
 void CodeEditor::highlightOccurrences()
 {
     occurrencesExtraSelections.clear();
