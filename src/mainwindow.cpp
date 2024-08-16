@@ -119,7 +119,6 @@ void MainWindow::setEditor()
     ui->editorArea->addWidget(editor);
 
     connect(editor, &Editor::CodeEditor::textChanged, this, &MainWindow::onTextChanged);
-    connect(editor, &Editor::CodeEditor::fontChanged, this, &MainWindow::onEditorFontChanged);
     // cursorPositionChanged() does not imply selectionChanged() if you press Left with
     // a selection (and the cursor is at the begin of the selection)
     connect(editor, &Editor::CodeEditor::cursorPositionChanged, this, &MainWindow::updateCursorInfo);
@@ -1240,12 +1239,6 @@ void MainWindow::onTextChanged()
         autoSaveTimer->start();
     }
     emit editorTextChanged(this);
-}
-
-void MainWindow::onEditorFontChanged(const QFont &newFont)
-{
-    SettingsHelper::setEditorFont(newFont);
-    emit editorFontChanged();
 }
 
 void MainWindow::updateCursorInfo()

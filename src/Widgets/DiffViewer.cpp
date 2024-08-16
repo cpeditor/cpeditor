@@ -43,6 +43,7 @@ DiffViewer::DiffViewer(QWidget *parent) : QMainWindow(parent)
     outputEdit = new QTextEdit(widget);
     outputEdit->setReadOnly(true);
     outputEdit->setWordWrapMode(QTextOption::NoWrap);
+    outputEdit->setFont(SettingsHelper::getTestCasesFont());
     leftLayout->addWidget(outputEdit);
     layout->addLayout(leftLayout);
 
@@ -52,6 +53,7 @@ DiffViewer::DiffViewer(QWidget *parent) : QMainWindow(parent)
     expectedEdit = new QTextEdit(widget);
     expectedEdit->setReadOnly(true);
     expectedEdit->setWordWrapMode(QTextOption::NoWrap);
+    expectedEdit->setFont(SettingsHelper::getTestCasesFont());
     rightLayout->addWidget(expectedEdit);
     layout->addLayout(rightLayout);
 
