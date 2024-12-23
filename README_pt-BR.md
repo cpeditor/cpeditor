@@ -10,11 +10,12 @@
 [![GitHub Sponsors](https://img.shields.io/github/sponsors/cpeditor?style=for-the-badge)](https://github.com/sponsors/cpeditor)
 <a href="https://www.producthunt.com/posts/cp-editor" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=283643&theme=dark" alt="Product Hunt" height="28"/></a>
 
-**[Funcionalidades](https://cpeditor.org) · [Documentação](https://cpeditor.org/docs) · [Registro de Alterações](CHANGELOG.md) · [Contribuição](CONTRIBUTING.md) · [FAQ](https://cpeditor.org/docs/faq/)**
+**[Funcionalidades](https://cpeditor.org) · [Documentação](https://cpeditor.org/docs) · [Registro de Alterações](CHANGELOG.md) · [Contribuição](CONTRIBUTING_pt-BR.md) · [FAQ](https://cpeditor.org/docs/faq/)**
 
 [Νέα Ελληνικά](README_el-GR.md) |
-English |
+[English](README.md) |
 [日本語](README_ja-JP.md) |
+Português brasileiro
 [Русский](README_ru-RU.md) |
 [简体中文](README_zh-CN.md) |
 [正體中文](README_zh-TW.md)
@@ -39,7 +40,7 @@ English |
 
 ## Doar
 
--   [Como doar](DONATE.md)
+-   [Como doar](DONATE_pt-BR.md)
 -   [Lista de doadores](DONORS.md)
 
 ## Contribuir
