@@ -14,6 +14,7 @@
 [Νέα Ελληνικά](README_el-GR.md) |
 [English](README.md) |
 日本語 |
+[Português brasileiro](README_pt-BR.md) |
 [Русский](README_ru-RU.md) |
 [简体中文](README_zh-CN.md) |
 [正體中文](README_zh-TW.md)

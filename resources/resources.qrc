@@ -2,8 +2,10 @@
     <qresource prefix="/">
         <file>icon.png</file>
         <file>../DONATE.md</file>
-        <file>../DONATE_zh-CN.md</file>
+        <file>../DONATE_pt-BR.md</file>
         <file>../DONATE_ru-RU.md</file>
+        <file>../DONATE_zh-CN.md</file>
+        <file>../DONATE_zh-TW.md</file>
         <file>language_config.json</file>
         <file alias="testlib/testlib.h">../third_party/testlib/testlib.h</file>
         <file alias="testlib/checkers/ncmp.cpp">../third_party/testlib/checkers/ncmp.cpp</file>
