@@ -295,6 +295,9 @@
       <td align="center" valign="top" width="16.66%">
       <a href="https://github.com/topazus"><img src="https://avatars.githubusercontent.com/u/77263945?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/topazus"><sub><b>topazus</b></sub></a><br /><a href="#infra-topazus" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a>
     </td>
+      <td align="center" valign="top" width="16.66%">
+      <a href="https://github.com/TheoRiffel"><img src="https://avatars.githubusercontent.com/u/46604318?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/TheoRiffel"><sub><b>Théo Riffel</b></sub></a><br /><a href="#translation-TheoRiffel" title="Translation">🌍</a>
+    </td>
     </tr>
   </tbody>
 </table>
