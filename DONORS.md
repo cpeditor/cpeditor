@@ -17,6 +17,7 @@
 ## WeChat
 
 -   gznpp
+-   [Cu_OH_2](https://github.com/Cu-OH-2)
 
 ## AliPay
 
