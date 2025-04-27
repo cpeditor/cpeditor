@@ -165,7 +165,6 @@ class MainWindow : public QMainWindow
     void onRunKilled(int index);
 
     void onFileWatcherChanged(const QString &);
-    void onEditorFontChanged(const QFont &newFont);
     void onTextChanged();
     void updateCursorInfo();
     void updateChecker();
@@ -186,7 +185,6 @@ class MainWindow : public QMainWindow
     void editorFileChanged();
     void requestUpdateLanguageServerFilePath(MainWindow *window, const QString &path);
     void editorTextChanged(MainWindow *window);
-    void editorFontChanged();
     void confirmTriggered(MainWindow *widget);
     void requestToastMessage(const QString &head, const QString &body);
     void editorLanguageChanged(MainWindow *window);

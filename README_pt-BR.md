@@ -1,70 +1,71 @@
+
 <div align="center">
 
 <img src=assets/icon.ico width="128">
 
-**CP Editor - 讓你的競程之旅如虎添翼！**
+**CP Editor - Melhore sua experiência com programação competitiva!**
 
 [![downloads](https://img.shields.io/github/downloads/cpeditor/cpeditor/total?style=for-the-badge)](https://github.com/cpeditor/cpeditor/releases)
 [![All Contributors](https://img.shields.io/github/all-contributors/cpeditor/cpeditor?style=for-the-badge)](#all-contributors)
 [![GitHub Sponsors](https://img.shields.io/github/sponsors/cpeditor?style=for-the-badge)](https://github.com/sponsors/cpeditor)
 <a href="https://www.producthunt.com/posts/cp-editor" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=283643&theme=dark" alt="Product Hunt" height="28"/></a>
 
-**[特色功能](https://cpeditor.org/zh_tw) · [文件](https://cpeditor.org/zh_tw/docs) · [更新紀錄](CHANGELOG.md) · [貢獻指引](CONTRIBUTING_zh-TW.md) · [常見問題](https://cpeditor.org/zh_tw/docs/faq/)**
+**[Funcionalidades](https://cpeditor.org) · [Documentação](https://cpeditor.org/docs) · [Registro de Alterações](CHANGELOG.md) · [Contribuição](CONTRIBUTING_pt-BR.md) · [FAQ](https://cpeditor.org/docs/faq/)**
 
 [Νέα Ελληνικά](README_el-GR.md) |
 [English](README.md) |
 [日本語](README_ja-JP.md) |
-[Português brasileiro](README_pt-BR.md) |
+Português brasileiro |
 [Русский](README_ru-RU.md) |
 [简体中文](README_zh-CN.md) |
-正體中文
+[正體中文](README_zh-TW.md)
 
 ![demo](assets/demo.gif)
 
-|  type  |                           branch                           |                                                                                                       build                                                                                                        |                                                                   下載次數                                                                    |                                                         AUR                                                         |                                                snap                                                  |
+|  tipo  |                           branch                           |                                                                                                       build                                                                                                        |                                                                   downloads                                                                    |                                                         AUR                                                         |                                                snap                                                  |
 | :----: | :--------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------: |
 | alpha  | [master](https://github.com/cpeditor/cpeditor/tree/master) | [![GitHub Workflow Status](https://github.com/cpeditor/cpeditor/actions/workflows/build_test.yml/badge.svg?branch=master&event=push)](https://github.com/cpeditor/cpeditor/actions/workflows/build_test.yml?query=branch%3Amaster+event%3Apush) |                                                                       -                                                                        | [![AUR version](https://img.shields.io/aur/version/cpeditor-git)](https://aur.archlinux.org/packages/cpeditor-git/) |  [![snap version](https://badgen.net/snapcraft/v/cpeditor/amd64/edge)](https://snapcraft.io/cpeditor)
 |  beta  |   [v7.0](https://github.com/cpeditor/cpeditor/tree/v7.0)   |   [![GitHub Workflow Status](https://github.com/cpeditor/cpeditor/actions/workflows/build_test.yml/badge.svg?branch=v7.0&event=push)](https://github.com/cpeditor/cpeditor/actions/workflows/build_test.yml?query=branch%3Av7.0+event%3Apush)   | [![Downloads](https://img.shields.io/github/downloads/cpeditor/cpeditor/7.0.1/total)](https://github.com/cpeditor/cpeditor/releases/tag/7.0.1) |                                                          -                                                          |                                                   -
-| stable |   [v6.11](https://github.com/cpeditor/cpeditor/tree/v6.11)   |   [![GitHub Workflow Status](https://github.com/cpeditor/cpeditor/actions/workflows/build_test.yml/badge.svg?branch=v6.11&event=push)](https://github.com/cpeditor/cpeditor/actions/workflows/build_test.yml?query=branch%3Av6.11+event%3Apush)   | [![Downloads](https://img.shields.io/github/downloads/cpeditor/cpeditor/6.11.2/total)](https://github.com/cpeditor/cpeditor/releases/tag/6.11.2) |     [![AUR version](https://img.shields.io/aur/version/cpeditor)](https://aur.archlinux.org/packages/cpeditor/)     |  [![snap version](https://badgen.net/snapcraft/v/cpeditor/amd64/stable)](https://snapcraft.io/cpeditor)
+| estável |   [v6.11](https://github.com/cpeditor/cpeditor/tree/v6.11)   |   [![GitHub Workflow Status](https://github.com/cpeditor/cpeditor/actions/workflows/build_test.yml/badge.svg?branch=v6.11&event=push)](https://github.com/cpeditor/cpeditor/actions/workflows/build_test.yml?query=branch%3Av6.11+event%3Apush)   | [![Downloads](https://img.shields.io/github/downloads/cpeditor/cpeditor/6.11.2/total)](https://github.com/cpeditor/cpeditor/releases/tag/6.11.2) |     [![AUR version](https://img.shields.io/aur/version/cpeditor)](https://aur.archlinux.org/packages/cpeditor/)     |  [![snap version](https://badgen.net/snapcraft/v/cpeditor/amd64/stable)](https://snapcraft.io/cpeditor)
 
 </div>
 
-## 開始吧
+## Introdução
 
--   [發行版本](https://github.com/cpeditor/cpeditor/releases)
--   [安裝指示](https://cpeditor.org/docs/installation/)
--   [開始使用](https://cpeditor.org/docs/setup/)
--   [偏好設定](https://cpeditor.org/docs/preferences)
--   [秘訣](https://cpeditor.org/docs/tips/)
+-   [Lançamentos](https://github.com/cpeditor/cpeditor/releases)
+-   [Instalação](https://cpeditor.org/docs/installation/)
+-   [Introdução](https://cpeditor.org/docs/setup/)
+-   [Preferências](https://cpeditor.org/docs/preferences)
+-   [Dicas](https://cpeditor.org/docs/tips/)
 
-## 贊助
+## Doar
 
--   [如何贊助](DONATE_zh-TW.md)
--   [贊助者名冊](DONORS.md)
+-   [Como doar](DONATE_pt-BR.md)
+-   [Lista de doadores](DONORS.md)
 
-## 貢獻
+## Contribuir
 
--   [貢獻指引](CONTRIBUTING_zh-TW.md)
--   [Good first issues](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
--   [需要協助的議題](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
+-   [Diretrizes de Contribuição](CONTRIBUTING.md)
+-   [Bons problemas para iniciantes](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22)
+-   [Problemas com ajuda necessária](https://github.com/cpeditor/cpeditor/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
 
-## 意見回饋
+## Feedback
 
--   我有疑問： 以「Q&A」類別 [提出討論](https://github.com/cpeditor/cpeditor/discussions/new)，請在您得到有用的回覆後將其標記為答案。
--   我有好點子： 以「Ideas」類別 [提出討論](https://github.com/cpeditor/cpeditor/discussions/new) 。
--   正式的功能需求、臭蟲回報： [新增議題](https://github.com/cpeditor/cpeditor/issues/new/choose) ，請盡可能詳述議題，並提供充分資訊。
--   [說聲感謝](https://github.com/cpeditor/cpeditor/discussions/755)
--   [抱怨專區](https://github.com/cpeditor/cpeditor/discussions/760)
+-   Faça perguntas: [Abra uma nova discussão](https://github.com/cpeditor/cpeditor/discussions/new) na categoria Q&A. Marque como Respondido quando receber uma resposta útil.
+-   Forneça ideias: [Abra uma nova discussão](https://github.com/cpeditor/cpeditor/discussions/new) na categoria Ideias.
+-   Solicitação formal de recursos ou relatório de bugs: [Abra um problema](https://github.com/cpeditor/cpeditor/issues/new/choose) com uma descrição detalhada e o máximo de informações possível.
+-   [Diga obrigado](https://github.com/cpeditor/cpeditor/discussions/755)
+-   [Faça reclamações](https://github.com/cpeditor/cpeditor/discussions/760)
 
-## 套件概況
+## Status do Empacotamento
 
-[![Packaging status](https://repology.org/badge/vertical-allrepos/cpeditor.svg)](https://repology.org/project/cpeditor/versions)
+[![Status de empacotamento](https://repology.org/badge/vertical-allrepos/cpeditor.svg)](https://repology.org/project/cpeditor/versions)
 
-我們很樂意向軟體庫的套件維護者提供協助，例如可以在 CI/CD 的工作流程中加入一些指令碼。
+Mantenedores de pacotes podem nos contatar se precisarem de ajuda. Por exemplo, podemos adicionar alguns scripts ao nosso fluxo de trabalho CI/CD.
 
-## 所有貢獻者
+## Todos os Contribuidores
 
-感謝以下熱心人們的付出 (若我們不慎遺漏了你，你可以在此 [加入名單](https://allcontributors.org/docs/en/bot/usage)）
+Agradecemos a essas pessoas maravilhosas: (se esquecermos de adicioná-lo como contribuidor, você pode [adicionar você mesmo](https://allcontributors.org/docs/en/bot/usage))
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
@@ -307,9 +308,8 @@
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
-本專案遵循 [all-contributors](https://github.com/all-contributors/all-contributors) 規範，歡迎各種形式的貢獻!
+Este projeto segue a especificação [all-contributors](https://github.com/all-contributors/all-contributors). Contribuições de qualquer tipo são bem-vindas!
 
+## Licença
 
-## 授權
-
-[GNU General Public License Version 3.0](LICENSE)
+[Licença Pública Geral GNU Versão 3.0](LICENSE)

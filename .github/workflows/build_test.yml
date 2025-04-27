@@ -20,7 +20,7 @@ jobs:
             ecm-path: "C:/Program Files/ECM/"
           - os: ubuntu-latest
             binary: cpeditor
-          - os: macos-latest
+          - os: macos-13
             binary: cpeditor.app/Contents/MacOS/cpeditor
 
     steps:
@@ -47,6 +47,18 @@ jobs:
         run: |
           brew install llvm
           ln -s "$(brew --prefix llvm)/bin/clang-tidy" "/usr/local/bin/clang-tidy"
+
+      - uses: actions/checkout@v4
+        with:
+          repository: KDE/extra-cmake-modules
+          path: third_party/extra-cmake-modules
+          ref: kf5
+
+      - uses: actions/checkout@v4
+        with:
+          repository: KDE/syntax-highlighting
+          path: third_party/syntax-highlighting
+          ref: kf5
 
       - name: "[Windows] Install extra-cmake-modules"
         if: startsWith(matrix.config.os, 'windows')

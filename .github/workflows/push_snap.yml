@@ -23,6 +23,18 @@ jobs:
           submodules: recursive
           fetch-depth: 0
 
+      - uses: actions/checkout@v4
+        with:
+          repository: KDE/extra-cmake-modules
+          path: third_party/extra-cmake-modules
+          ref: kf5
+
+      - uses: actions/checkout@v4
+        with:
+          repository: KDE/syntax-highlighting
+          path: third_party/syntax-highlighting
+          ref: kf5
+
       - name: Update Snapcraft
         run: |
           cp dist/snap/snapcraft.yaml snapcraft.yaml

@@ -436,7 +436,6 @@ void AppWindow::openTab(MainWindow *window, MainWindow *after)
     connect(window, &MainWindow::requestUpdateLanguageServerFilePath, this, &AppWindow::updateLanguageServerFilePath);
     connect(window, &MainWindow::editorLanguageChanged, this, &AppWindow::onEditorLanguageChanged);
     connect(window, &MainWindow::editorTextChanged, this, &AppWindow::onEditorTextChanged);
-    connect(window, &MainWindow::editorFontChanged, this, [this] { onSettingsApplied("Appearance/Font"); });
     connect(window, &MainWindow::requestToastMessage, trayIcon,
             [this](QString const &head, QString const &body) { trayIcon->showMessage(head, body); });
     connect(window, &MainWindow::compileOrRunTriggered, this, &AppWindow::onCompileOrRunTriggered);

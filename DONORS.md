@@ -5,6 +5,7 @@
 -   [mateus sze cosenza](https://github.com/cosenza987)
 -   [Marhoosh](https://github.com/Marhoosh)
 -   [Dmytro Fedoriaka](https://github.com/fedimser)
+-   [Yash Bhagwat (Blitztage)](https://github.com/Yash-bhagwat)
 <!-- END: GitHub Sponsors -->
 
 ## Open Collective
@@ -16,6 +17,7 @@
 ## WeChat
 
 -   gznpp
+-   [Cu_OH_2](https://github.com/Cu-OH-2)
 
 ## AliPay
 

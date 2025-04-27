@@ -13,12 +13,6 @@
 [submodule "third_party/qhttp"]
 	path = third_party/qhttp
 	url = https://github.com/cpeditor/qhttp
-[submodule "third_party/extra-cmake-modules"]
-	path = third_party/extra-cmake-modules
-	url = https://github.com/KDE/extra-cmake-modules.git
-[submodule "third_party/syntax-highlighting"]
-	path = third_party/syntax-highlighting
-	url = https://github.com/KDE/syntax-highlighting.git
 [submodule "third_party/FakeVim"]
 	path = third_party/FakeVim
 	url = https://github.com/cpeditor/FakeVim

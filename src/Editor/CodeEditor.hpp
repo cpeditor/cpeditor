@@ -136,12 +136,6 @@ class CodeEditor : public QPlainTextEdit
 
     void applySettings(const QString &lang);
 
-  signals:
-    /**
-     * @brief Signal, the font is changed by the wheel event.
-     */
-    void fontChanged(const QFont &newFont);
-
   public slots:
     /**
      * @brief Slot, that indent the selected lines.
@@ -203,11 +197,6 @@ class CodeEditor : public QPlainTextEdit
      * @brief Method, update the bottom margin when the font changes.
      */
     void changeEvent(QEvent *e) override;
-
-    /**
-     * @brief Method, update the font size when the wheel is rotated with Ctrl pressed
-     */
-    void wheelEvent(QWheelEvent *e) override;
 
     /**
      * @brief Method, that's called on any key press, posted

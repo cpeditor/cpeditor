@@ -36,7 +36,7 @@ jobs:
           shasum -a 256 *.* > cpeditor-${{ steps.get_version.outputs.VERSION }}-sha256-checksums.txt
 
       - name: Upload checksums
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           prerelease: ${{ steps.get_version.outputs.ISBETA }}
           name: CP Editor ${{ steps.get_version.outputs.VERSION }}
