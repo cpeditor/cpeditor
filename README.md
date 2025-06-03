@@ -296,7 +296,7 @@ Thanks go to these wonderful people: (if we forget to add you as a contributor, 
       <a href="https://github.com/topazus"><img src="https://avatars.githubusercontent.com/u/77263945?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/topazus"><sub><b>topazus</b></sub></a><br /><a href="#infra-topazus" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a>
     </td>
       <td align="center" valign="top" width="16.66%">
-      <a href="https://github.com/TheoRiffel"><img src="https://avatars.githubusercontent.com/u/46604318?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/TheoRiffel"><sub><b>Théo Riffel</b></sub></a><br /><a href="#translation-TheoRiffel" title="Translation">🌍</a>
+      <a href="https://github.com/swanjeng"><img src="https://avatars.githubusercontent.com/u/208931649?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/swanjeng"><sub><b>Swan Jeng</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3Aswanjeng" title="Bug reports">🐛</a>
     </td>
     </tr>
   </tbody>
