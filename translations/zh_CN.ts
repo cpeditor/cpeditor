@@ -441,7 +441,7 @@ git 提交编号: %3
     </message>
     <message>
         <source>Source File</source>
-        <translation>源文件</translation>
+        <translation>源代码</translation>
     </message>
     <message>
         <source>Executable File</source>
@@ -2819,10 +2819,6 @@ This may reduce distractions caused by stopwatch updates.</source>
 <context>
     <name>Util::FileUtil</name>
     <message>
-        <source>%1Source Files (%2)</source>
-        <translation>%1 源代码 (%2)</translation>
-    </message>
-    <message>
         <source>Failed to open [%1]. Do I have write permission?</source>
         <translation>打开 [%1] 失败。你拥有写入权限吗？</translation>
     </message>
@@ -2853,6 +2849,22 @@ This may reduce distractions caused by stopwatch updates.</source>
     <message>
         <source>Reveal %1 in File Manager</source>
         <translation>在文件管理器中查看%1</translation>
+    </message>
+    <message>
+        <source>C++ Source Files</source>
+        <translation>C++ 源代码</translation>
+    </message>
+    <message>
+        <source>Java Source Files</source>
+        <translation>Java 源代码</translation>
+    </message>
+    <message>
+        <source>Python Source Files</source>
+        <translation>Python 源代码</translation>
+    </message>
+    <message>
+        <source>Source Files</source>
+        <translation>源代码</translation>
     </message>
 </context>
 <context>

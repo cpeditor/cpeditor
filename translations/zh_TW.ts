@@ -2845,10 +2845,6 @@ This may reduce distractions caused by stopwatch updates.</source>
 <context>
     <name>Util::FileUtil</name>
     <message>
-        <source>%1Source Files (%2)</source>
-        <translation>%1 原始檔（%2）</translation>
-    </message>
-    <message>
         <source>Failed to open [%1]. Do I have write permission?</source>
         <translation>無法開啟「%1」。有寫入權限嗎？</translation>
     </message>
@@ -2881,6 +2877,22 @@ This may reduce distractions caused by stopwatch updates.</source>
     <message>
         <source>Reveal %1 in File Manager</source>
         <translation>在檔案管理員中顯示 %1</translation>
+    </message>
+    <message>
+        <source>C++ Source Files</source>
+        <translation>C++ 原始檔</translation>
+    </message>
+    <message>
+        <source>Java Source Files</source>
+        <translation>Java 原始檔</translation>
+    </message>
+    <message>
+        <source>Python Source Files</source>
+        <translation>Python 原始檔</translation>
+    </message>
+    <message>
+        <source>Source Files</source>
+        <translation>原始檔</translation>
     </message>
 </context>
 <context>

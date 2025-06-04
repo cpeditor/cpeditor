@@ -2828,10 +2828,6 @@ Isso pode reduzir distrações causadas pelas atualizações do cronômetro.</tr
 <context>
     <name>Util::FileUtil</name>
     <message>
-        <source>%1Source Files (%2)</source>
-        <translation>%1 Arquivos fontes (%2)</translation>
-    </message>
-    <message>
         <source>Failed to open [%1]. Do I have write permission?</source>
         <translation>Falha ao abrir [%1]. Tem permissão para gravar?</translation>
     </message>
@@ -2862,6 +2858,22 @@ Isso pode reduzir distrações causadas pelas atualizações do cronômetro.</tr
     <message>
         <source>Reveal %1 in File Manager</source>
         <translation>Apresentar %1 no Gerenciador de Arquivos</translation>
+    </message>
+    <message>
+        <source>C++ Source Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Java Source Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Python Source Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Source Files</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

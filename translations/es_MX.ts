@@ -2829,10 +2829,6 @@ Es una lista de &lt;nombre de ruta predeterminada&gt;, separadas por comas, y pu
 <context>
     <name>Util::FileUtil</name>
     <message>
-        <source>%1Source Files (%2)</source>
-        <translation>%1Archivos fuente (%2)</translation>
-    </message>
-    <message>
         <source>Failed to open [%1]. Do I have write permission?</source>
         <translation>Error al abrir [%1]. ¿Tengo permiso de escritura?</translation>
     </message>
@@ -2863,6 +2859,22 @@ Es una lista de &lt;nombre de ruta predeterminada&gt;, separadas por comas, y pu
     <message>
         <source>Reveal %1 in File Manager</source>
         <translation>Mostrar %1 en el administrador de archivos</translation>
+    </message>
+    <message>
+        <source>C++ Source Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Java Source Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Python Source Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Source Files</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
