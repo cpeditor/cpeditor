@@ -664,6 +664,15 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "swanjeng",
+      "name": "Swan Jeng",
+      "avatar_url": "https://avatars.githubusercontent.com/u/208931649?v=4",
+      "profile": "https://github.com/swanjeng",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 6,
