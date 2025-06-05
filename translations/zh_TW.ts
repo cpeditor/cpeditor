@@ -2095,7 +2095,7 @@ kill the application with SIGKILL which could not be handled by the application.
     </message>
     <message>
         <source>Enable to check CF Tool and show the submit button. Disable to hide the button and suppress warnings.</source>
-      <translation>啟用以檢查 CF Tool 是否安裝與顯示「送出」按鈕。禁用以隱藏按鈕並抑制警告。</translation>
+        <translation>啟用以檢查 CF Tool 是否安裝與顯示「送出」按鈕。禁用以隱藏按鈕並抑制警告。</translation>
     </message>
     <message>
         <source>Show Compile And Run Only</source>
