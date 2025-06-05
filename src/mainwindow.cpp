@@ -245,6 +245,8 @@ void MainWindow::saveTests(bool safe)
 
 void MainWindow::setCFToolUI()
 {
+    if (!SettingsHelper::isCFEnableCFTool())
+        return;
     if (submitToCodeforces == nullptr)
     {
         submitToCodeforces = new QPushButton(tr("Submit"), this);
@@ -624,6 +626,20 @@ void MainWindow::applySettings(const QString &pagePath)
             cftool->updatePath(cftoolPath);
             if (submitToCodeforces != nullptr)
                 submitToCodeforces->setEnabled(true);
+        }
+        if (problemURL.contains("codeforces.com"))
+        {
+            if (submitToCodeforces == nullptr && SettingsHelper::isCFEnableCFTool())
+            {
+                setCFToolUI();
+            }
+            else if (submitToCodeforces != nullptr && !SettingsHelper::isCFEnableCFTool())
+            {
+                submitToCodeforces->setEnabled(false);
+                ui->compileAndRunButtons->removeWidget(submitToCodeforces);
+                delete submitToCodeforces;
+                submitToCodeforces = nullptr;
+            }
         }
     }
 

@@ -649,6 +649,13 @@
     "tip": "Show a toast message when the verdict of a submission is known. You can see the message outside of CP Editor."
   },
   {
+    "name": "CF/Enable CF Tool",
+    "desc": "Enable CF Tool",
+    "type": "bool",
+    "default": "true",
+    "tip": "Enable to check CF Tool and show the submit button. Disable to hide the button and suppress warnings."
+  },
+  {
     "name": "Show Compile And Run Only",
     "type": "bool",
     "tip": "Hide the Compile Only button and the Run Only button under the code editor in the main window."
