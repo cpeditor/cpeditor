@@ -299,7 +299,6 @@ void MainWindow::removeCFToolUI()
         delete cftool;
         cftool = nullptr;
     }
-    return;
 }
 
 int MainWindow::getUntitledIndex() const
