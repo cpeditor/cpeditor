@@ -242,6 +242,7 @@ class MainWindow : public QMainWindow
     void loadTests();
     void saveTests(bool safe);
     void setCFToolUI();
+    void removeCFToolUI(); // Delete cftool&submitToCodeforces pointers, and remove the button from ui
     void setFilePath(QString path, bool updateBinder = true);
     void setText(const QString &text, bool keep = false);
     void updateWatcher();

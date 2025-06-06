@@ -288,6 +288,20 @@ void MainWindow::setCFToolUI()
     }
 }
 
+void MainWindow::removeCFToolUI()
+{
+    if (submitToCodeforces != nullptr)
+    {
+        submitToCodeforces->setEnabled(false);
+        ui->compileAndRunButtons->removeWidget(submitToCodeforces);
+        delete submitToCodeforces;
+        submitToCodeforces = nullptr;
+        delete cftool;
+        cftool = nullptr;
+    }
+    return;
+}
+
 int MainWindow::getUntitledIndex() const
 {
     return untitledIndex;
@@ -635,10 +649,7 @@ void MainWindow::applySettings(const QString &pagePath)
             }
             else if (submitToCodeforces != nullptr && !SettingsHelper::isCFEnableCFTool())
             {
-                submitToCodeforces->setEnabled(false);
-                ui->compileAndRunButtons->removeWidget(submitToCodeforces);
-                delete submitToCodeforces;
-                submitToCodeforces = nullptr;
+                removeCFToolUI();
             }
         }
     }
