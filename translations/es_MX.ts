@@ -2718,6 +2718,14 @@ Es una lista de &lt;nombre de ruta predeterminada&gt;, separadas por comas, y pu
         <comment>the anchor of Default Paths on https://cpeditor.org/docs/preferences/file-path</comment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Enable CF Tool</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable or disable CF Tool Integration.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ShortcutItem</name>

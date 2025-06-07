@@ -639,14 +639,31 @@
     "default": "cf",
     "ui": "PathItem",
     "param": "PathItem::Executable",
-    "tip": "The path to the CF Tool executable file"
+    "tip": "The path to the CF Tool executable file",
+    "depends": [
+      {
+        "name": "CF/Enable"
+      }
+    ]
   },
   {
     "name": "CF/Show Toast Messages",
     "desc": "Show toast messages for submission verdicts",
     "type": "bool",
     "default": "true",
-    "tip": "Show a toast message when the verdict of a submission is known. You can see the message outside of CP Editor."
+    "tip": "Show a toast message when the verdict of a submission is known. You can see the message outside of CP Editor.",
+    "depends": [
+      {
+        "name": "CF/Enable"
+      }
+    ]
+  },
+  {
+    "name": "CF/Enable",
+    "desc": "Enable CF Tool",
+    "type": "bool",
+    "default": "true",
+    "tip": "Enable or disable CF Tool Integration."
   },
   {
     "name": "Show Compile And Run Only",

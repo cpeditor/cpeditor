@@ -2090,6 +2090,14 @@ kill the application with SIGKILL which could not be handled by the application.
         <translation>當評判結果揭曉時，顯示快顯通知。此通知在 CP Editor 以外也能見到。</translation>
     </message>
     <message>
+        <source>Enable CF Tool</source>
+        <translation>啟用 CF Tool</translation>
+    </message>
+    <message>
+        <source>Enable or disable CF Tool Integration.</source>
+        <translation>啟用或禁用CF Tool</translation>
+    </message>
+    <message>
         <source>Show Compile And Run Only</source>
         <translation>只顯示編譯並執行</translation>
     </message>

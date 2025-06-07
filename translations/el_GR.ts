@@ -2713,6 +2713,14 @@ This may reduce distractions caused by stopwatch updates.</source>
         <comment>the anchor of Default Paths on https://cpeditor.org/docs/preferences/file-path</comment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Enable CF Tool</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable or disable CF Tool Integration.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ShortcutItem</name>
