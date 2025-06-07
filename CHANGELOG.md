@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+### Added
+
+-   An option to disable CF Tool integration. (#1439)
+
 ### Fixed
 
 -   Now the diff viewer uses the same font as the test cases (monospace by default). (#1396)
