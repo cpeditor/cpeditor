@@ -2723,7 +2723,7 @@ Es una lista de &lt;nombre de ruta predeterminada&gt;, separadas por comas, y pu
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Enable to check CF Tool and show the submit button. Disable to hide the button and suppress warnings.</source>
+        <source>Enable or disable CF Tool Integration.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

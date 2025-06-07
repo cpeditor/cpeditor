@@ -2722,7 +2722,7 @@ Isso pode reduzir distrações causadas pelas atualizações do cronômetro.</tr
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Enable to check CF Tool and show the submit button. Disable to hide the button and suppress warnings.</source>
+        <source>Enable or disable CF Tool Integration.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

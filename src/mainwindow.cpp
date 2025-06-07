@@ -245,7 +245,7 @@ void MainWindow::saveTests(bool safe)
 
 void MainWindow::setCFToolUI()
 {
-    if (!SettingsHelper::isCFEnableCFTool())
+    if (!SettingsHelper::isCFEnable())
         return;
     if (submitToCodeforces == nullptr)
     {
@@ -642,11 +642,11 @@ void MainWindow::applySettings(const QString &pagePath)
         }
         if (problemURL.contains("codeforces.com"))
         {
-            if (submitToCodeforces == nullptr && SettingsHelper::isCFEnableCFTool())
+            if (submitToCodeforces == nullptr && SettingsHelper::isCFEnable())
             {
                 setCFToolUI();
             }
-            else if (submitToCodeforces != nullptr && !SettingsHelper::isCFEnableCFTool())
+            else if (submitToCodeforces != nullptr && !SettingsHelper::isCFEnable())
             {
                 removeCFToolUI();
             }

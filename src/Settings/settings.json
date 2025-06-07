@@ -642,7 +642,7 @@
     "tip": "The path to the CF Tool executable file",
     "depends": [
       {
-        "name": "CF/Enable CF Tool"
+        "name": "CF/Enable"
       }
     ]
   },
@@ -654,16 +654,16 @@
     "tip": "Show a toast message when the verdict of a submission is known. You can see the message outside of CP Editor.",
     "depends": [
       {
-        "name": "CF/Enable CF Tool"
+        "name": "CF/Enable"
       }
     ]
   },
   {
-    "name": "CF/Enable CF Tool",
+    "name": "CF/Enable",
     "desc": "Enable CF Tool",
     "type": "bool",
     "default": "true",
-    "tip": "Enable to check CF Tool and show the submit button. Disable to hide the button and suppress warnings."
+    "tip": "Enable or disable CF Tool Integration."
   },
   {
     "name": "Show Compile And Run Only",
