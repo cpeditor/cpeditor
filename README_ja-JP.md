@@ -301,6 +301,9 @@
       <td align="center" valign="top" width="16.66%">
       <a href="https://github.com/swanjeng"><img src="https://avatars.githubusercontent.com/u/208931649?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/swanjeng"><sub><b>Swan Jeng</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/issues?q=author%3Aswanjeng" title="Bug reports">🐛</a>
     </td>
+      <td align="center" valign="top" width="16.66%">
+      <a href="https://github.com/yushiuan9499"><img src="https://avatars.githubusercontent.com/u/117244796?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/yushiuan9499"><sub><b>宋昱宣</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/commits?author=yushiuan9499" title="Code">💻</a>
+    </td>
     </tr>
   </tbody>
 </table>
