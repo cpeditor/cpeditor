@@ -59,13 +59,17 @@ class AppWindow : public QMainWindow
     Q_OBJECT
 
   public:
-    explicit AppWindow(int depth, bool cpp, bool java, bool python, bool noHotExit, const QStringList &paths,
+    explicit AppWindow(int depth, bool cpp, bool java, bool python, bool noRestoreSession, const QStringList &paths,
                        QWidget *parent = nullptr);
-    explicit AppWindow(bool cpp, bool java, bool python, bool noHotExit, int number, const QString &path,
+    explicit AppWindow(bool cpp, bool java, bool python, bool noRestoreSession, int number, const QString &path,
                        QWidget *parent = nullptr);
     ~AppWindow() override;
 
     PreferencesWindow *getPreferencesWindow() const;
+
+    bool isInitialized() const;
+
+    void setInitialized(bool flag = true);
 
   protected:
     void closeEvent(QCloseEvent *event) override;
@@ -216,6 +220,9 @@ class AppWindow : public QMainWindow
 
     void onFileSaved(MainWindow *window);
 
+  signals:
+    void initialized();
+
   private:
     Ui::AppWindow *ui;
     MessageLogger *activeLogger = nullptr;
@@ -242,7 +249,10 @@ class AppWindow : public QMainWindow
 
     Extensions::WakaTime *wakaTime = nullptr;
 
-    explicit AppWindow(bool noHotExit, QWidget *parent = nullptr);
+    std::atomic_bool _isInitialized{false};
+
+    explicit AppWindow(bool noRestoreSession, QWidget *parent = nullptr);
+
     void finishConstruction();
 
     void setConnections();

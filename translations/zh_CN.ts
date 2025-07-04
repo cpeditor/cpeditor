@@ -441,7 +441,7 @@ git 提交编号: %3
     </message>
     <message>
         <source>Source File</source>
-        <translation>源文件</translation>
+        <translation>源代码</translation>
     </message>
     <message>
         <source>Executable File</source>
@@ -1699,10 +1699,6 @@ You can use &quot;${filename}&quot; for the complete file name,
         <translation>自动保存</translation>
     </message>
     <message>
-        <source>Automatically save the file every 3 seconds.</source>
-        <translation>每 3 秒自动保存代码。</translation>
-    </message>
-    <message>
         <source>Wrap Text</source>
         <translation>文本自动换行</translation>
     </message>
@@ -2687,6 +2683,43 @@ on the current tab and pause the stopwatch on the previous tab.</source>
 This may reduce distractions caused by stopwatch updates.</source>
         <translation>隐藏计时结果，只在“显示”按钮按下时显示。这或许可以避免计时结果更新使人分心。</translation>
     </message>
+    <message>
+        <source>Highlight Error Line</source>
+        <translation>高亮错误行</translation>
+    </message>
+    <message>
+        <source>Highlight lines containing diagnostics</source>
+        <translation>高亮包含代码提示的行</translation>
+    </message>
+    <message>
+        <source>Color of error messages</source>
+        <translation>错误信息的颜色</translation>
+    </message>
+    <message>
+        <source>Color of warning messages</source>
+        <translation>警告信息的颜色</translation>
+    </message>
+    <message>
+        <source>Use WakaTime to track your time usage. The WakaTime CLI needs to be installed.</source>
+        <translation>使用 WakaTime 来记录你的时间使用情况。需要安装 WakaTime CLI。</translation>
+    </message>
+    <message>
+        <source>Show a stopwatch in the UI. You can use it to track your time spent on solving a problem.</source>
+        <translation>在 UI 中显示计时器。你可以用它来记录做题用时。</translation>
+    </message>
+    <message>
+        <source>default-paths</source>
+        <comment>the anchor of Default Paths on https://cpeditor.org/docs/preferences/file-path</comment>
+        <translation>默认路径</translation>
+    </message>
+    <message>
+        <source>Enable CF Tool</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable or disable CF Tool Integration.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ShortcutItem</name>
@@ -2798,10 +2831,6 @@ This may reduce distractions caused by stopwatch updates.</source>
 <context>
     <name>Util::FileUtil</name>
     <message>
-        <source>%1Source Files (%2)</source>
-        <translation>%1 源代码 (%2)</translation>
-    </message>
-    <message>
         <source>Failed to open [%1]. Do I have write permission?</source>
         <translation>打开 [%1] 失败。你拥有写入权限吗？</translation>
     </message>
@@ -2832,6 +2861,22 @@ This may reduce distractions caused by stopwatch updates.</source>
     <message>
         <source>Reveal %1 in File Manager</source>
         <translation>在文件管理器中查看%1</translation>
+    </message>
+    <message>
+        <source>C++ Source Files</source>
+        <translation>C++ 源代码</translation>
+    </message>
+    <message>
+        <source>Java Source Files</source>
+        <translation>Java 源代码</translation>
+    </message>
+    <message>
+        <source>Python Source Files</source>
+        <translation>Python 源代码</translation>
+    </message>
+    <message>
+        <source>Source Files</source>
+        <translation>源代码</translation>
     </message>
 </context>
 <context>

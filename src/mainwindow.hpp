@@ -23,7 +23,10 @@
 
 class AppWindow;
 class MessageLogger;
-class QCodeEditor;
+namespace Editor
+{
+class CodeEditor;
+}
 class QFileSystemWatcher;
 class QPushButton;
 class QSplitter;
@@ -62,6 +65,8 @@ class MainWindow : public QMainWindow
   public:
     struct EditorStatus
     {
+        qint64 timestamp = 0; // MSecsSinceEpoch when the status was recorded
+
         bool isLanguageSet{};
         QString filePath, savedText, problemURL, editorText, language, customCompileCommand;
         int editorCursor{}, editorAnchor{}, horizontalScrollBarValue{}, verticalScrollbarValue{}, untitledIndex{},
@@ -89,7 +94,7 @@ class MainWindow : public QMainWindow
     QString getCompleteTitle() const;
     QString getTabTitle(bool complete, bool star, int removeLength = 0);
     QString compileCommand() const;
-    QCodeEditor *getEditor() const;
+    Editor::CodeEditor *getEditor() const;
     Core::Checker *getChecker() const;
     Widgets::TestCases *getTestCases() const;
 
@@ -162,7 +167,6 @@ class MainWindow : public QMainWindow
     void onRunKilled(int index);
 
     void onFileWatcherChanged(const QString &);
-    void onEditorFontChanged(const QFont &newFont);
     void onTextChanged();
     void updateCursorInfo();
     void updateChecker();
@@ -185,7 +189,6 @@ class MainWindow : public QMainWindow
     void editorFileChanged();
     void requestUpdateLanguageServerFilePath(MainWindow *window, const QString &path);
     void editorTextChanged(MainWindow *window);
-    void editorFontChanged();
     void confirmTriggered(MainWindow *widget);
     void requestToastMessage(const QString &head, const QString &body);
     void editorLanguageChanged(MainWindow *window);
@@ -208,7 +211,7 @@ class MainWindow : public QMainWindow
     };
 
     Ui::MainWindow *ui;
-    QCodeEditor *editor;
+    Editor::CodeEditor *editor;
     QString language;
     bool isLanguageSet = false;
 
@@ -252,6 +255,7 @@ class MainWindow : public QMainWindow
     void loadTests();
     void saveTests(bool safe);
     void setCFToolUI();
+    void removeCFToolUI(); // Delete cftool&submitToCodeforces pointers, and remove the button from ui
     void setFilePath(QString path, bool updateBinder = true);
     void setText(const QString &text, bool keep = false);
     void updateWatcher();

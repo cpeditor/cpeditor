@@ -35,7 +35,7 @@ const static QStringList sessionFileLocations = {
 #ifdef PORTABLE_VERSION
     "$BINARY/cp_editor_session.json",
 #endif
-    "$APPCONFIG/cp_editor_session.json"};
+    "$APPCONFIG/session.json", "$OLDAPPCONFIG/cp_editor_session.json"};
 
 SessionManager::SessionManager(AppWindow *appwindow) : QObject(appwindow), app(appwindow)
 {
@@ -64,6 +64,8 @@ void SessionManager::restoreSession(const QString &path)
         LOG_ERR("Invalid session JSON: " << text);
         return;
     }
+
+    app->setInitialized(false);
 
     while (app->ui->tabWidget->count() > 0)
     {
@@ -103,6 +105,8 @@ void SessionManager::restoreSession(const QString &path)
 
     if (currentIndex >= 0 && currentIndex < app->ui->tabWidget->count())
         app->ui->tabWidget->setCurrentIndex(currentIndex);
+
+    app->setInitialized();
 }
 
 void SessionManager::setAutoUpdateSession(bool shouldAutoUpdate)

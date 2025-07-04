@@ -22,6 +22,7 @@
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
 #include "Core/Runner.hpp"
+#include "Editor/CodeEditor.hpp"
 #include "Extensions/CFTool.hpp"
 #include "Extensions/ClangFormatter.hpp"
 #include "Extensions/CompanionServer.hpp"
@@ -30,8 +31,6 @@
 #include "Settings/FileProblemBinder.hpp"
 #include "Settings/PreferencesWindow.hpp"
 #include "Util/FileUtil.hpp"
-#include "Util/QCodeEditorUtil.hpp"
-#include "Util/Util.hpp"
 #include "Widgets/Stopwatch.hpp"
 #include "Widgets/StressTesting.hpp"
 #include "Widgets/TestCase.hpp"
@@ -39,7 +38,6 @@
 #include "appwindow.hpp"
 #include "generated/SettingsHelper.hpp"
 #include "generated/version.hpp"
-#include <QCodeEditor>
 #include <QFileSystemWatcher>
 #include <QInputDialog>
 #include <QMessageBox>
@@ -80,13 +78,13 @@ MainWindow::MainWindow(int index, AppWindow *parent)
         autoSaveTimer, &QTimer::timeout, autoSaveTimer, [this] { saveFile(AutoSave, tr("Auto Save"), false); },
         Qt::DirectConnection);
     applySettings("");
-    QTimer::singleShot(0, [this] { setLanguage(language); }); // See issue #187 for more information
 
     stressTesting = new Widgets::StressTesting(this);
     connect(stressTesting, &Widgets::StressTesting::compilationErrorOccurred, this,
             &MainWindow::onCompilationErrorOccurred);
     connect(stressTesting, &Widgets::StressTesting::compilationKilled, this, &MainWindow::onCompilationKilled);
     connect(stressTesting, &Widgets::StressTesting::compilationFailed, this, &MainWindow::onCompilationFailed);
+    QTimer::singleShot(0, [this] { editor->resize(0, 0); }); // refresh editor geometry
 }
 
 MainWindow::MainWindow(const QString &fileOpen, int index, AppWindow *parent) : MainWindow(index, parent)
@@ -122,18 +120,17 @@ MainWindow::~MainWindow()
 
 void MainWindow::setEditor()
 {
-    editor = new QCodeEditor();
+    editor = new Editor::CodeEditor();
     editor->setSizePolicy(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Expanding);
     editor->setAcceptDrops(false);
 
     ui->editorArea->addWidget(editor);
 
-    connect(editor, &QCodeEditor::textChanged, this, &MainWindow::onTextChanged);
-    connect(editor, &QCodeEditor::fontChanged, this, &MainWindow::onEditorFontChanged);
+    connect(editor, &Editor::CodeEditor::textChanged, this, &MainWindow::onTextChanged);
     // cursorPositionChanged() does not imply selectionChanged() if you press Left with
     // a selection (and the cursor is at the begin of the selection)
-    connect(editor, &QCodeEditor::cursorPositionChanged, this, &MainWindow::updateCursorInfo);
-    connect(editor, &QCodeEditor::selectionChanged, this, &MainWindow::updateCursorInfo);
+    connect(editor, &Editor::CodeEditor::cursorPositionChanged, this, &MainWindow::updateCursorInfo);
+    connect(editor, &Editor::CodeEditor::selectionChanged, this, &MainWindow::updateCursorInfo);
 }
 
 void MainWindow::setStopwatch()
@@ -273,6 +270,8 @@ void MainWindow::saveTests(bool safe)
 
 void MainWindow::setCFToolUI()
 {
+    if (!SettingsHelper::isCFEnable())
+        return;
     if (submitToCodeforces == nullptr)
     {
         submitToCodeforces = new QPushButton(tr("Submit"), this);
@@ -311,6 +310,19 @@ void MainWindow::setCFToolUI()
                       "add it in the PATH environment variable or check your settings at %1.")
                        .arg(SettingsHelper::pathOfCFPath()),
                    false);
+    }
+}
+
+void MainWindow::removeCFToolUI()
+{
+    if (submitToCodeforces != nullptr)
+    {
+        submitToCodeforces->setEnabled(false);
+        ui->compileAndRunButtons->removeWidget(submitToCodeforces);
+        delete submitToCodeforces;
+        submitToCodeforces = nullptr;
+        delete cftool;
+        cftool = nullptr;
     }
 }
 
@@ -362,7 +374,7 @@ QString MainWindow::getTabTitle(bool complete, bool star, int removeLength)
     return tabTitle;
 }
 
-QCodeEditor *MainWindow::getEditor() const
+Editor::CodeEditor *MainWindow::getEditor() const
 {
     return editor;
 }
@@ -432,6 +444,7 @@ void MainWindow::setUntitledIndex(int index)
 MainWindow::EditorStatus::EditorStatus(const QMap<QString, QVariant> &status)
 {
     LOG_INFO("Window status from map");
+    FROMSTATUS(timestamp).toLongLong();
     FROMSTATUS(isLanguageSet).toInt();
     FROMSTATUS(filePath).toString();
     FROMSTATUS(savedText).toString();
@@ -459,6 +472,7 @@ QMap<QString, QVariant> MainWindow::EditorStatus::toMap() const
 {
     LOG_INFO("Window status to hashmap");
     QMap<QString, QVariant> status;
+    TOSTATUS(timestamp);
     TOSTATUS(isLanguageSet);
     TOSTATUS(filePath);
     TOSTATUS(savedText);
@@ -486,22 +500,25 @@ MainWindow::EditorStatus MainWindow::toStatus() const
 {
     EditorStatus status;
 
+    status.timestamp = QDateTime::currentMSecsSinceEpoch();
+
     status.isLanguageSet = isLanguageSet;
     status.filePath = filePath;
+    status.savedText = savedText;
     status.problemURL = problemURL;
+    status.editorText = editor->toPlainText();
     status.language = language;
     status.customCompileCommand = customCompileCommand;
-    status.untitledIndex = untitledIndex;
-    status.checkerIndex = testcases->checkerIndex();
-    status.customCheckers = testcases->customCheckers();
-    status.editorText = editor->toPlainText();
     status.editorCursor = editor->textCursor().position();
     status.editorAnchor = editor->textCursor().anchor();
     status.horizontalScrollBarValue = editor->horizontalScrollBar()->value();
     status.verticalScrollbarValue = editor->verticalScrollBar()->value();
+    status.untitledIndex = untitledIndex;
+    status.checkerIndex = testcases->checkerIndex();
     status.customTimeLimit = customTimeLimit;
     status.input = testcases->inputs();
     status.expected = testcases->expecteds();
+    status.customCheckers = testcases->customCheckers();
     for (int i = 0; i < testcases->count(); ++i)
         status.testcasesIsShow.push_back(testcases->isChecked(i));
     status.testCaseSplitterStates = testcases->splitterStates();
@@ -536,6 +553,30 @@ void MainWindow::loadStatus(const EditorStatus &status, bool duplicate)
     for (int i = 0; i < status.testcasesIsShow.count() && i < testcases->count(); ++i)
         testcases->setChecked(i, status.testcasesIsShow[i].toBool());
     testcases->restoreSplitterStates(status.testCaseSplitterStates);
+
+    if (!isUntitled())
+    {
+        const auto info = QFileInfo(filePath);
+        if (info.exists())
+        {
+            const auto mTime = info.fileTime(QFile::FileModificationTime);
+            if (mTime.isValid() && mTime.toMSecsSinceEpoch() > status.timestamp)
+            {
+                if (appWindow->isInitialized())
+                    onFileWatcherChanged(filePath);
+                else
+                {
+                    // Change this to Qt::SingleShotConnection after migrating to Qt 6
+                    auto *connection = new QMetaObject::Connection;
+                    *connection = connect(appWindow, &AppWindow::initialized, [this, connection] {
+                        onFileWatcherChanged(filePath);
+                        disconnect(*connection);
+                        delete connection;
+                    });
+                }
+            }
+        }
+    }
 }
 
 void MainWindow::applyCompanion(const Extensions::CompanionData &data)
@@ -634,11 +675,22 @@ void MainWindow::applySettings(const QString &pagePath)
             if (submitToCodeforces != nullptr)
                 submitToCodeforces->setEnabled(true);
         }
+        if (problemURL.contains("codeforces.com"))
+        {
+            if (submitToCodeforces == nullptr && SettingsHelper::isCFEnable())
+            {
+                setCFToolUI();
+            }
+            else if (submitToCodeforces != nullptr && !SettingsHelper::isCFEnable())
+            {
+                removeCFToolUI();
+            }
+        }
     }
 
     if (pageChanged("Code Edit") || pagePath.startsWith("Appearance/") ||
         pageChanged(QString("Language/%1/%1 Parentheses").arg(language)))
-        Util::applySettingsToEditor(editor, language);
+        editor->applySettings(language);
 
     if (!isLanguageSet && pageChanged("Language/General"))
     {
@@ -767,7 +819,7 @@ void MainWindow::setLanguage(const QString &lang)
     language = lang;
     if (language != "Python" && language != "Java")
         language = "C++";
-    Util::applySettingsToEditor(editor, language);
+    editor->applySettings(language);
     customCompileCommand.clear();
     ui->changeLanguageButton->setText(language);
     updateCompileAndRunButtons();
@@ -1248,12 +1300,6 @@ void MainWindow::onTextChanged()
         autoSaveTimer->start();
     }
     emit editorTextChanged(this);
-}
-
-void MainWindow::onEditorFontChanged(const QFont &newFont)
-{
-    SettingsHelper::setEditorFont(newFont);
-    emit editorFontChanged();
 }
 
 void MainWindow::updateCursorInfo()

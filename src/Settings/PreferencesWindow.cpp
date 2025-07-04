@@ -190,7 +190,7 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
     AddPageHelper(this)
         .page(TRKEY("Code Edit"),
               {"Tab Width", "Cursor Width", "Auto Indent", "Wrap Text", "Auto Complete Parentheses", "Auto Remove Parentheses",
-               "Tab Jump Out Parentheses", "Replace Tabs"})
+               "Tab Jump Out Parentheses", "Replace Tabs", "Highlight Error Line"})
         .dir(TRKEY("Language"))
             .page(TRKEY("General"), {"Default Language"})
             .dir(TRKEY("C++"))
@@ -232,7 +232,8 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
         .end()
         .dir(TRKEY("Appearance"))
             .page(TRKEY("General"),{"Locale", "UI Style", "Editor Theme", "Opacity", "Test Case Maximum Height",
-                                    "Show Compile And Run Only", "Display EOLN In Diff", "Extra Bottom Margin"})
+                                    "Show Compile And Run Only", "Display EOLN In Diff", "Extra Bottom Margin",
+                                    "Error Message Color", "Warn Message Color"})
             .page(TRKEY("Font"), {"Show Only Monospaced Font", "Editor Font", "Test Cases Font", "Message Logger Font",
                                   "Use Custom Application Font", "Custom Application Font"})
         .end()
@@ -263,7 +264,7 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
                 "Competitive Companion/Set Time Limit For Tab", "Competitive Companion/Connection Port",
                 "Competitive Companion/Head Comments", "Competitive Companion/Head Comments Time Format",
                 "Competitive Companion/Head Comments Powered By CP Editor"}, false)
-            .page(TRKEY("CF Tool"), {"CF/Path", "CF/Show Toast Messages"})
+            .page(TRKEY("CF Tool"), {"CF/Enable","CF/Path", "CF/Show Toast Messages"})
             .page(TRKEY("WakaTime"),{"WakaTime/Enable", "WakaTime/Path", "WakaTime/Api Key", "WakaTime/Proxy"})
         .end()
         .dir(TRKEY("File Path"))

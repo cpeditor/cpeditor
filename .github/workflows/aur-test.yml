@@ -16,7 +16,7 @@ jobs:
           - path: dist/aur/git
             name: cpeditor-git
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           submodules: recursive
           fetch-depth: 0
@@ -38,7 +38,7 @@ jobs:
         if: matrix.pkg.name == 'cpeditor-git'
         run: |
           cd dist/aur/git
-          sed -i "s|git://github.com/cpeditor/cpeditor.git|git+$(git remote get-url origin)#commit=${{ github.event.pull_request.head.sha }}|g" PKGBUILD
+          sed -i "s|git+https://github.com/cpeditor/cpeditor.git|git+$(git remote get-url origin)#commit=${{ github.event.pull_request.head.sha }}|g" PKGBUILD
           sed -i "s/@PROJECT_VERSION@/$(git describe --long --tags --abbrev=8 | sed 's/\([^-]*-g\)/r\1/;s/-/./g')/g" PKGBUILD
 
       - name: Build Package
@@ -48,7 +48,7 @@ jobs:
           path: ${{ matrix.pkg.path }}
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.pkg.name }}-${{ github.run_id }}
           path: ${{ steps.build-pkg.outputs.pkgfile }}

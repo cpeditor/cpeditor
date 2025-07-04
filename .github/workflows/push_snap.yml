@@ -17,11 +17,23 @@ jobs:
     runs-on: ubuntu-latest
     if: github.repository_owner == 'cpeditor'
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           ref: master
           submodules: recursive
           fetch-depth: 0
+
+      - uses: actions/checkout@v4
+        with:
+          repository: KDE/extra-cmake-modules
+          path: third_party/extra-cmake-modules
+          ref: kf5
+
+      - uses: actions/checkout@v4
+        with:
+          repository: KDE/syntax-highlighting
+          path: third_party/syntax-highlighting
+          ref: kf5
 
       - name: Update Snapcraft
         run: |
@@ -31,7 +43,8 @@ jobs:
         id: build
 
       - uses: snapcore/action-publish@v1
+        env:
+          SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.STORE_LOGIN }}
         with:
-          store_login: ${{ secrets.STORE_LOGIN }}
           snap: ${{ steps.build.outputs.snap }}
           release: edge

@@ -2,6 +2,8 @@
   "files": [
     "README.md",
     "README_el-GR.md",
+    "README_ja-JP.md",
+    "README_pt-BR.md",
     "README_ru-RU.md",
     "README_zh-CN.md",
     "README_zh-TW.md"
@@ -578,7 +580,98 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/22633385?v=4",
       "profile": "https://bandism.net/",
       "contributions": [
-        "doc"
+        "doc",
+        "translation"
+      ]
+    },
+    {
+      "login": "Sriram-L",
+      "name": "Sriram-L",
+      "avatar_url": "https://avatars.githubusercontent.com/u/60982834?v=4",
+      "profile": "https://github.com/Sriram-L",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "crcpucmg",
+      "name": "crcpucmg",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6436564?v=4",
+      "profile": "https://crc.pucminas.br",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "Acfboy",
+      "name": "Acfboy",
+      "avatar_url": "https://avatars.githubusercontent.com/u/36621731?v=4",
+      "profile": "http://acfboy.pw",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "TLEBOT",
+      "name": "TLEBOT",
+      "avatar_url": "https://avatars.githubusercontent.com/u/97983181?v=4",
+      "profile": "https://github.com/TLEBOT",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "D4NZ-jpg",
+      "name": "Dan",
+      "avatar_url": "https://avatars.githubusercontent.com/u/57308957?v=4",
+      "profile": "https://github.com/D4NZ-jpg",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "rogeryoungh",
+      "name": "rogeryoungh",
+      "avatar_url": "https://avatars.githubusercontent.com/u/42564206?v=4",
+      "profile": "https://rogery.dev",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "brun0-matheus",
+      "name": "Bruno Matheus",
+      "avatar_url": "https://avatars.githubusercontent.com/u/32616717?v=4",
+      "profile": "https://github.com/brun0-matheus",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "topazus",
+      "name": "topazus",
+      "avatar_url": "https://avatars.githubusercontent.com/u/77263945?v=4",
+      "profile": "https://github.com/topazus",
+      "contributions": [
+        "infra"
+      ]
+    },
+    {
+      "login": "TheoRiffel",
+      "name": "Théo Riffel",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46604318?v=4",
+      "profile": "https://github.com/TheoRiffel",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "swanjeng",
+      "name": "Swan Jeng",
+      "avatar_url": "https://avatars.githubusercontent.com/u/208931649?v=4",
+      "profile": "https://github.com/swanjeng",
+      "contributions": [
+        "bug"
       ]
     }
   ],
@@ -588,5 +681,7 @@
   "projectOwner": "cpeditor",
   "repoType": "github",
   "repoHost": "https://github.com",
-  "skipCi": false
+  "skipCi": false,
+  "commitConvention": "angular",
+  "commitType": "docs"
 }

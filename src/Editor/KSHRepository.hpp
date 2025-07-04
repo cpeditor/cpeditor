@@ -15,15 +15,24 @@
  *
  */
 
-#ifndef QCODEEDITORUTIL_HPP
-#define QCODEEDITORUTIL_HPP
+#ifndef KSHREPOSITORY_HPP
+#define KSHREPOSITORY_HPP
 
-class QCodeEditor;
-class QString;
+#include <KSyntaxHighlighting/Repository>
 
-namespace Util
+class QStringList;
+
+namespace Editor
 {
-void applySettingsToEditor(QCodeEditor *editor, const QString &language);
-} // namespace Util
+class KSyntaxHighlightingRepository
+{
+  public:
+    static KSyntaxHighlighting::Repository *getSyntaxHighlightingRepository();
 
-#endif // QCODEEDITORUTIL_HPP
+    static QStringList themeNames();
+
+  private:
+    static KSyntaxHighlighting::Repository repository;
+};
+} // namespace Editor
+#endif // KSHREPOSITORY_HPP

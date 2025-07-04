@@ -4,7 +4,7 @@ if(APPLE)
   set(CMAKE_OSX_DEPLOYMENT_TARGET "10.14" CACHE STRING "Minimum OS X deployment version")
 endif()
 
-project(cpeditor LANGUAGES CXX VERSION 6.11.0)
+project(cpeditor LANGUAGES CXX VERSION 7.1.0)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -23,8 +23,7 @@ find_package(Qt5 COMPONENTS Widgets REQUIRED)
 find_package(Qt5 COMPONENTS Network REQUIRED)
 find_package(Qt5 COMPONENTS LinguistTools REQUIRED)
 find_package(Python3 COMPONENTS Interpreter REQUIRED)
-
-add_subdirectory(third_party/QCodeEditor)
+find_package(KF5SyntaxHighlighting REQUIRED)
 
 set(QAPPLICATION_CLASS QApplication CACHE STRING "Inheritance class for SingleApplication")
 
@@ -109,6 +108,8 @@ add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMA
 
 set(TSS
 ${CMAKE_SOURCE_DIR}/translations/el_GR.ts
+${CMAKE_SOURCE_DIR}/translations/es_MX.ts
+${CMAKE_SOURCE_DIR}/translations/pt_BR.ts
 ${CMAKE_SOURCE_DIR}/translations/ru_RU.ts
 ${CMAKE_SOURCE_DIR}/translations/zh_CN.ts
 ${CMAKE_SOURCE_DIR}/translations/zh_TW.ts
@@ -157,6 +158,17 @@ add_executable(cpeditor
     src/Core/Translator.cpp
     src/Core/Translator.hpp
 
+    src/Editor/CodeEditor.cpp
+    src/Editor/CodeEditor.hpp
+    src/Editor/CodeEditorSideBar.cpp
+    src/Editor/CodeEditorSideBar.hpp
+    src/Editor/HighLighter.cpp
+    src/Editor/HighLighter.hpp
+    src/Editor/KSHRepository.cpp
+    src/Editor/KSHRepository.hpp
+    src/Editor/LanguageRepository.cpp
+    src/Editor/LanguageRepository.hpp
+
     src/Extensions/CFTool.cpp
     src/Extensions/CFTool.hpp
     src/Extensions/ClangFormatter.cpp
@@ -165,8 +177,6 @@ add_executable(cpeditor
     src/Extensions/CodeFormatter.hpp
     src/Extensions/CompanionServer.cpp
     src/Extensions/CompanionServer.hpp
-    src/Extensions/EditorTheme.cpp
-    src/Extensions/EditorTheme.hpp
     src/Extensions/LanguageServer.cpp
     src/Extensions/LanguageServer.hpp
     src/Extensions/WakaTime.cpp
@@ -212,8 +222,6 @@ add_executable(cpeditor
 
     src/Util/FileUtil.cpp
     src/Util/FileUtil.hpp
-    src/Util/QCodeEditorUtil.cpp
-    src/Util/QCodeEditorUtil.hpp
     src/Util/Singleton.hpp
     src/Util/Util.cpp
     src/Util/Util.hpp
@@ -269,13 +277,13 @@ include_directories("generated/")
 include_directories("src/")
 
 target_link_libraries(cpeditor PRIVATE LSPClient)
-target_link_libraries(cpeditor PRIVATE QCodeEditor)
 target_link_libraries(cpeditor PRIVATE Qt5::Network)
 target_link_libraries(cpeditor PRIVATE Qt5::Widgets)
 target_link_libraries(cpeditor PRIVATE QtFindReplaceDialog)
 target_link_libraries(cpeditor PRIVATE SingleApplication)
 target_link_libraries(cpeditor PRIVATE QHttp)
 target_link_libraries(cpeditor PRIVATE diff_match_patch)
+target_link_libraries(cpeditor PRIVATE KF5::SyntaxHighlighting)
 
 if(MSVC)
   target_compile_options(cpeditor PUBLIC "/utf-8")
@@ -291,12 +299,14 @@ if(APPLE)
 endif()
 
 if(UNIX AND NOT APPLE)
+  include(GNUInstallDirs)
   install(TARGETS cpeditor
-          RUNTIME DESTINATION bin
-          LIBRARY DESTINATION lib)
-  install(FILES dist/linux/cpeditor.desktop DESTINATION share/applications)
-  install(FILES resources/icon.png DESTINATION share/icons/hicolor/512x512/apps RENAME cpeditor.png)
-  install(FILES dist/linux/cpeditor.appdata.xml DESTINATION share/metainfo)
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
+  install(FILES dist/linux/cpeditor.desktop DESTINATION ${CMAKE_INSTALL_DATADIR}/applications)
+  install(FILES resources/icon.png DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/512x512/apps RENAME cpeditor.png)
+  install(FILES dist/linux/cpeditor.appdata.xml DESTINATION ${CMAKE_INSTALL_DATADIR}/metainfo)
+  install(FILES ${QMFILES} DESTINATION ${CMAKE_INSTALL_DATADIR}/cpeditor/translations)
 endif()
 
 

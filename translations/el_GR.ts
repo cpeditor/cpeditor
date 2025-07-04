@@ -1700,10 +1700,6 @@ You can use &quot;${filename}&quot; for the complete file name,
         <translation>Επιτροπή αυτόματης αποθήκευσης</translation>
     </message>
     <message>
-        <source>Automatically save the file every 3 seconds.</source>
-        <translation>Αυτόματη αποθήκευση αρχείου ανά 3 δευτερόλεπτα.</translation>
-    </message>
-    <message>
         <source>Wrap Text</source>
         <translation>Αναδίπλωση κειμένου</translation>
     </message>
@@ -2692,6 +2688,43 @@ on the current tab and pause the stopwatch on the previous tab.</source>
 This may reduce distractions caused by stopwatch updates.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Highlight Error Line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Highlight lines containing diagnostics</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Color of error messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Color of warning messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use WakaTime to track your time usage. The WakaTime CLI needs to be installed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show a stopwatch in the UI. You can use it to track your time spent on solving a problem.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>default-paths</source>
+        <comment>the anchor of Default Paths on https://cpeditor.org/docs/preferences/file-path</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable CF Tool</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable or disable CF Tool Integration.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ShortcutItem</name>
@@ -2803,10 +2836,6 @@ This may reduce distractions caused by stopwatch updates.</source>
 <context>
     <name>Util::FileUtil</name>
     <message>
-        <source>%1Source Files (%2)</source>
-        <translation>%1 Πηγαία αρχεία (%2)</translation>
-    </message>
-    <message>
         <source>Failed to open [%1]. Do I have write permission?</source>
         <translation>Απέτυχε να ανοίξει [%1]. Μήπως δεν έχετε άδεια εγγραφής;</translation>
     </message>
@@ -2837,6 +2866,22 @@ This may reduce distractions caused by stopwatch updates.</source>
     <message>
         <source>Reveal %1 in File Manager</source>
         <translation>Εμφάνιση του %1 στον διαχειριστή αρχείων</translation>
+    </message>
+    <message>
+        <source>C++ Source Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Java Source Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Python Source Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Source Files</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -42,9 +42,11 @@ PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, const QString
         SettingsManager::setPath(name, path + "/" + SettingsInfo::findSetting(name).untrDesc,
                                  trPath + "/" + SettingsInfo::findSetting(name).desc);
 
-        const auto docsLinkText = QString(" <a href='%1#%2'>(?)</a>")
-                                      .arg(docsLinkPrefix)
-                                      .arg(si.docAnchor.isEmpty() ? Util::sanitizeAnchorName(si.desc) : si.docAnchor);
+        const auto docsLinkText =
+            si.noDoc ? QString()
+                     : QString(" <a href='%1#%2'>(?)</a>")
+                           .arg(docsLinkPrefix)
+                           .arg(si.docAnchor.isEmpty() ? Util::sanitizeAnchorName(si.desc) : si.docAnchor);
 
         ValueWidget *widget = nullptr;
 
@@ -91,7 +93,7 @@ PreferencesPageTemplate::PreferencesPageTemplate(QStringList opts, const QString
         {
             connect(
                 widget, &ValueWidget::valueChanged, this,
-                [=] {
+                [si, widget, this] {
                     SettingsManager::set(si.name, widget->getVariant());
                     emit settingsApplied(PreferencesPage::path());
                 },

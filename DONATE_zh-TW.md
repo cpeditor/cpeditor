@@ -3,5 +3,6 @@ CP Editor 是一款自由軟體，但我們不做義務勞動，而是希望向�
 - 讓我們可以繼續持有 cpeditor.org 的網域
 
 來看看吧
--   [GitHub 贊助者](https://github.com/sponsors/cpeditor)
+-   [GitHub Sponsors](https://github.com/sponsors/cpeditor)
 -   [Open Collective](https://opencollective.com/cpeditor)
+-   向 @ouuan 打賞：[ko-fi.com](https://ko-fi.com/ouuan) 或 [WeChat / Alipay](https://ouuan.moe/sponsor?utm_source=cpeditor)

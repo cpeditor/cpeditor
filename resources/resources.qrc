@@ -2,12 +2,11 @@
     <qresource prefix="/">
         <file>icon.png</file>
         <file>../DONATE.md</file>
-        <file>../DONATE_zh-CN.md</file>
+        <file>../DONATE_pt-BR.md</file>
         <file>../DONATE_ru-RU.md</file>
-        <file>styles/dracula.xml</file>
-        <file>styles/monokai.xml</file>
-        <file>styles/solarized.xml</file>
-        <file>styles/solarizedDark.xml</file>
+        <file>../DONATE_zh-CN.md</file>
+        <file>../DONATE_zh-TW.md</file>
+        <file>language_config.json</file>
         <file alias="testlib/testlib.h">../third_party/testlib/testlib.h</file>
         <file alias="testlib/checkers/ncmp.cpp">../third_party/testlib/checkers/ncmp.cpp</file>
         <file alias="testlib/checkers/rcmp4.cpp">../third_party/testlib/checkers/rcmp4.cpp</file>
@@ -19,6 +18,6 @@
         <file>donate/star.svg</file>
         <file>donate/twitter.svg</file>
         <file>donate/wrench.svg</file>
-        <file>donate/wechat-and-alipay-donate-256.png</file>
+        <file>donate/ouuan-wechat-and-alipay.png</file>
     </qresource>
 </RCC>

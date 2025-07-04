@@ -7,9 +7,12 @@ on:
 
 env:
   QT_VERSION: 5.15.2
-  WINLIBS_GCC: 11.2.0
-  WINLIBS_LLVM: 12.0.1
-  WINLIBS_MINGW: 9.0.0-r1
+  WINLIBS_GCC: 13.2.0
+  WINLIBS_THREADS: posix
+  WINLIBS_LLVM: 17.0.6
+  WINLIBS_MINGW_VERSION: 11.0.1
+  WINLIBS_MINGW_LINKER: ucrt
+  WINLIBS_MINGW_REV: r5
 
 jobs:
   # "env" is only available in jobs, we need to convert them to outputs so that they can be used in the matrix
@@ -19,12 +22,14 @@ jobs:
       - name: Get winlibs outputs
         id: get
         run: |
-          echo ::set-output name=GCC::$WINLIBS_GCC
-          echo ::set-output name=LLVM::$WINLIBS_LLVM
-          echo ::set-output name=MINGW::$WINLIBS_MINGW
-          echo ::set-output name=tag::$WINLIBS_GCC-$WINLIBS_LLVM-$WINLIBS_MINGW
+          echo "GCC=$WINLIBS_GCC" >> "$GITHUB_OUTPUT"
+          echo "THREADS=$WINLIBS_THREADS" >> "$GITHUB_OUTPUT"
+          echo "LLVM=$WINLIBS_LLVM" >> "$GITHUB_OUTPUT"
+          echo "MINGW=$WINLIBS_MINGW_LINKER-$WINLIBS_MINGW_VERSION-$WINLIBS_MINGW_REV" >> "$GITHUB_OUTPUT"
+          echo "tag=$WINLIBS_GCC$WINLIBS_THREADS-$WINLIBS_LLVM-$WINLIBS_MINGW_VERSION-$WINLIBS_MINGW_LINKER-$WINLIBS_MINGW_REV" >> "$GITHUB_OUTPUT"
     outputs:
       GCC: ${{ steps.get.outputs.GCC }}
+      THREADS: ${{ steps.get.outputs.THREADS }}
       LLVM: ${{ steps.get.outputs.LLVM }}
       MINGW: ${{ steps.get.outputs.MINGW }}
       tag: ${{ steps.get.outputs.tag }}
@@ -37,98 +42,150 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - os: "ubuntu-18.04"
+          - os: "ubuntu-20.04"
             portable-option: "Off"
             winlibs: false
-          - os: "macos-latest"
+          - os: "macos-13"
             portable-option: "Off"
             winlibs: false
-          - os: "windows-latest"
+          - os: "windows-2019"
             arch: x64
             platform: x64
             qtarch: win64_msvc2019_64
             portable-option: "Off"
             filename-suffix: "setup.exe"
             winlibs: false
-          - os: "windows-latest"
+            ecm-path: "C:/Program Files/ECM"
+          - os: "windows-2019"
             arch: x64
             platform: x64
             qtarch: win64_msvc2019_64
             portable-option: "On"
             filename-suffix: "portable.zip"
             winlibs: false
-          - os: "windows-latest"
+            ecm-path: "C:/Program Files/ECM"
+          - os: "windows-2019"
             arch: x86
             platform: Win32
             qtarch: win32_msvc2019
             portable-option: "Off"
             filename-suffix: "setup.exe"
             winlibs: false
-          - os: "windows-latest"
+            ecm-path: "C:/Program Files (x86)/ECM"
+          - os: "windows-2019"
             arch: x86
             platform: Win32
             qtarch: win32_msvc2019
             portable-option: "On"
             filename-suffix: "portable.zip"
             winlibs: false
-          - os: "windows-latest"
+            ecm-path: "C:/Program Files (x86)/ECM"
+          - os: "windows-2019"
             arch: x64
             platform: x64
             qtarch: win64_msvc2019_64
             portable-option: "Off"
             filename-suffix: "setup-with-gcc-${{ needs.get-winlibs-outputs.outputs.GCC }}-LLVM-${{ needs.get-winlibs-outputs.outputs.LLVM }}.exe"
             winlibs: true
-            winlibs-arch: x86_64-posix-seh
+            winlibs-arch: x86_64
+            winlibs-exception: seh
             mingw-arch: mingw64
-          - os: "windows-latest"
+            ecm-path: "C:/Program Files/ECM"
+          - os: "windows-2019"
             arch: x64
             platform: x64
             qtarch: win64_msvc2019_64
             portable-option: "On"
             filename-suffix: "portable-with-gcc-${{ needs.get-winlibs-outputs.outputs.GCC }}-LLVM-${{ needs.get-winlibs-outputs.outputs.LLVM }}.zip"
             winlibs: true
-            winlibs-arch: x86_64-posix-seh
+            winlibs-arch: x86_64
+            winlibs-exception: seh
             mingw-arch: mingw64
-          - os: "windows-latest"
+            ecm-path: "C:/Program Files/ECM"
+          - os: "windows-2019"
             arch: x86
             platform: Win32
             qtarch: win32_msvc2019
             portable-option: "Off"
             filename-suffix: "setup-with-gcc-${{ needs.get-winlibs-outputs.outputs.GCC }}-LLVM-${{ needs.get-winlibs-outputs.outputs.LLVM }}.exe"
             winlibs: true
-            winlibs-arch: i686-posix-dwarf
+            winlibs-arch: i686
+            winlibs-exception: dwarf
             mingw-arch: mingw32
-          - os: "windows-latest"
+            ecm-path: "C:/Program Files (x86)/ECM"
+          - os: "windows-2019"
             arch: x86
             platform: Win32
             qtarch: win32_msvc2019
             portable-option: "On"
             filename-suffix: "portable-with-gcc-${{ needs.get-winlibs-outputs.outputs.GCC }}-LLVM-${{ needs.get-winlibs-outputs.outputs.LLVM }}.zip"
             winlibs: true
-            winlibs-arch: i686-posix-dwarf
+            winlibs-arch: i686
+            winlibs-exception: dwarf
             mingw-arch: mingw32
+            ecm-path: "C:/Program Files (x86)/ECM"
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           submodules: recursive
 
       - name: Set up Qt environment
-        uses: jurplel/install-qt-action@v2
+        uses: jurplel/install-qt-action@v3
         with:
           version: ${{ env.QT_VERSION }}
           arch: ${{ matrix.config.qtarch }}
 
+      - uses: actions/checkout@v4
+        with:
+          repository: KDE/extra-cmake-modules
+          path: third_party/extra-cmake-modules
+          ref: kf5
+
+      - uses: actions/checkout@v4
+        with:
+          repository: KDE/syntax-highlighting
+          path: third_party/syntax-highlighting
+          ref: kf5
+
+      - name: "[Windows] Install extra-cmake-modules"
+        if: startsWith(matrix.config.os, 'windows')
+        run: |
+          cd third_party/extra-cmake-modules
+          cmake -B build -S . -A ${{ matrix.config.platform }}  -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
+          cmake --build build --config Release --parallel $(nproc) --target install
+
+      - name: "[Unix] Install extra-cmake-modules"
+        if: startsWith(matrix.config.os, 'ubuntu') || startsWith(matrix.config.os, 'macos')
+        run: |
+          cd third_party/extra-cmake-modules
+          cmake -B build -S . -DCMAKE_BUILD_TYPE=Release -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
+          sudo cmake --build build --config Release --parallel $(nproc) --target install
+
+      - name: "[Windows] Install ksyntax-highlighting"
+        if: startsWith(matrix.config.os, 'windows')
+        run: |
+          cd third_party/syntax-highlighting
+          cmake -B build -S . -A ${{ matrix.config.platform }} -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
+          cmake --build build --config Release --parallel $(nproc) --target install
+
+      - name: "[Unix] Install ksyntax-highlighting"
+        if: startsWith(matrix.config.os, 'ubuntu') || startsWith(matrix.config.os, 'macos')
+        run: |
+          cd third_party/syntax-highlighting
+          cmake -B build -S . -DCMAKE_BUILD_TYPE=Release -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
+          sudo cmake --build build --config Release --parallel $(nproc) --target install
+
       - name: "[Windows] Build"
-        if: matrix.config.os == 'windows-latest'
+        if: matrix.config.os == 'windows-2019'
         run: |
           mkdir build
           cd build
-          cmake .. -A ${{ matrix.config.platform }} -DPORTABLE_VERSION=${{ matrix.config.portable-option }}
+          cmake .. -A ${{ matrix.config.platform }} -DPORTABLE_VERSION=${{ matrix.config.portable-option }} -D "KF5SyntaxHighlighting_DIR=${{ matrix.config.ecm-path }}/lib/cmake/KF5SyntaxHighlighting"
           cmake --build . --config Release -j4
 
       - name: "[Linux/macOS] Build"
-        if: matrix.config.os != 'windows-latest'
+        if: matrix.config.os != 'windows-2019'
         run: |
           mkdir build
           cd build
@@ -140,18 +197,18 @@ jobs:
         shell: bash
         run: |
           VERSION=${GITHUB_REF/refs\/tags\//}
-          echo ::set-output name=VERSION::$VERSION
+          echo "VERSION=$VERSION" >> "$GITHUB_OUTPUT"
           STABLE_VERSION=$(cat dist/STABLE_VERSION)
           if [[ $VERSION == "$STABLE_VERSION"* ]]; then
-            echo ::set-output name=ISBETA::false
+            echo "ISBETA=false" >> "$GITHUB_OUTPUT"
           else
-            echo ::set-output name=ISBETA::true
+            echo "ISBETA=true" >> "$GITHUB_OUTPUT"
           fi
 
       - name: "[Linux] Pack to AppImage"
         if: startsWith(matrix.config.os, 'ubuntu')
         run: |
-          sudo apt install libxcb*
+          sudo apt install libxcb* libxkb*
           cd build
           wget -c "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
           chmod a+x linuxdeployqt*.AppImage
@@ -163,7 +220,7 @@ jobs:
 
       - name: "[Linux] Release AppImage"
         if: startsWith(matrix.config.os, 'ubuntu')
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           draft: true
           prerelease: ${{ steps.get_version.outputs.ISBETA }}
@@ -177,7 +234,7 @@ jobs:
         id: deb-package
         run: |
           pkgname="cpeditor-${{ steps.get_version.outputs.VERSION }}-linux-amd64"
-          echo "::set-output name=pkgname::${pkgname}"
+          echo "pkgname=${pkgname}" >> "$GITHUB_OUTPUT"
 
           mkdir -p ${pkgname}/usr/share/
           cd ${pkgname}/usr/share/
@@ -220,7 +277,7 @@ jobs:
 
       - name: "[Linux] Release deb"
         if: startsWith(matrix.config.os, 'ubuntu')
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           draft: true
           prerelease: ${{ steps.get_version.outputs.ISBETA }}
@@ -241,7 +298,7 @@ jobs:
 
       - name: "[Linux] Release full source"
         if: startsWith(matrix.config.os, 'ubuntu')
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           draft: true
           prerelease: ${{ steps.get_version.outputs.ISBETA }}
@@ -256,7 +313,7 @@ jobs:
           cd build
           mkdir dmg
           cd dmg
-          mv ../cpeditor.app cpeditor.app 
+          mv ../cpeditor.app cpeditor.app
           ../../../Qt/*/*/bin/macdeployqt cpeditor.app
           cp ../../dist/mac/cpeditor.icns cpeditor.app/Contents/Resources
           ln -s /Applications Applications
@@ -264,7 +321,7 @@ jobs:
 
       - name: "[macOS] Release"
         if: startsWith(matrix.config.os, 'macos')
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           draft: true
           prerelease: ${{ steps.get_version.outputs.ISBETA }}
@@ -280,6 +337,7 @@ jobs:
           mkdir build/out
           mv build/Release/cpeditor.exe build/out
           ../Qt/*/*/bin/windeployqt.exe build/out/cpeditor.exe --no-translations
+          cp "${{ matrix.config.ecm-path }}/bin/KF5SyntaxHighlighting.dll" build/out
           cd "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Redist/MSVC"
           echo "VC_REDIST_VERSION=$(ls -dr *.* | head -n1)" >> $GITHUB_ENV
 
@@ -287,15 +345,15 @@ jobs:
         if: startsWith(matrix.config.os, 'windows') && matrix.config.winlibs
         id: winlibs
         shell: bash
-        run: echo "::set-output name=asset::winlibs-${{ matrix.config.winlibs-arch }}-gcc-${{ needs.get-winlibs-outputs.outputs.GCC }}-llvm-${{ needs.get-winlibs-outputs.outputs.LLVM }}-mingw-w64-${{ needs.get-winlibs-outputs.outputs.MINGW }}.7z"
+        run: echo "asset=winlibs-${{ matrix.config.winlibs-arch }}-${{ needs.get-winlibs-outputs.outputs.THREADS }}-${{ matrix.config.winlibs-exception }}-gcc-${{ needs.get-winlibs-outputs.outputs.GCC }}-llvm-${{ needs.get-winlibs-outputs.outputs.LLVM }}-mingw-w64${{ needs.get-winlibs-outputs.outputs.MINGW }}.7z" >> "$GITHUB_OUTPUT"
 
       - name: "[Windows] Download Winlibs"
         if: startsWith(matrix.config.os, 'windows') && matrix.config.winlibs
-        uses: robinraju/release-downloader@v1
-        with:
-          repository: brechtsanders/winlibs_mingw
-          tag: ${{ needs.get-winlibs-outputs.outputs.tag }}
-          fileName: ${{ steps.winlibs.outputs.asset }}
+        shell: bash
+        run: |
+          aria2c https://github.com/brechtsanders/winlibs_mingw/releases/download/${{ needs.get-winlibs-outputs.outputs.tag }}/${{ steps.winlibs.outputs.asset }}
+          aria2c https://github.com/brechtsanders/winlibs_mingw/releases/download/${{ needs.get-winlibs-outputs.outputs.tag }}/${{ steps.winlibs.outputs.asset }}.sha512
+          sha512sum -c ${{ steps.winlibs.outputs.asset }}.sha512
 
       - name: "[Windows] Extract Winlibs"
         if: startsWith(matrix.config.os, 'windows') && matrix.config.winlibs
@@ -327,7 +385,7 @@ jobs:
 
       - name: "[Windows] Release"
         if: startsWith(matrix.config.os, 'windows')
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           draft: true
           prerelease: ${{ steps.get_version.outputs.ISBETA }}

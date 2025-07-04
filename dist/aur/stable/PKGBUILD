@@ -7,14 +7,19 @@ pkgrel=1
 pkgdesc='The editor for competitive programming'
 arch=('x86_64')
 url='https://github.com/cpeditor/cpeditor'
-license=('GPL3')
-depends=('qt5-base' 'hicolor-icon-theme')
+license=('GPL-3.0-or-later')
+depends=(
+    'qt5-base'
+    'qt5-svg'
+    'syntax-highlighting5'
+    'hicolor-icon-theme'
+)
 makedepends=(
-    "cmake"
-    "git"
-    "ninja"
-    "python3"
-    "qt5-tools"
+    'cmake'
+    'git'
+    'ninja'
+    'python3'
+    'qt5-tools'
 )
 optdepends=(
     'cf-tool: submit to Codeforces'
@@ -24,7 +29,6 @@ optdepends=(
     'python: execute Python'
     'wakatime: track coding stats'
 )
-conflicts=("cpeditor-git")
 source=("https://github.com/cpeditor/$pkgname/releases/download/$pkgver/cpeditor-$pkgver-full-source.tar.gz")
 sha256sums=('SKIP')
 

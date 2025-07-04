@@ -1,5 +1,54 @@
 ## UNRELEASED
 
+### Added
+
+-   An option to disable CF Tool integration. (#1439)
+
+### Fixed
+
+-   Now the diff viewer uses the same font as the test cases (monospace by default). (#1396)
+-   Fix source file selection dialog filter when using the Traditional Chinese locale. (#1434 and #1435)
+
+### Changed
+
+-   Removed the function to scale the editor font via mouse wheel scroll, as it has been reported to have severe performance issues. (#1249 and #1388)
+
+## v7.0
+
+In this version, we have switched to [KSyntaxHighlighting](https://api.kde.org/frameworks/syntax-highlighting/html/), the same framework used by [the Kate editor](https://kate-editor.org/). This upgrade results in significantly improved syntax highlighting, a wider selection of [color themes](https://kate-editor.org/themes/), and additional features like code folding. However, due to extensive refactoring, some bugs may arise.
+
+We have also performed some cleanup, introducing several breaking changes. Most users will not be impacted. Only advanced users who depend on command-line options, setting file locations, etc., might experience disruptions. Additionally, if you are using v6.7 or an older version, you should first upgrade to v6.11 and then to v7.0 to prevent data loss.
+
+### Breaking Changes
+
+-   Legacy setting entries from v6.7 and earlier are no longer automatically migrated to the new ones. (#1308)
+-   The command line option `--no-hot-exit` is renamed to `--no-restore-session`. (#1308)
+-   The application name is changed from `CP Editor` to `cpeditor`. This affects the name of the config directory (the old config files are automatically migrated) and temporary directories, and also things like window class name in Xorg. The log files are also moved to a new location (from `/tmp/cpeditorLogFiles` to `~/.cache/cpeditor/log` on Linux). (#1308)
+
+### Added
+
+-   Use [KSyntaxHighlighting](https://api.kde.org/frameworks/syntax-highlighting/html/) for code highlighting. (#1101)
+-   Add options to select error/warning messages colors for message logger. (#521 and #1247)
+
+### Fixed
+
+-   UNIX signal handler is now more robust. (#1166 and #1304)
+-   Now pressing `Home` goes to the first non-blank character. When lines are wrapped, now `Home` and `End` are based on text lines instead of visual lines. (#774 and #1310)
+
+## v6.11
+
+### Added
+
+-   Brazilian Portuguese translations (#1050)
+-   Spanish (Mexico) translations (#1131)
+
+### Fixed
+
+-   Now you can undo a whole Replace All in a single step instead of one word per undo. (#1036 and #1037)
+-   Now external file changes when CP Editor is not running is properly handled when "Restore last session at startup" is enabled. (#1061)
+-   Fix that saved file content was not restored after abnormal exit when "Restore last session at startup" is enabled. (#1059 and #1061)
+-   Now the snippet names are sorted case-insensitively when choosing snippets. (#1063 and #1065)
+
 ## v6.10
 
 ### Added

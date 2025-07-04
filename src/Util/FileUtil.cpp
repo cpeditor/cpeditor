@@ -36,11 +36,13 @@ QString fileNameFilter(bool cpp, bool java, bool python)
     QString name;
 
     if (cpp && !java && !python)
-        name = "C++ ";
+        name = QCoreApplication::translate("Util::FileUtil", "C++ Source Files");
     else if (java && !cpp && !python)
-        name = "Java ";
+        name = QCoreApplication::translate("Util::FileUtil", "Java Source Files");
     else if (python && !cpp && !java)
-        name = "Python ";
+        name = QCoreApplication::translate("Util::FileUtil", "Python Source Files");
+    else
+        name = QCoreApplication::translate("Util::FileUtil", "Source Files");
 
     QString filter;
 
@@ -51,7 +53,7 @@ QString fileNameFilter(bool cpp, bool java, bool python)
     if (python)
         filter += " *." + pythonSuffix.join(" *.");
 
-    return QCoreApplication::translate("Util::FileUtil", "%1Source Files (%2)").arg(name, filter.trimmed());
+    return QStringLiteral("%1 (%2)").arg(name, filter);
 }
 
 QString fileNameWithSuffix(const QString &name, const QString &lang)
@@ -156,8 +158,11 @@ QString readFile(const QString &path, const QString &head, MessageLogger *log, b
 
 QString configFilePath(QString path)
 {
-    return path.replace("$APPCONFIG", QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation))
-        .replace("$HOME", QStandardPaths::writableLocation(QStandardPaths::HomeLocation))
+    QDir configDir(QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation));
+    const auto currentConfigPath = configDir.absolutePath();
+    configDir.cdUp();
+    return path.replace("$APPCONFIG", currentConfigPath)
+        .replace("$OLDAPPCONFIG", configDir.absoluteFilePath("CP Editor"))
         .replace("$BINARY", QCoreApplication::applicationDirPath());
 }
 

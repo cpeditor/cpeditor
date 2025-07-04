@@ -2,3 +2,4 @@ CP Editor is free software, but we are not offering free labor. We are offering 
 
 -   [GitHub Sponsors](https://github.com/sponsors/cpeditor)
 -   [Open Collective](https://opencollective.com/cpeditor)
+-   To @ouuan: [ko-fi.com](https://ko-fi.com/ouuan) or [WeChat / Alipay](https://ouuan.moe/sponsor?utm_source=cpeditor)

@@ -12,23 +12,46 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           submodules: recursive
           fetch-depth: 0
 
-      - name: Restore Qt from cache
-        id: cache-qt
-        uses: actions/cache@v1
-        with:
-          path: ../Qt
-          key: Qt-ubuntu-latest-${{ env.QT_VERSION }}
-
       - name: Set up Qt environment
-        uses: jurplel/install-qt-action@v2
+        uses: jurplel/install-qt-action@v3
         with:
-          cached: ${{ steps.cache-qt.outputs.cache-hit }}
+          cache: true
           version: ${{ env.QT_VERSION }}
+
+      - uses: actions/checkout@v4
+        with:
+          repository: KDE/extra-cmake-modules
+          path: third_party/extra-cmake-modules
+          ref: kf5
+
+      - uses: actions/checkout@v4
+        with:
+          repository: KDE/syntax-highlighting
+          path: third_party/syntax-highlighting
+          ref: kf5
+
+      - name: "[Unix] Install extra-cmake-modules"
+        run: |
+          cd third_party/extra-cmake-modules
+          mkdir build
+          cd build &&
+            cmake .. -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF &&
+            cmake --build . --parallel $(nproc) &&
+            sudo cmake --build . --target install
+
+      - name: "[Unix] Install ksyntax-highlighting"
+        run: |
+          cd third_party/syntax-highlighting
+          mkdir build
+          cd build &&
+            cmake .. -DCMAKE_BUILD_TYPE=Release -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF 
+            cmake --build . --parallel $(nproc) &&
+            sudo cmake --build . --target install
 
       - name: Build
         run: |

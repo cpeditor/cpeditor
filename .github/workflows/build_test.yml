@@ -14,37 +14,33 @@ jobs:
       matrix:
         config:
           - os: windows-latest
+            arch: x64
+            platform: x64
             binary: Release/cpeditor.exe
+            ecm-path: "C:/Program Files/ECM/"
           - os: ubuntu-latest
             binary: cpeditor
-          - os: macos-latest
+          - os: macos-13
             binary: cpeditor.app/Contents/MacOS/cpeditor
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           submodules: recursive
           fetch-depth: 0
 
-      - name: Restore Qt from cache
-        id: cache-qt
-        uses: actions/cache@v1
-        with:
-          path: ../Qt
-          key: Qt-${{ matrix.config.os }}-${{ env.QT_VERSION }}
-
       - name: Set up Qt environment
-        uses: jurplel/install-qt-action@v2
+        uses: jurplel/install-qt-action@v3
         with:
-          cached: ${{ steps.cache-qt.outputs.cache-hit }}
+          cache: true
           version: ${{ env.QT_VERSION }}
 
       - name: "[Linux] Download clang-tidy"
         if: startsWith(matrix.config.os, 'ubuntu')
         run: |
           sudo apt-get update
-          sudo apt-get install clang-tidy-9
-          sudo ln -s "$(which clang-tidy-9)" "/usr/local/bin/clang-tidy"
+          sudo apt-get install clang-tidy-14
+          sudo ln -s "$(which clang-tidy-14)" "/usr/local/bin/clang-tidy"
 
       - name: "[macOS] Download clang-tidy"
         if: startsWith(matrix.config.os, 'macos')
@@ -52,20 +48,65 @@ jobs:
           brew install llvm
           ln -s "$(brew --prefix llvm)/bin/clang-tidy" "/usr/local/bin/clang-tidy"
 
+      - uses: actions/checkout@v4
+        with:
+          repository: KDE/extra-cmake-modules
+          path: third_party/extra-cmake-modules
+          ref: kf5
+
+      - uses: actions/checkout@v4
+        with:
+          repository: KDE/syntax-highlighting
+          path: third_party/syntax-highlighting
+          ref: kf5
+
+      - name: "[Windows] Install extra-cmake-modules"
+        if: startsWith(matrix.config.os, 'windows')
+        run: |
+          cd third_party/extra-cmake-modules
+          cmake -B build -S . -A ${{ matrix.config.platform }}  -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
+          cmake --build build --config Release --parallel $(nproc) --target install
+
+      - name: "[Unix] Install extra-cmake-modules"
+        if: startsWith(matrix.config.os, 'ubuntu') || startsWith(matrix.config.os, 'macos')
+        run: |
+          cd third_party/extra-cmake-modules
+          cmake -B build -S . -DCMAKE_BUILD_TYPE=Release -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
+          sudo cmake --build build --config Release --parallel $(nproc) --target install
+
+      - name: "[Windows] Install ksyntax-highlighting"
+        if: startsWith(matrix.config.os, 'windows')
+        run: |
+          cd third_party/syntax-highlighting
+          cmake -B build -S . -A ${{ matrix.config.platform }} -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
+          cmake --build build --config Release --parallel $(nproc) --target install
+
+      - name: "[Unix] Install ksyntax-highlighting"
+        if: startsWith(matrix.config.os, 'ubuntu') || startsWith(matrix.config.os, 'macos')
+        run: |
+          cd third_party/syntax-highlighting
+          cmake -B build -S . -DCMAKE_BUILD_TYPE=Release -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
+          sudo cmake --build build --config Release --parallel $(nproc) --target install
+
       - name: "[Unix] Build"
         if: startsWith(matrix.config.os, 'ubuntu') || startsWith(matrix.config.os, 'macos')
         run: |
           cmake -B build -S . -D USE_CLANG_TIDY=On -D CMAKE_BUILD_TYPE=Release
-          cmake --build build -j4
+          cmake --build build --config Release -j4
+          mkdir build/out
+          cp build/${{ matrix.config.binary }} build/out
 
       - name: "[Windows] Build"
         if: startsWith(matrix.config.os, 'windows')
         run: |
-          cmake -B build -S . -D USE_CLANG_TIDY=On
+          cmake -B build -S . -A ${{ matrix.config.platform }} -D USE_CLANG_TIDY=On -D "KF5SyntaxHighlighting_DIR=${{ matrix.config.ecm-path }}/lib/cmake/KF5SyntaxHighlighting"
           cmake --build build -j4 --config Release
+          mkdir build/out
+          cp build/${{ matrix.config.binary }} build/out
+          cp "${{ matrix.config.ecm-path }}/bin/KF5SyntaxHighlighting.dll" build/out
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v2.2.4
+        uses: actions/upload-artifact@v4
         with:
           name: "cpeditor-${{ matrix.config.os }}-${{ github.run_id }}"
-          path: build/${{ matrix.config.binary }}
+          path: build/out

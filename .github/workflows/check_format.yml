@@ -7,18 +7,18 @@ jobs:
     name: "Check Clang Format"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: "Install clang-format-9"
+      - uses: actions/checkout@v4
+      - name: "Install clang-format-14"
         run: |
           sudo apt-get update
-          sudo apt-get install clang-format-9
+          sudo apt-get install clang-format-14
       - name: "Format Codes"
-        run: clang-format-9 -i src/*.cpp src/*/*.cpp src/*.hpp src/*/*.hpp
+        run: clang-format-14 -i src/*.cpp src/*/*.cpp src/*.hpp src/*/*.hpp
       - name: Check diff
         run: git diff --exit-code HEAD
       - name: Create Pull Request
         if: failure()
-        uses: peter-evans/create-pull-request@v3.12.0
+        uses: peter-evans/create-pull-request@v7
         with:
           commit-message: "style: format codes"
           title: "style: format codes for ${{ github.actor }} on ${{ github.ref }}"

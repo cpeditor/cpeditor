@@ -25,7 +25,6 @@
 #include "Core/Translator.hpp"
 #include "Extensions/CFTool.hpp"
 #include "Extensions/CompanionServer.hpp"
-#include "Extensions/EditorTheme.hpp"
 #include "Extensions/LanguageServer.hpp"
 #include "Extensions/WakaTime.hpp"
 #include "Settings/DefaultPathManager.hpp"
@@ -55,9 +54,9 @@
 #include <QUrl>
 #include <findreplacedialog.h>
 
-AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(new Ui::AppWindow)
+AppWindow::AppWindow(bool noRestoreSession, QWidget *parent) : QMainWindow(parent), ui(new Ui::AppWindow)
 {
-    LOG_INFO(BOOL_INFO_OF(noHotExit))
+    LOG_INFO(BOOL_INFO_OF(noRestoreSession))
     ui->setupUi(this);
     setAcceptDrops(true);
     allocate();
@@ -114,7 +113,7 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
     if (SettingsHelper::isCheckUpdate())
         updateChecker->checkUpdate(true);
 
-    if (noHotExit || (!SettingsHelper::isForceClose() && !SettingsHelper::isHotExitEnable()))
+    if (noRestoreSession || (!SettingsHelper::isForceClose() && !SettingsHelper::isHotExitEnable()))
         return;
 
     SettingsHelper::setForceClose(false);
@@ -137,16 +136,17 @@ AppWindow::AppWindow(bool noHotExit, QWidget *parent) : QMainWindow(parent), ui(
     sessionManager->restoreSession(lastSessionPath);
 }
 
-AppWindow::AppWindow(int depth, bool cpp, bool java, bool python, bool noHotExit, const QStringList &paths,
+AppWindow::AppWindow(int depth, bool cpp, bool java, bool python, bool noRestoreSession, const QStringList &paths,
                      QWidget *parent)
-    : AppWindow(noHotExit, parent)
+    : AppWindow(noRestoreSession, parent)
 {
     openPaths(paths, cpp, java, python, depth);
     finishConstruction();
 }
 
-AppWindow::AppWindow(bool cpp, bool java, bool python, bool noHotExit, int number, const QString &path, QWidget *parent)
-    : AppWindow(noHotExit, parent)
+AppWindow::AppWindow(bool cpp, bool java, bool python, bool noRestoreSession, int number, const QString &path,
+                     QWidget *parent)
+    : AppWindow(noRestoreSession, parent)
 {
     QString lang = SettingsHelper::getDefaultLanguage();
     if (cpp)
@@ -178,16 +178,20 @@ void AppWindow::finishConstruction()
             LOG_INFO("Is first-time user");
             preferencesWindow->display();
             SettingsHelper::setFirstTimeUser(false);
+            setInitialized();
         }
         else if (!SettingsHelper::isPromotionDialogShown() &&
                  SettingsHelper::getTotalUsageTime() >= 10 * 60 * 60) // 10 hours or above
         {
             LOG_INFO("Show promotion dialog");
             auto *dialog = new SupportUsDialog(this);
+            connect(dialog, &QDialog::finished, this, &AppWindow::setInitialized);
             dialog->open();
             dialog->move(geometry().center().x() - dialog->width() / 2, geometry().center().y() - dialog->height() / 2);
             SettingsHelper::setPromotionDialogShown(true);
         }
+        else
+            setInitialized();
     });
 }
 
@@ -201,7 +205,6 @@ AppWindow::~AppWindow()
         ui->tabWidget->removeTab(0);
         delete tmp;
     }
-    Extensions::EditorTheme::release();
     delete ui;
     delete preferencesWindow;
     delete lspTimerCpp;
@@ -423,7 +426,6 @@ void AppWindow::openTab(MainWindow *window, MainWindow *after)
     connect(window, &MainWindow::requestUpdateLanguageServerFilePath, this, &AppWindow::updateLanguageServerFilePath);
     connect(window, &MainWindow::editorLanguageChanged, this, &AppWindow::onEditorLanguageChanged);
     connect(window, &MainWindow::editorTextChanged, this, &AppWindow::onEditorTextChanged);
-    connect(window, &MainWindow::editorFontChanged, this, [this] { onSettingsApplied("Appearance/Font"); });
     connect(window, &MainWindow::requestToastMessage, trayIcon,
             [this](QString const &head, QString const &body) { trayIcon->showMessage(head, body); });
     connect(window, &MainWindow::compileOrRunTriggered, this, &AppWindow::onCompileOrRunTriggered);
@@ -1262,6 +1264,7 @@ void AppWindow::on_actionUseSnippets_triggered()
     {
         QString lang = current->getLanguage();
         QStringList names = SettingsHelper::getLanguageConfig(lang).getSnippets();
+        names.sort(Qt::CaseInsensitive);
         if (names.isEmpty())
         {
             activeLogger->warn(
@@ -1622,4 +1625,16 @@ void AppWindow::triggerWakaTime(MainWindow *window, bool isWrite)
 {
     if (window && wakaTime)
         wakaTime->sendHeartBeat(window->getFilePath(), window->getProblemURL(), window->getLanguage(), isWrite);
+}
+
+bool AppWindow::isInitialized() const
+{
+    return _isInitialized;
+}
+
+void AppWindow::setInitialized(bool flag)
+{
+    _isInitialized = flag;
+    if (flag)
+        emit initialized();
 }

@@ -16,14 +16,14 @@
  */
 
 #include "Extensions/ClangFormatter.hpp"
-#include <QCodeEditor>
+#include "Editor/CodeEditor.hpp"
 #include <QJsonDocument>
 #include <QTextCursor>
 
 namespace Extensions
 {
 
-ClangFormatter::ClangFormatter(QCodeEditor *editor, const QString &lang, bool selectionOnly, bool logOnNoChange,
+ClangFormatter::ClangFormatter(Editor::CodeEditor *editor, const QString &lang, bool selectionOnly, bool logOnNoChange,
                                MessageLogger *log, QObject *parent)
     : CodeFormatter(editor, lang, selectionOnly, logOnNoChange, log, parent)
 {

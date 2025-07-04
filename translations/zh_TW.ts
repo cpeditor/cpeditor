@@ -1881,10 +1881,6 @@ This can be overridden for each parenthesis in each language.</source>
         <translation>啟用自動存檔</translation>
     </message>
     <message>
-        <source>Automatically save the file every 3 seconds.</source>
-        <translation>每 3 秒自動存檔。</translation>
-    </message>
-    <message>
         <source>Auto Save Interval (ms)</source>
         <translation>自動存檔間隔 (ms)</translation>
     </message>
@@ -2096,6 +2092,14 @@ kill the application with SIGKILL which could not be handled by the application.
     <message>
         <source>Show a toast message when the verdict of a submission is known. You can see the message outside of CP Editor.</source>
         <translation>當評判結果揭曉時，顯示快顯通知。此通知在 CP Editor 以外也能見到。</translation>
+    </message>
+    <message>
+        <source>Enable CF Tool</source>
+        <translation>啟用 CF Tool</translation>
+    </message>
+    <message>
+        <source>Enable or disable CF Tool Integration.</source>
+        <translation>啟用或禁用CF Tool</translation>
     </message>
     <message>
         <source>Show Compile And Run Only</source>
@@ -2711,6 +2715,35 @@ on the current tab and pause the stopwatch on the previous tab.</source>
 This may reduce distractions caused by stopwatch updates.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Highlight Error Line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Highlight lines containing diagnostics</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Color of error messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Color of warning messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use WakaTime to track your time usage. The WakaTime CLI needs to be installed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show a stopwatch in the UI. You can use it to track your time spent on solving a problem.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>default-paths</source>
+        <comment>the anchor of Default Paths on https://cpeditor.org/docs/preferences/file-path</comment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ShortcutItem</name>
@@ -2824,10 +2857,6 @@ This may reduce distractions caused by stopwatch updates.</source>
 <context>
     <name>Util::FileUtil</name>
     <message>
-        <source>%1Source Files (%2)</source>
-        <translation>%1 原始檔（%2）</translation>
-    </message>
-    <message>
         <source>Failed to open [%1]. Do I have write permission?</source>
         <translation>無法開啟「%1」。有寫入權限嗎？</translation>
     </message>
@@ -2860,6 +2889,22 @@ This may reduce distractions caused by stopwatch updates.</source>
     <message>
         <source>Reveal %1 in File Manager</source>
         <translation>在檔案管理員中顯示 %1</translation>
+    </message>
+    <message>
+        <source>C++ Source Files</source>
+        <translation>C++ 原始檔</translation>
+    </message>
+    <message>
+        <source>Java Source Files</source>
+        <translation>Java 原始檔</translation>
+    </message>
+    <message>
+        <source>Python Source Files</source>
+        <translation>Python 原始檔</translation>
+    </message>
+    <message>
+        <source>Source Files</source>
+        <translation>原始檔</translation>
     </message>
 </context>
 <context>
