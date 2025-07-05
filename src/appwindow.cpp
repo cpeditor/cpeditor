@@ -1638,3 +1638,16 @@ void AppWindow::setInitialized(bool flag)
     if (flag)
         emit initialized();
 }
+
+QVector<MainWindow *> AppWindow::getTabs() const
+{
+    QVector<MainWindow *> tabs;
+    for (int i = 0; i < ui->tabWidget->count(); ++i)
+    {
+        if (auto tab = qobject_cast<MainWindow *>(ui->tabWidget->widget(i)))
+        {
+            tabs.append(tab);
+        }
+    }
+    return tabs;
+}

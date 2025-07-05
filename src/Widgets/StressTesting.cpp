@@ -26,9 +26,11 @@
 #include "Util/FileUtil.hpp"
 #include "Widgets/TestCase.hpp"
 #include "Widgets/TestCases.hpp"
+#include "appwindow.hpp"
 #include "generated/SettingsHelper.hpp"
 #include "mainwindow.hpp"
 #include <QCheckBox>
+#include <QComboBox>
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QLineEdit>
@@ -40,8 +42,9 @@
 namespace Widgets
 {
 StressTesting::StressTesting(QWidget *parent)
-    : QMainWindow(parent), mainWindow(qobject_cast<MainWindow *>(parent)), pendingCompilationCount(0),
-      pendingRunCount(0), argumentsCount(0), stopping(false)
+    : QMainWindow(parent), mainWindow(qobject_cast<MainWindow *>(parent)),
+      appWindow(qobject_cast<AppWindow *>(parent->parentWidget())), pendingCompilationCount(0), pendingRunCount(0),
+      argumentsCount(0), stopping(false)
 {
     log = mainWindow->getLogger();
 
@@ -53,10 +56,22 @@ StressTesting::StressTesting(QWidget *parent)
     resize(400, 360);
 
     auto *generatorLayout = new QHBoxLayout();
+
     generatorLable = new QLabel(tr("Generator Path:"), widget);
     generatorLayout->addWidget(generatorLable);
+
     generatorPath = new PathItem(PathItem::CppSource, widget);
+    connect(generatorPath, &PathItem::pathChanged, this, [this]() { generatorSelection->setCurrentIndex(0); });
     generatorLayout->addWidget(generatorPath);
+
+    generatorSelection = new QComboBox(widget);
+    generatorSelection->addItem(getComboBoxPlaceholder(SourceType::Generator));
+    connect(generatorSelection, &QComboBox::currentTextChanged, this, [this](const QString &text) {
+        if (text == getComboBoxPlaceholder(SourceType::Generator))
+            return;
+        generatorPath->getLineEdit()->setText(text);
+    });
+    generatorLayout->addWidget(generatorSelection);
 
     layout->addLayout(generatorLayout);
 
@@ -70,10 +85,22 @@ StressTesting::StressTesting(QWidget *parent)
     layout->addLayout(argumentsPatternLayout);
 
     auto *stdLayout = new QHBoxLayout();
+
     stdLabel = new QLabel(tr("Standard Program Path:"), widget);
     stdLayout->addWidget(stdLabel);
+
     stdPath = new PathItem(PathItem::AnyFile, widget);
+    connect(stdPath, &PathItem::pathChanged, this, [this]() { stdSelection->setCurrentIndex(0); });
     stdLayout->addWidget(stdPath);
+
+    stdSelection = new QComboBox(widget);
+    stdSelection->addItem(getComboBoxPlaceholder(SourceType::Standard));
+    connect(stdSelection, &QComboBox::currentTextChanged, this, [this](const QString &text) {
+        if (text == getComboBoxPlaceholder(SourceType::Standard))
+            return;
+        stdPath->getLineEdit()->setText(text);
+    });
+    stdLayout->addWidget(stdSelection);
 
     layout->addLayout(stdLayout);
 
@@ -93,6 +120,32 @@ StressTesting::StressTesting(QWidget *parent)
     controlLayout->addWidget(stopButton);
 
     layout->addLayout(controlLayout);
+}
+
+void StressTesting::showEvent(QShowEvent *event)
+{
+
+    generatorSelection->clear();
+    generatorSelection->addItem(getComboBoxPlaceholder(SourceType::Generator));
+
+    auto tabs = appWindow->getTabs();
+    printf("Found %d tabs\n", tabs.size());
+    for (auto &&tab : tabs)
+    {
+        if (tab->getLanguage() == "C++")
+            generatorSelection->addItem(tab->getFilePath());
+    }
+
+    stdSelection->clear();
+    stdSelection->addItem(getComboBoxPlaceholder(SourceType::Standard));
+
+    for (auto &&tab : tabs)
+    {
+        if (tab->getLanguage() == "C++")
+            stdSelection->addItem(tab->getFilePath());
+    }
+
+    QMainWindow::showEvent(event);
 }
 
 void StressTesting::start()
@@ -457,6 +510,19 @@ QString StressTesting::getHead(StressTesting::SourceType type)
     if (type == StressTesting::SourceType::Standard)
     {
         return tr("Standard program");
+    }
+    return QString();
+}
+
+QString StressTesting::getComboBoxPlaceholder(int type)
+{
+    if (type == SourceType::Generator)
+    {
+        return tr("Select generator from editor tabs...");
+    }
+    if (type == SourceType::Standard)
+    {
+        return tr("Select standard program from editor tabs...");
     }
     return QString();
 }

@@ -70,6 +70,9 @@ class PathItem : public QWidget
     QHBoxLayout *layout = nullptr;
     QLineEdit *lineEdit = nullptr;
     QToolButton *toolButton = nullptr;
+
+   signals:
+    void pathChanged();
 };
 
 #endif // CODETEMPLATEITEM_HPP

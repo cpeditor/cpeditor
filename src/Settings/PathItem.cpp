@@ -34,6 +34,7 @@ PathItem::PathItem(Type type, QWidget *parent) : QWidget(parent), fileType(type)
 
     lineEdit = new QLineEdit();
     lineEdit->setMinimumWidth(400);
+    connect(lineEdit, &QLineEdit::textChanged, this, &PathItem::pathChanged);
     layout->addWidget(lineEdit);
 
     toolButton = new QToolButton();
@@ -53,6 +54,7 @@ void PathItem::onButtonClicked()
     auto path = QFileDialog::getOpenFileName(this, title(), lineEdit->text(), filter());
     if (!path.isEmpty())
         lineEdit->setText(path);
+    emit pathChanged();
 }
 
 QString PathItem::filter() const

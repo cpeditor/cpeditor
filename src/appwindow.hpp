@@ -71,6 +71,8 @@ class AppWindow : public QMainWindow
 
     void setInitialized(bool flag = true);
 
+    QVector<MainWindow *> getTabs() const;
+
   protected:
     void closeEvent(QCloseEvent *event) override;
     void dropEvent(QDropEvent *event) override;

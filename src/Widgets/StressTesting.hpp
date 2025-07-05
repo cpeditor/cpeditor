@@ -29,6 +29,8 @@ class QPushButton;
 class QCheckBox;
 class MessageLogger;
 class QTemporaryDir;
+class QComboBox;
+class AppWindow;
 
 namespace Core
 {
@@ -55,11 +57,13 @@ class StressTesting : public QMainWindow
 
   private:
     MainWindow *mainWindow;
+    AppWindow *appWindow;
     PathItem *generatorPath = nullptr, *stdPath = nullptr;
     QLabel *generatorLable = nullptr, *stdLabel = nullptr, *argumentsPatternLabel = nullptr;
     QLineEdit *argumentsPattern = nullptr;
     QPushButton *startButton = nullptr, *stopButton = nullptr;
     QCheckBox *continueAfterCountertest = nullptr, *addCountertest = nullptr;
+    QComboBox *generatorSelection = nullptr, *stdSelection = nullptr;
     QVector<QPair<unsigned long long, unsigned long long>> argumentsRange;
     QVector<unsigned long long> currentValue;
     Core::Runner *generatorRunner = nullptr;
@@ -84,6 +88,8 @@ class StressTesting : public QMainWindow
     std::atomic<bool> stopping;
 
     static QString getHead(SourceType type);
+    static QString getComboBoxPlaceholder(int type);
+    void showEvent(QShowEvent *event);
   signals:
     void compilationErrorOccurred(const QString &error);
     void compilationFailed(const QString &reason);
