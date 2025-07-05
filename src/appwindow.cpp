@@ -1644,7 +1644,7 @@ QVector<MainWindow *> AppWindow::getTabs() const
     QVector<MainWindow *> tabs;
     for (int i = 0; i < ui->tabWidget->count(); ++i)
     {
-        if (auto tab = qobject_cast<MainWindow *>(ui->tabWidget->widget(i)))
+        if (auto *tab = qobject_cast<MainWindow *>(ui->tabWidget->widget(i)))
         {
             tabs.append(tab);
         }
