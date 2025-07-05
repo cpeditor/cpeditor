@@ -229,12 +229,12 @@ void StressTesting::start()
     };
 
     auto compilationStartedHandler = [this, compilerName]() {
-        Core::Compiler *comp = qobject_cast<Core::Compiler *>(sender());
+        auto *comp = qobject_cast<Core::Compiler *>(sender());
         log->info(tr("Compiler"), tr("%1 compilation has started").arg(compilerName(comp)));
     };
 
     auto compilationFinishedHandler = [this, compilerName]() {
-        Core::Compiler *comp = qobject_cast<Core::Compiler *>(sender());
+        auto *comp = qobject_cast<Core::Compiler *>(sender());
         log->info(tr("Compiler"), tr("%1 compilation has finished").arg(compilerName(comp)));
         if (--pendingCompilationCount == 0)
         {
@@ -243,21 +243,21 @@ void StressTesting::start()
     };
 
     auto compilationErrorHandler = [this, compilerName](const QString &err) {
-        Core::Compiler *comp = qobject_cast<Core::Compiler *>(sender());
+        auto *comp = qobject_cast<Core::Compiler *>(sender());
         log->error(tr("Compiler"), tr("%1 compilation error: %2").arg(compilerName(comp), err));
         stop();
         emit compilationErrorOccurred(err);
     };
 
     auto compilationFailedHandler = [this, compilerName](const QString &reason) {
-        Core::Compiler *comp = qobject_cast<Core::Compiler *>(sender());
+        auto *comp = qobject_cast<Core::Compiler *>(sender());
         log->error(tr("Compiler"), tr("%1 compilation failed: %2").arg(compilerName(comp), reason));
         stop();
         emit compilationFailed(reason);
     };
 
     auto compilationKilledHandler = [this, compilerName]() {
-        Core::Compiler *comp = qobject_cast<Core::Compiler *>(sender());
+        auto *comp = qobject_cast<Core::Compiler *>(sender());
         log->error(tr("Compiler"), tr("%1 compilation killed").arg(compilerName(comp)));
         stop();
         emit compilationKilled();
