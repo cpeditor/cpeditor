@@ -129,7 +129,6 @@ void StressTesting::showEvent(QShowEvent *event)
     generatorSelection->addItem(getComboBoxPlaceholder(SourceType::Generator));
 
     auto tabs = appWindow->getTabs();
-    printf("Found %d tabs\n", tabs.size());
     for (auto &&tab : tabs)
     {
         if (tab->getLanguage() == "C++")
