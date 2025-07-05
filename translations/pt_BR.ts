@@ -3123,6 +3123,14 @@ Isso pode reduzir distrações causadas pelas atualizações do cronômetro.</tr
         <source>%1 compilation killed</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Select generator from editor tabs...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select standard program from editor tabs...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Widgets::TestCase</name>

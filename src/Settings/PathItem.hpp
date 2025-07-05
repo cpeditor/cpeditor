@@ -71,7 +71,7 @@ class PathItem : public QWidget
     QLineEdit *lineEdit = nullptr;
     QToolButton *toolButton = nullptr;
 
-   signals:
+  signals:
     void pathChanged();
 };
 

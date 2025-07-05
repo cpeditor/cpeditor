@@ -3121,6 +3121,14 @@ This may reduce distractions caused by stopwatch updates.</source>
         <source>%1 compilation killed</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Select generator from editor tabs...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select standard program from editor tabs...</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Widgets::TestCase</name>
