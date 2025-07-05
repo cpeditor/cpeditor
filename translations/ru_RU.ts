@@ -3046,30 +3046,6 @@ This may reduce distractions caused by stopwatch updates.</source>
         <translation type="unfinished">Компилятор</translation>
     </message>
     <message>
-        <source>Generator compilation has started</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Generator compilation has finished</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>User program compilation has started</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>User program compilation has finished</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Standard program compilation has started</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Standard program compilation has finished</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Running with arguments &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3123,6 +3099,26 @@ This may reduce distractions caused by stopwatch updates.</source>
     </message>
     <message>
         <source>All tests finished</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 compilation has started</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 compilation has finished</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 compilation error: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 compilation failed: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 compilation killed</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

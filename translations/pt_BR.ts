@@ -3056,30 +3056,6 @@ Isso pode reduzir distrações causadas pelas atualizações do cronômetro.</tr
         <translation type="unfinished">Compilador</translation>
     </message>
     <message>
-        <source>Generator compilation has started</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Generator compilation has finished</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>User program compilation has started</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>User program compilation has finished</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Standard program compilation has started</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Standard program compilation has finished</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>All tests finished</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3125,6 +3101,26 @@ Isso pode reduzir distrações causadas pelas atualizações do cronômetro.</tr
     </message>
     <message>
         <source>Standard program</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 compilation has started</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 compilation has finished</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 compilation error: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 compilation failed: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 compilation killed</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
