@@ -40,8 +40,8 @@
 namespace Widgets
 {
 StressTesting::StressTesting(QWidget *parent)
-    : QMainWindow(parent), mainWindow(qobject_cast<MainWindow *>(parent)), compiledCount(0), runFinishedCount(0),
-      argumentsCount(0), stopping(false)
+    : QMainWindow(parent), mainWindow(qobject_cast<MainWindow *>(parent)), pendingCompilationCount(0),
+      pendingRunCount(0), argumentsCount(0), stopping(false)
 {
     log = mainWindow->getLogger();
 
@@ -212,82 +212,73 @@ void StressTesting::start()
     if (!Util::saveFile(tmpDir->filePath("testlib.h"), testlib_h, tr("Save testlib.h"), false, log))
         return;
 
-    compiledCount = 0;
+    pendingCompilationCount = 0;
 
     generatorCompiler = new Core::Compiler();
-
-    connect(generatorCompiler, &Core::Compiler::compilationStarted, this,
-            &StressTesting::onGeneratorCompilationStarted);
-    connect(generatorCompiler, &Core::Compiler::compilationFinished, this,
-            &StressTesting::onGeneratorCompilationFinished);
-    connect(generatorCompiler, &Core::Compiler::compilationErrorOccurred, this,
-            &StressTesting::onCompilationErrorOccurred);
-    connect(generatorCompiler, &Core::Compiler::compilationFailed, this, &StressTesting::onCompilationFailed);
-    connect(generatorCompiler, &Core::Compiler::compilationKilled, this, &StressTesting::onCompilationKilled);
-    generatorCompiler->start(generatorTmpPath, "", SettingsHelper::getCppCompileCommand(), "C++");
-
     userCompiler = new Core::Compiler();
-
-    connect(userCompiler, &Core::Compiler::compilationStarted, this, &StressTesting::onUserCompilationStarted);
-    connect(userCompiler, &Core::Compiler::compilationFinished, this, &StressTesting::onUserCompilationFinished);
-    connect(userCompiler, &Core::Compiler::compilationErrorOccurred, this, &StressTesting::onCompilationErrorOccurred);
-    connect(userCompiler, &Core::Compiler::compilationFailed, this, &StressTesting::onCompilationFailed);
-    connect(userCompiler, &Core::Compiler::compilationKilled, this, &StressTesting::onCompilationKilled);
-    userCompiler->start(userTmpPath, "", mainWindow->compileCommand(), mainWindow->getLanguage());
-
     stdCompiler = new Core::Compiler();
 
-    connect(stdCompiler, &Core::Compiler::compilationStarted, this, &StressTesting::onStdCompilationStarted);
-    connect(stdCompiler, &Core::Compiler::compilationFinished, this, &StressTesting::onStdCompilationFinished);
-    connect(stdCompiler, &Core::Compiler::compilationErrorOccurred, this, &StressTesting::onCompilationErrorOccurred);
-    connect(stdCompiler, &Core::Compiler::compilationFailed, this, &StressTesting::onCompilationFailed);
-    connect(stdCompiler, &Core::Compiler::compilationKilled, this, &StressTesting::onCompilationKilled);
+    auto compilerName = [this](Core::Compiler *comp) -> QString {
+        if (comp == generatorCompiler)
+            return tr("Generator");
+        if (comp == userCompiler)
+            return tr("User program");
+        if (comp == stdCompiler)
+            return tr("Standard program");
+        return QString();
+    };
+
+    auto compilationStartedHandler = [this, compilerName]() {
+        Core::Compiler *comp = qobject_cast<Core::Compiler *>(sender());
+        log->info(tr("Compiler"), tr("%1 compilation has started").arg(compilerName(comp)));
+    };
+
+    auto compilationFinishedHandler = [this, compilerName]() {
+        Core::Compiler *comp = qobject_cast<Core::Compiler *>(sender());
+        log->info(tr("Compiler"), tr("%1 compilation has finished").arg(compilerName(comp)));
+        if (--pendingCompilationCount == 0)
+        {
+            nextTest();
+        }
+    };
+
+    auto compilationErrorHandler = [this, compilerName](const QString &err) {
+        Core::Compiler *comp = qobject_cast<Core::Compiler *>(sender());
+        log->error(tr("Compiler"), tr("%1 compilation error: %2").arg(compilerName(comp), err));
+        stop();
+        emit compilationErrorOccurred(err);
+    };
+
+    auto compilationFailedHandler = [this, compilerName](const QString &reason) {
+        Core::Compiler *comp = qobject_cast<Core::Compiler *>(sender());
+        log->error(tr("Compiler"), tr("%1 compilation failed: %2").arg(compilerName(comp), reason));
+        stop();
+        emit compilationFailed(reason);
+    };
+
+    auto compilationKilledHandler = [this, compilerName]() {
+        Core::Compiler *comp = qobject_cast<Core::Compiler *>(sender());
+        log->error(tr("Compiler"), tr("%1 compilation killed").arg(compilerName(comp)));
+        stop();
+        emit compilationKilled();
+    };
+
+    auto initCompiler = [this, compilationStartedHandler, compilationFinishedHandler, compilationErrorHandler,
+                         compilationFailedHandler, compilationKilledHandler](Core::Compiler *compiler) {
+        connect(compiler, &Core::Compiler::compilationStarted, this, compilationStartedHandler);
+        connect(compiler, &Core::Compiler::compilationFinished, this, compilationFinishedHandler);
+        connect(compiler, &Core::Compiler::compilationErrorOccurred, this, compilationErrorHandler);
+        connect(compiler, &Core::Compiler::compilationFailed, this, compilationFailedHandler);
+        connect(compiler, &Core::Compiler::compilationKilled, this, compilationKilledHandler);
+        pendingCompilationCount++;
+    };
+    initCompiler(generatorCompiler);
+    initCompiler(userCompiler);
+    initCompiler(stdCompiler);
+
+    generatorCompiler->start(generatorTmpPath, "", SettingsHelper::getCppCompileCommand(), "C++");
+    userCompiler->start(userTmpPath, "", mainWindow->compileCommand(), mainWindow->getLanguage());
     stdCompiler->start(stdTmpPath, "", mainWindow->compileCommand(), mainWindow->getLanguage());
-}
-
-void StressTesting::onGeneratorCompilationStarted()
-{
-    log->info(tr("Compiler"), tr("Generator compilation has started"));
-}
-
-void StressTesting::onGeneratorCompilationFinished()
-{
-    log->info(tr("Compiler"), tr("Generator compilation has finished"));
-    compiledCount++;
-    if (compiledCount == 3)
-    {
-        nextTest();
-    }
-}
-
-void StressTesting::onUserCompilationStarted()
-{
-    log->info(tr("Compiler"), tr("User program compilation has started"));
-}
-
-void StressTesting::onUserCompilationFinished()
-{
-    log->info(tr("Compiler"), tr("User program compilation has finished"));
-    compiledCount++;
-    if (compiledCount == 3)
-    {
-        nextTest();
-    }
-}
-
-void StressTesting::onStdCompilationStarted()
-{
-    log->info(tr("Compiler"), tr("Standard program compilation has started"));
-}
-
-void StressTesting::onStdCompilationFinished()
-{
-    log->info(tr("Compiler"), tr("Standard program compilation has finished"));
-    compiledCount++;
-    if (compiledCount == 3)
-    {
-        nextTest();
-    }
 }
 
 void StressTesting::stop()
@@ -340,31 +331,13 @@ void StressTesting::nextTest()
 
     log->info(tr("Stress Testing"), tr("Running with arguments \"%1\"").arg(arguments));
 
-    runFinishedCount = 0;
+    pendingRunCount = 0;
 
     generatorRunner = new Core::Runner(SourceType::Generator);
     connect(generatorRunner, &Core::Runner::runFinished, this, &StressTesting::onRunFinished);
     connect(generatorRunner, &Core::Runner::runOutputLimitExceeded, this, &StressTesting::onRunOutputLimitExceeded);
     connect(generatorRunner, &Core::Runner::runKilled, this, &StressTesting::onRunKilled);
     generatorRunner->run(generatorTmpPath, "", "C++", "", arguments, "", SettingsHelper::getDefaultTimeLimit());
-}
-
-void StressTesting::onCompilationErrorOccurred(const QString &error)
-{
-    stop();
-    emit compilationErrorOccurred(error);
-}
-
-void StressTesting::onCompilationFailed(const QString &reason)
-{
-    stop();
-    emit compilationFailed(reason);
-}
-
-void StressTesting::onCompilationKilled()
-{
-    stop();
-    emit compilationKilled();
 }
 
 void StressTesting::onRunFinished(int type, const QString &out, const QString & /*unused*/, int exitCode,
@@ -381,19 +354,24 @@ void StressTesting::onRunFinished(int type, const QString &out, const QString & 
             in = out;
 
             QString language = mainWindow->getLanguage();
+
             stdRunner = new Core::Runner(SourceType::Standard);
-            connect(stdRunner, &Core::Runner::runFinished, this, &StressTesting::onRunFinished);
-            connect(stdRunner, &Core::Runner::runOutputLimitExceeded, this, &StressTesting::onRunOutputLimitExceeded);
-            connect(stdRunner, &Core::Runner::runKilled, this, &StressTesting::onRunKilled);
+            userRunner = new Core::Runner(SourceType::User);
+
+            auto initRunner = [this](Core::Runner *runner) {
+                pendingRunCount++;
+                connect(runner, &Core::Runner::runFinished, this, &StressTesting::onRunFinished);
+                connect(runner, &Core::Runner::runOutputLimitExceeded, this, &StressTesting::onRunOutputLimitExceeded);
+                connect(runner, &Core::Runner::runKilled, this, &StressTesting::onRunKilled);
+            };
+
+            initRunner(stdRunner);
+            initRunner(userRunner);
+
             stdRunner->run(stdTmpPath, "", language,
                            SettingsManager::get(QString("%1/Run Command").arg(language)).toString(),
                            SettingsManager::get(QString("%1/Run Arguments").arg(language)).toString(), in,
                            mainWindow->timeLimit());
-
-            userRunner = new Core::Runner(SourceType::User);
-            connect(userRunner, &Core::Runner::runFinished, this, &StressTesting::onRunFinished);
-            connect(userRunner, &Core::Runner::runOutputLimitExceeded, this, &StressTesting::onRunOutputLimitExceeded);
-            connect(userRunner, &Core::Runner::runKilled, this, &StressTesting::onRunKilled);
             userRunner->run(userTmpPath, "", language,
                             SettingsManager::get(QString("%1/Run Command").arg(language)).toString(),
                             SettingsManager::get(QString("%1/Run Arguments").arg(language)).toString(), in,
@@ -401,14 +379,13 @@ void StressTesting::onRunFinished(int type, const QString &out, const QString & 
         }
         else
         {
-            runFinishedCount++;
             if (type == SourceType::Standard)
                 stdOut = out;
             else if (type == SourceType::User)
                 userOut = out;
-            if (runFinishedCount == 2)
+            if (--pendingRunCount == 0)
             {
-                mainWindow->getChecker()->reqeustCheck(-1, in, userOut, stdOut);
+                mainWindow->getChecker()->requestCheck(-1, in, userOut, stdOut);
             }
         }
     }

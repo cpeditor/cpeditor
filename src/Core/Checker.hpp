@@ -99,7 +99,7 @@ class Checker : public QObject
      * @note This function doesn't return anything, it request the checker to check,
      *       and the checker emits a signal when it's done
      */
-    void reqeustCheck(int index, const QString &input, const QString &output, const QString &expected);
+    void requestCheck(int index, const QString &input, const QString &output, const QString &expected);
 
     /**
      * @brief clear the pending tasks and kill executing tasks

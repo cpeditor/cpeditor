@@ -1524,7 +1524,7 @@ void MainWindow::onRunFinished(int index, const QString &out, const QString &err
 
         if ((!out.isEmpty() && !testcases->expected(index).isEmpty()) ||
             (SettingsHelper::isCheckOnTestcasesWithEmptyOutput() && exitCode == 0))
-            checker->reqeustCheck(index, testcases->input(index), out, testcases->expected(index));
+            checker->requestCheck(index, testcases->input(index), out, testcases->expected(index));
     }
 
     else

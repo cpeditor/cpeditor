@@ -78,8 +78,8 @@ class StressTesting : public QMainWindow
     QString stdOut;
     QString pattern;
     QString in;
-    int compiledCount;
-    int runFinishedCount;
+    int pendingCompilationCount;
+    int pendingRunCount;
     int argumentsCount;
     std::atomic<bool> stopping;
 
@@ -93,15 +93,6 @@ class StressTesting : public QMainWindow
     void start();
     void stop();
     void nextTest();
-    void onCompilationErrorOccurred(const QString &error);
-    void onCompilationFailed(const QString &reason);
-    void onCompilationKilled();
-    void onGeneratorCompilationStarted();
-    void onGeneratorCompilationFinished();
-    void onStdCompilationStarted();
-    void onStdCompilationFinished();
-    void onUserCompilationStarted();
-    void onUserCompilationFinished();
     void onRunFinished(int type, const QString &out, const QString &err, int exitCode, qint64 timeUsed, bool tle);
     void onRunOutputLimitExceeded(int type);
     void onRunKilled(int type);
