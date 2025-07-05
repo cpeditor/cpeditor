@@ -31,6 +31,7 @@
 #include "Settings/FileProblemBinder.hpp"
 #include "Settings/PreferencesWindow.hpp"
 #include "Util/FileUtil.hpp"
+#include "Util/Util.hpp"
 #include "Widgets/Stopwatch.hpp"
 #include "Widgets/StressTesting.hpp"
 #include "Widgets/TestCase.hpp"

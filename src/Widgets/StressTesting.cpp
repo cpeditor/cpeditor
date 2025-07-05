@@ -21,6 +21,7 @@
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
 #include "Core/Runner.hpp"
+#include "Editor/CodeEditor.hpp"
 #include "Settings/PathItem.hpp"
 #include "Util/FileUtil.hpp"
 #include "Widgets/TestCase.hpp"
@@ -28,7 +29,6 @@
 #include "generated/SettingsHelper.hpp"
 #include "mainwindow.hpp"
 #include <QCheckBox>
-#include <QCodeEditor>
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QLineEdit>
