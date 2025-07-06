@@ -82,6 +82,11 @@ class StressTesting : public QMainWindow
     QString stdOut;
     QString pattern;
     QString in;
+
+    QString generatorLang;
+    QString userLang;
+    QString stdLang;
+
     int pendingCompilationCount;
     int pendingRunCount;
     int argumentsCount;

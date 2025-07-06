@@ -60,7 +60,7 @@ StressTesting::StressTesting(QWidget *parent)
     generatorLable = new QLabel(tr("Generator Path:"), widget);
     generatorLayout->addWidget(generatorLable);
 
-    generatorPath = new PathItem(PathItem::CppSource, widget);
+    generatorPath = new PathItem(PathItem::AnyFile, widget);
     connect(generatorPath, &PathItem::pathChanged, this, [this]() { generatorSelection->setCurrentIndex(0); });
     generatorLayout->addWidget(generatorPath);
 
@@ -131,8 +131,7 @@ void StressTesting::showEvent(QShowEvent *event)
     auto tabs = appWindow->getTabs();
     for (auto &&tab : tabs)
     {
-        if (tab->getLanguage() == "C++")
-            generatorSelection->addItem(tab->getFilePath());
+        generatorSelection->addItem(tab->getFilePath());
     }
 
     stdSelection->clear();
@@ -140,8 +139,7 @@ void StressTesting::showEvent(QShowEvent *event)
 
     for (auto &&tab : tabs)
     {
-        if (tab->getLanguage() == "C++")
-            stdSelection->addItem(tab->getFilePath());
+        stdSelection->addItem(tab->getFilePath());
     }
 
     QMainWindow::showEvent(event);
@@ -249,9 +247,35 @@ void StressTesting::start()
         return;
     }
 
-    generatorTmpPath = tmpDir->filePath("gen.cpp");
-    userTmpPath = tmpDir->filePath("user.cpp");
-    stdTmpPath = tmpDir->filePath("std.cpp");
+    auto getLanguage = [&](QString path) -> QString {
+        QString lang = SettingsHelper::getDefaultLanguage();
+        auto suffix = QFileInfo(path).suffix();
+        if (Util::cppSuffix.contains(suffix))
+            lang = "C++";
+        else if (Util::javaSuffix.contains(suffix))
+            lang = "Java";
+        else if (Util::pythonSuffix.contains(suffix))
+            lang = "Python";
+        return lang;
+    };
+
+    auto getSuffix = [&](QString language) -> QString {
+        if (language == "C++")
+            return "cpp";
+        else if (language == "Java")
+            return "java";
+        else if (language == "Python")
+            return "py";
+        return QString();
+    };
+
+    generatorLang = getLanguage(generatorPath->getLineEdit()->text());
+    userLang = mainWindow->getLanguage();
+    stdLang = getLanguage(stdPath->getLineEdit()->text());
+
+    generatorTmpPath = tmpDir->filePath("gen." + getSuffix(generatorLang));
+    userTmpPath = tmpDir->filePath("user." + getSuffix(userLang));
+    stdTmpPath = tmpDir->filePath("std." + getSuffix(stdLang));
 
     if (!Util::saveFile(generatorTmpPath, generatorCode, tr("Stress Testing"), false, log) ||
         !Util::saveFile(userTmpPath, userCode, tr("Stress Testing"), false, log) ||
@@ -324,13 +348,29 @@ void StressTesting::start()
         connect(compiler, &Core::Compiler::compilationKilled, this, compilationKilledHandler);
         pendingCompilationCount++;
     };
-    initCompiler(generatorCompiler);
-    initCompiler(userCompiler);
-    initCompiler(stdCompiler);
 
-    generatorCompiler->start(generatorTmpPath, "", SettingsHelper::getCppCompileCommand(), "C++");
-    userCompiler->start(userTmpPath, "", mainWindow->compileCommand(), mainWindow->getLanguage());
-    stdCompiler->start(stdTmpPath, "", mainWindow->compileCommand(), mainWindow->getLanguage());
+    if (generatorLang != "Python")
+        initCompiler(generatorCompiler);
+    if (userLang != "Python")
+        initCompiler(userCompiler);
+    if (stdLang != "Python")
+        initCompiler(stdCompiler);
+
+    if (generatorLang != "Python")
+        generatorCompiler->start(generatorTmpPath, "",
+                                 SettingsManager::get(QString("%1/Compile Command").arg(generatorLang)).toString(),
+                                 generatorLang);
+    if (userLang != "Python")
+        userCompiler->start(userTmpPath, "",
+                            SettingsManager::get(QString("%1/Compile Command").arg(userLang)).toString(), userLang);
+    if (stdLang != "Python")
+        stdCompiler->start(stdTmpPath, "", SettingsManager::get(QString("%1/Compile Command").arg(stdLang)).toString(),
+                           stdLang);
+
+    if (generatorLang == "Python" && userLang == "Python" && stdLang == "Python")
+    {
+        nextTest();
+    }
 }
 
 void StressTesting::stop()
@@ -389,7 +429,9 @@ void StressTesting::nextTest()
     connect(generatorRunner, &Core::Runner::runFinished, this, &StressTesting::onRunFinished);
     connect(generatorRunner, &Core::Runner::runOutputLimitExceeded, this, &StressTesting::onRunOutputLimitExceeded);
     connect(generatorRunner, &Core::Runner::runKilled, this, &StressTesting::onRunKilled);
-    generatorRunner->run(generatorTmpPath, "", "C++", "", arguments, "", SettingsHelper::getDefaultTimeLimit());
+    generatorRunner->run(generatorTmpPath, "", generatorLang,
+                         SettingsManager::get(QString("%1/Run Command").arg(generatorLang)).toString(), arguments, "",
+                         SettingsHelper::getDefaultTimeLimit());
 }
 
 void StressTesting::onRunFinished(int type, const QString &out, const QString & /*unused*/, int exitCode,
@@ -405,8 +447,6 @@ void StressTesting::onRunFinished(int type, const QString &out, const QString & 
 
             in = out;
 
-            QString language = mainWindow->getLanguage();
-
             stdRunner = new Core::Runner(SourceType::Standard);
             userRunner = new Core::Runner(SourceType::User);
 
@@ -420,13 +460,12 @@ void StressTesting::onRunFinished(int type, const QString &out, const QString & 
             initRunner(stdRunner);
             initRunner(userRunner);
 
-            stdRunner->run(stdTmpPath, "", language,
-                           SettingsManager::get(QString("%1/Run Command").arg(language)).toString(),
-                           SettingsManager::get(QString("%1/Run Arguments").arg(language)).toString(), in,
-                           mainWindow->timeLimit());
-            userRunner->run(userTmpPath, "", language,
-                            SettingsManager::get(QString("%1/Run Command").arg(language)).toString(),
-                            SettingsManager::get(QString("%1/Run Arguments").arg(language)).toString(), in,
+            stdRunner->run(
+                stdTmpPath, "", stdLang, SettingsManager::get(QString("%1/Run Command").arg(stdLang)).toString(),
+                SettingsManager::get(QString("%1/Run Arguments").arg(stdLang)).toString(), in, mainWindow->timeLimit());
+            userRunner->run(userTmpPath, "", userLang,
+                            SettingsManager::get(QString("%1/Run Command").arg(userLang)).toString(),
+                            SettingsManager::get(QString("%1/Run Arguments").arg(userLang)).toString(), in,
                             mainWindow->timeLimit());
         }
         else
