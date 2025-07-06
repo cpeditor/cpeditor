@@ -247,7 +247,7 @@ void StressTesting::start()
         return;
     }
 
-    auto getLanguage = [&](QString path) -> QString {
+    auto getLanguage = [&](const QString &path) -> QString {
         QString lang = SettingsHelper::getDefaultLanguage();
         auto suffix = QFileInfo(path).suffix();
         if (Util::cppSuffix.contains(suffix))
@@ -259,12 +259,12 @@ void StressTesting::start()
         return lang;
     };
 
-    auto getSuffix = [&](QString language) -> QString {
+    auto getSuffix = [&](const QString &language) -> QString {
         if (language == "C++")
             return "cpp";
-        else if (language == "Java")
+        if (language == "Java")
             return "java";
-        else if (language == "Python")
+        if (language == "Python")
             return "py";
         return QString();
     };
