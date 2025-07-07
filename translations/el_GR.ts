@@ -3136,10 +3136,6 @@ This may reduce distractions caused by stopwatch updates.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Countinue after found countertest</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Add countertest to testcases</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3173,6 +3169,10 @@ This may reduce distractions caused by stopwatch updates.</source>
     </message>
     <message>
         <source>Select standard program from editor tabs...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Countinue after finding countertest</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

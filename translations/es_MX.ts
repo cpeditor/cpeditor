@@ -3053,10 +3053,6 @@ Es una lista de &lt;nombre de ruta predeterminada&gt;, separadas por comas, y pu
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Countinue after found countertest</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Add countertest to testcases</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3178,6 +3174,10 @@ Es una lista de &lt;nombre de ruta predeterminada&gt;, separadas por comas, y pu
     </message>
     <message>
         <source>Select standard program from editor tabs...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Countinue after finding countertest</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

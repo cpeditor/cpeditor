@@ -3052,10 +3052,6 @@ Isso pode reduzir distrações causadas pelas atualizações do cronômetro.</tr
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Countinue after found countertest</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Add countertest to testcases</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3177,6 +3173,10 @@ Isso pode reduzir distrações causadas pelas atualizações do cronômetro.</tr
     </message>
     <message>
         <source>Select standard program from editor tabs...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Countinue after finding countertest</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

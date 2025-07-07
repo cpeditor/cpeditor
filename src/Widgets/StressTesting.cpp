@@ -104,7 +104,7 @@ StressTesting::StressTesting(QWidget *parent)
 
     layout->addLayout(stdLayout);
 
-    continueAfterCountertest = new QCheckBox(tr("Countinue after found countertest"));
+    continueAfterCountertest = new QCheckBox(tr("Countinue after finding countertest"));
     layout->addWidget(continueAfterCountertest);
 
     addCountertest = new QCheckBox(tr("Add countertest to testcases"));
