@@ -663,6 +663,12 @@ void AppWindow::on_actionNewTab_triggered()
     openTab("");
 }
 
+void AppWindow::on_actionNewGeneratorTab_triggered()
+{
+
+    openTabWithTemplate("Generator Template", SettingsManager::get("Generator Template/Language").toString());
+}
+
 void AppWindow::on_actionOpen_triggered()
 {
     auto fileNames = DefaultPathManager::getOpenFileNames("Open File", this, tr("Open Files"),
@@ -1198,6 +1204,19 @@ void AppWindow::openTab(const QString &path, MainWindow *after)
 
     newWindow->setLanguage(lang);
 
+    openTab(newWindow, after);
+}
+
+void AppWindow::openTabWithTemplate(const QString &templateName, const QString &language, MainWindow *after)
+{
+    auto *newWindow = new MainWindow("", getNewUntitledIndex(), this);
+    newWindow->setLanguage(language);
+
+    auto templateContent =
+        Util::readFile(SettingsManager::get(QString("%1/Template Path").arg(templateName)).toString());
+    newWindow->getEditor()->setPlainText(templateContent);
+
+    newWindow->setCursorPositionFromTemplate(templateName);
     openTab(newWindow, after);
 }
 

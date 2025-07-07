@@ -141,6 +141,29 @@ void MainWindow::setStopwatch()
     stopwatch->setVisible(SettingsHelper::isDisplayStopwatch());
 }
 
+void MainWindow::setCursorPositionFromTemplate(const QString &templateName)
+{
+    auto content = editor->toPlainText();
+    auto match = QRegularExpression(SettingsManager::get(templateName + "/Template Cursor Position Regex").toString())
+                     .match(content);
+    if (match.hasMatch())
+    {
+        int pos = SettingsManager::get(templateName + "/Template Cursor Position Offset Type").toString() == "start"
+                      ? match.capturedStart()
+                      : match.capturedEnd();
+        pos += SettingsManager::get(templateName + "/Template Cursor Position Offset Characters").toInt();
+        pos = qMax(pos, 0);
+        pos = qMin(pos, content.length());
+        auto cursor = editor->textCursor();
+        cursor.setPosition(pos);
+        editor->setTextCursor(cursor);
+    }
+    else
+    {
+        editor->moveCursor(QTextCursor::End);
+    }
+}
+
 void MainWindow::showStressTesting()
 {
     Util::showWidgetOnTop(stressTesting);
@@ -987,24 +1010,7 @@ void MainWindow::loadFile(const QString &loadPath)
 
     if (isTemplate)
     {
-        auto match = QRegularExpression(SettingsManager::get(language + "/Template Cursor Position Regex").toString())
-                         .match(content);
-        if (match.hasMatch())
-        {
-            int pos = SettingsManager::get(language + "/Template Cursor Position Offset Type").toString() == "start"
-                          ? match.capturedStart()
-                          : match.capturedEnd();
-            pos += SettingsManager::get(language + "/Template Cursor Position Offset Characters").toInt();
-            pos = qMax(pos, 0);
-            pos = qMin(pos, content.length());
-            auto cursor = editor->textCursor();
-            cursor.setPosition(pos);
-            editor->setTextCursor(cursor);
-        }
-        else
-        {
-            editor->moveCursor(QTextCursor::End);
-        }
+        setCursorPositionFromTemplate(language);
     }
 
     loadTests();

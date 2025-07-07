@@ -104,6 +104,8 @@ class AppWindow : public QMainWindow
 
     void on_actionNewTab_triggered();
 
+    void on_actionNewGeneratorTab_triggered();
+
     void on_actionOpen_triggered();
 
     void on_actionOpenContest_triggered();
@@ -219,6 +221,8 @@ class AppWindow : public QMainWindow
     void onViewModeToggle();
 
     void openTab(const QString &path, MainWindow *after = nullptr);
+
+    void openTabWithTemplate(const QString &templateName, const QString &language, MainWindow *after = nullptr);
 
     void onFileSaved(MainWindow *window);
 

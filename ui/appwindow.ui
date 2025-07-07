@@ -53,6 +53,13 @@
      <string>&amp;File</string>
     </property>
     <addaction name="actionNewTab"/>
+    <widget class="QMenu" name="menuFileFromTemplate">
+     <property name="title">
+      <string>New File From Template</string>
+     </property>
+     <addaction name="actionNewGeneratorTab"/>
+    </widget>
+    <addaction name="menuFileFromTemplate"/>
     <addaction name="actionOpen"/>
     <addaction name="actionOpenContest"/>
     <addaction name="actionSave"/>
@@ -150,6 +157,14 @@
    </property>
    <property name="shortcut">
     <string notr="true">Ctrl+N</string>
+   </property>
+  </action>
+  <action name="actionNewGeneratorTab">
+   <property name="text">
+    <string>Generator</string>
+   </property>
+   <property name="toolTip">
+    <string>Open a new tab with generator template</string>
    </property>
   </action>
   <action name="actionSave">

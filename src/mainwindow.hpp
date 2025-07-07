@@ -102,6 +102,7 @@ class MainWindow : public QMainWindow
 
     void setProblemURL(const QString &url);
     void setUntitledIndex(int index);
+    void setCursorPositionFromTemplate(const QString &templateName);
 
     EditorStatus toStatus() const;
     void loadStatus(const EditorStatus &status, bool duplicate = false);

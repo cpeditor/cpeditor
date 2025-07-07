@@ -479,6 +479,18 @@ Sistema Operacional: %5</translation>
         <source>Stress Testing...</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Generator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open a new tab with generator template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New File From Template</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CodeSnippetsPage</name>
@@ -1539,6 +1551,14 @@ Se for parcialmente desejada, a escolha em Editar Código será usada.</translat
     <message>
         <source>Auto Save</source>
         <translation>Salvamento automático</translation>
+    </message>
+    <message>
+        <source>Stress Testing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Generator Template</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2727,6 +2747,34 @@ Isso pode reduzir distrações causadas pelas atualizações do cronômetro.</tr
     </message>
     <message>
         <source>Enable or disable CF Tool Integration.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Programming language for the generator template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The programming language used for the generator template.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Path to the generator template file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The path to the generator template file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Template Cursor Position Regex</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Template Cursor Position Offset Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Template Cursor Position Offset Characters</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
