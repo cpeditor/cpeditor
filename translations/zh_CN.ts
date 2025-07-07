@@ -477,11 +477,11 @@ git 提交编号: %3
     </message>
     <message>
         <source>Stress Testing...</source>
-        <translation type="unfinished">对拍...</translation>
+        <translation>对拍...</translation>
     </message>
     <message>
         <source>Generator</source>
-        <translation type="unfinished">数据生成器</translation>
+        <translation>数据生成器</translation>
     </message>
     <message>
         <source>Open a new tab with generator template</source>
@@ -489,7 +489,7 @@ git 提交编号: %3
     </message>
     <message>
         <source>New File From Template</source>
-        <translation type="unfinished"></translation>
+        <translation>从模板新建文件</translation>
     </message>
 </context>
 <context>
