@@ -104,11 +104,11 @@ StressTesting::StressTesting(QWidget *parent)
 
     layout->addLayout(stdLayout);
 
-    continueAfterCountertest = new QCheckBox(tr("Countinue after finding countertest"));
-    layout->addWidget(continueAfterCountertest);
+    continueAfterCounterexample = new QCheckBox(tr("Continue stress testing after finding counterexample"));
+    layout->addWidget(continueAfterCounterexample);
 
-    addCountertest = new QCheckBox(tr("Add countertest to testcases"));
-    layout->addWidget(addCountertest);
+    addCounterexample = new QCheckBox(tr("Add counterexample to testcases"));
+    layout->addWidget(addCounterexample);
 
     auto *controlLayout = new QHBoxLayout();
     startButton = new QPushButton(tr("Start"));
@@ -520,11 +520,11 @@ void StressTesting::onCheckFinished(TestCase::Verdict verdict)
     else
     {
         log->message(tr("Stress Testing"), tr("Wrong Answer"), "red");
-        if (addCountertest->checkState() == Qt::CheckState::Checked)
+        if (addCounterexample->checkState() == Qt::CheckState::Checked)
         {
             mainWindow->getTestCases()->addTestCase(in, stdOut);
         }
-        if (continueAfterCountertest->checkState() == Qt::CheckState::Checked)
+        if (continueAfterCounterexample->checkState() == Qt::CheckState::Checked)
         {
             nextTest();
         }

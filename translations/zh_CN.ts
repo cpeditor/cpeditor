@@ -477,7 +477,7 @@ git 提交编号: %3
     </message>
     <message>
         <source>Stress Testing...</source>
-        <translation>压力测试...</translation>
+        <translation type="unfinished">对拍...</translation>
     </message>
     <message>
         <source>Generator</source>
@@ -1554,11 +1554,11 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>Stress Testing</source>
-        <translation type="unfinished">压力测试</translation>
+        <translation>对拍</translation>
     </message>
     <message>
         <source>Generator Template</source>
-        <translation type="unfinished"></translation>
+        <translation>数据生成器模版</translation>
     </message>
 </context>
 <context>
@@ -2734,39 +2734,39 @@ This may reduce distractions caused by stopwatch updates.</source>
     </message>
     <message>
         <source>Enable CF Tool</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">CF Tool 运行出错</translation>
     </message>
     <message>
         <source>Enable or disable CF Tool Integration.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Programming language for the generator template</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>The programming language used for the generator template.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Path to the generator template file</source>
-        <translation type="unfinished"></translation>
+        <translation>数据生成器模版使用的编程语言。</translation>
     </message>
     <message>
         <source>The path to the generator template file.</source>
-        <translation type="unfinished"></translation>
+        <translation>数据生成器的模版路径。</translation>
     </message>
     <message>
         <source>Template Cursor Position Regex</source>
-        <translation type="unfinished"></translation>
+        <translation>使用模板时光标初始位置定位使用的正则表达式</translation>
     </message>
     <message>
         <source>Template Cursor Position Offset Type</source>
-        <translation type="unfinished"></translation>
+        <translation>使用模板时光标初始位置的偏移类型</translation>
     </message>
     <message>
         <source>Template Cursor Position Offset Characters</source>
-        <translation type="unfinished"></translation>
+        <translation>使用模板时光标初始位置的偏移字符量</translation>
+    </message>
+    <message>
+        <source>Programming language for the template</source>
+        <translation>模版使用的编程语言</translation>
+    </message>
+    <message>
+        <source>Path to the template file</source>
+        <translation>模板路径</translation>
     </message>
 </context>
 <context>
@@ -3024,7 +3024,7 @@ This may reduce distractions caused by stopwatch updates.</source>
     <name>Widgets::StressTesting</name>
     <message>
         <source>Stress Testing</source>
-        <translation>压力测试</translation>
+        <translation>对拍</translation>
     </message>
     <message>
         <source>Generator Path:</source>
@@ -3040,7 +3040,7 @@ This may reduce distractions caused by stopwatch updates.</source>
     </message>
     <message>
         <source>Standard Program Path:</source>
-        <translation>标准程序路径</translation>
+        <translation>标准程序路径：</translation>
     </message>
     <message>
         <source>Start</source>
@@ -3131,44 +3131,44 @@ This may reduce distractions caused by stopwatch updates.</source>
         <translation>答案错误</translation>
     </message>
     <message>
-        <source>Add countertest to testcases</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>All tests finished</source>
-        <translation type="unfinished"></translation>
+        <translation>所有测试结束</translation>
     </message>
     <message>
         <source>%1 compilation has started</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 编译已开始</translation>
     </message>
     <message>
         <source>%1 compilation has finished</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 编译已结束</translation>
     </message>
     <message>
         <source>%1 compilation error: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 编译错误：%2</translation>
     </message>
     <message>
         <source>%1 compilation failed: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 编译失败：%2</translation>
     </message>
     <message>
         <source>%1 compilation killed</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 编译已终止</translation>
     </message>
     <message>
         <source>Select generator from editor tabs...</source>
-        <translation type="unfinished"></translation>
+        <translation>从编辑器界面中选择数据生成器...</translation>
     </message>
     <message>
         <source>Select standard program from editor tabs...</source>
-        <translation type="unfinished"></translation>
+        <translation>从编辑器界面中选择标准程序...</translation>
     </message>
     <message>
-        <source>Countinue after finding countertest</source>
-        <translation type="unfinished"></translation>
+        <source>Add counterexample to testcases</source>
+        <translation>将反例添加到测试点中</translation>
+    </message>
+    <message>
+        <source>Continue stress testing after finding counterexample</source>
+        <translation>找到反例后继续对拍</translation>
     </message>
 </context>
 <context>

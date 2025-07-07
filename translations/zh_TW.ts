@@ -2765,15 +2765,7 @@ This may reduce distractions caused by stopwatch updates.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Programming language for the generator template</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>The programming language used for the generator template.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Path to the generator template file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2790,6 +2782,14 @@ This may reduce distractions caused by stopwatch updates.</source>
     </message>
     <message>
         <source>Template Cursor Position Offset Characters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Programming language for the template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Path to the template file</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3159,7 +3159,7 @@ This may reduce distractions caused by stopwatch updates.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Add countertest to testcases</source>
+        <source>Add counterexample to testcases</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3195,7 +3195,7 @@ This may reduce distractions caused by stopwatch updates.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Countinue after finding countertest</source>
+        <source>Continue stress testing after finding counterexample</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -1261,7 +1261,7 @@
   },
   {
     "name": "Generator Template/Language",
-    "desc": "Programming language for the generator template",
+    "desc": "Programming language for the template",
     "type": "QString",
     "default": "C++",
     "ui": "QComboBox",
@@ -1270,7 +1270,7 @@
   },
   {
     "name": "Generator Template/Template Path",
-    "desc": "Path to the generator template file",
+    "desc": "Path to the template file",
     "type": "QString",
     "ui": "PathItem",
     "param": "PathItem::AnyFile",
