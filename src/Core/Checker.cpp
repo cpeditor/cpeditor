@@ -115,7 +115,7 @@ void Checker::prepare()
     compiler->start(checkerTmpPath, "", SettingsHelper::getCppCompileCommand(), "C++");
 }
 
-void Checker::reqeustCheck(int index, const QString &input, const QString &output, const QString &expected)
+void Checker::requestCheck(int index, const QString &input, const QString &output, const QString &expected)
 {
     recompileIfChanged();
     LOG_INFO(BOOL_INFO_OF(compiled));
