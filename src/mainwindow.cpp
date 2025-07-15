@@ -45,6 +45,7 @@
 #include <QTemporaryDir>
 #include <QTextBlock>
 #include <QTimer>
+#include <QJsonValue>
 
 #include "../ui/ui_mainwindow.h"
 

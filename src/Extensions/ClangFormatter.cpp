@@ -18,6 +18,7 @@
 #include "Extensions/ClangFormatter.hpp"
 #include "Editor/CodeEditor.hpp"
 #include <QJsonDocument>
+#include <QJsonValue>
 #include <QTextCursor>
 
 namespace Extensions

@@ -84,7 +84,7 @@ class RichTextCheckBox : public QWidget
     void setCheckState(Qt::CheckState state);
 
   private:
-    void enterEvent(QEvent * /*unused*/) override;
+    void enterEvent(QEnterEvent * /*unused*/) override;
     void leaveEvent(QEvent * /*unused*/) override;
 
     HoverCheckBox *checkBox = nullptr;

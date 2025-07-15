@@ -20,6 +20,7 @@
 #include "generated/SettingsHelper.hpp"
 #include <QMap>
 #include <QTranslator>
+#include <QLocale>
 
 namespace Core
 {

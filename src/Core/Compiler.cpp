@@ -32,8 +32,8 @@ Compiler::Compiler()
     // create compiliation process and connect signals
     compileProcess = new QProcess();
     connect(compileProcess, &QProcess::started, this, &Compiler::compilationStarted);
-    connect(compileProcess, qOverload<int, QProcess::ExitStatus>(&QProcess::finished), this,
-            &Compiler::onProcessFinished);
+    // Use the new syntax for overloaded signals/slots in Qt 6
+    connect(compileProcess, &QProcess::finished, this, &Compiler::onProcessFinished);
     connect(compileProcess, &QProcess::errorOccurred, this, &Compiler::onProcessErrorOccurred);
 }
 
@@ -113,11 +113,11 @@ QString Compiler::outputPath(const QString &tmpFilePath, const QString &sourceFi
 
     QFileInfo fileInfo(sourceFilePath.isEmpty() ? tmpFilePath : sourceFilePath);
     QString res = fileInfo.dir().filePath(SettingsManager::get(lang + "/Output Path")
-                                              .toString()
-                                              .replace("${filename}", fileInfo.fileName())
-                                              .replace("${basename}", fileInfo.completeBaseName())
-                                              .replace("${tmpdir}", QFileInfo(tmpFilePath).absolutePath())
-                                              .replace("${tempdir}", QFileInfo(tmpFilePath).absolutePath()));
+                                             .toString()
+                                             .replace("${filename}", fileInfo.fileName())
+                                             .replace("${basename}", fileInfo.completeBaseName())
+                                             .replace("${tmpdir}", QFileInfo(tmpFilePath).absolutePath())
+                                             .replace("${tempdir}", QFileInfo(tmpFilePath).absolutePath()));
 
     if (lang == "C++")
         res += Util::exeSuffix; // Note: Util::exeSuffix is empty on UNIX
