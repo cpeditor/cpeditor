@@ -3,7 +3,7 @@ name: "CI: Build Test"
 on: [push, pull_request]
 
 env:
-  QT_VERSION: 5.15.2
+  QT_VERSION: 6.10.0
 
 jobs:
   build:
@@ -20,7 +20,7 @@ jobs:
             ecm-path: "C:/Program Files/ECM/"
           - os: ubuntu-latest
             binary: cpeditor
-          - os: macos-13
+          - os: macos-latest
             binary: cpeditor.app/Contents/MacOS/cpeditor
 
     steps:
@@ -33,6 +33,7 @@ jobs:
         uses: jurplel/install-qt-action@v3
         with:
           cache: true
+          modules: 'qt5compat'
           version: ${{ env.QT_VERSION }}
 
       - name: "[Linux] Download clang-tidy"
@@ -81,7 +82,7 @@ jobs:
       - name: "[Linux] Install ksyntax-highlighting"
         if: startsWith(matrix.config.os, 'ubuntu')
         run: |
-          sudo apt install -y libkf5syntaxhighlighting-dev
+          sudo apt install -y kf6-syntax-highlighting
 
       - name: "[macOS] Install ksyntax-highlighting"
         if: startsWith(matrix.config.os, 'macos')
