@@ -23,9 +23,35 @@ jobs:
           cache: true
           version: ${{ env.QT_VERSION }}
 
-      - name: "[Linux] Install ksyntax-highlighting"
+      - uses: actions/checkout@v4
+        with:
+          repository: KDE/extra-cmake-modules
+          path: third_party/extra-cmake-modules
+          ref: kf5
+
+      - uses: actions/checkout@v4
+        with:
+          repository: KDE/syntax-highlighting
+          path: third_party/syntax-highlighting
+          ref: kf5
+
+      - name: "[Unix] Install extra-cmake-modules"
         run: |
-          sudo apt install -y libkf5syntaxhighlighting-dev
+          cd third_party/extra-cmake-modules
+          mkdir build
+          cd build &&
+            cmake .. -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF &&
+            cmake --build . --parallel $(nproc) &&
+            sudo cmake --build . --target install
+
+      - name: "[Unix] Install ksyntax-highlighting"
+        run: |
+          cd third_party/syntax-highlighting
+          mkdir build
+          cd build &&
+            cmake .. -DCMAKE_BUILD_TYPE=Release -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF 
+            cmake --build . --parallel $(nproc) &&
+            sudo cmake --build . --target install
 
       - name: Build
         run: |

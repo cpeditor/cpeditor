@@ -49,21 +49,15 @@ jobs:
           brew install llvm
           ln -s "$(brew --prefix llvm)/bin/clang-tidy" "/usr/local/bin/clang-tidy"
 
-      - name: "[Windows] Checkout extra-cmake-modules"
-        if: startsWith(matrix.config.os, 'windows')
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           repository: KDE/extra-cmake-modules
           path: third_party/extra-cmake-modules
-          ref: kf5
 
-      - name: "[Windows] Checkout syntax-highlighting"
-        if: startsWith(matrix.config.os, 'windows')
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           repository: KDE/syntax-highlighting
           path: third_party/syntax-highlighting
-          ref: kf5
 
       - name: "[Windows] Install extra-cmake-modules"
         if: startsWith(matrix.config.os, 'windows')
@@ -72,6 +66,13 @@ jobs:
           cmake -B build -S . -A ${{ matrix.config.platform }}  -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
           cmake --build build --config Release --parallel $(nproc) --target install
 
+      - name: "[Unix] Install extra-cmake-modules"
+        if: startsWith(matrix.config.os, 'ubuntu') || startsWith(matrix.config.os, 'macos')
+        run: |
+          cd third_party/extra-cmake-modules
+          cmake -B build -S . -DCMAKE_BUILD_TYPE=Release -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
+          sudo cmake --build build --config Release --parallel $(nproc) --target install
+
       - name: "[Windows] Install ksyntax-highlighting"
         if: startsWith(matrix.config.os, 'windows')
         run: |
@@ -79,16 +80,12 @@ jobs:
           cmake -B build -S . -A ${{ matrix.config.platform }} -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
           cmake --build build --config Release --parallel $(nproc) --target install
 
-      - name: "[Linux] Install ksyntax-highlighting"
-        if: startsWith(matrix.config.os, 'ubuntu')
+      - name: "[Unix] Install ksyntax-highlighting"
+        if: startsWith(matrix.config.os, 'ubuntu') || startsWith(matrix.config.os, 'macos')
         run: |
-          sudo apt install -y kf6-syntax-highlighting
-
-      - name: "[macOS] Install ksyntax-highlighting"
-        if: startsWith(matrix.config.os, 'macos')
-        run: |
-          brew tap kde-mac/kde https://invent.kde.org/packaging/homebrew-kde.git
-          brew install kde-mac/kde/kf5-syntax-highlighting
+          cd third_party/syntax-highlighting
+          cmake -B build -S . -DCMAKE_BUILD_TYPE=Release -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
+          sudo cmake --build build --config Release --parallel $(nproc) --target install
 
       - name: "[Unix] Build"
         if: startsWith(matrix.config.os, 'ubuntu') || startsWith(matrix.config.os, 'macos')
