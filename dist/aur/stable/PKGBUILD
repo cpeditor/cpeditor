@@ -9,9 +9,10 @@ arch=('x86_64')
 url='https://github.com/cpeditor/cpeditor'
 license=('GPL-3.0-or-later')
 depends=(
-    'qt5-base'
-    'qt5-svg'
-    'syntax-highlighting5'
+    'qt6-base'
+    'qt6-svg'
+    'qt6-5compat'
+    'syntax-highlighting'
     'hicolor-icon-theme'
 )
 makedepends=(
@@ -19,7 +20,7 @@ makedepends=(
     'git'
     'ninja'
     'python3'
-    'qt5-tools'
+    'qt6-tools'
 )
 optdepends=(
     'cf-tool: submit to Codeforces'
