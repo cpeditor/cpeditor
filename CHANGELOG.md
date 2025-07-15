@@ -12,6 +12,7 @@
 ### Changed
 
 -   Removed the function to scale the editor font via mouse wheel scroll, as it has been reported to have severe performance issues. (#1249 and #1388)
+-   macOS ARM native builds are published as part of build artifacts.
 
 ## v7.0
 
