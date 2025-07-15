@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.5...3.12)
 
 if(APPLE)
   set(CMAKE_OSX_DEPLOYMENT_TARGET "10.14" CACHE STRING "Minimum OS X deployment version")
@@ -19,11 +19,12 @@ if(WIN32)
   set(GUI_TYPE WIN32)
 endif()
 
-find_package(Qt5 COMPONENTS Widgets REQUIRED)
-find_package(Qt5 COMPONENTS Network REQUIRED)
-find_package(Qt5 COMPONENTS LinguistTools REQUIRED)
+set(QT_DEFAULT_QT_MAJOR_VERSION 6 CACHE STRING "Default Qt major version")
+find_package(Qt6 COMPONENTS Widgets REQUIRED)
+find_package(Qt6 COMPONENTS Network REQUIRED)
+find_package(Qt6 COMPONENTS LinguistTools REQUIRED)
 find_package(Python3 COMPONENTS Interpreter REQUIRED)
-find_package(KF5SyntaxHighlighting REQUIRED)
+find_package(KF6 REQUIRED COMPONENTS SyntaxHighlighting)
 
 set(QAPPLICATION_CLASS QApplication CACHE STRING "Inheritance class for SingleApplication")
 
@@ -117,7 +118,7 @@ ${CMAKE_SOURCE_DIR}/translations/zh_TW.ts
 
 set_source_files_properties(${TSS} PROPERTIES OUTPUT_LOCATION ${CMAKE_BINARY_DIR}/translations)
 
-qt5_add_translation(QMFILES ${TSS})
+qt_add_translations(QM_FILES ${TS_FILES})
 
 file(COPY ${CMAKE_SOURCE_DIR}/translations/translations.qrc DESTINATION ${CMAKE_BINARY_DIR}/translations)
 
@@ -275,13 +276,13 @@ include_directories("generated/")
 include_directories("src/")
 
 target_link_libraries(cpeditor PRIVATE LSPClient)
-target_link_libraries(cpeditor PRIVATE Qt5::Network)
-target_link_libraries(cpeditor PRIVATE Qt5::Widgets)
+target_link_libraries(cpeditor PRIVATE Qt6::Network)
+target_link_libraries(cpeditor PRIVATE Qt6::Widgets)
 target_link_libraries(cpeditor PRIVATE QtFindReplaceDialog)
 target_link_libraries(cpeditor PRIVATE SingleApplication)
 target_link_libraries(cpeditor PRIVATE QHttp)
 target_link_libraries(cpeditor PRIVATE diff_match_patch)
-target_link_libraries(cpeditor PRIVATE KF5::SyntaxHighlighting)
+target_link_libraries(cpeditor PRIVATE KF6::SyntaxHighlighting)
 
 if(MSVC)
   target_compile_options(cpeditor PUBLIC "/utf-8")
