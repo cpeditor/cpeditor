@@ -336,7 +336,7 @@ void CodeEditor::toggleFold(const QTextBlock &startBlock)
     document()->markContentsDirty(startBlock.position(), endBlock.position() - startBlock.position() + 1);
 
     // update scrollbars
-    emit document() -> documentLayout()->documentSizeChanged(document()->documentLayout()->documentSize());
+    emit document()->documentLayout()->documentSizeChanged(document()->documentLayout()->documentSize());
 }
 
 void CodeEditor::resizeEvent(QResizeEvent *e)
