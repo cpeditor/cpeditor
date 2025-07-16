@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.5...3.12)
 
 if(APPLE)
   set(CMAKE_OSX_DEPLOYMENT_TARGET "10.14" CACHE STRING "Minimum OS X deployment version")
@@ -19,11 +19,13 @@ if(WIN32)
   set(GUI_TYPE WIN32)
 endif()
 
-find_package(Qt5 COMPONENTS Widgets REQUIRED)
-find_package(Qt5 COMPONENTS Network REQUIRED)
-find_package(Qt5 COMPONENTS LinguistTools REQUIRED)
+set(QT_DEFAULT_QT_MAJOR_VERSION 6 CACHE STRING "Default Qt major version")
+find_package(Qt6 COMPONENTS Widgets REQUIRED)
+find_package(Qt6 COMPONENTS Network REQUIRED)
+find_package(Qt6 COMPONENTS Core5Compat REQUIRED)
+find_package(Qt6 COMPONENTS LinguistTools REQUIRED)
 find_package(Python3 COMPONENTS Interpreter REQUIRED)
-find_package(KF5SyntaxHighlighting REQUIRED)
+find_package(KF6SyntaxHighlighting REQUIRED)
 
 set(QAPPLICATION_CLASS QApplication CACHE STRING "Inheritance class for SingleApplication")
 
@@ -106,20 +108,8 @@ add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMA
                    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
                    DEPENDS ${PROJECT_SOURCE_DIR}/src/Settings/settings.json ${PROJECT_SOURCE_DIR}/src/Settings/genSettings.py)
 
-set(TSS
-${CMAKE_SOURCE_DIR}/translations/el_GR.ts
-${CMAKE_SOURCE_DIR}/translations/es_MX.ts
-${CMAKE_SOURCE_DIR}/translations/pt_BR.ts
-${CMAKE_SOURCE_DIR}/translations/ru_RU.ts
-${CMAKE_SOURCE_DIR}/translations/zh_CN.ts
-${CMAKE_SOURCE_DIR}/translations/zh_TW.ts
-)
-
-set_source_files_properties(${TSS} PROPERTIES OUTPUT_LOCATION ${CMAKE_BINARY_DIR}/translations)
-
-qt5_add_translation(QMFILES ${TSS})
-
-file(COPY ${CMAKE_SOURCE_DIR}/translations/translations.qrc DESTINATION ${CMAKE_BINARY_DIR}/translations)
+#qt_standard_project_setup(I18N_TRANSLATED_LANGUAGES el_GR es_MX pt_BR ru_RU zh_CN zh_TW)
+#qt6_add_translations(cpeditor QM_FILES_OUTPUT_VARIABLE QM_FILES TS_OUTPUT_DIRECTORY translations)
 
 set_property(SOURCE ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMAKE_BINARY_DIR}/generated/SettingsInfo.cpp PROPERTY SKIP_AUTOGEN ON)
 
@@ -267,7 +257,7 @@ add_executable(cpeditor
     src/Settings/SettingsInfo.hpp
     ${CMAKE_BINARY_DIR}/generated/SettingsInfo.cpp
 
-    ${CMAKE_BINARY_DIR}/translations/translations.qrc
+    # ${CMAKE_BINARY_DIR}/translations/translations.qrc
     ${RESOURCES}
     assets/appicon.rc)
 
@@ -275,13 +265,14 @@ include_directories("generated/")
 include_directories("src/")
 
 target_link_libraries(cpeditor PRIVATE LSPClient)
-target_link_libraries(cpeditor PRIVATE Qt5::Network)
-target_link_libraries(cpeditor PRIVATE Qt5::Widgets)
+target_link_libraries(cpeditor PRIVATE Qt6::Network)
+target_link_libraries(cpeditor PRIVATE Qt6::Widgets)
+target_link_libraries(cpeditor PRIVATE Qt6::Core5Compat)
 target_link_libraries(cpeditor PRIVATE QtFindReplaceDialog)
 target_link_libraries(cpeditor PRIVATE SingleApplication)
 target_link_libraries(cpeditor PRIVATE QHttp)
 target_link_libraries(cpeditor PRIVATE diff_match_patch)
-target_link_libraries(cpeditor PRIVATE KF5::SyntaxHighlighting)
+target_link_libraries(cpeditor PRIVATE KF6::SyntaxHighlighting)
 
 if(MSVC)
   target_compile_options(cpeditor PUBLIC "/utf-8")
@@ -304,7 +295,5 @@ if(UNIX AND NOT APPLE)
   install(FILES dist/linux/cpeditor.desktop DESTINATION ${CMAKE_INSTALL_DATADIR}/applications)
   install(FILES resources/icon.png DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/512x512/apps RENAME cpeditor.png)
   install(FILES dist/linux/cpeditor.appdata.xml DESTINATION ${CMAKE_INSTALL_DATADIR}/metainfo)
-  install(FILES ${QMFILES} DESTINATION ${CMAKE_INSTALL_DATADIR}/cpeditor/translations)
+  # install(FILES ${QM_FILES} DESTINATION ${CMAKE_INSTALL_DATADIR}/cpeditor/translations)
 endif()
-
-

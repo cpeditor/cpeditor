@@ -18,6 +18,7 @@
 #include "Core/Translator.hpp"
 #include "Core/EventLogger.hpp"
 #include "generated/SettingsHelper.hpp"
+#include <QLocale>
 #include <QMap>
 #include <QTranslator>
 

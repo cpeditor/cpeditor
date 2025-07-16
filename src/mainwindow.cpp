@@ -38,6 +38,7 @@
 #include "generated/version.hpp"
 #include <QFileSystemWatcher>
 #include <QInputDialog>
+#include <QJsonValue>
 #include <QMessageBox>
 #include <QMimeData>
 #include <QRegularExpression>
