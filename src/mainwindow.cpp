@@ -38,6 +38,7 @@
 #include "generated/version.hpp"
 #include <QFileSystemWatcher>
 #include <QInputDialog>
+#include <QJsonValue>
 #include <QMessageBox>
 #include <QMimeData>
 #include <QRegularExpression>
@@ -45,7 +46,6 @@
 #include <QTemporaryDir>
 #include <QTextBlock>
 #include <QTimer>
-#include <QJsonValue>
 
 #include "../ui/ui_mainwindow.h"
 
