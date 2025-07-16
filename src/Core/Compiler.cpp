@@ -113,11 +113,11 @@ QString Compiler::outputPath(const QString &tmpFilePath, const QString &sourceFi
 
     QFileInfo fileInfo(sourceFilePath.isEmpty() ? tmpFilePath : sourceFilePath);
     QString res = fileInfo.dir().filePath(SettingsManager::get(lang + "/Output Path")
-                                             .toString()
-                                             .replace("${filename}", fileInfo.fileName())
-                                             .replace("${basename}", fileInfo.completeBaseName())
-                                             .replace("${tmpdir}", QFileInfo(tmpFilePath).absolutePath())
-                                             .replace("${tempdir}", QFileInfo(tmpFilePath).absolutePath()));
+                                              .toString()
+                                              .replace("${filename}", fileInfo.fileName())
+                                              .replace("${basename}", fileInfo.completeBaseName())
+                                              .replace("${tmpdir}", QFileInfo(tmpFilePath).absolutePath())
+                                              .replace("${tempdir}", QFileInfo(tmpFilePath).absolutePath()));
 
     if (lang == "C++")
         res += Util::exeSuffix; // Note: Util::exeSuffix is empty on UNIX

@@ -21,8 +21,8 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
-#include <QString>
 #include <QRegularExpression>
+#include <QString>
 
 namespace Editor
 {
