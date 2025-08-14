@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.5...3.12)
 
 if(APPLE)
-  set(CMAKE_OSX_DEPLOYMENT_TARGET "10.14" CACHE STRING "Minimum OS X deployment version")
+  set(CMAKE_OSX_DEPLOYMENT_TARGET "10.15" CACHE STRING "Minimum OS X deployment version")
 endif()
 
 project(cpeditor LANGUAGES CXX VERSION 7.1.0)
