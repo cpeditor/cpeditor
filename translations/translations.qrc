@@ -1,10 +1,10 @@
 <RCC>
     <qresource prefix="/translations">
-        <file>cpeditor_el_GR.qm</file>
-        <file>cpeditor_es_MX.qm</file>
-        <file>cpeditor_pt_BR.qm</file>
-        <file>cpeditor_ru_RU.qm</file>
-        <file>cpeditor_zh_CN.qm</file>
-        <file>cpeditor_zh_TW.qm</file>
+        <file alias="el_GR.qm">el_GR.qm</file>
+        <file alias="es_MX.qm">es_MX.qm</file>
+        <file alias="pt_BR.qm">pt_BR.qm</file>
+        <file alias="ru_RU.qm">ru_RU.qm</file>
+        <file alias="zh_CN.qm">zh_CN.qm</file>
+        <file alias="zh_TW.qm">zh_TW.qm</file>
     </qresource>
 </RCC>

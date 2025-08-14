@@ -108,8 +108,30 @@ add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMA
                    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
                    DEPENDS ${PROJECT_SOURCE_DIR}/src/Settings/settings.json ${PROJECT_SOURCE_DIR}/src/Settings/genSettings.py)
 
-#qt_standard_project_setup(I18N_TRANSLATED_LANGUAGES el_GR es_MX pt_BR ru_RU zh_CN zh_TW)
-#qt6_add_translations(cpeditor QM_FILES_OUTPUT_VARIABLE QM_FILES TS_OUTPUT_DIRECTORY translations)
+qt_standard_project_setup(I18N_TRANSLATED_LANGUAGES el_GR es_MX pt_BR ru_RU zh_CN zh_TW)
+
+# Define translation files
+set(TS_FILES
+    translations/el_GR.ts
+    translations/es_MX.ts
+    translations/pt_BR.ts
+    translations/ru_RU.ts
+    translations/zh_CN.ts
+    translations/zh_TW.ts
+)
+
+# Create lupdate target to update .ts files
+qt6_add_lupdate(cpeditor
+    TS_FILES ${TS_FILES}
+    SOURCES src ui
+    NO_GLOBAL_TARGET
+)
+
+# Create .qm files from .ts files and generate resource
+qt6_add_translations(cpeditor
+    TS_FILES ${TS_FILES}
+    RESOURCE_PREFIX "/translations"
+)
 
 set_property(SOURCE ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMAKE_BINARY_DIR}/generated/SettingsInfo.cpp PROPERTY SKIP_AUTOGEN ON)
 
@@ -257,7 +279,6 @@ add_executable(cpeditor
     src/Settings/SettingsInfo.hpp
     ${CMAKE_BINARY_DIR}/generated/SettingsInfo.cpp
 
-    # ${CMAKE_BINARY_DIR}/translations/translations.qrc
     ${RESOURCES}
     assets/appicon.rc)
 
