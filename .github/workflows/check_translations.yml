@@ -5,7 +5,7 @@ on:
   - pull_request
 
 env:
-  QT_VERSION: 5.15.2
+  QT_VERSION: 6.10.0
 
 jobs:
   check-translations:
@@ -14,7 +14,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          submodules: recursive
           fetch-depth: 0
 
       - name: Set up Qt environment
@@ -23,42 +22,7 @@ jobs:
           cache: true
           version: ${{ env.QT_VERSION }}
 
-      - uses: actions/checkout@v4
-        with:
-          repository: KDE/extra-cmake-modules
-          path: third_party/extra-cmake-modules
-          ref: kf5
-
-      - uses: actions/checkout@v4
-        with:
-          repository: KDE/syntax-highlighting
-          path: third_party/syntax-highlighting
-          ref: kf5
-
-      - name: "[Unix] Install extra-cmake-modules"
-        run: |
-          cd third_party/extra-cmake-modules
-          mkdir build
-          cd build &&
-            cmake .. -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF &&
-            cmake --build . --parallel $(nproc) &&
-            sudo cmake --build . --target install
-
-      - name: "[Unix] Install ksyntax-highlighting"
-        run: |
-          cd third_party/syntax-highlighting
-          mkdir build
-          cd build &&
-            cmake .. -DCMAKE_BUILD_TYPE=Release -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF 
-            cmake --build . --parallel $(nproc) &&
-            sudo cmake --build . --target install
-
-      - name: Build
-        run: |
-          cmake -B build -S . -D CMAKE_BUILD_TYPE=Release
-          cmake --build build -j4
-
       - name: Check translations are up to date
         run: |
-          tools/updateTranslation.sh
+          tools/updateTranslation_simple.sh
           git diff --exit-code HEAD
