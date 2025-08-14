@@ -1904,38 +1904,6 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
 </context>
 <context>
-    <name>SettingsInfo</name>
-    <message>
-        <location filename="../build/generated/SettingsInfo.cpp" line="+40"/>
-        <location line="+20"/>
-        <location line="+10"/>
-        <location line="+7"/>
-        <location line="+9"/>
-        <location line="+7"/>
-        <location line="+3"/>
-        <location line="+1"/>
-        <location line="+1"/>
-        <location line="+8"/>
-        <location line="+1"/>
-        <location line="+1"/>
-        <location line="+1"/>
-        <location line="+1"/>
-        <location line="+1"/>
-        <location line="+1"/>
-        <location line="+4"/>
-        <location line="+43"/>
-        <location line="+1"/>
-        <location line="+15"/>
-        <location line="+1"/>
-        <location line="+1"/>
-        <location line="+2"/>
-        <location line="+1"/>
-        <location line="+2"/>
-        <source></source>
-        <translation></translation>
-    </message>
-</context>
-<context>
     <name>ShortcutItem</name>
     <message>
         <location filename="../src/Settings/ShortcutItem.cpp" line="+35"/>
