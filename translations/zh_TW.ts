@@ -19,7 +19,7 @@
         <translation>清除最近使用的檔案</translation>
     </message>
     <message>
-        <location line="+42"/>
+        <location line="+41"/>
         <source>Hot Exit</source>
         <translatorcomment>參照 Visual Studio</translatorcomment>
         <translation></translation>

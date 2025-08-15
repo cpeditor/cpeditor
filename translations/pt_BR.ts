@@ -4,7 +4,7 @@
 <context>
     <name>AppWindow</name>
     <message>
-        <location filename="../src/appwindow.cpp" line="+129"/>
+        <location filename="../src/appwindow.cpp" line="+128"/>
         <source>Hot Exit</source>
         <translation>Saída</translation>
     </message>
@@ -545,7 +545,7 @@ Sistema Operacional: %5</translation>
         <translation>Versão para instalar</translation>
     </message>
     <message>
-        <location line="-559"/>
+        <location line="-558"/>
         <source>Open Recent Files</source>
         <translation>Abrir arquivos recentes</translation>
     </message>
@@ -560,7 +560,7 @@ Sistema Operacional: %5</translation>
         <translation>Limpar arquivos recentes</translation>
     </message>
     <message>
-        <location line="+1378"/>
+        <location line="+1377"/>
         <source>Source File</source>
         <translation>Arquivo fonte</translation>
     </message>

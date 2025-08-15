@@ -4,7 +4,7 @@
 <context>
     <name>AppWindow</name>
     <message>
-        <location filename="../src/appwindow.cpp" line="+129"/>
+        <location filename="../src/appwindow.cpp" line="+128"/>
         <source>Hot Exit</source>
         <translation>热退出</translation>
     </message>
@@ -555,7 +555,7 @@ git 提交编号: %3
         <translation>安装版</translation>
     </message>
     <message>
-        <location line="-559"/>
+        <location line="-558"/>
         <source>Open Recent Files</source>
         <translation>打开最近的文件</translation>
     </message>
@@ -570,7 +570,7 @@ git 提交编号: %3
         <translation>清空最近打开的文件</translation>
     </message>
     <message>
-        <location line="+1378"/>
+        <location line="+1377"/>
         <source>Source File</source>
         <translation>源代码</translation>
     </message>

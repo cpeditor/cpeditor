@@ -4,7 +4,7 @@
 <context>
     <name>AppWindow</name>
     <message>
-        <location filename="../src/appwindow.cpp" line="+129"/>
+        <location filename="../src/appwindow.cpp" line="+128"/>
         <source>Hot Exit</source>
         <translation>Γρήγορη έξοδος</translation>
     </message>
@@ -545,7 +545,7 @@ Build time: %4
         <translation>Έκδοση εγκατάστασης</translation>
     </message>
     <message>
-        <location line="-559"/>
+        <location line="-558"/>
         <source>Open Recent Files</source>
         <translation>Άνοιγμα προσωρινών αρχείων</translation>
     </message>
@@ -560,7 +560,7 @@ Build time: %4
         <translation>Καθάρισμα προσωρινών αρχείων</translation>
     </message>
     <message>
-        <location line="+1378"/>
+        <location line="+1377"/>
         <source>Source File</source>
         <translation>Πηγαίο αρχείο</translation>
     </message>

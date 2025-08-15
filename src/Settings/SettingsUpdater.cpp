@@ -37,18 +37,18 @@ void SettingsUpdater::updateSetting(QSettings &setting)
         keys.insert(key);
     };
 
-    for (const auto &si : qAsConst(SettingsInfo::settings))
+    for (const auto &si : std::as_const(SettingsInfo::settings))
     {
         addKey(si.key());
         std::for_each(si.old.begin(), si.old.end(), addKey);
     }
 #endif
 
-    for (const auto &si : qAsConst(SettingsInfo::settings))
+    for (const auto &si : std::as_const(SettingsInfo::settings))
     {
         if (!SettingsManager::contains(si.name))
         {
-            for (const auto &old : qAsConst(si.old))
+            for (const auto &old : std::as_const(si.old))
             {
                 if (setting.contains(old))
                 {

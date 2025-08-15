@@ -19,7 +19,7 @@
         <translation>Borrar archivos recientes</translation>
     </message>
     <message>
-        <location line="+42"/>
+        <location line="+41"/>
         <source>Hot Exit</source>
         <translation>Salida rápida</translation>
     </message>

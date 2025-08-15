@@ -4,7 +4,7 @@
 <context>
     <name>AppWindow</name>
     <message>
-        <location filename="../src/appwindow.cpp" line="+129"/>
+        <location filename="../src/appwindow.cpp" line="+128"/>
         <source>Hot Exit</source>
         <translation>Принудительный выход</translation>
     </message>
@@ -545,7 +545,7 @@ Git commit hash: %3
         <translation>Версия для установки</translation>
     </message>
     <message>
-        <location line="-559"/>
+        <location line="-558"/>
         <source>Open Recent Files</source>
         <translation>Открыть последние файлы</translation>
     </message>
@@ -560,7 +560,7 @@ Git commit hash: %3
         <translation>Очистить последние файлы</translation>
     </message>
     <message>
-        <location line="+1378"/>
+        <location line="+1377"/>
         <source>Source File</source>
         <translation>Файл исходного кода</translation>
     </message>
