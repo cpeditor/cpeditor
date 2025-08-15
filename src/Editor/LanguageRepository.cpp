@@ -21,6 +21,7 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QRegularExpression>
 #include <QString>
 
 namespace Editor
@@ -58,21 +59,21 @@ QPair<QString, QString> LanguageRepository::rawStringTokens() const
     return res;
 }
 
-QRegExp LanguageRepository::singleLineCommentRegEx() const
+QRegularExpression LanguageRepository::singleLineCommentRegEx() const
 {
     auto token = singleLineCommentToken();
-    return QRegExp(token + ".*");
+    return QRegularExpression(token + ".*");
 }
 
-QRegExp LanguageRepository::blockCommentRegEx() const
+QRegularExpression LanguageRepository::blockCommentRegEx() const
 {
     auto tokens = blockCommentTokens();
-    return QRegExp(tokens.first + R"((\n|.)*?)" + tokens.second);
+    return QRegularExpression(tokens.first + R"((\n|.)*?)" + tokens.second);
 }
 
-QRegExp LanguageRepository::rawStringRegEx() const
+QRegularExpression LanguageRepository::rawStringRegEx() const
 {
     auto tokens = rawStringTokens();
-    return QRegExp(tokens.first + R"((\n|.)*?)" + tokens.second);
+    return QRegularExpression(tokens.first + R"((\n|.)*?)" + tokens.second);
 }
 } // namespace Editor

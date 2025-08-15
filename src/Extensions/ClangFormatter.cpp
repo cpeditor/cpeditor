@@ -18,6 +18,7 @@
 #include "Extensions/ClangFormatter.hpp"
 #include "Editor/CodeEditor.hpp"
 #include <QJsonDocument>
+#include <QJsonValue>
 #include <QTextCursor>
 
 namespace Extensions
@@ -66,7 +67,7 @@ QTextCursor ClangFormatter::newCursor(const QString &out, const QStringList &arg
 
         QStringList newArgs;
 
-        for (const auto &arg : qAsConst(args))
+        for (const auto &arg : std::as_const(args))
             if (!arg.startsWith("--cursor"))
                 newArgs.append(arg);
         newArgs.append(QString("--cursor=%1").arg(cursorPos()));

@@ -3,7 +3,7 @@ name: "CI: Build Test"
 on: [push, pull_request]
 
 env:
-  QT_VERSION: 5.15.2
+  QT_VERSION: 6.10.0
 
 jobs:
   build:
@@ -20,7 +20,7 @@ jobs:
             ecm-path: "C:/Program Files/ECM/"
           - os: ubuntu-latest
             binary: cpeditor
-          - os: macos-13
+          - os: macos-latest
             binary: cpeditor.app/Contents/MacOS/cpeditor
 
     steps:
@@ -30,9 +30,10 @@ jobs:
           fetch-depth: 0
 
       - name: Set up Qt environment
-        uses: jurplel/install-qt-action@v3
+        uses: jurplel/install-qt-action@v4
         with:
           cache: true
+          modules: 'qt5compat'
           version: ${{ env.QT_VERSION }}
 
       - name: "[Linux] Download clang-tidy"
@@ -52,13 +53,11 @@ jobs:
         with:
           repository: KDE/extra-cmake-modules
           path: third_party/extra-cmake-modules
-          ref: kf5
 
       - uses: actions/checkout@v4
         with:
           repository: KDE/syntax-highlighting
           path: third_party/syntax-highlighting
-          ref: kf5
 
       - name: "[Windows] Install extra-cmake-modules"
         if: startsWith(matrix.config.os, 'windows')

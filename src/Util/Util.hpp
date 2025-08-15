@@ -19,6 +19,7 @@
 #define UTIL_HPP
 
 #include <QMetaType>
+#include <QWidget>
 
 namespace Util
 {

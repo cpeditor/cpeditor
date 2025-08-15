@@ -61,7 +61,7 @@ ParenthesisWidget::ParenthesisWidget(QString language, QChar leftParenthesis, QC
                 .arg(name.toLower())
                 .arg(parenthesis())
                 .arg(lang));
-        connect(checkBox, &QCheckBox::stateChanged, this, &ParenthesisWidget::changed);
+        connect(checkBox, &QCheckBox::checkStateChanged, this, &ParenthesisWidget::changed);
         checkBoxesLayout->addWidget(checkBox);
     };
 
