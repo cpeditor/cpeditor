@@ -126,7 +126,7 @@ jobs:
             ecm-path: "C:/Program Files (x86)/ECM"
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           submodules: recursive
 
@@ -136,13 +136,13 @@ jobs:
           version: ${{ env.QT_VERSION }}
           arch: ${{ matrix.config.qtarch }}
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           repository: KDE/extra-cmake-modules
           path: third_party/extra-cmake-modules
           ref: kf5
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           repository: KDE/syntax-highlighting
           path: third_party/syntax-highlighting
