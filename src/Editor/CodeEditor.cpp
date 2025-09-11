@@ -410,6 +410,8 @@ void CodeEditor::setHighlightCurrentLine(bool enabled)
 void CodeEditor::setVimCursor(bool value)
 {
     m_vimCursor = value;
+    // Do not flash the cursor in vim mode
+    QApplication::setCursorFlashTime(m_vimCursor ? 0 : 1000);
 
     setOverwriteMode(false);
     updateCursorWidth();
