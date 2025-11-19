@@ -125,7 +125,10 @@ void StressTesting::showEvent(QShowEvent *event)
     auto tabs = appWindow->getTabs();
     for (auto &&tab : tabs)
     {
-        generatorSelection->addItem(tab->getFilePath());
+        if (!tab->isUntitled())
+        {
+            generatorSelection->addItem(tab->getFilePath());
+        }
     }
 
     stdSelection->clear();
@@ -133,7 +136,10 @@ void StressTesting::showEvent(QShowEvent *event)
 
     for (auto &&tab : tabs)
     {
-        stdSelection->addItem(tab->getFilePath());
+        if (!tab->isUntitled())
+        {
+            stdSelection->addItem(tab->getFilePath());
+        }
     }
 
     QMainWindow::showEvent(event);
