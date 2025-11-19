@@ -20,6 +20,7 @@
 
 #include "Widgets/TestCase.hpp"
 #include <QMainWindow>
+#include <QMessageBox>
 
 class PathItem;
 class QLabel;
@@ -62,7 +63,6 @@ class StressTesting : public QMainWindow
     QLabel *generatorLable = nullptr, *stdLabel = nullptr, *argumentsPatternLabel = nullptr;
     QLineEdit *argumentsPattern = nullptr;
     QPushButton *startButton = nullptr, *stopButton = nullptr;
-    QCheckBox *continueAfterCounterexample = nullptr, *addCounterexample = nullptr;
     QComboBox *generatorSelection = nullptr, *stdSelection = nullptr;
     QVector<QPair<unsigned long long, unsigned long long>> argumentsRange;
     QVector<unsigned long long> currentValue;

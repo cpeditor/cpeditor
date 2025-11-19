@@ -3052,10 +3052,6 @@ Isso pode reduzir distrações causadas pelas atualizações do cronômetro.</tr
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Add counterexample to testcases</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Start</source>
         <translation type="unfinished">Cronômetro</translation>
     </message>
@@ -3176,7 +3172,23 @@ Isso pode reduzir distrações causadas pelas atualizações do cronômetro.</tr
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Continue stress testing after finding counterexample</source>
+        <source>Counterexample Found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add counterexample to testcases?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes, and stop stress testing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -3159,10 +3159,6 @@ This may reduce distractions caused by stopwatch updates.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Add counterexample to testcases</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>All tests finished</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3195,7 +3191,23 @@ This may reduce distractions caused by stopwatch updates.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Continue stress testing after finding counterexample</source>
+        <source>Counterexample Found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add counterexample to testcases?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes, and stop stress testing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

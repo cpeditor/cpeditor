@@ -104,12 +104,6 @@ StressTesting::StressTesting(QWidget *parent)
 
     layout->addLayout(stdLayout);
 
-    continueAfterCounterexample = new QCheckBox(tr("Continue stress testing after finding counterexample"));
-    layout->addWidget(continueAfterCounterexample);
-
-    addCounterexample = new QCheckBox(tr("Add counterexample to testcases"));
-    layout->addWidget(addCounterexample);
-
     auto *controlLayout = new QHBoxLayout();
     startButton = new QPushButton(tr("Start"));
     connect(startButton, &QPushButton::clicked, this, &StressTesting::start);
@@ -520,18 +514,32 @@ void StressTesting::onCheckFinished(TestCase::Verdict verdict)
     else
     {
         log->message(tr("Stress Testing"), tr("Wrong Answer"), "red");
-        if (addCounterexample->checkState() == Qt::CheckState::Checked)
+        QMessageBox msgBox(this);
+        msgBox.setIcon(QMessageBox::Question);
+        msgBox.setWindowTitle(tr("Counterexample Found"));
+        msgBox.setText(tr("Add counterexample to testcases?"));
+
+        auto yesButton = msgBox.addButton(tr("Yes"), QMessageBox::AcceptRole);
+        auto yesAndStopButton = msgBox.addButton(tr("Yes, and stop stress testing"), QMessageBox::AcceptRole);
+        msgBox.addButton(tr("No"), QMessageBox::NoRole);
+
+        msgBox.setDefaultButton(yesAndStopButton);
+
+        msgBox.exec();
+        auto *clicked = msgBox.clickedButton();
+
+        if (clicked == yesButton || clicked == yesAndStopButton)
         {
             mainWindow->getTestCases()->addTestCase(in, stdOut);
         }
-        if (continueAfterCounterexample->checkState() == Qt::CheckState::Checked)
-        {
-            nextTest();
-        }
-        else
+
+        if (clicked == yesAndStopButton)
         {
             stop();
+            return;
         }
+
+        nextTest();
     }
 }
 

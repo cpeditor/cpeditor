@@ -3163,12 +3163,24 @@ This may reduce distractions caused by stopwatch updates.</source>
         <translation>从编辑器界面中选择标准程序...</translation>
     </message>
     <message>
-        <source>Add counterexample to testcases</source>
-        <translation>将反例添加到测试点中</translation>
+        <source>Counterexample Found</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Continue stress testing after finding counterexample</source>
-        <translation>找到反例后继续对拍</translation>
+        <source>Add counterexample to testcases?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes, and stop stress testing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

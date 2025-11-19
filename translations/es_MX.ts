@@ -3053,10 +3053,6 @@ Es una lista de &lt;nombre de ruta predeterminada&gt;, separadas por comas, y pu
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Add counterexample to testcases</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Start</source>
         <translation type="unfinished">Empezar</translation>
     </message>
@@ -3177,7 +3173,23 @@ Es una lista de &lt;nombre de ruta predeterminada&gt;, separadas por comas, y pu
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Continue stress testing after finding counterexample</source>
+        <source>Counterexample Found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add counterexample to testcases?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Yes, and stop stress testing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
