@@ -519,8 +519,8 @@ void StressTesting::onCheckFinished(TestCase::Verdict verdict)
         msgBox.setWindowTitle(tr("Counterexample Found"));
         msgBox.setText(tr("Add counterexample to testcases?"));
 
-        auto yesButton = msgBox.addButton(tr("Yes"), QMessageBox::AcceptRole);
-        auto yesAndStopButton = msgBox.addButton(tr("Yes, and stop stress testing"), QMessageBox::AcceptRole);
+        auto *yesButton = msgBox.addButton(tr("Yes"), QMessageBox::AcceptRole);
+        auto *yesAndStopButton = msgBox.addButton(tr("Yes, and stop stress testing"), QMessageBox::AcceptRole);
         msgBox.addButton(tr("No"), QMessageBox::NoRole);
 
         msgBox.setDefaultButton(yesAndStopButton);
