@@ -28,8 +28,11 @@
 #include "appwindow.hpp"
 #include "generated/SettingsHelper.hpp"
 #include "mainwindow.hpp"
+#include <QAbstractButton>
 #include <QCheckBox>
 #include <QComboBox>
+#include <QDialog>
+#include <QDialogButtonBox>
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QLineEdit>
@@ -37,7 +40,6 @@
 #include <QPushButton>
 #include <QTemporaryDir>
 #include <QVBoxLayout>
-#include <algorithm>
 #include <limits>
 
 namespace
@@ -49,8 +51,8 @@ namespace Widgets
 {
 StressTesting::StressTesting(QWidget *parent)
     : QMainWindow(parent), mainWindow(qobject_cast<MainWindow *>(parent)),
-      appWindow(qobject_cast<AppWindow *>(parent->parentWidget())), totalTests(0), executedTests(0),
-      pendingCompilationCount(0), pendingRunCount(0), argumentsCount(0), stopping(false)
+      appWindow(qobject_cast<AppWindow *>(parent->parentWidget())), errorVerdict(TestCase::UNKNOWN), totalTests(0),
+      executedTests(0), pendingCompilationCount(0), pendingRunCount(0), argumentsCount(0), stopping(false)
 {
     log = mainWindow->getLogger();
 
@@ -154,6 +156,8 @@ void StressTesting::showEvent(QShowEvent *event)
             stdSelection->addItem(tab->getFilePath());
         }
     }
+
+    tabTitleLabel->setText(tr("User Program: %1").arg(mainWindow->getTabTitle(false, false)));
 
     QMainWindow::showEvent(event);
 }
@@ -462,6 +466,8 @@ void StressTesting::stop()
     progressBar->setValue(0);
 
     stopping = false;
+
+    errorVerdict = TestCase::UNKNOWN;
 }
 
 void StressTesting::nextTest()
@@ -543,19 +549,44 @@ void StressTesting::onRunFinished(int type, const QString &out, const QString & 
                 userOut = out;
             if (--pendingRunCount == 0)
             {
+                if (errorVerdict != TestCase::UNKNOWN)
+                {
+                    this->onCheckFinished(errorVerdict);
+                    return;
+                }
                 mainWindow->getChecker()->requestCheck(-1, in, userOut, stdOut);
             }
         }
     }
     else
     {
-        if (tle)
+        if (type != SourceType::User)
         {
-            log->warn(head, tr("Time Limit Exceeded"));
-        }
-        log->error(head, tr("Execution has finished with non-zero exitcode %1 in %2ms").arg(exitCode).arg(timeUsed));
+            if (tle)
+            {
+                log->warn(head, tr("Time Limit Exceeded"));
+            }
+            log->error(head,
+                       tr("Execution has finished with non-zero exitcode %1 in %2ms").arg(exitCode).arg(timeUsed));
 
-        stop();
+            stop();
+        }
+        else
+        {
+            if (tle)
+            {
+                errorVerdict = TestCase::TLE;
+            }
+            else
+            {
+                errorVerdict = TestCase::RE;
+            }
+            userOut = out;
+            if (--pendingRunCount == 0)
+            {
+                this->onCheckFinished(errorVerdict);
+            }
+        }
     }
 }
 
@@ -593,26 +624,44 @@ void StressTesting::onCheckFinished(TestCase::Verdict verdict)
     else
     {
         log->message(tr("Stress Testing"), tr("Wrong Answer"), "red");
-        QMessageBox msgBox(this);
-        msgBox.setIcon(QMessageBox::Question);
-        msgBox.setWindowTitle(tr("Counterexample Found"));
-        msgBox.setText(tr("Add counterexample to testcases?"));
+        QDialog dialog(this);
+        dialog.setWindowTitle(tr("Counterexample Found"));
+        dialog.setWindowModality(Qt::WindowModal);
+        dialog.resize(800, 480);
 
-        auto *yesButton = msgBox.addButton(tr("Yes"), QMessageBox::AcceptRole);
-        auto *yesAndStopButton = msgBox.addButton(tr("Yes, and stop stress testing"), QMessageBox::AcceptRole);
-        msgBox.addButton(tr("No"), QMessageBox::NoRole);
+        auto *dialogLayout = new QVBoxLayout(&dialog);
 
-        msgBox.setDefaultButton(yesAndStopButton);
+        auto *preview = new TestCase(0, log, &dialog, in, stdOut, false);
+        preview->setOutput(userOut);
+        preview->setVerdict(verdict);
+        preview->setTestCaseEditFont(mainWindow->getEditor()->font());
+        preview->updateHeight();
+        dialogLayout->addWidget(preview);
 
-        msgBox.exec();
-        auto *clicked = msgBox.clickedButton();
+        auto *buttonBox = new QDialogButtonBox(&dialog);
 
-        if (clicked == yesButton || clicked == yesAndStopButton)
+        auto *addButton = buttonBox->addButton(tr("Add to testcases"), QDialogButtonBox::ActionRole);
+        auto *addAndStopButton =
+            buttonBox->addButton(tr("Add to testcases and stop stress testing"), QDialogButtonBox::ActionRole);
+        buttonBox->addButton(tr("Ignore"), QDialogButtonBox::RejectRole);
+
+        dialogLayout->addWidget(buttonBox);
+        connect(addButton, &QAbstractButton::clicked, &dialog, &QDialog::accept);
+        connect(addAndStopButton, &QAbstractButton::clicked, &dialog, &QDialog::accept);
+        connect(buttonBox, &QDialogButtonBox::rejected, &dialog, &QDialog::reject);
+
+        QAbstractButton *clickedButton = nullptr;
+        connect(buttonBox, &QDialogButtonBox::clicked, &dialog,
+                [&clickedButton](QAbstractButton *button) { clickedButton = button; });
+
+        dialog.exec();
+
+        if (clickedButton == addButton || clickedButton == addAndStopButton)
         {
             mainWindow->getTestCases()->addTestCase(in, stdOut);
         }
 
-        if (clicked == yesAndStopButton)
+        if (clickedButton == addAndStopButton)
         {
             stop();
             return;

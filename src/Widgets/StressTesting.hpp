@@ -84,6 +84,7 @@ class StressTesting : public QMainWindow
     QString stdOut;
     QString pattern;
     QString in;
+    TestCase::Verdict errorVerdict;
     unsigned long long totalTests;
     unsigned long long executedTests;
 
