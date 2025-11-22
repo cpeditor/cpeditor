@@ -613,7 +613,7 @@ void StressTesting::onCheckFinished(TestCase::Verdict verdict)
     if (progressBar->maximum() != 0)
     {
         executedTests++;
-        progressBar->setValue(executedTests);
+        progressBar->setValue(static_cast<int>(executedTests));
     }
 
     if (verdict == TestCase::Verdict::AC)

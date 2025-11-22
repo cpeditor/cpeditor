@@ -3124,10 +3124,6 @@ Isso pode reduzir distrações causadas pelas atualizações do cronômetro.</tr
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Wrong Answer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Generator</source>
         <translation type="unfinished"></translation>
     </message>

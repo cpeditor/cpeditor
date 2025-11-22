@@ -3123,10 +3123,6 @@ This may reduce distractions caused by stopwatch updates.</source>
         <translation>通过</translation>
     </message>
     <message>
-        <source>Wrong Answer</source>
-        <translation>答案错误</translation>
-    </message>
-    <message>
         <source>All tests finished</source>
         <translation>所有测试结束</translation>
     </message>

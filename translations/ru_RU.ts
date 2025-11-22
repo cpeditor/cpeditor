@@ -3130,10 +3130,6 @@ This may reduce distractions caused by stopwatch updates.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Wrong Answer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>All tests finished</source>
         <translation type="unfinished"></translation>
     </message>
