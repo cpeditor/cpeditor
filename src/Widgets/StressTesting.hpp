@@ -60,12 +60,12 @@ class StressTesting : public QMainWindow
     MainWindow *mainWindow;
     AppWindow *appWindow;
     PathItem *generatorPath = nullptr, *stdPath = nullptr;
-    QLabel *generatorLable = nullptr, *stdLabel = nullptr, *argumentsPatternLabel = nullptr;
+    QLabel *tabTitleLabel = nullptr, *generatorLable = nullptr, *stdLabel = nullptr, *argumentsPatternLabel = nullptr;
     QLineEdit *argumentsPattern = nullptr;
     QPushButton *startButton = nullptr, *stopButton = nullptr;
     QComboBox *generatorSelection = nullptr, *stdSelection = nullptr;
-    QVector<QPair<unsigned long long, unsigned long long>> argumentsRange;
-    QVector<unsigned long long> currentValue;
+    QVector<QPair<long long, long long>> argumentsRange;
+    QVector<long long> currentValue;
     Core::Runner *generatorRunner = nullptr;
     Core::Runner *userRunner = nullptr;
     Core::Runner *stdRunner = nullptr;

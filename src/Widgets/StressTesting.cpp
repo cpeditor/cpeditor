@@ -39,6 +39,11 @@
 #include <QVBoxLayout>
 #include <functional>
 
+namespace
+{
+constexpr QChar separator(0x1D);
+}
+
 namespace Widgets
 {
 StressTesting::StressTesting(QWidget *parent)
@@ -53,7 +58,9 @@ StressTesting::StressTesting(QWidget *parent)
     widget->setLayout(layout);
     setCentralWidget(widget);
     setWindowTitle(tr("Stress Testing"));
-    resize(400, 360);
+
+    tabTitleLabel = new QLabel(tr("User Program: %1").arg(mainWindow->getTabTitle(false, false)), widget);
+    layout->addWidget(tabTitleLabel);
 
     auto *generatorLayout = new QHBoxLayout();
 
@@ -181,6 +188,7 @@ void StressTesting::start()
             argumentsCount++;
             pattern += "%";
             pattern += QString::number(argumentsCount);
+            pattern += separator;
             QString range = source.mid(leftBracketPos + 1, currentPos - leftBracketPos - 1);
             QStringList tmp = range.split("..");
             if (tmp.length() != 2)
@@ -189,12 +197,18 @@ void StressTesting::start()
                 break;
             }
 
-            unsigned long long left = tmp[0].toULongLong(&ok);
+            long long left = tmp[0].toLongLong(&ok);
             if (!ok)
                 break;
-            unsigned long long right = tmp[1].toULongLong(&ok);
+            long long right = tmp[1].toLongLong(&ok);
             if (!ok)
                 break;
+
+            if (left > right)
+            {
+                ok = false;
+                break;
+            }
 
             argumentsRange.append(qMakePair(left, right));
 
@@ -214,6 +228,7 @@ void StressTesting::start()
     if (!ok)
     {
         log->error(tr("Stress Testing"), tr("Invalid arguments pattern"));
+        stop();
         return;
     }
 
@@ -420,6 +435,8 @@ void StressTesting::nextTest()
 
     for (int i = 0; i < argumentsCount; i++)
         arguments = arguments.arg(QString::number(currentValue[i]));
+
+    arguments.remove(separator);
 
     log->info(tr("Stress Testing"), tr("Running with arguments \"%1\"").arg(arguments));
 
