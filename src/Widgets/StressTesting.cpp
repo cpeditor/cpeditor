@@ -623,7 +623,6 @@ void StressTesting::onCheckFinished(TestCase::Verdict verdict)
     }
     else
     {
-        log->message(tr("Stress Testing"), tr("Wrong Answer"), "red");
         QDialog dialog(this);
         dialog.setWindowTitle(tr("Counterexample Found"));
         dialog.setWindowModality(Qt::WindowModal);

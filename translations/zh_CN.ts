@@ -485,7 +485,7 @@ git 提交编号: %3
     </message>
     <message>
         <source>Open a new tab with generator template</source>
-        <translation type="unfinished"></translation>
+        <translation>打开一个包含数据生成器模版的新标签页</translation>
     </message>
     <message>
         <source>New File From Template</source>
@@ -3103,10 +3103,6 @@ This may reduce distractions caused by stopwatch updates.</source>
         <translation>标准程序</translation>
     </message>
     <message>
-        <source>Execution has finished in %1ms</source>
-        <translation>程序运行 %1ms 后终止了</translation>
-    </message>
-    <message>
         <source>Time Limit Exceeded</source>
         <translation>超出时间限制</translation>
     </message>
@@ -3164,23 +3160,23 @@ This may reduce distractions caused by stopwatch updates.</source>
     </message>
     <message>
         <source>Counterexample Found</source>
-        <translation type="unfinished"></translation>
+        <translation>找到会产生错误的测试用例</translation>
     </message>
     <message>
-        <source>Add counterexample to testcases?</source>
-        <translation type="unfinished"></translation>
+        <source>User Program: %1</source>
+        <translation>用户程序：%1</translation>
     </message>
     <message>
-        <source>Yes</source>
-        <translation type="unfinished"></translation>
+        <source>Add to testcases</source>
+        <translation>添加到测试点</translation>
     </message>
     <message>
-        <source>Yes, and stop stress testing</source>
-        <translation type="unfinished"></translation>
+        <source>Add to testcases and stop stress testing</source>
+        <translation>添加到测试点并停止对拍</translation>
     </message>
     <message>
-        <source>No</source>
-        <translation type="unfinished"></translation>
+        <source>Ignore</source>
+        <translation>忽略</translation>
     </message>
 </context>
 <context>

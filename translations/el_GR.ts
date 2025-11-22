@@ -3108,10 +3108,6 @@ This may reduce distractions caused by stopwatch updates.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Execution has finished in %1ms</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Time Limit Exceeded</source>
         <translation type="unfinished">Ξεπεράστηκε το χρονικό περιθώριο (TLE)</translation>
     </message>
@@ -3172,19 +3168,19 @@ This may reduce distractions caused by stopwatch updates.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Add counterexample to testcases?</source>
+        <source>User Program: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Yes</source>
+        <source>Add to testcases</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Yes, and stop stress testing</source>
+        <source>Add to testcases and stop stress testing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>No</source>
+        <source>Ignore</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
