@@ -31,6 +31,7 @@ class QCheckBox;
 class MessageLogger;
 class QTemporaryDir;
 class QComboBox;
+class QProgressBar;
 class AppWindow;
 
 namespace Core
@@ -64,6 +65,7 @@ class StressTesting : public QMainWindow
     QLineEdit *argumentsPattern = nullptr;
     QPushButton *startButton = nullptr, *stopButton = nullptr;
     QComboBox *generatorSelection = nullptr, *stdSelection = nullptr;
+    QProgressBar *progressBar = nullptr;
     QVector<QPair<long long, long long>> argumentsRange;
     QVector<long long> currentValue;
     Core::Runner *generatorRunner = nullptr;
@@ -82,6 +84,8 @@ class StressTesting : public QMainWindow
     QString stdOut;
     QString pattern;
     QString in;
+    unsigned long long totalTests;
+    unsigned long long executedTests;
 
     QString generatorLang;
     QString userLang;

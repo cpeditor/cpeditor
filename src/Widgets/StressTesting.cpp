@@ -18,7 +18,6 @@
 #include "Widgets/StressTesting.hpp"
 #include "Core/Checker.hpp"
 #include "Core/Compiler.hpp"
-#include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
 #include "Core/Runner.hpp"
 #include "Editor/CodeEditor.hpp"
@@ -34,10 +33,12 @@
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QLineEdit>
+#include <QProgressBar>
 #include <QPushButton>
 #include <QTemporaryDir>
 #include <QVBoxLayout>
-#include <functional>
+#include <algorithm>
+#include <limits>
 
 namespace
 {
@@ -48,8 +49,8 @@ namespace Widgets
 {
 StressTesting::StressTesting(QWidget *parent)
     : QMainWindow(parent), mainWindow(qobject_cast<MainWindow *>(parent)),
-      appWindow(qobject_cast<AppWindow *>(parent->parentWidget())), pendingCompilationCount(0), pendingRunCount(0),
-      argumentsCount(0), stopping(false)
+      appWindow(qobject_cast<AppWindow *>(parent->parentWidget())), totalTests(0), executedTests(0),
+      pendingCompilationCount(0), pendingRunCount(0), argumentsCount(0), stopping(false)
 {
     log = mainWindow->getLogger();
 
@@ -121,6 +122,11 @@ StressTesting::StressTesting(QWidget *parent)
     controlLayout->addWidget(stopButton);
 
     layout->addLayout(controlLayout);
+
+    progressBar = new QProgressBar(widget);
+    progressBar->setRange(0, 1);
+    progressBar->setValue(0);
+    layout->addWidget(progressBar);
 }
 
 void StressTesting::showEvent(QShowEvent *event)
@@ -236,6 +242,45 @@ void StressTesting::start()
     {
         currentValue.push_back(0);
         argumentsRange.push_back(qMakePair(0, 1));
+    }
+
+    executedTests = 0;
+    totalTests = 0;
+
+    if (argumentsCount == 0)
+    {
+        totalTests = 1;
+    }
+    else
+    {
+        unsigned long long total = 1;
+        bool overflow = false;
+        constexpr unsigned long long limit = std::numeric_limits<int>::max();
+        for (int i = 0; i < argumentsCount; ++i)
+        {
+            const auto &range = argumentsRange[i];
+            const unsigned long long length = static_cast<unsigned long long>(range.second) - range.first + 1;
+            if (total > limit / length)
+            {
+                overflow = true;
+                break;
+            }
+            total *= length;
+        }
+        if (!overflow)
+        {
+            totalTests = total;
+        }
+    }
+
+    if (totalTests > 0)
+    {
+        progressBar->setRange(0, static_cast<int>(totalTests));
+        progressBar->setValue(0);
+    }
+    else
+    {
+        progressBar->setRange(0, 0);
     }
 
     QString generatorCode = Util::readFile(generatorPath->getLineEdit()->text(), tr("Read Generator"), log);
@@ -410,6 +455,12 @@ void StressTesting::stop()
     generatorRunner = nullptr, userRunner = nullptr, stdRunner = nullptr, generatorCompiler = nullptr,
     userCompiler = nullptr, stdCompiler = nullptr;
 
+    totalTests = 0;
+    executedTests = 0;
+
+    progressBar->setRange(0, 1);
+    progressBar->setValue(0);
+
     stopping = false;
 }
 
@@ -458,7 +509,6 @@ void StressTesting::onRunFinished(int type, const QString &out, const QString & 
 
     if (exitCode == 0)
     {
-        log->info(head, tr("Execution has finished in %1ms").arg(timeUsed));
         if (type == SourceType::Generator)
         { // Generator
 
@@ -529,6 +579,12 @@ void StressTesting::onRunOutputLimitExceeded(int type)
 
 void StressTesting::onCheckFinished(TestCase::Verdict verdict)
 {
+    if (progressBar->maximum() != 0)
+    {
+        executedTests++;
+        progressBar->setValue(executedTests);
+    }
+
     if (verdict == TestCase::Verdict::AC)
     {
         log->message(tr("Stress Testing"), tr("Accepted"), "green");
@@ -595,5 +651,4 @@ QString StressTesting::getComboBoxPlaceholder(int type)
     }
     return QString();
 }
-
 } // namespace Widgets
