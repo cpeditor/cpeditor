@@ -24,7 +24,7 @@ jobs:
             binary: cpeditor.app/Contents/MacOS/cpeditor
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           submodules: recursive
           fetch-depth: 0
@@ -48,13 +48,13 @@ jobs:
           brew install llvm
           ln -s "$(brew --prefix llvm)/bin/clang-tidy" "/usr/local/bin/clang-tidy"
 
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           repository: KDE/extra-cmake-modules
           path: third_party/extra-cmake-modules
           ref: kf5
 
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           repository: KDE/syntax-highlighting
           path: third_party/syntax-highlighting
