@@ -32,7 +32,6 @@
 #include <QCheckBox>
 #include <QComboBox>
 #include <QDialog>
-#include <QDialogButtonBox>
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QLineEdit>
@@ -636,31 +635,30 @@ void StressTesting::onCheckFinished(TestCase::Verdict verdict)
         preview->updateHeight();
         dialogLayout->addWidget(preview);
 
-        auto *buttonBox = new QDialogButtonBox(&dialog);
+        auto *addButton = new QPushButton(tr("Add to testcases"), &dialog);
+        auto *ignoreButton = new QPushButton(tr("Ignore"), &dialog);
+        auto *stopCheckBox = new QCheckBox(tr("Stop stress testing"), &dialog);
 
-        auto *addButton = buttonBox->addButton(tr("Add to testcases"), QDialogButtonBox::ActionRole);
-        auto *addAndStopButton =
-            buttonBox->addButton(tr("Add to testcases and stop stress testing"), QDialogButtonBox::ActionRole);
-        buttonBox->addButton(tr("Ignore"), QDialogButtonBox::RejectRole);
+        auto *controlsLayout = new QHBoxLayout();
+        controlsLayout->addWidget(addButton);
+        controlsLayout->addWidget(ignoreButton);
+        controlsLayout->addWidget(stopCheckBox);
+        controlsLayout->addStretch();
 
-        dialogLayout->addWidget(buttonBox);
+        dialogLayout->addLayout(controlsLayout);
+
         connect(addButton, &QAbstractButton::clicked, &dialog, &QDialog::accept);
-        connect(addAndStopButton, &QAbstractButton::clicked, &dialog, &QDialog::accept);
-        connect(buttonBox, &QDialogButtonBox::rejected, &dialog, &QDialog::reject);
-
-        QAbstractButton *clickedButton = nullptr;
-        connect(buttonBox, &QDialogButtonBox::clicked, &dialog,
-                [&clickedButton](QAbstractButton *button) { clickedButton = button; });
+        connect(ignoreButton, &QAbstractButton::clicked, &dialog, &QDialog::reject);
 
         dialog.exec();
 
-        if (clickedButton == addButton || clickedButton == addAndStopButton)
+        if (dialog.result() == QDialog::Accepted)
         {
             mainWindow->getTestCases()->addTestCase(in, stdOut);
             log->info(tr("Stress Testing"), tr("Counterexample added to testcases"));
         }
 
-        if (clickedButton == addAndStopButton)
+        if (stopCheckBox->isChecked())
         {
             stop();
             return;
