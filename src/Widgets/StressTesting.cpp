@@ -618,7 +618,6 @@ void StressTesting::onCheckFinished(TestCase::Verdict verdict)
 
     if (verdict == TestCase::Verdict::AC)
     {
-        log->message(tr("Stress Testing"), tr("Accepted"), "green");
         nextTest();
     }
     else
@@ -658,6 +657,7 @@ void StressTesting::onCheckFinished(TestCase::Verdict verdict)
         if (clickedButton == addButton || clickedButton == addAndStopButton)
         {
             mainWindow->getTestCases()->addTestCase(in, stdOut);
+            log->info(tr("Stress Testing"), tr("Counterexample added to testcases"));
         }
 
         if (clickedButton == addAndStopButton)
