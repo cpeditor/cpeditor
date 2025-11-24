@@ -3121,10 +3121,6 @@ Es una lista de &lt;nombre de ruta predeterminada&gt;, separadas por comas, y pu
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Accepted</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Generator</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3177,11 +3173,15 @@ Es una lista de &lt;nombre de ruta predeterminada&gt;, separadas por comas, y pu
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Add to testcases and stop stress testing</source>
+        <source>Ignore</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Ignore</source>
+        <source>Stop stress testing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Counterexample added to testcases</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

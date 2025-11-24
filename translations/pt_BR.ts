@@ -3120,10 +3120,6 @@ Isso pode reduzir distrações causadas pelas atualizações do cronômetro.</tr
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Accepted</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Generator</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3176,11 +3172,15 @@ Isso pode reduzir distrações causadas pelas atualizações do cronômetro.</tr
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Add to testcases and stop stress testing</source>
+        <source>Ignore</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Ignore</source>
+        <source>Stop stress testing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Counterexample added to testcases</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

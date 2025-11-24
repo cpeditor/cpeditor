@@ -3119,10 +3119,6 @@ This may reduce distractions caused by stopwatch updates.</source>
         <translation>超出输出长度限制</translation>
     </message>
     <message>
-        <source>Accepted</source>
-        <translation>通过</translation>
-    </message>
-    <message>
         <source>All tests finished</source>
         <translation>所有测试结束</translation>
     </message>
@@ -3167,12 +3163,16 @@ This may reduce distractions caused by stopwatch updates.</source>
         <translation>添加到测试点</translation>
     </message>
     <message>
-        <source>Add to testcases and stop stress testing</source>
-        <translation>添加到测试点并停止对拍</translation>
-    </message>
-    <message>
         <source>Ignore</source>
         <translation>忽略</translation>
+    </message>
+    <message>
+        <source>Stop stress testing</source>
+        <translation>停止对拍</translation>
+    </message>
+    <message>
+        <source>Counterexample added to testcases</source>
+        <translation>会产生错误的测试用例已被添加</translation>
     </message>
 </context>
 <context>
