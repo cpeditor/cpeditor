@@ -293,12 +293,14 @@ void StressTesting::start()
     if (generatorCode.isNull())
     {
         log->error(tr("Stress Testing"), tr("Failed to open generator"));
+        stop();
         return;
     }
 
     if (stdCode.isNull())
     {
         log->error(tr("Stress Testing"), tr("Failed to open standard program"));
+        stop();
         return;
     }
 
@@ -307,6 +309,7 @@ void StressTesting::start()
     if (!tmpDir->isValid())
     {
         log->error(tr("Stress Testing"), tr("Failed to create temporary directory"));
+        stop();
         return;
     }
 
@@ -461,8 +464,11 @@ void StressTesting::stop()
     totalTests = 0;
     executedTests = 0;
 
-    progressBar->setRange(0, 1);
-    progressBar->setValue(0);
+    if (progressBar->maximum() == 0)
+    {
+        progressBar->setRange(0, 1);
+        progressBar->setValue(1);
+    }
 
     stopping = false;
 
