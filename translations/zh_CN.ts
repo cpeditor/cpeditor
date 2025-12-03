@@ -491,6 +491,30 @@ git 提交编号: %3
         <source>New File From Template</source>
         <translation>从模板新建文件</translation>
     </message>
+    <message>
+        <source>C++</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Open a new tab with C++ template</source>
+        <translation>打开一个包含C++模版的新标签页</translation>
+    </message>
+    <message>
+        <source>Java</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Open a new tab with Java template</source>
+        <translation>打开一个包含Java模版的新标签页</translation>
+    </message>
+    <message>
+        <source>Python</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Open a new tab with Python template</source>
+        <translation>打开一个包含Python模版的新标签页</translation>
+    </message>
 </context>
 <context>
     <name>CodeSnippetsPage</name>

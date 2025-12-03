@@ -495,6 +495,30 @@ Git commit hash：%3
         <source>New File From Template</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>C++</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open a new tab with C++ template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Java</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open a new tab with Java template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Python</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open a new tab with Python template</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CodeSnippetsPage</name>

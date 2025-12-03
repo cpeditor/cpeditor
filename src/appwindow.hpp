@@ -106,6 +106,12 @@ class AppWindow : public QMainWindow
 
     void on_actionNewGeneratorTab_triggered();
 
+    void on_actionNewCPPTab_triggered();
+
+    void on_actionNewJavaTab_triggered();
+
+    void on_actionNewPythonTab_triggered();
+
     void on_actionOpen_triggered();
 
     void on_actionOpenContest_triggered();

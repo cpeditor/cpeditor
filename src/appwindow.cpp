@@ -669,6 +669,21 @@ void AppWindow::on_actionNewGeneratorTab_triggered()
     openTabWithTemplate("Generator Template", SettingsManager::get("Generator Template/Language").toString());
 }
 
+void AppWindow::on_actionNewCPPTab_triggered()
+{
+    openTabWithTemplate("C++", "C++");
+}
+
+void AppWindow::on_actionNewJavaTab_triggered()
+{
+    openTabWithTemplate("Java", "Java");
+}
+
+void AppWindow::on_actionNewPythonTab_triggered()
+{
+    openTabWithTemplate("Python", "Python");
+}
+
 void AppWindow::on_actionOpen_triggered()
 {
     auto fileNames = DefaultPathManager::getOpenFileNames("Open File", this, tr("Open Files"),

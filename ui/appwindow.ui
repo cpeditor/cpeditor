@@ -58,6 +58,9 @@
       <string>New File From Template</string>
      </property>
      <addaction name="actionNewGeneratorTab"/>
+     <addaction name="actionNewCPPTab"/>
+     <addaction name="actionNewJavaTab"/>
+     <addaction name="actionNewPythonTab"/>
     </widget>
     <addaction name="menuFileFromTemplate"/>
     <addaction name="actionOpen"/>
@@ -165,6 +168,30 @@
    </property>
    <property name="toolTip">
     <string>Open a new tab with generator template</string>
+   </property>
+  </action>
+  <action name="actionNewCPPTab">
+   <property name="text">
+    <string>C++</string>
+   </property>
+   <property name="toolTip">
+    <string>Open a new tab with C++ template</string>
+   </property>
+  </action>
+  <action name="actionNewJavaTab">
+   <property name="text">
+    <string>Java</string>
+   </property>
+   <property name="toolTip">
+    <string>Open a new tab with Java template</string>
+   </property>
+  </action>
+  <action name="actionNewPythonTab">
+   <property name="text">
+    <string>Python</string>
+   </property>
+   <property name="toolTip">
+    <string>Open a new tab with Python template</string>
    </property>
   </action>
   <action name="actionSave">
