@@ -53,7 +53,8 @@ namespace Widgets
 StressTesting::StressTesting(QWidget *parent)
     : QMainWindow(parent), mainWindow(qobject_cast<MainWindow *>(parent)),
       appWindow(qobject_cast<AppWindow *>(parent->parentWidget())), errorVerdict(TestCase::UNKNOWN), totalTests(0),
-      executedTests(0), pendingCompilationCount(0), pendingRunCount(0), argumentsCount(0), stopping(false)
+      executedTests(0), pendingCompilationCount(0), pendingRunCount(0), argumentsCount(0), stopping(false),
+      noArgumentsPattern(false)
 {
     log = mainWindow->getLogger();
 
