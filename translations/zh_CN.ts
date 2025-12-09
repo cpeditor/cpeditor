@@ -3055,10 +3055,6 @@ This may reduce distractions caused by stopwatch updates.</source>
         <translation>数据生成器路径:</translation>
     </message>
     <message>
-        <source>Generator Arguments Pattern:</source>
-        <translation>生成器参数模式:</translation>
-    </message>
-    <message>
         <source>Example: &quot;10 [5..100] abacaba&quot;</source>
         <translation>例如:&quot;10 [5..100] abacaba&quot;</translation>
     </message>
@@ -3197,6 +3193,14 @@ This may reduce distractions caused by stopwatch updates.</source>
     <message>
         <source>Counterexample added to testcases</source>
         <translation>会产生错误的测试用例已被添加</translation>
+    </message>
+    <message>
+        <source>Use Generator Arguments Pattern:</source>
+        <translation>使用数据生成器参数模式：</translation>
+    </message>
+    <message>
+        <source>Elapsed: %1:%2  |  Completed: %3</source>
+        <translation>用时：%1:%2  |  已完成：%3</translation>
     </message>
 </context>
 <context>

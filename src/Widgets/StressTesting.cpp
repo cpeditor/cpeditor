@@ -32,12 +32,14 @@
 #include <QCheckBox>
 #include <QComboBox>
 #include <QDialog>
+#include <QElapsedTimer>
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QLineEdit>
 #include <QProgressBar>
 #include <QPushButton>
 #include <QTemporaryDir>
+#include <QTimer>
 #include <QVBoxLayout>
 #include <limits>
 
@@ -85,11 +87,13 @@ StressTesting::StressTesting(QWidget *parent)
     layout->addLayout(generatorLayout);
 
     auto *argumentsPatternLayout = new QHBoxLayout();
-    argumentsPatternLabel = new QLabel(tr("Generator Arguments Pattern:"));
-    argumentsPatternLayout->addWidget(argumentsPatternLabel);
+    useArgumentsPatternCheckBox = new QCheckBox(tr("Use Generator Arguments Pattern:"), widget);
+    argumentsPatternLayout->addWidget(useArgumentsPatternCheckBox);
     argumentsPattern = new QLineEdit(widget);
     argumentsPattern->setPlaceholderText(tr("Example: \"10 [5..100] abacaba\""));
+    argumentsPattern->setEnabled(false);
     argumentsPatternLayout->addWidget(argumentsPattern);
+    connect(useArgumentsPatternCheckBox, &QCheckBox::toggled, argumentsPattern, &QLineEdit::setEnabled);
 
     layout->addLayout(argumentsPatternLayout);
 
@@ -128,6 +132,14 @@ StressTesting::StressTesting(QWidget *parent)
     progressBar->setRange(0, 1);
     progressBar->setValue(0);
     layout->addWidget(progressBar);
+
+    statusLabel = new QLabel(widget);
+    statusLabel->setAlignment(Qt::AlignCenter);
+    layout->addWidget(statusLabel);
+
+    elapsedTimer = new QElapsedTimer();
+    updateTimer = new QTimer(this);
+    connect(updateTimer, &QTimer::timeout, this, &StressTesting::updateStatusLabel);
 }
 
 void StressTesting::showEvent(QShowEvent *event)
@@ -168,7 +180,13 @@ void StressTesting::start()
     startButton->setDisabled(true);
     stopButton->setDisabled(false);
 
-    QString source = argumentsPattern->text();
+    elapsedTimer->start();
+    updateTimer->start(1000);
+    updateStatusLabel();
+
+    noArgumentsPattern = !useArgumentsPatternCheckBox->isChecked();
+
+    QString source = noArgumentsPattern ? "" : argumentsPattern->text();
 
     pattern = "";
     argumentsCount = 0;
@@ -239,6 +257,13 @@ void StressTesting::start()
         log->error(tr("Stress Testing"), tr("Invalid arguments pattern"));
         stop();
         return;
+    }
+
+    if (noArgumentsPattern)
+    {
+        argumentsCount = 1;
+        currentValue.push_back(0);
+        argumentsRange.push_back(qMakePair(0, std::numeric_limits<long long>::max()));
     }
 
     if (argumentsCount == 0)
@@ -473,6 +498,20 @@ void StressTesting::stop()
     stopping = false;
 
     errorVerdict = TestCase::UNKNOWN;
+
+    updateTimer->stop();
+}
+
+void StressTesting::updateStatusLabel()
+{
+    qint64 elapsed = elapsedTimer->isValid() ? elapsedTimer->elapsed() : 0;
+    int secs = static_cast<int>(elapsed / 1000);
+    int mins = secs / 60;
+    secs = secs % 60;
+    statusLabel->setText(tr("Elapsed: %1:%2  |  Completed: %3")
+                             .arg(mins, 2, 10, QChar('0'))
+                             .arg(secs, 2, 10, QChar('0'))
+                             .arg(executedTests));
 }
 
 void StressTesting::nextTest()
@@ -495,8 +534,11 @@ void StressTesting::nextTest()
 
     QString arguments = pattern;
 
-    for (int i = 0; i < argumentsCount; i++)
-        arguments = arguments.arg(QString::number(currentValue[i]));
+    if (!noArgumentsPattern)
+    {
+        for (int i = 0; i < argumentsCount; i++)
+            arguments = arguments.arg(QString::number(currentValue[i]));
+    }
 
     arguments.remove(separator);
 
@@ -615,9 +657,10 @@ void StressTesting::onRunOutputLimitExceeded(int type)
 
 void StressTesting::onCheckFinished(TestCase::Verdict verdict)
 {
+    executedTests++;
+    updateStatusLabel();
     if (progressBar->maximum() != 0)
     {
-        executedTests++;
         progressBar->setValue(static_cast<int>(executedTests));
     }
 

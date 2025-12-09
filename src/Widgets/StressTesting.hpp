@@ -32,6 +32,8 @@ class MessageLogger;
 class QTemporaryDir;
 class QComboBox;
 class QProgressBar;
+class QTimer;
+class QElapsedTimer;
 class AppWindow;
 
 namespace Core
@@ -61,11 +63,15 @@ class StressTesting : public QMainWindow
     MainWindow *mainWindow;
     AppWindow *appWindow;
     PathItem *generatorPath = nullptr, *stdPath = nullptr;
-    QLabel *tabTitleLabel = nullptr, *generatorLable = nullptr, *stdLabel = nullptr, *argumentsPatternLabel = nullptr;
+    QLabel *tabTitleLabel = nullptr, *generatorLable = nullptr, *stdLabel = nullptr;
+    QCheckBox *useArgumentsPatternCheckBox = nullptr;
     QLineEdit *argumentsPattern = nullptr;
     QPushButton *startButton = nullptr, *stopButton = nullptr;
     QComboBox *generatorSelection = nullptr, *stdSelection = nullptr;
     QProgressBar *progressBar = nullptr;
+    QLabel *statusLabel = nullptr;
+    QElapsedTimer *elapsedTimer = nullptr;
+    QTimer *updateTimer = nullptr;
     QVector<QPair<long long, long long>> argumentsRange;
     QVector<long long> currentValue;
     Core::Runner *generatorRunner = nullptr;
@@ -96,6 +102,7 @@ class StressTesting : public QMainWindow
     int pendingRunCount;
     int argumentsCount;
     std::atomic<bool> stopping;
+    bool noArgumentsPattern;
 
     static QString getHead(SourceType type);
     static QString getComboBoxPlaceholder(int type);
@@ -112,6 +119,7 @@ class StressTesting : public QMainWindow
     void onRunFinished(int type, const QString &out, const QString &err, int exitCode, qint64 timeUsed, bool tle);
     void onRunOutputLimitExceeded(int type);
     void onRunKilled(int type);
+    void updateStatusLabel();
 };
 } // namespace Widgets
 

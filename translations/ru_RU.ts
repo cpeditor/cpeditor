@@ -3062,10 +3062,6 @@ This may reduce distractions caused by stopwatch updates.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Generator Arguments Pattern:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Example: &quot;10 [5..100] abacaba&quot;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3203,6 +3199,14 @@ This may reduce distractions caused by stopwatch updates.</source>
     </message>
     <message>
         <source>Counterexample added to testcases</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use Generator Arguments Pattern:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Elapsed: %1:%2  |  Completed: %3</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

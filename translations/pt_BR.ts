@@ -3064,10 +3064,6 @@ Isso pode reduzir distrações causadas pelas atualizações do cronômetro.</tr
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Generator Arguments Pattern:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Example: &quot;10 [5..100] abacaba&quot;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3205,6 +3201,14 @@ Isso pode reduzir distrações causadas pelas atualizações do cronômetro.</tr
     </message>
     <message>
         <source>Counterexample added to testcases</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use Generator Arguments Pattern:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Elapsed: %1:%2  |  Completed: %3</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
