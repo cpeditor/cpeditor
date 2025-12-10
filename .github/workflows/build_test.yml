@@ -20,7 +20,7 @@ jobs:
             ecm-path: "C:/Program Files/ECM/"
           - os: ubuntu-latest
             binary: cpeditor
-          - os: macos-13
+          - os: macos-15-intel
             binary: cpeditor.app/Contents/MacOS/cpeditor
 
     steps:

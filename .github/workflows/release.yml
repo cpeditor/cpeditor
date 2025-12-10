@@ -45,7 +45,7 @@ jobs:
           - os: "ubuntu-20.04"
             portable-option: "Off"
             winlibs: false
-          - os: "macos-13"
+          - os: "macos-15-intel"
             portable-option: "Off"
             winlibs: false
           - os: "windows-2019"
