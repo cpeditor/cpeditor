@@ -106,7 +106,7 @@ jobs:
           cp "${{ matrix.config.ecm-path }}/bin/KF5SyntaxHighlighting.dll" build/out
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: "cpeditor-${{ matrix.config.os }}-${{ github.run_id }}"
           path: build/out
