@@ -507,7 +507,7 @@ void StressTesting::stop()
 
 void StressTesting::updateStatusLabel()
 {
-    qint64 elapsed = (elapsedTimer->isValid() ? elapsedTimer->elapsed() : 0) + accumulatedTime;
+    unsigned long long elapsed = (elapsedTimer->isValid() ? elapsedTimer->elapsed() : 0) + accumulatedTime;
     int secs = static_cast<int>(elapsed / 1000);
     int mins = secs / 60;
     secs = secs % 60;
