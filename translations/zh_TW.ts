@@ -2816,6 +2816,10 @@ This may reduce distractions caused by stopwatch updates.</source>
         <source>Path to the template file</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source></source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ShortcutItem</name>
@@ -3191,14 +3195,6 @@ This may reduce distractions caused by stopwatch updates.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Select generator from editor tabs...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Select standard program from editor tabs...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Counterexample Found</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3223,11 +3219,19 @@ This may reduce distractions caused by stopwatch updates.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Use Generator Arguments Pattern:</source>
+        <source>Elapsed: %1:%2  |  Completed: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Elapsed: %1:%2  |  Completed: %3</source>
+        <source>Select generator from opened files...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select standard program from opened files...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use Generator Arguments:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

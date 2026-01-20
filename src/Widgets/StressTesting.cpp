@@ -88,7 +88,7 @@ StressTesting::StressTesting(QWidget *parent)
     layout->addLayout(generatorLayout);
 
     auto *argumentsPatternLayout = new QHBoxLayout();
-    useArgumentsPatternCheckBox = new QCheckBox(tr("Use Generator Arguments Pattern:"), widget);
+    useArgumentsPatternCheckBox = new QCheckBox(tr("Use Generator Arguments:"), widget);
     argumentsPatternLayout->addWidget(useArgumentsPatternCheckBox);
     argumentsPattern = new QLineEdit(widget);
     argumentsPattern->setPlaceholderText(tr("Example: \"10 [5..100] abacaba\""));
@@ -739,11 +739,11 @@ QString StressTesting::getComboBoxPlaceholder(int type)
 {
     if (type == SourceType::Generator)
     {
-        return tr("Select generator from editor tabs...");
+        return tr("Select generator from opened files...");
     }
     if (type == SourceType::Standard)
     {
-        return tr("Select standard program from editor tabs...");
+        return tr("Select standard program from opened files...");
     }
     return QString();
 }

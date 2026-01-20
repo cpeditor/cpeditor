@@ -2802,6 +2802,10 @@ Es una lista de &lt;nombre de ruta predeterminada&gt;, separadas por comas, y pu
         <source>Path to the template file</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source></source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ShortcutItem</name>
@@ -3173,14 +3177,6 @@ Es una lista de &lt;nombre de ruta predeterminada&gt;, separadas por comas, y pu
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Select generator from editor tabs...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Select standard program from editor tabs...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Counterexample Found</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3205,11 +3201,19 @@ Es una lista de &lt;nombre de ruta predeterminada&gt;, separadas por comas, y pu
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Use Generator Arguments Pattern:</source>
+        <source>Elapsed: %1:%2  |  Completed: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Elapsed: %1:%2  |  Completed: %3</source>
+        <source>Select generator from opened files...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select standard program from opened files...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use Generator Arguments:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

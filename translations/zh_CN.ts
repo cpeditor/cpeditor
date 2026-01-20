@@ -485,7 +485,7 @@ git 提交编号: %3
     </message>
     <message>
         <source>Open a new tab with generator template</source>
-        <translation>打开一个包含数据生成器模版的新标签页</translation>
+        <translation>基于数据生成器模版打开新标签页</translation>
     </message>
     <message>
         <source>New File From Template</source>
@@ -497,7 +497,7 @@ git 提交编号: %3
     </message>
     <message>
         <source>Open a new tab with C++ template</source>
-        <translation>打开一个包含C++模版的新标签页</translation>
+        <translation>基于C++模版打开新标签页</translation>
     </message>
     <message>
         <source>Java</source>
@@ -505,7 +505,7 @@ git 提交编号: %3
     </message>
     <message>
         <source>Open a new tab with Java template</source>
-        <translation>打开一个包含Java模版的新标签页</translation>
+        <translation>基于Java模版打开新标签页</translation>
     </message>
     <message>
         <source>Python</source>
@@ -513,7 +513,7 @@ git 提交编号: %3
     </message>
     <message>
         <source>Open a new tab with Python template</source>
-        <translation>打开一个包含Python模版的新标签页</translation>
+        <translation>基于Python模版打开新标签页</translation>
     </message>
 </context>
 <context>
@@ -2758,7 +2758,7 @@ This may reduce distractions caused by stopwatch updates.</source>
     </message>
     <message>
         <source>Enable CF Tool</source>
-        <translation type="unfinished">CF Tool 运行出错</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Enable or disable CF Tool Integration.</source>
@@ -2791,6 +2791,10 @@ This may reduce distractions caused by stopwatch updates.</source>
     <message>
         <source>Path to the template file</source>
         <translation>模板路径</translation>
+    </message>
+    <message>
+        <source></source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3163,16 +3167,8 @@ This may reduce distractions caused by stopwatch updates.</source>
         <translation>%1 编译已终止</translation>
     </message>
     <message>
-        <source>Select generator from editor tabs...</source>
-        <translation>从编辑器界面中选择数据生成器...</translation>
-    </message>
-    <message>
-        <source>Select standard program from editor tabs...</source>
-        <translation>从编辑器界面中选择标准程序...</translation>
-    </message>
-    <message>
         <source>Counterexample Found</source>
-        <translation>找到会产生错误的测试用例</translation>
+        <translation>发现反例</translation>
     </message>
     <message>
         <source>User Program: %1</source>
@@ -3195,12 +3191,20 @@ This may reduce distractions caused by stopwatch updates.</source>
         <translation>会产生错误的测试用例已被添加</translation>
     </message>
     <message>
-        <source>Use Generator Arguments Pattern:</source>
-        <translation>使用数据生成器参数模式：</translation>
-    </message>
-    <message>
         <source>Elapsed: %1:%2  |  Completed: %3</source>
         <translation>用时：%1:%2  |  已完成：%3</translation>
+    </message>
+    <message>
+        <source>Select generator from opened files...</source>
+        <translation>从打开的文件中选择数据生成器...</translation>
+    </message>
+    <message>
+        <source>Select standard program from opened files...</source>
+        <translation>从打开的文件中选择标准程序...</translation>
+    </message>
+    <message>
+        <source>Use Generator Arguments:</source>
+        <translation>使用数据生成器参数：</translation>
     </message>
 </context>
 <context>
