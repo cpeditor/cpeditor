@@ -93,6 +93,7 @@ class StressTesting : public QMainWindow
     TestCase::Verdict errorVerdict;
     unsigned long long totalTests;
     unsigned long long executedTests;
+    unsigned long long accumulatedTime;
 
     QString generatorLang;
     QString userLang;

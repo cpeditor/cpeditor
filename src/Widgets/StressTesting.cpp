@@ -53,8 +53,8 @@ namespace Widgets
 StressTesting::StressTesting(QWidget *parent)
     : QMainWindow(parent), mainWindow(qobject_cast<MainWindow *>(parent)),
       appWindow(qobject_cast<AppWindow *>(parent->parentWidget())), errorVerdict(TestCase::UNKNOWN), totalTests(0),
-      executedTests(0), pendingCompilationCount(0), pendingRunCount(0), argumentsCount(0), stopping(false),
-      noArgumentsPattern(false)
+      executedTests(0), accumulatedTime(0), pendingCompilationCount(0), pendingRunCount(0), argumentsCount(0),
+      stopping(false), noArgumentsPattern(false)
 {
     log = mainWindow->getLogger();
 
@@ -490,6 +490,8 @@ void StressTesting::stop()
     totalTests = 0;
     executedTests = 0;
 
+    accumulatedTime = 0;
+
     if (progressBar->maximum() == 0)
     {
         progressBar->setRange(0, 1);
@@ -505,7 +507,7 @@ void StressTesting::stop()
 
 void StressTesting::updateStatusLabel()
 {
-    qint64 elapsed = elapsedTimer->isValid() ? elapsedTimer->elapsed() : 0;
+    qint64 elapsed = (elapsedTimer->isValid() ? elapsedTimer->elapsed() : 0) + accumulatedTime;
     int secs = static_cast<int>(elapsed / 1000);
     int mins = secs / 60;
     secs = secs % 60;
@@ -525,6 +527,8 @@ void StressTesting::nextTest()
             log->info(tr("Stress Testing"), tr("All tests finished"));
             return;
         }
+        if (i >= currentValue.size() || i >= argumentsRange.size())
+            return;
         if (currentValue[i] != argumentsRange[i].second)
         {
             currentValue[i]++;
@@ -700,7 +704,12 @@ void StressTesting::onCheckFinished(TestCase::Verdict verdict)
         connect(addButton, &QAbstractButton::clicked, &dialog, &QDialog::accept);
         connect(ignoreButton, &QAbstractButton::clicked, &dialog, &QDialog::reject);
 
+        accumulatedTime += elapsedTimer->elapsed();
+        elapsedTimer->invalidate();
+
         dialog.exec();
+
+        elapsedTimer->start();
 
         if (dialog.result() == QDialog::Accepted)
         {
