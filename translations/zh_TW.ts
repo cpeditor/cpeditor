@@ -2816,10 +2816,6 @@ This may reduce distractions caused by stopwatch updates.</source>
         <source>Path to the template file</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source></source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>ShortcutItem</name>

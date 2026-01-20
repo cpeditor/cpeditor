@@ -2801,10 +2801,6 @@ Isso pode reduzir distrações causadas pelas atualizações do cronômetro.</tr
         <source>Path to the template file</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source></source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>ShortcutItem</name>
