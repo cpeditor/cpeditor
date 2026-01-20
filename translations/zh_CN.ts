@@ -3180,7 +3180,7 @@ This may reduce distractions caused by stopwatch updates.</source>
     </message>
     <message>
         <source>Add to testcases</source>
-        <translation>添加到测试点</translation>
+        <translation>添加到测试用例</translation>
     </message>
     <message>
         <source>Ignore</source>
