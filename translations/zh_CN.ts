@@ -3192,7 +3192,7 @@ This may reduce distractions caused by stopwatch updates.</source>
     </message>
     <message>
         <source>Counterexample added to testcases</source>
-        <translation>会产生错误的测试用例已被添加</translation>
+        <translation>已将反例添加至测试用例</translation>
     </message>
     <message>
         <source>Use Generator Arguments Pattern:</source>
