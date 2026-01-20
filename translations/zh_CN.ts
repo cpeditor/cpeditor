@@ -485,7 +485,7 @@ git 提交编号: %3
     </message>
     <message>
         <source>Open a new tab with generator template</source>
-        <translation>打开一个包含数据生成器模版的新标签页</translation>
+        <translation>基于数据生成器模版打开新标签页</translation>
     </message>
     <message>
         <source>New File From Template</source>
