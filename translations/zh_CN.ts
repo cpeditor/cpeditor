@@ -2770,7 +2770,7 @@ This may reduce distractions caused by stopwatch updates.</source>
     </message>
     <message>
         <source>The path to the generator template file.</source>
-        <translation>数据生成器的模版路径。</translation>
+        <translation>数据生成器模版的路径。</translation>
     </message>
     <message>
         <source>Template Cursor Position Regex</source>
