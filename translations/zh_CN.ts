@@ -3072,7 +3072,7 @@ This may reduce distractions caused by stopwatch updates.</source>
     </message>
     <message>
         <source>Invalid arguments pattern</source>
-        <translation>参数模式无效</translation>
+        <translation>参数模式不合法</translation>
     </message>
     <message>
         <source>Read Generator</source>
