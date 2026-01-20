@@ -16,7 +16,7 @@ jobs:
           - path: dist/aur/git
             name: cpeditor-git
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           submodules: recursive
           fetch-depth: 0

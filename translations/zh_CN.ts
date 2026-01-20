@@ -2770,7 +2770,7 @@ This may reduce distractions caused by stopwatch updates.</source>
     </message>
     <message>
         <source>The path to the generator template file.</source>
-        <translation>数据生成器的模版路径。</translation>
+        <translation>数据生成器模版的路径。</translation>
     </message>
     <message>
         <source>Template Cursor Position Regex</source>
@@ -3076,7 +3076,7 @@ This may reduce distractions caused by stopwatch updates.</source>
     </message>
     <message>
         <source>Invalid arguments pattern</source>
-        <translation>参数模式无效</translation>
+        <translation>参数模式不合法</translation>
     </message>
     <message>
         <source>Read Generator</source>
@@ -3176,7 +3176,7 @@ This may reduce distractions caused by stopwatch updates.</source>
     </message>
     <message>
         <source>Add to testcases</source>
-        <translation>添加到测试点</translation>
+        <translation>添加到测试用例</translation>
     </message>
     <message>
         <source>Ignore</source>
@@ -3188,7 +3188,7 @@ This may reduce distractions caused by stopwatch updates.</source>
     </message>
     <message>
         <source>Counterexample added to testcases</source>
-        <translation>会产生错误的测试用例已被添加</translation>
+        <translation>已将反例添加至测试用例</translation>
     </message>
     <message>
         <source>Elapsed: %1:%2  |  Completed: %3</source>
