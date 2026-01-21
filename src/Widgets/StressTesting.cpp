@@ -312,31 +312,30 @@ void StressTesting::start()
         progressBar->setRange(0, 0);
     }
 
+    const QString generatorFilePath = generatorPath->getLineEdit()->text();
+    const QString stdFilePath = stdPath->getLineEdit()->text();
+
+    if (generatorFilePath.isEmpty() || stdFilePath.isEmpty())
+    {
+        log->error(tr("Stress Testing"), tr("Please select a generator and a standard program"));
+        stop();
+        return;
+    }
+
     if (SettingsHelper::isSaveFileOnCompilation())
     {
         auto tabs = appWindow->getTabs();
-        QString generatorFilePath = generatorPath->getLineEdit()->text();
-        QString stdFilePath = stdPath->getLineEdit()->text();
 
         for (auto &&tab : tabs)
         {
-            if (!tab->isUntitled())
-            {
-                if (tab->getFilePath() == generatorFilePath)
-                {
-                    tab->save(false, tr("Stress Testing"), true);
-                }
-                if (tab->getFilePath() == stdFilePath)
-                {
-                    tab->save(false, tr("Stress Testing"), true);
-                }
-            }
+            if (tab->getFilePath() == generatorFilePath || tab->getFilePath() == stdFilePath)
+                tab->save(false, tr("Stress Testing"), true);
         }
     }
 
-    QString generatorCode = Util::readFile(generatorPath->getLineEdit()->text(), tr("Read Generator"), log);
+    QString generatorCode = Util::readFile(generatorFilePath, tr("Read Generator"), log);
     QString userCode = mainWindow->getEditor()->toPlainText();
-    QString stdCode = Util::readFile(stdPath->getLineEdit()->text(), tr("Read Standard Program"), log);
+    QString stdCode = Util::readFile(stdFilePath, tr("Read Standard Program"), log);
 
     if (generatorCode.isNull())
     {
@@ -383,9 +382,9 @@ void StressTesting::start()
         return QString();
     };
 
-    generatorLang = getLanguage(generatorPath->getLineEdit()->text());
+    generatorLang = getLanguage(generatorFilePath);
     userLang = mainWindow->getLanguage();
-    stdLang = getLanguage(stdPath->getLineEdit()->text());
+    stdLang = getLanguage(stdFilePath);
 
     generatorTmpPath = tmpDir->filePath("gen." + getSuffix(generatorLang));
     userTmpPath = tmpDir->filePath("user." + getSuffix(userLang));
