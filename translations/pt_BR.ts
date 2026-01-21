@@ -3211,6 +3211,10 @@ Isso pode reduzir distrações causadas pelas atualizações do cronômetro.</tr
         <source>Use Generator Arguments:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Please select a generator and a standard program</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Widgets::TestCase</name>

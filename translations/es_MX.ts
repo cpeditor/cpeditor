@@ -3212,6 +3212,10 @@ Es una lista de &lt;nombre de ruta predeterminada&gt;, separadas por comas, y pu
         <source>Use Generator Arguments:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Please select a generator and a standard program</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Widgets::TestCase</name>

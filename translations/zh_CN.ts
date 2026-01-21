@@ -2758,11 +2758,11 @@ This may reduce distractions caused by stopwatch updates.</source>
     </message>
     <message>
         <source>Enable CF Tool</source>
-        <translation type="unfinished"></translation>
+        <translation>启用 CF Tool</translation>
     </message>
     <message>
         <source>Enable or disable CF Tool Integration.</source>
-        <translation type="unfinished"></translation>
+        <translation>启用或禁用 CF Tool。</translation>
     </message>
     <message>
         <source>The programming language used for the generator template.</source>
@@ -3201,6 +3201,10 @@ This may reduce distractions caused by stopwatch updates.</source>
     <message>
         <source>Use Generator Arguments:</source>
         <translation>使用数据生成器参数：</translation>
+    </message>
+    <message>
+        <source>Please select a generator and a standard program</source>
+        <translation>请选择数据生成器和标准程序</translation>
     </message>
 </context>
 <context>
