@@ -312,6 +312,28 @@ void StressTesting::start()
         progressBar->setRange(0, 0);
     }
 
+    if (SettingsHelper::isSaveFileOnCompilation())
+    {
+        auto tabs = appWindow->getTabs();
+        QString generatorFilePath = generatorPath->getLineEdit()->text();
+        QString stdFilePath = stdPath->getLineEdit()->text();
+
+        for (auto &&tab : tabs)
+        {
+            if (!tab->isUntitled())
+            {
+                if (tab->getFilePath() == generatorFilePath)
+                {
+                    tab->save(false, tr("Stress Testing"), true);
+                }
+                if (tab->getFilePath() == stdFilePath)
+                {
+                    tab->save(false, tr("Stress Testing"), true);
+                }
+            }
+        }
+    }
+
     QString generatorCode = Util::readFile(generatorPath->getLineEdit()->text(), tr("Read Generator"), log);
     QString userCode = mainWindow->getEditor()->toPlainText();
     QString stdCode = Util::readFile(stdPath->getLineEdit()->text(), tr("Read Standard Program"), log);
