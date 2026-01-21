@@ -475,6 +475,46 @@ git 提交编号: %3
         <source>Press F11 key to exit full-screen mode.</source>
         <translation>按下 F11 以退出全屏模式。</translation>
     </message>
+    <message>
+        <source>Stress Testing...</source>
+        <translation>对拍...</translation>
+    </message>
+    <message>
+        <source>Generator</source>
+        <translation>数据生成器</translation>
+    </message>
+    <message>
+        <source>Open a new tab with generator template</source>
+        <translation>基于数据生成器模版打开新标签页</translation>
+    </message>
+    <message>
+        <source>New File From Template</source>
+        <translation>从模板新建文件</translation>
+    </message>
+    <message>
+        <source>C++</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Open a new tab with C++ template</source>
+        <translation>基于C++模版打开新标签页</translation>
+    </message>
+    <message>
+        <source>Java</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Open a new tab with Java template</source>
+        <translation>基于Java模版打开新标签页</translation>
+    </message>
+    <message>
+        <source>Python</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Open a new tab with Python template</source>
+        <translation>基于Python模版打开新标签页</translation>
+    </message>
 </context>
 <context>
     <name>CodeSnippetsPage</name>
@@ -1535,6 +1575,14 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <source>Stopwatch</source>
         <translation>计时器</translation>
+    </message>
+    <message>
+        <source>Stress Testing</source>
+        <translation>对拍</translation>
+    </message>
+    <message>
+        <source>Generator Template</source>
+        <translation>数据生成器模版</translation>
     </message>
 </context>
 <context>
@@ -2710,11 +2758,39 @@ This may reduce distractions caused by stopwatch updates.</source>
     </message>
     <message>
         <source>Enable CF Tool</source>
-        <translation type="unfinished"></translation>
+        <translation>启用 CF Tool</translation>
     </message>
     <message>
         <source>Enable or disable CF Tool Integration.</source>
-        <translation type="unfinished"></translation>
+        <translation>启用或禁用 CF Tool。</translation>
+    </message>
+    <message>
+        <source>The programming language used for the generator template.</source>
+        <translation>数据生成器模版使用的编程语言。</translation>
+    </message>
+    <message>
+        <source>The path to the generator template file.</source>
+        <translation>数据生成器模版的路径。</translation>
+    </message>
+    <message>
+        <source>Template Cursor Position Regex</source>
+        <translation>使用模板时光标初始位置定位使用的正则表达式</translation>
+    </message>
+    <message>
+        <source>Template Cursor Position Offset Type</source>
+        <translation>使用模板时光标初始位置的偏移类型</translation>
+    </message>
+    <message>
+        <source>Template Cursor Position Offset Characters</source>
+        <translation>使用模板时光标初始位置的偏移字符量</translation>
+    </message>
+    <message>
+        <source>Programming language for the template</source>
+        <translation>模版使用的编程语言</translation>
+    </message>
+    <message>
+        <source>Path to the template file</source>
+        <translation>模板路径</translation>
     </message>
 </context>
 <context>
@@ -2966,6 +3042,169 @@ This may reduce distractions caused by stopwatch updates.</source>
     <message>
         <source>Show</source>
         <translation>显示</translation>
+    </message>
+</context>
+<context>
+    <name>Widgets::StressTesting</name>
+    <message>
+        <source>Stress Testing</source>
+        <translation>对拍</translation>
+    </message>
+    <message>
+        <source>Generator Path:</source>
+        <translation>数据生成器路径:</translation>
+    </message>
+    <message>
+        <source>Example: &quot;10 [5..100] abacaba&quot;</source>
+        <translation>例如:&quot;10 [5..100] abacaba&quot;</translation>
+    </message>
+    <message>
+        <source>Standard Program Path:</source>
+        <translation>标准程序路径：</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation>开始</translation>
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation>停止</translation>
+    </message>
+    <message>
+        <source>Invalid arguments pattern</source>
+        <translation>参数模式不合法</translation>
+    </message>
+    <message>
+        <source>Read Generator</source>
+        <translation>读取数据生成器代码</translation>
+    </message>
+    <message>
+        <source>Read Standard Program</source>
+        <translation>读取标准程序代码</translation>
+    </message>
+    <message>
+        <source>Failed to open generator</source>
+        <translation>打开数据生成器失败</translation>
+    </message>
+    <message>
+        <source>Failed to open standard program</source>
+        <translation>打开标准程序失败</translation>
+    </message>
+    <message>
+        <source>Failed to create temporary directory</source>
+        <translation>未能成功创建临时目录</translation>
+    </message>
+    <message>
+        <source>Read testlib.h</source>
+        <translation>读取 testlib.h</translation>
+    </message>
+    <message>
+        <source>Save testlib.h</source>
+        <translation>保存 testlib.h</translation>
+    </message>
+    <message>
+        <source>Compiler</source>
+        <translation>编译器</translation>
+    </message>
+    <message>
+        <source>Running with arguments &quot;%1&quot;</source>
+        <translation>使用运行参数 &quot;%1&quot; 测试</translation>
+    </message>
+    <message>
+        <source>Generator</source>
+        <translation>数据生成器</translation>
+    </message>
+    <message>
+        <source>User program</source>
+        <translation>用户程序</translation>
+    </message>
+    <message>
+        <source>Standard program</source>
+        <translation>标准程序</translation>
+    </message>
+    <message>
+        <source>Time Limit Exceeded</source>
+        <translation>超出时间限制</translation>
+    </message>
+    <message>
+        <source>Execution has finished with non-zero exitcode %1 in %2ms</source>
+        <translation>程序在运行 %1ms 后以非零返回值 %2 终止了</translation>
+    </message>
+    <message>
+        <source>The program was killed</source>
+        <translation>程序已被终止运行</translation>
+    </message>
+    <message>
+        <source>Output limit exceeded</source>
+        <translation>超出输出长度限制</translation>
+    </message>
+    <message>
+        <source>All tests finished</source>
+        <translation>所有测试结束</translation>
+    </message>
+    <message>
+        <source>%1 compilation has started</source>
+        <translation>%1 编译已开始</translation>
+    </message>
+    <message>
+        <source>%1 compilation has finished</source>
+        <translation>%1 编译已结束</translation>
+    </message>
+    <message>
+        <source>%1 compilation error: %2</source>
+        <translation>%1 编译错误：%2</translation>
+    </message>
+    <message>
+        <source>%1 compilation failed: %2</source>
+        <translation>%1 编译失败：%2</translation>
+    </message>
+    <message>
+        <source>%1 compilation killed</source>
+        <translation>%1 编译已终止</translation>
+    </message>
+    <message>
+        <source>Counterexample Found</source>
+        <translation>发现反例</translation>
+    </message>
+    <message>
+        <source>User Program: %1</source>
+        <translation>用户程序：%1</translation>
+    </message>
+    <message>
+        <source>Add to testcases</source>
+        <translation>添加到测试用例</translation>
+    </message>
+    <message>
+        <source>Ignore</source>
+        <translation>忽略</translation>
+    </message>
+    <message>
+        <source>Stop stress testing</source>
+        <translation>停止对拍</translation>
+    </message>
+    <message>
+        <source>Counterexample added to testcases</source>
+        <translation>已将反例添加至测试用例</translation>
+    </message>
+    <message>
+        <source>Elapsed: %1:%2  |  Completed: %3</source>
+        <translation>用时：%1:%2  |  已完成：%3</translation>
+    </message>
+    <message>
+        <source>Select generator from opened files...</source>
+        <translation>从打开的文件中选择数据生成器...</translation>
+    </message>
+    <message>
+        <source>Select standard program from opened files...</source>
+        <translation>从打开的文件中选择标准程序...</translation>
+    </message>
+    <message>
+        <source>Use Generator Arguments:</source>
+        <translation>使用数据生成器参数：</translation>
+    </message>
+    <message>
+        <source>Please select a generator and a standard program</source>
+        <translation>请选择数据生成器和标准程序</translation>
     </message>
 </context>
 <context>

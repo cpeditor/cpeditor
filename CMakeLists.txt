@@ -234,6 +234,8 @@ add_executable(cpeditor
     src/Widgets/RichTextCheckBox.hpp
     src/Widgets/Stopwatch.cpp
     src/Widgets/Stopwatch.hpp
+    src/Widgets/StressTesting.cpp
+    src/Widgets/StressTesting.hpp
     src/Widgets/SupportUsDialog.cpp
     src/Widgets/SupportUsDialog.hpp
     src/Widgets/TestCase.cpp

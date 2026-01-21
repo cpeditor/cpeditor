@@ -663,6 +663,27 @@ void AppWindow::on_actionNewTab_triggered()
     openTab("");
 }
 
+void AppWindow::on_actionNewGeneratorTab_triggered()
+{
+
+    openTabWithTemplate("Generator Template", SettingsManager::get("Generator Template/Language").toString());
+}
+
+void AppWindow::on_actionNewCPPTab_triggered()
+{
+    openTabWithTemplate("C++", "C++");
+}
+
+void AppWindow::on_actionNewJavaTab_triggered()
+{
+    openTabWithTemplate("Java", "Java");
+}
+
+void AppWindow::on_actionNewPythonTab_triggered()
+{
+    openTabWithTemplate("Python", "Python");
+}
+
 void AppWindow::on_actionOpen_triggered()
 {
     auto fileNames = DefaultPathManager::getOpenFileNames("Open File", this, tr("Open Files"),
@@ -1201,6 +1222,19 @@ void AppWindow::openTab(const QString &path, MainWindow *after)
     openTab(newWindow, after);
 }
 
+void AppWindow::openTabWithTemplate(const QString &templateName, const QString &language, MainWindow *after)
+{
+    auto *newWindow = new MainWindow("", getNewUntitledIndex(), this);
+    newWindow->setLanguage(language);
+
+    auto templateContent =
+        Util::readFile(SettingsManager::get(QString("%1/Template Path").arg(templateName)).toString());
+    newWindow->getEditor()->setPlainText(templateContent);
+
+    newWindow->setCursorPositionFromTemplate(templateName);
+    openTab(newWindow, after);
+}
+
 /************************* ACTIONS ************************/
 void AppWindow::on_actionCheckForUpdates_triggered()
 {
@@ -1291,6 +1325,14 @@ void AppWindow::on_actionUseSnippets_triggered()
             }
             delete ok;
         }
+    }
+}
+
+void AppWindow::on_actionStressTesting_triggered()
+{
+    if (currentWindow() != nullptr)
+    {
+        currentWindow()->showStressTesting();
     }
 }
 
@@ -1629,4 +1671,17 @@ void AppWindow::setInitialized(bool flag)
     _isInitialized = flag;
     if (flag)
         emit initialized();
+}
+
+QVector<MainWindow *> AppWindow::getTabs() const
+{
+    QVector<MainWindow *> tabs;
+    for (int i = 0; i < ui->tabWidget->count(); ++i)
+    {
+        if (auto *tab = qobject_cast<MainWindow *>(ui->tabWidget->widget(i)))
+        {
+            tabs.append(tab);
+        }
+    }
+    return tabs;
 }

@@ -28,6 +28,7 @@ class QMenu;
 class QPushButton;
 class QSplitter;
 class QVBoxLayout;
+class QEvent;
 
 namespace Widgets
 {
@@ -49,7 +50,7 @@ class TestCase : public QWidget
     };
 
     explicit TestCase(int index, MessageLogger *logger, QWidget *parent = nullptr, const QString &in = QString(),
-                      const QString &exp = QString());
+                      const QString &exp = QString(), bool inTestCases = true);
     void setInput(const QString &text);
     void setOutput(const QString &text);
     void setExpected(const QString &text);
@@ -67,6 +68,9 @@ class TestCase : public QWidget
     void updateHeight();
     QList<int> splitterSizes() const;
     void restoreSplitterSizes(const QList<int> &sizes);
+
+  protected:
+    bool eventFilter(QObject *watched, QEvent *event) override;
 
   signals:
     void deleted(TestCase *widget);
