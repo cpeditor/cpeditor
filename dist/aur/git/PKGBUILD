@@ -35,13 +35,14 @@ conflicts=('cpeditor')
 source=(
     'git+https://github.com/cpeditor/cpeditor.git'
     'git+https://github.com/cpeditor/QtFindReplaceDialog.git'
+    'git+https://github.com/cpeditor/FakeVim.git'
     'git+https://github.com/cpeditor/lsp-cpp.git'
     'git+https://github.com/itay-grudev/singleapplication.git'
     'git+https://github.com/MikeMirzayanov/testlib.git'
     'git+https://github.com/cpeditor/qhttp.git'
 )
 
-md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP')
+md5sums=('SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP' 'SKIP')
 
 pkgver() {
     cd "$_pkgname"

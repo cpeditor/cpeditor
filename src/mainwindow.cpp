@@ -23,6 +23,7 @@
 #include "Core/MessageLogger.hpp"
 #include "Core/Runner.hpp"
 #include "Editor/CodeEditor.hpp"
+#include "Editor/FakeVimProxy.hpp"
 #include "Extensions/CFTool.hpp"
 #include "Extensions/ClangFormatter.hpp"
 #include "Extensions/CompanionServer.hpp"
@@ -50,6 +51,7 @@
 #include <QTimer>
 
 #include "../ui/ui_mainwindow.h"
+#include "third_party/FakeVim/fakevim/fakevimhandler.h"
 
 static const int MAX_NUMBER_OF_RECENT_FILES = 20;
 
@@ -117,6 +119,13 @@ MainWindow::~MainWindow()
     delete editor;
     delete log;
     delete stopwatch;
+
+    if (fakevimHandler)
+    {
+        fakevimHandler->disconnectFromEditor();
+        fakevimHandler->deleteLater();
+        fakevimHandler = nullptr;
+    }
 }
 
 void MainWindow::setEditor()
@@ -714,7 +723,26 @@ void MainWindow::applySettings(const QString &pagePath)
 
     if (pageChanged("Code Edit") || pagePath.startsWith("Appearance/") ||
         pageChanged(QString("Language/%1/%1 Parentheses").arg(language)))
+    {
+        if (pageChanged("Code Edit"))
+        {
+            editor->setVimCursor(SettingsHelper::isFakeVimEnable());
+            ui->cursorInfo->setVisible(!SettingsHelper::isFakeVimEnable());
+            delete fakevimHandler;
+            fakevimHandler = nullptr;
+            setStatusBar(nullptr);
+            if (SettingsHelper::isFakeVimEnable())
+            {
+                fakevimHandler = new FakeVim::Internal::FakeVimHandler(editor, nullptr);
+
+                Editor::FakeVimProxy::connectSignals(fakevimHandler, editor, this, appWindow);
+                Editor::FakeVimProxy::initHandler(fakevimHandler);
+                Editor::FakeVimProxy::sourceVimRc(fakevimHandler);
+            }
+            Editor::FakeVimProxy::clearUndoRedo(editor);
+        }
         editor->applySettings(language);
+    }
 
     if (!isLanguageSet && pageChanged("Language/General"))
     {
