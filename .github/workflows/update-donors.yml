@@ -23,7 +23,7 @@ jobs:
           echo "diff=$diff" >> "$GITHUB_OUTPUT"
       - name: Create Pull Request
         if: steps.diff.outputs.diff == 1
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.BOT_TOKEN }}
           commit-message: "chore: update donor list"
