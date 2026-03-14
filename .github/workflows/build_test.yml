@@ -72,7 +72,7 @@ jobs:
         run: |
           cd third_party/syntax-highlighting
           cmake -B build -S . -A ${{ matrix.config.platform }} -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
-          cmake --build build --config Release --parallel $(nproc) --target install
+          cmake --build build --config Release --parallel 1 --target install
 
       - name: "[Unix] Install ksyntax-highlighting"
         if: startsWith(matrix.config.os, 'ubuntu') || startsWith(matrix.config.os, 'macos')
