@@ -1,8 +1,14 @@
 ## UNRELEASED
 
+### Added
+
+-   An option to disable CF Tool integration. (#1439)
+-   Support stress testing. You can start one at Actions-\>Stress Testing. (#1031)
+
 ### Fixed
 
 -   Now the diff viewer uses the same font as the test cases (monospace by default). (#1396)
+-   Fix source file selection dialog filter when using the Traditional Chinese locale. (#1434 and #1435)
 
 ### Changed
 

@@ -259,6 +259,262 @@ Sistema Operativo: %5</translation>
         <source>All logs except for current session has been deleted</source>
         <translation>Todos los registros, excepto la sesión actual, han sido eliminados</translation>
     </message>
+    <message>
+        <source>New File</source>
+        <translation>Nuevo archivo</translation>
+    </message>
+    <message>
+        <source>Open a new tab in the editor</source>
+        <translation>Abrir una nueva pestaña en el editor</translation>
+    </message>
+    <message>
+        <source>Save the file on the disk</source>
+        <translation>Guardar el archivo en el disco</translation>
+    </message>
+    <message>
+        <source>Save As...</source>
+        <translation>Guardar como...</translation>
+    </message>
+    <message>
+        <source>Save as new file</source>
+        <translation>Guardar como nuevo archivo</translation>
+    </message>
+    <message>
+        <source>Save all opened files</source>
+        <translation>Guardar todos los archivos abiertos</translation>
+    </message>
+    <message>
+        <source>Close Current</source>
+        <translation>Cerrar actual</translation>
+    </message>
+    <message>
+        <source>Close current tab</source>
+        <translation>Cerrar pestaña actual</translation>
+    </message>
+    <message>
+        <source>Close saved tabs</source>
+        <translation>Cerrar pestañas guardadas</translation>
+    </message>
+    <message>
+        <source>Close All the tabs</source>
+        <translation>Cerrar todas las pestañas</translation>
+    </message>
+    <message>
+        <source>Quit the application</source>
+        <translation>Salir de la aplicación</translation>
+    </message>
+    <message>
+        <source>Open File...</source>
+        <translation>Abrir archivo...</translation>
+    </message>
+    <message>
+        <source>Open files</source>
+        <translation>Abrir archivos</translation>
+    </message>
+    <message>
+        <source>Open Contest...</source>
+        <translation>Abrir concurso...</translation>
+    </message>
+    <message>
+        <source>Open a Contest</source>
+        <translation>Abrir un concurso</translation>
+    </message>
+    <message>
+        <source>Indent</source>
+        <translation>Indentar</translation>
+    </message>
+    <message>
+        <source>Unindent</source>
+        <translation>Desindentar</translation>
+    </message>
+    <message>
+        <source>Swap Line Up</source>
+        <translation>Intercambiar línea arriba</translation>
+    </message>
+    <message>
+        <source>Swap Line Down</source>
+        <translation>Intercambiar línea abajo</translation>
+    </message>
+    <message>
+        <source>Duplicate Line</source>
+        <translation>Duplicar línea</translation>
+    </message>
+    <message>
+        <source>Delete Line</source>
+        <translation>Eliminar línea</translation>
+    </message>
+    <message>
+        <source>Toggle Comment</source>
+        <translation>Alternar comentarios</translation>
+    </message>
+    <message>
+        <source>Toggle Block Comment</source>
+        <translation>Alternar comentario de bloque</translation>
+    </message>
+    <message>
+        <source>Compile</source>
+        <translation>Compilar</translation>
+    </message>
+    <message>
+        <source>Compile and Run</source>
+        <translation>Compilar y ejecutar</translation>
+    </message>
+    <message>
+        <source>Run</source>
+        <translation>Ejecutar</translation>
+    </message>
+    <message>
+        <source>Format code</source>
+        <translation>Formatear código</translation>
+    </message>
+    <message>
+        <source>Run Detached</source>
+        <translation>Ejecutar desconectado</translation>
+    </message>
+    <message>
+        <source>Kill Processes</source>
+        <translation>Terminar procesos</translation>
+    </message>
+    <message>
+        <source>Find and Replace</source>
+        <translation>Buscar y reemplazar</translation>
+    </message>
+    <message>
+        <source>Use Snippet...</source>
+        <translation>Utilizar snippet...</translation>
+    </message>
+    <message>
+        <source>Preferences</source>
+        <translation>Preferencias</translation>
+    </message>
+    <message>
+        <source>Reset Settings</source>
+        <translation>Reestablecer configuración</translation>
+    </message>
+    <message>
+        <source>Export Settings...</source>
+        <translation>Exportar configuración...</translation>
+    </message>
+    <message>
+        <source>Import Settings...</source>
+        <translation>Importar configuración...</translation>
+    </message>
+    <message>
+        <source>Export Session...</source>
+        <translation>Exportar sesión...</translation>
+    </message>
+    <message>
+        <source>Load Session...</source>
+        <translation>Cargar sesión...</translation>
+    </message>
+    <message>
+        <source>Manual</source>
+        <translation>Manual</translation>
+    </message>
+    <message>
+        <source>Report issues</source>
+        <translation>Reportar problemas</translation>
+    </message>
+    <message>
+        <source>About Qt</source>
+        <translation>Acerca de Qt</translation>
+    </message>
+    <message>
+        <source>Check for updates</source>
+        <translation>Buscar actualizaciones</translation>
+    </message>
+    <message>
+        <source>Support us</source>
+        <translation>Apóyanos</translation>
+    </message>
+    <message>
+        <source>Editor Mode</source>
+        <translation>Modo editor</translation>
+    </message>
+    <message>
+        <source>IO Mode</source>
+        <translation>Modo E/S</translation>
+    </message>
+    <message>
+        <source>Split Mode</source>
+        <translation>Modo dividido</translation>
+    </message>
+    <message>
+        <source>Full Screen</source>
+        <translation>Pantalla completa</translation>
+    </message>
+    <message>
+        <source>Show Log Files</source>
+        <translation>Mostar archivos de registro</translation>
+    </message>
+    <message>
+        <source>Delete Log Files</source>
+        <translation>Borrar archivos de registro</translation>
+    </message>
+    <message>
+        <source>&amp;File</source>
+        <translation>&amp;Archivo</translation>
+    </message>
+    <message>
+        <source>&amp;Edit</source>
+        <translation>&amp;Editar</translation>
+    </message>
+    <message>
+        <source>&amp;Actions</source>
+        <translation>&amp;Acciones</translation>
+    </message>
+    <message>
+        <source>&amp;View</source>
+        <translation>&amp;Visualizar</translation>
+    </message>
+    <message>
+        <source>&amp;Options</source>
+        <translation>&amp;Opciones</translation>
+    </message>
+    <message>
+        <source>&amp;Help</source>
+        <translation>&amp;Ayuda</translation>
+    </message>
+    <message>
+        <source>Generator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open a new tab with generator template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>C++</source>
+        <translation type="unfinished">C++</translation>
+    </message>
+    <message>
+        <source>Open a new tab with C++ template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Java</source>
+        <translation type="unfinished">Java</translation>
+    </message>
+    <message>
+        <source>Open a new tab with Java template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Python</source>
+        <translation type="unfinished">Python</translation>
+    </message>
+    <message>
+        <source>Open a new tab with Python template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stress Testing...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New File From Template</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CodeSnippetsPage</name>
@@ -669,6 +925,83 @@ Presione cualquier tecla para salir</translation>
     </message>
 </context>
 <context>
+    <name>FindReplaceDialog</name>
+    <message>
+        <source>Find/Replace</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FindReplaceForm</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace with:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>errorLabel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Direction</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Case sensitive</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Whole words only</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;whether the text to search should be interpreted as a regular expression.&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You may want to take a look at the syntax of regular expressions:&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://doc.trolltech.com/qregexp.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://doc.trolltech.com/qregexp.html&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Regular Expression</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace All</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <source>Auto Save</source>
@@ -905,6 +1238,38 @@ ha sido cambiado en el disco.
     <message>
         <source>Runner for testcase #%1</source>
         <translation>Ejecutor para el caso de prueba #%1</translation>
+    </message>
+    <message>
+        <source>CP Editor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>cursor info</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Compile</source>
+        <translation type="unfinished">Compilar</translation>
+    </message>
+    <message>
+        <source>Run</source>
+        <translation type="unfinished">Ejecutar</translation>
+    </message>
+    <message>
+        <source>Compile and Run</source>
+        <translation type="unfinished">Compilar y ejecutar</translation>
+    </message>
+    <message>
+        <source>Messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Clear</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>C++</source>
+        <translation type="unfinished">C++</translation>
     </message>
 </context>
 <context>
@@ -1239,6 +1604,1249 @@ Si está parcialmente marcado, la configuración global en Editar Código t se u
         <source>Network Proxy</source>
         <translation>Proxy de red</translation>
     </message>
+    <message>
+        <source>Stress Testing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Generator Template</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SettingsInfo</name>
+    <message>
+        <source>Tab Width</source>
+        <translation>Ancho de tabulador</translation>
+    </message>
+    <message>
+        <source>The width of the tab character, or the number of spaces of an indent</source>
+        <translation>El ancho del carácter de tabulación o el número de espacios de una sangría</translation>
+    </message>
+    <message>
+        <source>Cursor Width</source>
+        <translation>Ancho del cursor</translation>
+    </message>
+    <message>
+        <source>The width of the cursor in pixels</source>
+        <translation>El ancho del cursor en píxeles</translation>
+    </message>
+    <message>
+        <source>Editor Font</source>
+        <translation>Fuente del editor</translation>
+    </message>
+    <message>
+        <source>The font of the code editor</source>
+        <translation>La fuente del editor de código</translation>
+    </message>
+    <message>
+        <source>Use Custom Application Font</source>
+        <translation>Usar fuente de aplicación personalizada</translation>
+    </message>
+    <message>
+        <source>Use a custom font for the whole application instead of the default system font.</source>
+        <translation>Usar una fuente personalizada para toda la aplicación en lugar de la fuente predeterminada del sistema.</translation>
+    </message>
+    <message>
+        <source>Custom Application Font</source>
+        <translation>Fuente de aplicación personalizada</translation>
+    </message>
+    <message>
+        <source>The custom font for the whole application</source>
+        <translation>La fuente personalizada para toda la aplicación</translation>
+    </message>
+    <message>
+        <source>Default Language</source>
+        <translation>Idioma predeterminado</translation>
+    </message>
+    <message>
+        <source>The default language used when opening new tabs</source>
+        <translation>El idioma predeterminado utilizado al abrir nuevas pestañas</translation>
+    </message>
+    <message>
+        <source>Clang Format Program</source>
+        <translation>Programa Clang Format</translation>
+    </message>
+    <message>
+        <source>The path to the Clang Format executable file</source>
+        <translation>La ruta del archivo ejecutable de Clang Format</translation>
+    </message>
+    <message>
+        <source>Clang Format Arguments</source>
+        <translation>Argumentos de Clang Format</translation>
+    </message>
+    <message>
+        <source>The arguments passed to clang-format. It should NOT contain &quot;-i&quot;.</source>
+        <translation>Los argumentos pasados a clang-format. NO debe contener &quot;-i&quot;.</translation>
+    </message>
+    <message>
+        <source>Clang Format Style</source>
+        <translation>Estilo de Clang Format</translation>
+    </message>
+    <message>
+        <source>The Clang Format style options, which are usually saved in a .clang-format configuration file.
+You can learn about it at &lt;https://clang.llvm.org/docs/ClangFormatStyleOptions.html&gt;.</source>
+        <translation>Las opciones de estilo de Clang Format, que suelen guardarse en un archivo de configuración .clang-format.
+Puede obtener más información en &lt;https://clang.llvm.org/docs/ClangFormatStyleOptions.html&gt;.</translation>
+    </message>
+    <message>
+        <source>YAPF Program</source>
+        <translation>Programa YAPF</translation>
+    </message>
+    <message>
+        <source>The program of YAPF. It could be `yapf` (which doesn&apos;t need arguments) or `python` (which needs `-m yapf` as the arguments).</source>
+        <translation>El programa de YAPF. Puede ser `yapf` (que no necesita argumentos) o `python` (que necesita `-m yapf` como argumentos).</translation>
+    </message>
+    <message>
+        <source>YAPF Arguments</source>
+        <translation>Argumentos de YAPF</translation>
+    </message>
+    <message>
+        <source>The arguments passed to the YAPF program. It should NOT contain &quot;-i&quot;.</source>
+        <translation>Los argumentos pasados al programa YAPF. NO debe contener &quot;-i&quot;.</translation>
+    </message>
+    <message>
+        <source>YAPF Style</source>
+        <translation>Estilo de YAPF</translation>
+    </message>
+    <message>
+        <source>The YAPF style options, which are usually saved in a .style.yapf or setup.conf configuration file.
+You can learn about it by running `yapf --style-help`.</source>
+        <translation>Las opciones de estilo de YAPF, que suelen guardarse en un archivo de configuración .style.yapf o setup.conf.
+Puede obtener más información sobre ellas ejecutando `yapf --style-help`.</translation>
+    </message>
+    <message>
+        <source>Format code on manual save</source>
+        <translation>Formatear código en guardado manual</translation>
+    </message>
+    <message>
+        <source>Format the code when saving it manually.</source>
+        <translation>Formatear el código al guardarlo manualmente.</translation>
+    </message>
+    <message>
+        <source>Format code on auto-save</source>
+        <translation>Formatear código en autoguardado</translation>
+    </message>
+    <message>
+        <source>Format the code when auto-saving it.</source>
+        <translation>Formatear código al guardar automáticamente.</translation>
+    </message>
+    <message>
+        <source>%1 Template Path</source>
+        <translation>Ruta de plantilla de %1</translation>
+    </message>
+    <message>
+        <source>The template used when creating a new C++ file</source>
+        <translation>La plantilla utilizada al crear un nuevo archivo de C++</translation>
+    </message>
+    <message>
+        <source>%1 Template Cursor Position Regex</source>
+        <translation>Regex de posición del cursor en plantilla de %1</translation>
+    </message>
+    <message>
+        <source>The regular expression which matches a part of the code template.
+When opening a template, the position of the cursor is the position of the regex with an offset.
+The cursor will be at the end of the template if there&apos;s no match of the regex.</source>
+        <translation>La expresión regular que coincide con una parte de la plantilla de código.
+Cuando se abre una plantilla, la posición del cursor es la posición de la expresión regular con un desplazamiento.
+El cursor estará al final de la plantilla si no hay coincidencia con la expresión regular.</translation>
+    </message>
+    <message>
+        <source>%1 Template Cursor Position Offset Type</source>
+        <translation>Tipo de desplazamiento de posición del cursor en plantilla de %1</translation>
+    </message>
+    <message>
+        <source>Whether the offset is relative to the start of the regex or the end of the regex.</source>
+        <translation>Si el desplazamiento es relativo al inicio de la expresión regular o al final de la expresión regular.</translation>
+    </message>
+    <message>
+        <source>%1 Template Cursor Position Offset Characters</source>
+        <translation>Caracteres de desplazamiento de posición del cursor en plantilla de %1</translation>
+    </message>
+    <message>
+        <source>The offset relative to the match of the regex in the number of characters, including white spaces.</source>
+        <translation>El desplazamiento relativo a la coincidencia de la expresión regular en número de caracteres, incluyendo espacios en blanco.</translation>
+    </message>
+    <message>
+        <source>%1 Compile Command</source>
+        <translation>Comando de compilación de %1</translation>
+    </message>
+    <message>
+        <source>The command used to compile C++. It should NOT include the path to the source file or &quot;-o &lt;output file&gt;&quot;.</source>
+        <translation>El comando utilizado para compilar C++. NO debe incluir la ruta al archivo fuente ni &quot;-o &lt;archivo de salida&gt;&quot;.</translation>
+    </message>
+    <message>
+        <source>%1 Executable File Path</source>
+        <translation>Ruta del archivo ejecutable de %1</translation>
+    </message>
+    <message>
+        <source>The path of the compiled executable file.
+It&apos;s relative to the source file, or the temporary directory if the tab is untitled.
+No &quot;.exe&quot; is needed.
+You can use &quot;${filename}&quot; for the complete file name,
+&quot;${basename}&quot; for the base file name without the suffix,
+&quot;${tmpdir}&quot; or &quot;${tempdir}&quot; for the absolute path of the temporary directory.</source>
+        <translation>La ruta del archivo ejecutable compilado.
+Es relativa al archivo fuente, o al directorio temporal si la pestaña no tiene título.
+No es necesario &quot;.exe&quot;.
+Puede usar &quot;${filename}&quot; para el nombre completo del archivo,
+&quot;${basename}&quot; para el nombre base del archivo sin el sufijo,
+&quot;${tmpdir}&quot; o &quot;${tempdir}&quot; para la ruta absoluta del directorio temporal.</translation>
+    </message>
+    <message>
+        <source>%1 Run Arguments</source>
+        <translation>Argumentos de ejecución de %1</translation>
+    </message>
+    <message>
+        <source>The runtime arguments when executing a C++ program</source>
+        <translation>Los argumentos utilizados al ejecutar un programa de C++</translation>
+    </message>
+    <message>
+        <source>The template used when creating a new Java file</source>
+        <translation>La plantilla utilizada al crear un nuevo archivo de Java</translation>
+    </message>
+    <message>
+        <source>The command used to compile Java.
+It should NOT include the path to the source file or the path of the compiled class file.</source>
+        <translation>El comando utilizado para compilar Java.
+NO debe incluir la ruta al archivo fuente ni la ruta del archivo de clase compilado.</translation>
+    </message>
+    <message>
+        <source>The runtime arguments when executing a Java program</source>
+        <translation>Los argumentos utilizados al ejecutar un programa de Java</translation>
+    </message>
+    <message>
+        <source>%1 Run Command</source>
+        <translation>Comando de ejecución de %1</translation>
+    </message>
+    <message>
+        <source>The command to start a Java program. It should NOT include &quot;-classpath &lt;path&gt; &lt;class name&gt;&quot;.</source>
+        <translation>El comando para iniciar un programa de Java. NO debe incluir &quot;-classpath &lt;ruta&gt; &lt;nombre de clase&gt;&quot;.</translation>
+    </message>
+    <message>
+        <source>%1 Class Name</source>
+        <translation>Nombre de clase %1</translation>
+    </message>
+    <message>
+        <source>The name of the main class of your solution.</source>
+        <translation>El nombre de la clase principal de su solución.</translation>
+    </message>
+    <message>
+        <source>%1 Class Path</source>
+        <translation>Ruta de clase de %1</translation>
+    </message>
+    <message>
+        <source>The path of the parent directory of the compiled class file.
+It&apos;s relative to the source file, or the temporary directory if the tab is untitled.
+You can use &quot;${filename}&quot; for the complete file name,
+&quot;${basename}&quot; for the base file name without the suffix,
+&quot;${tmpdir}&quot; or &quot;${tempdir}&quot; for the absolute path of the temporary directory.</source>
+        <translation>La ruta del directorio principal del archivo de clase compilado.
+Es relativa al archivo fuente, o al directorio temporal si la pestaña no tiene título.
+Puede usar &quot;${filename}&quot; para el nombre completo del archivo,
+&quot;${basename}&quot; para el nombre base del archivo sin el sufijo,
+&quot;${tmpdir}&quot; o &quot;${tempdir}&quot; para la ruta absoluta del directorio temporal.</translation>
+    </message>
+    <message>
+        <source>The template used when creating a new Python file</source>
+        <translation>La plantilla utilizada al crear un nuevo archivo de Python</translation>
+    </message>
+    <message>
+        <source>The runtime arguments when executing a Python program</source>
+        <translation>Los argumentos utilizados al ejecutar un programa de Python</translation>
+    </message>
+    <message>
+        <source>The command to start a Python program. It should NOT include the path to the source file.</source>
+        <translation>El comando para iniciar un programa de Python. NO debe incluir la ruta al archivo fuente.</translation>
+    </message>
+    <message>
+        <source>Editor Theme</source>
+        <translation>Tema del editor</translation>
+    </message>
+    <message>
+        <source>The syntax highlight theme of the code editor</source>
+        <translation>El tema de resaltado de sintaxis del editor de código</translation>
+    </message>
+    <message>
+        <source>Terminal Program</source>
+        <translation>Programa de terminal</translation>
+    </message>
+    <message>
+        <source>The terminal emulator to use when running in detached mode.
+This is usually the name or the path of the terminal emulator.
+Some possible values are konsole, gnome-terminal, xfce-terminal, xterm or any other terminal emulator program.</source>
+        <translation>El emulador de terminal que se utilizará al ejecutar en modo desacoplado.
+Este es normalmente el nombre o la ruta del emulador de terminal.
+Algunos valores posibles son konsole, gnome-terminal, xfce-terminal, xterm u otro programa de emulador de terminal.</translation>
+    </message>
+    <message>
+        <source>Terminal Arguments</source>
+        <translation>Argumentos de terminal</translation>
+    </message>
+    <message>
+        <source>Arguments used to execute a given command in the terminal emulator.
+This is &quot;-e&quot; for most terminal emulators, including konsole, xterm, xfce-terminal but can be &quot;--&quot; for gnome-terminal.
+Consult your terminal emulator for the suitable arguments.</source>
+        <translation>Argumentos utilizados para ejecutar un comando determinado en el emulador de terminal.
+Este es &quot;-e&quot; para la mayoría de los emuladores de terminal, incluyendo konsole, xterm, xfce-terminal, pero puede ser &quot;--&quot; para gnome-terminal.
+Consulte a su emulador de terminal para conocer los argumentos adecuados.</translation>
+    </message>
+    <message>
+        <source>Auto Complete Parentheses</source>
+        <translation>Autocompletar paréntesis</translation>
+    </message>
+    <message>
+        <source>Automatically complete a pair of parentheses when typing the left element of it,
+and move out of it when typing the right element of it.
+This can be overridden for each parenthesis in each language.</source>
+        <translation>Autocompletar un par de paréntesis al escribir el elemento izquierdo de este,
+y salir de él al escribir el elemento derecho.
+Esto se puede sobrescribir para cada paréntesis en cada idioma.</translation>
+    </message>
+    <message>
+        <source>Auto Remove Parentheses</source>
+        <translation>Autoeliminar paréntesis</translation>
+    </message>
+    <message>
+        <source>Automatically delete the whole pair of parentheses when deleting
+the left element of it if the two elements are adjacent.
+This can be overridden for each parenthesis in each language.</source>
+        <translation>Automáticamente eliminar el par de paréntesis al eliminar
+el elemento izquierdo de él si los dos elementos están adyacentes.
+Esto se puede sobrescribir para cada paréntesis en cada idioma.</translation>
+    </message>
+    <message>
+        <source>Jump out of a parenthesis by pressing Tab</source>
+        <translation>Salir de un paréntesis presionando Tab</translation>
+    </message>
+    <message>
+        <source>When this is enabled, you can use Tab instead of the
+closing parenthesis to jump out of a parenthesis.
+This can be overridden for each parenthesis in each language.</source>
+        <translation>Cuando está habilitado, puede usar Tab en lugar del
+paréntesis de cierre para salir de un paréntesis.
+Esto se puede sobrescribir para cada paréntesis en cada idioma.</translation>
+    </message>
+    <message>
+        <source>Auto Indent</source>
+        <translation>Indentación automática</translation>
+    </message>
+    <message>
+        <source>Add an indent when entering a new line after a &quot;{&quot;.</source>
+        <translation>Añade una indentación al introducir una nueva línea después de un &quot;{&quot;.</translation>
+    </message>
+    <message>
+        <source>Enable Auto Save</source>
+        <translation>Habilitar Auto Guardado</translation>
+    </message>
+    <message>
+        <source>Auto Save Interval (ms)</source>
+        <translation>Intervalo de auto-guardado (ms)</translation>
+    </message>
+    <message>
+        <source>The time interval between a modification and an auto-save, or between two auto-saves.</source>
+        <translation>El intervalo de tiempo entre una modificación y un auto-guardado, o entre dos auto-guardados.</translation>
+    </message>
+    <message>
+        <source>Auto Save Interval Type</source>
+        <translation>Tipo de intervalo de auto-guardado</translation>
+    </message>
+    <message>
+        <source>After the last modification: the timer will be reset after a modification to the code.
+After the first modification: the timer will start after a modification if at that time the timer is not running.
+Without modification: auto-save happens with a constant interval no matter there are modifications or not.</source>
+        <translation>Después de la última modificación: el cronómetro se reiniciará después de una modificación del código.
+Después de la primera modificación: el cronómetro comenzará después de una modificación si en ese momento el cronómetro no está funcionando.
+Sin modificación: la auto-guardado ocurre con un intervalo constante independientemente de si hay modificaciones o no.</translation>
+    </message>
+    <message>
+        <source>Wrap Text</source>
+        <translation>Ajustar texto</translation>
+    </message>
+    <message>
+        <source>Wrap a line into several lines if it doesn&apos;t fit into the screen.</source>
+        <translation>Ajusta una línea en varias líneas si no cabe en la pantalla.</translation>
+    </message>
+    <message>
+        <source>Use the beta version</source>
+        <translation>Usar la versión beta</translation>
+    </message>
+    <message>
+        <source>Check for updates marked as pre-releases, which are considered not very stable but have more features.</source>
+        <translation>Comprueba las actualizaciones marcadas como pre-lanzamientos, que se consideran no muy estables pero tienen más características.</translation>
+    </message>
+    <message>
+        <source>Replace tabs by spaces</source>
+        <translation>Reemplazar tabulaciones por espacios</translation>
+    </message>
+    <message>
+        <source>Use spaces instead of a tab character.</source>
+        <translation>Usa espacios en lugar de un carácter de tabulación.</translation>
+    </message>
+    <message>
+        <source>Save Testcases on Save</source>
+        <translation>Guardar casos de prueba al guardar</translation>
+    </message>
+    <message>
+        <source>Save the test cases on the disk when saving a file, and load the saved test cases when opening a file.</source>
+        <translation>Guarda los casos de prueba en el disco al guardar un archivo y cargar los casos de prueba guardados al abrir un archivo.</translation>
+    </message>
+    <message>
+        <source>Check for updates on startup</source>
+        <translation>Comprobar actualizaciones al inicio</translation>
+    </message>
+    <message>
+        <source>Check whether there&apos;s a new version of CP Editor when starting CP Editor.</source>
+        <translation>Comprueba si hay una nueva versión de CP Editor al iniciar CP Editor.</translation>
+    </message>
+    <message>
+        <source>Opacity</source>
+        <translation>Opacidad</translation>
+    </message>
+    <message>
+        <source>The opacity of the main window</source>
+        <translation>La opacidad de la ventana principal</translation>
+    </message>
+    <message>
+        <source>Enable Competitive Companion</source>
+        <translation>Habilitar Competitive Companion</translation>
+    </message>
+    <message>
+        <source>Receive data sent by Competitive Companion and load the example test cases.</source>
+        <translation>Recibir los datos enviados por Competitive Companion y cargar los casos de prueba de ejemplo.</translation>
+    </message>
+    <message>
+        <source>Connection Port</source>
+        <translation>Puerto de conexión</translation>
+    </message>
+    <message>
+        <source>The port used to receive data from Competitive Companion</source>
+        <translation>El puerto utilizado para recibir datos de Competitive Companion</translation>
+    </message>
+    <message>
+        <source>Open New Tabs</source>
+        <translation>Abrir nuevas pestañas</translation>
+    </message>
+    <message>
+        <source>Open a new tab for each problem parsed by Competitive Companion.</source>
+        <translation>Abrir una nueva pestaña para cada problema analizado por Competitive Companion.</translation>
+    </message>
+    <message>
+        <source>Use the time limit from Competitive Companion</source>
+        <translation>Utilizar el límite de tiempo de Competitive Companion</translation>
+    </message>
+    <message>
+        <source>Use the time limit parsed by Competitive Companion as the time limit of the corresponding tab.</source>
+        <translation>Utilizar el límite de tiempo analizado por Competitive Companion como el límite de tiempo de la pestaña correspondiente.</translation>
+    </message>
+    <message>
+        <source>Content of the head comments</source>
+        <translation>Contenido de los comentarios de cabecera</translation>
+    </message>
+    <message>
+        <source>The comments added at the head of the code when parsing a problem.
+Available place holders are:
+${time}: the time when parsing the problem
+${json.X.Y}: an attribute of the data provided by Competitive Companion, you can read more at https://github.com/jmerle/competitive-companion#explanation</source>
+        <translation>Los comentarios añadidos al principio del código al analizar un problema.
+Los marcadores de posición disponibles son:
+${time}: el momento en que se analiza el problema
+${json.X.Y}: un atributo de los datos proporcionados por Competitive Companion, puedes leer más en https://github.com/jmerle/competitive-companion#explanation</translation>
+    </message>
+    <message>
+        <source>Time format for the head comments</source>
+        <translation>Formato de tiempo para los comentarios de cabecera</translation>
+    </message>
+    <message>
+        <source>The format of the ${time} place holder in the head comments.
+You can read the Qt documentation for available expressions:
+https://doc.qt.io/qt-5/qdate.html#toString
+https://doc.qt.io/qt-5/qtime.html#toString</source>
+        <translation>El formato del marcador de posición ${time} en los comentarios de cabecera.
+Puedes leer la documentación de Qt para obtener expresiones disponibles:
+https://doc.qt.io/qt-5/qdate.html#toString
+https://doc.qt.io/qt-5/qtime.html#toString</translation>
+    </message>
+    <message>
+        <source>Add &quot;Powered By CP Editor&quot; in the head comments</source>
+        <translation>Añadir &quot;Powered By CP Editor&quot; en los comentarios de encabezado</translation>
+    </message>
+    <message>
+        <source>Add a line saying &quot;Powered By CP Editor&quot; in the head comments.
+This doesn&apos;t cost you anything, but helps more people to know CP Editor.</source>
+        <translation>Añade una línea que diga &quot;Powered By CP Editor&quot; en los comentarios de encabezado.
+Esto no le cuesta nada, pero ayuda a más personas a conocer CP Editor.</translation>
+    </message>
+    <message>
+        <source>Format Codes</source>
+        <translation>Formatear código</translation>
+    </message>
+    <message>
+        <source>Kill All Processes</source>
+        <translation>Terminar todos los procesos</translation>
+    </message>
+    <message>
+        <source>Compile and Run</source>
+        <translation>Compilar y ejecutar</translation>
+    </message>
+    <message>
+        <source>Run Only</source>
+        <translation>Sólo ejecutar</translation>
+    </message>
+    <message>
+        <source>Compile Only</source>
+        <translation>Sólo compilar</translation>
+    </message>
+    <message>
+        <source>Change View Mode</source>
+        <translation>Cambiar modo de vista</translation>
+    </message>
+    <message>
+        <source>Use Snippets</source>
+        <translation>Utilizar snippets</translation>
+    </message>
+    <message>
+        <source>Restore last session at startup</source>
+        <translation>Restaurar la última sesión al inicio</translation>
+    </message>
+    <message>
+        <source>Restore the last session when the application starts.
+When this is enabled, you won&apos;t be asked whether to save unsaved files when exiting.</source>
+        <translation>Restaurar la última sesión cuando se inicia la aplicación.
+Cuando esto está habilitado, no se le preguntará si desea guardar los archivos sin guardar al salir.</translation>
+    </message>
+    <message>
+        <source>Auto-save the current session periodically</source>
+        <translation>Auto-guardar la sesión actual periódicamente</translation>
+    </message>
+    <message>
+        <source>Auto-save the current session periodically instead of only save when the application exists.
+This is useful if your computer is frozen and you have to cut off the power or
+kill the application with SIGKILL which could not be handled by the application.</source>
+        <translation>Auto-guardar la sesión actual periódicamente en lugar de solo guardar cuando la aplicación existe.
+Esto es útil si su computadora se congela y tiene que cortar la energía o
+matar la aplicación con SIGKILL que no puede ser manejada por la aplicación.</translation>
+    </message>
+    <message>
+        <source>Auto-save Session Interval</source>
+        <translation>Intervalo de auto-guardado de sesión</translation>
+    </message>
+    <message>
+        <source>The time interval between two auto-saves of the current session.</source>
+        <translation>El intervalo de tiempo entre dos auto-guardados de la sesión actual.</translation>
+    </message>
+    <message>
+        <source>Path</source>
+        <translation>Ruta</translation>
+    </message>
+    <message>
+        <source>The path to the CF Tool executable file</source>
+        <translation>La ruta del archivo ejecutable de CF Tool</translation>
+    </message>
+    <message>
+        <source>Show toast messages for submission verdicts</source>
+        <translation>Mostrar notificaciones del sistema para los veredictos de envío</translation>
+    </message>
+    <message>
+        <source>Show a toast message when the verdict of a submission is known. You can see the message outside of CP Editor.</source>
+        <translation>Mostrar una notificación del sistema cuando se conoce el veredicto de un envío. Puede ver el mensaje fuera de CP Editor.</translation>
+    </message>
+    <message>
+        <source>Show Compile And Run Only</source>
+        <translation>Mostrar únicamente compilar y ejecutar</translation>
+    </message>
+    <message>
+        <source>Hide the Compile Only button and the Run Only button under the code editor in the main window.</source>
+        <translation>Ocultar el botón Solo compilar y el botón Solo ejecutar debajo del editor de código en la ventana principal.</translation>
+    </message>
+    <message>
+        <source>Display EOLN In Diff</source>
+        <translation>Mostrar EOLN (Fin de línea) en diferencias</translation>
+    </message>
+    <message>
+        <source>Use &quot;¶&quot; to represent for the new line character in the HTML Diff Viewer.</source>
+        <translation>Usar &quot;¶&quot; para representar el carácter de nueva línea en el visor de diferencias HTML.</translation>
+    </message>
+    <message>
+        <source>Save Files Faster</source>
+        <translation>Guardar archivos más rápido</translation>
+    </message>
+    <message>
+        <source>Always use QFile instead of QSaveFile to save files.
+This will be faster but with a little bit more risk of losing the file (with a very small possibility).</source>
+        <translation>Siempre usa QFile en lugar de QSaveFile para guardar archivos.
+Esto será más rápido pero con un poco más de riesgo de perder el archivo (con una muy pequeña posibilidad).</translation>
+    </message>
+    <message>
+        <source>Default Time Limit (ms)</source>
+        <translation>Límite de tiempo predeterminado (ms)</translation>
+    </message>
+    <message>
+        <source>The default time limit when executing the program.
+The program will be killed if it doesn&apos;t terminate in the time limit.</source>
+        <translation>El límite de tiempo predeterminado al ejecutar el programa.
+El programa será cancelado si no finaliza en el límite de tiempo.</translation>
+    </message>
+    <message>
+        <source>Output Length Limit</source>
+        <translation>Límite de longitud de salida</translation>
+    </message>
+    <message>
+        <source>The maximum number of characters in the output of the program.
+The program will be killed if either of its stdout or stderr is too long.</source>
+        <translation>El número máximo de caracteres en la salida del programa.
+El programa será cancelado si cualquiera de su stdout o stderr es demasiado largo.</translation>
+    </message>
+    <message>
+        <source>Output Display Length Limit</source>
+        <translation>Límite de longitud de visualización de salida</translation>
+    </message>
+    <message>
+        <source>The maximum number of characters to be displayed for the output of the program.
+If the output is too long, it will be elided.</source>
+        <translation>El número máximo de caracteres que se mostrarán para la salida del programa.
+Si la salida es demasiado larga, se cortará.</translation>
+    </message>
+    <message>
+        <source>Message Length Limit</source>
+        <translation>Límite de longitud de mensaje</translation>
+    </message>
+    <message>
+        <source>The maximum number of characters in each message in the top-right corner of the main window.
+The message will be elided if it&apos;s too long.</source>
+        <translation>El número máximo de caracteres en cada mensaje en la esquina superior derecha de la ventana principal.
+El mensaje se cortará si es demasiado largo.</translation>
+    </message>
+    <message>
+        <source>HTML Diff Viewer Length Limit</source>
+        <translation>Límite de longitud del visualizador de diferencias HTML</translation>
+    </message>
+    <message>
+        <source>The maximum number of characters in the HTML Diff Viewer.
+The Diff Viewer will fall back to plain text if either of the output or the expected output is too long.</source>
+        <translation>El número máximo de caracteres en el visualizador de diferencias HTML.
+El visualizador de diferencias volverá al texto sin formato si la salida o la salida esperada son demasiado largas.</translation>
+    </message>
+    <message>
+        <source>Open File Length Limit</source>
+        <translation>Límite de longitud de archivo abierto</translation>
+    </message>
+    <message>
+        <source>The maximum number of characters in a source file to open.
+A source file won&apos;t be opened if it&apos;s too long.</source>
+        <translation>El número máximo de caracteres en un archivo de origen para abrirlo.
+Un archivo de origen no se abrirá si es demasiado largo.</translation>
+    </message>
+    <message>
+        <source>Display Test Case Length Limit</source>
+        <translation>Límite de longitud de visualización del caso de prueba</translation>
+    </message>
+    <message>
+        <source>The maximum number of characters in a test case to be displayed.
+A test case will be elided and read-only if it&apos;s too long.</source>
+        <translation>El número máximo de caracteres en un caso de prueba para ser mostrado.
+Un caso de prueba se cortará y sólo lectura si es demasiado largo.</translation>
+    </message>
+    <message>
+        <source>Path to LSP executable</source>
+        <translation>Ruta al ejecutable LSP</translation>
+    </message>
+    <message>
+        <source>The path to the C++ Language Server executable</source>
+        <translation>La ruta al ejecutable del servidor de lenguaje de C++</translation>
+    </message>
+    <message>
+        <source>The path to the Java Language Server executable</source>
+        <translation>La ruta al ejecutable del servidor de lenguaje de Java</translation>
+    </message>
+    <message>
+        <source>The path to the Python Language Server executable</source>
+        <translation>La ruta al ejecutable del servidor de lenguaje de Python</translation>
+    </message>
+    <message>
+        <source>Use Linting with Language Server</source>
+        <translation>Usar verificación de linting con el servidor de lenguaje</translation>
+    </message>
+    <message>
+        <source>Show Error, Warning, Information and Hints in Code Editor for C++ Language</source>
+        <translation>Mostrar errores, advertencias, información y sugerencias en el editor de código para el lenguaje de C++</translation>
+    </message>
+    <message>
+        <source>Show Error, Warning, Information and Hints in Code Editor for Java Language</source>
+        <translation>Mostrar errores, advertencias, información y sugerencias en el editor de código para el lenguaje de Java</translation>
+    </message>
+    <message>
+        <source>Show Error, Warning, Information and Hints in Code Editor for Python Language</source>
+        <translation>Mostrar errores, advertencias, información y sugerencias en el editor de código para el lenguaje de Python</translation>
+    </message>
+    <message>
+        <source>Use auto-complete with Language Server</source>
+        <translation>Usar auto-completado con el servidor de lenguaje</translation>
+    </message>
+    <message>
+        <source>Use autocomplete results from Language server</source>
+        <translation>Usar resultados de autocompletar del servidor de lenguaje</translation>
+    </message>
+    <message>
+        <source>Delay in Linting (ms)</source>
+        <translation>Retraso en verificación de linting (ms)</translation>
+    </message>
+    <message>
+        <source>Delay in linting in milliseconds after last modification to code</source>
+        <translation>Retraso en verificación de linting en milisegundos después de la última modificación al código</translation>
+    </message>
+    <message>
+        <source>Arguments for Language Server</source>
+        <translation>Argumentos para el servidor de lenguaje</translation>
+    </message>
+    <message>
+        <source>Arguments to pass to Language server executable</source>
+        <translation>Argumentos para pasar al ejecutable del servidor de lenguaje</translation>
+    </message>
+    <message>
+        <source>Testcases Matching Rules</source>
+        <translation>Reglas de emparejamiento de casos de prueba</translation>
+    </message>
+    <message>
+        <source>Pairs of regular expressions used when adding pairs of test cases from files.
+Each pair of regular expressions represents a test case.</source>
+        <translation>Pares de expresiones regulares utilizadas al agregar pares de casos de prueba de archivos.
+Cada par de expresiones regulares representa un caso de prueba.</translation>
+    </message>
+    <message>
+        <source>Input Regex</source>
+        <translation>Regex de entrada</translation>
+    </message>
+    <message>
+        <source>The regular expression which matches the whole input file name</source>
+        <translation>La expresión regular que coincide con el nombre completo del archivo de entrada</translation>
+    </message>
+    <message>
+        <source>Answer Replace</source>
+        <translation>Reemplazar respuesta</translation>
+    </message>
+    <message>
+        <source>The replace expression for the answer file name.
+You can use &quot;\1&quot; for the first captured group.</source>
+        <translation>La expresión de reemplazo para el nombre del archivo de respuesta.
+Puedes usar &quot;\1&quot; para el primer grupo capturado.</translation>
+    </message>
+    <message>
+        <source>Input File Save Path</source>
+        <translation>Ruta de guardado del archivo de entrada</translation>
+    </message>
+    <message>
+        <source>The path where the input files are saved.
+This setting is a relative path to the source file.
+You can use &quot;${filename}&quot; for the complete file name,
+&quot;${basename}&quot; for the base file name without the suffix,
+&quot;${0-index}&quot; for the index of the test case started from 0,
+&quot;${1-index}&quot; for the index of the test case started from 1.</source>
+        <translation>La ruta donde se guardan los archivos de entrada.
+Este ajuste es una ruta relativa al archivo de origen.
+Puedes usar &quot;${filename}&quot; para el nombre completo del archivo,
+&quot;${basename}&quot; para el nombre base del archivo sin sufijo,
+&quot;${0-index}&quot; para el índice del caso de prueba que comienza en 0,
+&quot;${1-index}&quot; para el índice del caso de prueba que comienza en 1.</translation>
+    </message>
+    <message>
+        <source>Answer File Save Path</source>
+        <translation>Ruta de guardado del archivo de respuesta</translation>
+    </message>
+    <message>
+        <source>The path where the answer files are saved.
+This setting is a relative path to the source file.
+You can use &quot;${filename}&quot; for the complete file name,
+&quot;${basename}&quot; for the base file name without the suffix,
+&quot;${0-index}&quot; for the index of the test case started from 0,
+&quot;${1-index}&quot; for the index of the test case started from 1.</source>
+        <translation>La ruta donde se guardan los archivos de respuesta.
+Este ajuste es una ruta relativa al archivo de origen.
+Puedes usar &quot;${filename}&quot; para el nombre completo del archivo,
+&quot;${basename}&quot; para el nombre base del archivo sin sufijo,
+&quot;${0-index}&quot; para el índice del caso de prueba que comienza en 0,
+&quot;${1-index}&quot; para el índice del caso de prueba que comienza en 1.</translation>
+    </message>
+    <message>
+        <source>Default File Paths For Problem URLs</source>
+        <translation>Rutas de archivo predeterminadas para URLs de problemas</translation>
+    </message>
+    <message>
+        <source>The default file path used when saving a new file while the problem URL is set</source>
+        <translation>La ruta de archivo predeterminada utilizada al guardar un nuevo archivo mientras se establece la URL del problema</translation>
+    </message>
+    <message>
+        <source>Problem URL</source>
+        <translation>URL del problema</translation>
+    </message>
+    <message>
+        <source>The regular expression which matches a part of the problem URL</source>
+        <translation>La expresión regular que coincide con una parte de la URL del problema</translation>
+    </message>
+    <message>
+        <source>File Path</source>
+        <translation>Ruta de archivo</translation>
+    </message>
+    <message>
+        <source>The replace expression for the file path, without file name suffix.
+You can use &quot;\1&quot; for the first captured group.</source>
+        <translation>La expresión de reemplazo para la ruta del archivo, sin sufijo de nombre de archivo.
+Puedes usar &quot;\1&quot; para el primer grupo capturado.</translation>
+    </message>
+    <message>
+        <source>Test Cases Font</source>
+        <translation>Fuente de casos de prueba</translation>
+    </message>
+    <message>
+        <source>The font of test cases</source>
+        <translation>La fuente de los casos de prueba</translation>
+    </message>
+    <message>
+        <source>Add extra margin at the bottom of the code editor</source>
+        <translation>Añade un margen adicional en la parte inferior del editor de código</translation>
+    </message>
+    <message>
+        <source>Add an extra margin with the height of a page at the bottom of the code editor.
+Due to technical reasons, changing the height of the margin affects the undo history.</source>
+        <translation>Añade un margen adicional con la altura de una página en la parte inferior del editor de código.
+Por razones técnicas, cambiar la altura del margen afecta al historial de deshacer.</translation>
+    </message>
+    <message>
+        <source>Message Logger Font</source>
+        <translation>Fuente del registrador de mensajes</translation>
+    </message>
+    <message>
+        <source>The font of the message logger</source>
+        <translation>La fuente del registrador de mensajes</translation>
+    </message>
+    <message>
+        <source>Save File On Compilation</source>
+        <translation>Guardar archivo en compilación</translation>
+    </message>
+    <message>
+        <source>Save the source file when compiling it. It won&apos;t be saved if the tab is untitled.</source>
+        <translation>Guardar el archivo de origen al compilarlo. No se guardará si la pestaña no tiene título.</translation>
+    </message>
+    <message>
+        <source>Save File On Execution</source>
+        <translation>Guardar archivo en ejecución</translation>
+    </message>
+    <message>
+        <source>Save the source file when running it. It won&apos;t be saved if the tab is untitled.</source>
+        <translation>Guardar el archivo de origen al ejecutarlo. No se guardará si la pestaña no tiene título.</translation>
+    </message>
+    <message>
+        <source>Restore the problem URL when opening a file</source>
+        <translation>Restaurar la URL del problema al abrir un archivo</translation>
+    </message>
+    <message>
+        <source>If a problem URL was set for a file, when you open
+that file again, the problem URL will be restored.</source>
+        <translation>Si se estableció una URL de problema para un archivo, al abrir
+ese archivo de nuevo, se restaurará la URL del problema.</translation>
+    </message>
+    <message>
+        <source>Open the old file when parsing an old problem URL</source>
+        <translation>Abrir el archivo antiguo al analizar una URL de problema antigua</translation>
+    </message>
+    <message>
+        <source>If a problem URL was set for a file, when parsing that problem
+from Competitive Companion again, the old file will be opened.</source>
+        <translation>Si se estableció una URL de problema para un archivo, al analizar ese problema
+de nuevo desde Competitive Companion, se abrirá el archivo antiguo.</translation>
+    </message>
+    <message>
+        <source>UI Language</source>
+        <translation>Idioma de la interfaz de usuario</translation>
+    </message>
+    <message>
+        <source>The language displayed in the UI.</source>
+        <translation>El idioma mostrado en la interfaz de usuario.</translation>
+    </message>
+    <message>
+        <source>Change Locale</source>
+        <translation>Cambiar el idioma</translation>
+    </message>
+    <message>
+        <source>You need to restart the application to completely apply the locale change.</source>
+        <translation>Es necesario reiniciar la aplicación para aplicar completamente el cambio de idioma.</translation>
+    </message>
+    <message>
+        <source>UI Style</source>
+        <translation>Estilo de la interfaz de usuario</translation>
+    </message>
+    <message>
+        <source>The style of the whole application.</source>
+        <translation>El estilo de toda la aplicación.</translation>
+    </message>
+    <message>
+        <source>Run your codes on empty test cases</source>
+        <translation>Ejecutar tus códigos en casos de prueba vacíos</translation>
+    </message>
+    <message>
+        <source>Run your code on all non-hidden test cases even if the input is empty.</source>
+        <translation>Ejecuta tu código en todos los casos de prueba no ocultos, incluso si la entrada está vacía.</translation>
+    </message>
+    <message>
+        <source>Check your answer on test cases with empty output</source>
+        <translation>Comprueba tu respuesta en casos de prueba con salida vacía</translation>
+    </message>
+    <message>
+        <source>Check your answer even if your output or the expected output is empty.</source>
+        <translation>Comprueba tu respuesta incluso si tu salida o la salida esperada está vacía.</translation>
+    </message>
+    <message>
+        <source>Test Case Maximum Height</source>
+        <translation>Altura máxima del caso de prueba</translation>
+    </message>
+    <message>
+        <source>The maximum height of a test case without a scrollbar in pixels.</source>
+        <translation>La altura máxima de un caso de prueba sin barra de desplazamiento en píxeles.</translation>
+    </message>
+    <message>
+        <source>Enable proxy for checking updates</source>
+        <translation>Habilitar proxy para verificar actualizaciones</translation>
+    </message>
+    <message>
+        <source>Enable proxy to connect to GitHub while checking updates</source>
+        <translation>Habilitar proxy para conectarse a GitHub al verificar actualizaciones</translation>
+    </message>
+    <message>
+        <source>network-proxy</source>
+        <comment>the anchor of Enable proxy for checking updates on the corresponding page of https://cpeditor.org/docs/preferences</comment>
+        <translation>proxy-de-red</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>Tipo</translation>
+    </message>
+    <message>
+        <source>The type of the proxy. &quot;System&quot; for using the system proxy.</source>
+        <translation>El tipo de proxy. &quot;System&quot; para usar el proxy del sistema.</translation>
+    </message>
+    <message>
+        <source>network-proxy</source>
+        <comment>the anchor of Type on the corresponding page of https://cpeditor.org/docs/preferences</comment>
+        <translation>proxy-de-red</translation>
+    </message>
+    <message>
+        <source>Host Name</source>
+        <translation>Nombre de host</translation>
+    </message>
+    <message>
+        <source>The hostname of the proxy, e.g. 127.0.0.1</source>
+        <translation>El nombre de host del proxy, por ejemplo, 127.0.0.1</translation>
+    </message>
+    <message>
+        <source>network-proxy</source>
+        <comment>the anchor of Host Name on the corresponding page of https://cpeditor.org/docs/preferences</comment>
+        <translation>proxy-de-red</translation>
+    </message>
+    <message>
+        <source>Port</source>
+        <translation>Puerto</translation>
+    </message>
+    <message>
+        <source>The port of the proxy, e.g. 1080</source>
+        <translation>El puerto del proxy, por ejemplo, 1080</translation>
+    </message>
+    <message>
+        <source>network-proxy</source>
+        <comment>the anchor of Port on the corresponding page of https://cpeditor.org/docs/preferences</comment>
+        <translation>proxy-de-red</translation>
+    </message>
+    <message>
+        <source>User</source>
+        <translation>Usuario</translation>
+    </message>
+    <message>
+        <source>The user of the proxy server. It can be empty if the proxy server doesn&apos;t require authentication.</source>
+        <translation>El usuario del servidor proxy. Puede estar vacío si el servidor proxy no requiere autenticación.</translation>
+    </message>
+    <message>
+        <source>network-proxy</source>
+        <comment>the anchor of User on the corresponding page of https://cpeditor.org/docs/preferences</comment>
+        <translation>proxy-de-red</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Contraseña</translation>
+    </message>
+    <message>
+        <source>The password of the proxy server. It can be empty if the proxy server doesn&apos;t require authentication.</source>
+        <translation>The password of the proxy server. It can be empty if the proxy server doesn&apos;t require authentication.</translation>
+    </message>
+    <message>
+        <source>network-proxy</source>
+        <comment>the anchor of Password on the corresponding page of https://cpeditor.org/docs/preferences</comment>
+        <translation>proxy-de-red</translation>
+    </message>
+    <message>
+        <source>%1 Compiler Output Codec</source>
+        <translation>Códec de salida del compilador de %1</translation>
+    </message>
+    <message>
+        <source>Text codec of the compiler output (errors, warnings, etc.)</source>
+        <translation>Códec de texto de la salida del compilador (errores, advertencias, etc.)</translation>
+    </message>
+    <message>
+        <source>Default Path Names And Paths</source>
+        <translation>Nombres y rutas de ruta predeterminadas</translation>
+    </message>
+    <message>
+        <source>A list of default paths.
+They can be used in actions&apos; corresponding default paths by using ${&lt;default path name&gt;} as a place holder.
+They can be either manually set or automatically changed after choosing a path for an action.</source>
+        <translation>Una lista de rutas predeterminadas.
+Se pueden usar en las rutas predeterminadas correspondientes de las acciones utilizando ${&lt;nombre de ruta predeterminada&gt;} como marcador de posición.
+Se pueden configurar manualmente o cambiar automáticamente después de elegir una ruta para una acción.</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Nombre</translation>
+    </message>
+    <message>
+        <source>The name of a default path</source>
+        <translation>El nombre de una ruta predeterminada</translation>
+    </message>
+    <message>
+        <source>The path of a default path</source>
+        <translation>El nombre de una ruta predeterminada</translation>
+    </message>
+    <message>
+        <source>Auto-load external file changes if there&apos;s no unsaved modification</source>
+        <translation>Cargar automáticamente los cambios de archivos externos si no hay modificaciones sin guardar</translation>
+    </message>
+    <message>
+        <source>Automatically load file changes that are not made in CP Editor if there&apos;s no unsaved modification in CP Editor.</source>
+        <translation>Cargar automáticamente los cambios de archivo que no se realizan en CP Editor si no hay modificaciones sin guardar en CP Editor.</translation>
+    </message>
+    <message>
+        <source>Ask whether to load external file changes</source>
+        <translation>Preguntar si se deben cargar los cambios de archivo externo</translation>
+    </message>
+    <message>
+        <source>When there are file changes that are not made in CP Editor and is not automatically loaded by
+&quot;%1&quot;, ask for whether to load the changes.
+If this is disabled, external file changes will be ignored unless they are loaded by
+&quot;%1&quot;.</source>
+        <translation>Cuando hay cambios de archivo que no se realizan en CP Editor y no se cargan automáticamente por
+&quot;%1&quot;, preguntar si se deben cargar los cambios.
+Si esto está deshabilitado, los cambios de archivo externo se ignorarán a menos que se carguen por
+&quot;%1&quot;.</translation>
+    </message>
+    <message>
+        <source>Show Only Monospaced Font</source>
+        <translation>Mostrar solo fuente monoespaciada</translation>
+    </message>
+    <message>
+        <source>Show only monospaced fonts when choosing a font</source>
+        <translation>Mostrar solo fuentes monoespaciadas al elegir una fuente</translation>
+    </message>
+    <message>
+        <source>Auto Uncheck Accepted Testcases</source>
+        <translation>Desmarcar automáticamente los casos de prueba aceptados</translation>
+    </message>
+    <message>
+        <source>Automatically uncheck test cases when they get accepted.</source>
+        <translation>Desmarcar automáticamente los casos de prueba cuando son aceptados.</translation>
+    </message>
+    <message>
+        <source>The path to the WakaTime executable file</source>
+        <translation>La ruta al archivo ejecutable de WakaTime</translation>
+    </message>
+    <message>
+        <source>Api Key</source>
+        <translation>Clave API</translation>
+    </message>
+    <message>
+        <source>Can be found at https://wakatime.com/settings/account.
+It can be empty if you have the global wakatime config file ~/.wakatime.cfg.</source>
+        <translation>Se puede encontrar en https://wakatime.com/settings/account.
+Puede estar vacío si tiene el archivo de configuración global de wakatime ~/.wakatime.cfg.</translation>
+    </message>
+    <message>
+        <source>Enable WakaTime</source>
+        <translation>Habilitar WakaTime</translation>
+    </message>
+    <message>
+        <source>Use Proxy</source>
+        <translation>Utilizar proxy</translation>
+    </message>
+    <message>
+        <source>Use Advanced-&gt;Network Proxy to send data to WakaTime.</source>
+        <translation>Utilizar Avanzado-&gt;Proxy de red, para enviar datos a WakaTime.</translation>
+    </message>
+    <message>
+        <source>Display Stopwatch</source>
+        <translation>Mostrar cronómetro</translation>
+    </message>
+    <message>
+        <source>Start/Stop stopwatch on tab switch</source>
+        <translation>Iniciar/detener el cronómetro al cambiar de pestaña</translation>
+    </message>
+    <message>
+        <source>When switching to a different tab, automatically start the stopwatch
+on the current tab and pause the stopwatch on the previous tab.</source>
+        <translation>Al cambiar a una pestaña diferente, iniciar automáticamente el cronómetro
+en la pestaña actual y pausar el cronómetro en la pestaña anterior.</translation>
+    </message>
+    <message>
+        <source>Show stopwatch result only when the button is pressed</source>
+        <translation>Mostrar el resultado del cronómetro solo cuando se presiona el botón</translation>
+    </message>
+    <message>
+        <source>Hide the time of the stopwatch and only show the time when the &quot;Show&quot; button is pressed.
+This may reduce distractions caused by stopwatch updates.</source>
+        <translation>Ocultar el tiempo del cronómetro y solo mostrar el tiempo cuando se presiona el botón &quot;Mostrar&quot;.
+Esto puede reducir las distracciones causadas por las actualizaciones del cronómetro.</translation>
+    </message>
+    <message>
+        <source>Default path used for %1</source>
+        <translation>Ruta predeterminada utilzada para %1</translation>
+    </message>
+    <message>
+        <source>Open File</source>
+        <translation>Abrir archivo</translation>
+    </message>
+    <message>
+        <source>The default path used when choosing a path for %1.
+You can use ${&lt;default path name&gt;} as a place holder.</source>
+        <translation>La ruta predeterminada utilizada al elegir una ruta para %1.
+Puedes usar ${&lt;default path name&gt;} como marcador de posición.</translation>
+    </message>
+    <message>
+        <source>Default paths changed by %1</source>
+        <translation>Las rutas predeterminadas cambiadas por %1</translation>
+    </message>
+    <message>
+        <source>The default paths changed after choosing a path for %1.
+It is a list of &lt;default path name&gt;s, separated by commas, and can be empty.</source>
+        <translation>Las rutas predeterminadas cambiaron después de elegir una ruta para %1.
+Es una lista de &lt;nombre de ruta predeterminada&gt;, separadas por comas, y puede estar vacía.</translation>
+    </message>
+    <message>
+        <source>Save File</source>
+        <translation>Guardar archivo</translation>
+    </message>
+    <message>
+        <source>It can be overridden by %1.</source>
+        <translation>Puede ser anulado por %1.</translation>
+    </message>
+    <message>
+        <source>Open Contest</source>
+        <translation>Abrir concurso</translation>
+    </message>
+    <message>
+        <source>Load Single Test Case</source>
+        <translation>Cargar un único caso de prueba</translation>
+    </message>
+    <message>
+        <source>Add Pairs Of Test Cases</source>
+        <translation>Añadir pares de casos de prueba</translation>
+    </message>
+    <message>
+        <source>Save Test Case To A File</source>
+        <translation>Guardar caso de prueba en un archivo</translation>
+    </message>
+    <message>
+        <source>Custom Checker</source>
+        <translation>Verificador personalizado</translation>
+    </message>
+    <message>
+        <source>Export And Import Settings</source>
+        <translation>Exportar e importar configuraciones</translation>
+    </message>
+    <message>
+        <source>Export And Load Session</source>
+        <translation>Exportar y cargar sesión</translation>
+    </message>
+    <message>
+        <source>Extract And Load Snippets</source>
+        <translation>Extraer y cargar snippets</translation>
+    </message>
+    <message>
+        <source>Highlight Error Line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Highlight lines containing diagnostics</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Color of error messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Color of warning messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use WakaTime to track your time usage. The WakaTime CLI needs to be installed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show a stopwatch in the UI. You can use it to track your time spent on solving a problem.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>default-paths</source>
+        <comment>the anchor of Default Paths on https://cpeditor.org/docs/preferences/file-path</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable Vim Emulation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable vim emulation in Code Editor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Vim Configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The contents of Vim RC. It is loaded everytime vim emulation starts. 
+Not all vim commands are supported, please check https://github.com/cpeditor/FakeVim for list of supported commands</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable CF Tool</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable or disable CF Tool Integration.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Programming language for the template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The programming language used for the generator template.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Path to the template file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The path to the generator template file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Template Cursor Position Regex</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Template Cursor Position Offset Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Template Cursor Position Offset Characters</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ShortcutItem</name>
@@ -1350,10 +2958,6 @@ Si está parcialmente marcado, la configuración global en Editar Código t se u
 <context>
     <name>Util::FileUtil</name>
     <message>
-        <source>%1Source Files (%2)</source>
-        <translation>%1Archivos fuente (%2)</translation>
-    </message>
-    <message>
         <source>Failed to open [%1]. Do I have write permission?</source>
         <translation>Error al abrir [%1]. ¿Tengo permiso de escritura?</translation>
     </message>
@@ -1384,6 +2988,22 @@ Si está parcialmente marcado, la configuración global en Editar Código t se u
     <message>
         <source>Reveal %1 in File Manager</source>
         <translation>Mostrar %1 en el administrador de archivos</translation>
+    </message>
+    <message>
+        <source>C++ Source Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Java Source Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Python Source Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Source Files</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1477,6 +3097,169 @@ Si está parcialmente marcado, la configuración global en Editar Código t se u
     <message>
         <source>Resume</source>
         <translation>Reanudar</translation>
+    </message>
+</context>
+<context>
+    <name>Widgets::StressTesting</name>
+    <message>
+        <source>Stress Testing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Generator Path:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Example: &quot;10 [5..100] abacaba&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Standard Program Path:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation type="unfinished">Empezar</translation>
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid arguments pattern</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Read Generator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Read Standard Program</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to open generator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to open standard program</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to create temporary directory</source>
+        <translation type="unfinished">Error al crear directorio temporal</translation>
+    </message>
+    <message>
+        <source>Read testlib.h</source>
+        <translation type="unfinished">Leer testlib.h</translation>
+    </message>
+    <message>
+        <source>Save testlib.h</source>
+        <translation type="unfinished">Guardar testlib.h</translation>
+    </message>
+    <message>
+        <source>Compiler</source>
+        <translation type="unfinished">Compilador</translation>
+    </message>
+    <message>
+        <source>All tests finished</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Running with arguments &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Time Limit Exceeded</source>
+        <translation type="unfinished">Límite de tiempo excedido</translation>
+    </message>
+    <message>
+        <source>Execution has finished with non-zero exitcode %1 in %2ms</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The program was killed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Output limit exceeded</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Generator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User program</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Standard program</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 compilation has started</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 compilation has finished</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 compilation error: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 compilation failed: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 compilation killed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Counterexample Found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User Program: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add to testcases</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ignore</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stop stress testing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Counterexample added to testcases</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Elapsed: %1:%2  |  Completed: %3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select generator from opened files...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select standard program from opened files...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use Generator Arguments:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please select a generator and a standard program</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

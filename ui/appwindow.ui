@@ -53,6 +53,16 @@
      <string>&amp;File</string>
     </property>
     <addaction name="actionNewTab"/>
+    <widget class="QMenu" name="menuFileFromTemplate">
+     <property name="title">
+      <string>New File From Template</string>
+     </property>
+     <addaction name="actionNewGeneratorTab"/>
+     <addaction name="actionNewCPPTab"/>
+     <addaction name="actionNewJavaTab"/>
+     <addaction name="actionNewPythonTab"/>
+    </widget>
+    <addaction name="menuFileFromTemplate"/>
     <addaction name="actionOpen"/>
     <addaction name="actionOpenContest"/>
     <addaction name="actionSave"/>
@@ -93,6 +103,7 @@
     <addaction name="separator"/>
     <addaction name="actionFormatCode"/>
     <addaction name="actionUseSnippets"/>
+    <addaction name="actionStressTesting"/>
    </widget>
    <widget class="QMenu" name="menuView">
     <property name="title">
@@ -149,6 +160,38 @@
    </property>
    <property name="shortcut">
     <string notr="true">Ctrl+N</string>
+   </property>
+  </action>
+  <action name="actionNewGeneratorTab">
+   <property name="text">
+    <string>Generator</string>
+   </property>
+   <property name="toolTip">
+    <string>Open a new tab with generator template</string>
+   </property>
+  </action>
+  <action name="actionNewCPPTab">
+   <property name="text">
+    <string>C++</string>
+   </property>
+   <property name="toolTip">
+    <string>Open a new tab with C++ template</string>
+   </property>
+  </action>
+  <action name="actionNewJavaTab">
+   <property name="text">
+    <string>Java</string>
+   </property>
+   <property name="toolTip">
+    <string>Open a new tab with Java template</string>
+   </property>
+  </action>
+  <action name="actionNewPythonTab">
+   <property name="text">
+    <string>Python</string>
+   </property>
+   <property name="toolTip">
+    <string>Open a new tab with Python template</string>
    </property>
   </action>
   <action name="actionSave">
@@ -376,6 +419,11 @@
    </property>
    <property name="shortcut">
     <string notr="true">Ctrl+T</string>
+   </property>
+  </action>
+  <action name="actionStressTesting">
+   <property name="text">
+    <string>Stress Testing...</string>
    </property>
   </action>
   <action name="actionSettings">

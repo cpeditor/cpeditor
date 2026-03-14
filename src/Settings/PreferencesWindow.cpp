@@ -248,6 +248,11 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
             .page(TRKEY("Test Cases"), {"Run On Empty Testcase", "Check On Testcases With Empty Output", "Auto Uncheck Accepted Testcases"})
             .page(TRKEY("Load External File Changes"), {"Auto Load External Changes If No Unsaved Modification", "Ask For Loading External Changes"})
             .page(TRKEY("Stopwatch"), {"Display Stopwatch", "Toggle Stopwatch On Tab Switch", "Hide Stopwatch Result"})
+            .dir(TRKEY("Stress Testing"))
+                .page(TRKEY("Generator Template"), {"Generator Template/Language", "Generator Template/Template Path", "Generator Template/Template Cursor Position Regex",
+                                                     "Generator Template/Template Cursor Position Offset Type",
+                                                     "Generator Template/Template Cursor Position Offset Characters"})
+            .end()
         .end()
         .dir(TRKEY("Extensions"))
             .dir(TRKEY("Code Formatting"))
@@ -264,7 +269,7 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
                 "Competitive Companion/Set Time Limit For Tab", "Competitive Companion/Connection Port",
                 "Competitive Companion/Head Comments", "Competitive Companion/Head Comments Time Format",
                 "Competitive Companion/Head Comments Powered By CP Editor"}, false)
-            .page(TRKEY("CF Tool"), {"CF/Path", "CF/Show Toast Messages"})
+            .page(TRKEY("CF Tool"), {"CF/Enable","CF/Path", "CF/Show Toast Messages"})
             .page(TRKEY("WakaTime"),{"WakaTime/Enable", "WakaTime/Path", "WakaTime/Api Key", "WakaTime/Proxy"})
         .end()
         .dir(TRKEY("File Path"))

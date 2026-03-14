@@ -259,6 +259,262 @@ Build time: %4
         <source>Press F11 key to exit full-screen mode.</source>
         <translation>Πατήστε το F11 κουμπί για να βγείτε από πλήρες οθόνη.</translation>
     </message>
+    <message>
+        <source>New File</source>
+        <translation type="unfinished">Νέο αρχείο</translation>
+    </message>
+    <message>
+        <source>Open a new tab in the editor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save the file on the disk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save As...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save as new file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save all opened files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close Current</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close current tab</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close saved tabs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close All the tabs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Quit the application</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open File...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open Contest...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open a Contest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Indent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unindent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Swap Line Up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Swap Line Down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Duplicate Line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete Line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Toggle Comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Toggle Block Comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Compile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Compile and Run</source>
+        <translation type="unfinished">Μεταγλώττιση και εκτέλεση</translation>
+    </message>
+    <message>
+        <source>Run</source>
+        <translation type="unfinished">Εκτέλεση</translation>
+    </message>
+    <message>
+        <source>Format code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Run Detached</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Kill Processes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find and Replace</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use Snippet...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Preferences</source>
+        <translation type="unfinished">Προτιμήσεις</translation>
+    </message>
+    <message>
+        <source>Reset Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export Settings...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import Settings...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export Session...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Load Session...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Manual</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Report issues</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About Qt</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check for updates</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Support us</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Editor Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>IO Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Split Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Full Screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show Log Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete Log Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Actions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Help</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Generator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open a new tab with generator template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>C++</source>
+        <translation type="unfinished">C++</translation>
+    </message>
+    <message>
+        <source>Open a new tab with C++ template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Java</source>
+        <translation type="unfinished">Java</translation>
+    </message>
+    <message>
+        <source>Open a new tab with Java template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Python</source>
+        <translation type="unfinished">Python</translation>
+    </message>
+    <message>
+        <source>Open a new tab with Python template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stress Testing...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New File From Template</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CodeSnippetsPage</name>
@@ -669,6 +925,83 @@ Press any key to exit</source>
     </message>
 </context>
 <context>
+    <name>FindReplaceDialog</name>
+    <message>
+        <source>Find/Replace</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>FindReplaceForm</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace with:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>errorLabel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Direction</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Case sensitive</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Whole words only</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;whether the text to search should be interpreted as a regular expression.&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You may want to take a look at the syntax of regular expressions:&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://doc.trolltech.com/qregexp.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://doc.trolltech.com/qregexp.html&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Regular Expression</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Replace All</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <source>Compiler</source>
@@ -905,6 +1238,38 @@ Do you want to reload it?</source>
     <message>
         <source>Failed to start compilation: %1</source>
         <translation>Απέτυχε να ξεκινήσει η μεταγλώττιση: %1</translation>
+    </message>
+    <message>
+        <source>CP Editor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>cursor info</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Compile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Run</source>
+        <translation type="unfinished">Εκτέλεση</translation>
+    </message>
+    <message>
+        <source>Compile and Run</source>
+        <translation type="unfinished">Μεταγλώττιση και εκτέλεση</translation>
+    </message>
+    <message>
+        <source>Messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Clear</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>C++</source>
+        <translation type="unfinished">C++</translation>
     </message>
 </context>
 <context>
@@ -1239,6 +1604,1244 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <source>Stopwatch</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Stress Testing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Generator Template</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SettingsInfo</name>
+    <message>
+        <source>Tab Width</source>
+        <translation>Πλάτος καρτέλας</translation>
+    </message>
+    <message>
+        <source>The width of the tab character, or the number of spaces of an indent</source>
+        <translation>Το πλάτος των χαρακτήρων σε καρτέλες ή ο αριθμός τον κενών σε μια εσοχή</translation>
+    </message>
+    <message>
+        <source>Cursor Width</source>
+        <translation>Πλάτος κέρσορα</translation>
+    </message>
+    <message>
+        <source>The width of the cursor in pixels</source>
+        <translation>Το πλάτος του κέρσορα σε εικονοκύτταρα</translation>
+    </message>
+    <message>
+        <source>Editor Font</source>
+        <translation>Γραμματοσειρά συντάκτη</translation>
+    </message>
+    <message>
+        <source>The font of the code editor</source>
+        <translation>Η γραμματοσειρά του συντάκτη κώδικα</translation>
+    </message>
+    <message>
+        <source>Default Language</source>
+        <translation>Προκαθορισμένη γλώσσα</translation>
+    </message>
+    <message>
+        <source>The default language used when opening new tabs</source>
+        <translation>Η προκαθορισμένη γλώσσα που θα χρησιμοποιείται όταν ανοίγουν νέες καρτέλες</translation>
+    </message>
+    <message>
+        <source>Path</source>
+        <translation>Διαδρομή</translation>
+    </message>
+    <message>
+        <source>The path to the Clang Format executable file</source>
+        <translation>Η διαδρομή του αρχείου μορφοποίησης Clang</translation>
+    </message>
+    <message>
+        <source>The Clang Format style options, which are usually saved in a .clang-format configuration file.
+You can learn about it at &lt;https://clang.llvm.org/docs/ClangFormatStyleOptions.html&gt;.</source>
+        <translation>Το στύλ μορφοποίησης Clang, έχει συνήθως την επέκταση.clang-format.
+Μπορείτε να μάθετε για την μορφοποίηση Clang εδώ &lt;https://clang.llvm.org/docs/ClangFormatStyleOptions.html&gt;.</translation>
+    </message>
+    <message>
+        <source>The template used when creating a new C++ file</source>
+        <translation>Το πρότυπο που θα χρησιμοποιηθεί όταν δημιουργείται αρχεία τύπου C++</translation>
+    </message>
+    <message>
+        <source>The regular expression which matches a part of the code template.
+When opening a template, the position of the cursor is the position of the regex with an offset.
+The cursor will be at the end of the template if there&apos;s no match of the regex.</source>
+        <translation>Η προκαθορισμένη έκφραση όπου ταιριάζει ένα κομμάτι κώδικα με το πρότυπο κώδικα.
+Όταν ανοίγεται ένα πρότυπο, η θέση του κέρσορα είναι η θέση του regex με ένα αντιστάθμισμα.
+Ο κέρσορας θα είναι στο τέλος του προτύπου αν δεν υπάρχει καμια αναφορά στο regex.</translation>
+    </message>
+    <message>
+        <source>Whether the offset is relative to the start of the regex or the end of the regex.</source>
+        <translation>Ανεξάρτητα αν το αντιστάθμισμα είναι σχετικό με την αρχή του regex ή το τέλος του regex.</translation>
+    </message>
+    <message>
+        <source>The offset relative to the match of the regex in the number of characters, including white spaces.</source>
+        <translation>Το αντιστάθμισμα είναι σχετικό με τον αριθμό των χαρακτήρων στο regex, συμπεριλαμβάνονται και οι κενοί χαρακτήρες.</translation>
+    </message>
+    <message>
+        <source>The command used to compile C++. It should NOT include the path to the source file or &quot;-o &lt;output file&gt;&quot;.</source>
+        <translation>Η εντολή που χρησιμοποιείται για την μεταγλώττιση της C ++. ΔΕΝ πρέπει να περιλαμβάνει την διαδρομή του πηγαίου αρχείου ή την παράμετρο &quot;-o &lt;output file&gt;&quot;.</translation>
+    </message>
+    <message>
+        <source>The runtime arguments when executing a C++ program</source>
+        <translation>Οι παράμετροι όταν εκτελείται ένα πρόγραμμα C++</translation>
+    </message>
+    <message>
+        <source>The template used when creating a new Java file</source>
+        <translation>Το πρότυπο που θα χρησιμοποιείτε με της δημιουργία ενός αρχείου Java</translation>
+    </message>
+    <message>
+        <source>The command used to compile Java.
+It should NOT include the path to the source file or the path of the compiled class file.</source>
+        <translation>Η εντολή που θα χρησιμοποιείτε όταν μεταγλωττίζεται ένα αρχείο Java.
+ΔΕΝ πρέπει να περιέχει την διαδρομή του πηγαίου αρχείου ή την διαδρομή του μεταγγλωτισμένου αρχείου κλάσης.</translation>
+    </message>
+    <message>
+        <source>The runtime arguments when executing a Java program</source>
+        <translation>Οι παράμετροι όταν εκτελείται ένα πρόγραμμα Java</translation>
+    </message>
+    <message>
+        <source>The command to start a Java program. It should NOT include &quot;-classpath &lt;path&gt; &lt;class name&gt;&quot;.</source>
+        <translation>Η εντολή εκκίνησης του προγράμματος Java. ΔΕΝ πρέπει να περιέχει &quot;-classpath &lt;path&gt; &lt;class name&gt;&quot;.</translation>
+    </message>
+    <message>
+        <source>%1 Run Command</source>
+        <translation>%1 Εντολή εκτέλεσης</translation>
+    </message>
+    <message>
+        <source>%1 Class Name</source>
+        <translation>%1 Όνομα κλάσης</translation>
+    </message>
+    <message>
+        <source>%1 Class Path</source>
+        <translation>%1 Διαδρομή κλάσης</translation>
+    </message>
+    <message>
+        <source>The path of the parent directory of the compiled class file.
+It&apos;s relative to the source file, or the temporary directory if the tab is untitled.
+You can use &quot;${filename}&quot; for the complete file name,
+&quot;${basename}&quot; for the base file name without the suffix,
+&quot;${tmpdir}&quot; or &quot;${tempdir}&quot; for the absolute path of the temporary directory.</source>
+        <translation>Η διαδρομή του κυρίου φακέλου του μεταγλωττισμένου αρχείου κλάσης.
+Είναι σχετική με το πηγαίο αρχείο ή με τον προσωρινό φάκελο αν η καρτέλα δεν έχει όνομα.
+Μπορείτε να χρησιμοποιήσετε &quot;${filename}&quot; για το μεταγλωττισμένο όνομα αρχείου,
+&quot;${basename}&quot; για να ορίσετε το όνομα του πηγαίου αρχείου,
+&quot;${tmpdir}&quot; ή &quot;${tempdir}&quot; για την απόλυτη διαδρομή του προσωρινού φακέλου.</translation>
+    </message>
+    <message>
+        <source>The template used when creating a new Python file</source>
+        <translation>Το πρότυπο που θα χρησιμοποιηθεί με την δημιουργία ενός καινούργιου αρχείου Python</translation>
+    </message>
+    <message>
+        <source>The runtime arguments when executing a Python program</source>
+        <translation>Οι παράμετροι που θα χρησιμοποιηθούν στην εκτέλεση του Python προγράμματος</translation>
+    </message>
+    <message>
+        <source>The command to start a Python program. It should NOT include the path to the source file.</source>
+        <translation>Η εντολή εκκίνησης του προγράμματος Python. ΔΕΝ πρέπει να περιέχει την διαδρομή του πηγαίου προγράμματος.</translation>
+    </message>
+    <message>
+        <source>Editor Theme</source>
+        <translation>Θέμα συντάκτη</translation>
+    </message>
+    <message>
+        <source>The syntax highlight theme of the code editor</source>
+        <translation>Θέμα ανάδειξεις σύνταξης του συντάκτη κώδικα</translation>
+    </message>
+    <message>
+        <source>Auto Complete Parentheses</source>
+        <translation>Αυτόματη ολοκλήρωση παρενθέσεων</translation>
+    </message>
+    <message>
+        <source>Auto Remove Parentheses</source>
+        <translation>Αυτόματη αφαίρεση παρενθέσεων</translation>
+    </message>
+    <message>
+        <source>Auto Indent</source>
+        <translation>Αυτόματη εσοχή</translation>
+    </message>
+    <message>
+        <source>Add an indent when entering a new line after a &quot;{&quot;.</source>
+        <translation>Εισαγωγή εσοχής όταν δημιουργείται νέα γραμμή μετά από τον χαρακτήρα &quot;{&quot;.</translation>
+    </message>
+    <message>
+        <source>Enable Auto Save</source>
+        <translation>Επιτροπή αυτόματης αποθήκευσης</translation>
+    </message>
+    <message>
+        <source>Wrap Text</source>
+        <translation>Αναδίπλωση κειμένου</translation>
+    </message>
+    <message>
+        <source>Wrap a line into several lines if it doesn&apos;t fit into the screen.</source>
+        <translation>Αναδήπλωση γραμμής σε αρκετές γραμμές αν δεν χωράνε στην οθόνη.</translation>
+    </message>
+    <message>
+        <source>Use the beta version</source>
+        <translation>Χρησιμοποιείστε την beta έκδοση</translation>
+    </message>
+    <message>
+        <source>Check for updates marked as pre-releases, which are considered not very stable but have more features.</source>
+        <translation>Ελέγξτε για pre release ενημερώσεις. ΠΡΟΣΟΧΗ, αυτές οι εκδόσεις είναι ασταθείς αλλά έχουν περισσότερα χαρακτηριστικά.</translation>
+    </message>
+    <message>
+        <source>Pairs of regular expressions used when adding pairs of test cases from files.
+Each pair of regular expressions represents a test case.</source>
+        <translation>Τα ζευγάρια τακτικών εκφράσεων χρησιμοποιούνται όταν προστίθενται ζευγάρια δοκιμών από αρχεία.
+Κάθε ζευγάρι τακτικής έκφρασης αναπαριστά μια δοκιμή.</translation>
+    </message>
+    <message>
+        <source>Automatically complete a pair of parentheses when typing the left element of it,
+and move out of it when typing the right element of it.
+This can be overridden for each parenthesis in each language.</source>
+        <translation>Αυτόματη συμπλήρωση ζευγάρι παρενθέσεων όταν πληκτρολογήσετε το αριστερό αντικείμενο και όταν φεύγετε ενώ πληκτρολογείτε το αριστερό στοιχείο.
+Αυτό μπορεί να αλλάξει για κάθε παράγραφο σε κάθε γλώσσα.</translation>
+    </message>
+    <message>
+        <source>%1 Template Path</source>
+        <translation>%1 Διαδρομή προτύπου</translation>
+    </message>
+    <message>
+        <source>%1 Template Cursor Position Regex</source>
+        <translation>%1 Πρότυπο τοποθεσίας κέρσορα regex</translation>
+    </message>
+    <message>
+        <source>%1 Template Cursor Position Offset Type</source>
+        <translation>%1 Πρότυπο τύπο αντισταθμίσματος τοποθεσίας κέρσορα</translation>
+    </message>
+    <message>
+        <source>%1 Template Cursor Position Offset Characters</source>
+        <translation>%1 Πρότυπο αντισταθμίσματος τοποθεσίας κέρσορα χαρακτήρων</translation>
+    </message>
+    <message>
+        <source>%1 Compile Command</source>
+        <translation>%1 Εντολή μεταγλώττισης</translation>
+    </message>
+    <message>
+        <source>%1 Executable File Path</source>
+        <translation>%1 Διαδρομή εκτελέσιμου αρχείου</translation>
+    </message>
+    <message>
+        <source>The path of the compiled executable file.
+It&apos;s relative to the source file, or the temporary directory if the tab is untitled.
+No &quot;.exe&quot; is needed.
+You can use &quot;${filename}&quot; for the complete file name,
+&quot;${basename}&quot; for the base file name without the suffix,
+&quot;${tmpdir}&quot; or &quot;${tempdir}&quot; for the absolute path of the temporary directory.</source>
+        <translation>Η διαδρομή του μεταγλωττισμένου εκτελέσιμου αρχείου.
+Είναι σχετικό με το πηγαίο αρχείο ή με τον προσωρινό φάκελο άν η καρτέλα δεν έχει όνομα.
+Δεν χρειάζεται η επέκταση αρχείου &quot;.exe&quot;.
+Μπορείτε να χρησιμοποιήσετε &quot;${filename}&quot; για το μεταγλωττισμένο όνομα αρχείου,
+&quot;${basename}&quot; για το όνομα του πηγαίου αρχείου χωρίς την επέκταση του αρχείου,
+&quot;${tmpdir}&quot; ή &quot;${tempdir}&quot; για την απόλυτη διαδρομή του προσωρινού φακέλου.</translation>
+    </message>
+    <message>
+        <source>%1 Run Arguments</source>
+        <translation>%1 Παράμετροι εκτέλεσης</translation>
+    </message>
+    <message>
+        <source>The name of the main class of your solution.</source>
+        <translation>Το όνομα της κύριας κλάσης για την λύση σας.</translation>
+    </message>
+    <message>
+        <source>Automatically delete the whole pair of parentheses when deleting
+the left element of it if the two elements are adjacent.
+This can be overridden for each parenthesis in each language.</source>
+        <translation>Αυτόματη διαγραφή για το ζευγάρι παρενθέσεων όταν διαγράφεται το αριστερό αντικείμενο ή όταν τα δύο γειτονικά αντικείμενα είναι γειτονικά.
+Αυτό μπορεί να παρακαμψεί κάθε παρένθεση σε κάθε γλώσσα.</translation>
+    </message>
+    <message>
+        <source>Jump out of a parenthesis by pressing Tab</source>
+        <translation>Βγείτε από ένα ζευγάρι παρενθέσεων πατώντας Tab</translation>
+    </message>
+    <message>
+        <source>When this is enabled, you can use Tab instead of the
+closing parenthesis to jump out of a parenthesis.
+This can be overridden for each parenthesis in each language.</source>
+        <translation>Όταν αυτό είναι ενεργοποιημένο, μπορείτε να χρησιμοποιήσετε το κουμπί Tab εκτός από το να κλείσετε τις παρενθέσεις για να βγείτε από αυτές τις παρενθέσεις.
+Αυτό μπορεί να παρακαμπμφθεί για κάθε παρένθεση για κάθε γλώσσα.</translation>
+    </message>
+    <message>
+        <source>Use spaces instead of a tab character.</source>
+        <translation>Χρησιμοποιήσει κενών εκτός από τον χαρακτήρα Tab.</translation>
+    </message>
+    <message>
+        <source>Replace tabs by spaces</source>
+        <translation>Αντικατάσταση Tabs με κενά</translation>
+    </message>
+    <message>
+        <source>Save Testcases on Save</source>
+        <translation>Αποθήκευση δοκιμών κατά την αποθήκευση</translation>
+    </message>
+    <message>
+        <source>Save the test cases on the disk when saving a file, and load the saved test cases when opening a file.</source>
+        <translation>Αποθήκευση τον δοκιμών στον δίσκο όταν απόθηκεύεται κάποιο αρχείο, και φώρτοση τον παλιών δοκιμών όταν ανοίξει κάποιο αρχείο.</translation>
+    </message>
+    <message>
+        <source>Check for updates on startup</source>
+        <translation>Έλεγχος για ενημερώσεις κατά την εκκίνηση</translation>
+    </message>
+    <message>
+        <source>Check whether there&apos;s a new version of CP Editor when starting CP Editor.</source>
+        <translation>Έλεγχος αν υπάρχει νέα έκδοση του CP συντάκτη κατα την εκκίνηση.</translation>
+    </message>
+    <message>
+        <source>Opacity</source>
+        <translation>Αδιαφάνεια</translation>
+    </message>
+    <message>
+        <source>The opacity of the main window</source>
+        <translation>Η αδιαφάνεια του κυρίου παραθύρου</translation>
+    </message>
+    <message>
+        <source>Enable Competitive Companion</source>
+        <translation>Enable Competitive Companion</translation>
+    </message>
+    <message>
+        <source>Receive data sent by Competitive Companion and load the example test cases.</source>
+        <translation>Λήψει δεδομένων που απόστάλθηκαν από το Competitive Companion και φόρτωση τον δοκιμών.</translation>
+    </message>
+    <message>
+        <source>Connection Port</source>
+        <translation>Θύρα σύνδεσης</translation>
+    </message>
+    <message>
+        <source>The port used to receive data from Competitive Companion</source>
+        <translation>Η θύρα που χρησιμοποιείται για λήψει δεδομένων από το Competitive Companion σας</translation>
+    </message>
+    <message>
+        <source>Open New Tabs</source>
+        <translation>Άνοιγμα νέων καρτελών</translation>
+    </message>
+    <message>
+        <source>Open a new tab for each problem parsed by Competitive Companion.</source>
+        <translation>Άνοιγμα νέας καρτέλας για κάθε πρόβλημα του Competitive Companion σας.</translation>
+    </message>
+    <message>
+        <source>Format Codes</source>
+        <translation>Μορφοποίηση κωδικών</translation>
+    </message>
+    <message>
+        <source>Kill All Processes</source>
+        <translation>Τερματισμός κάθε διεργασίας</translation>
+    </message>
+    <message>
+        <source>Compile and Run</source>
+        <translation>Μεταγλώττιση και εκτέλεση</translation>
+    </message>
+    <message>
+        <source>Run Only</source>
+        <translation>Εκτέλεση μόνο</translation>
+    </message>
+    <message>
+        <source>Compile Only</source>
+        <translation>Μεταγλώττιση μόνο</translation>
+    </message>
+    <message>
+        <source>Change View Mode</source>
+        <translation>Αλλαγή λειτουργία προβολής</translation>
+    </message>
+    <message>
+        <source>Use Snippets</source>
+        <translation>Χρησιμοποίηση απόσπάσματος</translation>
+    </message>
+    <message>
+        <source>The path to the CF Tool executable file</source>
+        <translation>Η διαδρομή του εκτελέσιμου CF εργαλείου</translation>
+    </message>
+    <message>
+        <source>Show Compile And Run Only</source>
+        <translation>Δείξε το &quot;Μεταγλώττιση και εκτέλεση&quot; μόνο</translation>
+    </message>
+    <message>
+        <source>Hide the Compile Only button and the Run Only button under the code editor in the main window.</source>
+        <translation>Κρύψε το &quot;Μεταγλώττιση μόνο&quot; κουμπί και το &quot;Εκτέλεση μόνο&quot; κάτω από τον συντάκτη κώδικα στο κύριο παράθυρο.</translation>
+    </message>
+    <message>
+        <source>Display EOLN In Diff</source>
+        <translation>Δείξε το EOLN στο Diff</translation>
+    </message>
+    <message>
+        <source>Use &quot;¶&quot; to represent for the new line character in the HTML Diff Viewer.</source>
+        <translation>Χρησιμοποιήστε το χαρακτήρα &quot;¶&quot; για να αναφέρεται το \n χαρακτήρα μέσα στο HTML Diff Viewer.</translation>
+    </message>
+    <message>
+        <source>Save Files Faster</source>
+        <translation>Αποθήκευση αρχείων γρηγορότερα</translation>
+    </message>
+    <message>
+        <source>Always use QFile instead of QSaveFile to save files.
+This will be faster but with a little bit more risk of losing the file (with a very small possibility).</source>
+        <translation>Πάντα χρησιμοποίησε το QFile αντί του QSaveFile για αποθήκευση αρχείων.
+Αυτό θα είναι πιο γρήγορο για την αποθήκευση αρχείων αλλά υπάρχει μια πιθανότητα να χαθεί το αρχείο (η πιθανότητα είναι πολύ μικρή).</translation>
+    </message>
+    <message>
+        <source>Output Length Limit</source>
+        <translation>Όριο μήκους εξόδου</translation>
+    </message>
+    <message>
+        <source>The maximum number of characters in the output of the program.
+The program will be killed if either of its stdout or stderr is too long.</source>
+        <translation>Ο μέγιστος αριθμός χαρακτήρων για την έξοδο του προγράμματος.
+Το πρόγραμμα θα τερματιστή αν το stdout ή το stderr είναι πολύ μεγάλο.</translation>
+    </message>
+    <message>
+        <source>Message Length Limit</source>
+        <translation>Όριο μήκους μυνύματος</translation>
+    </message>
+    <message>
+        <source>The maximum number of characters in each message in the top-right corner of the main window.
+The message will be elided if it&apos;s too long.</source>
+        <translation>Ο μέγιστος αριθμός χαρακτήρων σε κάθε μύνυμα είναι στο πάνω δεξιά κομμάτι του κύριου παραθύρου.
+Το μύνημα θα εξαφανιστεί αν είναι πολύ μεγάλο.</translation>
+    </message>
+    <message>
+        <source>HTML Diff Viewer Length Limit</source>
+        <translation>HTML Diff Viewer όριο μήκους</translation>
+    </message>
+    <message>
+        <source>The maximum number of characters in the HTML Diff Viewer.
+The Diff Viewer will fall back to plain text if either of the output or the expected output is too long.</source>
+        <translation>Ο μέγιστος αριθμός των χαρακτήρων μέσα στο HTML Diff Viewer.
+Το Diff Viewer θα χρησιμοποιήσει την κανονική γραμματοσειρά αν η έξοδος είναι πολύ μεγάλη.</translation>
+    </message>
+    <message>
+        <source>Open File Length Limit</source>
+        <translation>Όριο μήκους άνοιγμα αρχείου</translation>
+    </message>
+    <message>
+        <source>The maximum number of characters in a source file to open.
+A source file won&apos;t be opened if it&apos;s too long.</source>
+        <translation>Ο μέγιστος αριθμός χαρακτήρων του πηγαίου αρχείου που θα ανοιχθεί.
+Το πηγαίο αρχείο δεν θα ανεχθεί αν είναι πολύ μεγάλο.</translation>
+    </message>
+    <message>
+        <source>Path to LSP executable</source>
+        <translation>Διαδρομή στο εκτελέσιμο LSP</translation>
+    </message>
+    <message>
+        <source>The path to the C++ Language Server executable</source>
+        <translation>Η διαδρομή στο C++ Language Server</translation>
+    </message>
+    <message>
+        <source>The path to the Java Language Server executable</source>
+        <translation>Η διαδρομή στο Java Language Server</translation>
+    </message>
+    <message>
+        <source>The path to the Python Language Server executable</source>
+        <translation>Η διαδρομή στο Python Language Server</translation>
+    </message>
+    <message>
+        <source>Use Linting with Language Server</source>
+        <translation>Χρησιμοποίησε Linting με το Language Server</translation>
+    </message>
+    <message>
+        <source>Show Error, Warning, Information and Hints in Code Editor for C++ Language</source>
+        <translation>Εμφάνιση σφάλματος, προειδοποιήσεις και υποδείξεις στο συντάκτη κώδικα για την γλώσσα C++</translation>
+    </message>
+    <message>
+        <source>Show Error, Warning, Information and Hints in Code Editor for Java Language</source>
+        <translation>Εμφάνιση σφάλματος, προειδοποιήσεις και υποδείξεις στο συντάκτη κώδικα για την γλώσσα Java</translation>
+    </message>
+    <message>
+        <source>Show Error, Warning, Information and Hints in Code Editor for Python Language</source>
+        <translation>Εμφάνιση σφάλματος, προειδοποιήσεις και υποδείξεις στο συντάκτη κώδικα για την γλώσσα Python</translation>
+    </message>
+    <message>
+        <source>Use auto-complete with Language Server</source>
+        <translation>Χρησιμοποίησε αυτόματη ολοκλήρωση με το Language Server</translation>
+    </message>
+    <message>
+        <source>Use autocomplete results from Language server</source>
+        <translation>Χρησιμοποίησε τις απαντήσεις αυτόματης ολοκλήρωσης του Language Server</translation>
+    </message>
+    <message>
+        <source>Delay in Linting (ms)</source>
+        <translation>Καθυστέρηση Linting σε ms</translation>
+    </message>
+    <message>
+        <source>Delay in linting in milliseconds after last modification to code</source>
+        <translation>Καθυστέρηση Linting σε ms μετά από την τελευταόα αλλαγή στον κώδικα</translation>
+    </message>
+    <message>
+        <source>Arguments for Language Server</source>
+        <translation>Παράμετροι για τον Language Server</translation>
+    </message>
+    <message>
+        <source>Arguments to pass to Language server executable</source>
+        <translation>Παράμετροι που θα περάσουν στον Language Server</translation>
+    </message>
+    <message>
+        <source>Testcases Matching Rules</source>
+        <translation>Δοκιμές για τους κανόνες αντιστοίχισης</translation>
+    </message>
+    <message>
+        <source>Input Regex</source>
+        <translation>Είσοδος Regex</translation>
+    </message>
+    <message>
+        <source>The regular expression which matches the whole input file name</source>
+        <translation>Η κοινή έκφραση που θα αντιστοιχηθούν σε όλη την είσοδο στο όνομα αρχείου</translation>
+    </message>
+    <message>
+        <source>Answer Replace</source>
+        <translation>Απάντηση-Αντικατάσταση</translation>
+    </message>
+    <message>
+        <source>The replace expression for the answer file name.
+You can use &quot;\1&quot; for the first captured group.</source>
+        <translation>Η έκφραση αντικατάστασης για την απάντηση του ονόματος αρχείου .
+Μπορείτε να χρησιμοποιήσετε &quot;\1&quot; για την πρώτη ομάδα.</translation>
+    </message>
+    <message>
+        <source>Input File Save Path</source>
+        <translation>Είσοδος διαδρομής αποθήκευσης αρχείου</translation>
+    </message>
+    <message>
+        <source>The path where the input files are saved.
+This setting is a relative path to the source file.
+You can use &quot;${filename}&quot; for the complete file name,
+&quot;${basename}&quot; for the base file name without the suffix,
+&quot;${0-index}&quot; for the index of the test case started from 0,
+&quot;${1-index}&quot; for the index of the test case started from 1.</source>
+        <translation>Η διαδρομή που απόθηκεύεται το αρχείο εισόδου.
+Αυτή η ρύθμιση είναι σχετικά με τη διαδρομή του πηγαίου κώδικα.
+Μπορείτε να χρησιμοποιήσετε το &quot;${filename}&quot; για το ολόκληρο όνομα εισόδου,
+&quot;${basename}&quot; για το όνομα του αρχείου χωρίς την επέκταση,
+&quot;${0-index}&quot; Για τον δείκτη της δοκιμής που αρχίζει από το 0,
+&quot;${0-index}&quot; Για τον δείκτη της δοκιμής που αρχίζει από το 1.</translation>
+    </message>
+    <message>
+        <source>Answer File Save Path</source>
+        <translation>Απάντηση διαδρομής αποθήκευσης αρχείου</translation>
+    </message>
+    <message>
+        <source>The path where the answer files are saved.
+This setting is a relative path to the source file.
+You can use &quot;${filename}&quot; for the complete file name,
+&quot;${basename}&quot; for the base file name without the suffix,
+&quot;${0-index}&quot; for the index of the test case started from 0,
+&quot;${1-index}&quot; for the index of the test case started from 1.</source>
+        <translation>Η διαδρομή όπου η απαντήσεις απόθηκεύονται.
+Αυτή η ρύθμιση είναι σχετικά με τη διαδρομή του πηγαίου κώδικα.
+Μπορείτε να χρησιμοποιήσετε το &quot;${filename}&quot; για το ολόκληρο όνομα εισόδου,
+&quot;${basename}&quot; για το όνομα του αρχείου χωρίς την επέκταση,
+&quot;${0-index}&quot; Για τον δείκτη της δοκιμής που αρχίζει από το 0,
+&quot;${0-index}&quot; Για τον δείκτη της δοκιμής που αρχίζει από το 1.</translation>
+    </message>
+    <message>
+        <source>Default File Paths For Problem URLs</source>
+        <translation>Προκαθορισμένες διαδρομές αρχείων για τα URLs των προβλημάτων</translation>
+    </message>
+    <message>
+        <source>The default file path used when saving a new file while the problem URL is set</source>
+        <translation>Η προκαθορισμένη διαδρομή που θα απόθηκεύονται νέα αρχεία όσο υπάρχει το URL του προβλήματος</translation>
+    </message>
+    <message>
+        <source>Problem URL</source>
+        <translation>URL προβλήματος</translation>
+    </message>
+    <message>
+        <source>The regular expression which matches a part of the problem URL</source>
+        <translation>Η κοινή έκφραση που θα αντιστοιχίσει το κομμάτι του URL προβλήματος</translation>
+    </message>
+    <message>
+        <source>File Path</source>
+        <translation>Διαδρομή αρχείου</translation>
+    </message>
+    <message>
+        <source>The replace expression for the file path, without file name suffix.
+You can use &quot;\1&quot; for the first captured group.</source>
+        <translation>Η έκφραση αντικατάστασης για την διαδρομή αρχείου, χωρίς την επέκταση αρχείου.
+Μπορείτε να χρησιμοποιήσετε το &quot;\1&quot; για την πρώτη ομάδα.</translation>
+    </message>
+    <message>
+        <source>Test Cases Font</source>
+        <translation>Γραμματοσειρά δοκιμών</translation>
+    </message>
+    <message>
+        <source>The font of test cases</source>
+        <translation>Η γραμματοσειρά των δοκιμών</translation>
+    </message>
+    <message>
+        <source>Add extra margin at the bottom of the code editor</source>
+        <translation>Εισάγεται ένα περιθώριο στο κάτω μέρος του συντάκτη κώδικα</translation>
+    </message>
+    <message>
+        <source>Add an extra margin with the height of a page at the bottom of the code editor.
+Due to technical reasons, changing the height of the margin affects the undo history.</source>
+        <translation>Εισάγεται περιθώριο με το ύψος της σελίδας στο κάτω κομμάτι του συντάκτη κώδικα.
+Λόγο ενός τεχνικού προβλήματος, η αλλαγή του περιθωρίου θα επηρεάσει την ιστορίας αναίρεσης.</translation>
+    </message>
+    <message>
+        <source>Message Logger Font</source>
+        <translation>Γραμματοσειρά καταγραφέας μηνυμάτων</translation>
+    </message>
+    <message>
+        <source>The font of the message logger</source>
+        <translation>Η γραμματοσειρά του καταγραφέα μηνυματών</translation>
+    </message>
+    <message>
+        <source>Save File On Compilation</source>
+        <translation>Αποθήκευση αρχείου μετά την μεταγλώττιση</translation>
+    </message>
+    <message>
+        <source>Save the source file when compiling it. It won&apos;t be saved if the tab is untitled.</source>
+        <translation>Αποθήκευση πηγαίου αρχείου κατα την μεταγλώττιση του. Το αρχείο δεν θα απόθηκευτή αν η καρτέλα δεν έχει όνομα.</translation>
+    </message>
+    <message>
+        <source>Save File On Execution</source>
+        <translation>Αποθήκευση αρχείου μετά την εκτέλεση</translation>
+    </message>
+    <message>
+        <source>Save the source file when running it. It won&apos;t be saved if the tab is untitled.</source>
+        <translation>Αποθήκευση του πηγαίου αρχείου κατά την εκτέλεση του. Δεν θα απόθηκευτή αν η καρτέλα δεν έχει όνομα.</translation>
+    </message>
+    <message>
+        <source>Restore the problem URL when opening a file</source>
+        <translation>Επαναφορά του URL του προβλήματος όταν ανοίξει το αρχείο</translation>
+    </message>
+    <message>
+        <source>If a problem URL was set for a file, when you open
+that file again, the problem URL will be restored.</source>
+        <translation>Αν το URL του προβλήματος έχει ρυθμιστεί σε ένα αρχείο, όταν ανοίξεται αυτο το αρχείο ξανά,
+το URL του προβλήματος θα επαναφορτωθεί.</translation>
+    </message>
+    <message>
+        <source>If a problem URL was set for a file, when parsing that problem
+from Competitive Companion again, the old file will be opened.</source>
+        <translation>Αν το URL του προβλήματος έχει ρυθμιστεί σε ένα αρχείο, όταν αναλύεται το πρόβλημα
+από ένα Competitive Companion πάλι, το παλιό αρχείο θα ανοιχθεί.</translation>
+    </message>
+    <message>
+        <source>Open the old file when parsing an old problem URL</source>
+        <translation>Άνοιτε το παλιό αρχείο όταν αναλύεται το παλιό URL πρόβλημα</translation>
+    </message>
+    <message>
+        <source>UI Language</source>
+        <translation>UI γλώσσα</translation>
+    </message>
+    <message>
+        <source>The language displayed in the UI.</source>
+        <translation>Η γλώσσα που εμφανίζεται στο UI.</translation>
+    </message>
+    <message>
+        <source>UI Style</source>
+        <translation>UI στύλ</translation>
+    </message>
+    <message>
+        <source>The style of the whole application.</source>
+        <translation>Το στύλ της εφαρμογής.</translation>
+    </message>
+    <message>
+        <source>Run your codes on empty test cases</source>
+        <translation>Εκτελέστε τους κώδικες σας σε άδειες δοκιμές</translation>
+    </message>
+    <message>
+        <source>Run your code on all non-hidden test cases even if the input is empty.</source>
+        <translation>Εκτελέστε των κώδικα σε όλες τις κρυφές δοκιμές ακόμα και αν οι είσοδοι είναι άδειοι.</translation>
+    </message>
+    <message>
+        <source>Check your answer on test cases with empty output</source>
+        <translation>Ελέγξτε την απάντηση σας στις δοκιμές με άδειες εισόδους</translation>
+    </message>
+    <message>
+        <source>Check your answer even if your output or the expected output is empty.</source>
+        <translation>Ελέγξτε την απάντηση σας αν η έξοδος ή αν η αναμενόμενη έξοδο σας είναι άδεια.</translation>
+    </message>
+    <message>
+        <source>Auto Save Interval (ms)</source>
+        <translation>Διάστημα αυτόματης αποθήκευσης (ms)</translation>
+    </message>
+    <message>
+        <source>The time interval between a modification and an auto-save, or between two auto-saves.</source>
+        <translation>Το χρονικό διάστημα ανάμεσα σε μια τροποποίηση και σε αυτόματη αποθήκευση, ή ανάμεσα σε δύο αυτόματες απόθηκεύσης.</translation>
+    </message>
+    <message>
+        <source>Auto Save Interval Type</source>
+        <translation>Τύπο αυτόματου διάστημα αποθήκευσης</translation>
+    </message>
+    <message>
+        <source>After the last modification: the timer will be reset after a modification to the code.
+After the first modification: the timer will start after a modification if at that time the timer is not running.
+Without modification: auto-save happens with a constant interval no matter there are modifications or not.</source>
+        <translation>Μετά από την τελευταία τροποποίηση ο χρονομετρητής θα επαναφερθεί μετά μια τροποποίηση στον κώδικα.
+Μετά από την πρώτη τροποποίηση ο χρονομετρητής θα αρχίσει αν ο χρονομετρητής δεν έχει ίδη αρχίσει.
+Χωρίς τροποποίηση μια αυτόματη αποθήκευση με σταθερό διάστημα ανεξαρτήτως αν υπάρχει τροποποίηση ή όχι.</translation>
+    </message>
+    <message>
+        <source>Restore last session at startup</source>
+        <translation>Επαναφορά της τελευταίας συνεδρίασης κατά την εκκίνηση</translation>
+    </message>
+    <message>
+        <source>Restore the last session when the application starts.
+When this is enabled, you won&apos;t be asked whether to save unsaved files when exiting.</source>
+        <translation>Επαναφορά της τελευταίας συνεδρίασης κατά την εκκίνηση της εφαρμογής.
+Όταν αυτό είναι ενεργοποιημένο δεν θα σας ρωτάμε αν υπάρχουν αλλαγές που δεν έχουνε απόθηκευτεί.</translation>
+    </message>
+    <message>
+        <source>Auto-save the current session periodically</source>
+        <translation>Αυτόματη αποθήκευση τις τορινής συνεδρίασης περιοδικά</translation>
+    </message>
+    <message>
+        <source>Auto-save the current session periodically instead of only save when the application exists.
+This is useful if your computer is frozen and you have to cut off the power or
+kill the application with SIGKILL which could not be handled by the application.</source>
+        <translation>Η αυτόματη αποθήκευση της τωρινής συνεδρίασης περιοδικά αντιθέτως από την Αποθήκευση μόνο όταν η εφαρμογή είναι ενεργεί.
+Αυτό είναι χρήσιμο αν ο υπολογιστής έχει παγώσει και πρέπει να κλείσετε τον υπολογυστή ή
+να κλείσετε την εφαρμογή.</translation>
+    </message>
+    <message>
+        <source>Auto-save Session Interval</source>
+        <translation>Αυτόματη αποθήκευση συνεδρίασης περιοδικά</translation>
+    </message>
+    <message>
+        <source>The time interval between two auto-saves of the current session.</source>
+        <translation>Το χρονικό διάστημα ανάμεσα σε δύο αυτόματες απόθηκεύσης της τορινής συνεδρίασης.</translation>
+    </message>
+    <message>
+        <source>Test Case Maximum Height</source>
+        <translation>Μέγιστο ύψος δοκιμών</translation>
+    </message>
+    <message>
+        <source>The maximum height of a test case without a scrollbar in pixels.</source>
+        <translation>Το μέγιστο ύψος μιας δοκιμής χωρίς την γραμμή κύλισης σε εικονοστοιχεία.</translation>
+    </message>
+    <message>
+        <source>The hostname of the proxy, e.g. 127.0.0.1</source>
+        <translation>Το πληρεξούσιο όνομα κεντρικού υπολογιστή π.χ. 127.0.0.1</translation>
+    </message>
+    <message>
+        <source>The port of the proxy, e.g. 1080</source>
+        <translation>Η θύρα του πληρεξούσιο π.χ. 1080</translation>
+    </message>
+    <message>
+        <source>The user of the proxy server. It can be empty if the proxy server doesn&apos;t require authentication.</source>
+        <translation>Ο χρήστης του πληρεξούσιο server μπορεί να είναι άδειο αν ο πληρεξούσιος server δεν χεριάζεται αυθεντικοποίηση.</translation>
+    </message>
+    <message>
+        <source>The password of the proxy server. It can be empty if the proxy server doesn&apos;t require authentication.</source>
+        <translation>Ο κωδικός του πληρεξούσιο server μπορεί να είναι άδειο αν ο πληρεξούσιος server δεν χεριάζεται αυθεντικοποίηση.</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>Τύπος</translation>
+    </message>
+    <message>
+        <source>Host Name</source>
+        <translation>Όνομα κεντρικού υπολογιστή</translation>
+    </message>
+    <message>
+        <source>Port</source>
+        <translation>Θύρα</translation>
+    </message>
+    <message>
+        <source>User</source>
+        <translation>Χρήστης</translation>
+    </message>
+    <message>
+        <source>Password</source>
+        <translation>Κωδικός</translation>
+    </message>
+    <message>
+        <source>The type of the proxy. &quot;System&quot; for using the system proxy.</source>
+        <translation>Ο τύπος του πληρεξούσιου.</translation>
+    </message>
+    <message>
+        <source>Use Custom Application Font</source>
+        <translation>Χρησιμοποιήστε προσαρμοσμένη γραμματοσειρά για την εφαρμογή</translation>
+    </message>
+    <message>
+        <source>Use a custom font for the whole application instead of the default system font.</source>
+        <translation>Χρησιμοποιήστε μια προσαρμοσμένη γραμματοσειρά για ολόκληρη την εφαρμογή αντιθέτος από την προκαθορισμένη γραμματοσειρά του συστηματός σας.</translation>
+    </message>
+    <message>
+        <source>Custom Application Font</source>
+        <translation>Εφαρμογή προσαρμοσμένης γραμματοσειράς</translation>
+    </message>
+    <message>
+        <source>The custom font for the whole application</source>
+        <translation>Η προσαρμοσμένη γραμματοσειρά ολόκληρης της εφαρμογής</translation>
+    </message>
+    <message>
+        <source>%1 Compiler Output Codec</source>
+        <translation>%1 Έξοδος μεταγλωττιστή Codec</translation>
+    </message>
+    <message>
+        <source>Text codec of the compiler output (errors, warnings, etc.)</source>
+        <translation>Codec κειμένου για την έξοδο του μεταγλωττιστή (προβλήματα, προειδοποιήσεις κ.λ.π.)</translation>
+    </message>
+    <message>
+        <source>Default Path Names And Paths</source>
+        <translation>Προκαθορισμένη διαδρομή για ονόματα και διαδρομές</translation>
+    </message>
+    <message>
+        <source>A list of default paths.
+They can be used in actions&apos; corresponding default paths by using ${&lt;default path name&gt;} as a place holder.
+They can be either manually set or automatically changed after choosing a path for an action.</source>
+        <translation>Η λίστα από τις προκαθορισμένες διαδρομές.
+Μπορούν να χρησιμοποιηθούν στις ενέργειες που απασχολούν τις προκαθορισμένες διαδρομές χρησιμοποιώντας το ${&lt;default path name&gt;}.
+Μπορούν να οριστούν χειροκίνητα ή αυτόματα αφότου οριστεί μια διαδρομή για μια δράση.</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>Όνομα</translation>
+    </message>
+    <message>
+        <source>The name of a default path</source>
+        <translation>Το όνομα της προκαθορισμένης διαδρομής</translation>
+    </message>
+    <message>
+        <source>The path of a default path</source>
+        <translation>Η διαδρομή της προκαθορισμένης διαδρομής</translation>
+    </message>
+    <message>
+        <source>Open File</source>
+        <translation>Άνοιγμα αρχείου</translation>
+    </message>
+    <message>
+        <source>The default path used when choosing a path for %1.
+You can use ${&lt;default path name&gt;} as a place holder.</source>
+        <translation>Η προκαθορισμένη διαδρομή χρησιμοποιείται όταν επιλέγεται μια διαδρομή για %1.
+Μπορείτε να χρησιμοποιήσετε ${&lt;default path name&gt;}.</translation>
+    </message>
+    <message>
+        <source>The default paths changed after choosing a path for %1.
+It is a list of &lt;default path name&gt;s, separated by commas, and can be empty.</source>
+        <translation>Η προκαθορισμένες διαδρομές άλλαξαν αφότου διαλέξατε την διαδρομή %1.
+Είναι μια λίστα του &lt;default path name&gt;, χωρισμένο από κόμματα (επίσης, η λίστα μπορει να είναι άδεια).</translation>
+    </message>
+    <message>
+        <source>Save File</source>
+        <translation>Αποθήκευση αρχείου</translation>
+    </message>
+    <message>
+        <source>Open Contest</source>
+        <translation>Ανοιχτός διαγωνισμός</translation>
+    </message>
+    <message>
+        <source>Load Single Test Case</source>
+        <translation>Άνοιγμα αρχείου μιας δοκιμής</translation>
+    </message>
+    <message>
+        <source>Add Pairs Of Test Cases</source>
+        <translation>Εισάγεται ζευγάρια από δοκιμές</translation>
+    </message>
+    <message>
+        <source>Custom Checker</source>
+        <translation>Προσαρμοσμένος ελεγκτής</translation>
+    </message>
+    <message>
+        <source>Export And Import Settings</source>
+        <translation>Εξαγωγή και εισαγωγή ρυθμίσεων</translation>
+    </message>
+    <message>
+        <source>Export And Load Session</source>
+        <translation>Εξαγωγή και φόρτωση συνεδρίασης</translation>
+    </message>
+    <message>
+        <source>Extract And Load Snippets</source>
+        <translation>Εξαγωγή και φόρτωση απόσπασμάτον</translation>
+    </message>
+    <message>
+        <source>Default path used for %1</source>
+        <translation>Προκαθορισμένη διαδρομή που χρησιμοποιείται για %1</translation>
+    </message>
+    <message>
+        <source>Default paths changed by %1</source>
+        <translation>Προκαθορισμένες διαδρομές άλλαξαν από %1</translation>
+    </message>
+    <message>
+        <source>It can be overridden by %1.</source>
+        <translation>Μπορεί να παρακαμπτεί από %1.</translation>
+    </message>
+    <message>
+        <source>Format code on manual save</source>
+        <translation>Μορφοποίηση κώδικα από μη αυτόματη αποθήκευση</translation>
+    </message>
+    <message>
+        <source>Format code on auto-save</source>
+        <translation>Μορφοποίηση κώδικα στην αυτόματη αποθήκευση</translation>
+    </message>
+    <message>
+        <source>Auto-load external file changes if there&apos;s no unsaved modification</source>
+        <translation>Αυτόματη φόρτωση εξωτερικών αλλαγμένων αρχείων αν δεν υπάρχουνε μη απόθηκευμένες τροποποίηση</translation>
+    </message>
+    <message>
+        <source>Automatically load file changes that are not made in CP Editor if there&apos;s no unsaved modification in CP Editor.</source>
+        <translation>Αυτόματη φόρτωση τροποποιημένων αρχείων που δεν τροποποιήθηκαν στον συντάκτη CP αν δεν υπάρχουνε μη απόθηκευμένες τροποποιήσης στην συντάκτη CP.</translation>
+    </message>
+    <message>
+        <source>Ask whether to load external file changes</source>
+        <translation>Να φορτώσουμε τα τροποποιημένα εξωτερικά αρχεία</translation>
+    </message>
+    <message>
+        <source>When there are file changes that are not made in CP Editor and is not automatically loaded by
+&quot;%1&quot;, ask for whether to load the changes.
+If this is disabled, external file changes will be ignored unless they are loaded by
+&quot;%1&quot;.</source>
+        <translation>Αν υπάρχουνε τροποποιήσης στα αρχεία που δεν έγιναν από τον συντάκτη CP και δεν φορτώνονται αυτόματα από
+&quot;%1&quot;, να φορτώσουν οι αλλαγές.
+Αν αυτή η ρύθμιση δεν είναι ενεργή οι τροποποίηση αρχείων θα αγνοηθεί εκτός αν φορτοθούνε από 
+&quot;%1&quot;.</translation>
+    </message>
+    <message>
+        <source>Output Display Length Limit</source>
+        <translation>Όριο εξόδου</translation>
+    </message>
+    <message>
+        <source>The maximum number of characters to be displayed for the output of the program.
+If the output is too long, it will be elided.</source>
+        <translation>Ο μέγιστος αριθμός των χαρακτήρων που μπορεί να εμφανίσει το πρόγραμμα.
+Αν η έξοδος είναι πολύ μεγάλη, τότε η έξοδος θα εξαφανιστεί.</translation>
+    </message>
+    <message>
+        <source>Show toast messages for submission verdicts</source>
+        <translation>Εμφάνιση μηνύματος για ετυμηγορίες υποβολής</translation>
+    </message>
+    <message>
+        <source>Show a toast message when the verdict of a submission is known. You can see the message outside of CP Editor.</source>
+        <translation>Εμφάνιση μηνύματος όταν η ετυμηγορία της υποβολής είναι γνωστής. Μπορείτε να δείτε αυτό το μύνημα έξω από τον συνακτη CP.</translation>
+    </message>
+    <message>
+        <source>Terminal Arguments</source>
+        <translation>Παράμετροι τερματικού</translation>
+    </message>
+    <message>
+        <source>Terminal Program</source>
+        <translation>Πρόγραμμα τερματικού</translation>
+    </message>
+    <message>
+        <source>The terminal emulator to use when running in detached mode.
+This is usually the name or the path of the terminal emulator.
+Some possible values are konsole, gnome-terminal, xfce-terminal, xterm or any other terminal emulator program.</source>
+        <translation>Ο προσομοιωτής τερματικού που θα χρησιμοποιείτε σε απόσπασμένη λειτουργεία.
+Αυτό είναι συνήθως το όνομα της διαδρομής του προσομοιωτή τερματικού.
+Κάποιες πιθανές τιμές είναι konsole, gnome-terminal, xfce-terminal, xterm ή οποιοσδήποτε προσομοιωτής τερματικού.</translation>
+    </message>
+    <message>
+        <source>Arguments used to execute a given command in the terminal emulator.
+This is &quot;-e&quot; for most terminal emulators, including konsole, xterm, xfce-terminal but can be &quot;--&quot; for gnome-terminal.
+Consult your terminal emulator for the suitable arguments.</source>
+        <translation>Οι παράμετροι που θα χρησιμοποιούνται για την εκτέλεση μιας εντολής στον προσομοιωτή τερματικού.
+Αυτό είναι το &quot;-e&quot; για τους περισσότερους προσομοιωτές τερματικού, περιλαμβανόμενος konsole, xterm, xfce-terminal, αλλά μπορεί να είναι &quot;--&quot; για gnome-terminal.
+Ψάξτε τις κατάλληλες εντολές για το τερματικό σας.</translation>
+    </message>
+    <message>
+        <source>Save Test Case To A File</source>
+        <translation>Αποθήκευση δοκιμών σε ένα αρχείο</translation>
+    </message>
+    <message>
+        <source>The comments added at the head of the code when parsing a problem.
+Available place holders are:
+${time}: the time when parsing the problem
+${json.X.Y}: an attribute of the data provided by Competitive Companion, you can read more at https://github.com/jmerle/competitive-companion#explanation</source>
+        <translation>Τα σχόλια που θα προστεθούν στη αρχή του κώδικα όταν αναλύεται το πρόβλημα.
+Διαθέσημες κατοχή θέσης είναι:
+${time}: ο χρόνος όταν αναλύεται το πρόβλημα
+${json.X.Y}: αν η παράμετρος είναι από το Competitive Companion σας, μπορείτε να διαβάσετε παραπάνω στο https://github.com/jmerle/competitive-companion#explanation</translation>
+    </message>
+    <message>
+        <source>Time format for the head comments</source>
+        <translation>Μορφοποίηση χρόνου για τα πάνω σχόλια</translation>
+    </message>
+    <message>
+        <source>The format of the ${time} place holder in the head comments.
+You can read the Qt documentation for available expressions:
+https://doc.qt.io/qt-5/qdate.html#toString
+https://doc.qt.io/qt-5/qtime.html#toString</source>
+        <translation>Η μορφοποίηση του ${time} κατοχή θέσης στα πάνω σχόλια.
+Μπορείτε να διαβάσετε την τεκμηρίωση του Qt για τις διαθέσιμες εκφράσης:
+https://doc.qt.io/qt-5/qdate.html#toString
+https://doc.qt.io/qt-5/qtime.html#toString</translation>
+    </message>
+    <message>
+        <source>Add &quot;Powered By CP Editor&quot; in the head comments</source>
+        <translation>Προσθέστε &quot;Powered By CP Editor&quot; στα πάνω σχόλια</translation>
+    </message>
+    <message>
+        <source>Add a line saying &quot;Powered By CP Editor&quot; in the head comments.
+This doesn&apos;t cost you anything, but helps more people to know CP Editor.</source>
+        <translation>Προσθέστε την γραμμή &quot;Powered By CP Editor&quot; στα πάνω σχόλια
+Αυτό δεν σασ κοστίζει τίποτα, αλλα βοηθάει άτομα να μάθουν τον συντάκτη CP.</translation>
+    </message>
+    <message>
+        <source>Default Time Limit (ms)</source>
+        <translation>Προκαθορισμένο χρονικό περιθώριο (ms)</translation>
+    </message>
+    <message>
+        <source>The default time limit when executing the program.
+The program will be killed if it doesn&apos;t terminate in the time limit.</source>
+        <translation>Το προκαθορισμένο χρονικό περιθώριο κατα την εκτέλεση του προγράμματος.
+Το πρόγραμμα θα τερματιστεί αν δεν τερματιστεί μέσα στο χρονικό περιθώριο.</translation>
+    </message>
+    <message>
+        <source>Use the time limit from Competitive Companion</source>
+        <translation>Χρησιμοποιήστε το χρονικό περιθώριο του Competitive Companion σας</translation>
+    </message>
+    <message>
+        <source>Use the time limit parsed by Competitive Companion as the time limit of the corresponding tab.</source>
+        <translation>Χρησιμοποιήστε το χρονικό περιθώριο που αναλύθηκε από το Competitive Companion για το χρονικό περιθώριο την αντιστηχη καρτέλα.</translation>
+    </message>
+    <message>
+        <source>Show Only Monospaced Font</source>
+        <translation>Εμφανίστε μόνο την Monospaced γραμματοσειρά</translation>
+    </message>
+    <message>
+        <source>Change Locale</source>
+        <translation>Αλλαγή τοπικού</translation>
+    </message>
+    <message>
+        <source>You need to restart the application to completely apply the locale change.</source>
+        <translation>Πρέπει να ξανανοίξεται τον συντάκτη CP για να οριστούνε οι αλλαγές.</translation>
+    </message>
+    <message>
+        <source>Show only monospaced fonts when choosing a font</source>
+        <translation>Εμφάνιση μόνο monospaced γραμματοσειρών όταν επιλέγεται γραμματοσειρά</translation>
+    </message>
+    <message>
+        <source>Display Test Case Length Limit</source>
+        <translation>Εμφάνιση μήκος δοκιμής</translation>
+    </message>
+    <message>
+        <source>The maximum number of characters in a test case to be displayed.
+A test case will be elided and read-only if it&apos;s too long.</source>
+        <translation>Ο μέγιστος αριθμός των χαρακτήρων στη δοκιμή που είναι να εμφανιστεί.
+Η δοκιμή θα εξαφανιστεί και θα είναι μόνο για ανάγνωση αν είναι πολύ μεγάλη.</translation>
+    </message>
+    <message>
+        <source>Clang Format Program</source>
+        <translation>Πρόγραμμα μορφοποίησης Clang</translation>
+    </message>
+    <message>
+        <source>Clang Format Arguments</source>
+        <translation>Παράμετροι μορφοποίησης Clang</translation>
+    </message>
+    <message>
+        <source>The arguments passed to clang-format. It should NOT contain &quot;-i&quot;.</source>
+        <translation>Η παράμετροι που θα περάσουν στην μορφοποίηση Clang ΔΕΝ ΠΡΕΠΕΙ να έχουνε την τιμή&quot;-i&quot;.</translation>
+    </message>
+    <message>
+        <source>Clang Format Style</source>
+        <translation>Στύλ μορφοποίησης Clang</translation>
+    </message>
+    <message>
+        <source>YAPF Program</source>
+        <translation>Πρόγραμμα YAPF</translation>
+    </message>
+    <message>
+        <source>The program of YAPF. It could be `yapf` (which doesn&apos;t need arguments) or `python` (which needs `-m yapf` as the arguments).</source>
+        <translation>Το πρόγραμμα YAPF. Μπορεί να είναι &quot;yapf&quot; (που δεν χρειάζεται παραμέτρουσ) ή &quot;python&quot; (που χρειάζετε την παράμετρο &quot;-m yapf&quot;).</translation>
+    </message>
+    <message>
+        <source>YAPF Arguments</source>
+        <translation>Παράμετροι YAPF</translation>
+    </message>
+    <message>
+        <source>The arguments passed to the YAPF program. It should NOT contain &quot;-i&quot;.</source>
+        <translation>Η παράμετροι που θα περάσουν στο πρόγραμμα YAPF ΔΕΝ ΠΡΕΠΕΙ να έχουνε την τιμή&quot;-i&quot;.</translation>
+    </message>
+    <message>
+        <source>YAPF Style</source>
+        <translation>Στύλ YAPF</translation>
+    </message>
+    <message>
+        <source>The YAPF style options, which are usually saved in a .style.yapf or setup.conf configuration file.
+You can learn about it by running `yapf --style-help`.</source>
+        <translation>Οι ρυθμίσεις του στύλ YAPF έιναι συνήθως απόθηκευμένες σε ένα αρχείο με το όνομα .style.yapf ή setup.conf.
+Μπορείτε να μάθετε περισσότερα για το YAPF αν τρέξεται την εντολή &quot;yapf --style-help&quot;.</translation>
+    </message>
+    <message>
+        <source>Format the code when saving it manually.</source>
+        <translation>Να γίνεται μορφοποίηση κώδικα όταν τον απόθηκεύεται χειροκείνειτα.</translation>
+    </message>
+    <message>
+        <source>Format the code when auto-saving it.</source>
+        <translation>Να γίνεται μορφοποίηση κώδικα όταν απόθηκεύεται αυτόματα.</translation>
+    </message>
+    <message>
+        <source>Content of the head comments</source>
+        <translation>Περιεχόμενα τον πάνω σχολίων</translation>
+    </message>
+    <message>
+        <source>network-proxy</source>
+        <comment>the anchor of Type on the corresponding page of https://cpeditor.org/docs/preferences</comment>
+        <translation>Πληρεξούσιο δικτύου</translation>
+    </message>
+    <message>
+        <source>network-proxy</source>
+        <comment>the anchor of Host Name on the corresponding page of https://cpeditor.org/docs/preferences</comment>
+        <translation>Πληρεξούσιο δικτύου</translation>
+    </message>
+    <message>
+        <source>network-proxy</source>
+        <comment>the anchor of Port on the corresponding page of https://cpeditor.org/docs/preferences</comment>
+        <translation>Πληρεξούσιο δικτύου</translation>
+    </message>
+    <message>
+        <source>network-proxy</source>
+        <comment>the anchor of User on the corresponding page of https://cpeditor.org/docs/preferences</comment>
+        <translation>Πληρεξούσιο δικτύου</translation>
+    </message>
+    <message>
+        <source>network-proxy</source>
+        <comment>the anchor of Password on the corresponding page of https://cpeditor.org/docs/preferences</comment>
+        <translation>Πληρεξούσιο δικτύου</translation>
+    </message>
+    <message>
+        <source>Auto Uncheck Accepted Testcases</source>
+        <translation>Αυτόματη αναίρεση απόδεγμένων δοκιμών</translation>
+    </message>
+    <message>
+        <source>Automatically uncheck test cases when they get accepted.</source>
+        <translation>Αυτόματη απόεπιλογή δοκιμών όταν γίνονται δεκτές.</translation>
+    </message>
+    <message>
+        <source>The path to the WakaTime executable file</source>
+        <translation>Η διαδρομή στο WakaTime εκτελέσιμο αρχείο</translation>
+    </message>
+    <message>
+        <source>Api Key</source>
+        <translation>Κλειδί API</translation>
+    </message>
+    <message>
+        <source>Enable WakaTime</source>
+        <translation>Επιτροπή WakaTime</translation>
+    </message>
+    <message>
+        <source>Enable proxy to connect to GitHub while checking updates</source>
+        <translation>Επιτρέψτε την σύνδεση στο GitHub όσο ελέγχουμε για ενημερώσεις</translation>
+    </message>
+    <message>
+        <source>Can be found at https://wakatime.com/settings/account.
+It can be empty if you have the global wakatime config file ~/.wakatime.cfg.</source>
+        <translation>Μπορεί να βρεθεί στο https://wakatime.com/settings/account.
+Μπορέι να είναι άδειο αν έχετε το παγκόσμιο αρχείο wakatime διαμόρφωση αρχείου ~/.wakatime.cfg.</translation>
+    </message>
+    <message>
+        <source>Use Proxy</source>
+        <translation>Χρησιμοποιήστε πληρεξούσιο</translation>
+    </message>
+    <message>
+        <source>Use Advanced-&gt;Network Proxy to send data to WakaTime.</source>
+        <translation>Χρησιμοποιήστε Προχωρημένα-&gt;Δίκτυο Πληρεξούσιου για απόστολή δεδομένων στο WakaTime.</translation>
+    </message>
+    <message>
+        <source>Enable proxy for checking updates</source>
+        <translation>Επιτρέψτε το πληρεξούσιο για έλεγχο ενημερώσεων</translation>
+    </message>
+    <message>
+        <source>network-proxy</source>
+        <comment>the anchor of Enable proxy for checking updates on the corresponding page of https://cpeditor.org/docs/preferences</comment>
+        <translation>Η άγκυρα για την επιτροπή του μεταξούσιου για έλεγχο ενημερώσεις στην αντίστοίχη σελίδα https://cpeditor.org/docs/preferences</translation>
+    </message>
+    <message>
+        <source>Display Stopwatch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start/Stop stopwatch on tab switch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>When switching to a different tab, automatically start the stopwatch
+on the current tab and pause the stopwatch on the previous tab.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show stopwatch result only when the button is pressed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide the time of the stopwatch and only show the time when the &quot;Show&quot; button is pressed.
+This may reduce distractions caused by stopwatch updates.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Highlight Error Line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Highlight lines containing diagnostics</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Color of error messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Color of warning messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use WakaTime to track your time usage. The WakaTime CLI needs to be installed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show a stopwatch in the UI. You can use it to track your time spent on solving a problem.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>default-paths</source>
+        <comment>the anchor of Default Paths on https://cpeditor.org/docs/preferences/file-path</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable Vim Emulation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable vim emulation in Code Editor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Vim Configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The contents of Vim RC. It is loaded everytime vim emulation starts. 
+Not all vim commands are supported, please check https://github.com/cpeditor/FakeVim for list of supported commands</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable CF Tool</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable or disable CF Tool Integration.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Programming language for the template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The programming language used for the generator template.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Path to the template file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The path to the generator template file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Template Cursor Position Regex</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Template Cursor Position Offset Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Template Cursor Position Offset Characters</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ShortcutItem</name>
@@ -1350,10 +2953,6 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
 <context>
     <name>Util::FileUtil</name>
     <message>
-        <source>%1Source Files (%2)</source>
-        <translation>%1 Πηγαία αρχεία (%2)</translation>
-    </message>
-    <message>
         <source>Failed to open [%1]. Do I have write permission?</source>
         <translation>Απέτυχε να ανοίξει [%1]. Μήπως δεν έχετε άδεια εγγραφής;</translation>
     </message>
@@ -1384,6 +2983,22 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <source>Reveal %1 in File Manager</source>
         <translation>Εμφάνιση του %1 στον διαχειριστή αρχείων</translation>
+    </message>
+    <message>
+        <source>C++ Source Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Java Source Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Python Source Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Source Files</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1476,6 +3091,169 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>Show</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Widgets::StressTesting</name>
+    <message>
+        <source>Stress Testing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Generator Path:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Example: &quot;10 [5..100] abacaba&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Standard Program Path:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid arguments pattern</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Read Generator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Read Standard Program</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to open generator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to open standard program</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to create temporary directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Read testlib.h</source>
+        <translation type="unfinished">Ανάγνωση testlib.h</translation>
+    </message>
+    <message>
+        <source>Save testlib.h</source>
+        <translation type="unfinished">Αποθήκευση testlib.h</translation>
+    </message>
+    <message>
+        <source>Compiler</source>
+        <translation type="unfinished">Μεταγλωττιστής</translation>
+    </message>
+    <message>
+        <source>Running with arguments &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Generator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User program</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Standard program</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Time Limit Exceeded</source>
+        <translation type="unfinished">Ξεπεράστηκε το χρονικό περιθώριο (TLE)</translation>
+    </message>
+    <message>
+        <source>Execution has finished with non-zero exitcode %1 in %2ms</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The program was killed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Output limit exceeded</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All tests finished</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 compilation has started</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 compilation has finished</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 compilation error: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 compilation failed: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 compilation killed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Counterexample Found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User Program: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add to testcases</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ignore</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stop stress testing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Counterexample added to testcases</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Elapsed: %1:%2  |  Completed: %3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select generator from opened files...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select standard program from opened files...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use Generator Arguments:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please select a generator and a standard program</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
