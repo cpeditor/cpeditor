@@ -380,8 +380,8 @@ void CodeEditor::paintEvent(QPaintEvent *e)
             }
 
             painter.drawRect(rect);
+            m_cursorRect = rect;
         }
-        m_cursorRect = rect;
     }
     QPlainTextEdit::paintEvent(e);
 }

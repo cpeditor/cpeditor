@@ -533,6 +533,7 @@ void FakeVimProxy::clearUndoRedo(QWidget *editor)
 void FakeVimProxy::connectSignals(FakeVim::Internal::FakeVimHandler *handler, QWidget *editor, MainWindow *mainWindow,
                                   AppWindow *appWindow)
 {
+    // Use handler as parent so proxy is automatically deleted when handler is destroyed
     auto *proxy = new FakeVimProxy(editor, mainWindow, appWindow, handler);
 
     handler->commandBufferChanged.connect(

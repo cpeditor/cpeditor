@@ -111,7 +111,7 @@ bool FakeVimCommands::handleCustomCommand(CommandTypes type, QString const &args
         QFileInfo file(path);
 
         if (!Util::cppSuffix.contains(file.suffix()) && !Util::javaSuffix.contains(file.suffix()) &&
-            !Util::javaSuffix.contains(file.suffix()))
+            !Util::pythonSuffix.contains(file.suffix()))
         {
             showError(tr("[%1] is not C++, Python or Java source file").arg(file.absoluteFilePath()));
             break;
@@ -147,12 +147,15 @@ bool FakeVimCommands::handleCustomCommand(CommandTypes type, QString const &args
                 showError(tr("[%1] is not a number").arg(args));
             else // args is a number
             {
-                if (appwin->currentWindow() && caseNum > 0 &&
-                    caseNum <= appwin->currentWindow()->testcases->count()) // args is valid
-                    appwin->currentWindow()->runTestCase(caseNum - 1);
+                auto *window = appwin->currentWindow();
+                if (window && window->testcases && caseNum > 0 &&
+                    caseNum <= window->testcases->count()) // args is valid
+                    window->runTestCase(caseNum - 1);
                 else
-                    showError(
-                        tr("%1 is out of range [1, %2]").arg(args).arg(appwin->currentWindow()->testcases->count()));
+                    showError(tr("%1 is out of range [1, %2]")
+                                  .arg(args)
+                                  .arg(window && window->testcases ? QString::number(window->testcases->count())
+                                                                   : tr("N/A")));
             }
         }
 
@@ -160,8 +163,8 @@ bool FakeVimCommands::handleCustomCommand(CommandTypes type, QString const &args
     }
     case CommandTypes::DetachedRun: {
         appwin->on_actionRunDetached_triggered();
+        break;
     }
-    break;
     case CommandTypes::KillProcess: {
         appwin->on_actionKillProcesses_triggered();
         break;
@@ -206,6 +209,7 @@ bool FakeVimCommands::handleCustomCommand(CommandTypes type, QString const &args
     }
     case CommandTypes::Unknown: {
         Q_UNREACHABLE();
+        return false;
     }
     };
     return true;

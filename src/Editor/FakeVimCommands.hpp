@@ -15,8 +15,8 @@
  *
  */
 
-#ifndef FAKE_VIM_COMMAND_HPP
-#define FAKE_VIM_COMMAND_HPP
+#ifndef FAKE_VIM_COMMANDS_HPP
+#define FAKE_VIM_COMMANDS_HPP
 
 #include <QObject>
 
@@ -89,4 +89,4 @@ class FakeVimCommands : public QObject
 };
 } // namespace Editor
 
-#endif // FAKE_VIM_COMMAND_HPP
+#endif // FAKE_VIM_COMMANDS_HPP
