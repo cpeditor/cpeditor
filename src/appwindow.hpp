@@ -71,6 +71,8 @@ class AppWindow : public QMainWindow
 
     void setInitialized(bool flag = true);
 
+    QVector<MainWindow *> getTabs() const;
+
   protected:
     void closeEvent(QCloseEvent *event) override;
     void dropEvent(QDropEvent *event) override;
@@ -101,6 +103,14 @@ class AppWindow : public QMainWindow
     void on_actionQuit_triggered();
 
     void on_actionNewTab_triggered();
+
+    void on_actionNewGeneratorTab_triggered();
+
+    void on_actionNewCPPTab_triggered();
+
+    void on_actionNewJavaTab_triggered();
+
+    void on_actionNewPythonTab_triggered();
 
     void on_actionOpen_triggered();
 
@@ -147,6 +157,8 @@ class AppWindow : public QMainWindow
     void on_actionKillProcesses_triggered();
 
     void on_actionUseSnippets_triggered();
+
+    void on_actionStressTesting_triggered();
 
     void on_actionEditorMode_triggered();
 
@@ -215,6 +227,8 @@ class AppWindow : public QMainWindow
     void onViewModeToggle();
 
     void openTab(const QString &path, MainWindow *after = nullptr);
+
+    void openTabWithTemplate(const QString &templateName, const QString &language, MainWindow *after = nullptr);
 
     void onFileSaved(MainWindow *window);
 

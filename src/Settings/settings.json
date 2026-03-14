@@ -1258,5 +1258,62 @@
     "default": "green",
     "noDoc": true,
     "tip": "Color of warning messages"
+  },
+  {
+    "name": "Generator Template/Language",
+    "desc": "Programming language for the template",
+    "type": "QString",
+    "default": "C++",
+    "ui": "QComboBox",
+    "param": "QStringList {\"C++\", \"Java\", \"Python\"}",
+    "tip": "The programming language used for the generator template."
+  },
+  {
+    "name": "Generator Template/Template Path",
+    "desc": "Path to the template file",
+    "type": "QString",
+    "ui": "PathItem",
+    "param": "PathItem::AnyFile",
+    "tip": "The path to the generator template file."
+  },
+  {
+    "name": "Generator Template/Template Cursor Position Regex",
+    "desc": "Template Cursor Position Regex",
+    "type": "QString",
+    "tip": "The regular expression which matches a part of the code template.\nWhen opening a template, the position of the cursor is the position of the regex with an offset.\nThe cursor will be at the end of the template if there's no match of the regex.",
+    "depends": [
+      {
+        "name": "Generator Template/Template Path",
+        "check": "return !var.toString().isEmpty();"
+      }
+    ]
+  },
+  {
+    "name": "Generator Template/Template Cursor Position Offset Type",
+    "desc": "Template Cursor Position Offset Type",
+    "type": "QString",
+    "default": "end",
+    "ui": "QComboBox",
+    "param": "QStringList {\"start\", \"end\"}",
+    "tip": "Whether the offset is relative to the start of the regex or the end of the regex.",
+    "depends": [
+      {
+        "name": "Generator Template/Template Path",
+        "check": "return !var.toString().isEmpty();"
+      }
+    ]
+  },
+  {
+    "name": "Generator Template/Template Cursor Position Offset Characters",
+    "desc": "Template Cursor Position Offset Characters",
+    "type": "int",
+    "param": "QVariantList {-1000000, 1000000}",
+    "tip": "The offset relative to the match of the regex in the number of characters, including white spaces.",
+    "depends": [
+      {
+        "name": "Generator Template/Template Path",
+        "check": "return !var.toString().isEmpty();"
+      }
+    ]
   }
 ]

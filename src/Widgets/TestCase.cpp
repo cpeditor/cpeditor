@@ -22,6 +22,7 @@
 #include "Widgets/DiffViewer.hpp"
 #include "Widgets/TestCaseEdit.hpp"
 #include <QCheckBox>
+#include <QEvent>
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QMenu>
@@ -33,7 +34,8 @@
 
 namespace Widgets
 {
-TestCase::TestCase(int index, MessageLogger *logger, QWidget *parent, const QString &in, const QString &exp)
+TestCase::TestCase(int index, MessageLogger *logger, QWidget *parent, const QString &in, const QString &exp,
+                   bool inTestCases)
     : QWidget(parent), log(logger), id(0)
 {
     LOG_INFO("Testcase " << index << " is being created");
@@ -48,31 +50,45 @@ TestCase::TestCase(int index, MessageLogger *logger, QWidget *parent, const QStr
     inputLayout = new QVBoxLayout(inputWidget);
     outputLayout = new QVBoxLayout(outputWidget);
     expectedLayout = new QVBoxLayout(expectedWidget);
-    checkBox = new QCheckBox(this);
+    if (inTestCases)
+        checkBox = new QCheckBox(this);
     inputLabel = new QLabel(tr("Input"), this);
     outputLabel = new QLabel(tr("Output"), this);
     expectedLabel = new QLabel(tr("Expected"), this);
-    runButton = new QPushButton(tr("Run"), this);
+    if (inTestCases)
+        runButton = new QPushButton(tr("Run"), this);
     diffButton = new QPushButton("**", this);
-    delButton = new QPushButton(tr("Del"), this);
+    if (inTestCases)
+        delButton = new QPushButton(tr("Del"), this);
     inputEdit = new TestCaseEdit(TestCaseEdit::Input, index, log, in, this);
     outputEdit = new TestCaseEdit(TestCaseEdit::Output, index, log, QString(), this);
     expectedEdit = new TestCaseEdit(TestCaseEdit::Expected, index, log, exp, this);
-    diffViewer = new DiffViewer(this);
+    diffViewer = new DiffViewer(inTestCases ? this : nullptr);
+    if (!inTestCases)
+    {
+        connect(this, &QObject::destroyed, diffViewer, &QObject::deleteLater);
+        diffViewer->installEventFilter(this);
+    }
 
     setID(index);
 
-    checkBox->setMinimumWidth(20);
-    checkBox->setChecked(true);
-    checkBox->setSizePolicy({QSizePolicy::Fixed, QSizePolicy::Fixed});
+    if (inTestCases)
+    {
+        checkBox->setMinimumWidth(20);
+        checkBox->setChecked(true);
+        checkBox->setSizePolicy({QSizePolicy::Fixed, QSizePolicy::Fixed});
+    }
 
-    inputUpLayout->addWidget(checkBox);
+    if (inTestCases)
+        inputUpLayout->addWidget(checkBox);
     inputUpLayout->addWidget(inputLabel);
-    inputUpLayout->addWidget(runButton);
+    if (inTestCases)
+        inputUpLayout->addWidget(runButton);
     outputUpLayout->addWidget(outputLabel);
     outputUpLayout->addWidget(diffButton);
     expectedUpLayout->addWidget(expectedLabel);
-    expectedUpLayout->addWidget(delButton);
+    if (inTestCases)
+        expectedUpLayout->addWidget(delButton);
     inputLayout->addLayout(inputUpLayout);
     inputLayout->addWidget(inputEdit);
     outputLayout->addLayout(outputUpLayout);
@@ -90,13 +106,17 @@ TestCase::TestCase(int index, MessageLogger *logger, QWidget *parent, const QStr
 
     splitter->setChildrenCollapsible(false);
 
-    runButton->setToolTip(tr("Test on a single testcase"));
+    if (inTestCases)
+        runButton->setToolTip(tr("Test on a single testcase"));
     diffButton->setToolTip(tr("Open the Diff Viewer"));
 
-    connect(checkBox, &QCheckBox::toggled, this, &TestCase::onCheckBoxToggled);
-    connect(runButton, &QPushButton::clicked, this, &TestCase::onRunButtonClicked);
+    if (inTestCases)
+        connect(checkBox, &QCheckBox::toggled, this, &TestCase::onCheckBoxToggled);
+    if (inTestCases)
+        connect(runButton, &QPushButton::clicked, this, &TestCase::onRunButtonClicked);
     connect(diffButton, &QPushButton::clicked, this, &TestCase::onDiffButtonClicked);
-    connect(delButton, &QPushButton::clicked, this, &TestCase::onDelButtonClicked);
+    if (inTestCases)
+        connect(delButton, &QPushButton::clicked, this, &TestCase::onDelButtonClicked);
     connect(diffViewer, &DiffViewer::toLongForHtml, this, &TestCase::onToLongForHtml);
     connect(expectedEdit, &TestCaseEdit::requestCopyOutputToExpected, this,
             [this] { expectedEdit->modifyText(output()); });
@@ -285,6 +305,22 @@ void TestCase::onToLongForHtml()
                   .arg(SettingsHelper::getHTMLDiffViewerLengthLimit())
                   .arg(SettingsHelper::pathOfHTMLDiffViewerLengthLimit()),
               false);
+}
+
+bool TestCase::eventFilter(QObject *watched, QEvent *event)
+{
+    if (watched == diffViewer && diffViewer && !diffViewer->parent())
+    {
+        if (event->type() == QEvent::Hide || event->type() == QEvent::Close)
+        {
+            if (auto *host = window())
+            {
+                Util::showWidgetOnTop(host);
+            }
+        }
+    }
+
+    return QWidget::eventFilter(watched, event);
 }
 
 } // namespace Widgets

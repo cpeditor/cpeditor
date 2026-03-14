@@ -3,6 +3,7 @@
 ### Added
 
 -   An option to disable CF Tool integration. (#1439)
+-   Support stress testing. You can start one at Actions-\>Stress Testing. (#1031)
 
 ### Fixed
 
