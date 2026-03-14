@@ -447,7 +447,7 @@ void AppWindow::openTab(const MainWindow::EditorStatus &status, bool duplicate, 
 void AppWindow::openTabs(const QStringList &paths)
 {
     LOG_INFO("Paths " << paths.join(" "));
-    int length = paths.length();
+    int length = static_cast<int>(paths.length());
 
     QProgressDialog progress(this);
     progress.setWindowModality(Qt::WindowModal);
@@ -955,7 +955,7 @@ void AppWindow::onEditorFileChanged()
                     }
                 }
             }
-            int removeLength = longestCommonPrefix.lastIndexOf('/') + 1;
+            int removeLength = static_cast<int>(longestCommonPrefix.lastIndexOf('/') + 1);
             for (auto index : tabs)
             {
                 ui->tabWidget->setTabText(index, windowAt(index)->getTabTitle(tabs.size() > 1, true, removeLength));
