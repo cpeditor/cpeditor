@@ -356,13 +356,6 @@ void CodeEditor::paintEvent(QPaintEvent *e)
 {
     if (m_vimCursor)
     {
-        if (!m_cursorRect.isNull() && e->rect().intersects(m_cursorRect))
-        {
-            QRect rect = m_cursorRect;
-            m_cursorRect = QRect();
-            viewport()->update(rect);
-        }
-
         // Draw text cursor.
         QRect rect = cursorRect();
         if (e->rect().intersects(rect))
@@ -387,8 +380,8 @@ void CodeEditor::paintEvent(QPaintEvent *e)
             }
 
             painter.drawRect(rect);
-            m_cursorRect = rect;
         }
+        m_cursorRect = rect;
     }
     QPlainTextEdit::paintEvent(e);
 }
