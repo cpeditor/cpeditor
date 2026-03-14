@@ -71,7 +71,7 @@ jobs:
         if: startsWith(matrix.config.os, 'windows')
         run: |
           cd third_party/syntax-highlighting
-          cmake -B build -S . -A ${{ matrix.config.platform }} -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
+          cmake -B build -S . -A ${{ matrix.config.platform }} -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF -DQRC_SYNTAX=OFF
           cmake --build build --config Release --parallel 1
           cmake --build build --config Release --target install
 
