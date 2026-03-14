@@ -72,7 +72,9 @@ jobs:
         run: |
           cd third_party/syntax-highlighting
           cmake -B build -S . -A ${{ matrix.config.platform }} -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
-          cmake --build build --config Release
+          cmake --build build --config Release --target katehighlightingindexer
+          cmake --build build --config Release --target SyntaxHighlightingData
+          cmake --build build --config Release --target KF6SyntaxHighlighting
           cmake --build build --config Release --target install
 
       - name: "[Unix] Install ksyntax-highlighting"
