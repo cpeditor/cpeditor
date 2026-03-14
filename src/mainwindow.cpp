@@ -41,6 +41,7 @@
 #include "generated/version.hpp"
 #include <QFileSystemWatcher>
 #include <QInputDialog>
+#include <QJsonValue>
 #include <QMessageBox>
 #include <QMimeData>
 #include <QRegularExpression>
@@ -149,11 +150,11 @@ void MainWindow::setCursorPositionFromTemplate(const QString &templateName)
     if (match.hasMatch())
     {
         int pos = SettingsManager::get(templateName + "/Template Cursor Position Offset Type").toString() == "start"
-                      ? match.capturedStart()
-                      : match.capturedEnd();
+                      ? static_cast<int>(match.capturedStart())
+                      : static_cast<int>(match.capturedEnd());
         pos += SettingsManager::get(templateName + "/Template Cursor Position Offset Characters").toInt();
         pos = qMax(pos, 0);
-        pos = qMin(pos, content.length());
+        pos = static_cast<int>(qMin(static_cast<qsizetype>(pos), content.length()));
         auto cursor = editor->textCursor();
         cursor.setPosition(pos);
         editor->setTextCursor(cursor);
@@ -642,7 +643,7 @@ void MainWindow::applyCompanion(const Extensions::CompanionData &data)
                 // convert to QVariant first so that all types can be converted to string
                 finalComments += value.toVariant().toString();
             }
-            lastEnd = match.capturedEnd();
+            lastEnd = static_cast<int>(match.capturedEnd());
         }
 
         finalComments += comments.mid(lastEnd);
@@ -664,7 +665,7 @@ void MainWindow::applyCompanion(const Extensions::CompanionData &data)
         auto cursor = editor->textCursor();
         int cursorPos = cursor.position(); // keep Template Cursor Position
         editor->setPlainText(finalComments + editor->toPlainText());
-        cursor.setPosition(cursorPos + finalComments.length());
+        cursor.setPosition(cursorPos + static_cast<int>(finalComments.length()));
         editor->setTextCursor(cursor);
     }
 
