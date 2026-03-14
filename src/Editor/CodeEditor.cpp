@@ -86,7 +86,8 @@ void CodeEditor::applySettings(const QString &lang)
     languageRepo->changeLanguage(lang);
 
     m_tabReplace = QString(SettingsHelper::getTabWidth(), ' ');
-    setTabStopDistance(fontMetrics().horizontalAdvance(QString(static_cast<int>(SettingsHelper::getTabWidth() * 200), ' ')) / 200.0);
+    setTabStopDistance(
+        fontMetrics().horizontalAdvance(QString(static_cast<int>(SettingsHelper::getTabWidth() * 200), ' ')) / 200.0);
 
     setFont(SettingsHelper::getEditorFont());
 
@@ -598,12 +599,14 @@ void CodeEditor::duplicate()
         cursor.insertText(text + text);
         if (cursorAtEnd)
         {
-            cursor.movePosition(QTextCursor::PreviousCharacter, QTextCursor::MoveAnchor, static_cast<int>(text.length()));
+            cursor.movePosition(QTextCursor::PreviousCharacter, QTextCursor::MoveAnchor,
+                                static_cast<int>(text.length()));
             cursor.movePosition(QTextCursor::NextCharacter, QTextCursor::KeepAnchor, static_cast<int>(text.length()));
         }
         else
         {
-            cursor.movePosition(QTextCursor::PreviousCharacter, QTextCursor::KeepAnchor, static_cast<int>(text.length()));
+            cursor.movePosition(QTextCursor::PreviousCharacter, QTextCursor::KeepAnchor,
+                                static_cast<int>(text.length()));
         }
     }
     else // duplicate the current line
@@ -649,13 +652,15 @@ void CodeEditor::toggleBlockComment()
     {
         insertPlainText(text.mid(commentStart.length(), text.length() - commentStart.length() - commentEnd.length()));
         pos1 = startPos;
-        pos2 = static_cast<int>(endPos - static_cast<int>(commentStart.length()) - static_cast<int>(commentEnd.length()));
+        pos2 =
+            static_cast<int>(endPos - static_cast<int>(commentStart.length()) - static_cast<int>(commentEnd.length()));
     }
     else
     {
         insertPlainText(commentStart + text + commentEnd);
         pos1 = startPos;
-        pos2 = static_cast<int>(endPos + static_cast<int>(commentStart.length()) + static_cast<int>(commentEnd.length()));
+        pos2 =
+            static_cast<int>(endPos + static_cast<int>(commentStart.length()) + static_cast<int>(commentEnd.length()));
     }
     if (cursorAtEnd)
     {
@@ -963,7 +968,8 @@ void CodeEditor::keyPressEvent(QKeyEvent *e)
                     ++realColumn;
                 else
                 {
-                    realColumn = static_cast<int>((realColumn + m_tabReplace.length()) / m_tabReplace.length() * m_tabReplace.length());
+                    realColumn = static_cast<int>((realColumn + m_tabReplace.length()) / m_tabReplace.length() *
+                                                  m_tabReplace.length());
                 }
                 if (realColumn % m_tabReplace.length() == 0 && i < cursor.columnNumber() - 1)
                 {
@@ -1055,7 +1061,8 @@ void CodeEditor::keyPressEvent(QKeyEvent *e)
         const auto cursorPos = cursor.positionInBlock();
         const auto moveMode = shift ? QTextCursor::KeepAnchor : QTextCursor::MoveAnchor;
         if (cursorPos > leadingSpaceCount)
-            cursor.movePosition(QTextCursor::PreviousCharacter, moveMode, static_cast<int>(cursorPos - leadingSpaceCount));
+            cursor.movePosition(QTextCursor::PreviousCharacter, moveMode,
+                                static_cast<int>(cursorPos - leadingSpaceCount));
         else
             cursor.movePosition(QTextCursor::StartOfBlock, moveMode);
         setTextCursor(cursor);
