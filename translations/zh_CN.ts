@@ -124,224 +124,28 @@
         <translation>保存</translation>
     </message>
     <message>
-        <source>Save As...</source>
-        <translation>另存为...</translation>
-    </message>
-    <message>
-        <source>Save as new file</source>
-        <translation>保存到一个新文件</translation>
-    </message>
-    <message>
         <source>Save All</source>
         <translation>保存所有</translation>
-    </message>
-    <message>
-        <source>Save all opened files</source>
-        <translation>保存所有打开的文件</translation>
-    </message>
-    <message>
-        <source>Close Current</source>
-        <translation>关闭当前</translation>
-    </message>
-    <message>
-        <source>Close current tab</source>
-        <translation>关闭当前标签页</translation>
     </message>
     <message>
         <source>Close Saved</source>
         <translation>关闭已保存</translation>
     </message>
     <message>
-        <source>Close saved tabs</source>
-        <translation>关闭已保存的标签页</translation>
-    </message>
-    <message>
         <source>Close All</source>
         <translation>关闭所有</translation>
-    </message>
-    <message>
-        <source>Close All the tabs</source>
-        <translation>关闭所有标签页</translation>
     </message>
     <message>
         <source>Quit</source>
         <translation>退出</translation>
     </message>
     <message>
-        <source>Quit the application</source>
-        <translation>退出程序</translation>
-    </message>
-    <message>
-        <source>Open File...</source>
-        <translation>打开文件...</translation>
-    </message>
-    <message>
-        <source>Open files</source>
-        <translation>打开文件</translation>
-    </message>
-    <message>
-        <source>Open Contest...</source>
-        <translation>打开比赛...</translation>
-    </message>
-    <message>
-        <source>Open a Contest</source>
-        <translation>打开一个比赛</translation>
-    </message>
-    <message>
-        <source>Indent</source>
-        <translation>增加缩进</translation>
-    </message>
-    <message>
-        <source>Unindent</source>
-        <translation>减少缩进</translation>
-    </message>
-    <message>
-        <source>Swap Line Up</source>
-        <translation>向上交换当前行</translation>
-    </message>
-    <message>
-        <source>Swap Line Down</source>
-        <translation>向下交换当前行</translation>
-    </message>
-    <message>
-        <source>Duplicate Line</source>
-        <translation>复制当前行</translation>
-    </message>
-    <message>
-        <source>Delete Line</source>
-        <translation>删除当前行</translation>
-    </message>
-    <message>
-        <source>Toggle Comment</source>
-        <translation>开启/关闭单行注释</translation>
-    </message>
-    <message>
-        <source>Toggle Block Comment</source>
-        <translation>开启/关闭多行注释</translation>
-    </message>
-    <message>
-        <source>Compile</source>
-        <translation>编译</translation>
-    </message>
-    <message>
-        <source>Compile and Run</source>
-        <translation>编译并运行</translation>
-    </message>
-    <message>
-        <source>Run</source>
-        <translation>运行</translation>
-    </message>
-    <message>
-        <source>Format code</source>
-        <translation>格式化代码</translation>
-    </message>
-    <message>
-        <source>Run Detached</source>
-        <translation>在终端中运行</translation>
-    </message>
-    <message>
-        <source>Kill Processes</source>
-        <translation>终止所有进程</translation>
-    </message>
-    <message>
-        <source>Find and Replace</source>
-        <translation>查找和替换</translation>
-    </message>
-    <message>
-        <source>Preferences</source>
-        <translation>设置</translation>
-    </message>
-    <message>
-        <source>About Qt</source>
-        <translation>关于 Qt</translation>
-    </message>
-    <message>
         <source>Build Info</source>
         <translation>构建信息</translation>
     </message>
     <message>
-        <source>Check for updates</source>
-        <translation>检查更新</translation>
-    </message>
-    <message>
-        <source>New File</source>
-        <translation>新建文件</translation>
-    </message>
-    <message>
-        <source>Open a new tab in the editor</source>
-        <translation>在编辑器中打开一个新标签页</translation>
-    </message>
-    <message>
-        <source>Save the file on the disk</source>
-        <translation>在磁盘上保存文件</translation>
-    </message>
-    <message>
-        <source>Use Snippet...</source>
-        <translation>使用代码片段...</translation>
-    </message>
-    <message>
-        <source>Export Settings...</source>
-        <translation>导出设置...</translation>
-    </message>
-    <message>
-        <source>Import Settings...</source>
-        <translation>导入设置...</translation>
-    </message>
-    <message>
-        <source>Reset Settings</source>
-        <translation>重置设置</translation>
-    </message>
-    <message>
-        <source>Manual</source>
-        <translation>帮助手册</translation>
-    </message>
-    <message>
         <source>About</source>
         <translation>关于</translation>
-    </message>
-    <message>
-        <source>Editor Mode</source>
-        <translation>编辑器模式</translation>
-    </message>
-    <message>
-        <source>IO Mode</source>
-        <translation>IO 模式</translation>
-    </message>
-    <message>
-        <source>Split Mode</source>
-        <translation>分屏模式</translation>
-    </message>
-    <message>
-        <source>Show Log Files</source>
-        <translation>显示日志文件</translation>
-    </message>
-    <message>
-        <source>Delete Log Files</source>
-        <translation>删除日志文件</translation>
-    </message>
-    <message>
-        <source>&amp;File</source>
-        <translation>文件(&amp;F)</translation>
-    </message>
-    <message>
-        <source>&amp;Edit</source>
-        <translation>编辑(&amp;E)</translation>
-    </message>
-    <message>
-        <source>&amp;Actions</source>
-        <translation>动作(&amp;A)</translation>
-    </message>
-    <message>
-        <source>&amp;View</source>
-        <translation>视图(&amp;V)</translation>
-    </message>
-    <message>
-        <source>&amp;Options</source>
-        <translation>选项(&amp;O)</translation>
-    </message>
-    <message>
-        <source>&amp;Help</source>
-        <translation>帮助(&amp;H)</translation>
     </message>
     <message>
         <source>Export settings to a file</source>
@@ -376,24 +180,12 @@
         <translation>从文件中加载会话</translation>
     </message>
     <message>
-        <source>Export Session...</source>
-        <translation>导出会话...</translation>
-    </message>
-    <message>
-        <source>Load Session...</source>
-        <translation>加载会话...</translation>
-    </message>
-    <message>
         <source>CP Editor Settings File</source>
         <translation>CP Editor 配置文件</translation>
     </message>
     <message>
         <source>CP Editor Session File</source>
         <translation>CP Editor 会话文件</translation>
-    </message>
-    <message>
-        <source>Report issues</source>
-        <translation>报告问题</translation>
     </message>
     <message>
         <source>App version: %1
@@ -460,14 +252,6 @@ git 提交编号: %3
         <translation>设置时间限制</translation>
     </message>
     <message>
-        <source>Full Screen</source>
-        <translation>全屏</translation>
-    </message>
-    <message>
-        <source>Support us</source>
-        <translation>支持我们</translation>
-    </message>
-    <message>
         <source>How to exit full-screen</source>
         <translation>如何退出全屏模式</translation>
     </message>
@@ -476,44 +260,260 @@ git 提交编号: %3
         <translation>按下 F11 以退出全屏模式。</translation>
     </message>
     <message>
-        <source>Stress Testing...</source>
-        <translation>对拍...</translation>
+        <source>New File</source>
+        <translation type="unfinished">新文件</translation>
+    </message>
+    <message>
+        <source>Open a new tab in the editor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save the file on the disk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save As...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save as new file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save all opened files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close Current</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close current tab</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close saved tabs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close All the tabs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Quit the application</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open File...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open Contest...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open a Contest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Indent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unindent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Swap Line Up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Swap Line Down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Duplicate Line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete Line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Toggle Comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Toggle Block Comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Compile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Compile and Run</source>
+        <translation type="unfinished">编译并运行</translation>
+    </message>
+    <message>
+        <source>Run</source>
+        <translation type="unfinished">运行</translation>
+    </message>
+    <message>
+        <source>Format code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Run Detached</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Kill Processes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find and Replace</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use Snippet...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Preferences</source>
+        <translation type="unfinished">设置</translation>
+    </message>
+    <message>
+        <source>Reset Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export Settings...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import Settings...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export Session...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Load Session...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Manual</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Report issues</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About Qt</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check for updates</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Support us</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Editor Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>IO Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Split Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Full Screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show Log Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete Log Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Actions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Help</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Generator</source>
-        <translation>数据生成器</translation>
+        <translation type="unfinished">数据生成器</translation>
     </message>
     <message>
         <source>Open a new tab with generator template</source>
-        <translation>基于数据生成器模版打开新标签页</translation>
-    </message>
-    <message>
-        <source>New File From Template</source>
-        <translation>从模板新建文件</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>C++</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Open a new tab with C++ template</source>
-        <translation>基于C++模版打开新标签页</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Java</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Open a new tab with Java template</source>
-        <translation>基于Java模版打开新标签页</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Python</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Open a new tab with Python template</source>
-        <translation>基于Python模版打开新标签页</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stress Testing...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New File From Template</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -890,53 +890,88 @@ Press any key to exit</source>
     </message>
 </context>
 <context>
+    <name>FakeVimCommands</name>
+    <message>
+        <source>`new` requires no argument or one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos;, got [%1]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>[%1] is not C++, Python or Java source file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>[%1] does not exist. To open a tab with a non-existing file, use `open!` instead</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>[%1] is not a number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 is out of range [1, %2]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>N/A</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>[%1] is not a valid view mode. It should be one of &apos;split&apos; and &apos;edit&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 is not a valid language name. It should be one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>FindReplaceDialog</name>
     <message>
         <source>Find/Replace</source>
-        <translation>查找/替换</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>FindReplaceForm</name>
     <message>
         <source>Form</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Find:</source>
-        <translation>查找：</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Replace with:</source>
-        <translation>替换为：</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>errorLabel</source>
-        <translation>错误信息</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Direction</source>
-        <translation>方向</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Up</source>
-        <translation>上</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Down</source>
-        <translation>下</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Options</source>
-        <translation>选项</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Case sensitive</source>
-        <translation>区分大小写</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Whole words only</source>
-        <translation>全字匹配</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -947,30 +982,23 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You may want to take a look at the syntax of regular expressions:&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://doc.trolltech.com/qregexp.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://doc.trolltech.com/qregexp.html&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;被查找的是否是正则表达式。&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;你可能想要学习正则表达式的使用：&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://deerchao.cn/tutorials/regex/regex.htm&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://deerchao.cn/tutorials/regex/regex.htm&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Regular Expression</source>
-        <translation>正则表达式</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Find</source>
-        <translation>查找</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Replace</source>
-        <translation>替换</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Replace All</source>
-        <translation>替换全部</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1176,38 +1204,6 @@ Do you want to reload it?</source>
         <translation>在测试点 #%1 上运行的程序</translation>
     </message>
     <message>
-        <source>CP Editor</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>cursor info</source>
-        <translation>光标信息</translation>
-    </message>
-    <message>
-        <source>Compile</source>
-        <translation>编译</translation>
-    </message>
-    <message>
-        <source>Run</source>
-        <translation>运行</translation>
-    </message>
-    <message>
-        <source>Compile and Run</source>
-        <translation>编译并运行</translation>
-    </message>
-    <message>
-        <source>Messages</source>
-        <translation>消息</translation>
-    </message>
-    <message>
-        <source>Clear</source>
-        <translation>清除</translation>
-    </message>
-    <message>
-        <source>C++</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Auto Save</source>
         <translation>自动保存</translation>
     </message>
@@ -1242,6 +1238,38 @@ Do you want to reload it?</source>
     <message>
         <source>Failed to start compilation: %1</source>
         <translation>未能开始编译：%1</translation>
+    </message>
+    <message>
+        <source>CP Editor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>cursor info</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Compile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Run</source>
+        <translation type="unfinished">运行</translation>
+    </message>
+    <message>
+        <source>Compile and Run</source>
+        <translation type="unfinished">编译并运行</translation>
+    </message>
+    <message>
+        <source>Messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Clear</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>C++</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2757,40 +2785,57 @@ This may reduce distractions caused by stopwatch updates.</source>
         <translation>默认路径</translation>
     </message>
     <message>
+        <source>Enable Vim Emulation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable vim emulation in Code Editor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Vim Configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The contents of Vim RC. It is loaded everytime vim emulation starts. 
+Not all vim commands are supported, please check https://github.com/cpeditor/FakeVim for list of supported commands</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Enable CF Tool</source>
-        <translation>启用 CF Tool</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Enable or disable CF Tool Integration.</source>
-        <translation>启用或禁用 CF Tool。</translation>
-    </message>
-    <message>
-        <source>The programming language used for the generator template.</source>
-        <translation>数据生成器模版使用的编程语言。</translation>
-    </message>
-    <message>
-        <source>The path to the generator template file.</source>
-        <translation>数据生成器模版的路径。</translation>
-    </message>
-    <message>
-        <source>Template Cursor Position Regex</source>
-        <translation>使用模板时光标初始位置定位使用的正则表达式</translation>
-    </message>
-    <message>
-        <source>Template Cursor Position Offset Type</source>
-        <translation>使用模板时光标初始位置的偏移类型</translation>
-    </message>
-    <message>
-        <source>Template Cursor Position Offset Characters</source>
-        <translation>使用模板时光标初始位置的偏移字符量</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Programming language for the template</source>
-        <translation>模版使用的编程语言</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The programming language used for the generator template.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Path to the template file</source>
-        <translation>模板路径</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The path to the generator template file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Template Cursor Position Regex</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Template Cursor Position Offset Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Template Cursor Position Offset Characters</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

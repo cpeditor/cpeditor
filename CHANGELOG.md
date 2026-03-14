@@ -30,6 +30,7 @@ We have also performed some cleanup, introducing several breaking changes. Most 
 
 -   Use [KSyntaxHighlighting](https://api.kde.org/frameworks/syntax-highlighting/html/) for code highlighting. (#1101)
 -   Add options to select error/warning messages colors for message logger. (#521 and #1247)
+-   Add vim emulation with [custom commands](https://cpeditor.org/docs/preferences/code-edit/#custom-vim-commands). (#220 and #1270)
 
 ### Fixed
 

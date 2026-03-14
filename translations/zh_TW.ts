@@ -480,19 +480,11 @@ Git commit hash：%3
         <translation>說明(&amp;H)</translation>
     </message>
     <message>
-        <source>Stress Testing...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Generator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Open a new tab with generator template</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>New File From Template</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -517,6 +509,14 @@ Git commit hash：%3
     </message>
     <message>
         <source>Open a new tab with Python template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stress Testing...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New File From Template</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -896,55 +896,88 @@ Press any key to exit</source>
     </message>
 </context>
 <context>
+    <name>FakeVimCommands</name>
+    <message>
+        <source>`new` requires no argument or one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos;, got [%1]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>[%1] is not C++, Python or Java source file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>[%1] does not exist. To open a tab with a non-existing file, use `open!` instead</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>[%1] is not a number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 is out of range [1, %2]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>N/A</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>[%1] is not a valid view mode. It should be one of &apos;split&apos; and &apos;edit&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 is not a valid language name. It should be one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>FindReplaceDialog</name>
     <message>
         <source>Find/Replace</source>
-        <translation>尋找/取代</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>FindReplaceForm</name>
     <message>
         <source>Form</source>
-        <translation>表單</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Find:</source>
-        <translation>尋找：</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Replace with:</source>
-        <translation>取代為：</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>errorLabel</source>
-        <translation>錯誤訊息</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Direction</source>
-        <translation>方向</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Up</source>
-        <translation>向上</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Down</source>
-        <translation>向下</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Options</source>
-        <translation>選項</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Case sensitive</source>
-        <translatorcomment>參考 Firefox 的翻譯</translatorcomment>
-        <translation>符合大小寫</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Whole words only</source>
-        <translatorcomment>參考 Firefox 的翻譯</translatorcomment>
-        <translation>整個文字</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -955,30 +988,23 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You may want to take a look at the syntax of regular expressions:&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://doc.trolltech.com/qregexp.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://doc.trolltech.com/qregexp.html&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;若勾選，填入尋找框的內容將被視為正規表達式&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;您可能會想看看正規表達式的語法：&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://doc.trolltech.com/qregexp.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://doc.trolltech.com/qregexp.html&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Regular Expression</source>
-        <translation>正規表達式</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Find</source>
-        <translation>尋找</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Replace</source>
-        <translation>取代</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Replace All</source>
-        <translation>全部取代</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1225,35 +1251,35 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>CP Editor</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>cursor info</source>
-        <translation>游標資訊</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Compile</source>
-        <translation>編譯</translation>
+        <translation type="unfinished">編譯</translation>
     </message>
     <message>
         <source>Run</source>
-        <translation>執行</translation>
+        <translation type="unfinished">執行</translation>
     </message>
     <message>
         <source>Compile and Run</source>
-        <translation>編譯並執行</translation>
+        <translation type="unfinished">編譯並執行</translation>
     </message>
     <message>
         <source>Messages</source>
-        <translation>訊息</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Clear</source>
-        <translation>清除</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>C++</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2138,14 +2164,6 @@ kill the application with SIGKILL which could not be handled by the application.
         <translation>當評判結果揭曉時，顯示快顯通知。此通知在 CP Editor 以外也能見到。</translation>
     </message>
     <message>
-        <source>Enable CF Tool</source>
-        <translation>啟用 CF Tool</translation>
-    </message>
-    <message>
-        <source>Enable or disable CF Tool Integration.</source>
-        <translation>啟用或禁用CF Tool</translation>
-    </message>
-    <message>
         <source>Show Compile And Run Only</source>
         <translation>只顯示編譯並執行</translation>
     </message>
@@ -2789,7 +2807,40 @@ This may reduce distractions caused by stopwatch updates.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Enable Vim Emulation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable vim emulation in Code Editor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Vim Configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The contents of Vim RC. It is loaded everytime vim emulation starts. 
+Not all vim commands are supported, please check https://github.com/cpeditor/FakeVim for list of supported commands</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable CF Tool</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable or disable CF Tool Integration.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Programming language for the template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>The programming language used for the generator template.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Path to the template file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2806,14 +2857,6 @@ This may reduce distractions caused by stopwatch updates.</source>
     </message>
     <message>
         <source>Template Cursor Position Offset Characters</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Programming language for the template</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Path to the template file</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

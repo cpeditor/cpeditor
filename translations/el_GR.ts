@@ -124,224 +124,28 @@
         <translation>Αποθήκευση</translation>
     </message>
     <message>
-        <source>Save As...</source>
-        <translation>Αποθήκευση ως...</translation>
-    </message>
-    <message>
-        <source>Save as new file</source>
-        <translation>Αποθήκευση ως καινούργιο αρχείο</translation>
-    </message>
-    <message>
         <source>Save All</source>
         <translation>Αποθήκευση όλων</translation>
-    </message>
-    <message>
-        <source>Save all opened files</source>
-        <translation>Αποθήκευση όλων τον ανοιχτών αρχείων</translation>
-    </message>
-    <message>
-        <source>Close Current</source>
-        <translation>Κλείσιμο τωρινού</translation>
-    </message>
-    <message>
-        <source>Close current tab</source>
-        <translation>Κλείσιμο τωρινής καρτέλας</translation>
     </message>
     <message>
         <source>Close Saved</source>
         <translation>Κλείσιμο απόθηκευμένων</translation>
     </message>
     <message>
-        <source>Close saved tabs</source>
-        <translation>Κλείσιμο απόθηκευμένων καρτέλων</translation>
-    </message>
-    <message>
         <source>Close All</source>
         <translation>Κλείσιμο όλων</translation>
-    </message>
-    <message>
-        <source>Close All the tabs</source>
-        <translation>Κλείσιμο όλων τον καρτέλων</translation>
     </message>
     <message>
         <source>Quit</source>
         <translation>Έξοδος</translation>
     </message>
     <message>
-        <source>Quit the application</source>
-        <translation>Έξοδος από την εφαρμογή</translation>
-    </message>
-    <message>
-        <source>Open File...</source>
-        <translation>Άνοιγμα αρχείου...</translation>
-    </message>
-    <message>
-        <source>Open files</source>
-        <translation>Άνοιγμα αρχείων</translation>
-    </message>
-    <message>
-        <source>Open Contest...</source>
-        <translation>Άνοιγμα διαγωνισμού...</translation>
-    </message>
-    <message>
-        <source>Open a Contest</source>
-        <translation>Ανοίξτε έναν διαγωνισμό</translation>
-    </message>
-    <message>
-        <source>Indent</source>
-        <translation>Εσοχή</translation>
-    </message>
-    <message>
-        <source>Unindent</source>
-        <translation>Αφαίρεση εσοχής</translation>
-    </message>
-    <message>
-        <source>Swap Line Up</source>
-        <translation>Αλλαγή σειράς πάνω</translation>
-    </message>
-    <message>
-        <source>Swap Line Down</source>
-        <translation>Αλλαγή σειράς κάτω</translation>
-    </message>
-    <message>
-        <source>Duplicate Line</source>
-        <translation>Αντιγραφή γραμμής</translation>
-    </message>
-    <message>
-        <source>Delete Line</source>
-        <translation>Διαγραφή γραμμής</translation>
-    </message>
-    <message>
-        <source>Toggle Comment</source>
-        <translation>Μεταβολή σχολίου</translation>
-    </message>
-    <message>
-        <source>Toggle Block Comment</source>
-        <translation>Μεταβολή κομμάτι σχολίου</translation>
-    </message>
-    <message>
-        <source>Compile</source>
-        <translation>Σύνταξη</translation>
-    </message>
-    <message>
-        <source>Compile and Run</source>
-        <translation>Σύνταξη και εκτέλεση</translation>
-    </message>
-    <message>
-        <source>Run</source>
-        <translation>Εκτέλεση</translation>
-    </message>
-    <message>
-        <source>Format code</source>
-        <translation>Διάταξη κώδικα</translation>
-    </message>
-    <message>
-        <source>Run Detached</source>
-        <translation>Εκτέλεση απόμονωμένου</translation>
-    </message>
-    <message>
-        <source>Kill Processes</source>
-        <translation>Τερματισμώς διεργασιών</translation>
-    </message>
-    <message>
-        <source>Find and Replace</source>
-        <translation>Εύρημα και αντικατάσταση</translation>
-    </message>
-    <message>
-        <source>Preferences</source>
-        <translation>Προτιμήσεις</translation>
-    </message>
-    <message>
-        <source>About Qt</source>
-        <translation>Σχετικά με το Qt</translation>
-    </message>
-    <message>
         <source>Build Info</source>
         <translation>Σχετικά με την κατασκευή</translation>
     </message>
     <message>
-        <source>Check for updates</source>
-        <translation>Έλεγχος για ενημέρωσεις</translation>
-    </message>
-    <message>
-        <source>New File</source>
-        <translation>Καινούριο αρχείο</translation>
-    </message>
-    <message>
-        <source>Open a new tab in the editor</source>
-        <translation>Άνοιγμα νέας καρτέλας στον συντάκτη</translation>
-    </message>
-    <message>
-        <source>Save the file on the disk</source>
-        <translation>Αποθήκευση του αρχείου στον δίσκο</translation>
-    </message>
-    <message>
-        <source>Use Snippet...</source>
-        <translation>Χρησιμοποίηση απόσπάσματος...</translation>
-    </message>
-    <message>
-        <source>Export Settings...</source>
-        <translation>Εξαγωγή ρυθμίσεων...</translation>
-    </message>
-    <message>
-        <source>Import Settings...</source>
-        <translation>Εισαγωγή ρυθμίσεων...</translation>
-    </message>
-    <message>
-        <source>Reset Settings</source>
-        <translation>Επαναφορά ρυθμίσεων</translation>
-    </message>
-    <message>
-        <source>Manual</source>
-        <translation>Εγχειρίδιο</translation>
-    </message>
-    <message>
         <source>About</source>
         <translation>Σχετικά</translation>
-    </message>
-    <message>
-        <source>Editor Mode</source>
-        <translation>Μοντέλο συντάκτη</translation>
-    </message>
-    <message>
-        <source>IO Mode</source>
-        <translation>Μοντέλο Εισόδου / Εξόδου</translation>
-    </message>
-    <message>
-        <source>Split Mode</source>
-        <translation>Μοντέλο διαίρεσης</translation>
-    </message>
-    <message>
-        <source>Show Log Files</source>
-        <translation>Εμφάνιση αρχείων συμβάντων</translation>
-    </message>
-    <message>
-        <source>Delete Log Files</source>
-        <translation>Διαγραφή αρχείων συμβάντων</translation>
-    </message>
-    <message>
-        <source>&amp;File</source>
-        <translation>&amp;Αρχείο</translation>
-    </message>
-    <message>
-        <source>&amp;Edit</source>
-        <translation>&amp;Επεξεργασία</translation>
-    </message>
-    <message>
-        <source>&amp;Actions</source>
-        <translation>&amp;Ενέργειες</translation>
-    </message>
-    <message>
-        <source>&amp;View</source>
-        <translation>&amp;Εμφάνιση</translation>
-    </message>
-    <message>
-        <source>&amp;Options</source>
-        <translation>&amp;Επιλογές</translation>
-    </message>
-    <message>
-        <source>&amp;Help</source>
-        <translation>&amp;Βοήθεια</translation>
     </message>
     <message>
         <source>Export settings to a file</source>
@@ -376,24 +180,12 @@
         <translation>Φόρτωση συνεδρίασης από αρχείο</translation>
     </message>
     <message>
-        <source>Export Session...</source>
-        <translation>Εξαγωγή συνεδρίασης...</translation>
-    </message>
-    <message>
-        <source>Load Session...</source>
-        <translation>Φόρτωση συνεδρίασης...</translation>
-    </message>
-    <message>
         <source>CP Editor Settings File</source>
         <translation>Αρχείο ρυθμίσεων του συντάκτη CP</translation>
     </message>
     <message>
         <source>CP Editor Session File</source>
         <translation>Αρχείο ρυθμίσεων της συνεδρίασης</translation>
-    </message>
-    <message>
-        <source>Report issues</source>
-        <translation>Αναφορά προβλημάτων</translation>
     </message>
     <message>
         <source>Import Settings</source>
@@ -460,14 +252,6 @@ Build time: %4
         <translation>Ορισμός χρονικού περιθώριου</translation>
     </message>
     <message>
-        <source>Full Screen</source>
-        <translation>Πλήρες παράθυρο</translation>
-    </message>
-    <message>
-        <source>Support us</source>
-        <translation>Υποστηριξέ μας</translation>
-    </message>
-    <message>
         <source>How to exit full-screen</source>
         <translation>Πώς να βγείτε από την πλήρες οθόνη</translation>
     </message>
@@ -476,7 +260,219 @@ Build time: %4
         <translation>Πατήστε το F11 κουμπί για να βγείτε από πλήρες οθόνη.</translation>
     </message>
     <message>
-        <source>Stress Testing...</source>
+        <source>New File</source>
+        <translation type="unfinished">Νέο αρχείο</translation>
+    </message>
+    <message>
+        <source>Open a new tab in the editor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save the file on the disk</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save As...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save as new file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save all opened files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close Current</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close current tab</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close saved tabs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close All the tabs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Quit the application</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open File...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open Contest...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open a Contest</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Indent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unindent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Swap Line Up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Swap Line Down</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Duplicate Line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete Line</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Toggle Comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Toggle Block Comment</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Compile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Compile and Run</source>
+        <translation type="unfinished">Μεταγλώττιση και εκτέλεση</translation>
+    </message>
+    <message>
+        <source>Run</source>
+        <translation type="unfinished">Εκτέλεση</translation>
+    </message>
+    <message>
+        <source>Format code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Run Detached</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Kill Processes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Find and Replace</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use Snippet...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Preferences</source>
+        <translation type="unfinished">Προτιμήσεις</translation>
+    </message>
+    <message>
+        <source>Reset Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export Settings...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Import Settings...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export Session...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Load Session...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Manual</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Report issues</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About Qt</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Check for updates</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Support us</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Editor Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>IO Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Split Mode</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Full Screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show Log Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete Log Files</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Actions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -485,10 +481,6 @@ Build time: %4
     </message>
     <message>
         <source>Open a new tab with generator template</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>New File From Template</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -513,6 +505,14 @@ Build time: %4
     </message>
     <message>
         <source>Open a new tab with Python template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stress Testing...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New File From Template</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -890,53 +890,88 @@ Press any key to exit</source>
     </message>
 </context>
 <context>
+    <name>FakeVimCommands</name>
+    <message>
+        <source>`new` requires no argument or one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos;, got [%1]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>[%1] is not C++, Python or Java source file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>[%1] does not exist. To open a tab with a non-existing file, use `open!` instead</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>[%1] is not a number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 is out of range [1, %2]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>N/A</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>[%1] is not a valid view mode. It should be one of &apos;split&apos; and &apos;edit&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 is not a valid language name. It should be one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos;</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>FindReplaceDialog</name>
     <message>
         <source>Find/Replace</source>
-        <translation>Εύρημα / Αντικατάσταση</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>FindReplaceForm</name>
     <message>
         <source>Form</source>
-        <translation>Φόρμα</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Find:</source>
-        <translation>Εύρημα:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Replace with:</source>
-        <translation>Αντικατάσταση με:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>errorLabel</source>
-        <translation>errorLabel</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Direction</source>
-        <translation>Κατεύθηνση</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Up</source>
-        <translation>Πάνω</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Down</source>
-        <translation>Κάτω</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Options</source>
-        <translation>Επιλογές</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Case sensitive</source>
-        <translation>Διάκρηση πεζών / κεφαλαίων</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Whole words only</source>
-        <translation>Ολόκληρες λέξεις μόνο</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -947,30 +982,23 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You may want to take a look at the syntax of regular expressions:&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://doc.trolltech.com/qregexp.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://doc.trolltech.com/qregexp.html&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;whether the text to search should be interpreted as a regular expression.&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You may want to take a look at the syntax of regular expressions:&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://doc.trolltech.com/qregexp.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://doc.trolltech.com/qregexp.html&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Regular Expression</source>
-        <translation>Κοινή έκφραση</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Find</source>
-        <translation>Εύρημα</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Replace</source>
-        <translation>Αντικατάσταση</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Replace All</source>
-        <translation>Αντικατάσταση όλων</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1176,38 +1204,6 @@ Do you want to reload it?</source>
         <translation>Δρομέας για την δοκιμή #%1</translation>
     </message>
     <message>
-        <source>CP Editor</source>
-        <translation>CP συντάκτης</translation>
-    </message>
-    <message>
-        <source>cursor info</source>
-        <translation>Πληροφορίες κέρσορα</translation>
-    </message>
-    <message>
-        <source>Compile</source>
-        <translation>Μεταγλώττιση</translation>
-    </message>
-    <message>
-        <source>Run</source>
-        <translation>Εκτέλεση</translation>
-    </message>
-    <message>
-        <source>Compile and Run</source>
-        <translation>Μεταγλώττιση και εκτέλεση</translation>
-    </message>
-    <message>
-        <source>Messages</source>
-        <translation>Μυνύματα</translation>
-    </message>
-    <message>
-        <source>Clear</source>
-        <translation>Καθαρισμός</translation>
-    </message>
-    <message>
-        <source>C++</source>
-        <translation>C++</translation>
-    </message>
-    <message>
         <source>Auto Save</source>
         <translation>Αυτόματη αποθήκευση</translation>
     </message>
@@ -1242,6 +1238,38 @@ Do you want to reload it?</source>
     <message>
         <source>Failed to start compilation: %1</source>
         <translation>Απέτυχε να ξεκινήσει η μεταγλώττιση: %1</translation>
+    </message>
+    <message>
+        <source>CP Editor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>cursor info</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Compile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Run</source>
+        <translation type="unfinished">Εκτέλεση</translation>
+    </message>
+    <message>
+        <source>Compile and Run</source>
+        <translation type="unfinished">Μεταγλώττιση και εκτέλεση</translation>
+    </message>
+    <message>
+        <source>Messages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Clear</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>C++</source>
+        <translation type="unfinished">C++</translation>
     </message>
 </context>
 <context>
@@ -2762,6 +2790,23 @@ This may reduce distractions caused by stopwatch updates.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Enable Vim Emulation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable vim emulation in Code Editor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Vim Configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The contents of Vim RC. It is loaded everytime vim emulation starts. 
+Not all vim commands are supported, please check https://github.com/cpeditor/FakeVim for list of supported commands</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Enable CF Tool</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2770,7 +2815,15 @@ This may reduce distractions caused by stopwatch updates.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Programming language for the template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>The programming language used for the generator template.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Path to the template file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2787,14 +2840,6 @@ This may reduce distractions caused by stopwatch updates.</source>
     </message>
     <message>
         <source>Template Cursor Position Offset Characters</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Programming language for the template</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Path to the template file</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
