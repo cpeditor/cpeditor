@@ -63,7 +63,7 @@ void CodeEditorSidebar::mouseReleaseEvent(QMouseEvent *event)
 {
     if (event->position().x() >= width() - m_codeEditor->fontMetrics().lineSpacing())
     {
-        auto block = m_codeEditor->blockAtPosition(event->position().y());
+        auto block = m_codeEditor->blockAtPosition(static_cast<int>(event->position().y()));
         if (!block.isValid() || !Editor::CodeEditor::isFoldable(block))
             return;
         m_codeEditor->toggleFold(block);
