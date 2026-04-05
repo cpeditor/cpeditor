@@ -2040,31 +2040,32 @@ QList<Patch> diff_match_patch::patch_fromText(const QString &textline) {
   char sign;
   QString line;
   while (!text.isEmpty()) {
-    if (!patchHeader.match(text.front()).hasMatch()) {
+    QRegularExpressionMatch headerMatch = patchHeader.match(text.front());
+    if (!headerMatch.hasMatch()) {
       throw QString("Invalid patch string: %1").arg(text.front());
     }
 
     patch = Patch();
-    patch.start1 = patchHeader.match(text.front()).captured(1).toInt();
-    if (patchHeader.match(text.front()).captured(2).isEmpty()) {
+    patch.start1 = headerMatch.captured(1).toInt();
+    if (headerMatch.captured(2).isEmpty()) {
       patch.start1--;
       patch.length1 = 1;
-    } else if (patchHeader.match(text.front()).captured(2) == "0") {
+    } else if (headerMatch.captured(2) == "0") {
       patch.length1 = 0;
     } else {
       patch.start1--;
-      patch.length1 = patchHeader.match(text.front()).captured(2).toInt();
+      patch.length1 = headerMatch.captured(2).toInt();
     }
 
-    patch.start2 = patchHeader.match(text.front()).captured(3).toInt();
-    if (patchHeader.match(text.front()).captured(4).isEmpty()) {
+    patch.start2 = headerMatch.captured(3).toInt();
+    if (headerMatch.captured(4).isEmpty()) {
       patch.start2--;
       patch.length2 = 1;
-    } else if (patchHeader.match(text.front()).captured(4) == "0") {
+    } else if (headerMatch.captured(4) == "0") {
       patch.length2 = 0;
     } else {
       patch.start2--;
-      patch.length2 = patchHeader.match(text.front()).captured(4).toInt();
+      patch.length2 = headerMatch.captured(4).toInt();
     }
     text.removeFirst();
 
