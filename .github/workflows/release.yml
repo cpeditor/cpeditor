@@ -326,7 +326,7 @@ jobs:
           mv build/Release/cpeditor.exe build/out
           ../Qt/*/*/bin/windeployqt.exe build/out/cpeditor.exe --no-translations
           cp "${{ matrix.config.ecm-path }}/bin/KF5SyntaxHighlighting.dll" build/out
-          cd "C:/Program Files (x86)/Microsoft Visual Studio/2022/Enterprise/VC/Redist/MSVC"
+          cd "C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Redist/MSVC"
           echo "VC_REDIST_VERSION=$(ls -dr *.* | head -n1)" >> $GITHUB_ENV
 
       - name: "[Windows] Get Winlibs asset name"
@@ -353,7 +353,7 @@ jobs:
         shell: bash
         run: |
           mkdir build/out/Redist
-          cp "C:/Program Files (x86)/Microsoft Visual Studio/2022/Enterprise/VC/Redist/MSVC/$VC_REDIST_VERSION/vc_redist.${{ matrix.config.arch }}.exe" build/out/Redist
+          cp "C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Redist/MSVC/$VC_REDIST_VERSION/vc_redist.${{ matrix.config.arch }}.exe" build/out/Redist
           iscc dist/win/win-setup.iss \
             -DArch=${{ matrix.config.arch }} \
             $([[ "${{ matrix.config.winlibs }}" == "true" ]] && echo '-DGccDir=${{ matrix.config.mingw-arch }}' || echo '') \
@@ -367,7 +367,7 @@ jobs:
         if: startsWith(matrix.config.os, 'windows') && matrix.config.portable-option == 'On'
         shell: bash
         run: |
-          cp "C:/Program Files (x86)/Microsoft Visual Studio"/2022/Enterprise/VC/Redist/MSVC/$VC_REDIST_VERSION/${{ matrix.config.arch }}/Microsoft.*.CRT/*.dll build/out
+          cp "C:/Program Files/Microsoft Visual Studio"/2022/Enterprise/VC/Redist/MSVC/$VC_REDIST_VERSION/${{ matrix.config.arch }}/Microsoft.*.CRT/*.dll build/out
           cd build/out
           7z a ../../cpeditor-${{ steps.get_version.outputs.VERSION }}-windows-${{ matrix.config.arch }}-${{ matrix.config.filename-suffix }} ./*
 
