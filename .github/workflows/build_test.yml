@@ -107,7 +107,7 @@ jobs:
       - name: "[Windows] Build"
         if: startsWith(matrix.config.os, 'windows')
         run: |
-          cmake -B build -S . -A ${{ matrix.config.platform }} -D USE_CLANG_TIDY=On
+          cmake -B build -S . -A ${{ matrix.config.platform }} -D USE_CLANG_TIDY=On -D "CMAKE_PREFIX_PATH=${{ matrix.config.ecm-path }}"
           cmake --build build -j4 --config Release
           mkdir build/out
           cp build/${{ matrix.config.binary }} build/out

@@ -141,7 +141,7 @@ jobs:
         run: |
           mkdir build
           cd build
-          cmake .. -A ${{ matrix.config.platform }} -DPORTABLE_VERSION=${{ matrix.config.portable-option }}
+          cmake .. -A ${{ matrix.config.platform }} -DPORTABLE_VERSION=${{ matrix.config.portable-option }} -D "CMAKE_PREFIX_PATH=${{ matrix.config.ecm-path }}"
           cmake --build . --config Release -j4
 
       - name: "[Linux/macOS] Build"
