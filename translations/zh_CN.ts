@@ -890,6 +890,49 @@ Press any key to exit</source>
     </message>
 </context>
 <context>
+    <name>FakeVimCommands</name>
+    <message>
+        <source>`new` requires no argument or one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos;, got [%1]</source>
+        <translation>`new` 不需要参数，或参数应为 &apos;cpp&apos;、&apos;java&apos; 或 &apos;python&apos; 之一，但收到了 [%1]</translation>
+    </message>
+    <message>
+        <source>[%1] is not C++, Python or Java source file</source>
+        <translation>[%1] 不是 C++、Python 或 Java 源文件</translation>
+    </message>
+    <message>
+        <source>[%1] does not exist. To open a tab with a non-existing file, use `open!` instead</source>
+        <translation>[%1] 不存在。要打开一个不存在的文件的标签页，请使用 `open!`</translation>
+    </message>
+    <message>
+        <source>[%1] is not a number</source>
+        <translation>[%1] 不是一个数字</translation>
+    </message>
+    <message>
+        <source>%1 is out of range [1, %2]</source>
+        <translation>%1 超出范围 [1, %2]</translation>
+    </message>
+    <message>
+        <source>N/A</source>
+        <translation>不适用</translation>
+    </message>
+    <message>
+        <source>[%1] is not a valid view mode. It should be one of &apos;split&apos; and &apos;edit&apos;</source>
+        <translation>[%1] 不是有效的视图模式。应为 &apos;split&apos; 或 &apos;edit&apos; 之一</translation>
+    </message>
+    <message>
+        <source>%1 is not a valid language name. It should be one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos;</source>
+        <translation>%1 不是有效的语言名称。应为 &apos;cpp&apos;、&apos;java&apos; 或 &apos;python&apos; 之一</translation>
+    </message>
+    <message>
+        <source>No active tab to clear messages</source>
+        <translation>没有活动的标签页可用于清除消息</translation>
+    </message>
+    <message>
+        <source>No active tab to change language</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>FindReplaceDialog</name>
     <message>
         <source>Find/Replace</source>
@@ -2787,6 +2830,24 @@ This may reduce distractions caused by stopwatch updates.</source>
     <message>
         <source>Path to the template file</source>
         <translation>模板路径</translation>
+    </message>
+    <message>
+        <source>Enable Vim Emulation</source>
+        <translation>启用 Vim 模拟</translation>
+    </message>
+    <message>
+        <source>Enable vim emulation in Code Editor</source>
+        <translation>在代码编辑器中启用 Vim 模拟</translation>
+    </message>
+    <message>
+        <source>Vim Configuration</source>
+        <translation>Vim 配置</translation>
+    </message>
+    <message>
+        <source>The contents of Vim RC. It is loaded everytime vim emulation starts. 
+Not all vim commands are supported, please check https://github.com/cpeditor/FakeVim for list of supported commands</source>
+        <translation>Vim RC 的内容。每次启动 Vim 模拟时都会加载。
+并非所有 Vim 命令都受支持，请查看 https://github.com/cpeditor/FakeVim 了解支持的命令列表</translation>
     </message>
 </context>
 <context>

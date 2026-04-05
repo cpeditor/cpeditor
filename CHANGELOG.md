@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+### Added
+
+-   Add vim emulation with [custom commands](https://cpeditor.org/docs/preferences/code-edit/#custom-vim-commands). (#220 and #1270)
+
 ## v7.1
 
 ### Added

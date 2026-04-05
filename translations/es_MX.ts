@@ -890,6 +890,49 @@ Presione cualquier tecla para salir</translation>
     </message>
 </context>
 <context>
+    <name>FakeVimCommands</name>
+    <message>
+        <source>`new` requires no argument or one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos;, got [%1]</source>
+        <translation>`new` no requiere argumento o debe ser uno de &apos;cpp&apos;, &apos;java&apos; o &apos;python&apos;, se obtuvo [%1]</translation>
+    </message>
+    <message>
+        <source>[%1] is not C++, Python or Java source file</source>
+        <translation>[%1] no es un archivo fuente de C++, Python o Java</translation>
+    </message>
+    <message>
+        <source>[%1] does not exist. To open a tab with a non-existing file, use `open!` instead</source>
+        <translation>[%1] no existe. Para abrir una pestaña con un archivo inexistente, use `open!`</translation>
+    </message>
+    <message>
+        <source>[%1] is not a number</source>
+        <translation>[%1] no es un número</translation>
+    </message>
+    <message>
+        <source>%1 is out of range [1, %2]</source>
+        <translation>%1 está fuera del rango [1, %2]</translation>
+    </message>
+    <message>
+        <source>N/A</source>
+        <translation>N/D</translation>
+    </message>
+    <message>
+        <source>[%1] is not a valid view mode. It should be one of &apos;split&apos; and &apos;edit&apos;</source>
+        <translation>[%1] no es un modo de vista válido. Debe ser &apos;split&apos; o &apos;edit&apos;</translation>
+    </message>
+    <message>
+        <source>%1 is not a valid language name. It should be one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos;</source>
+        <translation>%1 no es un nombre de lenguaje válido. Debe ser &apos;cpp&apos;, &apos;java&apos; o &apos;python&apos;</translation>
+    </message>
+    <message>
+        <source>No active tab to clear messages</source>
+        <translation>No hay pestaña activa para limpiar mensajes</translation>
+    </message>
+    <message>
+        <source>No active tab to change language</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>FindReplaceDialog</name>
     <message>
         <source>Find/Replace</source>
@@ -2797,6 +2840,24 @@ Es una lista de &lt;nombre de ruta predeterminada&gt;, separadas por comas, y pu
     <message>
         <source>Path to the template file</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable Vim Emulation</source>
+        <translation>Habilitar emulación de Vim</translation>
+    </message>
+    <message>
+        <source>Enable vim emulation in Code Editor</source>
+        <translation>Habilitar la emulación de Vim en el editor de código</translation>
+    </message>
+    <message>
+        <source>Vim Configuration</source>
+        <translation>Configuración de Vim</translation>
+    </message>
+    <message>
+        <source>The contents of Vim RC. It is loaded everytime vim emulation starts. 
+Not all vim commands are supported, please check https://github.com/cpeditor/FakeVim for list of supported commands</source>
+        <translation>Contenido del Vim RC. Se carga cada vez que se inicia la emulación de Vim.
+No todos los comandos de Vim están soportados, consulte https://github.com/cpeditor/FakeVim para la lista de comandos soportados</translation>
     </message>
 </context>
 <context>

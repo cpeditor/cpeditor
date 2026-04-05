@@ -896,6 +896,49 @@ Press any key to exit</source>
     </message>
 </context>
 <context>
+    <name>FakeVimCommands</name>
+    <message>
+        <source>`new` requires no argument or one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos;, got [%1]</source>
+        <translation>`new` 不需要參數，或參數應為 &apos;cpp&apos;、&apos;java&apos; 或 &apos;python&apos; 之一，但收到了 [%1]</translation>
+    </message>
+    <message>
+        <source>[%1] is not C++, Python or Java source file</source>
+        <translation>[%1] 不是 C++、Python 或 Java 原始碼檔案</translation>
+    </message>
+    <message>
+        <source>[%1] does not exist. To open a tab with a non-existing file, use `open!` instead</source>
+        <translation>[%1] 不存在。若要開啟一個不存在的檔案的分頁，請使用 `open!`</translation>
+    </message>
+    <message>
+        <source>[%1] is not a number</source>
+        <translation>[%1] 不是數字</translation>
+    </message>
+    <message>
+        <source>%1 is out of range [1, %2]</source>
+        <translation>%1 超出範圍 [1, %2]</translation>
+    </message>
+    <message>
+        <source>N/A</source>
+        <translation>不適用</translation>
+    </message>
+    <message>
+        <source>[%1] is not a valid view mode. It should be one of &apos;split&apos; and &apos;edit&apos;</source>
+        <translation>[%1] 不是有效的檢視模式。應為 &apos;split&apos; 或 &apos;edit&apos; 之一</translation>
+    </message>
+    <message>
+        <source>%1 is not a valid language name. It should be one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos;</source>
+        <translation>%1 不是有效的語言名稱。應為 &apos;cpp&apos;、&apos;java&apos; 或 &apos;python&apos; 之一</translation>
+    </message>
+    <message>
+        <source>No active tab to clear messages</source>
+        <translation>沒有作用中的分頁可清除訊息</translation>
+    </message>
+    <message>
+        <source>No active tab to change language</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>FindReplaceDialog</name>
     <message>
         <source>Find/Replace</source>
@@ -2811,6 +2854,24 @@ This may reduce distractions caused by stopwatch updates.</source>
     <message>
         <source>Path to the template file</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable Vim Emulation</source>
+        <translation>啟用 Vim 模擬</translation>
+    </message>
+    <message>
+        <source>Enable vim emulation in Code Editor</source>
+        <translation>在程式碼編輯器中啟用 Vim 模擬</translation>
+    </message>
+    <message>
+        <source>Vim Configuration</source>
+        <translation>Vim 設定</translation>
+    </message>
+    <message>
+        <source>The contents of Vim RC. It is loaded everytime vim emulation starts. 
+Not all vim commands are supported, please check https://github.com/cpeditor/FakeVim for list of supported commands</source>
+        <translation>Vim RC 的內容。每次啟動 Vim 模擬時都會載入。
+並非所有 Vim 命令都受支援，請查看 https://github.com/cpeditor/FakeVim 了解支援的命令列表</translation>
     </message>
 </context>
 <context>

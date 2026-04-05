@@ -130,6 +130,12 @@ class CodeEditor : public QPlainTextEdit
     void setHighlightCurrentLine(bool enabled);
 
     /**
+     * @brief Sets FakeVim extra selections (search highlights, block selection, etc.)
+     * @param selections The extra selections from FakeVim
+     */
+    void setFakeVimExtraSelections(const QList<QTextEdit::ExtraSelection> &selections);
+
+    /**
      * @brief Checks if current line is being higlighted in non vim mode
      */
     bool isHighlightingCurrentLine() const;
@@ -215,6 +221,12 @@ class CodeEditor : public QPlainTextEdit
      * in fakevim mode.
      */
     void focusOutEvent(QFocusEvent *e) override;
+
+    /**
+     * @brief Method, that's called on focus gain.
+     * Restores vim cursor flash settings.
+     */
+    void focusInEvent(QFocusEvent *e) override;
 
     void paintEvent(QPaintEvent *e) override;
 
@@ -305,11 +317,13 @@ class CodeEditor : public QPlainTextEdit
     void highlightSquiggle(const SquiggleInformation &info);
 
     QList<QTextEdit::ExtraSelection> currentLineExtraSelections, parenthesesExtraSelections, occurrencesExtraSelections,
-        squigglesExtraSelections, squigglesLineExtraSelections;
+        squigglesExtraSelections, squigglesLineExtraSelections, fakeVimExtraSelections;
 
     QString m_tabReplace;
 
     bool m_vimCursor = false;
+
+    int m_originalCursorFlashTime = -1;
 
     bool m_highlightingCurrentLine = true;
 
