@@ -404,7 +404,8 @@ void CodeEditor::setVimCursor(bool value)
 {
     m_vimCursor = value;
     // Do not flash the cursor in vim mode
-    QApplication::setCursorFlashTime(m_vimCursor ? 0 : 1000);
+    static const int originalFlashTime = QApplication::cursorFlashTime();
+    QApplication::setCursorFlashTime(m_vimCursor ? 0 : originalFlashTime);
 
     setOverwriteMode(false);
     updateCursorWidth();

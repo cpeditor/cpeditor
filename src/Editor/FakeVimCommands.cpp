@@ -105,8 +105,10 @@ bool FakeVimCommands::handleCustomCommand(CommandTypes type, QString const &args
             break;
         }
 
-        if (path.startsWith('~'))
-            path = QDir::home().filePath(args.mid(1));
+        if (path.startsWith("~/"))
+            path = QDir::home().filePath(path.mid(2));
+        else if (path == "~")
+            path = QDir::homePath();
 
         QFileInfo file(path);
 
@@ -200,7 +202,11 @@ bool FakeVimCommands::handleCustomCommand(CommandTypes type, QString const &args
         break;
     }
     case CommandTypes::Clear: {
-        appwin->currentWindow()->on_clearMessagesButton_clicked();
+        auto *window = appwin->currentWindow();
+        if (window)
+            window->on_clearMessagesButton_clicked();
+        else
+            showError(tr("No active tab to clear messages"));
         break;
     }
     case CommandTypes::Exit: {

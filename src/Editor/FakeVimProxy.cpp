@@ -50,17 +50,14 @@ namespace Editor
 
 FakeVimProxy::FakeVimProxy(QWidget *widget, MainWindow *mw, AppWindow *aw, QObject *parent)
     : QObject(parent), m_widget(widget), m_mainWindow(mw), m_appWindow(aw),
-      m_commandHandler(new FakeVimCommands(aw, parent))
+      m_commandHandler(new FakeVimCommands(aw, this))
 {
     m_statusData = new QLabel(m_mainWindow);
     m_statusMessage = new QLabel(m_mainWindow);
     setStatusBar();
 }
 
-FakeVimProxy::~FakeVimProxy()
-{
-    delete m_commandHandler;
-}
+FakeVimProxy::~FakeVimProxy() = default;
 
 void FakeVimProxy::changeStatusData(QString const &info)
 {
@@ -303,14 +300,11 @@ void FakeVimProxy::indentRegion(int beginBlock, int endBlock, QChar typedChar)
 
     QTextBlock startBlock = doc->findBlockByNumber(beginBlock);
 
-    // Record line lengths for mark adjustments
-    QVector<int> lineLengths(endBlock - beginBlock + 1);
     QTextBlock block = startBlock;
 
     for (int i = beginBlock; i <= endBlock; ++i)
     {
         const auto line = block.text();
-        lineLengths[i - beginBlock] = line.length();
         if (typedChar.unicode() == 0 && line.simplified().isEmpty())
         {
             // clear empty lines
@@ -383,6 +377,7 @@ void FakeVimProxy::moveToMatchingParenthesis(bool *moved, bool *forward, QTextCu
     if (!counter)
     {
         *moved = true;
+        *forward = (direction == 1);
         cursor->setPosition(position);
     }
 }
@@ -419,7 +414,7 @@ QChar FakeVimProxy::getCounterParenthesis(QChar symbol)
 int FakeVimProxy::firstNonSpace(const QString &text)
 {
     int indent = 0;
-    while (indent < text.length() && text.at(indent) == ' ')
+    while (indent < text.length() && (text.at(indent) == ' ' || text.at(indent) == '\t'))
         ++indent;
     return indent;
 }
