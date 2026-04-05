@@ -124,28 +124,224 @@
         <translation>Сохранить</translation>
     </message>
     <message>
+        <source>Save As...</source>
+        <translation>Сохранить как...</translation>
+    </message>
+    <message>
+        <source>Save as new file</source>
+        <translation>Сохранить как новый файл</translation>
+    </message>
+    <message>
         <source>Save All</source>
         <translation>Сохранить все</translation>
+    </message>
+    <message>
+        <source>Save all opened files</source>
+        <translation>Сохранить все открытые файлы</translation>
+    </message>
+    <message>
+        <source>Close Current</source>
+        <translation>Закрыть текущий</translation>
+    </message>
+    <message>
+        <source>Close current tab</source>
+        <translation>Закрыть текущую вкладку</translation>
     </message>
     <message>
         <source>Close Saved</source>
         <translation>Закрыть сохраненные</translation>
     </message>
     <message>
+        <source>Close saved tabs</source>
+        <translation>Закрыть сохраненные вкладки</translation>
+    </message>
+    <message>
         <source>Close All</source>
         <translation>Закрыть все</translation>
+    </message>
+    <message>
+        <source>Close All the tabs</source>
+        <translation>Закрыть все вкладки</translation>
     </message>
     <message>
         <source>Quit</source>
         <translation>Выйти</translation>
     </message>
     <message>
+        <source>Quit the application</source>
+        <translation>Выйти из программы</translation>
+    </message>
+    <message>
+        <source>Open File...</source>
+        <translation>Открыть файл....</translation>
+    </message>
+    <message>
+        <source>Open files</source>
+        <translation>Открыть файлы</translation>
+    </message>
+    <message>
+        <source>Open Contest...</source>
+        <translation>Открыть соревнование...</translation>
+    </message>
+    <message>
+        <source>Open a Contest</source>
+        <translation>Открыть соревнование</translation>
+    </message>
+    <message>
+        <source>Indent</source>
+        <translation>Отступ</translation>
+    </message>
+    <message>
+        <source>Unindent</source>
+        <translation>Убрать отступ</translation>
+    </message>
+    <message>
+        <source>Swap Line Up</source>
+        <translation>Поднять строку</translation>
+    </message>
+    <message>
+        <source>Swap Line Down</source>
+        <translation>Опустить строку</translation>
+    </message>
+    <message>
+        <source>Duplicate Line</source>
+        <translation>Дублировать строку</translation>
+    </message>
+    <message>
+        <source>Delete Line</source>
+        <translation>Удалить линию</translation>
+    </message>
+    <message>
+        <source>Toggle Comment</source>
+        <translation>Закомментировать строку</translation>
+    </message>
+    <message>
+        <source>Toggle Block Comment</source>
+        <translation>Выбрать блок</translation>
+    </message>
+    <message>
+        <source>Compile</source>
+        <translation>Скомпилировать</translation>
+    </message>
+    <message>
+        <source>Compile and Run</source>
+        <translation>Скомпилировать и запустить</translation>
+    </message>
+    <message>
+        <source>Run</source>
+        <translation>Запустить</translation>
+    </message>
+    <message>
+        <source>Format code</source>
+        <translation>Форматировать код</translation>
+    </message>
+    <message>
+        <source>Run Detached</source>
+        <translation>Запустить отдельно</translation>
+    </message>
+    <message>
+        <source>Kill Processes</source>
+        <translation>Убить процесс</translation>
+    </message>
+    <message>
+        <source>Find and Replace</source>
+        <translation>Найти и заменить</translation>
+    </message>
+    <message>
+        <source>Preferences</source>
+        <translation>Параметры</translation>
+    </message>
+    <message>
+        <source>About Qt</source>
+        <translation>О Qt</translation>
+    </message>
+    <message>
         <source>Build Info</source>
         <translation>Информация о сборке</translation>
     </message>
     <message>
+        <source>Check for updates</source>
+        <translation>Проверить обновления</translation>
+    </message>
+    <message>
+        <source>New File</source>
+        <translation>Новый файл</translation>
+    </message>
+    <message>
+        <source>Open a new tab in the editor</source>
+        <translation>Открыть в новой вкладке редактора</translation>
+    </message>
+    <message>
+        <source>Save the file on the disk</source>
+        <translation>Сохранить файл локально</translation>
+    </message>
+    <message>
+        <source>Use Snippet...</source>
+        <translation>Использовать сниппет...</translation>
+    </message>
+    <message>
+        <source>Export Settings...</source>
+        <translation>Экспорт настроек...</translation>
+    </message>
+    <message>
+        <source>Import Settings...</source>
+        <translation>Импорт настроек...</translation>
+    </message>
+    <message>
+        <source>Reset Settings</source>
+        <translation>Сбросить настройки</translation>
+    </message>
+    <message>
+        <source>Manual</source>
+        <translation>Инструкции</translation>
+    </message>
+    <message>
         <source>About</source>
         <translation>О программе</translation>
+    </message>
+    <message>
+        <source>Editor Mode</source>
+        <translation>Режим настройщика</translation>
+    </message>
+    <message>
+        <source>IO Mode</source>
+        <translation>Режим ввода/вывода</translation>
+    </message>
+    <message>
+        <source>Split Mode</source>
+        <translation>Режим Split</translation>
+    </message>
+    <message>
+        <source>Show Log Files</source>
+        <translation>Вывести файлы логов</translation>
+    </message>
+    <message>
+        <source>Delete Log Files</source>
+        <translation>Удалить файлы логов</translation>
+    </message>
+    <message>
+        <source>&amp;File</source>
+        <translation>&amp;Файл</translation>
+    </message>
+    <message>
+        <source>&amp;Edit</source>
+        <translation>&amp;Изменить</translation>
+    </message>
+    <message>
+        <source>&amp;Actions</source>
+        <translation>&amp;Действия</translation>
+    </message>
+    <message>
+        <source>&amp;View</source>
+        <translation>&amp;Вид</translation>
+    </message>
+    <message>
+        <source>&amp;Options</source>
+        <translation>&amp;Опции</translation>
+    </message>
+    <message>
+        <source>&amp;Help</source>
+        <translation>&amp;Помощь</translation>
     </message>
     <message>
         <source>Export settings to a file</source>
@@ -180,12 +376,24 @@
         <translation>Загрузка сессии из файла</translation>
     </message>
     <message>
+        <source>Export Session...</source>
+        <translation>Экспорт сессии...</translation>
+    </message>
+    <message>
+        <source>Load Session...</source>
+        <translation>Загрузка сессии...</translation>
+    </message>
+    <message>
         <source>CP Editor Settings File</source>
         <translation>Файл настройки CP Editor</translation>
     </message>
     <message>
         <source>CP Editor Session File</source>
         <translation>Файл сессии CP Editor</translation>
+    </message>
+    <message>
+        <source>Report issues</source>
+        <translation>Отчет об ошибках</translation>
     </message>
     <message>
         <source>Import Settings</source>
@@ -252,6 +460,14 @@ Git commit hash: %3
         <translation>Установить лими времени</translation>
     </message>
     <message>
+        <source>Full Screen</source>
+        <translation>Полный экран</translation>
+    </message>
+    <message>
+        <source>Support us</source>
+        <translation>Поддержи нас</translation>
+    </message>
+    <message>
         <source>How to exit full-screen</source>
         <translation type="unfinished"></translation>
     </message>
@@ -260,219 +476,7 @@ Git commit hash: %3
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>New File</source>
-        <translation type="unfinished">Новый файл</translation>
-    </message>
-    <message>
-        <source>Open a new tab in the editor</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Save the file on the disk</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Save As...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Save as new file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Save all opened files</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Close Current</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Close current tab</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Close saved tabs</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Close All the tabs</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Quit the application</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Open File...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Open files</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Open Contest...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Open a Contest</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Indent</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Unindent</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Swap Line Up</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Swap Line Down</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Duplicate Line</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Delete Line</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Toggle Comment</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Toggle Block Comment</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Compile</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Compile and Run</source>
-        <translation type="unfinished">Скомпилировать и запустить</translation>
-    </message>
-    <message>
-        <source>Run</source>
-        <translation type="unfinished">Запуск</translation>
-    </message>
-    <message>
-        <source>Format code</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Run Detached</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Kill Processes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Find and Replace</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use Snippet...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Preferences</source>
-        <translation type="unfinished">Параметры</translation>
-    </message>
-    <message>
-        <source>Reset Settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Export Settings...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Import Settings...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Export Session...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Load Session...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Manual</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Report issues</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>About Qt</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Check for updates</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Support us</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Editor Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>IO Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Split Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Full Screen</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Show Log Files</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Delete Log Files</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;File</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Edit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Actions</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;View</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Options</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Help</source>
+        <source>Stress Testing...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -481,6 +485,10 @@ Git commit hash: %3
     </message>
     <message>
         <source>Open a new tab with generator template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New File From Template</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -505,14 +513,6 @@ Git commit hash: %3
     </message>
     <message>
         <source>Open a new tab with Python template</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Stress Testing...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>New File From Template</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -893,89 +893,89 @@ Press any key to exit</source>
     <name>FakeVimCommands</name>
     <message>
         <source>`new` requires no argument or one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos;, got [%1]</source>
-        <translation type="unfinished"></translation>
+        <translation>`new` не принимает аргументов или принимает один из &apos;cpp&apos;, &apos;java&apos; и &apos;python&apos;, получено [%1]</translation>
     </message>
     <message>
         <source>[%1] is not C++, Python or Java source file</source>
-        <translation type="unfinished"></translation>
+        <translation>[%1] не является исходным файлом C++, Python или Java</translation>
     </message>
     <message>
         <source>[%1] does not exist. To open a tab with a non-existing file, use `open!` instead</source>
-        <translation type="unfinished"></translation>
+        <translation>[%1] не существует. Чтобы открыть вкладку с несуществующим файлом, используйте `open!`</translation>
     </message>
     <message>
         <source>[%1] is not a number</source>
-        <translation type="unfinished"></translation>
+        <translation>[%1] не является числом</translation>
     </message>
     <message>
         <source>%1 is out of range [1, %2]</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 вне диапазона [1, %2]</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished"></translation>
+        <translation>Н/Д</translation>
     </message>
     <message>
         <source>[%1] is not a valid view mode. It should be one of &apos;split&apos; and &apos;edit&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>[%1] не является допустимым режимом просмотра. Допустимые значения: &apos;split&apos; и &apos;edit&apos;</translation>
     </message>
     <message>
         <source>%1 is not a valid language name. It should be one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 не является допустимым названием языка. Допустимые значения: &apos;cpp&apos;, &apos;java&apos; и &apos;python&apos;</translation>
     </message>
     <message>
         <source>No active tab to clear messages</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет активной вкладки для очистки сообщений</translation>
     </message>
 </context>
 <context>
     <name>FindReplaceDialog</name>
     <message>
         <source>Find/Replace</source>
-        <translation type="unfinished"></translation>
+        <translation>Найти/Заменить</translation>
     </message>
 </context>
 <context>
     <name>FindReplaceForm</name>
     <message>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Вид</translation>
     </message>
     <message>
         <source>Find:</source>
-        <translation type="unfinished"></translation>
+        <translation>Найти:</translation>
     </message>
     <message>
         <source>Replace with:</source>
-        <translation type="unfinished"></translation>
+        <translation>Заменить на:</translation>
     </message>
     <message>
         <source>errorLabel</source>
-        <translation type="unfinished"></translation>
+        <translation>errorLabel</translation>
     </message>
     <message>
         <source>Direction</source>
-        <translation type="unfinished"></translation>
+        <translation>Направление</translation>
     </message>
     <message>
         <source>Up</source>
-        <translation type="unfinished"></translation>
+        <translation>Вверх</translation>
     </message>
     <message>
         <source>Down</source>
-        <translation type="unfinished"></translation>
+        <translation>Вниз</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Опции</translation>
     </message>
     <message>
         <source>Case sensitive</source>
-        <translation type="unfinished"></translation>
+        <translation>Учитывать регистр</translation>
     </message>
     <message>
         <source>Whole words only</source>
-        <translation type="unfinished"></translation>
+        <translation>Только слова целиком</translation>
     </message>
     <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -986,23 +986,30 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You may want to take a look at the syntax of regular expressions:&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://doc.trolltech.com/qregexp.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://doc.trolltech.com/qregexp.html&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;whether the text to search should be interpreted as a regular expression.&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You may want to take a look at the syntax of regular expressions:&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://doc.trolltech.com/qregexp.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://doc.trolltech.com/qregexp.html&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Regular Expression</source>
-        <translation type="unfinished"></translation>
+        <translation>Регулярное выражение</translation>
     </message>
     <message>
         <source>Find</source>
-        <translation type="unfinished"></translation>
+        <translation>Найти</translation>
     </message>
     <message>
         <source>Replace</source>
-        <translation type="unfinished"></translation>
+        <translation>Заменить</translation>
     </message>
     <message>
         <source>Replace All</source>
-        <translation type="unfinished"></translation>
+        <translation>Заменить все</translation>
     </message>
 </context>
 <context>
@@ -1208,6 +1215,38 @@ Do you want to reload it?</source>
         <translation>Запуск для тесткейса #%1</translation>
     </message>
     <message>
+        <source>CP Editor</source>
+        <translation>CP Editor</translation>
+    </message>
+    <message>
+        <source>cursor info</source>
+        <translation>информация с курсора</translation>
+    </message>
+    <message>
+        <source>Compile</source>
+        <translation>Скомпилировать</translation>
+    </message>
+    <message>
+        <source>Run</source>
+        <translation>Запустить</translation>
+    </message>
+    <message>
+        <source>Compile and Run</source>
+        <translation>Скомпилировать и запустить</translation>
+    </message>
+    <message>
+        <source>Messages</source>
+        <translation>Сообщения</translation>
+    </message>
+    <message>
+        <source>Clear</source>
+        <translation>Очистить</translation>
+    </message>
+    <message>
+        <source>C++</source>
+        <translation>C++</translation>
+    </message>
+    <message>
         <source>Auto Save</source>
         <translation>Автосохранение</translation>
     </message>
@@ -1242,38 +1281,6 @@ Do you want to reload it?</source>
     <message>
         <source>Failed to start compilation: %1</source>
         <translation>Ошибка старта компиляции: %1</translation>
-    </message>
-    <message>
-        <source>CP Editor</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>cursor info</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Compile</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Run</source>
-        <translation type="unfinished">Запуск</translation>
-    </message>
-    <message>
-        <source>Compile and Run</source>
-        <translation type="unfinished">Скомпилировать и запустить</translation>
-    </message>
-    <message>
-        <source>Messages</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Clear</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>C++</source>
-        <translation type="unfinished">C++</translation>
     </message>
 </context>
 <context>
@@ -2792,23 +2799,6 @@ This may reduce distractions caused by stopwatch updates.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Enable Vim Emulation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Enable vim emulation in Code Editor</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Vim Configuration</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The contents of Vim RC. It is loaded everytime vim emulation starts. 
-Not all vim commands are supported, please check https://github.com/cpeditor/FakeVim for list of supported commands</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Enable CF Tool</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2817,15 +2807,7 @@ Not all vim commands are supported, please check https://github.com/cpeditor/Fak
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Programming language for the template</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>The programming language used for the generator template.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Path to the template file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2843,6 +2825,32 @@ Not all vim commands are supported, please check https://github.com/cpeditor/Fak
     <message>
         <source>Template Cursor Position Offset Characters</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Programming language for the template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Path to the template file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable Vim Emulation</source>
+        <translation>&#x412;&#x43a;&#x43b;&#x44e;&#x447;&#x438;&#x442;&#x44c; &#x44d;&#x43c;&#x443;&#x43b;&#x44f;&#x446;&#x438;&#x44e; Vim</translation>
+    </message>
+    <message>
+        <source>Enable vim emulation in Code Editor</source>
+        <translation>&#x412;&#x43a;&#x43b;&#x44e;&#x447;&#x438;&#x442;&#x44c; &#x44d;&#x43c;&#x443;&#x43b;&#x44f;&#x446;&#x438;&#x44e; Vim &#x432; &#x440;&#x435;&#x434;&#x430;&#x43a;&#x442;&#x43e;&#x440;&#x435; &#x43a;&#x43e;&#x434;&#x430;</translation>
+    </message>
+    <message>
+        <source>Vim Configuration</source>
+        <translation>&#x41a;&#x43e;&#x43d;&#x444;&#x438;&#x433;&#x443;&#x440;&#x430;&#x446;&#x438;&#x44f; Vim</translation>
+    </message>
+    <message>
+        <source>The contents of Vim RC. It is loaded everytime vim emulation starts. 
+Not all vim commands are supported, please check https://github.com/cpeditor/FakeVim for list of supported commands</source>
+        <translation>Содержимое Vim RC. Загружается при каждом запуске эмуляции Vim.
+Поддерживаются не все команды Vim, см. https://github.com/cpeditor/FakeVim для списка поддерживаемых команд</translation>
     </message>
 </context>
 <context>
