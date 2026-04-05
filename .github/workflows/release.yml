@@ -42,7 +42,7 @@ jobs:
           - os: "ubuntu-22.04"
             portable-option: "Off"
             winlibs: false
-          - os: "macos-15-intel"
+          - os: "macos-latest"
             portable-option: "Off"
             winlibs: false
           - os: "windows-2022"
@@ -253,7 +253,7 @@ jobs:
           ../../../Qt/*/*/bin/macdeployqt cpeditor.app
           cp ../../dist/mac/cpeditor.icns cpeditor.app/Contents/Resources
           ln -s /Applications Applications
-          hdiutil create -volname cpeditor-${{ steps.get_version.outputs.VERSION }}-x64 -srcfolder . -ov -format UDZO cpeditor-${{ steps.get_version.outputs.VERSION }}-macos-x64.dmg
+          hdiutil create -volname cpeditor-${{ steps.get_version.outputs.VERSION }}-arm64 -srcfolder . -ov -format UDZO cpeditor-${{ steps.get_version.outputs.VERSION }}-macos-arm64.dmg
 
       - name: "[macOS] Release"
         if: startsWith(matrix.config.os, 'macos')
@@ -261,7 +261,7 @@ jobs:
         with:
           draft: true
           prerelease: ${{ steps.get_version.outputs.ISBETA }}
-          files: build/dmg/cpeditor-${{ steps.get_version.outputs.VERSION }}-macos-x64.dmg
+          files: build/dmg/cpeditor-${{ steps.get_version.outputs.VERSION }}-macos-arm64.dmg
           name: CP Editor ${{ steps.get_version.outputs.VERSION }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
