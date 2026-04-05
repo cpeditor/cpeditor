@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+## 7.0.2
+
 ### Changed
 
 -   The "Highlight Error Line" setting is moved from "Code Edit" to the "Extensions -> Language Server -> General" page, with an improved description "Highlight lines containing diagnostics". (#1324)
