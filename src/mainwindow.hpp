@@ -26,7 +26,8 @@ class MessageLogger;
 namespace Editor
 {
 class CodeEditor;
-}
+class FakeVimCommands;
+} // namespace Editor
 class QFileSystemWatcher;
 class QPushButton;
 class QSplitter;
@@ -51,6 +52,13 @@ class CFTool;
 struct CompanionData;
 } // namespace Extensions
 
+namespace FakeVim
+{
+namespace Internal
+{
+class FakeVimHandler;
+}
+} // namespace FakeVim
 namespace Widgets
 {
 class TestCases;
@@ -249,6 +257,8 @@ class MainWindow : public QMainWindow
     int customTimeLimit = -1;     // the custom time limit for this tab, -1 represents for the same as settings
     QString customCompileCommand; // the custom compile command for this tab, empty represents for the same as settings
 
+    FakeVim::Internal::FakeVimHandler *fakevimHandler = nullptr;
+
     void setEditor();
     void compile();
     void run();
@@ -269,5 +279,6 @@ class MainWindow : public QMainWindow
 
     virtual void hideEvent(QHideEvent *event) override;
     virtual void showEvent(QShowEvent *event) override;
+    friend class Editor::FakeVimCommands;
 };
 #endif // MAINWINDOW_HPP
