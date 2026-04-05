@@ -1816,6 +1816,10 @@ This can be overridden for each parenthesis in each language.</source>
 e deslocar-se ao digitar o elemento mais à direita.</translation>
     </message>
     <message>
+        <source></source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>%1 Template Path</source>
         <translation>Caminho para o modelo %1</translation>
     </message>

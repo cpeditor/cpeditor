@@ -1815,6 +1815,10 @@ This can be overridden for each parenthesis in each language.</source>
 此设置可以被各个语言的设置所覆盖。</translation>
     </message>
     <message>
+        <source></source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>%1 Template Path</source>
         <translation>%1 模板路径</translation>
     </message>

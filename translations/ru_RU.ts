@@ -1817,6 +1817,10 @@ This can be overridden for each parenthesis in each language.</source>
 Это может быть переопределено для каждой скобки на каждом языке.</translation>
     </message>
     <message>
+        <source></source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>%1 Template Path</source>
         <translation>%1 Путь шаблона</translation>
     </message>

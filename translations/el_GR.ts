@@ -1816,6 +1816,10 @@ This can be overridden for each parenthesis in each language.</source>
 Αυτό μπορεί να αλλάξει για κάθε παράγραφο σε κάθε γλώσσα.</translation>
     </message>
     <message>
+        <source></source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>%1 Template Path</source>
         <translation>%1 Διαδρομή προτύπου</translation>
     </message>

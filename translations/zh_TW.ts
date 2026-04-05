@@ -1660,6 +1660,10 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation>以像素計算的游標寬度</translation>
     </message>
     <message>
+        <source></source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Editor Font</source>
         <translation>編輯器字型</translation>
     </message>

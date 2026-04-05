@@ -1647,6 +1647,10 @@ Si está parcialmente marcado, la configuración global en Editar Código t se u
         <translation>El ancho del cursor en píxeles</translation>
     </message>
     <message>
+        <source></source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Editor Font</source>
         <translation>Fuente del editor</translation>
     </message>
