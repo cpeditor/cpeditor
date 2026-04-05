@@ -67,13 +67,19 @@ jobs:
           cmake -B build -S . -DCMAKE_BUILD_TYPE=Release -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
           sudo cmake --build build --config Release --parallel $(nproc) --target install
 
+      - name: "[Windows] Set up MSVC dev environment"
+        if: startsWith(matrix.config.os, 'windows')
+        uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: ${{ matrix.config.arch }}
+
       - name: "[Windows] Install ksyntax-highlighting"
         if: startsWith(matrix.config.os, 'windows')
         run: |
           cd third_party/syntax-highlighting
-          cmake -B build -S . -A ${{ matrix.config.platform }} -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF -DQRC_SYNTAX=OFF
-          cmake --build build --config Release --parallel 1
-          cmake --build build --config Release --target install
+          cmake -B build -S . -G Ninja -DCMAKE_BUILD_TYPE=Release -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF -DQRC_SYNTAX=OFF
+          cmake --build build
+          cmake --install build
 
       - name: "[Unix] Install ksyntax-highlighting"
         if: startsWith(matrix.config.os, 'ubuntu') || startsWith(matrix.config.os, 'macos')
