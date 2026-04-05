@@ -893,39 +893,43 @@ Press any key to exit</source>
     <name>FakeVimCommands</name>
     <message>
         <source>`new` requires no argument or one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos;, got [%1]</source>
-        <translation>&#x3b7; `new` &#x3b4;&#x3b5;&#x3bd; &#x3b4;&#x3ad;&#x3c7;&#x3b5;&#x3c4;&#x3b1;&#x3b9; &#x3cc;&#x3c1;&#x3b9;&#x3c3;&#x3bc;&#x3b1; &#x3ae; &#x3c0;&#x3c1;&#x3ad;&#x3c0;&#x3b5;&#x3b9; &#x3bd;&#x3b1; &#x3b5;&#x3af;&#x3bd;&#x3b1;&#x3b9; &#x3ad;&#x3bd;&#x3b1; &#x3b1;&#x3c0;&#x3cc; &apos;cpp&apos;, &apos;java&apos; &#x3ba;&#x3b1;&#x3b9; &apos;python&apos;, &#x3b5;&#x3bb;&#x3ae;&#x3c6;&#x3b8;&#x3b7; [%1]</translation>
+        <translation>η `new` δεν δέχεται όρισμα ή πρέπει να είναι ένα από &apos;cpp&apos;, &apos;java&apos; και &apos;python&apos;, ελήφθη [%1]</translation>
     </message>
     <message>
         <source>[%1] is not C++, Python or Java source file</source>
-        <translation>&#x3c4;&#x3bf; [%1] &#x3b4;&#x3b5;&#x3bd; &#x3b5;&#x3af;&#x3bd;&#x3b1;&#x3b9; &#x3b1;&#x3c1;&#x3c7;&#x3b5;&#x3af;&#x3bf; &#x3c0;&#x3b7;&#x3b3;&#x3b1;&#x3af;&#x3bf;&#x3c5; C++, Python &#x3ae; Java</translation>
+        <translation>το [%1] δεν είναι αρχείο πηγαίου C++, Python ή Java</translation>
     </message>
     <message>
         <source>[%1] does not exist. To open a tab with a non-existing file, use `open!` instead</source>
-        <translation>&#x3c4;&#x3bf; [%1] &#x3b4;&#x3b5;&#x3bd; &#x3c5;&#x3c0;&#x3ac;&#x3c1;&#x3c7;&#x3b5;&#x3b9;. &#x393;&#x3b9;&#x3b1; &#x3bd;&#x3b1; &#x3b1;&#x3bd;&#x3bf;&#x3af;&#x3be;&#x3b5;&#x3c4;&#x3b5; &#x3ba;&#x3b1;&#x3c1;&#x3c4;&#x3ad;&#x3bb;&#x3b1; &#x3bc;&#x3b5; &#x3b1;&#x3bd;&#x3cd;&#x3c0;&#x3b1;&#x3c1;&#x3ba;&#x3c4;&#x3bf; &#x3b1;&#x3c1;&#x3c7;&#x3b5;&#x3af;&#x3bf;, &#x3c7;&#x3c1;&#x3b7;&#x3c3;&#x3b9;&#x3bc;&#x3bf;&#x3c0;&#x3bf;&#x3b9;&#x3ae;&#x3c3;&#x3c4;&#x3b5; `open!`</translation>
+        <translation>το [%1] δεν υπάρχει. Για να ανοίξετε καρτέλα με ανύπαρκτο αρχείο, χρησιμοποιήστε `open!`</translation>
     </message>
     <message>
         <source>[%1] is not a number</source>
-        <translation>&#x3c4;&#x3bf; [%1] &#x3b4;&#x3b5;&#x3bd; &#x3b5;&#x3af;&#x3bd;&#x3b1;&#x3b9; &#x3b1;&#x3c1;&#x3b9;&#x3b8;&#x3bc;&#x3cc;&#x3c2;</translation>
+        <translation>το [%1] δεν είναι αριθμός</translation>
     </message>
     <message>
         <source>%1 is out of range [1, %2]</source>
-        <translation>&#x3c4;&#x3bf; %1 &#x3b5;&#x3af;&#x3bd;&#x3b1;&#x3b9; &#x3b5;&#x3ba;&#x3c4;&#x3cc;&#x3c2; &#x3b5;&#x3cd;&#x3c1;&#x3bf;&#x3c5;&#x3c2; [1, %2]</translation>
+        <translation>το %1 είναι εκτός εύρους [1, %2]</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation>&#x394;/&#x3a5;</translation>
+        <translation>Δ/Υ</translation>
     </message>
     <message>
         <source>[%1] is not a valid view mode. It should be one of &apos;split&apos; and &apos;edit&apos;</source>
-        <translation>&#x3c4;&#x3bf; [%1] &#x3b4;&#x3b5;&#x3bd; &#x3b5;&#x3af;&#x3bd;&#x3b1;&#x3b9; &#x3ad;&#x3b3;&#x3ba;&#x3c5;&#x3c1;&#x3b7; &#x3bb;&#x3b5;&#x3b9;&#x3c4;&#x3bf;&#x3c5;&#x3c1;&#x3b3;&#x3af;&#x3b1; &#x3c0;&#x3c1;&#x3bf;&#x3b2;&#x3bf;&#x3bb;&#x3ae;&#x3c2;. &#x3a0;&#x3c1;&#x3ad;&#x3c0;&#x3b5;&#x3b9; &#x3bd;&#x3b1; &#x3b5;&#x3af;&#x3bd;&#x3b1;&#x3b9; &apos;split&apos; &#x3ae; &apos;edit&apos;</translation>
+        <translation>το [%1] δεν είναι έγκυρη λειτουργία προβολής. Πρέπει να είναι &apos;split&apos; ή &apos;edit&apos;</translation>
     </message>
     <message>
         <source>%1 is not a valid language name. It should be one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos;</source>
-        <translation>&#x3c4;&#x3bf; %1 &#x3b4;&#x3b5;&#x3bd; &#x3b5;&#x3af;&#x3bd;&#x3b1;&#x3b9; &#x3ad;&#x3b3;&#x3ba;&#x3c5;&#x3c1;&#x3bf; &#x3cc;&#x3bd;&#x3bf;&#x3bc;&#x3b1; &#x3b3;&#x3bb;&#x3ce;&#x3c3;&#x3c3;&#x3b1;&#x3c2;. &#x3a0;&#x3c1;&#x3ad;&#x3c0;&#x3b5;&#x3b9; &#x3bd;&#x3b1; &#x3b5;&#x3af;&#x3bd;&#x3b1;&#x3b9; &apos;cpp&apos;, &apos;java&apos; &#x3ae; &apos;python&apos;</translation>
+        <translation>το %1 δεν είναι έγκυρο όνομα γλώσσας. Πρέπει να είναι &apos;cpp&apos;, &apos;java&apos; ή &apos;python&apos;</translation>
     </message>
     <message>
         <source>No active tab to clear messages</source>
-        <translation>&#x394;&#x3b5;&#x3bd; &#x3c5;&#x3c0;&#x3ac;&#x3c1;&#x3c7;&#x3b5;&#x3b9; &#x3b5;&#x3bd;&#x3b5;&#x3c1;&#x3b3;&#x3ae; &#x3ba;&#x3b1;&#x3c1;&#x3c4;&#x3ad;&#x3bb;&#x3b1; &#x3b3;&#x3b9;&#x3b1; &#x3b5;&#x3ba;&#x3ba;&#x3b1;&#x3b8;&#x3ac;&#x3c1;&#x3b9;&#x3c3;&#x3b7; &#x3bc;&#x3b7;&#x3bd;&#x3c5;&#x3bc;&#x3ac;&#x3c4;&#x3c9;&#x3bd;</translation>
+        <translation>Δεν υπάρχει ενεργή καρτέλα για εκκαθάριση μηνυμάτων</translation>
+    </message>
+    <message>
+        <source>No active tab to change language</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2834,15 +2838,15 @@ This may reduce distractions caused by stopwatch updates.</source>
     </message>
     <message>
         <source>Enable Vim Emulation</source>
-        <translation>&#x395;&#x3bd;&#x3b5;&#x3c1;&#x3b3;&#x3bf;&#x3c0;&#x3bf;&#x3af;&#x3b7;&#x3c3;&#x3b7; &#x3b5;&#x3be;&#x3bf;&#x3bc;&#x3bf;&#x3af;&#x3c9;&#x3c3;&#x3b7;&#x3c2; Vim</translation>
+        <translation>Ενεργοποίηση εξομοίωσης Vim</translation>
     </message>
     <message>
         <source>Enable vim emulation in Code Editor</source>
-        <translation>&#x395;&#x3bd;&#x3b5;&#x3c1;&#x3b3;&#x3bf;&#x3c0;&#x3bf;&#x3af;&#x3b7;&#x3c3;&#x3b7; &#x3b5;&#x3be;&#x3bf;&#x3bc;&#x3bf;&#x3af;&#x3c9;&#x3c3;&#x3b7;&#x3c2; Vim &#x3c3;&#x3c4;&#x3bf;&#x3bd; &#x395;&#x3c0;&#x3b5;&#x3be;&#x3b5;&#x3c1;&#x3b3;&#x3b1;&#x3c3;&#x3c4;&#x3ae; &#x39a;&#x3ce;&#x3b4;&#x3b9;&#x3ba;&#x3b1;</translation>
+        <translation>Ενεργοποίηση εξομοίωσης Vim στον Επεξεργαστή Κώδικα</translation>
     </message>
     <message>
         <source>Vim Configuration</source>
-        <translation>&#x3a1;&#x3c5;&#x3b8;&#x3bc;&#x3af;&#x3c3;&#x3b5;&#x3b9;&#x3c2; Vim</translation>
+        <translation>Ρυθμίσεις Vim</translation>
     </message>
     <message>
         <source>The contents of Vim RC. It is loaded everytime vim emulation starts. 

@@ -1222,6 +1222,8 @@ void AppWindow::openTab(const QString &path, QString lang, MainWindow *after)
             lang = "Java";
         else if (Util::pythonSuffix.contains(suffix))
             lang = "Python";
+        else
+            lang = SettingsHelper::getDefaultLanguage();
     }
 
     newWindow->setLanguage(lang);

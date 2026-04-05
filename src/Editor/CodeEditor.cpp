@@ -391,8 +391,20 @@ void CodeEditor::focusOutEvent(QFocusEvent *e)
     if (m_vimCursor)
     {
         setOverwriteMode(true); // makes a block cursor when focus is lost
+        // Restore normal cursor flash time for other widgets
+        QApplication::setCursorFlashTime(m_originalCursorFlashTime);
     }
     QPlainTextEdit::focusOutEvent(e);
+}
+
+void CodeEditor::focusInEvent(QFocusEvent *e)
+{
+    if (m_vimCursor)
+    {
+        // Disable cursor flashing in vim mode
+        QApplication::setCursorFlashTime(0);
+    }
+    QPlainTextEdit::focusInEvent(e);
 }
 
 void CodeEditor::setHighlightCurrentLine(bool enabled)
@@ -400,12 +412,19 @@ void CodeEditor::setHighlightCurrentLine(bool enabled)
     m_highlightingCurrentLine = enabled;
 }
 
+void CodeEditor::setFakeVimExtraSelections(const QList<QTextEdit::ExtraSelection> &selections)
+{
+    fakeVimExtraSelections = selections;
+    updateExtraSelections();
+}
+
 void CodeEditor::setVimCursor(bool value)
 {
     m_vimCursor = value;
     // Do not flash the cursor in vim mode
-    static const int originalFlashTime = QApplication::cursorFlashTime();
-    QApplication::setCursorFlashTime(m_vimCursor ? 0 : originalFlashTime);
+    if (m_originalCursorFlashTime < 0)
+        m_originalCursorFlashTime = QApplication::cursorFlashTime();
+    QApplication::setCursorFlashTime(m_vimCursor ? 0 : m_originalCursorFlashTime);
 
     setOverwriteMode(false);
     updateCursorWidth();
@@ -1361,7 +1380,7 @@ void CodeEditor::updateExtraSelections()
 {
     QPlainTextEdit::setExtraSelections(squigglesLineExtraSelections + currentLineExtraSelections +
                                        parenthesesExtraSelections + occurrencesExtraSelections +
-                                       squigglesExtraSelections);
+                                       squigglesExtraSelections + fakeVimExtraSelections);
 }
 
 QColor CodeEditor::getEditorColor(KSyntaxHighlighting::Theme::EditorColorRole role)

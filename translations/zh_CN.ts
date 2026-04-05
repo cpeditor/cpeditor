@@ -927,6 +927,10 @@ Press any key to exit</source>
         <source>No active tab to clear messages</source>
         <translation>没有活动的标签页可用于清除消息</translation>
     </message>
+    <message>
+        <source>No active tab to change language</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>FindReplaceDialog</name>

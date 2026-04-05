@@ -109,6 +109,13 @@ MainWindow::~MainWindow()
 {
     killProcesses();
 
+    if (fakevimHandler)
+    {
+        fakevimHandler->disconnectFromEditor();
+        delete fakevimHandler;
+        fakevimHandler = nullptr;
+    }
+
     delete cftool;
     delete tmpDir;
 
@@ -119,13 +126,6 @@ MainWindow::~MainWindow()
     delete editor;
     delete log;
     delete stopwatch;
-
-    if (fakevimHandler)
-    {
-        fakevimHandler->disconnectFromEditor();
-        fakevimHandler->deleteLater();
-        fakevimHandler = nullptr;
-    }
 }
 
 void MainWindow::setEditor()
@@ -728,6 +728,8 @@ void MainWindow::applySettings(const QString &pagePath)
         {
             editor->setVimCursor(SettingsHelper::isFakeVimEnable());
             ui->cursorInfo->setVisible(!SettingsHelper::isFakeVimEnable());
+            if (fakevimHandler)
+                fakevimHandler->disconnectFromEditor();
             delete fakevimHandler;
             fakevimHandler = nullptr;
             setStatusBar(nullptr);

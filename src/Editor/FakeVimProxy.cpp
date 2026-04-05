@@ -41,6 +41,7 @@
 #include <QLabel>
 #include <QMainWindow>
 #include <QPlainTextEdit>
+#include <QRegularExpression>
 #include <QStatusBar>
 #include <QTemporaryFile>
 #include <QTextBlock>
@@ -91,7 +92,7 @@ void FakeVimProxy::highlightMatches(QString const &pattern)
     selection.format.setForeground(Qt::black);
 
     // Highlight matches.
-    QRegExp re(pattern);
+    QRegularExpression re(pattern);
     QTextCursor cur = doc->find(re);
 
     m_searchSelection.clear();
@@ -421,6 +422,13 @@ int FakeVimProxy::firstNonSpace(const QString &text)
 
 void FakeVimProxy::updateExtraSelections()
 {
+    auto *codeEditor = qobject_cast<CodeEditor *>(m_widget);
+    if (codeEditor)
+    {
+        codeEditor->setFakeVimExtraSelections(m_clearSelection + m_searchSelection + m_blockSelection);
+        return;
+    }
+
     auto *editor = qobject_cast<QTextEdit *>(m_widget);
     auto *plainEditor = qobject_cast<QPlainTextEdit *>(m_widget);
     if (editor)
@@ -557,6 +565,8 @@ void FakeVimProxy::connectSignals(FakeVim::Internal::FakeVimHandler *handler, QW
     handler->tabNextRequested.connect([appWindow, mainWindow] {
         auto total = appWindow->tabCount();
         auto curr = appWindow->indexOfWindow(mainWindow);
+        if (curr < 0)
+            return;
         int next = (curr + 1) % total;
         if (next != curr)
             appWindow->setTabAt(next);
@@ -564,6 +574,8 @@ void FakeVimProxy::connectSignals(FakeVim::Internal::FakeVimHandler *handler, QW
     handler->tabPreviousRequested.connect([appWindow, mainWindow] {
         auto total = appWindow->tabCount();
         auto curr = appWindow->indexOfWindow(mainWindow);
+        if (curr < 0)
+            return;
         int last = curr ? curr - 1 : total - 1;
         if (last != curr)
             appWindow->setTabAt(last);

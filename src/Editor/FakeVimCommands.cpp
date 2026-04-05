@@ -195,10 +195,12 @@ bool FakeVimCommands::handleCustomCommand(CommandTypes type, QString const &args
     case CommandTypes::Chlang: {
         const QString lang = language(args);
 
-        if (!lang.isEmpty() && appwin->currentWindow())
-            appwin->currentWindow()->setLanguage(lang);
-        else
+        if (lang.isEmpty())
             showError(tr("%1 is not a valid language name. It should be one of 'cpp', 'java' and 'python'").arg(args));
+        else if (!appwin->currentWindow())
+            showError(tr("No active tab to change language"));
+        else
+            appwin->currentWindow()->setLanguage(lang);
         break;
     }
     case CommandTypes::Clear: {

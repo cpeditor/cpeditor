@@ -901,15 +901,15 @@ Presione cualquier tecla para salir</translation>
     </message>
     <message>
         <source>[%1] does not exist. To open a tab with a non-existing file, use `open!` instead</source>
-        <translation>[%1] no existe. Para abrir una pesta&#xf1;a con un archivo inexistente, use `open!`</translation>
+        <translation>[%1] no existe. Para abrir una pestaña con un archivo inexistente, use `open!`</translation>
     </message>
     <message>
         <source>[%1] is not a number</source>
-        <translation>[%1] no es un n&#xfa;mero</translation>
+        <translation>[%1] no es un número</translation>
     </message>
     <message>
         <source>%1 is out of range [1, %2]</source>
-        <translation>%1 est&#xe1; fuera del rango [1, %2]</translation>
+        <translation>%1 está fuera del rango [1, %2]</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -917,15 +917,19 @@ Presione cualquier tecla para salir</translation>
     </message>
     <message>
         <source>[%1] is not a valid view mode. It should be one of &apos;split&apos; and &apos;edit&apos;</source>
-        <translation>[%1] no es un modo de vista v&#xe1;lido. Debe ser &apos;split&apos; o &apos;edit&apos;</translation>
+        <translation>[%1] no es un modo de vista válido. Debe ser &apos;split&apos; o &apos;edit&apos;</translation>
     </message>
     <message>
         <source>%1 is not a valid language name. It should be one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos;</source>
-        <translation>%1 no es un nombre de lenguaje v&#xe1;lido. Debe ser &apos;cpp&apos;, &apos;java&apos; o &apos;python&apos;</translation>
+        <translation>%1 no es un nombre de lenguaje válido. Debe ser &apos;cpp&apos;, &apos;java&apos; o &apos;python&apos;</translation>
     </message>
     <message>
         <source>No active tab to clear messages</source>
-        <translation>No hay pesta&#xf1;a activa para limpiar mensajes</translation>
+        <translation>No hay pestaña activa para limpiar mensajes</translation>
+    </message>
+    <message>
+        <source>No active tab to change language</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2839,15 +2843,15 @@ Es una lista de &lt;nombre de ruta predeterminada&gt;, separadas por comas, y pu
     </message>
     <message>
         <source>Enable Vim Emulation</source>
-        <translation>Habilitar emulaci&#xf3;n de Vim</translation>
+        <translation>Habilitar emulación de Vim</translation>
     </message>
     <message>
         <source>Enable vim emulation in Code Editor</source>
-        <translation>Habilitar la emulaci&#xf3;n de Vim en el editor de c&#xf3;digo</translation>
+        <translation>Habilitar la emulación de Vim en el editor de código</translation>
     </message>
     <message>
         <source>Vim Configuration</source>
-        <translation>Configuraci&#xf3;n de Vim</translation>
+        <translation>Configuración de Vim</translation>
     </message>
     <message>
         <source>The contents of Vim RC. It is loaded everytime vim emulation starts. 

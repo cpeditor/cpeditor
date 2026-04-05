@@ -927,6 +927,10 @@ Press any key to exit</source>
         <source>No active tab to clear messages</source>
         <translation>Нет активной вкладки для очистки сообщений</translation>
     </message>
+    <message>
+        <source>No active tab to change language</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>FindReplaceDialog</name>
@@ -2836,15 +2840,15 @@ This may reduce distractions caused by stopwatch updates.</source>
     </message>
     <message>
         <source>Enable Vim Emulation</source>
-        <translation>&#x412;&#x43a;&#x43b;&#x44e;&#x447;&#x438;&#x442;&#x44c; &#x44d;&#x43c;&#x443;&#x43b;&#x44f;&#x446;&#x438;&#x44e; Vim</translation>
+        <translation>Включить эмуляцию Vim</translation>
     </message>
     <message>
         <source>Enable vim emulation in Code Editor</source>
-        <translation>&#x412;&#x43a;&#x43b;&#x44e;&#x447;&#x438;&#x442;&#x44c; &#x44d;&#x43c;&#x443;&#x43b;&#x44f;&#x446;&#x438;&#x44e; Vim &#x432; &#x440;&#x435;&#x434;&#x430;&#x43a;&#x442;&#x43e;&#x440;&#x435; &#x43a;&#x43e;&#x434;&#x430;</translation>
+        <translation>Включить эмуляцию Vim в редакторе кода</translation>
     </message>
     <message>
         <source>Vim Configuration</source>
-        <translation>&#x41a;&#x43e;&#x43d;&#x444;&#x438;&#x433;&#x443;&#x440;&#x430;&#x446;&#x438;&#x44f; Vim</translation>
+        <translation>Конфигурация Vim</translation>
     </message>
     <message>
         <source>The contents of Vim RC. It is loaded everytime vim emulation starts. 
