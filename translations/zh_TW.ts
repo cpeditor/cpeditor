@@ -753,6 +753,49 @@ Press any key to exit</source>
     </message>
 </context>
 <context>
+    <name>Editor::FakeVimCommands</name>
+    <message>
+        <source>`new` requires no argument or one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos;, got [%1]</source>
+        <translation type="unfinished">`new` 不需要參數，或參數應為 &apos;cpp&apos;、&apos;java&apos; 或 &apos;python&apos; 之一，但收到了 [%1]</translation>
+    </message>
+    <message>
+        <source>[%1] is not C++, Python or Java source file</source>
+        <translation type="unfinished">[%1] 不是 C++、Python 或 Java 原始碼檔案</translation>
+    </message>
+    <message>
+        <source>[%1] does not exist. To open a tab with a non-existing file, use `open!` instead</source>
+        <translation type="unfinished">[%1] 不存在。若要開啟一個不存在的檔案的分頁，請使用 `open!`</translation>
+    </message>
+    <message>
+        <source>[%1] is not a number</source>
+        <translation type="unfinished">[%1] 不是數字</translation>
+    </message>
+    <message>
+        <source>%1 is out of range [1, %2]</source>
+        <translation type="unfinished">%1 超出範圍 [1, %2]</translation>
+    </message>
+    <message>
+        <source>N/A</source>
+        <translation type="unfinished">不適用</translation>
+    </message>
+    <message>
+        <source>[%1] is not a valid view mode. It should be one of &apos;split&apos; and &apos;edit&apos;</source>
+        <translation type="unfinished">[%1] 不是有效的檢視模式。應為 &apos;split&apos; 或 &apos;edit&apos; 之一</translation>
+    </message>
+    <message>
+        <source>%1 is not a valid language name. It should be one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos;</source>
+        <translation type="unfinished">%1 不是有效的語言名稱。應為 &apos;cpp&apos;、&apos;java&apos; 或 &apos;python&apos; 之一</translation>
+    </message>
+    <message>
+        <source>No active tab to change language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No active tab to clear messages</source>
+        <translation type="unfinished">沒有作用中的分頁可清除訊息</translation>
+    </message>
+</context>
+<context>
     <name>Extensions::CFTool</name>
     <message>
         <source>CF Tool</source>
@@ -893,49 +936,6 @@ Press any key to exit</source>
     <message>
         <source>An unknown error has occurred in LSP Process</source>
         <translation>LSP 處理程序發生了未知的錯誤</translation>
-    </message>
-</context>
-<context>
-    <name>FakeVimCommands</name>
-    <message>
-        <source>`new` requires no argument or one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos;, got [%1]</source>
-        <translation>`new` 不需要參數，或參數應為 &apos;cpp&apos;、&apos;java&apos; 或 &apos;python&apos; 之一，但收到了 [%1]</translation>
-    </message>
-    <message>
-        <source>[%1] is not C++, Python or Java source file</source>
-        <translation>[%1] 不是 C++、Python 或 Java 原始碼檔案</translation>
-    </message>
-    <message>
-        <source>[%1] does not exist. To open a tab with a non-existing file, use `open!` instead</source>
-        <translation>[%1] 不存在。若要開啟一個不存在的檔案的分頁，請使用 `open!`</translation>
-    </message>
-    <message>
-        <source>[%1] is not a number</source>
-        <translation>[%1] 不是數字</translation>
-    </message>
-    <message>
-        <source>%1 is out of range [1, %2]</source>
-        <translation>%1 超出範圍 [1, %2]</translation>
-    </message>
-    <message>
-        <source>N/A</source>
-        <translation>不適用</translation>
-    </message>
-    <message>
-        <source>[%1] is not a valid view mode. It should be one of &apos;split&apos; and &apos;edit&apos;</source>
-        <translation>[%1] 不是有效的檢視模式。應為 &apos;split&apos; 或 &apos;edit&apos; 之一</translation>
-    </message>
-    <message>
-        <source>%1 is not a valid language name. It should be one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos;</source>
-        <translation>%1 不是有效的語言名稱。應為 &apos;cpp&apos;、&apos;java&apos; 或 &apos;python&apos; 之一</translation>
-    </message>
-    <message>
-        <source>No active tab to clear messages</source>
-        <translation>沒有作用中的分頁可清除訊息</translation>
-    </message>
-    <message>
-        <source>No active tab to change language</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

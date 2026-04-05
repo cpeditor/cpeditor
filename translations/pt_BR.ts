@@ -748,6 +748,49 @@ Pressionar qualquer tecla para sair</translation>
     </message>
 </context>
 <context>
+    <name>Editor::FakeVimCommands</name>
+    <message>
+        <source>`new` requires no argument or one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos;, got [%1]</source>
+        <translation type="unfinished">`new` não requer argumento ou deve ser um entre &apos;cpp&apos;, &apos;java&apos; e &apos;python&apos;, recebido [%1]</translation>
+    </message>
+    <message>
+        <source>[%1] is not C++, Python or Java source file</source>
+        <translation type="unfinished">[%1] não é um arquivo fonte C++, Python ou Java</translation>
+    </message>
+    <message>
+        <source>[%1] does not exist. To open a tab with a non-existing file, use `open!` instead</source>
+        <translation type="unfinished">[%1] não existe. Para abrir uma aba com um arquivo inexistente, use `open!`</translation>
+    </message>
+    <message>
+        <source>[%1] is not a number</source>
+        <translation type="unfinished">[%1] não é um número</translation>
+    </message>
+    <message>
+        <source>%1 is out of range [1, %2]</source>
+        <translation type="unfinished">%1 está fora do intervalo [1, %2]</translation>
+    </message>
+    <message>
+        <source>N/A</source>
+        <translation type="unfinished">N/D</translation>
+    </message>
+    <message>
+        <source>[%1] is not a valid view mode. It should be one of &apos;split&apos; and &apos;edit&apos;</source>
+        <translation type="unfinished">[%1] não é um modo de visualização válido. Deve ser &apos;split&apos; ou &apos;edit&apos;</translation>
+    </message>
+    <message>
+        <source>%1 is not a valid language name. It should be one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos;</source>
+        <translation type="unfinished">%1 não é um nome de linguagem válido. Deve ser &apos;cpp&apos;, &apos;java&apos; ou &apos;python&apos;</translation>
+    </message>
+    <message>
+        <source>No active tab to change language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No active tab to clear messages</source>
+        <translation type="unfinished">Nenhuma aba ativa para limpar mensagens</translation>
+    </message>
+</context>
+<context>
     <name>Extensions::CFTool</name>
     <message>
         <source>CF Tool</source>
@@ -887,49 +930,6 @@ Pressionar qualquer tecla para sair</translation>
     <message>
         <source>An unknown error has occurred in LSP Process</source>
         <translation>Ocorrência de erro desconhecido no processo LSP</translation>
-    </message>
-</context>
-<context>
-    <name>FakeVimCommands</name>
-    <message>
-        <source>`new` requires no argument or one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos;, got [%1]</source>
-        <translation>`new` não requer argumento ou deve ser um entre &apos;cpp&apos;, &apos;java&apos; e &apos;python&apos;, recebido [%1]</translation>
-    </message>
-    <message>
-        <source>[%1] is not C++, Python or Java source file</source>
-        <translation>[%1] não é um arquivo fonte C++, Python ou Java</translation>
-    </message>
-    <message>
-        <source>[%1] does not exist. To open a tab with a non-existing file, use `open!` instead</source>
-        <translation>[%1] não existe. Para abrir uma aba com um arquivo inexistente, use `open!`</translation>
-    </message>
-    <message>
-        <source>[%1] is not a number</source>
-        <translation>[%1] não é um número</translation>
-    </message>
-    <message>
-        <source>%1 is out of range [1, %2]</source>
-        <translation>%1 está fora do intervalo [1, %2]</translation>
-    </message>
-    <message>
-        <source>N/A</source>
-        <translation>N/D</translation>
-    </message>
-    <message>
-        <source>[%1] is not a valid view mode. It should be one of &apos;split&apos; and &apos;edit&apos;</source>
-        <translation>[%1] não é um modo de visualização válido. Deve ser &apos;split&apos; ou &apos;edit&apos;</translation>
-    </message>
-    <message>
-        <source>%1 is not a valid language name. It should be one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos;</source>
-        <translation>%1 não é um nome de linguagem válido. Deve ser &apos;cpp&apos;, &apos;java&apos; ou &apos;python&apos;</translation>
-    </message>
-    <message>
-        <source>No active tab to clear messages</source>
-        <translation>Nenhuma aba ativa para limpar mensagens</translation>
-    </message>
-    <message>
-        <source>No active tab to change language</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
