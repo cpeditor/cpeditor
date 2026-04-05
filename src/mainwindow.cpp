@@ -23,6 +23,7 @@
 #include "Core/MessageLogger.hpp"
 #include "Core/Runner.hpp"
 #include "Editor/CodeEditor.hpp"
+#include "Editor/FakeVimProxy.hpp"
 #include "Extensions/CFTool.hpp"
 #include "Extensions/ClangFormatter.hpp"
 #include "Extensions/CompanionServer.hpp"
@@ -31,7 +32,10 @@
 #include "Settings/FileProblemBinder.hpp"
 #include "Settings/PreferencesWindow.hpp"
 #include "Util/FileUtil.hpp"
+#include "Util/Util.hpp"
 #include "Widgets/Stopwatch.hpp"
+#include "Widgets/StressTesting.hpp"
+#include "Widgets/TestCase.hpp"
 #include "Widgets/TestCases.hpp"
 #include "appwindow.hpp"
 #include "generated/SettingsHelper.hpp"
@@ -47,6 +51,7 @@
 #include <QTimer>
 
 #include "../ui/ui_mainwindow.h"
+#include "third_party/FakeVim/fakevim/fakevimhandler.h"
 
 static const int MAX_NUMBER_OF_RECENT_FILES = 20;
 
@@ -76,6 +81,12 @@ MainWindow::MainWindow(int index, AppWindow *parent)
         autoSaveTimer, &QTimer::timeout, autoSaveTimer, [this] { saveFile(AutoSave, tr("Auto Save"), false); },
         Qt::DirectConnection);
     applySettings("");
+
+    stressTesting = new Widgets::StressTesting(this);
+    connect(stressTesting, &Widgets::StressTesting::compilationErrorOccurred, this,
+            &MainWindow::onCompilationErrorOccurred);
+    connect(stressTesting, &Widgets::StressTesting::compilationKilled, this, &MainWindow::onCompilationKilled);
+    connect(stressTesting, &Widgets::StressTesting::compilationFailed, this, &MainWindow::onCompilationFailed);
     QTimer::singleShot(0, [this] { editor->resize(0, 0); }); // refresh editor geometry
 }
 
@@ -97,6 +108,13 @@ MainWindow::MainWindow(const EditorStatus &status, bool duplicate, int index, Ap
 MainWindow::~MainWindow()
 {
     killProcesses();
+
+    if (fakevimHandler)
+    {
+        fakevimHandler->disconnectFromEditor();
+        delete fakevimHandler;
+        fakevimHandler = nullptr;
+    }
 
     delete cftool;
     delete tmpDir;
@@ -130,6 +148,34 @@ void MainWindow::setStopwatch()
     stopwatch = new Widgets::Stopwatch{this};
     ui->stopWatchLayout->addWidget(stopwatch);
     stopwatch->setVisible(SettingsHelper::isDisplayStopwatch());
+}
+
+void MainWindow::setCursorPositionFromTemplate(const QString &templateName)
+{
+    auto content = editor->toPlainText();
+    auto match = QRegularExpression(SettingsManager::get(templateName + "/Template Cursor Position Regex").toString())
+                     .match(content);
+    if (match.hasMatch())
+    {
+        int pos = SettingsManager::get(templateName + "/Template Cursor Position Offset Type").toString() == "start"
+                      ? match.capturedStart()
+                      : match.capturedEnd();
+        pos += SettingsManager::get(templateName + "/Template Cursor Position Offset Characters").toInt();
+        pos = qMax(pos, 0);
+        pos = qMin(pos, content.length());
+        auto cursor = editor->textCursor();
+        cursor.setPosition(pos);
+        editor->setTextCursor(cursor);
+    }
+    else
+    {
+        editor->moveCursor(QTextCursor::End);
+    }
+}
+
+void MainWindow::showStressTesting()
+{
+    Util::showWidgetOnTop(stressTesting);
 }
 
 void MainWindow::compile()
@@ -229,6 +275,18 @@ void MainWindow::runTestCase(int index)
     }
 
     run(index);
+}
+
+void MainWindow::onCheckFinished(int index, Widgets::TestCase::Verdict verdict)
+{
+    if (index != -1)
+    {
+        testcases->setVerdict(index, verdict);
+    }
+    else
+    {
+        stressTesting->onCheckFinished(verdict);
+    }
 }
 
 void MainWindow::loadTests()
@@ -352,6 +410,16 @@ QString MainWindow::getTabTitle(bool complete, bool star, int removeLength)
 Editor::CodeEditor *MainWindow::getEditor() const
 {
     return editor;
+}
+
+Core::Checker *MainWindow::getChecker() const
+{
+    return checker;
+}
+
+Widgets::TestCases *MainWindow::getTestCases() const
+{
+    return testcases;
 }
 
 bool MainWindow::isUntitled() const
@@ -655,7 +723,28 @@ void MainWindow::applySettings(const QString &pagePath)
 
     if (pageChanged("Code Edit") || pagePath.startsWith("Appearance/") ||
         pageChanged(QString("Language/%1/%1 Parentheses").arg(language)))
+    {
+        if (pageChanged("Code Edit"))
+        {
+            editor->setVimCursor(SettingsHelper::isFakeVimEnable());
+            ui->cursorInfo->setVisible(!SettingsHelper::isFakeVimEnable());
+            if (fakevimHandler)
+                fakevimHandler->disconnectFromEditor();
+            delete fakevimHandler;
+            fakevimHandler = nullptr;
+            setStatusBar(nullptr);
+            if (SettingsHelper::isFakeVimEnable())
+            {
+                fakevimHandler = new FakeVim::Internal::FakeVimHandler(editor, nullptr);
+
+                Editor::FakeVimProxy::connectSignals(fakevimHandler, editor, this, appWindow);
+                Editor::FakeVimProxy::initHandler(fakevimHandler);
+                Editor::FakeVimProxy::sourceVimRc(fakevimHandler);
+            }
+            Editor::FakeVimProxy::clearUndoRedo(editor);
+        }
         editor->applySettings(language);
+    }
 
     if (!isLanguageSet && pageChanged("Language/General"))
     {
@@ -951,24 +1040,7 @@ void MainWindow::loadFile(const QString &loadPath)
 
     if (isTemplate)
     {
-        auto match = QRegularExpression(SettingsManager::get(language + "/Template Cursor Position Regex").toString())
-                         .match(content);
-        if (match.hasMatch())
-        {
-            int pos = SettingsManager::get(language + "/Template Cursor Position Offset Type").toString() == "start"
-                          ? match.capturedStart()
-                          : match.capturedEnd();
-            pos += SettingsManager::get(language + "/Template Cursor Position Offset Characters").toInt();
-            pos = qMax(pos, 0);
-            pos = qMin(pos, content.length());
-            auto cursor = editor->textCursor();
-            cursor.setPosition(pos);
-            editor->setTextCursor(cursor);
-        }
-        else
-        {
-            editor->moveCursor(QTextCursor::End);
-        }
+        setCursorPositionFromTemplate(language);
     }
 
     loadTests();
@@ -1310,7 +1382,7 @@ void MainWindow::updateChecker()
         checker = new Core::Checker(testcases->checkerText(), log, this);
     else
         checker = new Core::Checker(testcases->checkerType(), log, this);
-    connect(checker, &Core::Checker::checkFinished, testcases, &Widgets::TestCases::setVerdict);
+    connect(checker, &Core::Checker::checkFinished, this, &MainWindow::onCheckFinished);
     checker->prepare();
 }
 
@@ -1488,7 +1560,7 @@ void MainWindow::onRunFinished(int index, const QString &out, const QString &err
 
         if ((!out.isEmpty() && !testcases->expected(index).isEmpty()) ||
             (SettingsHelper::isCheckOnTestcasesWithEmptyOutput() && exitCode == 0))
-            checker->reqeustCheck(index, testcases->input(index), out, testcases->expected(index));
+            checker->requestCheck(index, testcases->input(index), out, testcases->expected(index));
     }
 
     else

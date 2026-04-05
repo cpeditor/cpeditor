@@ -7,12 +7,11 @@ on:
 
 env:
   QT_VERSION: 5.15.2
-  WINLIBS_GCC: 13.2.0
+  WINLIBS_GCC: 15.2.0
   WINLIBS_THREADS: posix
-  WINLIBS_LLVM: 17.0.6
-  WINLIBS_MINGW_VERSION: 11.0.1
+  WINLIBS_MINGW_VERSION: 14.0.0
   WINLIBS_MINGW_LINKER: ucrt
-  WINLIBS_MINGW_REV: r5
+  WINLIBS_MINGW_REV: r7
 
 jobs:
   # "env" is only available in jobs, we need to convert them to outputs so that they can be used in the matrix
@@ -24,13 +23,11 @@ jobs:
         run: |
           echo "GCC=$WINLIBS_GCC" >> "$GITHUB_OUTPUT"
           echo "THREADS=$WINLIBS_THREADS" >> "$GITHUB_OUTPUT"
-          echo "LLVM=$WINLIBS_LLVM" >> "$GITHUB_OUTPUT"
           echo "MINGW=$WINLIBS_MINGW_LINKER-$WINLIBS_MINGW_VERSION-$WINLIBS_MINGW_REV" >> "$GITHUB_OUTPUT"
-          echo "tag=$WINLIBS_GCC$WINLIBS_THREADS-$WINLIBS_LLVM-$WINLIBS_MINGW_VERSION-$WINLIBS_MINGW_LINKER-$WINLIBS_MINGW_REV" >> "$GITHUB_OUTPUT"
+          echo "tag=$WINLIBS_GCC$WINLIBS_THREADS-$WINLIBS_MINGW_VERSION-$WINLIBS_MINGW_LINKER-$WINLIBS_MINGW_REV" >> "$GITHUB_OUTPUT"
     outputs:
       GCC: ${{ steps.get.outputs.GCC }}
       THREADS: ${{ steps.get.outputs.THREADS }}
-      LLVM: ${{ steps.get.outputs.LLVM }}
       MINGW: ${{ steps.get.outputs.MINGW }}
       tag: ${{ steps.get.outputs.tag }}
 
@@ -42,13 +39,13 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - os: "ubuntu-20.04"
+          - os: "ubuntu-22.04"
             portable-option: "Off"
             winlibs: false
-          - os: "macos-13"
+          - os: "macos-15-intel"
             portable-option: "Off"
             winlibs: false
-          - os: "windows-2019"
+          - os: "windows-2022"
             arch: x64
             platform: x64
             qtarch: win64_msvc2019_64
@@ -56,7 +53,7 @@ jobs:
             filename-suffix: "setup.exe"
             winlibs: false
             ecm-path: "C:/Program Files/ECM"
-          - os: "windows-2019"
+          - os: "windows-2022"
             arch: x64
             platform: x64
             qtarch: win64_msvc2019_64
@@ -64,7 +61,7 @@ jobs:
             filename-suffix: "portable.zip"
             winlibs: false
             ecm-path: "C:/Program Files/ECM"
-          - os: "windows-2019"
+          - os: "windows-2022"
             arch: x86
             platform: Win32
             qtarch: win32_msvc2019
@@ -72,7 +69,7 @@ jobs:
             filename-suffix: "setup.exe"
             winlibs: false
             ecm-path: "C:/Program Files (x86)/ECM"
-          - os: "windows-2019"
+          - os: "windows-2022"
             arch: x86
             platform: Win32
             qtarch: win32_msvc2019
@@ -80,45 +77,45 @@ jobs:
             filename-suffix: "portable.zip"
             winlibs: false
             ecm-path: "C:/Program Files (x86)/ECM"
-          - os: "windows-2019"
+          - os: "windows-2022"
             arch: x64
             platform: x64
             qtarch: win64_msvc2019_64
             portable-option: "Off"
-            filename-suffix: "setup-with-gcc-${{ needs.get-winlibs-outputs.outputs.GCC }}-LLVM-${{ needs.get-winlibs-outputs.outputs.LLVM }}.exe"
+            filename-suffix: "setup-with-gcc-${{ needs.get-winlibs-outputs.outputs.GCC }}.exe"
             winlibs: true
             winlibs-arch: x86_64
             winlibs-exception: seh
             mingw-arch: mingw64
             ecm-path: "C:/Program Files/ECM"
-          - os: "windows-2019"
+          - os: "windows-2022"
             arch: x64
             platform: x64
             qtarch: win64_msvc2019_64
             portable-option: "On"
-            filename-suffix: "portable-with-gcc-${{ needs.get-winlibs-outputs.outputs.GCC }}-LLVM-${{ needs.get-winlibs-outputs.outputs.LLVM }}.zip"
+            filename-suffix: "portable-with-gcc-${{ needs.get-winlibs-outputs.outputs.GCC }}.zip"
             winlibs: true
             winlibs-arch: x86_64
             winlibs-exception: seh
             mingw-arch: mingw64
             ecm-path: "C:/Program Files/ECM"
-          - os: "windows-2019"
+          - os: "windows-2022"
             arch: x86
             platform: Win32
             qtarch: win32_msvc2019
             portable-option: "Off"
-            filename-suffix: "setup-with-gcc-${{ needs.get-winlibs-outputs.outputs.GCC }}-LLVM-${{ needs.get-winlibs-outputs.outputs.LLVM }}.exe"
+            filename-suffix: "setup-with-gcc-${{ needs.get-winlibs-outputs.outputs.GCC }}.exe"
             winlibs: true
             winlibs-arch: i686
             winlibs-exception: dwarf
             mingw-arch: mingw32
             ecm-path: "C:/Program Files (x86)/ECM"
-          - os: "windows-2019"
+          - os: "windows-2022"
             arch: x86
             platform: Win32
             qtarch: win32_msvc2019
             portable-option: "On"
-            filename-suffix: "portable-with-gcc-${{ needs.get-winlibs-outputs.outputs.GCC }}-LLVM-${{ needs.get-winlibs-outputs.outputs.LLVM }}.zip"
+            filename-suffix: "portable-with-gcc-${{ needs.get-winlibs-outputs.outputs.GCC }}.zip"
             winlibs: true
             winlibs-arch: i686
             winlibs-exception: dwarf
@@ -126,7 +123,7 @@ jobs:
             ecm-path: "C:/Program Files (x86)/ECM"
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           submodules: recursive
 
@@ -136,13 +133,13 @@ jobs:
           version: ${{ env.QT_VERSION }}
           arch: ${{ matrix.config.qtarch }}
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           repository: KDE/extra-cmake-modules
           path: third_party/extra-cmake-modules
           ref: kf5
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           repository: KDE/syntax-highlighting
           path: third_party/syntax-highlighting
@@ -177,7 +174,7 @@ jobs:
           sudo cmake --build build --config Release --parallel $(nproc) --target install
 
       - name: "[Windows] Build"
-        if: matrix.config.os == 'windows-2019'
+        if: startsWith(matrix.config.os, 'windows')
         run: |
           mkdir build
           cd build
@@ -185,7 +182,7 @@ jobs:
           cmake --build . --config Release -j4
 
       - name: "[Linux/macOS] Build"
-        if: matrix.config.os != 'windows-2019'
+        if: "!startsWith(matrix.config.os, 'windows')"
         run: |
           mkdir build
           cd build
@@ -338,14 +335,14 @@ jobs:
           mv build/Release/cpeditor.exe build/out
           ../Qt/*/*/bin/windeployqt.exe build/out/cpeditor.exe --no-translations
           cp "${{ matrix.config.ecm-path }}/bin/KF5SyntaxHighlighting.dll" build/out
-          cd "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Redist/MSVC"
+          cd "C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Redist/MSVC"
           echo "VC_REDIST_VERSION=$(ls -dr *.* | head -n1)" >> $GITHUB_ENV
 
       - name: "[Windows] Get Winlibs asset name"
         if: startsWith(matrix.config.os, 'windows') && matrix.config.winlibs
         id: winlibs
         shell: bash
-        run: echo "asset=winlibs-${{ matrix.config.winlibs-arch }}-${{ needs.get-winlibs-outputs.outputs.THREADS }}-${{ matrix.config.winlibs-exception }}-gcc-${{ needs.get-winlibs-outputs.outputs.GCC }}-llvm-${{ needs.get-winlibs-outputs.outputs.LLVM }}-mingw-w64${{ needs.get-winlibs-outputs.outputs.MINGW }}.7z" >> "$GITHUB_OUTPUT"
+        run: echo "asset=winlibs-${{ matrix.config.winlibs-arch }}-${{ needs.get-winlibs-outputs.outputs.THREADS }}-${{ matrix.config.winlibs-exception }}-gcc-${{ needs.get-winlibs-outputs.outputs.GCC }}-mingw-w64${{ needs.get-winlibs-outputs.outputs.MINGW }}.7z" >> "$GITHUB_OUTPUT"
 
       - name: "[Windows] Download Winlibs"
         if: startsWith(matrix.config.os, 'windows') && matrix.config.winlibs
@@ -365,7 +362,7 @@ jobs:
         shell: bash
         run: |
           mkdir build/out/Redist
-          cp "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Redist/MSVC/$VC_REDIST_VERSION/vc_redist.${{ matrix.config.arch }}.exe" build/out/Redist
+          cp "C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Redist/MSVC/$VC_REDIST_VERSION/vc_redist.${{ matrix.config.arch }}.exe" build/out/Redist
           iscc dist/win/win-setup.iss \
             -DArch=${{ matrix.config.arch }} \
             $([[ "${{ matrix.config.winlibs }}" == "true" ]] && echo '-DGccDir=${{ matrix.config.mingw-arch }}' || echo '') \
@@ -379,7 +376,7 @@ jobs:
         if: startsWith(matrix.config.os, 'windows') && matrix.config.portable-option == 'On'
         shell: bash
         run: |
-          cp "C:/Program Files (x86)/Microsoft Visual Studio"/2019/Enterprise/VC/Redist/MSVC/$VC_REDIST_VERSION/${{ matrix.config.arch }}/Microsoft.*.CRT/*.dll build/out
+          cp "C:/Program Files/Microsoft Visual Studio"/2022/Enterprise/VC/Redist/MSVC/$VC_REDIST_VERSION/${{ matrix.config.arch }}/Microsoft.*.CRT/*.dll build/out
           cd build/out
           7z a ../../cpeditor-${{ steps.get_version.outputs.VERSION }}-windows-${{ matrix.config.arch }}-${{ matrix.config.filename-suffix }} ./*
 

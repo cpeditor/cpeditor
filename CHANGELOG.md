@@ -2,7 +2,14 @@
 
 ### Added
 
+-   Add vim emulation with [custom commands](https://cpeditor.org/docs/preferences/code-edit/#custom-vim-commands). (#220 and #1270)
+
+## v7.1
+
+### Added
+
 -   An option to disable CF Tool integration. (#1439)
+-   Support stress testing. You can start one at Actions-\>Stress Testing. (#1031)
 
 ### Fixed
 
@@ -13,7 +20,13 @@
 
 -   Removed the function to scale the editor font via mouse wheel scroll, as it has been reported to have severe performance issues. (#1249 and #1388)
 
-## v7.0
+## 7.0.2
+
+### Changed
+
+-   The "Highlight Error Line" setting is moved from "Code Edit" to the "Extensions -> Language Server -> General" page, with an improved description "Highlight lines containing diagnostics". (#1324)
+
+## 7.0.1 (Beta)
 
 In this version, we have switched to [KSyntaxHighlighting](https://api.kde.org/frameworks/syntax-highlighting/html/), the same framework used by [the Kate editor](https://kate-editor.org/). This upgrade results in significantly improved syntax highlighting, a wider selection of [color themes](https://kate-editor.org/themes/), and additional features like code folding. However, due to extensive refactoring, some bugs may arise.
 

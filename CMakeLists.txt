@@ -4,7 +4,7 @@ if(APPLE)
   set(CMAKE_OSX_DEPLOYMENT_TARGET "10.14" CACHE STRING "Minimum OS X deployment version")
 endif()
 
-project(cpeditor LANGUAGES CXX VERSION 7.1.0)
+project(cpeditor LANGUAGES CXX VERSION 7.2.0)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -34,6 +34,8 @@ add_subdirectory(third_party/QtFindReplaceDialog/dialogs)
 add_subdirectory(third_party/lsp-cpp)
 
 add_subdirectory(third_party/qhttp)
+
+add_subdirectory(third_party/FakeVim)
 
 add_subdirectory(third_party/diff_match_patch)
 
@@ -162,6 +164,10 @@ add_executable(cpeditor
     src/Editor/CodeEditor.hpp
     src/Editor/CodeEditorSideBar.cpp
     src/Editor/CodeEditorSideBar.hpp
+    src/Editor/FakeVimProxy.cpp
+    src/Editor/FakeVimProxy.hpp 
+    src/Editor/FakeVimCommands.cpp
+    src/Editor/FakeVimCommands.hpp
     src/Editor/HighLighter.cpp
     src/Editor/HighLighter.hpp
     src/Editor/KSHRepository.cpp
@@ -234,6 +240,8 @@ add_executable(cpeditor
     src/Widgets/RichTextCheckBox.hpp
     src/Widgets/Stopwatch.cpp
     src/Widgets/Stopwatch.hpp
+    src/Widgets/StressTesting.cpp
+    src/Widgets/StressTesting.hpp
     src/Widgets/SupportUsDialog.cpp
     src/Widgets/SupportUsDialog.hpp
     src/Widgets/TestCase.cpp
@@ -279,6 +287,7 @@ target_link_libraries(cpeditor PRIVATE Qt5::Network)
 target_link_libraries(cpeditor PRIVATE Qt5::Widgets)
 target_link_libraries(cpeditor PRIVATE QtFindReplaceDialog)
 target_link_libraries(cpeditor PRIVATE SingleApplication)
+target_link_libraries(cpeditor PRIVATE fakevim)
 target_link_libraries(cpeditor PRIVATE QHttp)
 target_link_libraries(cpeditor PRIVATE diff_match_patch)
 target_link_libraries(cpeditor PRIVATE KF5::SyntaxHighlighting)

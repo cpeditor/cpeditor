@@ -18,6 +18,7 @@
 #ifndef MAINWINDOW_HPP
 #define MAINWINDOW_HPP
 
+#include "Widgets/TestCase.hpp"
 #include <QMainWindow>
 
 class AppWindow;
@@ -25,7 +26,8 @@ class MessageLogger;
 namespace Editor
 {
 class CodeEditor;
-}
+class FakeVimCommands;
+} // namespace Editor
 class QFileSystemWatcher;
 class QPushButton;
 class QSplitter;
@@ -50,10 +52,18 @@ class CFTool;
 struct CompanionData;
 } // namespace Extensions
 
+namespace FakeVim
+{
+namespace Internal
+{
+class FakeVimHandler;
+}
+} // namespace FakeVim
 namespace Widgets
 {
 class TestCases;
 class Stopwatch;
+class StressTesting;
 } // namespace Widgets
 
 class MainWindow : public QMainWindow
@@ -91,11 +101,16 @@ class MainWindow : public QMainWindow
     QString getProblemURL() const;
     QString getCompleteTitle() const;
     QString getTabTitle(bool complete, bool star, int removeLength = 0);
+    QString compileCommand() const;
     Editor::CodeEditor *getEditor() const;
+    Core::Checker *getChecker() const;
+    Widgets::TestCases *getTestCases() const;
+
     bool isUntitled() const;
 
     void setProblemURL(const QString &url);
     void setUntitledIndex(int index);
+    void setCursorPositionFromTemplate(const QString &templateName);
 
     EditorStatus toStatus() const;
     void loadStatus(const EditorStatus &status, bool duplicate = false);
@@ -143,6 +158,10 @@ class MainWindow : public QMainWindow
      */
     void updateTimeLimit();
 
+    void showStressTesting();
+
+    int timeLimit() const;
+
   private slots:
     void onCompilationStarted();
     void onCompilationFinished(const QString &warning);
@@ -161,6 +180,8 @@ class MainWindow : public QMainWindow
     void updateCursorInfo();
     void updateChecker();
     void runTestCase(int index);
+
+    void onCheckFinished(int index, Widgets::TestCase::Verdict verdict);
     // UI Slots
 
     void on_compile_clicked();
@@ -229,11 +250,14 @@ class MainWindow : public QMainWindow
 
     Widgets::TestCases *testcases = nullptr;
     Widgets::Stopwatch *stopwatch = nullptr;
+    Widgets::StressTesting *stressTesting = nullptr;
 
     QTimer *autoSaveTimer = nullptr;
 
     int customTimeLimit = -1;     // the custom time limit for this tab, -1 represents for the same as settings
     QString customCompileCommand; // the custom compile command for this tab, empty represents for the same as settings
+
+    FakeVim::Internal::FakeVimHandler *fakevimHandler = nullptr;
 
     void setEditor();
     void compile();
@@ -250,12 +274,11 @@ class MainWindow : public QMainWindow
     bool saveFile(SaveMode mode, const QString &head, bool safe);
     void performCompileAndRunDiagonistics();
     static QString getRunnerHead(int index);
-    QString compileCommand() const;
-    int timeLimit() const;
     void updateCompileAndRunButtons() const;
     void setStopwatch();
 
     virtual void hideEvent(QHideEvent *event) override;
     virtual void showEvent(QShowEvent *event) override;
+    friend class Editor::FakeVimCommands;
 };
 #endif // MAINWINDOW_HPP

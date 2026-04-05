@@ -479,6 +479,46 @@ Git commit hash：%3
         <source>&amp;Help</source>
         <translation>說明(&amp;H)</translation>
     </message>
+    <message>
+        <source>Stress Testing...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Generator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open a new tab with generator template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New File From Template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>C++</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open a new tab with C++ template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Java</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open a new tab with Java template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Python</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open a new tab with Python template</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>CodeSnippetsPage</name>
@@ -853,6 +893,49 @@ Press any key to exit</source>
     <message>
         <source>An unknown error has occurred in LSP Process</source>
         <translation>LSP 處理程序發生了未知的錯誤</translation>
+    </message>
+</context>
+<context>
+    <name>FakeVimCommands</name>
+    <message>
+        <source>`new` requires no argument or one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos;, got [%1]</source>
+        <translation>`new` 不需要參數，或參數應為 &apos;cpp&apos;、&apos;java&apos; 或 &apos;python&apos; 之一，但收到了 [%1]</translation>
+    </message>
+    <message>
+        <source>[%1] is not C++, Python or Java source file</source>
+        <translation>[%1] 不是 C++、Python 或 Java 原始碼檔案</translation>
+    </message>
+    <message>
+        <source>[%1] does not exist. To open a tab with a non-existing file, use `open!` instead</source>
+        <translation>[%1] 不存在。若要開啟一個不存在的檔案的分頁，請使用 `open!`</translation>
+    </message>
+    <message>
+        <source>[%1] is not a number</source>
+        <translation>[%1] 不是數字</translation>
+    </message>
+    <message>
+        <source>%1 is out of range [1, %2]</source>
+        <translation>%1 超出範圍 [1, %2]</translation>
+    </message>
+    <message>
+        <source>N/A</source>
+        <translation>不適用</translation>
+    </message>
+    <message>
+        <source>[%1] is not a valid view mode. It should be one of &apos;split&apos; and &apos;edit&apos;</source>
+        <translation>[%1] 不是有效的檢視模式。應為 &apos;split&apos; 或 &apos;edit&apos; 之一</translation>
+    </message>
+    <message>
+        <source>%1 is not a valid language name. It should be one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos;</source>
+        <translation>%1 不是有效的語言名稱。應為 &apos;cpp&apos;、&apos;java&apos; 或 &apos;python&apos; 之一</translation>
+    </message>
+    <message>
+        <source>No active tab to clear messages</source>
+        <translation>沒有作用中的分頁可清除訊息</translation>
+    </message>
+    <message>
+        <source>No active tab to change language</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1547,6 +1630,14 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>Stopwatch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stress Testing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Generator Template</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2712,10 +2803,6 @@ This may reduce distractions caused by stopwatch updates.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Highlight Error Line</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Highlight lines containing diagnostics</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2739,6 +2826,52 @@ This may reduce distractions caused by stopwatch updates.</source>
         <source>default-paths</source>
         <comment>the anchor of Default Paths on https://cpeditor.org/docs/preferences/file-path</comment>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The programming language used for the generator template.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The path to the generator template file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Template Cursor Position Regex</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Template Cursor Position Offset Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Template Cursor Position Offset Characters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Programming language for the template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Path to the template file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable Vim Emulation</source>
+        <translation>啟用 Vim 模擬</translation>
+    </message>
+    <message>
+        <source>Enable vim emulation in Code Editor</source>
+        <translation>在程式碼編輯器中啟用 Vim 模擬</translation>
+    </message>
+    <message>
+        <source>Vim Configuration</source>
+        <translation>Vim 設定</translation>
+    </message>
+    <message>
+        <source>The contents of Vim RC. It is loaded everytime vim emulation starts. 
+Not all vim commands are supported, please check https://github.com/cpeditor/FakeVim for list of supported commands</source>
+        <translation>Vim RC 的內容。每次啟動 Vim 模擬時都會載入。
+並非所有 Vim 命令都受支援，請查看 https://github.com/cpeditor/FakeVim 了解支援的命令列表</translation>
     </message>
 </context>
 <context>
@@ -2993,6 +3126,169 @@ This may reduce distractions caused by stopwatch updates.</source>
     </message>
     <message>
         <source>Show</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Widgets::StressTesting</name>
+    <message>
+        <source>Stress Testing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Generator Path:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Example: &quot;10 [5..100] abacaba&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Standard Program Path:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid arguments pattern</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Read Generator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Read Standard Program</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to open generator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to open standard program</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to create temporary directory</source>
+        <translation type="unfinished">無法建立暫存目錄</translation>
+    </message>
+    <message>
+        <source>Read testlib.h</source>
+        <translation type="unfinished">讀取 testlib.h</translation>
+    </message>
+    <message>
+        <source>Save testlib.h</source>
+        <translation type="unfinished">儲存 testlib.h</translation>
+    </message>
+    <message>
+        <source>Compiler</source>
+        <translation type="unfinished">編譯器</translation>
+    </message>
+    <message>
+        <source>Running with arguments &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Generator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User program</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Standard program</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Time Limit Exceeded</source>
+        <translation type="unfinished">執行時間過長</translation>
+    </message>
+    <message>
+        <source>Execution has finished with non-zero exitcode %1 in %2ms</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The program was killed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Output limit exceeded</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All tests finished</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 compilation has started</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 compilation has finished</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 compilation error: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 compilation failed: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>%1 compilation killed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Counterexample Found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User Program: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add to testcases</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ignore</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stop stress testing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Counterexample added to testcases</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Elapsed: %1:%2  |  Completed: %3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select generator from opened files...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select standard program from opened files...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use Generator Arguments:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please select a generator and a standard program</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
