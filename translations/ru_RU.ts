@@ -923,6 +923,10 @@ Press any key to exit</source>
         <source>%1 is not a valid language name. It should be one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos;</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>No active tab to clear messages</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>FindReplaceDialog</name>
