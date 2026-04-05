@@ -14,15 +14,44 @@ jobs:
     steps:
       - uses: actions/checkout@v6
         with:
+          submodules: recursive
           fetch-depth: 0
 
       - name: Set up Qt environment
         uses: jurplel/install-qt-action@v4
         with:
           cache: true
+          modules: 'qt5compat'
           version: ${{ env.QT_VERSION }}
+
+      - uses: actions/checkout@v6
+        with:
+          repository: KDE/extra-cmake-modules
+          path: third_party/extra-cmake-modules
+
+      - uses: actions/checkout@v6
+        with:
+          repository: KDE/syntax-highlighting
+          path: third_party/syntax-highlighting
+
+      - name: Install extra-cmake-modules
+        run: |
+          cd third_party/extra-cmake-modules
+          cmake -B build -S . -DCMAKE_BUILD_TYPE=Release -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
+          sudo cmake --build build --config Release --parallel $(nproc) --target install
+
+      - name: Install ksyntax-highlighting
+        run: |
+          cd third_party/syntax-highlighting
+          cmake -B build -S . -DCMAKE_BUILD_TYPE=Release -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
+          sudo cmake --build build --config Release --parallel $(nproc) --target install
+
+      - name: Build
+        run: |
+          cmake -B build -S . -DCMAKE_BUILD_TYPE=Release
+          cmake --build build --config Release -j4
 
       - name: Check translations are up to date
         run: |
-          tools/updateTranslation_simple.sh r
+          tools/updateTranslation.sh
           git diff --exit-code HEAD
