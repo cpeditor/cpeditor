@@ -1,6 +1,6 @@
 ## UNRELEASED
 
-## 7.1.1 (Beta)
+## v7.1
 
 ### Added
 
