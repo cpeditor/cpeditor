@@ -328,9 +328,9 @@
   },
   {
     "name": "Highlight Error Line",
+    "desc": "Highlight lines containing diagnostics",
     "type": "bool",
-    "default": false,
-    "tip": "Highlight lines containing diagnostics"
+    "noDoc": true
   },
   {
     "name": "Detached Run Terminal Program",
