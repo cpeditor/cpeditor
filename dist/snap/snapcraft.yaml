@@ -1,16 +1,8 @@
 name: cpeditor
-base: core20
+base: core24
 grade: stable
 confinement: classic
 adopt-info: cpeditor
-
-package-repositories:
-  - type: apt
-    formats: [deb, deb-src]
-    components: [main]
-    suites: [focal]
-    key-id: C65D51784EDC19A871DBDBB710C56D0DE9977759
-    url: http://ppa.launchpad.net/beineri/opt-qt-5.15.2-focal/ubuntu
 
 apps:
   cpeditor:
@@ -24,19 +16,28 @@ parts:
     plugin: cmake
     build-packages:
       - build-essential
-      - qt515base
-      - qt515tools
+      - qt6-base-dev
+      - qt6-base-dev-tools
+      - qt6-tools-dev
+      - qt6-tools-dev-tools
+      - qt6-l10n-tools
+      - qt6-svg-dev
+      - libqt6core5compat6-dev
       - libgl1-mesa-dev
       - git
     stage-packages:
-      - qt515base
+      - libqt6core6t64
+      - libqt6gui6t64
+      - libqt6widgets6t64
+      - libqt6network6t64
+      - libqt6svg6
+      - libqt6core5compat6
     source: .
     cmake-parameters:
       - -DCMAKE_INSTALL_PREFIX=/usr
       - -DCMAKE_BUILD_TYPE=Release
     override-build: |
-      export Qt5LinguistTools_DIR="/opt/qt515/lib/cmake/Qt5LinguistTools/"
-      cd $SNAPCRAFT_PART_SRC
+      cd $CRAFT_PART_SRC
       cd third_party/extra-cmake-modules
       cmake -B build -S . -DCMAKE_BUILD_TYPE=Release -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
       sudo cmake --build build --config Release --parallel $(nproc) --target install
@@ -45,7 +46,7 @@ parts:
       cmake -B build -S . -DCMAKE_BUILD_TYPE=Release -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
       sudo cmake --build build --config Release --parallel $(nproc) --target install
       cd -
-      snapcraftctl build
+      craftctl default
     override-prime: |
-        snapcraftctl prime
-        sed -i 's|Icon=.*|Icon=${SNAP}/usr/share/icons/hicolor/512x512/apps/cpeditor.png|g' $SNAPCRAFT_PRIME/usr/share/applications/cpeditor.desktop
+        craftctl default
+        sed -i 's|Icon=.*|Icon=${SNAP}/usr/share/icons/hicolor/512x512/apps/cpeditor.png|g' $CRAFT_PRIME/usr/share/applications/cpeditor.desktop

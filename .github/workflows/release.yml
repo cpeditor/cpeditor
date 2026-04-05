@@ -6,7 +6,7 @@ on:
       - "*"
 
 env:
-  QT_VERSION: 5.15.2
+  QT_VERSION: 6.10.0
   WINLIBS_GCC: 15.2.0
   WINLIBS_THREADS: posix
   WINLIBS_MINGW_VERSION: 14.0.0
@@ -48,7 +48,6 @@ jobs:
           - os: "windows-2022"
             arch: x64
             platform: x64
-            qtarch: win64_msvc2019_64
             portable-option: "Off"
             filename-suffix: "setup.exe"
             winlibs: false
@@ -56,31 +55,13 @@ jobs:
           - os: "windows-2022"
             arch: x64
             platform: x64
-            qtarch: win64_msvc2019_64
             portable-option: "On"
             filename-suffix: "portable.zip"
             winlibs: false
             ecm-path: "C:/Program Files/ECM"
           - os: "windows-2022"
-            arch: x86
-            platform: Win32
-            qtarch: win32_msvc2019
-            portable-option: "Off"
-            filename-suffix: "setup.exe"
-            winlibs: false
-            ecm-path: "C:/Program Files (x86)/ECM"
-          - os: "windows-2022"
-            arch: x86
-            platform: Win32
-            qtarch: win32_msvc2019
-            portable-option: "On"
-            filename-suffix: "portable.zip"
-            winlibs: false
-            ecm-path: "C:/Program Files (x86)/ECM"
-          - os: "windows-2022"
             arch: x64
             platform: x64
-            qtarch: win64_msvc2019_64
             portable-option: "Off"
             filename-suffix: "setup-with-gcc-${{ needs.get-winlibs-outputs.outputs.GCC }}.exe"
             winlibs: true
@@ -91,7 +72,6 @@ jobs:
           - os: "windows-2022"
             arch: x64
             platform: x64
-            qtarch: win64_msvc2019_64
             portable-option: "On"
             filename-suffix: "portable-with-gcc-${{ needs.get-winlibs-outputs.outputs.GCC }}.zip"
             winlibs: true
@@ -99,28 +79,6 @@ jobs:
             winlibs-exception: seh
             mingw-arch: mingw64
             ecm-path: "C:/Program Files/ECM"
-          - os: "windows-2022"
-            arch: x86
-            platform: Win32
-            qtarch: win32_msvc2019
-            portable-option: "Off"
-            filename-suffix: "setup-with-gcc-${{ needs.get-winlibs-outputs.outputs.GCC }}.exe"
-            winlibs: true
-            winlibs-arch: i686
-            winlibs-exception: dwarf
-            mingw-arch: mingw32
-            ecm-path: "C:/Program Files (x86)/ECM"
-          - os: "windows-2022"
-            arch: x86
-            platform: Win32
-            qtarch: win32_msvc2019
-            portable-option: "On"
-            filename-suffix: "portable-with-gcc-${{ needs.get-winlibs-outputs.outputs.GCC }}.zip"
-            winlibs: true
-            winlibs-arch: i686
-            winlibs-exception: dwarf
-            mingw-arch: mingw32
-            ecm-path: "C:/Program Files (x86)/ECM"
 
     steps:
       - uses: actions/checkout@v6
@@ -128,22 +86,20 @@ jobs:
           submodules: recursive
 
       - name: Set up Qt environment
-        uses: jurplel/install-qt-action@v3
+        uses: jurplel/install-qt-action@v4
         with:
           version: ${{ env.QT_VERSION }}
-          arch: ${{ matrix.config.qtarch }}
+          modules: 'qt5compat'
 
       - uses: actions/checkout@v6
         with:
           repository: KDE/extra-cmake-modules
           path: third_party/extra-cmake-modules
-          ref: kf5
 
       - uses: actions/checkout@v6
         with:
           repository: KDE/syntax-highlighting
           path: third_party/syntax-highlighting
-          ref: kf5
 
       - name: "[Windows] Install extra-cmake-modules"
         if: startsWith(matrix.config.os, 'windows')
@@ -163,8 +119,10 @@ jobs:
         if: startsWith(matrix.config.os, 'windows')
         run: |
           cd third_party/syntax-highlighting
-          cmake -B build -S . -A ${{ matrix.config.platform }} -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
-          cmake --build build --config Release --parallel $(nproc) --target install
+          cmake -B build -S . -A ${{ matrix.config.platform }} -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF -DQRC_SYNTAX=OFF
+          cmake --build build --config Release --target SyntaxHighlightingData --parallel 1
+          cmake --build build --config Release --target KF6SyntaxHighlighting --parallel 1
+          cmake --build build --config Release --target install
 
       - name: "[Unix] Install ksyntax-highlighting"
         if: startsWith(matrix.config.os, 'ubuntu') || startsWith(matrix.config.os, 'macos')
@@ -178,7 +136,7 @@ jobs:
         run: |
           mkdir build
           cd build
-          cmake .. -A ${{ matrix.config.platform }} -DPORTABLE_VERSION=${{ matrix.config.portable-option }} -D "KF5SyntaxHighlighting_DIR=${{ matrix.config.ecm-path }}/lib/cmake/KF5SyntaxHighlighting"
+          cmake .. -A ${{ matrix.config.platform }} -DPORTABLE_VERSION=${{ matrix.config.portable-option }}
           cmake --build . --config Release -j4
 
       - name: "[Linux/macOS] Build"
@@ -201,30 +159,6 @@ jobs:
           else
             echo "ISBETA=true" >> "$GITHUB_OUTPUT"
           fi
-
-      - name: "[Linux] Pack to AppImage"
-        if: startsWith(matrix.config.os, 'ubuntu')
-        run: |
-          sudo apt install libxcb* libxkb*
-          cd build
-          wget -c "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
-          chmod a+x linuxdeployqt*.AppImage
-          export VERSION=${{ steps.get_version.outputs.VERSION }}
-          cp ../dist/linux/cpeditor.desktop default.desktop
-          cp ../resources/icon.png cpeditor.png
-          ./linuxdeployqt*.AppImage ./cpeditor -appimage -qmake=../../Qt/${{ env.QT_VERSION }}/gcc_64/bin/qmake
-          mv CP_Editor-${{steps.get_version.outputs.VERSION }}-x86_64.AppImage cpeditor-${{ steps.get_version.outputs.VERSION }}-linux-x86_64.AppImage
-
-      - name: "[Linux] Release AppImage"
-        if: startsWith(matrix.config.os, 'ubuntu')
-        uses: softprops/action-gh-release@v2
-        with:
-          draft: true
-          prerelease: ${{ steps.get_version.outputs.ISBETA }}
-          files: build/cpeditor-${{ steps.get_version.outputs.VERSION }}-linux-x86_64.AppImage
-          name: CP Editor ${{ steps.get_version.outputs.VERSION }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: "[Linux] Pack to deb"
         if: startsWith(matrix.config.os, 'ubuntu')
@@ -334,7 +268,7 @@ jobs:
           mkdir build/out
           mv build/Release/cpeditor.exe build/out
           ../Qt/*/*/bin/windeployqt.exe build/out/cpeditor.exe --no-translations
-          cp "${{ matrix.config.ecm-path }}/bin/KF5SyntaxHighlighting.dll" build/out
+          cp "${{ matrix.config.ecm-path }}/bin/KF6SyntaxHighlighting.dll" build/out
           cd "C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Redist/MSVC"
           echo "VC_REDIST_VERSION=$(ls -dr *.* | head -n1)" >> $GITHUB_ENV
 

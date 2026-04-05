@@ -105,11 +105,11 @@ jobs:
       - name: "[Windows] Build"
         if: startsWith(matrix.config.os, 'windows')
         run: |
-          cmake -B build -S . -A ${{ matrix.config.platform }} -D USE_CLANG_TIDY=On -D "KF5SyntaxHighlighting_DIR=${{ matrix.config.ecm-path }}/lib/cmake/KF5SyntaxHighlighting"
+          cmake -B build -S . -A ${{ matrix.config.platform }} -D USE_CLANG_TIDY=On
           cmake --build build -j4 --config Release
           mkdir build/out
           cp build/${{ matrix.config.binary }} build/out
-          cp "${{ matrix.config.ecm-path }}/bin/KF5SyntaxHighlighting.dll" build/out
+          cp "${{ matrix.config.ecm-path }}/bin/KF6SyntaxHighlighting.dll" build/out
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v7
