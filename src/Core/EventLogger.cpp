@@ -66,8 +66,8 @@ void Log::init(unsigned int instance, bool dumptoStderr)
                                                  .arg(LOG_FILE_NAME)
                                                  .arg(QDateTime::currentDateTime().toString("yyyy-MM-dd-hh-mm-ss-zzz"))
                                                  .arg(instance)));
-            logFile.open(QIODevice::WriteOnly | QFile::Text);
-            LOG_ERR_IF(!logFile.isOpen() || !logFile.isWritable(), "Failed to open file" << logFile.fileName());
+            bool opened = logFile.open(QIODevice::WriteOnly | QFile::Text);
+            LOG_ERR_IF(!opened, "Failed to open file" << logFile.fileName());
         }
         else
         {
@@ -76,7 +76,8 @@ void Log::init(unsigned int instance, bool dumptoStderr)
     }
     else
     {
-        logFile.open(stderr, QIODevice::WriteOnly);
+        bool opened = logFile.open(stderr, QIODevice::WriteOnly);
+        (void)opened; // Suppress unused warning
     }
     LOG_INFO("Event logger has been initialized successfully");
     platformInformation();
@@ -121,7 +122,10 @@ void Log::platformInformation()
 QTextStream &Log::log(const QString &priority, QString funcName, int line, QString fileName)
 {
     if (!logFile.isOpen() || !logFile.isWritable())
-        logFile.open(stderr, QIODevice::WriteOnly); // dump to stderr if failed to open log file
+    {
+        bool opened = logFile.open(stderr, QIODevice::WriteOnly);
+        (void)opened; // Suppress unused warning
+    }
     if (funcName.size() > MAXIMUM_FUNCTION_NAME_SIZE)
         funcName = funcName.right(MAXIMUM_FUNCTION_NAME_SIZE);
 

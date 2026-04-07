@@ -86,7 +86,8 @@ void CodeEditor::applySettings(const QString &lang)
     languageRepo->changeLanguage(lang);
 
     m_tabReplace = QString(SettingsHelper::getTabWidth(), ' ');
-    setTabStopDistance(fontMetrics().horizontalAdvance(QString(SettingsHelper::getTabWidth() * 200, ' ')) / 200.0);
+    setTabStopDistance(
+        fontMetrics().horizontalAdvance(QString(static_cast<int>(SettingsHelper::getTabWidth() * 200), ' ')) / 200.0);
 
     setFont(SettingsHelper::getEditorFont());
 
@@ -511,8 +512,8 @@ void CodeEditor::swapLineUp()
 
     if (lineStart == 0)
         return;
-    selectionStart -= lines[lineStart - 1].length() + 1;
-    selectionEnd -= lines[lineStart - 1].length() + 1;
+    selectionStart -= static_cast<int>(lines[lineStart - 1].length() + 1);
+    selectionEnd -= static_cast<int>(lines[lineStart - 1].length() + 1);
     lines.move(lineStart - 1, lineEnd);
 
     cursor.select(QTextCursor::Document);
@@ -546,8 +547,8 @@ void CodeEditor::swapLineDown()
 
     if (lineEnd == document()->blockCount() - 1)
         return;
-    selectionStart += lines[lineEnd + 1].length() + 1;
-    selectionEnd += lines[lineEnd + 1].length() + 1;
+    selectionStart += static_cast<int>(lines[lineEnd + 1].length() + 1);
+    selectionEnd += static_cast<int>(lines[lineEnd + 1].length() + 1);
     lines.move(lineEnd + 1, lineStart);
 
     cursor.select(QTextCursor::Document);
@@ -599,7 +600,7 @@ void CodeEditor::deleteLine()
     cursor.removeSelectedText();
     cursor.movePosition(QTextCursor::StartOfBlock);
     cursor.movePosition(QTextCursor::NextCharacter, QTextCursor::MoveAnchor,
-                        qMin(columnNumber, cursor.block().text().length()));
+                        static_cast<int>(qMin(static_cast<qsizetype>(columnNumber), cursor.block().text().length())));
     setTextCursor(cursor);
 }
 
@@ -613,12 +614,14 @@ void CodeEditor::duplicate()
         cursor.insertText(text + text);
         if (cursorAtEnd)
         {
-            cursor.movePosition(QTextCursor::PreviousCharacter, QTextCursor::MoveAnchor, text.length());
-            cursor.movePosition(QTextCursor::NextCharacter, QTextCursor::KeepAnchor, text.length());
+            cursor.movePosition(QTextCursor::PreviousCharacter, QTextCursor::MoveAnchor,
+                                static_cast<int>(text.length()));
+            cursor.movePosition(QTextCursor::NextCharacter, QTextCursor::KeepAnchor, static_cast<int>(text.length()));
         }
         else
         {
-            cursor.movePosition(QTextCursor::PreviousCharacter, QTextCursor::KeepAnchor, text.length());
+            cursor.movePosition(QTextCursor::PreviousCharacter, QTextCursor::KeepAnchor,
+                                static_cast<int>(text.length()));
         }
     }
     else // duplicate the current line
@@ -664,13 +667,15 @@ void CodeEditor::toggleBlockComment()
     {
         insertPlainText(text.mid(commentStart.length(), text.length() - commentStart.length() - commentEnd.length()));
         pos1 = startPos;
-        pos2 = endPos - commentStart.length() - commentEnd.length();
+        pos2 =
+            static_cast<int>(endPos - static_cast<int>(commentStart.length()) - static_cast<int>(commentEnd.length()));
     }
     else
     {
         insertPlainText(commentStart + text + commentEnd);
         pos1 = startPos;
-        pos2 = endPos + commentStart.length() + commentEnd.length();
+        pos2 =
+            static_cast<int>(endPos + static_cast<int>(commentStart.length()) + static_cast<int>(commentEnd.length()));
     }
     if (cursorAtEnd)
     {
@@ -978,7 +983,8 @@ void CodeEditor::keyPressEvent(QKeyEvent *e)
                     ++realColumn;
                 else
                 {
-                    realColumn = (realColumn + m_tabReplace.length()) / m_tabReplace.length() * m_tabReplace.length();
+                    realColumn = static_cast<int>((realColumn + m_tabReplace.length()) / m_tabReplace.length() *
+                                                  m_tabReplace.length());
                 }
                 if (realColumn % m_tabReplace.length() == 0 && i < cursor.columnNumber() - 1)
                 {
@@ -1070,7 +1076,8 @@ void CodeEditor::keyPressEvent(QKeyEvent *e)
         const auto cursorPos = cursor.positionInBlock();
         const auto moveMode = shift ? QTextCursor::KeepAnchor : QTextCursor::MoveAnchor;
         if (cursorPos > leadingSpaceCount)
-            cursor.movePosition(QTextCursor::PreviousCharacter, moveMode, cursorPos - leadingSpaceCount);
+            cursor.movePosition(QTextCursor::PreviousCharacter, moveMode,
+                                static_cast<int>(cursorPos - leadingSpaceCount));
         else
             cursor.movePosition(QTextCursor::StartOfBlock, moveMode);
         setTextCursor(cursor);
@@ -1239,7 +1246,7 @@ bool CodeEditor::surroundedByCharInSingleLine(QChar c, int position, bool espace
     int start = position - 1;
     int stop = position + 1;
     QString code = document()->toPlainText();
-    const int size = code.size();
+    const int size = static_cast<int>(code.size());
     while (stop < size && start >= 0)
     {
 
@@ -1293,7 +1300,7 @@ bool CodeEditor::removeInEachLineOfSelection(const QRegularExpression &regex, bo
     {
         auto line = lines[i];
         auto match = regex.match(line).captured(1);
-        int len = match.length();
+        int len = static_cast<int>(match.length());
         if (len == 0 && !force)
             return false;
         if (i == lineStart)
@@ -1361,8 +1368,8 @@ void CodeEditor::addInEachLineOfSelection(const QRegularExpression &regex, const
     cursor.movePosition(QTextCursor::NextBlock, QTextCursor::KeepAnchor, lineEnd - lineStart);
     cursor.movePosition(QTextCursor::EndOfBlock, QTextCursor::KeepAnchor);
     cursor.insertText(newText);
-    int pos = selectionStart + str.length();
-    int pos2 = selectionEnd + str.length() * (lineEnd - lineStart + 1);
+    int pos = selectionStart + static_cast<int>(str.length());
+    int pos2 = selectionEnd + static_cast<int>(str.length() * (lineEnd - lineStart + 1));
     if (cursorAtEnd)
     {
         cursor.setPosition(pos);

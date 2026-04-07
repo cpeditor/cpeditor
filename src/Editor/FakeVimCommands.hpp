@@ -29,7 +29,6 @@ class ExCommand;
 } // namespace FakeVim
 
 class AppWindow;
-template <class A, class B> struct QPair;
 
 namespace Editor
 {
