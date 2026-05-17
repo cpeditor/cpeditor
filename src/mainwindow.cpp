@@ -626,7 +626,7 @@ void MainWindow::applyCompanion(const Extensions::CompanionData &data)
         auto it = QRegularExpression(R"(\$\{json\..+?\})").globalMatch(comments);
 
         QString finalComments;
-        int lastEnd = 0;
+        qsizetype lastEnd = 0;
 
         while (it.hasNext())
         {
@@ -652,7 +652,7 @@ void MainWindow::applyCompanion(const Extensions::CompanionData &data)
                 // convert to QVariant first so that all types can be converted to string
                 finalComments += value.toVariant().toString();
             }
-            lastEnd = static_cast<int>(match.capturedEnd());
+            lastEnd = match.capturedEnd();
         }
 
         finalComments += comments.mid(lastEnd);

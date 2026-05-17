@@ -87,7 +87,7 @@ void CodeEditor::applySettings(const QString &lang)
 
     m_tabReplace = QString(SettingsHelper::getTabWidth(), ' ');
     setTabStopDistance(
-        fontMetrics().horizontalAdvance(QString(static_cast<int>(SettingsHelper::getTabWidth() * 200), ' ')) / 200.0);
+        fontMetrics().horizontalAdvance(QString(static_cast<qsizetype>(SettingsHelper::getTabWidth() * 200), ' ')) / 200.0);
 
     setFont(SettingsHelper::getEditorFont());
 
@@ -667,15 +667,13 @@ void CodeEditor::toggleBlockComment()
     {
         insertPlainText(text.mid(commentStart.length(), text.length() - commentStart.length() - commentEnd.length()));
         pos1 = startPos;
-        pos2 =
-            static_cast<int>(endPos - static_cast<int>(commentStart.length()) - static_cast<int>(commentEnd.length()));
+        pos2 = endPos - static_cast<int>(commentStart.length()) - static_cast<int>(commentEnd.length());
     }
     else
     {
         insertPlainText(commentStart + text + commentEnd);
         pos1 = startPos;
-        pos2 =
-            static_cast<int>(endPos + static_cast<int>(commentStart.length()) + static_cast<int>(commentEnd.length()));
+        pos2 = endPos + static_cast<int>(commentStart.length()) + static_cast<int>(commentEnd.length());
     }
     if (cursorAtEnd)
     {
@@ -1239,14 +1237,14 @@ QChar CodeEditor::charUnderCursor(int offset) const
     return text[index];
 }
 
-bool CodeEditor::surroundedByCharInSingleLine(QChar c, int position, bool espace) const
+bool CodeEditor::surroundedByCharInSingleLine(QChar c, qsizetype position, bool espace) const
 {
     bool foundStart = false;
     bool foundStop = false;
-    int start = position - 1;
-    int stop = position + 1;
+    qsizetype start = position - 1;
+    qsizetype stop = position + 1;
     QString code = document()->toPlainText();
-    const int size = static_cast<int>(code.size());
+    const qsizetype size = code.size();
     while (stop < size && start >= 0)
     {
 

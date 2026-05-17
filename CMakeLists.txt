@@ -138,7 +138,7 @@ qt6_add_translations(cpeditor
 set_property(SOURCE ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMAKE_BINARY_DIR}/generated/SettingsInfo.cpp PROPERTY SKIP_AUTOGEN ON)
 
 if(USE_CLANG_TIDY)
-	set(CMAKE_CXX_CLANG_TIDY "clang-tidy")
+	set(CMAKE_CXX_CLANG_TIDY "${PROJECT_SOURCE_DIR}/tools/clang-tidy-wrapper.sh")
 	message(STATUS "clang-tidy checks will be performed")
 endif()
 

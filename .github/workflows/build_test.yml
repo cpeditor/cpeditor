@@ -36,12 +36,17 @@ jobs:
           modules: 'qt5compat'
           version: ${{ env.QT_VERSION }}
 
-      - name: "[Linux] Download clang-tidy"
+      - name: "[Linux] Install clang-tidy"
         if: startsWith(matrix.config.os, 'ubuntu')
         run: |
           sudo apt-get update
-          sudo apt-get install clang-tidy-14
-          sudo ln -s "$(which clang-tidy-14)" "/usr/local/bin/clang-tidy"
+          sudo apt-get install -y clang-tidy
+
+      - name: "[macOS] Install clang-tidy"
+        if: startsWith(matrix.config.os, 'macos')
+        run: |
+          brew install llvm
+          echo "$(brew --prefix llvm)/bin" >> $GITHUB_PATH
 
       - uses: actions/checkout@v6
         with:
@@ -99,7 +104,7 @@ jobs:
       - name: "[macOS] Build"
         if: startsWith(matrix.config.os, 'macos')
         run: |
-          cmake -B build -S . -D CMAKE_BUILD_TYPE=Release
+          cmake -B build -S . -D USE_CLANG_TIDY=On -D CMAKE_BUILD_TYPE=Release
           cmake --build build --config Release -j4
           mkdir build/out
           cp build/${{ matrix.config.binary }} build/out
@@ -107,7 +112,7 @@ jobs:
       - name: "[Windows] Build"
         if: startsWith(matrix.config.os, 'windows')
         run: |
-          cmake -B build -S . -A ${{ matrix.config.platform }} -D USE_CLANG_TIDY=On -D "CMAKE_PREFIX_PATH=${{ matrix.config.ecm-path }}"
+          cmake -B build -S . -A ${{ matrix.config.platform }} -D "CMAKE_PREFIX_PATH=${{ matrix.config.ecm-path }}"
           cmake --build build -j4 --config Release
           mkdir build/out
           cp build/${{ matrix.config.binary }} build/out

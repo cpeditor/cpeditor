@@ -275,7 +275,7 @@ QStringList SettingsManager::itemUnder(const QString &head)
     for (QString &k : temp)
     {
         k = k.mid(head.length());
-        int pos = static_cast<int>(k.indexOf('/'));
+        qsizetype pos = k.indexOf('/');
         if (pos != -1)
             k = k.left(pos);
     }
