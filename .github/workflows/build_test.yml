@@ -48,6 +48,10 @@ jobs:
           brew install llvm
           echo "$(brew --prefix llvm)/bin" >> $GITHUB_PATH
 
+      - name: "[Windows] Install clang-tidy"
+        if: startsWith(matrix.config.os, 'windows')
+        run: choco install llvm -y
+
       - uses: actions/checkout@v6
         with:
           repository: KDE/extra-cmake-modules
@@ -112,7 +116,7 @@ jobs:
       - name: "[Windows] Build"
         if: startsWith(matrix.config.os, 'windows')
         run: |
-          cmake -B build -S . -A ${{ matrix.config.platform }} -D "CMAKE_PREFIX_PATH=${{ matrix.config.ecm-path }}"
+          cmake -B build -S . -A ${{ matrix.config.platform }} -D USE_CLANG_TIDY=On -D "CMAKE_PREFIX_PATH=${{ matrix.config.ecm-path }}"
           cmake --build build -j4 --config Release
           mkdir build/out
           cp build/${{ matrix.config.binary }} build/out
