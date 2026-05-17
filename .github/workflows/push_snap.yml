@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - master
-      - fix/snap-qt6-policy
     paths-ignore:
       - ".github/**"
       - "!.github/workflows/push_snap.yml"

@@ -8,6 +8,7 @@
 
 -   Migrate from Qt5 to Qt6 and KF5 to KF6 Syntax Highlighting. (#1449)
 -   Switch macOS release builds to ARM (Apple Silicon). (#1449)
+-   Snap package now uses `core26` base (Ubuntu 26.04), providing Qt 6.8+. (#1489)
 
 ## v7.1
 
