@@ -1,5 +1,5 @@
 name: cpeditor
-base: core24
+base: core26
 grade: stable
 confinement: classic
 adopt-info: cpeditor
@@ -44,8 +44,6 @@ parts:
       cmake --build build --parallel $(nproc)
       cmake --install build
       cd -
-      # Remove qt6_policy call that requires Qt 6.5+, Ubuntu 24.04 ships Qt 6.4.2
-      sed -i '/qt6_policy/d' /usr/share/ECM/modules/ECMQmlModule6.cmake
       cd third_party/syntax-highlighting
       cmake -B build -S . -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
       cmake --build build --parallel $(nproc)
