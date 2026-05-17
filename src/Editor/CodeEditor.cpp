@@ -87,7 +87,8 @@ void CodeEditor::applySettings(const QString &lang)
 
     m_tabReplace = QString(SettingsHelper::getTabWidth(), ' ');
     setTabStopDistance(
-        fontMetrics().horizontalAdvance(QString(static_cast<qsizetype>(SettingsHelper::getTabWidth() * 200), ' ')) / 200.0);
+        fontMetrics().horizontalAdvance(QString(static_cast<qsizetype>(SettingsHelper::getTabWidth() * 200), ' ')) /
+        200.0);
 
     setFont(SettingsHelper::getEditorFont());
 
@@ -337,7 +338,8 @@ void CodeEditor::toggleFold(const QTextBlock &startBlock)
     document()->markContentsDirty(startBlock.position(), endBlock.position() - startBlock.position() + 1);
 
     // update scrollbars
-    emit document()->documentLayout()->documentSizeChanged(document()->documentLayout()->documentSize());
+    auto docLayout = document()->documentLayout();
+    emit docLayout->documentSizeChanged(docLayout->documentSize());
 }
 
 void CodeEditor::resizeEvent(QResizeEvent *e)

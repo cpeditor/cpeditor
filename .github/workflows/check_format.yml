@@ -11,7 +11,7 @@ jobs:
       - name: "Install clang-format"
         run: |
           sudo apt-get update
-          sudo apt-get install -y clang-format
+          sudo apt-get install -y clang-format || sudo apt-get install -y clang-format-18 || sudo apt-get install -y clang-format-16
       - name: "Format Codes"
         run: clang-format -i src/*.cpp src/*/*.cpp src/*.hpp src/*/*.hpp
       - name: Check diff
