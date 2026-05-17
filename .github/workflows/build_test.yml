@@ -40,7 +40,7 @@ jobs:
         if: startsWith(matrix.config.os, 'ubuntu')
         run: |
           sudo apt-get update
-          sudo apt-get install -y clang-tidy || sudo apt-get install -y clang-tidy-18 || sudo apt-get install -y clang-tidy-16
+          sudo apt-get install -y clang-tidy
 
       - name: "[macOS] Install clang-tidy"
         if: startsWith(matrix.config.os, 'macos')
