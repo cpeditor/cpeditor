@@ -56,12 +56,10 @@ void WakaTime::sendHeartBeat(const QString &filePath, const QString &problemURL,
 
     QStringList args;
 
-    args << "--plugin"
-         << "cpeditor-wakatime/" APP_VERSION;
+    args << "--plugin" << "cpeditor-wakatime/" APP_VERSION;
 
     if (filePath.isEmpty())
-        args << "--entity-type"
-             << "domain";
+        args << "--entity-type" << "domain";
     args << "--entity" << entity;
 
     if (!language.isEmpty())

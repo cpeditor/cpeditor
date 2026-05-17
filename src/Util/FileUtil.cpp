@@ -197,12 +197,8 @@ QPair<std::function<void()>, QString> revealInFileManager(const QString &filePat
 #if defined(Q_OS_MACOS)
     return {[filePath] {
                 QStringList args;
-                args << "-e"
-                     << "tell application \"Finder\""
-                     << "-e"
-                     << "activate"
-                     << "-e" << QStringLiteral("select POSIX file \"%1\"").arg(filePath) << "-e"
-                     << "end tell";
+                args << "-e" << "tell application \"Finder\"" << "-e" << "activate" << "-e"
+                     << QStringLiteral("select POSIX file \"%1\"").arg(filePath) << "-e" << "end tell";
                 QProcess::startDetached("osascript", args);
             },
             QCoreApplication::translate("Util::FileUtil", "Reveal %1 in Finder").arg(name)};
@@ -215,9 +211,7 @@ QPair<std::function<void()>, QString> revealInFileManager(const QString &filePat
             QCoreApplication::translate("Util::FileUtil", "Reveal %1 in Explorer").arg(name)};
 #elif defined(Q_OS_UNIX)
     QProcess proc;
-    proc.start("xdg-mime", QStringList() << "query"
-                                         << "default"
-                                         << "inode/directory");
+    proc.start("xdg-mime", QStringList() << "query" << "default" << "inode/directory");
     auto finished = proc.waitForFinished(2000);
     if (finished)
     {
