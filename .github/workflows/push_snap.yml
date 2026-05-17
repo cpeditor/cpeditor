@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - fix/snap-destdir-staging
     paths-ignore:
       - ".github/**"
       - "!.github/workflows/push_snap.yml"
