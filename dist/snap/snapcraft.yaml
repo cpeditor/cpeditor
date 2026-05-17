@@ -1,6 +1,7 @@
 name: cpeditor
 base: core26
-grade: stable
+build-base: core26
+grade: devel
 confinement: classic
 adopt-info: cpeditor
 
