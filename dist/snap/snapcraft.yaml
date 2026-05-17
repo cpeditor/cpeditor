@@ -22,6 +22,7 @@ parts:
       - qt6-tools-dev-tools
       - qt6-l10n-tools
       - qt6-svg-dev
+      - qt6-declarative-dev
       - libqt6core5compat6-dev
       - libgl1-mesa-dev
       - git
