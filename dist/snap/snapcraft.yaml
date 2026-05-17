@@ -39,12 +39,14 @@ parts:
     override-build: |
       cd $CRAFT_PART_SRC
       cd third_party/extra-cmake-modules
-      cmake -B build -S . -DCMAKE_BUILD_TYPE=Release -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
-      sudo cmake --build build --config Release --parallel $(nproc) --target install
+      cmake -B build -S . -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
+      cmake --build build --parallel $(nproc)
+      cmake --install build
       cd -
       cd third_party/syntax-highlighting
-      cmake -B build -S . -DCMAKE_BUILD_TYPE=Release -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
-      sudo cmake --build build --config Release --parallel $(nproc) --target install
+      cmake -B build -S . -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
+      cmake --build build --parallel $(nproc)
+      cmake --install build
       cd -
       craftctl default
     override-prime: |
