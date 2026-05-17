@@ -19,8 +19,7 @@
 #define KSHREPOSITORY_HPP
 
 #include <KSyntaxHighlighting/Repository>
-
-class QStringList;
+#include <QString>
 
 namespace Editor
 {

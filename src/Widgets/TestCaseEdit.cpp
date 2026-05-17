@@ -110,9 +110,23 @@ void TestCaseEdit::modifyText(const QString &text, bool keepHistory)
 
         displayText = text.left(limit) + "...";
 
-        const QString name = role == Input ? tr("Input") : (role == Output ? tr("Output") : tr("Expected"));
-        const QString setLimitPlace = role == Output ? SettingsHelper::pathOfOutputDisplayLengthLimit()
-                                                     : SettingsHelper::pathOfDisplayTestCaseLengthLimit();
+        QString name;
+        QString setLimitPlace;
+        if (role == Input)
+        {
+            name = tr("Input");
+            setLimitPlace = SettingsHelper::pathOfDisplayTestCaseLengthLimit();
+        }
+        else if (role == Output)
+        {
+            name = tr("Output");
+            setLimitPlace = SettingsHelper::pathOfOutputDisplayLengthLimit();
+        }
+        else
+        {
+            name = tr("Expected");
+            setLimitPlace = SettingsHelper::pathOfDisplayTestCaseLengthLimit();
+        }
 
         log->warn(QString("%1[%2]").arg(name).arg(id + 1),
                   tr("Only the first %1 characters are shown. Now the test case editor is read-only. You can set "

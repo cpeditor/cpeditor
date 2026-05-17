@@ -18,8 +18,8 @@
 #ifndef STYLE_MANAGER_HPP
 #define STYLE_MANAGER_HPP
 
-class QString;
-class QStringList;
+#include <QString>
+
 class QPalette;
 
 namespace Core

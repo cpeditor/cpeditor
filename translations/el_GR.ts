@@ -748,6 +748,49 @@ Press any key to exit</source>
     </message>
 </context>
 <context>
+    <name>Editor::FakeVimCommands</name>
+    <message>
+        <source>`new` requires no argument or one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos;, got [%1]</source>
+        <translation type="unfinished">η `new` δεν δέχεται όρισμα ή πρέπει να είναι ένα από &apos;cpp&apos;, &apos;java&apos; και &apos;python&apos;, ελήφθη [%1]</translation>
+    </message>
+    <message>
+        <source>[%1] is not C++, Python or Java source file</source>
+        <translation type="unfinished">το [%1] δεν είναι αρχείο πηγαίου C++, Python ή Java</translation>
+    </message>
+    <message>
+        <source>[%1] does not exist. To open a tab with a non-existing file, use `open!` instead</source>
+        <translation type="unfinished">το [%1] δεν υπάρχει. Για να ανοίξετε καρτέλα με ανύπαρκτο αρχείο, χρησιμοποιήστε `open!`</translation>
+    </message>
+    <message>
+        <source>[%1] is not a number</source>
+        <translation type="unfinished">το [%1] δεν είναι αριθμός</translation>
+    </message>
+    <message>
+        <source>%1 is out of range [1, %2]</source>
+        <translation type="unfinished">το %1 είναι εκτός εύρους [1, %2]</translation>
+    </message>
+    <message>
+        <source>N/A</source>
+        <translation type="unfinished">Δ/Υ</translation>
+    </message>
+    <message>
+        <source>[%1] is not a valid view mode. It should be one of &apos;split&apos; and &apos;edit&apos;</source>
+        <translation type="unfinished">το [%1] δεν είναι έγκυρη λειτουργία προβολής. Πρέπει να είναι &apos;split&apos; ή &apos;edit&apos;</translation>
+    </message>
+    <message>
+        <source>%1 is not a valid language name. It should be one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos;</source>
+        <translation type="unfinished">το %1 δεν είναι έγκυρο όνομα γλώσσας. Πρέπει να είναι &apos;cpp&apos;, &apos;java&apos; ή &apos;python&apos;</translation>
+    </message>
+    <message>
+        <source>No active tab to change language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No active tab to clear messages</source>
+        <translation type="unfinished">Δεν υπάρχει ενεργή καρτέλα για εκκαθάριση μηνυμάτων</translation>
+    </message>
+</context>
+<context>
     <name>Extensions::CFTool</name>
     <message>
         <source>CF Tool</source>
@@ -887,49 +930,6 @@ Press any key to exit</source>
     <message>
         <source>An unknown error has occurred in LSP Process</source>
         <translation>Ένα άγνωστο σφάλμα συνέβη στην διεργασία του LSP</translation>
-    </message>
-</context>
-<context>
-    <name>FakeVimCommands</name>
-    <message>
-        <source>`new` requires no argument or one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos;, got [%1]</source>
-        <translation>η `new` δεν δέχεται όρισμα ή πρέπει να είναι ένα από &apos;cpp&apos;, &apos;java&apos; και &apos;python&apos;, ελήφθη [%1]</translation>
-    </message>
-    <message>
-        <source>[%1] is not C++, Python or Java source file</source>
-        <translation>το [%1] δεν είναι αρχείο πηγαίου C++, Python ή Java</translation>
-    </message>
-    <message>
-        <source>[%1] does not exist. To open a tab with a non-existing file, use `open!` instead</source>
-        <translation>το [%1] δεν υπάρχει. Για να ανοίξετε καρτέλα με ανύπαρκτο αρχείο, χρησιμοποιήστε `open!`</translation>
-    </message>
-    <message>
-        <source>[%1] is not a number</source>
-        <translation>το [%1] δεν είναι αριθμός</translation>
-    </message>
-    <message>
-        <source>%1 is out of range [1, %2]</source>
-        <translation>το %1 είναι εκτός εύρους [1, %2]</translation>
-    </message>
-    <message>
-        <source>N/A</source>
-        <translation>Δ/Υ</translation>
-    </message>
-    <message>
-        <source>[%1] is not a valid view mode. It should be one of &apos;split&apos; and &apos;edit&apos;</source>
-        <translation>το [%1] δεν είναι έγκυρη λειτουργία προβολής. Πρέπει να είναι &apos;split&apos; ή &apos;edit&apos;</translation>
-    </message>
-    <message>
-        <source>%1 is not a valid language name. It should be one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos;</source>
-        <translation>το %1 δεν είναι έγκυρο όνομα γλώσσας. Πρέπει να είναι &apos;cpp&apos;, &apos;java&apos; ή &apos;python&apos;</translation>
-    </message>
-    <message>
-        <source>No active tab to clear messages</source>
-        <translation>Δεν υπάρχει ενεργή καρτέλα για εκκαθάριση μηνυμάτων</translation>
-    </message>
-    <message>
-        <source>No active tab to change language</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1814,6 +1814,10 @@ and move out of it when typing the right element of it.
 This can be overridden for each parenthesis in each language.</source>
         <translation>Αυτόματη συμπλήρωση ζευγάρι παρενθέσεων όταν πληκτρολογήσετε το αριστερό αντικείμενο και όταν φεύγετε ενώ πληκτρολογείτε το αριστερό στοιχείο.
 Αυτό μπορεί να αλλάξει για κάθε παράγραφο σε κάθε γλώσσα.</translation>
+    </message>
+    <message>
+        <source></source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>%1 Template Path</source>

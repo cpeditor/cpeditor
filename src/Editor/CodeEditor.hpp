@@ -266,7 +266,7 @@ class CodeEditor : public QPlainTextEdit
      */
     QChar charUnderCursor(int offset = 0) const;
 
-    bool surroundedByCharInSingleLine(QChar c, int position, bool espace = true) const;
+    bool surroundedByCharInSingleLine(QChar c, qsizetype position, bool espace = true) const;
 
     /**
      * @brief Method for remove the first group of regex

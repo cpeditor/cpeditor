@@ -748,6 +748,49 @@ Press any key to exit</source>
     </message>
 </context>
 <context>
+    <name>Editor::FakeVimCommands</name>
+    <message>
+        <source>`new` requires no argument or one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos;, got [%1]</source>
+        <translation type="unfinished">`new` не принимает аргументов или принимает один из &apos;cpp&apos;, &apos;java&apos; и &apos;python&apos;, получено [%1]</translation>
+    </message>
+    <message>
+        <source>[%1] is not C++, Python or Java source file</source>
+        <translation type="unfinished">[%1] не является исходным файлом C++, Python или Java</translation>
+    </message>
+    <message>
+        <source>[%1] does not exist. To open a tab with a non-existing file, use `open!` instead</source>
+        <translation type="unfinished">[%1] не существует. Чтобы открыть вкладку с несуществующим файлом, используйте `open!`</translation>
+    </message>
+    <message>
+        <source>[%1] is not a number</source>
+        <translation type="unfinished">[%1] не является числом</translation>
+    </message>
+    <message>
+        <source>%1 is out of range [1, %2]</source>
+        <translation type="unfinished">%1 вне диапазона [1, %2]</translation>
+    </message>
+    <message>
+        <source>N/A</source>
+        <translation type="unfinished">Н/Д</translation>
+    </message>
+    <message>
+        <source>[%1] is not a valid view mode. It should be one of &apos;split&apos; and &apos;edit&apos;</source>
+        <translation type="unfinished">[%1] не является допустимым режимом просмотра. Допустимые значения: &apos;split&apos; и &apos;edit&apos;</translation>
+    </message>
+    <message>
+        <source>%1 is not a valid language name. It should be one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos;</source>
+        <translation type="unfinished">%1 не является допустимым названием языка. Допустимые значения: &apos;cpp&apos;, &apos;java&apos; и &apos;python&apos;</translation>
+    </message>
+    <message>
+        <source>No active tab to change language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No active tab to clear messages</source>
+        <translation type="unfinished">Нет активной вкладки для очистки сообщений</translation>
+    </message>
+</context>
+<context>
     <name>Extensions::CFTool</name>
     <message>
         <source>CF Tool</source>
@@ -887,49 +930,6 @@ Press any key to exit</source>
     <message>
         <source>An unknown error has occurred in LSP Process</source>
         <translation>Произошла неизвестная ошибка в Процессе LSP</translation>
-    </message>
-</context>
-<context>
-    <name>FakeVimCommands</name>
-    <message>
-        <source>`new` requires no argument or one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos;, got [%1]</source>
-        <translation>`new` не принимает аргументов или принимает один из &apos;cpp&apos;, &apos;java&apos; и &apos;python&apos;, получено [%1]</translation>
-    </message>
-    <message>
-        <source>[%1] is not C++, Python or Java source file</source>
-        <translation>[%1] не является исходным файлом C++, Python или Java</translation>
-    </message>
-    <message>
-        <source>[%1] does not exist. To open a tab with a non-existing file, use `open!` instead</source>
-        <translation>[%1] не существует. Чтобы открыть вкладку с несуществующим файлом, используйте `open!`</translation>
-    </message>
-    <message>
-        <source>[%1] is not a number</source>
-        <translation>[%1] не является числом</translation>
-    </message>
-    <message>
-        <source>%1 is out of range [1, %2]</source>
-        <translation>%1 вне диапазона [1, %2]</translation>
-    </message>
-    <message>
-        <source>N/A</source>
-        <translation>Н/Д</translation>
-    </message>
-    <message>
-        <source>[%1] is not a valid view mode. It should be one of &apos;split&apos; and &apos;edit&apos;</source>
-        <translation>[%1] не является допустимым режимом просмотра. Допустимые значения: &apos;split&apos; и &apos;edit&apos;</translation>
-    </message>
-    <message>
-        <source>%1 is not a valid language name. It should be one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos;</source>
-        <translation>%1 не является допустимым названием языка. Допустимые значения: &apos;cpp&apos;, &apos;java&apos; и &apos;python&apos;</translation>
-    </message>
-    <message>
-        <source>No active tab to clear messages</source>
-        <translation>Нет активной вкладки для очистки сообщений</translation>
-    </message>
-    <message>
-        <source>No active tab to change language</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1815,6 +1815,10 @@ This can be overridden for each parenthesis in each language.</source>
         <translation>Автоматически дополнить пару скобок при наборе левого элемента,
 и отступить при наборе нужного элемента.
 Это может быть переопределено для каждой скобки на каждом языке.</translation>
+    </message>
+    <message>
+        <source></source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>%1 Template Path</source>

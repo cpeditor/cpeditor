@@ -22,7 +22,7 @@
 #include <QJsonObject>
 #include <QObject>
 
-class QRegExp;
+class QRegularExpression;
 
 namespace Editor
 {
@@ -36,9 +36,9 @@ class LanguageRepository : public QObject
     QPair<QString, QString> blockCommentTokens() const;
     QPair<QString, QString> rawStringTokens() const;
 
-    QRegExp singleLineCommentRegEx() const;
-    QRegExp blockCommentRegEx() const;
-    QRegExp rawStringRegEx() const;
+    QRegularExpression singleLineCommentRegEx() const;
+    QRegularExpression blockCommentRegEx() const;
+    QRegularExpression rawStringRegEx() const;
 
   private:
     QString language;

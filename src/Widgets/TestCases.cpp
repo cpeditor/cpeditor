@@ -441,12 +441,12 @@ void TestCases::restoreSplitterStates(const QVariantList &states)
 
 int TestCases::id(TestCase *testcase) const
 {
-    return testcases.indexOf(testcase);
+    return static_cast<int>(testcases.indexOf(testcase));
 }
 
 int TestCases::count() const
 {
-    return testcases.count();
+    return static_cast<int>(testcases.count());
 }
 
 void TestCases::setCheckerIndex(int index)

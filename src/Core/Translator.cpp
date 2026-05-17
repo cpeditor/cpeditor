@@ -18,6 +18,7 @@
 #include "Core/Translator.hpp"
 #include "Core/EventLogger.hpp"
 #include "generated/SettingsHelper.hpp"
+#include <QLocale>
 #include <QMap>
 #include <QTranslator>
 
@@ -60,8 +61,9 @@ void Translator::setLocale()
     if (!locale.isEmpty())
     {
         translator = new QTranslator(qApp);
-        translator->load(QString(":/translations/%1.qm").arg(locale));
-        LOG_ERR_IF(!qApp->installTranslator(translator), "Failed to load the translator " << translator);
+        bool loaded = translator->load(QString(":/translations/%1.qm").arg(locale));
+        LOG_ERR_IF(!loaded, "Failed to load the translator file for locale: " << locale);
+        LOG_ERR_IF(!qApp->installTranslator(translator), "Failed to install the translator " << translator);
         SettingsInfo::updateSettingInfo();
     }
 }

@@ -32,8 +32,8 @@ Compiler::Compiler()
     // create compiliation process and connect signals
     compileProcess = new QProcess();
     connect(compileProcess, &QProcess::started, this, &Compiler::compilationStarted);
-    connect(compileProcess, qOverload<int, QProcess::ExitStatus>(&QProcess::finished), this,
-            &Compiler::onProcessFinished);
+    // Use the new syntax for overloaded signals/slots in Qt 6
+    connect(compileProcess, &QProcess::finished, this, &Compiler::onProcessFinished);
     connect(compileProcess, &QProcess::errorOccurred, this, &Compiler::onProcessErrorOccurred);
 }
 
