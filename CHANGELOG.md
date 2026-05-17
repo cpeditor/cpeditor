@@ -4,6 +4,11 @@
 
 -   Add vim emulation with [custom commands](https://cpeditor.org/docs/preferences/code-edit/#custom-vim-commands). (#220 and #1270)
 
+### Changed
+
+-   Migrate from Qt5 to Qt6 and KF5 to KF6 Syntax Highlighting. (#1449)
+-   Switch macOS release builds to ARM (Apple Silicon). (#1449)
+
 ## v7.1
 
 ### Added
