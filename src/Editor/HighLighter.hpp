@@ -90,6 +90,8 @@ class TextBlockUserData : public QTextBlockUserData
 class Highlighter : public QSyntaxHighlighter, public KSyntaxHighlighting::AbstractHighlighter
 {
     Q_OBJECT
+    Q_INTERFACES(KSyntaxHighlighting::AbstractHighlighter)
+
   public:
     explicit Highlighter(QObject *parent = nullptr);
     explicit Highlighter(QTextDocument *document);

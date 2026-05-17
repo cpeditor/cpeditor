@@ -62,7 +62,7 @@ KSH::FoldingRegion Highlighter::foldingRegion(const QTextBlock &startBlock)
     {
         return KSH::FoldingRegion();
     }
-    for (int i = data->foldingRegions.size() - 1; i >= 0; --i)
+    for (qsizetype i = data->foldingRegions.size() - 1; i >= 0; --i)
     {
         if (data->foldingRegions.at(i).type() == KSH::FoldingRegion::Begin)
         {
@@ -259,7 +259,7 @@ void Highlighter::applyFolding(int offset, int length, KSH::FoldingRegion region
 
     if (region.type() == KSH::FoldingRegion::End)
     {
-        for (int i = foldingRegions.size() - 1; i >= 0; --i)
+        for (qsizetype i = foldingRegions.size() - 1; i >= 0; --i)
         {
             if (foldingRegions.at(i).id() != region.id() || foldingRegions.at(i).type() != KSH::FoldingRegion::Begin)
             {

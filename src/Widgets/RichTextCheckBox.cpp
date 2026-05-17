@@ -176,7 +176,7 @@ void RichTextCheckBox::setChecked(bool value)
     checkBox->setChecked(value);
 }
 
-void RichTextCheckBox::enterEvent(QEvent * /*unused*/)
+void RichTextCheckBox::enterEvent(QEnterEvent * /*unused*/)
 {
     checkBox->setHover();
 }

@@ -31,7 +31,7 @@ StringListsItem::StringListsItem(const QVariantList &cols, QWidget *parent) : QW
 
     table = new QTableWidget(this);
     table->setMinimumWidth(480);
-    table->setColumnCount(cols.count());
+    table->setColumnCount(static_cast<int>(cols.count()));
     table->setSelectionMode(QAbstractItemView::SingleSelection);
     table->setEditTriggers(QAbstractItemView::DoubleClicked | QAbstractItemView::SelectedClicked |
                            QAbstractItemView::AnyKeyPressed);
@@ -136,7 +136,7 @@ StringListsItem::StringListsItem(const QVariantList &cols, QWidget *parent) : QW
 void StringListsItem::setStringLists(const QVariantList &val)
 {
     int cols = table->columnCount();
-    int rows = val.size();
+    int rows = static_cast<int>(val.size());
     table->setRowCount(rows);
     for (int i = 0; i < rows; ++i)
     {

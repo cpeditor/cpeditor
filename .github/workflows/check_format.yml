@@ -8,12 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - name: "Install clang-format-14"
+      - name: "Install clang-format"
         run: |
           sudo apt-get update
-          sudo apt-get install clang-format-14
+          sudo apt-get install -y clang-format
       - name: "Format Codes"
-        run: clang-format-14 -i src/*.cpp src/*/*.cpp src/*.hpp src/*/*.hpp
+        run: clang-format -i src/*.cpp src/*/*.cpp src/*.hpp src/*/*.hpp
       - name: Check diff
         run: git diff --exit-code HEAD
       - name: Create Pull Request

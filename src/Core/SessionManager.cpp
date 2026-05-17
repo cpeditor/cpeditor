@@ -83,7 +83,7 @@ void SessionManager::restoreSession(const QString &path)
     progressDialog.setWindowModality(Qt::WindowModal);
     progressDialog.setWindowTitle(tr("Restoring Last Session"));
 
-    progressDialog.setMaximum(tabs.count());
+    progressDialog.setMaximum(static_cast<int>(tabs.count()));
     progressDialog.setValue(0);
 
     auto oldSize = app->size();
