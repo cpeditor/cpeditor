@@ -28,10 +28,10 @@ parts:
       - libgl1-mesa-dev
       - git
     stage-packages:
-      - libqt6core6t64
-      - libqt6gui6t64
-      - libqt6widgets6t64
-      - libqt6network6t64
+      - libqt6core6
+      - libqt6gui6
+      - libqt6widgets6
+      - libqt6network6
       - libqt6svg6
       - libqt6core5compat6
     source: .
