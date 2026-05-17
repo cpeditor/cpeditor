@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - fix/snap-qt6-policy
     paths-ignore:
       - ".github/**"
       - "!.github/workflows/push_snap.yml"
@@ -19,7 +20,6 @@ jobs:
     steps:
       - uses: actions/checkout@v6
         with:
-          ref: master
           submodules: recursive
           fetch-depth: 0
 
@@ -43,6 +43,7 @@ jobs:
         id: build
 
       - uses: snapcore/action-publish@v1
+        if: github.ref == 'refs/heads/master'
         env:
           SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.STORE_LOGIN }}
         with:
