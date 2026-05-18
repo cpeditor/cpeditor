@@ -52,6 +52,7 @@
 #include <QTabBar>
 #include <QTimer>
 #include <QUrl>
+#include <QRegularExpression>
 #include <findreplacedialog.h>
 
 AppWindow::AppWindow(bool noRestoreSession, QWidget *parent) : QMainWindow(parent), ui(new Ui::AppWindow)
@@ -1320,10 +1321,53 @@ void AppWindow::on_actionUseSnippets_triggered()
             if (*ok)
             {
                 LOG_INFO("Looking for snippet : " << name);
+
+                // Try exact match first
+                QString matchedName;
                 if (names.contains(name))
                 {
+                    matchedName = name;
+                }
+                else
+                {
+                    // Fall back to token-based prefix matching:
+                    // Split snippet names into tokens on common delimiters and check if
+                    // each query token is a prefix of at least one name token.
+                    static const QRegularExpression delim("[\\s_\\-,;:.!?()\\[\\]{}'\"/\\\\]+");
+                    auto queryTokens = name.toLower().split(delim, Qt::SkipEmptyParts);
+                    for (const auto &snippetName : names)
+                    {
+                        auto nameTokens = snippetName.toLower().split(delim, Qt::SkipEmptyParts);
+                        bool allMatch = true;
+                        for (const auto &qt : queryTokens)
+                        {
+                            bool found = false;
+                            for (const auto &nt : nameTokens)
+                            {
+                                if (nt.startsWith(qt))
+                                {
+                                    found = true;
+                                    break;
+                                }
+                            }
+                            if (!found)
+                            {
+                                allMatch = false;
+                                break;
+                            }
+                        }
+                        if (allMatch)
+                        {
+                            matchedName = snippetName;
+                            break;
+                        }
+                    }
+                }
+
+                if (!matchedName.isEmpty())
+                {
                     LOG_INFO("Found snippet and inserted");
-                    QString content = SettingsHelper::getLanguageConfig(lang).getSnippet(name);
+                    QString content = SettingsHelper::getLanguageConfig(lang).getSnippet(matchedName);
                     current->insertText(content);
                 }
                 else
