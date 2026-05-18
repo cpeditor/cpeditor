@@ -1333,7 +1333,7 @@ void AppWindow::on_actionUseSnippets_triggered()
                     // Fall back to token-based prefix matching:
                     // Split snippet names into tokens on common delimiters and check if
                     // each query token is a prefix of at least one name token.
-                    static const QRegularExpression delim("[\\s_\\-,;:.!?()\\[\\]{}'\"/\\\\]+");
+                    static const QRegularExpression delim(R"([\s_\-,;:.!?()\[\]{}'"/\\]+)");
                     auto queryTokens = name.toLower().split(delim, Qt::SkipEmptyParts);
                     for (const auto &snippetName : names)
                     {
