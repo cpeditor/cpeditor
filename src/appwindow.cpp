@@ -47,12 +47,12 @@
 #include <QMessageBox>
 #include <QMimeData>
 #include <QProgressDialog>
+#include <QRegularExpression>
 #include <QShortcut>
 #include <QSplitter>
 #include <QTabBar>
 #include <QTimer>
 #include <QUrl>
-#include <QRegularExpression>
 #include <findreplacedialog.h>
 
 AppWindow::AppWindow(bool noRestoreSession, QWidget *parent) : QMainWindow(parent), ui(new Ui::AppWindow)
