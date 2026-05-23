@@ -42,17 +42,22 @@ modules:
   - name: wrappers
     buildsystem: simple
     build-commands:
+      - install -D -m 755 wrapper.sh /app/bin/c++
+      - install -D -m 755 wrapper.sh /app/bin/cc
       - install -D -m 755 wrapper.sh /app/bin/g++
       - install -D -m 755 wrapper.sh /app/bin/gcc
       - install -D -m 755 wrapper.sh /app/bin/clang
       - install -D -m 755 wrapper.sh /app/bin/clang++
       - install -D -m 755 wrapper.sh /app/bin/clang-format
+      - install -D -m 755 wrapper.sh /app/bin/clangd
       - install -D -m 755 wrapper.sh /app/bin/python3
       - install -D -m 755 wrapper.sh /app/bin/python
       - install -D -m 755 wrapper.sh /app/bin/java
       - install -D -m 755 wrapper.sh /app/bin/javac
       - install -D -m 755 wrapper.sh /app/bin/rustc
       - install -D -m 755 wrapper.sh /app/bin/cargo
+      - install -D -m 755 wrapper.sh /app/bin/wakatime
+      - install -D -m 755 wrapper.sh /app/bin/cf
     sources:
       - type: script
         dest-filename: wrapper.sh
