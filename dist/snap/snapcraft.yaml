@@ -1,7 +1,7 @@
 name: cpeditor
-base: core26
+base: core24
 build-base: devel
-grade: devel
+grade: stable
 confinement: classic
 adopt-info: cpeditor
 
@@ -27,17 +27,16 @@ parts:
       - libqt6core5compat6-dev
       - libgl1-mesa-dev
       - git
-      - patchelf
     stage-packages:
-      - libqt6core6
-      - libqt6gui6
-      - libqt6widgets6
-      - libqt6network6
-      - libqt6svg6
-      - libqt6core5compat6
-      - libqt6opengl6
-      - libqt6qml6
-      - libqt6quick6
+      - libqt6core6t64
+      - libqt6gui6t64
+      - libqt6widgets6t64
+      - libqt6network6t64
+      - libqt6svg6t64
+      - libqt6core5compat6t64
+      - libqt6opengl6t64
+      - libqt6qml6t64
+      - libqt6quick6t64
       - libicu78
     source: .
     cmake-parameters:
@@ -56,12 +55,3 @@ parts:
       DESTDIR=$CRAFT_PART_INSTALL cmake --install build
       cd -
       craftctl default
-    override-prime: |
-        craftctl default
-        sed -i 's|Icon=.*|Icon=${SNAP}/usr/share/icons/hicolor/512x512/apps/cpeditor.png|g' $CRAFT_PRIME/usr/share/applications/cpeditor.desktop
-        find $CRAFT_PRIME -type f -executable | while read -r elf; do
-            if file "$elf" | grep -q ELF; then
-                patchelf --set-interpreter "/snap/core26/current/lib64/ld-linux-x86-64.so.2" "$elf" 2>/dev/null || true
-                patchelf --set-rpath "\$ORIGIN:\$ORIGIN/../lib/x86_64-linux-gnu:\$ORIGIN/../../lib/x86_64-linux-gnu:/snap/core26/current/lib/x86_64-linux-gnu" "$elf" 2>/dev/null || true
-            fi
-        done
