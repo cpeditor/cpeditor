@@ -25,7 +25,8 @@ parts:
       - qt6-declarative-dev
       - qt6-5compat-dev
       - libgl1-mesa-dev
-      - git
+      - extra-cmake-modules
+      - libkf6syntaxhighlighting-dev
     stage-packages:
       - libqt6core6t64
       - libqt6gui6t64
@@ -35,21 +36,8 @@ parts:
       - libqt6core5compat6
       - libqt6qml6
       - libqt6quick6
+      - libkf6syntaxhighlighting6
     source: .
     cmake-parameters:
       - -DCMAKE_INSTALL_PREFIX=/usr
       - -DCMAKE_BUILD_TYPE=Release
-      - -DCMAKE_PREFIX_PATH=$CRAFT_PART_INSTALL/usr
-    override-build: |
-      cd $CRAFT_PART_SRC
-      cd third_party/extra-cmake-modules
-      cmake -B build -S . -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
-      cmake --build build --parallel $(nproc)
-      DESTDIR=$CRAFT_PART_INSTALL cmake --install build
-      cd -
-      cd third_party/syntax-highlighting
-      cmake -B build -S . -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
-      cmake --build build --parallel $(nproc)
-      DESTDIR=$CRAFT_PART_INSTALL cmake --install build
-      cd -
-      craftctl default
