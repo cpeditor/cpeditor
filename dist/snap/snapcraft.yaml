@@ -27,6 +27,7 @@ parts:
       - libqt6core5compat6-dev
       - libgl1-mesa-dev
       - git
+      - perl
     stage-packages:
       - libqt6core6
       - libqt6gui6
@@ -40,6 +41,7 @@ parts:
     cmake-parameters:
       - -DCMAKE_INSTALL_PREFIX=/usr
       - -DCMAKE_BUILD_TYPE=Release
+      - -DCMAKE_PREFIX_PATH=$CRAFT_PART_INSTALL/usr
     override-build: |
       cd $CRAFT_PART_SRC
       cd third_party/extra-cmake-modules
@@ -52,7 +54,7 @@ parts:
       cd third_party/syntax-highlighting
       git fetch --tags
       git checkout v6.0.0
-      cmake -B build -S . -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
+      cmake -B build -S . -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_PREFIX_PATH="$CRAFT_PART_INSTALL/usr;/usr" -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
       cmake --build build --parallel $(nproc)
       DESTDIR=$CRAFT_PART_INSTALL cmake --install build
       cd -
