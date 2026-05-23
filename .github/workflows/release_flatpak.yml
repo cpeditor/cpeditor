@@ -15,7 +15,7 @@ jobs:
     name: "Release Flatpak package"
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/flathub-infra/flatpak-github-actions:kde-6.8
+      image: ghcr.io/flathub-infra/flatpak-github-actions:kde-6.10
       options: --privileged
     if: github.repository_owner == 'cpeditor'
 
