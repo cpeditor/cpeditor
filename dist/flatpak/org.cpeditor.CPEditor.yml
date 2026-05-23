@@ -27,6 +27,18 @@ modules:
       - sed -i 's/Icon=cpeditor/Icon=org.cpeditor.CPEditor/' /app/share/applications/org.cpeditor.CPEditor.desktop
       - sed -i 's/Exec=\/usr\/bin\/cpeditor/Exec=cpeditor/' /app/share/applications/org.cpeditor.CPEditor.desktop
       - sed -i 's/<id>cpeditor.desktop<\/id>/<id>org.cpeditor.CPEditor<\/id>/' /app/share/metainfo/org.cpeditor.CPEditor.metainfo.xml
+  - name: cpeditor-wrapper
+    buildsystem: simple
+    build-commands:
+      - mv /app/bin/cpeditor /app/bin/cpeditor.bin
+      - install -D -m 755 cpeditor.sh /app/bin/cpeditor
+    sources:
+      - type: script
+        dest-filename: cpeditor.sh
+        commands:
+          - export TMPDIR="${XDG_CACHE_HOME:-$HOME/.cache}/cpeditor-tmp"
+          - mkdir -p "$TMPDIR"
+          - exec /app/bin/cpeditor.bin "$@"
   - name: wrappers
     buildsystem: simple
     build-commands:
