@@ -11,6 +11,8 @@ apps:
     command: usr/bin/cpeditor
     environment:
       LD_LIBRARY_PATH: "$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET:$SNAP/usr/lib"
+      QT_PLUGIN_PATH: "$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET/qt6/plugins"
+      QML2_IMPORT_PATH: "$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET/qt6/qml"
 
 parts:
   cpeditor:
@@ -41,6 +43,7 @@ parts:
       - libqt6core5compat6
       - libqt6qml6
       - libqt6quick6
+      - qt6-wayland
       - libkf6syntaxhighlighting6
       - libicu78
     source: .
