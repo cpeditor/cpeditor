@@ -10,6 +10,13 @@ on:
       - "**.md"
       - ".all-contributorsrc"
       - ".gitignore"
+  pull_request:
+    paths-ignore:
+      - ".github/**"
+      - "!.github/workflows/push_flatpak.yml"
+      - "**.md"
+      - ".all-contributorsrc"
+      - ".gitignore"
 
 jobs:
   flatpak:
