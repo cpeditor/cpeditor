@@ -22,6 +22,9 @@ jobs:
   flatpak:
     name: "Update Flatpak"
     runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/flathub-infra/flatpak-github-actions:kde-6.8
+      options: --privileged
     if: github.repository_owner == 'cpeditor'
     steps:
       - uses: actions/checkout@v6
