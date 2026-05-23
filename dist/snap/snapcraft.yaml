@@ -46,15 +46,15 @@ parts:
       cd $CRAFT_PART_SRC
       cd third_party/extra-cmake-modules
       git fetch --tags
-      git checkout v5.115.0
+      git checkout v6.0.0
+      sed -i 's/qt6_policy(SET QTP0001 NEW)//g' modules/ECMQmlModule6.cmake
       cmake -B build -S . -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
       cmake --build build --parallel $(nproc)
       DESTDIR=$CRAFT_PART_INSTALL cmake --install build
       cd -
       cd third_party/syntax-highlighting
       git fetch --tags
-      git checkout v5.115.0
-      sed -i '/include(ECMQmlModule)/d' CMakeLists.txt
+      git checkout v6.0.0
       cmake -B build -S . -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_PREFIX_PATH="$CRAFT_PART_INSTALL/usr;/usr" -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
       cmake --build build --parallel $(nproc)
       DESTDIR=$CRAFT_PART_INSTALL cmake --install build
