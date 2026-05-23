@@ -1,5 +1,5 @@
 name: cpeditor
-base: core26
+base: core24
 build-base: devel
 grade: devel
 confinement: classic
@@ -24,15 +24,15 @@ parts:
       - qt6-l10n-tools
       - qt6-svg-dev
       - qt6-declarative-dev
-      - libqt6core5compat6-dev
+      - qt6-5compat-dev
       - libgl1-mesa-dev
       - git
       - perl
     stage-packages:
-      - libqt6core6
-      - libqt6gui6
-      - libqt6widgets6
-      - libqt6network6
+      - libqt6core6t64
+      - libqt6gui6t64
+      - libqt6widgets6t64
+      - libqt6network6t64
       - libqt6svg6
       - libqt6core5compat6
       - libqt6qml6
@@ -46,14 +46,14 @@ parts:
       cd $CRAFT_PART_SRC
       cd third_party/extra-cmake-modules
       git fetch --tags
-      git checkout v6.0.0
+      git checkout v5.115.0
       cmake -B build -S . -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
       cmake --build build --parallel $(nproc)
       DESTDIR=$CRAFT_PART_INSTALL cmake --install build
       cd -
       cd third_party/syntax-highlighting
       git fetch --tags
-      git checkout v6.0.0
+      git checkout v5.115.0
       sed -i '/include(ECMQmlModule)/d' CMakeLists.txt
       cmake -B build -S . -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_PREFIX_PATH="$CRAFT_PART_INSTALL/usr;/usr" -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
       cmake --build build --parallel $(nproc)
