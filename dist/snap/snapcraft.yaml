@@ -1,5 +1,5 @@
 name: cpeditor
-base: core24
+base: core26
 build-base: devel
 grade: devel
 confinement: classic
@@ -30,9 +30,9 @@ parts:
       - perl
     stage-packages:
       - libqt6core6t64
-      - libqt6gui6t64
-      - libqt6widgets6t64
-      - libqt6network6t64
+      - libqt6gui6
+      - libqt6widgets6
+      - libqt6network6
       - libqt6svg6
       - libqt6core5compat6
       - libqt6qml6
@@ -48,7 +48,6 @@ parts:
       git fetch --tags
       git reset --hard
       git checkout v6.0.0
-      sed -i 's/qt6_policy(SET QTP0001 NEW)//g' modules/ECMQmlModule6.cmake
       cmake -B build -S . -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
       cmake --build build --parallel $(nproc)
       DESTDIR=$CRAFT_PART_INSTALL cmake --install build
@@ -57,7 +56,6 @@ parts:
       git fetch --tags
       git reset --hard
       git checkout v6.0.0
-      sed -i 's/set(REQUIRED_QT_VERSION 6.5.0)/set(REQUIRED_QT_VERSION 6.4.0)/g' CMakeLists.txt
       cmake -B build -S . -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_PREFIX_PATH="$CRAFT_PART_INSTALL/usr;/usr" -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
       cmake --build build --parallel $(nproc)
       DESTDIR=$CRAFT_PART_INSTALL cmake --install build
