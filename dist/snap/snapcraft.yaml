@@ -9,6 +9,8 @@ apps:
   cpeditor:
     common-id: cpeditor.desktop
     command: usr/bin/cpeditor
+    environment:
+      LD_LIBRARY_PATH: "$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET:$SNAP/usr/lib"
 
 parts:
   cpeditor:
