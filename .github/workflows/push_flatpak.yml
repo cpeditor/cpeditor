@@ -1,0 +1,39 @@
+name: "Update Flatpak"
+
+on:
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - ".github/**"
+      - "!.github/workflows/push_flatpak.yml"
+      - "**.md"
+      - ".all-contributorsrc"
+      - ".gitignore"
+
+jobs:
+  flatpak:
+    name: "Update Flatpak"
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/flathub-infra/flatpak-github-actions:kde-6.10
+      options: --privileged
+    if: github.repository_owner == 'cpeditor'
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Get short SHA
+        id: vars
+        run: |
+          # Use github.sha directly instead of relying on git rev-parse which might fail in shallow/detached checkouts if not perfectly configured
+          echo "sha_short=$(echo ${{ github.sha }} | cut -c1-7)" >> "$GITHUB_OUTPUT"
+
+      - name: Build Flatpak
+        uses: flatpak/flatpak-github-actions/flatpak-builder@v6
+        with:
+          bundle: cpeditor-${{ steps.vars.outputs.sha_short }}.flatpak
+          manifest-path: dist/flatpak/org.cpeditor.CPEditor.yml
+          cache-key: flatpak-builder-${{ github.sha }}
