@@ -40,6 +40,7 @@ parts:
       - libqt6qml6
       - libqt6quick6
       - libkf6syntaxhighlighting6
+      - libicu78
     source: .
     cmake-parameters:
       - -DCMAKE_INSTALL_PREFIX=/usr
