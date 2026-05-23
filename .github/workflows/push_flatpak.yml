@@ -34,7 +34,9 @@ jobs:
 
       - name: Get short SHA
         id: vars
-        run: echo "sha_short=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
+        run: |
+          # Use github.sha directly instead of relying on git rev-parse which might fail in shallow/detached checkouts if not perfectly configured
+          echo "sha_short=$(echo ${{ github.sha }} | cut -c1-7)" >> "$GITHUB_OUTPUT"
 
       - name: Build Flatpak
         uses: flatpak/flatpak-github-actions/flatpak-builder@v6
