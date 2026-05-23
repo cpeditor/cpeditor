@@ -54,6 +54,7 @@ parts:
       cd third_party/syntax-highlighting
       git fetch --tags
       git checkout v6.0.0
+      sed -i '/include(ECMQmlModule)/d' CMakeLists.txt
       cmake -B build -S . -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_PREFIX_PATH="$CRAFT_PART_INSTALL/usr;/usr" -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF
       cmake --build build --parallel $(nproc)
       DESTDIR=$CRAFT_PART_INSTALL cmake --install build
