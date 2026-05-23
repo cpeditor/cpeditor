@@ -1,0 +1,47 @@
+app-id: org.cpeditor.CPEditor
+runtime: org.kde.Platform
+runtime-version: '6.7'
+sdk: org.kde.Sdk
+command: cpeditor
+finish-args:
+  - --share=ipc
+  - --socket=fallback-x11
+  - --socket=wayland
+  - --share=network
+  - --filesystem=host
+  - --talk-name=org.freedesktop.Flatpak
+  - --env=PATH=/app/bin:/usr/bin
+modules:
+  - name: cpeditor
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=Release
+    sources:
+      - type: dir
+        path: ../../
+    post-install:
+      - mv /app/share/applications/cpeditor.desktop /app/share/applications/org.cpeditor.CPEditor.desktop
+      - mv /app/share/metainfo/cpeditor.appdata.xml /app/share/metainfo/org.cpeditor.CPEditor.metainfo.xml
+      - mv /app/share/icons/hicolor/512x512/apps/cpeditor.png /app/share/icons/hicolor/512x512/apps/org.cpeditor.CPEditor.png
+      - sed -i 's/Icon=cpeditor/Icon=org.cpeditor.CPEditor/' /app/share/applications/org.cpeditor.CPEditor.desktop
+      - sed -i 's/Exec=\/usr\/bin\/cpeditor/Exec=cpeditor/' /app/share/applications/org.cpeditor.CPEditor.desktop
+      - sed -i 's/<id>cpeditor.desktop<\/id>/<id>org.cpeditor.CPEditor<\/id>/' /app/share/metainfo/org.cpeditor.CPEditor.metainfo.xml
+  - name: wrappers
+    buildsystem: simple
+    build-commands:
+      - install -D -m 755 wrapper.sh /app/bin/g++
+      - install -D -m 755 wrapper.sh /app/bin/gcc
+      - install -D -m 755 wrapper.sh /app/bin/clang
+      - install -D -m 755 wrapper.sh /app/bin/clang++
+      - install -D -m 755 wrapper.sh /app/bin/clang-format
+      - install -D -m 755 wrapper.sh /app/bin/python3
+      - install -D -m 755 wrapper.sh /app/bin/python
+      - install -D -m 755 wrapper.sh /app/bin/java
+      - install -D -m 755 wrapper.sh /app/bin/javac
+      - install -D -m 755 wrapper.sh /app/bin/rustc
+      - install -D -m 755 wrapper.sh /app/bin/cargo
+    sources:
+      - type: script
+        dest-filename: wrapper.sh
+        commands:
+          - exec flatpak-spawn --host "$(basename "$0")" "$@"

@@ -1,0 +1,30 @@
+name: "Update Flatpak"
+
+on:
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - ".github/**"
+      - "!.github/workflows/push_flatpak.yml"
+      - "**.md"
+      - ".all-contributorsrc"
+      - ".gitignore"
+
+jobs:
+  flatpak:
+    name: "Update Flatpak"
+    runs-on: ubuntu-latest
+    if: github.repository_owner == 'cpeditor'
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Build Flatpak
+        uses: flatpak/flatpak-github-actions/flatpak-builder@v6
+        with:
+          bundle: cpeditor.flatpak
+          manifest-path: dist/flatpak/org.cpeditor.CPEditor.yml
+          cache-key: flatpak-builder-${{ github.sha }}

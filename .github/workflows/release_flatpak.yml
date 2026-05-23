@@ -1,0 +1,53 @@
+name: "Release Flatpak"
+
+on:
+  release:
+    types:
+      - published
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version number to release"
+        required: true
+
+jobs:
+  flatpak:
+    name: "Release Flatpak package"
+    runs-on: ubuntu-latest
+    if: github.repository_owner == 'cpeditor'
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Get version
+        id: get_version
+        run: |
+          case "${{ github.event_name }}" in
+            release) VERSION=${{ github.event.release.tag_name }};;
+            workflow_dispatch) VERSION=${{ github.event.inputs.version }};;
+          esac
+
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          STABLE_VERSION=$(cat dist/STABLE_VERSION)
+          if [[ $VERSION == "$STABLE_VERSION"* ]]; then
+            echo "ISSTABLE=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ISSTABLE=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Build Flatpak
+        if: steps.get_version.outputs.ISSTABLE == 'true'
+        uses: flatpak/flatpak-github-actions/flatpak-builder@v6
+        with:
+          bundle: cpeditor-${{ steps.get_version.outputs.version }}.flatpak
+          manifest-path: dist/flatpak/org.cpeditor.CPEditor.yml
+          cache-key: flatpak-builder-${{ github.sha }}
+
+      - name: Upload Flatpak Release Asset
+        if: steps.get_version.outputs.ISSTABLE == 'true' && github.event_name == 'release'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: cpeditor-${{ steps.get_version.outputs.version }}.flatpak
