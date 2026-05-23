@@ -1,5 +1,5 @@
 name: cpeditor
-base: core24
+base: core26
 build-base: devel
 grade: devel
 confinement: classic
