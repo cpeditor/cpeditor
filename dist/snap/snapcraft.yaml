@@ -32,12 +32,12 @@ parts:
       - libqt6gui6t64
       - libqt6widgets6t64
       - libqt6network6t64
-      - libqt6svg6t64
-      - libqt6core5compat6t64
+      - libqt6svg6
+      - libqt6core5compat6
       - libqt6opengl6t64
-      - libqt6qml6t64
-      - libqt6quick6t64
-      - libicu78
+      - libqt6qml6
+      - libqt6quick6
+      - libicu74
     source: .
     cmake-parameters:
       - -DCMAKE_INSTALL_PREFIX=/usr
