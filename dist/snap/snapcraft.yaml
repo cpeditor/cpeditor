@@ -1,6 +1,5 @@
 name: cpeditor
 base: core24
-build-base: core24
 grade: devel
 confinement: classic
 adopt-info: cpeditor
@@ -24,7 +23,7 @@ parts:
       - qt6-l10n-tools
       - qt6-svg-dev
       - qt6-declarative-dev
-      - libqt6core5compat6-dev
+      - qt6-5compat-dev
       - libgl1-mesa-dev
       - git
     stage-packages:
@@ -40,6 +39,7 @@ parts:
     cmake-parameters:
       - -DCMAKE_INSTALL_PREFIX=/usr
       - -DCMAKE_BUILD_TYPE=Release
+      - -DCMAKE_PREFIX_PATH=$CRAFT_PART_INSTALL/usr
     override-build: |
       cd $CRAFT_PART_SRC
       cd third_party/extra-cmake-modules
