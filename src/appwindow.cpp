@@ -46,6 +46,7 @@
 #include <QJsonDocument>
 #include <QMessageBox>
 #include <QMimeData>
+#include <QMouseEvent>
 #include <QProgressDialog>
 #include <QRegularExpression>
 #include <QShortcut>
@@ -55,8 +56,7 @@
 #include <QUrl>
 #include <findreplacedialog.h>
 
-#include <QMouseEvent>
-#include <QTabBar>
+
 
 AppWindow::AppWindow(bool noRestoreSession, QWidget *parent) : QMainWindow(parent), ui(new Ui::AppWindow)
 {
@@ -167,7 +167,6 @@ void AppWindow::finishConstruction()
 {
     if (tabCount() == 0)
         openTab("");
-
     ui->tabWidget->tabBar()->installEventFilter(this);
 
 #ifdef Q_OS_WIN
@@ -356,7 +355,7 @@ void AppWindow::applySettings()
 
     maybeSetHotkeys();
 
-    // FindReplaceDialog->readSettings(*SettingsHelper::settings()); FIX IT!!!
+           // FindReplaceDialog->readSettings(*SettingsHelper::settings()); FIX IT!!!
 }
 
 void AppWindow::maybeSetHotkeys()
@@ -492,7 +491,7 @@ void AppWindow::openTabs(const QStringList &paths)
 void AppWindow::openPaths(const QStringList &paths, bool cpp, bool java, bool python, int depth)
 {
     LOG_INFO("Open Path with arguments " << BOOL_INFO_OF(cpp) << BOOL_INFO_OF(java) << BOOL_INFO_OF(python)
-                                         << INFO_OF(depth) << INFO_OF(paths.join(" ")));
+             << INFO_OF(depth) << INFO_OF(paths.join(" ")));
     QStringList res;
     for (auto const &path : paths)
     {
@@ -507,7 +506,7 @@ void AppWindow::openPaths(const QStringList &paths, bool cpp, bool java, bool py
 QStringList AppWindow::openFolder(const QString &path, bool cpp, bool java, bool python, int depth)
 {
     LOG_INFO("Open folder with arguments " << BOOL_INFO_OF(cpp) << BOOL_INFO_OF(java) << BOOL_INFO_OF(python)
-                                           << INFO_OF(depth) << INFO_OF(path));
+             << INFO_OF(depth) << INFO_OF(path));
     auto entries = QDir(path).entryInfoList(QDir::NoDotAndDotDot | QDir::AllEntries);
     QStringList res;
     for (auto &entry : entries)
@@ -658,7 +657,7 @@ void AppWindow::on_actionBuildInfo_triggered()
 #else
                            .arg("Unknown")
 #endif
-    );
+                       );
 }
 
 /******************* FILES SECTION *************************/
@@ -1327,7 +1326,7 @@ void AppWindow::on_actionUseSnippets_triggered()
             {
                 LOG_INFO("Looking for snippet : " << name);
 
-                // Try exact match first
+                       // Try exact match first
                 QString matchedName;
                 if (names.contains(name))
                 {
@@ -1760,18 +1759,21 @@ QVector<MainWindow *> AppWindow::getTabs() const
 bool AppWindow::eventFilter(QObject *obj, QEvent *event) {
     QTabBar *tabBar = ui->tabWidget->tabBar();
 
-    if (obj != tabBar || event->type() != QEvent::MouseButtonRelease) {
+    if (obj != tabBar || event->type() != QEvent::MouseButtonRelease)
+    {
         return QMainWindow::eventFilter(obj, event);
     }
 
-    QMouseEvent *mouseEvent = static_cast<QMouseEvent *>(event);
+    auto *mouseEvent = static_cast<QMouseEvent *>(event);
 
-    if (mouseEvent->button() != Qt::MiddleButton) {
+    if (mouseEvent->button() != Qt::MiddleButton)
+    {
         return QMainWindow::eventFilter(obj, event);
     }
 
     int index = tabBar->tabAt(mouseEvent->pos());
-    if (index >= 0) {
+    if (index >= 0)
+    {
         closeTab(index);
         return true;
     }
