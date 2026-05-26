@@ -84,6 +84,8 @@ class AppWindow : public QMainWindow
     void dragEnterEvent(QDragEnterEvent *event) override;
     void changeEvent(QEvent *event) override;
 
+    bool eventFilter(QObject *obj, QEvent *event) override;
+
   public slots:
     void onReceivedMessage(quint32 instanceId, QByteArray message);
 
