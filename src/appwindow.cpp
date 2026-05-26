@@ -46,6 +46,7 @@
 #include <QJsonDocument>
 #include <QMessageBox>
 #include <QMimeData>
+#include <QMouseEvent>
 #include <QProgressDialog>
 #include <QRegularExpression>
 #include <QShortcut>
@@ -164,6 +165,7 @@ void AppWindow::finishConstruction()
 {
     if (tabCount() == 0)
         openTab("");
+    ui->tabWidget->tabBar()->installEventFilter(this);
 
 #ifdef Q_OS_WIN
     // This is necessary because of setWindowOpacity(0.99) earlier
@@ -1750,4 +1752,30 @@ QVector<MainWindow *> AppWindow::getTabs() const
         }
     }
     return tabs;
+}
+
+bool AppWindow::eventFilter(QObject *obj, QEvent *event)
+{
+    QTabBar *tabBar = ui->tabWidget->tabBar();
+
+    if (obj != tabBar || event->type() != QEvent::MouseButtonRelease)
+    {
+        return QMainWindow::eventFilter(obj, event);
+    }
+
+    auto *mouseEvent = static_cast<QMouseEvent *>(event);
+
+    if (mouseEvent->button() != Qt::MiddleButton)
+    {
+        return QMainWindow::eventFilter(obj, event);
+    }
+
+    int index = tabBar->tabAt(mouseEvent->pos());
+    if (index >= 0)
+    {
+        closeTab(index);
+        return true;
+    }
+
+    return QMainWindow::eventFilter(obj, event);
 }
