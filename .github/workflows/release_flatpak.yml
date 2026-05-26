@@ -51,6 +51,6 @@ jobs:
 
       - name: Upload Flatpak Release Asset
         if: steps.get_version.outputs.ISSTABLE == 'true' && github.event_name == 'release'
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           files: cpeditor-${{ steps.get_version.outputs.version }}.flatpak
