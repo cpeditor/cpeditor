@@ -35,7 +35,7 @@
 
 若您想要加上新語言，可以向開發者們尋求協助，舉例來說，您可以提出議題來討論欲翻譯的語言（若您可以等候我們做好前期準備，再開始提交檔案，這會是個較好的做法）。
 
-若您想更進一步：翻譯的字串被包在原始碼中的 `tr()`，當原始碼變更，您可以執行 [updateTranslation.sh](tools/updateTranslation.sh) 或 [updateTranslation.bat](tools/updateTranslation.bat) 來更新翻譯內容。如果您對此感興趣，可以閱讀 [Qt Linguist 使用手冊](https://doc.qt.io/qt-5/qtlinguist-index.html)。
+若您想更進一步：翻譯的字串被包在原始碼中的 `tr()`，當原始碼變更，您可以執行 [updateTranslation.sh](tools/updateTranslation.sh) 或 [updateTranslation.bat](tools/updateTranslation.bat) 來更新翻譯內容。如果您對此感興趣，可以閱讀 [Qt Linguist 使用手冊](https://doc.qt.io/qt-6/qtlinguist-index.html)。
 
 ## 設定
 
