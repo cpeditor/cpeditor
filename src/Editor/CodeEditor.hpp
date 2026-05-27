@@ -205,6 +205,11 @@ class CodeEditor : public QPlainTextEdit
     void changeEvent(QEvent *e) override;
 
     /**
+     * @brief Method to scale font sizes via mouse wheel zoom.
+     */
+    void wheelEvent(QWheelEvent *e) override;
+
+    /**
      * @brief Method, that's called on any key press, posted
      * into code editor widget. This method is overloaded for:
      *

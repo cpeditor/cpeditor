@@ -189,7 +189,7 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
 
     AddPageHelper(this)
         .page(TRKEY("Code Edit"),
-              {"Tab Width", "Cursor Width", "Auto Indent", "Wrap Text", "Auto Complete Parentheses", "Auto Remove Parentheses",
+              {"Tab Width", "Cursor Width", "Auto Indent", "Wrap Text", "Ctrl Scroll Zoom", "Auto Complete Parentheses", "Auto Remove Parentheses",
                "Tab Jump Out Parentheses", "Replace Tabs", "FakeVim/Enable", "FakeVim/RC"})
         .dir(TRKEY("Language"))
             .page(TRKEY("General"), {"Default Language"})
@@ -231,7 +231,7 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
             .end()
         .end()
         .dir(TRKEY("Appearance"))
-            .page(TRKEY("General"),{"Locale", "UI Style", "Editor Theme", "Opacity", "Test Case Maximum Height",
+            .page(TRKEY("General"),{"Locale", "UI Style", "Editor Theme", "Opacity","Ctrl Scroll Zoom", "Test Case Maximum Height",
                                     "Show Compile And Run Only", "Display EOLN In Diff", "Extra Bottom Margin",
                                     "Error Message Color", "Warn Message Color"})
             .page(TRKEY("Font"), {"Show Only Monospaced Font", "Editor Font", "Test Cases Font", "Message Logger Font",
