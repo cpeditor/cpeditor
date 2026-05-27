@@ -4,410 +4,465 @@
 <context>
     <name>AppWindow</name>
     <message>
+        <location filename="../src/appwindow.cpp" line="130"/>
         <source>Hot Exit</source>
         <translation>Γρήγορη έξοδος</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="131"/>
         <source>In the last session, CP Editor was abnormally killed, do you want to restore the last session?</source>
         <translation>Στην τελευταία έξοδο ο συντάκτης CP έκλεισε απροσδόκητα, θέλετε να επαναφέρεται την προηγούμενη συνεδρίαση;</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="318"/>
         <source>Show Main Window</source>
         <translation>Εμφάνιση κυρίου παραθύρου</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="466"/>
         <source>Opening Files</source>
         <translation>Άνοιγμα αρχείων</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="616"/>
         <source>About CP Editor %1</source>
         <translation>Σχετικά με το CP συντάκτη %1</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="617"/>
         <source>&lt;p&gt;&lt;b&gt;CP Editor&lt;/b&gt; is a native Qt-based code editor. It&apos;s specially designed for competitive programming, unlike other editors/IDEs which are mainly for developers. It helps you focus on your algorithm and automates the compilation, executing and testing. It even fetches test cases for you from different platforms and submits solutions to Codeforces!&lt;/p&gt;&lt;p&gt;Copyright (C) 2019-2021 Ashar Khan &amp;lt;ashar786khan@gmail.com&amp;gt;&lt;/p&gt;&lt;p&gt;This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. The source code for CP Editor is available at &lt;a href=&quot;https://github.com/cpeditor/cpeditor&quot;&gt; https://github.com/cpeditor/cpeditor&lt;/a&gt;.&lt;/p&gt;</source>
         <translation>&lt;p&gt;&lt;b&gt;Ο CP συντάκτης&lt;/b&gt; είναι μια εφαρμογή βασισμένη πάνω στο Qt συντάκτη κώδικα. Είναι ειδικά σχεδιασμένο για ανταγωνιστικό προγραμματισμό αντιθέτως με άλλους συντάκτες κώδικα. Ο συντάκτης σας βοηθάει να είστε συγκεντρωμένοι στον αλγοριθμό σας και σας βοηθάει με την αυτοματοποίηση, εκτέλεση και δοκιμή του κώδικα. Μπορεί ακόμα να δοκιμάσει το πρόγραμμα με δοκιμή υποθέσεων από διαφορετικές πλατφόρμες και να στέλνει τις απαντήσεις στο Codeforces!&lt;/p&gt;&lt;p&gt;Copyright (C) 2019-2021 Ashar Khan &amp;lt;ashar786khan@gmail.com&amp;gt;&lt;/p&gt;&lt;p&gt;Αυτό είναι δωρεάν λογισμικό, δείτε την πηγή για την πνευματική ιδιοκτησία. ΔΕΝ υπάρχει εγγύηση, ούτε για ΕΜΠΟΡΕΥΣΙΜΟΤΗΤΑ ή για ΙΚΑΝΟΤΗΤΑ ΓΙΑ ΣΥΓΚΕΚΡΙΜΕΝΟ ΣΚΟΠΟ. Ο πηγαίος κώδικας του CP κώδικα είναι διαθέσιμος στην ιστοσελίδα &lt;a href=&quot;https://github.com/cpeditor/cpeditor&quot;&gt; https://github.com/cpeditor/cpeditor&lt;/a&gt;.&lt;/p&gt;</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="700"/>
         <source>Open Files</source>
         <translation>Ανοίξτε αρχεία</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="764"/>
         <source>Reset preferences</source>
         <translation>Επαναφορά προτιμήσεων</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="765"/>
         <source>Are you sure you want to reset the all preferences to default?</source>
         <translation>Είστε σίγουροι ότι θέλετε να επαναφέρεται όλες τις προτιμήσεις στης προκαθορισμένες προτιμήσεις;</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="1316"/>
+        <location filename="../src/appwindow.cpp" line="1377"/>
         <source>Snippets</source>
         <translation>απόσπάσματα</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="1317"/>
         <source>There are no snippets for %1. Please add snippets in the preference window.</source>
         <translation>Δεν υπάρχουν απόσπάσματα για %1. Παρακαλώ προσθέστε απόσπάσματα στο παράθυρο προτιμήσεων.</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="1322"/>
         <source>Use Snippets</source>
         <translation>Χρησιμοποιήστε απoσπάσματα</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="1322"/>
         <source>Choose a snippet:</source>
         <translation>Επιλέξτε ένα απόσπασμα:</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="1377"/>
         <source>There is no snippet named %1 for %2</source>
         <translation>Δεν υπάρχει το απόσπασμα με το όνομα %1 για %2</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="1521"/>
         <source>Close</source>
         <translation>Κλείσιμο</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="1523"/>
         <source>Close Others</source>
         <translation>Κλείσιμο άλλον</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="1529"/>
         <source>Close to the Left</source>
         <translation>Κλείστε τα αριστερά</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="1535"/>
         <source>Close to the Right</source>
         <translation>Κλείστε τα δεξιά</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="1569"/>
         <source>Copy File Path</source>
         <translation>Αντιγραφή διαδρομής αρχείου</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="1583"/>
         <source>Copy Problem URL</source>
         <translation>Αντιγραφή URL προβλήματος</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="1586"/>
         <source>Set Codeforces URL</source>
         <translation>Προσαρμογή Codeforces URL</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="1591"/>
+        <location filename="../src/appwindow.cpp" line="1594"/>
         <source>Set CF URL</source>
         <translation>Προσαρμογή CF URL</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="1591"/>
         <source>Enter the contest ID:</source>
         <translation>Εισάγεται το ID του διαγωνισμού:</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="1594"/>
         <source>Enter the problem Code (A-Z):</source>
         <translation>Εισάγεται το πρόβλημα του κώδικα (Α-Ω):</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="1602"/>
+        <location filename="../src/appwindow.cpp" line="1604"/>
         <source>Set Problem URL</source>
         <translation>Προσαρμογή πρόβλημα URL</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="1604"/>
         <source>Enter the new problem URL:</source>
         <translation>Εισάγεται το καινούργιο URL του προβλήματος:</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="1694"/>
         <source>EventLogger</source>
         <translation>Καταγραφέας συμβάτων</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="1695"/>
         <source>All logs except for current session has been deleted</source>
         <translation>Όλες οι καταγραφές εκτός της τωρινής συνεδρίασης έχουν διαγραφεί</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="891"/>
         <source>CP Editor: An editor specially designed for competitive programming</source>
         <translation>Συντάκτης CP: Ένας συντάκτης σχεδιασμένος για ανταγωνιστικό προγραμματισμό</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="716"/>
         <source>Save</source>
         <translation>Αποθήκευση</translation>
     </message>
     <message>
         <source>Save As...</source>
-        <translation>Αποθήκευση ως...</translation>
+        <translation type="vanished">Αποθήκευση ως...</translation>
     </message>
     <message>
         <source>Save as new file</source>
-        <translation>Αποθήκευση ως καινούργιο αρχείο</translation>
+        <translation type="vanished">Αποθήκευση ως καινούργιο αρχείο</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="730"/>
         <source>Save All</source>
         <translation>Αποθήκευση όλων</translation>
     </message>
     <message>
         <source>Save all opened files</source>
-        <translation>Αποθήκευση όλων τον ανοιχτών αρχείων</translation>
+        <translation type="vanished">Αποθήκευση όλων τον ανοιχτών αρχείων</translation>
     </message>
     <message>
         <source>Close Current</source>
-        <translation>Κλείσιμο τωρινού</translation>
+        <translation type="vanished">Κλείσιμο τωρινού</translation>
     </message>
     <message>
         <source>Close current tab</source>
-        <translation>Κλείσιμο τωρινής καρτέλας</translation>
+        <translation type="vanished">Κλείσιμο τωρινής καρτέλας</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="1540"/>
         <source>Close Saved</source>
         <translation>Κλείσιμο απόθηκευμένων</translation>
     </message>
     <message>
         <source>Close saved tabs</source>
-        <translation>Κλείσιμο απόθηκευμένων καρτέλων</translation>
+        <translation type="vanished">Κλείσιμο απόθηκευμένων καρτέλων</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="1542"/>
         <source>Close All</source>
         <translation>Κλείσιμο όλων</translation>
     </message>
     <message>
         <source>Close All the tabs</source>
-        <translation>Κλείσιμο όλων τον καρτέλων</translation>
+        <translation type="vanished">Κλείσιμο όλων τον καρτέλων</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="320"/>
         <source>Quit</source>
         <translation>Έξοδος</translation>
     </message>
     <message>
         <source>Quit the application</source>
-        <translation>Έξοδος από την εφαρμογή</translation>
+        <translation type="vanished">Έξοδος από την εφαρμογή</translation>
     </message>
     <message>
         <source>Open File...</source>
-        <translation>Άνοιγμα αρχείου...</translation>
+        <translation type="vanished">Άνοιγμα αρχείου...</translation>
     </message>
     <message>
         <source>Open files</source>
-        <translation>Άνοιγμα αρχείων</translation>
+        <translation type="vanished">Άνοιγμα αρχείων</translation>
     </message>
     <message>
         <source>Open Contest...</source>
-        <translation>Άνοιγμα διαγωνισμού...</translation>
+        <translation type="vanished">Άνοιγμα διαγωνισμού...</translation>
     </message>
     <message>
         <source>Open a Contest</source>
-        <translation>Ανοίξτε έναν διαγωνισμό</translation>
+        <translation type="vanished">Ανοίξτε έναν διαγωνισμό</translation>
     </message>
     <message>
         <source>Indent</source>
-        <translation>Εσοχή</translation>
+        <translation type="vanished">Εσοχή</translation>
     </message>
     <message>
         <source>Unindent</source>
-        <translation>Αφαίρεση εσοχής</translation>
+        <translation type="vanished">Αφαίρεση εσοχής</translation>
     </message>
     <message>
         <source>Swap Line Up</source>
-        <translation>Αλλαγή σειράς πάνω</translation>
+        <translation type="vanished">Αλλαγή σειράς πάνω</translation>
     </message>
     <message>
         <source>Swap Line Down</source>
-        <translation>Αλλαγή σειράς κάτω</translation>
+        <translation type="vanished">Αλλαγή σειράς κάτω</translation>
     </message>
     <message>
         <source>Duplicate Line</source>
-        <translation>Αντιγραφή γραμμής</translation>
+        <translation type="vanished">Αντιγραφή γραμμής</translation>
     </message>
     <message>
         <source>Delete Line</source>
-        <translation>Διαγραφή γραμμής</translation>
+        <translation type="vanished">Διαγραφή γραμμής</translation>
     </message>
     <message>
         <source>Toggle Comment</source>
-        <translation>Μεταβολή σχολίου</translation>
+        <translation type="vanished">Μεταβολή σχολίου</translation>
     </message>
     <message>
         <source>Toggle Block Comment</source>
-        <translation>Μεταβολή κομμάτι σχολίου</translation>
+        <translation type="vanished">Μεταβολή κομμάτι σχολίου</translation>
     </message>
     <message>
         <source>Compile</source>
-        <translation>Σύνταξη</translation>
+        <translation type="vanished">Σύνταξη</translation>
     </message>
     <message>
         <source>Compile and Run</source>
-        <translation>Σύνταξη και εκτέλεση</translation>
+        <translation type="vanished">Σύνταξη και εκτέλεση</translation>
     </message>
     <message>
         <source>Run</source>
-        <translation>Εκτέλεση</translation>
+        <translation type="vanished">Εκτέλεση</translation>
     </message>
     <message>
         <source>Format code</source>
-        <translation>Διάταξη κώδικα</translation>
+        <translation type="vanished">Διάταξη κώδικα</translation>
     </message>
     <message>
         <source>Run Detached</source>
-        <translation>Εκτέλεση απόμονωμένου</translation>
+        <translation type="vanished">Εκτέλεση απόμονωμένου</translation>
     </message>
     <message>
         <source>Kill Processes</source>
-        <translation>Τερματισμώς διεργασιών</translation>
+        <translation type="vanished">Τερματισμώς διεργασιών</translation>
     </message>
     <message>
         <source>Find and Replace</source>
-        <translation>Εύρημα και αντικατάσταση</translation>
+        <translation type="vanished">Εύρημα και αντικατάσταση</translation>
     </message>
     <message>
         <source>Preferences</source>
-        <translation>Προτιμήσεις</translation>
+        <translation type="vanished">Προτιμήσεις</translation>
     </message>
     <message>
         <source>About Qt</source>
-        <translation>Σχετικά με το Qt</translation>
+        <translation type="vanished">Σχετικά με το Qt</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="635"/>
         <source>Build Info</source>
         <translation>Σχετικά με την κατασκευή</translation>
     </message>
     <message>
         <source>Check for updates</source>
-        <translation>Έλεγχος για ενημέρωσεις</translation>
+        <translation type="vanished">Έλεγχος για ενημέρωσεις</translation>
     </message>
     <message>
         <source>New File</source>
-        <translation>Καινούριο αρχείο</translation>
+        <translation type="vanished">Καινούριο αρχείο</translation>
     </message>
     <message>
         <source>Open a new tab in the editor</source>
-        <translation>Άνοιγμα νέας καρτέλας στον συντάκτη</translation>
+        <translation type="vanished">Άνοιγμα νέας καρτέλας στον συντάκτη</translation>
     </message>
     <message>
         <source>Save the file on the disk</source>
-        <translation>Αποθήκευση του αρχείου στον δίσκο</translation>
+        <translation type="vanished">Αποθήκευση του αρχείου στον δίσκο</translation>
     </message>
     <message>
         <source>Use Snippet...</source>
-        <translation>Χρησιμοποίηση απόσπάσματος...</translation>
+        <translation type="vanished">Χρησιμοποίηση απόσπάσματος...</translation>
     </message>
     <message>
         <source>Export Settings...</source>
-        <translation>Εξαγωγή ρυθμίσεων...</translation>
+        <translation type="vanished">Εξαγωγή ρυθμίσεων...</translation>
     </message>
     <message>
         <source>Import Settings...</source>
-        <translation>Εισαγωγή ρυθμίσεων...</translation>
+        <translation type="vanished">Εισαγωγή ρυθμίσεων...</translation>
     </message>
     <message>
         <source>Reset Settings</source>
-        <translation>Επαναφορά ρυθμίσεων</translation>
+        <translation type="vanished">Επαναφορά ρυθμίσεων</translation>
     </message>
     <message>
         <source>Manual</source>
-        <translation>Εγχειρίδιο</translation>
+        <translation type="vanished">Εγχειρίδιο</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="319"/>
         <source>About</source>
         <translation>Σχετικά</translation>
     </message>
     <message>
         <source>Editor Mode</source>
-        <translation>Μοντέλο συντάκτη</translation>
+        <translation type="vanished">Μοντέλο συντάκτη</translation>
     </message>
     <message>
         <source>IO Mode</source>
-        <translation>Μοντέλο Εισόδου / Εξόδου</translation>
+        <translation type="vanished">Μοντέλο Εισόδου / Εξόδου</translation>
     </message>
     <message>
         <source>Split Mode</source>
-        <translation>Μοντέλο διαίρεσης</translation>
+        <translation type="vanished">Μοντέλο διαίρεσης</translation>
     </message>
     <message>
         <source>Show Log Files</source>
-        <translation>Εμφάνιση αρχείων συμβάντων</translation>
+        <translation type="vanished">Εμφάνιση αρχείων συμβάντων</translation>
     </message>
     <message>
         <source>Delete Log Files</source>
-        <translation>Διαγραφή αρχείων συμβάντων</translation>
+        <translation type="vanished">Διαγραφή αρχείων συμβάντων</translation>
     </message>
     <message>
         <source>&amp;File</source>
-        <translation>&amp;Αρχείο</translation>
+        <translation type="vanished">&amp;Αρχείο</translation>
     </message>
     <message>
         <source>&amp;Edit</source>
-        <translation>&amp;Επεξεργασία</translation>
+        <translation type="vanished">&amp;Επεξεργασία</translation>
     </message>
     <message>
         <source>&amp;Actions</source>
-        <translation>&amp;Ενέργειες</translation>
+        <translation type="vanished">&amp;Ενέργειες</translation>
     </message>
     <message>
         <source>&amp;View</source>
-        <translation>&amp;Εμφάνιση</translation>
+        <translation type="vanished">&amp;Εμφάνιση</translation>
     </message>
     <message>
         <source>&amp;Options</source>
-        <translation>&amp;Επιλογές</translation>
+        <translation type="vanished">&amp;Επιλογές</translation>
     </message>
     <message>
         <source>&amp;Help</source>
-        <translation>&amp;Βοήθεια</translation>
+        <translation type="vanished">&amp;Βοήθεια</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="778"/>
         <source>Export settings to a file</source>
         <translation>Εξαγωγή ρυθμίσεων σε αρχείο</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="794"/>
         <source>Import settings from a file</source>
         <translation>Εισαγωγή ρυθμίσεων από αρχείο</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="806"/>
         <source>Export current session to a file</source>
         <translation>Εξαγωγή τωρινής συνεδρίασης σε αρχείο</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="812"/>
         <source>Export Session</source>
         <translation>Εξαγωγή συνεδρίασης</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="813"/>
         <source>Failed to export the current session to [%1]</source>
         <translation>Απέτυχε η εξαγωγή της τωρινής συνεδρίασης στο [%1]</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="820"/>
         <source>Load Session</source>
         <translation>Φόρτωση συνεδρίασης</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="821"/>
         <source>Loading a session from a file will close all tabs in the current session without saving the files. Are you sure to continue?</source>
         <translation>Η φόρτωση μιας συνεδρίασης από κάποιο αρχείο θα κλείσει όλες της καρτέλες χωρίς να απόθηκεύση τα αρχεία. Είστε σίγουροι;</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="827"/>
         <source>Load session from a file</source>
         <translation>Φόρτωση συνεδρίασης από αρχείο</translation>
     </message>
     <message>
         <source>Export Session...</source>
-        <translation>Εξαγωγή συνεδρίασης...</translation>
+        <translation type="vanished">Εξαγωγή συνεδρίασης...</translation>
     </message>
     <message>
         <source>Load Session...</source>
-        <translation>Φόρτωση συνεδρίασης...</translation>
+        <translation type="vanished">Φόρτωση συνεδρίασης...</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="779"/>
+        <location filename="../src/appwindow.cpp" line="795"/>
         <source>CP Editor Settings File</source>
         <translation>Αρχείο ρυθμίσεων του συντάκτη CP</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="807"/>
+        <location filename="../src/appwindow.cpp" line="828"/>
         <source>CP Editor Session File</source>
         <translation>Αρχείο ρυθμίσεων της συνεδρίασης</translation>
     </message>
     <message>
         <source>Report issues</source>
-        <translation>Αναφορά προβλημάτων</translation>
+        <translation type="vanished">Αναφορά προβλημάτων</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="787"/>
         <source>Import Settings</source>
         <translation>Εισαγωγή ρυθμίσεων</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="788"/>
         <source>All current settings will lose after importing settings from a file. Are you sure to continue?</source>
         <translation>Όλες οι ρυθμίσεις θα χαθούνε αφότου εισαχθούνε οι ρυθμίσεις από το αρχείο. Είστε σίγουροι ότι θέλετε να συνεχίσεται;</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="1547"/>
         <source>Duplicate Tab</source>
         <translation>Αντιγραφή καρτέλας</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="636"/>
         <source>App version: %1
 Build type: %2
 Git commit hash: %3
@@ -420,197 +475,206 @@ Build time: %4
 Λειτουργικό σύστημα: %5</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="639"/>
         <source>Portable Version</source>
         <translation>Φορητή έκδοση</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="641"/>
         <source>Setup Version</source>
         <translation>Έκδοση εγκατάστασης</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="73"/>
         <source>Open Recent Files</source>
         <translation>Άνοιγμα προσωρινών αρχείων</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="79"/>
         <source>No file is opened recently</source>
         <translation>Κανένα αρχείο δεν ανοίχτηκε πρόσφατα</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="89"/>
         <source>Clear Recent Files</source>
         <translation>Καθάρισμα προσωρινών αρχείων</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="1561"/>
         <source>Source File</source>
         <translation>Πηγαίο αρχείο</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="1562"/>
         <source>Executable File</source>
         <translation>Εκτελέσιμο αρχείο</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="1581"/>
         <source>Open Problem in Browser</source>
         <translation>Άνοιγμα προβλήματος στον φυλλομετρητή</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="1552"/>
         <source>Set Compile Command</source>
         <translation>Προσαρμογή εντολής μεταγλοττιστή</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="1554"/>
         <source>Set Time Limit</source>
         <translation>Ορισμός χρονικού περιθώριου</translation>
     </message>
     <message>
         <source>Full Screen</source>
-        <translation>Πλήρες παράθυρο</translation>
+        <translation type="vanished">Πλήρες παράθυρο</translation>
     </message>
     <message>
         <source>Support us</source>
-        <translation>Υποστηριξέ μας</translation>
+        <translation type="vanished">Υποστηριξέ μας</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="1442"/>
         <source>How to exit full-screen</source>
         <translation>Πώς να βγείτε από την πλήρες οθόνη</translation>
     </message>
     <message>
+        <location filename="../src/appwindow.cpp" line="1442"/>
         <source>Press F11 key to exit full-screen mode.</source>
         <translation>Πατήστε το F11 κουμπί για να βγείτε από πλήρες οθόνη.</translation>
     </message>
     <message>
-        <source>Stress Testing...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Generator</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Open a new tab with generator template</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>New File From Template</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>C++</source>
-        <translation type="unfinished">C++</translation>
-    </message>
-    <message>
-        <source>Open a new tab with C++ template</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">C++</translation>
     </message>
     <message>
         <source>Java</source>
-        <translation type="unfinished">Java</translation>
-    </message>
-    <message>
-        <source>Open a new tab with Java template</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Java</translation>
     </message>
     <message>
         <source>Python</source>
-        <translation type="unfinished">Python</translation>
-    </message>
-    <message>
-        <source>Open a new tab with Python template</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">Python</translation>
     </message>
 </context>
 <context>
     <name>CodeSnippetsPage</name>
     <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="45"/>
         <source>Search...</source>
         <translation>Αναζήτηση...</translation>
     </message>
     <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="58"/>
         <source>Add</source>
         <translation>Εισαγωγή</translation>
     </message>
     <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="63"/>
         <source>Del</source>
         <translation>Διαγραφή</translation>
     </message>
     <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="68"/>
         <source>Rename Snippet</source>
         <translation>Μετανομασία απόσπάσματος</translation>
     </message>
     <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="72"/>
         <source>Load Snippets From Files</source>
         <translation>Φόρτωση απόσπασμάτων από αρχεία</translation>
     </message>
     <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="75"/>
         <source>Extract Snippets To Files</source>
         <translation>Εξαγωγή απόσπάσματων σε αρχεία</translation>
     </message>
     <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="85"/>
         <source>More</source>
         <translation>Περισσότερα</translation>
     </message>
     <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="115"/>
         <source>No Snippet Selected</source>
         <translation>Δεν επιλέξατε κάποιο απόσπασμα</translation>
     </message>
     <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="255"/>
         <source>Unsaved Snippets</source>
         <translation>Μη απόθηκευμένα απόσπάσματα</translation>
     </message>
     <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="256"/>
         <source>The snippet [%1] has been changed. Do you want to save it or discard the changes?</source>
         <translation>Το απόσπασμα [%1] έχει αλλάξει. θέλετε να απόθηκεύσεται τις αλλαγές ή να της απόρρίψετε;</translation>
     </message>
     <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="287"/>
         <source>Delete Snippet</source>
         <translation>Διαγραφή απόσπάσματος</translation>
     </message>
     <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="288"/>
         <source>Do you really want to delete the snippet [%1]?</source>
         <translation>Είστε σίγουροι ότι θέλετε να διαγράψετε το απόσπασμα [%1]?</translation>
     </message>
     <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="318"/>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="326"/>
         <source>Load Snippets</source>
         <translation>Φόρτωση απόσπασμάτων</translation>
     </message>
     <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="327"/>
         <source>Failed to open [%1]. Do I have read permission?</source>
         <translation>Απέτυχε να ανοίξει [%1]. Μήπως δεν έχετε δικαίωμα ανάγνωσης;</translation>
     </message>
     <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="342"/>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="372"/>
         <source>Extract Snippets</source>
         <translation>Εξαγωγή απόσπασμάτων</translation>
     </message>
     <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="365"/>
         <source>Extract Snippets: %1</source>
         <translation>Εξαγωγή απόσπασμάτων: %1</translation>
     </message>
     <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="373"/>
         <source>Failed to write to [%1]. Do I have write permission?</source>
         <translation>Δεν μπόρεσε να γίνει η εγραφή στο [%1]. Έχετε δικαίωμα εγγραφής;</translation>
     </message>
     <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="394"/>
         <source>Snippet name can&apos;t be empty.
 </source>
         <translation>Το όνομα απόσπάσματος δεν μπορεί να είναι άδειο.
 </translation>
     </message>
     <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="399"/>
         <source>Snippet Name Conflict</source>
         <translation>Διαμάχη όνομα απόσπασμάτων</translation>
     </message>
     <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="400"/>
         <source>The name &quot;%1&quot; is already in use. Do you want to override it? (The old snippet with this name will be deleted.)</source>
         <translation>Το όνομα &quot;%1&quot; είναι ίδη σε χρήση. Θέλετε να το παρακάμψετε; (Το παλιό απόσπασμα με αυτό το όνομα θα διαγραφεί)</translation>
     </message>
     <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="412"/>
         <source>The name &quot;%1&quot; is already in use.
 </source>
         <translation>Το όνομα &quot;%1&quot; χρησιμοποιείτε ίδη.
 </translation>
     </message>
     <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="414"/>
         <source>Add Snippet</source>
         <translation>Εισαγωγή απόσπάσματος</translation>
     </message>
     <message>
+        <location filename="../src/Settings/CodeSnippetsPage.cpp" line="414"/>
         <source>New Snippet Name:</source>
         <translation>Νέο όνομα απόσπάσματος:</translation>
     </message>
@@ -618,68 +682,93 @@ Build time: %4
 <context>
     <name>Core::Checker</name>
     <message>
+        <location filename="../src/Core/Checker.cpp" line="87"/>
         <source>Read Checker</source>
         <translation>Ελεγκτής ανάγνωσης</translation>
     </message>
     <message>
+        <location filename="../src/Core/Checker.cpp" line="94"/>
+        <location filename="../src/Core/Checker.cpp" line="99"/>
+        <location filename="../src/Core/Checker.cpp" line="130"/>
+        <location filename="../src/Core/Checker.cpp" line="148"/>
+        <location filename="../src/Core/Checker.cpp" line="156"/>
+        <location filename="../src/Core/Checker.cpp" line="161"/>
+        <location filename="../src/Core/Checker.cpp" line="301"/>
+        <location filename="../src/Core/Checker.cpp" line="302"/>
+        <location filename="../src/Core/Checker.cpp" line="303"/>
+        <location filename="../src/Core/Checker.cpp" line="333"/>
         <source>Checker</source>
         <translation>Ελεγκτής</translation>
     </message>
     <message>
+        <location filename="../src/Core/Checker.cpp" line="94"/>
         <source>Failed to create temporary directory</source>
         <translation>Απέτυχε να διμιουργηθεί προσωρινός φάκελος</translation>
     </message>
     <message>
+        <location filename="../src/Core/Checker.cpp" line="102"/>
         <source>Read testlib.h</source>
         <translation>Ανάγνωση testlib.h</translation>
     </message>
     <message>
+        <location filename="../src/Core/Checker.cpp" line="105"/>
         <source>Save testlib.h</source>
         <translation>Αποθήκευση testlib.h</translation>
     </message>
     <message>
+        <location filename="../src/Core/Checker.cpp" line="156"/>
         <source>Error occurred while compiling the checker:
 %1</source>
         <translation>Υπήρξε σφάλμα κατά την σύνταξη του ελέγκτη:
 %1</translation>
     </message>
     <message>
+        <location filename="../src/Core/Checker.cpp" line="322"/>
         <source>Checker[%1]</source>
         <translation>Ελεγκτής[%1]</translation>
     </message>
     <message>
+        <location filename="../src/Core/Checker.cpp" line="194"/>
         <source>Checker exited with exit code %1</source>
         <translation>Ο ελεγκτής έκλεισε με τον κωδικό%1</translation>
     </message>
     <message>
+        <location filename="../src/Core/Checker.cpp" line="205"/>
         <source>Checker exited with unknown exit code %1</source>
         <translation>Ο ελεγκτής έκλεισε με άγνωστο κωδικό %1</translation>
     </message>
     <message>
+        <location filename="../src/Core/Checker.cpp" line="176"/>
         <source>Time Limit Exceeded</source>
         <translation>Ξεπεράστηκε το χρονικό περιθώριο (TLE)</translation>
     </message>
     <message>
+        <location filename="../src/Core/Checker.cpp" line="219"/>
         <source>The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer than the output length limit, so the process is killed. You can change the output length limit at %4.</source>
         <translation>Το %1 από τις τρεχόμενες διεργασίες των δοκιμών #%2 περιέχει περισσότερο από %3 χαρακτήρες, που είναι περισσότερο από το όριο εξόδου, οπότε η διεργασία τερματίστηκε. Μπορείτε να αλλάξετε το όριο εξόδου στο %4.</translation>
     </message>
     <message>
+        <location filename="../src/Core/Checker.cpp" line="230"/>
         <source>The checker is killed</source>
         <translation>Ο ελεγκτής σταμάτησε</translation>
     </message>
     <message>
+        <location filename="../src/Core/Checker.cpp" line="130"/>
         <source>Started compiling the checker</source>
         <translation>Ξεκίνησε η σύνταξη του ελεγκτή</translation>
     </message>
     <message>
+        <location filename="../src/Core/Checker.cpp" line="148"/>
         <source>The checker is compiled</source>
         <translation>Ο ελεγκτής συντάχθηκε</translation>
     </message>
     <message>
+        <location filename="../src/Core/Checker.cpp" line="161"/>
         <source>Failed to compile the checker: %1</source>
         <translation>Απέτυχε να συνταχθή ο ελεκγτής: %1</translation>
     </message>
     <message>
+        <location filename="../src/Core/Checker.cpp" line="333"/>
         <source>The source code of the checker has changed, recompiling...</source>
         <translation>Ο πηγαίος κώδικας του ελεγκτή άλλαξε, επαναμεταγλώτιση...</translation>
     </message>
@@ -687,18 +776,22 @@ Build time: %4
 <context>
     <name>Core::Compiler</name>
     <message>
+        <location filename="../src/Core/Compiler.cpp" line="62"/>
         <source>The source file [%1] doesn&apos;t exist</source>
         <translation>Το πηγαίο αρχείο [%1] δεν υπάρχει</translation>
     </message>
     <message>
+        <location filename="../src/Core/Compiler.cpp" line="96"/>
         <source>Unsupported programming language &quot;%1&quot;</source>
         <translation>Μη υποστηριζόμενη γλώσσα προγραμματισμού &quot;%1&quot;</translation>
     </message>
     <message>
+        <location filename="../src/Core/Compiler.cpp" line="171"/>
         <source>Failed to start the compiler. Please check %1 or add the compiler in the PATH environment variable.</source>
         <translation>απότυχία να ξεκινήσει ο μεταγλωττιστής. Παρακαλώ ελέξτε το %1 ή εισάγεται την διαδρομή του μεταγλωττιστή στην μεταβλητή του περιβάλλοντος.</translation>
     </message>
     <message>
+        <location filename="../src/Core/Compiler.cpp" line="78"/>
         <source>%1 is empty</source>
         <translation>%1 είναι άδειο</translation>
     </message>
@@ -706,32 +799,39 @@ Build time: %4
 <context>
     <name>Core::Runner</name>
     <message>
+        <location filename="../src/Core/Runner.cpp" line="69"/>
         <source>The source file %1 doesn&apos;t exist.</source>
         <translation>Το πηγαίο αρχείο %1 δεν υπάρχει.</translation>
     </message>
     <message>
+        <location filename="../src/Core/Runner.cpp" line="77"/>
         <source>Failed to get run command. It&apos;s probably a bug.</source>
         <translation>Απέτυχε να διαβαστεί η εντολή run. Μάλλον είναι λογικό πρόβλημα στο λογισμικό.</translation>
     </message>
     <message>
+        <location filename="../src/Core/Runner.cpp" line="213"/>
         <source>Failed to start running. Please compile first.</source>
         <translation>Απέτυχε να ξεκινήσει. Παρακαλώ τρέξτε το μεταγλωττιστή ξανά.</translation>
     </message>
     <message>
+        <location filename="../src/Core/Runner.cpp" line="145"/>
         <source>Program finished with exit code %1
 Press any key to exit</source>
         <translation>Το πρόγραμμα τελειώσε με τον κωδικό %1
 Πατήστε οποιοδήποτε κουμπί για να βγείτε</translation>
     </message>
     <message>
+        <location filename="../src/Core/Runner.cpp" line="208"/>
         <source>Failed to start detached execution. Please check your terminal emulator settings in %1.</source>
         <translation>Απέτυχε να ξεκινήσει η απόμωνομένη εκτέλεση. Παρακαλώ δείτε τις ρυθμίσεις του εξομοιωτή τερματικό %1.</translation>
     </message>
     <message>
+        <location filename="../src/Core/Runner.cpp" line="148"/>
         <source>Detached execution is not supported on your platform</source>
         <translation>Η απόμονωμένη εκτέκεση δεν υποστηρύζεται στην πλατφόρμα σας</translation>
     </message>
     <message>
+        <location filename="../src/Core/Runner.cpp" line="94"/>
         <source>Failed to create temporary file.</source>
         <translation>Απέτυχε η δημιουργία του προσωρινού αρχείου.</translation>
     </message>
@@ -739,10 +839,12 @@ Press any key to exit</source>
 <context>
     <name>Core::SessionManager</name>
     <message>
+        <location filename="../src/Core/SessionManager.cpp" line="84"/>
         <source>Restoring Last Session</source>
         <translation>Επαναφορά τελευταίας συνεδρίας</translation>
     </message>
     <message>
+        <location filename="../src/Core/SessionManager.cpp" line="98"/>
         <source>Restoring: [%1]</source>
         <translation>Επαναφέρεται: [%1]</translation>
     </message>
@@ -750,42 +852,52 @@ Press any key to exit</source>
 <context>
     <name>Editor::FakeVimCommands</name>
     <message>
+        <location filename="../src/Editor/FakeVimCommands.cpp" line="96"/>
         <source>`new` requires no argument or one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos;, got [%1]</source>
         <translation type="unfinished">η `new` δεν δέχεται όρισμα ή πρέπει να είναι ένα από &apos;cpp&apos;, &apos;java&apos; και &apos;python&apos;, ελήφθη [%1]</translation>
     </message>
     <message>
+        <location filename="../src/Editor/FakeVimCommands.cpp" line="118"/>
         <source>[%1] is not C++, Python or Java source file</source>
         <translation type="unfinished">το [%1] δεν είναι αρχείο πηγαίου C++, Python ή Java</translation>
     </message>
     <message>
+        <location filename="../src/Editor/FakeVimCommands.cpp" line="124"/>
         <source>[%1] does not exist. To open a tab with a non-existing file, use `open!` instead</source>
         <translation type="unfinished">το [%1] δεν υπάρχει. Για να ανοίξετε καρτέλα με ανύπαρκτο αρχείο, χρησιμοποιήστε `open!`</translation>
     </message>
     <message>
+        <location filename="../src/Editor/FakeVimCommands.cpp" line="149"/>
         <source>[%1] is not a number</source>
         <translation type="unfinished">το [%1] δεν είναι αριθμός</translation>
     </message>
     <message>
+        <location filename="../src/Editor/FakeVimCommands.cpp" line="157"/>
         <source>%1 is out of range [1, %2]</source>
         <translation type="unfinished">το %1 είναι εκτός εύρους [1, %2]</translation>
     </message>
     <message>
+        <location filename="../src/Editor/FakeVimCommands.cpp" line="160"/>
         <source>N/A</source>
         <translation type="unfinished">Δ/Υ</translation>
     </message>
     <message>
+        <location filename="../src/Editor/FakeVimCommands.cpp" line="188"/>
         <source>[%1] is not a valid view mode. It should be one of &apos;split&apos; and &apos;edit&apos;</source>
         <translation type="unfinished">το [%1] δεν είναι έγκυρη λειτουργία προβολής. Πρέπει να είναι &apos;split&apos; ή &apos;edit&apos;</translation>
     </message>
     <message>
+        <location filename="../src/Editor/FakeVimCommands.cpp" line="199"/>
         <source>%1 is not a valid language name. It should be one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos;</source>
         <translation type="unfinished">το %1 δεν είναι έγκυρο όνομα γλώσσας. Πρέπει να είναι &apos;cpp&apos;, &apos;java&apos; ή &apos;python&apos;</translation>
     </message>
     <message>
+        <location filename="../src/Editor/FakeVimCommands.cpp" line="201"/>
         <source>No active tab to change language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Editor/FakeVimCommands.cpp" line="211"/>
         <source>No active tab to clear messages</source>
         <translation type="unfinished">Δεν υπάρχει ενεργή καρτέλα για εκκαθάριση μηνυμάτων</translation>
     </message>
@@ -793,42 +905,63 @@ Press any key to exit</source>
 <context>
     <name>Extensions::CFTool</name>
     <message>
+        <location filename="../src/Extensions/CFTool.cpp" line="50"/>
+        <location filename="../src/Extensions/CFTool.cpp" line="64"/>
+        <location filename="../src/Extensions/CFTool.cpp" line="75"/>
+        <location filename="../src/Extensions/CFTool.cpp" line="92"/>
+        <location filename="../src/Extensions/CFTool.cpp" line="98"/>
+        <location filename="../src/Extensions/CFTool.cpp" line="104"/>
+        <location filename="../src/Extensions/CFTool.cpp" line="157"/>
+        <location filename="../src/Extensions/CFTool.cpp" line="159"/>
+        <location filename="../src/Extensions/CFTool.cpp" line="161"/>
+        <location filename="../src/Extensions/CFTool.cpp" line="164"/>
+        <location filename="../src/Extensions/CFTool.cpp" line="178"/>
+        <location filename="../src/Extensions/CFTool.cpp" line="182"/>
         <source>CF Tool</source>
         <translation>CF εργαλείο</translation>
     </message>
     <message>
+        <location filename="../src/Extensions/CFTool.cpp" line="50"/>
         <source>CF Tool was killed</source>
         <translation>Το CF εργαλείο τερματίστηκε</translation>
     </message>
     <message>
+        <location filename="../src/Extensions/CFTool.cpp" line="65"/>
         <source>The problem code is 0, now use A automatically. If the actual problem code is not A, please set the problem code manually in the right-click menu of the current tab.</source>
         <translation>Ο κωδικός του προβλήματος είναι 0, τώρα χρησιμοποιήστε το Α αυτόματα. Αν ο κωδικός προβλήματος δεν είναι το Α, παρακαλώ ορίστε το κώδικα του προβλήματος στο δεξιό κομμάτι του μενού της τρέχουσας καρτέλας.</translation>
     </message>
     <message>
+        <location filename="../src/Extensions/CFTool.cpp" line="76"/>
         <source>Failed to get the version of CF Tool. Have you set the correct path to CF Tool in Preferences?</source>
         <translation>Απέτυχε να φορτώσουμε την έκδωση του CF εργαλείου. Μήπως δεν βάλατε την διαδρομή του CF εργαλείου στις προτιμήσεις;</translation>
     </message>
     <message>
+        <location filename="../src/Extensions/CFTool.cpp" line="92"/>
         <source>CF Tool has started</source>
         <translation>Το CF εργαλείο ξεκίνησε</translation>
     </message>
     <message>
+        <location filename="../src/Extensions/CFTool.cpp" line="99"/>
         <source>Failed to start CF Tool in 2 seconds. Have you set the correct path to CF Tool in Preferences?</source>
         <translation>Απέτυχε η εκκίνηση του CF εργαλείου σε 2 δευτερόλεπτα. Έχετε ρυθμίση την διαδρομή του CF εργαλείου στις προτιμήσεις;</translation>
     </message>
     <message>
+        <location filename="../src/Extensions/CFTool.cpp" line="104"/>
         <source>Failed to parse the URL [%1]</source>
         <translation>Απέτυχε η ανάλυση του URL [%1]</translation>
     </message>
     <message>
+        <location filename="../src/Extensions/CFTool.cpp" line="177"/>
         <source>CF Tool failed</source>
         <translation>Το CF εργαλείο απέτυχε</translation>
     </message>
     <message>
+        <location filename="../src/Extensions/CFTool.cpp" line="178"/>
         <source>CF Tool finished with non-zero exit code %1</source>
         <translation>Το CF εργαλείο έκλεισε με μη μηδενικό κωδικό %1</translation>
     </message>
     <message>
+        <location filename="../src/Extensions/CFTool.cpp" line="188"/>
         <source>Contest %1 Problem %2</source>
         <translation>Διαγωνισμός %1 πρόβλημα %2</translation>
     </message>
@@ -836,34 +969,50 @@ Press any key to exit</source>
 <context>
     <name>Extensions::CodeFormatter</name>
     <message>
+        <location filename="../src/Extensions/CodeFormatter.cpp" line="59"/>
+        <location filename="../src/Extensions/CodeFormatter.cpp" line="66"/>
+        <location filename="../src/Extensions/CodeFormatter.cpp" line="69"/>
+        <location filename="../src/Extensions/CodeFormatter.cpp" line="81"/>
+        <location filename="../src/Extensions/CodeFormatter.cpp" line="91"/>
+        <location filename="../src/Extensions/CodeFormatter.cpp" line="104"/>
+        <location filename="../src/Extensions/CodeFormatter.cpp" line="119"/>
+        <location filename="../src/Extensions/CodeFormatter.cpp" line="137"/>
         <source>Formatter</source>
         <translation>Μορφοποιητής</translation>
     </message>
     <message>
+        <location filename="../src/Extensions/CodeFormatter.cpp" line="59"/>
         <source>Failed to create temporary directory</source>
         <translation>Απέτυχε η δημιουργία προσωρινού φακέλου</translation>
     </message>
     <message>
+        <location filename="../src/Extensions/CodeFormatter.cpp" line="81"/>
+        <location filename="../src/Extensions/CodeFormatter.cpp" line="91"/>
         <source>Formatting completed</source>
         <translation>Τελείωσε η μορφοποίηση</translation>
     </message>
     <message>
+        <location filename="../src/Extensions/CodeFormatter.cpp" line="125"/>
         <source>Formatter[stdout]</source>
         <translation>Μορφοποιητής[stdout]</translation>
     </message>
     <message>
+        <location filename="../src/Extensions/CodeFormatter.cpp" line="128"/>
         <source>Formatter[stderr]</source>
         <translation>Μορφοποιητής[stderr]</translation>
     </message>
     <message>
+        <location filename="../src/Extensions/CodeFormatter.cpp" line="119"/>
         <source>The format command [%1 %2] finished with exit code %3.</source>
         <translation>Η εντολή μορφοποίησης [%1 %2] τελείωσε με τον κωδικό %3.</translation>
     </message>
     <message>
+        <location filename="../src/Extensions/CodeFormatter.cpp" line="105"/>
         <source>The format process didn&apos;t finish in 2 seconds. This is probably because the %1 program is not found by CP Editor. You can set the path to the program at %2.</source>
         <translation>Η διεργασία μορφοποίησης δεν τελείωσε σε 2 δευτερόλεπτα. Αυτό μάλλον είναι γιατί το %1 πρόγραμμα δεν βρέθηκε από το CP συντάκτη. Μπορείτε να ρυθμίσετε την διαδρομή του προγράμματος στο %2.</translation>
     </message>
     <message>
+        <location filename="../src/Extensions/CodeFormatter.cpp" line="137"/>
         <source>The output of the format process is empty. Please ensure there is no in-place modification option in the formatting arguments.</source>
         <translation>Η έξοδος της μορφοποίησης της διεργασίας είναι άδεια. Παρακαλώ δείτε αν υπάρχει όχι στην μετατροπή στις ρυθμίσεις σχετικά με την μορφοποίηση.</translation>
     </message>
@@ -871,32 +1020,39 @@ Press any key to exit</source>
 <context>
     <name>Extensions::CompanionServer</name>
     <message>
+        <location filename="../src/Extensions/CompanionServer.cpp" line="105"/>
         <source>Server is closed</source>
         <translation>Ο server είναι κλειστός</translation>
     </message>
     <message>
+        <location filename="../src/Extensions/CompanionServer.cpp" line="116"/>
         <source>Port is set to %1</source>
         <translation>Η θύρα είναι ρυθμισμένει στην %1</translation>
     </message>
     <message>
+        <location filename="../src/Extensions/CompanionServer.cpp" line="120"/>
         <source>Failed to listen to port %1. Is there another process listening?</source>
         <translation>Υπήρξε σφάλμα με την ανάγνωση στην θύρα %1. Μήπως κάποια άλλη διεργασία χρησιμοποιεί την θύρα;</translation>
     </message>
     <message>
+        <location filename="../src/Extensions/CompanionServer.cpp" line="156"/>
         <source>Stopped Server</source>
         <translation>Σταμάτησε ο server</translation>
     </message>
     <message>
+        <location filename="../src/Extensions/CompanionServer.cpp" line="149"/>
         <source>JSON parser reported errors:
 %1</source>
         <translation>Ο JSON αναλυτής ανέφερε προβλήματα:
 %1</translation>
     </message>
     <message>
+        <location filename="../src/Extensions/CompanionServer.cpp" line="79"/>
         <source>The request received is not JSON</source>
         <translation>Η αίτηση που παραλήφθηκε δεν είναι σε μορφή JSON</translation>
     </message>
     <message>
+        <location filename="../src/Extensions/CompanionServer.cpp" line="75"/>
         <source>A %1 request is received and ignored</source>
         <translation>Η %1 αίτηση λήφθηκε και αγνοήθηκε</translation>
     </message>
@@ -904,30 +1060,42 @@ Press any key to exit</source>
 <context>
     <name>Extensions::LanguageServer</name>
     <message>
+        <location filename="../src/Extensions/LanguageServer.cpp" line="284"/>
+        <location filename="../src/Extensions/LanguageServer.cpp" line="297"/>
+        <location filename="../src/Extensions/LanguageServer.cpp" line="305"/>
+        <location filename="../src/Extensions/LanguageServer.cpp" line="308"/>
+        <location filename="../src/Extensions/LanguageServer.cpp" line="311"/>
+        <location filename="../src/Extensions/LanguageServer.cpp" line="314"/>
         <source>Language Server [%1]</source>
         <translation>Server γλώσσας [%1]</translation>
     </message>
     <message>
+        <location filename="../src/Extensions/LanguageServer.cpp" line="285"/>
         <source>Language server sent an error. Please check log for details.</source>
         <translation>Ο server γλώσσας έστειλε ένα σφάλμα. Παρακαλώ δείτε τους καταλόγους για λεπτομέριες.</translation>
     </message>
     <message>
+        <location filename="../src/Extensions/LanguageServer.cpp" line="298"/>
         <source>Failed to start LSP Process. Have you set the path to the Language Server program at %1?</source>
         <translation>Απέτυχε η εκκίνηση της LSP διεργασίας. Εισάγατε την διαδρομή του server γλώσσας στο %1;</translation>
     </message>
     <message>
+        <location filename="../src/Extensions/LanguageServer.cpp" line="305"/>
         <source>LSP Process timed out</source>
         <translation>Η διεργασία LSP ξεπέρασε το χρονικό περιθώριο</translation>
     </message>
     <message>
+        <location filename="../src/Extensions/LanguageServer.cpp" line="308"/>
         <source>LSP Process Read Error</source>
         <translation>Η LSP διεργασία έχει πρόβλημα εισόδου / εξόδου</translation>
     </message>
     <message>
+        <location filename="../src/Extensions/LanguageServer.cpp" line="311"/>
         <source>LSP Process Write Error</source>
         <translation>Η LSP διεργασία έχει πρόβλημα εγγραφής</translation>
     </message>
     <message>
+        <location filename="../src/Extensions/LanguageServer.cpp" line="314"/>
         <source>An unknown error has occurred in LSP Process</source>
         <translation>Ένα άγνωστο σφάλμα συνέβη στην διεργασία του LSP</translation>
     </message>
@@ -936,50 +1104,50 @@ Press any key to exit</source>
     <name>FindReplaceDialog</name>
     <message>
         <source>Find/Replace</source>
-        <translation>Εύρημα / Αντικατάσταση</translation>
+        <translation type="vanished">Εύρημα / Αντικατάσταση</translation>
     </message>
 </context>
 <context>
     <name>FindReplaceForm</name>
     <message>
         <source>Form</source>
-        <translation>Φόρμα</translation>
+        <translation type="vanished">Φόρμα</translation>
     </message>
     <message>
         <source>Find:</source>
-        <translation>Εύρημα:</translation>
+        <translation type="vanished">Εύρημα:</translation>
     </message>
     <message>
         <source>Replace with:</source>
-        <translation>Αντικατάσταση με:</translation>
+        <translation type="vanished">Αντικατάσταση με:</translation>
     </message>
     <message>
         <source>errorLabel</source>
-        <translation>errorLabel</translation>
+        <translation type="vanished">errorLabel</translation>
     </message>
     <message>
         <source>Direction</source>
-        <translation>Κατεύθηνση</translation>
+        <translation type="vanished">Κατεύθηνση</translation>
     </message>
     <message>
         <source>Up</source>
-        <translation>Πάνω</translation>
+        <translation type="vanished">Πάνω</translation>
     </message>
     <message>
         <source>Down</source>
-        <translation>Κάτω</translation>
+        <translation type="vanished">Κάτω</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation>Επιλογές</translation>
+        <translation type="vanished">Επιλογές</translation>
     </message>
     <message>
         <source>Case sensitive</source>
-        <translation>Διάκρηση πεζών / κεφαλαίων</translation>
+        <translation type="vanished">Διάκρηση πεζών / κεφαλαίων</translation>
     </message>
     <message>
         <source>Whole words only</source>
-        <translation>Ολόκληρες λέξεις μόνο</translation>
+        <translation type="vanished">Ολόκληρες λέξεις μόνο</translation>
     </message>
     <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -990,7 +1158,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You may want to take a look at the syntax of regular expressions:&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://doc.trolltech.com/qregexp.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://doc.trolltech.com/qregexp.html&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation type="vanished">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -1001,52 +1169,74 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Regular Expression</source>
-        <translation>Κοινή έκφραση</translation>
+        <translation type="vanished">Κοινή έκφραση</translation>
     </message>
     <message>
         <source>Find</source>
-        <translation>Εύρημα</translation>
+        <translation type="vanished">Εύρημα</translation>
     </message>
     <message>
         <source>Replace</source>
-        <translation>Αντικατάσταση</translation>
+        <translation type="vanished">Αντικατάσταση</translation>
     </message>
     <message>
         <source>Replace All</source>
-        <translation>Αντικατάσταση όλων</translation>
+        <translation type="vanished">Αντικατάσταση όλων</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
+        <location filename="../src/mainwindow.cpp" line="185"/>
+        <location filename="../src/mainwindow.cpp" line="203"/>
+        <location filename="../src/mainwindow.cpp" line="1471"/>
+        <location filename="../src/mainwindow.cpp" line="1478"/>
+        <location filename="../src/mainwindow.cpp" line="1514"/>
+        <location filename="../src/mainwindow.cpp" line="1531"/>
+        <location filename="../src/mainwindow.cpp" line="1536"/>
         <source>Compiler</source>
         <translation>Μεταγλωττιστής</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="203"/>
+        <location filename="../src/mainwindow.cpp" line="1189"/>
         <source>Please set the language</source>
         <translation>Παρακαλώ ορίστε την γλώσσα</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="218"/>
+        <location filename="../src/mainwindow.cpp" line="226"/>
+        <location filename="../src/mainwindow.cpp" line="242"/>
+        <location filename="../src/mainwindow.cpp" line="274"/>
+        <location filename="../src/mainwindow.cpp" line="1492"/>
+        <location filename="../src/mainwindow.cpp" line="1498"/>
         <source>Runner</source>
         <translation>Δρομέας</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="226"/>
+        <location filename="../src/mainwindow.cpp" line="274"/>
+        <location filename="../src/mainwindow.cpp" line="1498"/>
         <source>Wrong language, please set the language</source>
         <translation>Λάθος γλώσσα, παρακαλώ εισάγεται την γλώσσα</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="242"/>
         <source>All inputs are empty, nothing to run</source>
         <translation>Όλοι οι είσοδοι είναι άδειοι, δεν υπάρχει τίποτα να εκτελεστή</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="311"/>
         <source>Submit</source>
         <translation>Παράδοση</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="318"/>
         <source>Sure to submit</source>
         <translation>Είστε σίγουροι ότι θέλετε να το παραδώσετε</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="319"/>
         <source>Are you sure you want to submit this solution to Codeforces?
 
  URL: %1
@@ -1057,78 +1247,101 @@ p, li { white-space: pre-wrap; }
  Γλώσσα: %2</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="328"/>
+        <location filename="../src/mainwindow.cpp" line="342"/>
         <source>CF Tool</source>
         <translation>CF εργαλείο</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="329"/>
         <source>Failed to save the temp file, and the solution is not submitted.</source>
         <translation>Υπήρξε σφάλμα κατά την αποθήκευση του προσωρινού αρχείου, η απάντηση δεν παραδόθηκε.</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="374"/>
         <source>Untitled-%1</source>
         <translation>Χωρίς τίτλο-%1</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="798"/>
         <source>Save as</source>
         <translation>Αποθήκευση ως</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="867"/>
         <source>Open %1 Template</source>
         <translation>Άνοιγμα προτύπου %1</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="1017"/>
+        <location filename="../src/mainwindow.cpp" line="1025"/>
         <source>Open File</source>
         <translation>Άνοιγμα αρχείου</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="1026"/>
         <source>The file [%1] contains more than %2 characters, so it&apos;s not opened. You can change the open file length limit at %3.</source>
         <translation>Το αρχείο [%1] περιέχει περισσότερο από %2 χαρακτήρες, οπότε δεν ανοίχτηκε. Μπορείτε να αλλάξετε το όριο του μήκους του αρχείου στο %3.</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="1119"/>
         <source>Save File</source>
         <translation>Αποθήκευση αρχείου</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="1175"/>
+        <location filename="../src/mainwindow.cpp" line="1189"/>
+        <location filename="../src/mainwindow.cpp" line="1193"/>
         <source>Temp File</source>
         <translation>Προσωρινό αρχείο</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="1175"/>
         <source>Failed to create the temporary directory</source>
         <translation>Απέτυχε η δημιουργία του προσωρινού φακέλου</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="1229"/>
         <source>Read %1 Template</source>
         <translation>Διαβάστε το πρότυπο %1</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="1250"/>
         <source>Save changes</source>
         <translation>Αποθήκευση αλλαγών</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="1251"/>
         <source>Save changes to [%1] before closing?</source>
         <translation>Αποθήκευση αλλαγών στο [%1] πρίν το κλείσιμο;</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="1251"/>
         <source>New File</source>
         <translation>Νέο αρχείο</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="1254"/>
         <source>Save</source>
         <translation>Αποθήκευση</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="1280"/>
         <source>Set Tab language</source>
         <translation>Ορίστε γλώσσα στην καρτέλα</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="1280"/>
         <source>Set the language to use in this Tab</source>
         <translation>Ορίστε την γλώσσα που θα χρησιμοποιείται στην τρέχουσα καρτέλα</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="1320"/>
         <source>Reload</source>
         <translation>Επαναφόρτωση</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="1320"/>
         <source>[%1]
 
 has been changed on disk.
@@ -1139,150 +1352,180 @@ Do you want to reload it?</source>
 Είστε σίγουροι ότι θέλετε να το φορτώσετε πάλι;</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="1360"/>
         <source>Line %1, Column %2</source>
         <translation>Γραμμή %1, στήλη %2</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="1372"/>
         <source>%1 lines, %2 characters selected</source>
         <translation>%1 γραμμές, %2 χαρακτήρες επιλέχθηκαν</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="1374"/>
         <source>%1 characters selected</source>
         <translation>%1 χαρακτήρες επιλέχθηκαν</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="1471"/>
         <source>Compilation has started</source>
         <translation>Η μεταγλώττιση ξεκίνησε</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="1478"/>
         <source>Compilation has finished</source>
         <translation>Η μεταγλώττιση τελείωσε</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="1481"/>
         <source>Compile Warnings</source>
         <translation>Προειδοποιήσεις μεταγλώττισης</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="1514"/>
         <source>Error occurred while compiling</source>
         <translation>Υπήρξαν σφάλματα κατά την μεταγλώττιση</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="1517"/>
+        <location filename="../src/mainwindow.cpp" line="1521"/>
         <source>Compile Errors</source>
         <translation>Σφάλματα μεταγλώττισης</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="1536"/>
         <source>Compilation is killed</source>
         <translation>Η μεταγλώττιση τερματίστηκε</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="1544"/>
         <source>Detached Runner</source>
         <translation>απόσπασμένος δρομέας</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="1545"/>
         <source>Runner[%1]</source>
         <translation>Δρομέας [%1]</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="1550"/>
         <source>Execution has started</source>
         <translation>Η εκτέλεση ξεκίνησε</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="1560"/>
         <source>Execution for test case #%1 has finished in %2ms</source>
         <translation>Η εκτέλεση για τις δοκιμές #%1 τελείωσε σε %2ms</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="1577"/>
         <source>Execution for test case #%1 has finished with non-zero exitcode %2 in %3ms</source>
         <translation>Η εκτέλεση για την δοκιμή #%1 τελείωσε με μη μηδενικό κωδικό %2 σε %3ms</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="1584"/>
         <source>/stderr</source>
         <translation>/stderr</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="1571"/>
         <source>Time Limit Exceeded</source>
         <translation>Ξεπεράστηκε το χρονικό περιθώριο (TLE)</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="1597"/>
         <source>The %1 of the process running on the testcase #%2 contains more than %3 characters, which is longer than the output length limit, so the process is killed. You can change the output length limit at %4.</source>
         <translation>Η %1 από τις εκτελούμενες διεργασίες στην δοκιμή #%2 περιέχει περισσότερο από %3 χαρακτήρες, που είναι περισσότερο από το όριο εξόδου, οπότε η διεργασία τερματίστηκε. Μπορείτε να αλλάξετε το όριο στο %4.</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="1609"/>
         <source>%1 has been killed</source>
         <translation>%1 τερματίστηκε</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="1610"/>
         <source>Detached runner</source>
         <translation>απόσπασμένος δρομέας</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="1610"/>
         <source>Runner for testcase #%1</source>
         <translation>Δρομέας για την δοκιμή #%1</translation>
     </message>
     <message>
         <source>CP Editor</source>
-        <translation>CP συντάκτης</translation>
+        <translation type="vanished">CP συντάκτης</translation>
     </message>
     <message>
         <source>cursor info</source>
-        <translation>Πληροφορίες κέρσορα</translation>
+        <translation type="vanished">Πληροφορίες κέρσορα</translation>
     </message>
     <message>
         <source>Compile</source>
-        <translation>Μεταγλώττιση</translation>
+        <translation type="vanished">Μεταγλώττιση</translation>
     </message>
     <message>
         <source>Run</source>
-        <translation>Εκτέλεση</translation>
+        <translation type="vanished">Εκτέλεση</translation>
     </message>
     <message>
         <source>Compile and Run</source>
-        <translation>Μεταγλώττιση και εκτέλεση</translation>
+        <translation type="vanished">Μεταγλώττιση και εκτέλεση</translation>
     </message>
     <message>
         <source>Messages</source>
-        <translation>Μυνύματα</translation>
+        <translation type="vanished">Μυνύματα</translation>
     </message>
     <message>
         <source>Clear</source>
-        <translation>Καθαρισμός</translation>
+        <translation type="vanished">Καθαρισμός</translation>
     </message>
     <message>
         <source>C++</source>
-        <translation>C++</translation>
+        <translation type="vanished">C++</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="82"/>
         <source>Auto Save</source>
         <translation>Αυτόματη αποθήκευση</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="1522"/>
         <source>Have you set a proper name for the main class in your solution? If not, you can set it at %1.</source>
         <translation>Έχετε ορίσει ένα δεκτό όνομα για την κύρια κλάσση μέσα στην λύση σας; Αν όχι, ορίστε την στο %1.</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="642"/>
         <source>Unknown attribute: [%1]. Please check the head comments setting at %2.</source>
         <translation>Άγνωστο χαρακτηριστικό: [%1]. Παρακαλώ δείτε τα σχόλια των ρυθμίσεων στο  %2.</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="1209"/>
         <source>Set Compile Command</source>
         <translation>Ορίστε εντολή μεταγλωττιστή</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="1209"/>
         <source>Custom compile command for this tab:</source>
         <translation>Προσαρμοσμένη εντολή μεταγλωττιστή για αυτήν την καρτέλα:</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="1218"/>
         <source>Set Time Limit</source>
         <translation>Ορισμός χρονικού περιθωρίου</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="1218"/>
         <source>Custom time limit for this tab: (ms)</source>
         <translation>Προσαρμοσμένο χρονικό περιθώριο για αυτήν την καρτέλα: (ms)</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="343"/>
         <source>You need to install CF Tool to submit your code to Codeforces. If already installed, you can add it in the PATH environment variable or check your settings at %1.</source>
         <translation>Πρέπει να εγκαταστήσετε το εργαλείο CF για να παραδώσετε τον κωδικό σας στο Codeforces. Αν το έχετε ήδη κάνει, εισάγεται το στην μεταβλητή περιβάλλοντος ή ελέγξτε τις ρυθμίσεις σας στο %1.</translation>
     </message>
     <message>
+        <location filename="../src/mainwindow.cpp" line="1531"/>
         <source>Failed to start compilation: %1</source>
         <translation>Απέτυχε να ξεκινήσει η μεταγλώττιση: %1</translation>
     </message>
@@ -1290,6 +1533,7 @@ Do you want to reload it?</source>
 <context>
     <name>MessageLogger</name>
     <message>
+        <location filename="../src/Core/MessageLogger.cpp" line="52"/>
         <source>
 ... The message is too long</source>
         <translation>
@@ -1299,34 +1543,42 @@ Do you want to reload it?</source>
 <context>
     <name>ParenthesesPage</name>
     <message>
+        <location filename="../src/Settings/ParenthesesPage.cpp" line="90"/>
         <source>%1 Parentheses</source>
         <translation>%1 Παρενθέσεις</translation>
     </message>
     <message>
+        <location filename="../src/Settings/ParenthesesPage.cpp" line="109"/>
         <source>Add</source>
         <translation>Εισαγωγή</translation>
     </message>
     <message>
+        <location filename="../src/Settings/ParenthesesPage.cpp" line="114"/>
         <source>Del</source>
         <translation>Διαγραφή</translation>
     </message>
     <message>
+        <location filename="../src/Settings/ParenthesesPage.cpp" line="136"/>
         <source>No Parenthesis Selected</source>
         <translation>Δεν επιλέχθηκε παρένθεση</translation>
     </message>
     <message>
+        <location filename="../src/Settings/ParenthesesPage.cpp" line="172"/>
         <source>New Parenthesis</source>
         <translation>Νέα παρένθεση</translation>
     </message>
     <message>
+        <location filename="../src/Settings/ParenthesesPage.cpp" line="172"/>
         <source>Enter a parenthesis (e.g. {}):</source>
         <translation>Εισάγετε μια παρένθεση (π.χ. {}):</translation>
     </message>
     <message>
+        <location filename="../src/Settings/ParenthesesPage.cpp" line="185"/>
         <source>Delete Parenthesis</source>
         <translation>Διαγραφή παρένθεσης</translation>
     </message>
     <message>
+        <location filename="../src/Settings/ParenthesesPage.cpp" line="186"/>
         <source>Do you really want to delete the parenthesis %1?</source>
         <translation>Είστε σίγουροι ότι θέλετε να διαγράψετε την παρένθεση %1;</translation>
     </message>
@@ -1334,24 +1586,29 @@ Do you want to reload it?</source>
 <context>
     <name>ParenthesisWidget</name>
     <message>
+        <location filename="../src/Settings/ParenthesesPage.cpp" line="39"/>
         <source>Parenthesis: %1</source>
         <translation>Παρένθεση: %1</translation>
     </message>
     <message>
+        <location filename="../src/Settings/ParenthesesPage.cpp" line="60"/>
         <source>Enable %1 for %2 in %3.
 If it&apos;s partially checked, the global setting in Code Edit will be used.</source>
         <translation>Επιτρέψτε %1 για %2 στο %3.
 Αν είναι εν μέρει επιλεγμένο, η παγκόσμια ρύθμιση στην επεξεργασία κώδικα θα χρησιμοποιηθεί.</translation>
     </message>
     <message>
+        <location filename="../src/Settings/ParenthesesPage.cpp" line="68"/>
         <source>Auto Complete</source>
         <translation>Αυτόματη συμπλήρωση</translation>
     </message>
     <message>
+        <location filename="../src/Settings/ParenthesesPage.cpp" line="69"/>
         <source>Auto Remove</source>
         <translation>Αυτόματη διαγραφή</translation>
     </message>
     <message>
+        <location filename="../src/Settings/ParenthesesPage.cpp" line="70"/>
         <source>Tab Jump Out</source>
         <translation>Tab Jump Out</translation>
     </message>
@@ -1359,18 +1616,25 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
 <context>
     <name>PathItem</name>
     <message>
+        <location filename="../src/Settings/PathItem.cpp" line="41"/>
+        <location filename="../src/Settings/PathItem.cpp" line="82"/>
         <source>Choose a file</source>
         <translation>Επιλέξτε αρχείο</translation>
     </message>
     <message>
+        <location filename="../src/Settings/PathItem.cpp" line="71"/>
         <source>Excutable Files</source>
         <translation>Εκτελέσιμα αρχεία</translation>
     </message>
     <message>
+        <location filename="../src/Settings/PathItem.cpp" line="84"/>
+        <location filename="../src/Settings/PathItem.cpp" line="86"/>
+        <location filename="../src/Settings/PathItem.cpp" line="88"/>
         <source>Choose a %1 source file</source>
         <translation>Επιλέξτε %1 πηγαίο κωδικα</translation>
     </message>
     <message>
+        <location filename="../src/Settings/PathItem.cpp" line="90"/>
         <source>Choose an excutable file</source>
         <translation>Επιλέξτε εκτελέσιμο αρχείο</translation>
     </message>
@@ -1378,34 +1642,42 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
 <context>
     <name>PreferencesHomePage</name>
     <message>
+        <location filename="../src/Settings/PreferencesHomePage.cpp" line="50"/>
         <source>Welcome to CP Editor! Let&apos;s get started.</source>
         <translation>Καλωσήρθατε στο συντάκτη CP! Ας ξεκινήσουμε.</translation>
     </message>
     <message>
+        <location filename="../src/Settings/PreferencesHomePage.cpp" line="58"/>
         <source>Code Editor Settings</source>
         <translation>Ρυθμίσεις συντάκτη κώδικα</translation>
     </message>
     <message>
+        <location filename="../src/Settings/PreferencesHomePage.cpp" line="59"/>
         <source>C++ Compile and Run Commands</source>
         <translation>Εντολές μεταγλώττισης και εκτέλεσης С++</translation>
     </message>
     <message>
+        <location filename="../src/Settings/PreferencesHomePage.cpp" line="60"/>
         <source>Java Compile and Run Commands</source>
         <translation>Εντολές μεταγλώττισης και εκτέλεσης Java</translation>
     </message>
     <message>
+        <location filename="../src/Settings/PreferencesHomePage.cpp" line="61"/>
         <source>Python Run Commands</source>
         <translation>Εντολές εκτέλεσης Python</translation>
     </message>
     <message>
+        <location filename="../src/Settings/PreferencesHomePage.cpp" line="69"/>
         <source>You can read the &lt;a href=&quot;%1&quot;&gt;documentation&lt;/a&gt; or go through the settings for more information.</source>
         <translation>Μπορείτε να διαβάσετε την &lt;a href=&quot;%1&quot;&gt;τεκμηρίωση&lt;/a&gt; ή να διαβάσετε τις ρυθμίσεις για περισσότερες πληροφορίες.</translation>
     </message>
     <message>
+        <location filename="../src/Settings/PreferencesHomePage.cpp" line="62"/>
         <source>Appearance Settings</source>
         <translation>Ρυθμίσεις εμφάνισης</translation>
     </message>
     <message>
+        <location filename="../src/Settings/PreferencesHomePage.cpp" line="63"/>
         <source>Font Settings</source>
         <translation>Ρυθμίσεις γραμματοσειρά</translation>
     </message>
@@ -1413,34 +1685,42 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
 <context>
     <name>PreferencesPage</name>
     <message>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="40"/>
         <source>Default</source>
         <translation>Προκαθορισμένο</translation>
     </message>
     <message>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="42"/>
         <source>Reset</source>
         <translation>Επαναφόρτωση</translation>
     </message>
     <message>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="44"/>
         <source>Apply</source>
         <translation>Εφαρμογή</translation>
     </message>
     <message>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="59"/>
         <source>Restore the default settings on the current page. (Ctrl+D)</source>
         <translation>Επαναφορά των προκαθορισμένων ρυθμίσεων στην τωρινή σελίδα. (Ctrl+D)</translation>
     </message>
     <message>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="60"/>
         <source>Discard all changes on the current page. (Ctrl+R)</source>
         <translation>Διαγράψτε τις αλλαγές στην τορινή σελίδα. (Ctrl+R)</translation>
     </message>
     <message>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="61"/>
         <source>Save the changes on the current page. (Ctrl+S)</source>
         <translation>Αποθήκευση αλλαγών στην τωρινή σελίδα. (Ctrl+S)</translation>
     </message>
     <message>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="82"/>
         <source>Unsaved Settings</source>
         <translation>Μη απόθηκευμένες αλλαγές</translation>
     </message>
     <message>
+        <location filename="../src/Settings/PreferencesPage.cpp" line="82"/>
         <source>The settings are changed. Do you want to save the settings or discard them?</source>
         <translation>Η ρυθμίσεις έχουν αλλάξει. Θέλετε να απόθηκεύσετε τις αλλαγές ή να τις διαγράψετε;</translation>
     </message>
@@ -1448,239 +1728,280 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
 <context>
     <name>PreferencesWindow</name>
     <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="130"/>
+        <location filename="../src/Settings/SettingsManager.cpp" line="230"/>
         <source>Preferences</source>
         <translation>Προτιμήσεις</translation>
     </message>
     <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="146"/>
         <source>Search...</source>
         <translation>Αναζήτηση...</translation>
     </message>
     <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="150"/>
         <source>Home</source>
         <translation>Σπίτι</translation>
     </message>
     <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="152"/>
         <source>Go to the home page</source>
         <translation>Πήγαινε στην αρχική σελίδα</translation>
     </message>
     <message>
         <source>Code Edit</source>
-        <translation>Σύνταξη κώδικα</translation>
+        <translation type="vanished">Σύνταξη κώδικα</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation>Γλώσσα</translation>
+        <translation type="vanished">Γλώσσα</translation>
     </message>
     <message>
         <source>General</source>
-        <translation>Γενικά</translation>
+        <translation type="vanished">Γενικά</translation>
     </message>
     <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="197"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="199"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="202"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="204"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="265"/>
         <source>C++</source>
         <translation>C++</translation>
     </message>
     <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="209"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="211"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="214"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="216"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="266"/>
         <source>Java</source>
         <translation>Java</translation>
     </message>
     <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="221"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="223"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="226"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="228"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="267"/>
         <source>Python</source>
         <translation>Python</translation>
     </message>
     <message>
         <source>Appearance</source>
-        <translation>Εμφάνιση</translation>
+        <translation type="vanished">Εμφάνιση</translation>
     </message>
     <message>
         <source>Actions</source>
-        <translation>Ενέργειες</translation>
+        <translation type="vanished">Ενέργειες</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation>Αποθήκευση</translation>
+        <translation type="vanished">Αποθήκευση</translation>
     </message>
     <message>
         <source>Bind file and problem</source>
-        <translation>Δέσμευση αρχείου και προβλήματος</translation>
+        <translation type="vanished">Δέσμευση αρχείου και προβλήματος</translation>
     </message>
     <message>
         <source>Extensions</source>
-        <translation>Επεκτάσεις</translation>
+        <translation type="vanished">Επεκτάσεις</translation>
     </message>
     <message>
         <source>Clang Format</source>
-        <translation>Clang Format</translation>
+        <translation type="vanished">Clang Format</translation>
     </message>
     <message>
         <source>Language Server</source>
-        <translation>Γλώσσα Server</translation>
+        <translation type="vanished">Γλώσσα Server</translation>
     </message>
     <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="197"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="209"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="221"/>
         <source>%1 Commands</source>
         <translation>%1 Εντολές</translation>
     </message>
     <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="199"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="211"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="223"/>
         <source>%1 Template</source>
         <translation>%1 Πρότυπο</translation>
     </message>
     <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="202"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="214"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="226"/>
         <source>%1 Snippets</source>
         <translation>%1 απόσπάσματα</translation>
     </message>
     <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="204"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="216"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="228"/>
         <source>%1 Parentheses</source>
         <translation>%1 Παρενθέσεις</translation>
     </message>
     <message>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="265"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="266"/>
+        <location filename="../src/Settings/PreferencesWindow.cpp" line="267"/>
         <source>%1 Server</source>
         <translation>%1 Server</translation>
     </message>
     <message>
         <source>Competitive Companion</source>
-        <translation>Competitive Companion</translation>
+        <translation type="vanished">Competitive Companion</translation>
     </message>
     <message>
         <source>CF Tool</source>
-        <translation>CF εργαλείο</translation>
+        <translation type="vanished">CF εργαλείο</translation>
     </message>
     <message>
         <source>File Path</source>
-        <translation>Διαδρομή αρχείου</translation>
+        <translation type="vanished">Διαδρομή αρχείου</translation>
     </message>
     <message>
         <source>Testcases</source>
-        <translation>Δοκιμές</translation>
+        <translation type="vanished">Δοκιμές</translation>
     </message>
     <message>
         <source>Problem URL</source>
-        <translation>URL προβλήματος</translation>
+        <translation type="vanished">URL προβλήματος</translation>
     </message>
     <message>
         <source>Key Bindings</source>
-        <translation>Δέσμευση πλήκτρων</translation>
+        <translation type="vanished">Δέσμευση πλήκτρων</translation>
     </message>
     <message>
         <source>Advanced</source>
-        <translation>Προχωρημένα</translation>
+        <translation type="vanished">Προχωρημένα</translation>
     </message>
     <message>
         <source>Update</source>
-        <translation>Ενημέρωση</translation>
+        <translation type="vanished">Ενημέρωση</translation>
     </message>
     <message>
         <source>Limits</source>
-        <translation>Όρια</translation>
+        <translation type="vanished">Όρια</translation>
     </message>
     <message>
         <source>Auto Save</source>
-        <translation>Αυτόματη αποθήκευση</translation>
+        <translation type="vanished">Αυτόματη αποθήκευση</translation>
     </message>
     <message>
         <source>Save Session</source>
-        <translation>Αποθήκευση συνεδρίασης</translation>
+        <translation type="vanished">Αποθήκευση συνεδρίασης</translation>
     </message>
     <message>
         <source>Network Proxy</source>
-        <translation>Πληρεξούσιο δικτύου</translation>
+        <translation type="vanished">Πληρεξούσιο δικτύου</translation>
     </message>
     <message>
         <source>Default Paths</source>
-        <translation>Προκαθορισμένη διαδρομή</translation>
+        <translation type="vanished">Προκαθορισμένη διαδρομή</translation>
     </message>
     <message>
         <source>Load External File Changes</source>
-        <translation>Φόρτωση αλλαγών εξωτερικών αρχείων</translation>
+        <translation type="vanished">Φόρτωση αλλαγών εξωτερικών αρχείων</translation>
     </message>
     <message>
         <source>Detached Execution</source>
-        <translation>απόσπώμενη εκτέλεση</translation>
+        <translation type="vanished">απόσπώμενη εκτέλεση</translation>
     </message>
     <message>
         <source>Font</source>
-        <translation>Γραμματοσειρά</translation>
+        <translation type="vanished">Γραμματοσειρά</translation>
     </message>
     <message>
         <source>YAPF</source>
-        <translation>YAPF</translation>
+        <translation type="vanished">YAPF</translation>
     </message>
     <message>
         <source>Code Formatting</source>
-        <translation>Μορφοποίηση κώδικα</translation>
+        <translation type="vanished">Μορφοποίηση κώδικα</translation>
     </message>
     <message>
         <source>Test Cases</source>
-        <translation>Δοκιμές</translation>
+        <translation type="vanished">Δοκιμές</translation>
     </message>
     <message>
         <source>WakaTime</source>
-        <translation>WakaTime</translation>
-    </message>
-    <message>
-        <source>Stopwatch</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Stress Testing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Generator Template</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">WakaTime</translation>
     </message>
 </context>
 <context>
     <name>SettingsInfo</name>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="38"/>
         <source>Tab Width</source>
         <translation>Πλάτος καρτέλας</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="38"/>
         <source>The width of the tab character, or the number of spaces of an indent</source>
         <translation>Το πλάτος των χαρακτήρων σε καρτέλες ή ο αριθμός τον κενών σε μια εσοχή</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="39"/>
         <source>Cursor Width</source>
         <translation>Πλάτος κέρσορα</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="39"/>
         <source>The width of the cursor in pixels</source>
         <translation>Το πλάτος του κέρσορα σε εικονοκύτταρα</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="41"/>
         <source>Editor Font</source>
         <translation>Γραμματοσειρά συντάκτη</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="41"/>
         <source>The font of the code editor</source>
         <translation>Η γραμματοσειρά του συντάκτη κώδικα</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="44"/>
         <source>Default Language</source>
         <translation>Προκαθορισμένη γλώσσα</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="44"/>
         <source>The default language used when opening new tabs</source>
         <translation>Η προκαθορισμένη γλώσσα που θα χρησιμοποιείται όταν ανοίγουν νέες καρτέλες</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="118"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="173"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="186"/>
         <source>Path</source>
         <translation>Διαδρομή</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="45"/>
         <source>The path to the Clang Format executable file</source>
         <translation>Η διαδρομή του αρχείου μορφοποίησης Clang</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="47"/>
         <source>The Clang Format style options, which are usually saved in a .clang-format configuration file.
 You can learn about it at &lt;https://clang.llvm.org/docs/ClangFormatStyleOptions.html&gt;.</source>
         <translation>Το στύλ μορφοποίησης Clang, έχει συνήθως την επέκταση.clang-format.
 Μπορείτε να μάθετε για την μορφοποίηση Clang εδώ &lt;https://clang.llvm.org/docs/ClangFormatStyleOptions.html&gt;.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="53"/>
         <source>The template used when creating a new C++ file</source>
         <translation>Το πρότυπο που θα χρησιμοποιηθεί όταν δημιουργείται αρχεία τύπου C++</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="54"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="67"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="72"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="197"/>
         <source>The regular expression which matches a part of the code template.
 When opening a template, the position of the cursor is the position of the regex with an offset.
 The cursor will be at the end of the template if there&apos;s no match of the regex.</source>
@@ -1689,52 +2010,71 @@ The cursor will be at the end of the template if there&apos;s no match of the re
 Ο κέρσορας θα είναι στο τέλος του προτύπου αν δεν υπάρχει καμια αναφορά στο regex.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="55"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="68"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="73"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="198"/>
         <source>Whether the offset is relative to the start of the regex or the end of the regex.</source>
         <translation>Ανεξάρτητα αν το αντιστάθμισμα είναι σχετικό με την αρχή του regex ή το τέλος του regex.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="56"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="69"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="74"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="199"/>
         <source>The offset relative to the match of the regex in the number of characters, including white spaces.</source>
         <translation>Το αντιστάθμισμα είναι σχετικό με τον αριθμό των χαρακτήρων στο regex, συμπεριλαμβάνονται και οι κενοί χαρακτήρες.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="57"/>
         <source>The command used to compile C++. It should NOT include the path to the source file or &quot;-o &lt;output file&gt;&quot;.</source>
         <translation>Η εντολή που χρησιμοποιείται για την μεταγλώττιση της C ++. ΔΕΝ πρέπει να περιλαμβάνει την διαδρομή του πηγαίου αρχείου ή την παράμετρο &quot;-o &lt;output file&gt;&quot;.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="59"/>
         <source>The runtime arguments when executing a C++ program</source>
         <translation>Οι παράμετροι όταν εκτελείται ένα πρόγραμμα C++</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="61"/>
         <source>The template used when creating a new Java file</source>
         <translation>Το πρότυπο που θα χρησιμοποιείτε με της δημιουργία ενός αρχείου Java</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="62"/>
         <source>The command used to compile Java.
 It should NOT include the path to the source file or the path of the compiled class file.</source>
         <translation>Η εντολή που θα χρησιμοποιείτε όταν μεταγλωττίζεται ένα αρχείο Java.
 ΔΕΝ πρέπει να περιέχει την διαδρομή του πηγαίου αρχείου ή την διαδρομή του μεταγγλωτισμένου αρχείου κλάσης.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="63"/>
         <source>The runtime arguments when executing a Java program</source>
         <translation>Οι παράμετροι όταν εκτελείται ένα πρόγραμμα Java</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="64"/>
         <source>The command to start a Java program. It should NOT include &quot;-classpath &lt;path&gt; &lt;class name&gt;&quot;.</source>
         <translation>Η εντολή εκκίνησης του προγράμματος Java. ΔΕΝ πρέπει να περιέχει &quot;-classpath &lt;path&gt; &lt;class name&gt;&quot;.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="64"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="76"/>
         <source>%1 Run Command</source>
         <translation>%1 Εντολή εκτέλεσης</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="65"/>
         <source>%1 Class Name</source>
         <translation>%1 Όνομα κλάσης</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="66"/>
         <source>%1 Class Path</source>
         <translation>%1 Διαδρομή κλάσης</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="66"/>
         <source>The path of the parent directory of the compiled class file.
 It&apos;s relative to the source file, or the temporary directory if the tab is untitled.
 You can use &quot;${filename}&quot; for the complete file name,
@@ -1747,68 +2087,84 @@ You can use &quot;${filename}&quot; for the complete file name,
 &quot;${tmpdir}&quot; ή &quot;${tempdir}&quot; για την απόλυτη διαδρομή του προσωρινού φακέλου.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="71"/>
         <source>The template used when creating a new Python file</source>
         <translation>Το πρότυπο που θα χρησιμοποιηθεί με την δημιουργία ενός καινούργιου αρχείου Python</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="75"/>
         <source>The runtime arguments when executing a Python program</source>
         <translation>Οι παράμετροι που θα χρησιμοποιηθούν στην εκτέλεση του Python προγράμματος</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="76"/>
         <source>The command to start a Python program. It should NOT include the path to the source file.</source>
         <translation>Η εντολή εκκίνησης του προγράμματος Python. ΔΕΝ πρέπει να περιέχει την διαδρομή του πηγαίου προγράμματος.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="78"/>
         <source>Editor Theme</source>
         <translation>Θέμα συντάκτη</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="78"/>
         <source>The syntax highlight theme of the code editor</source>
         <translation>Θέμα ανάδειξεις σύνταξης του συντάκτη κώδικα</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="82"/>
         <source>Auto Complete Parentheses</source>
         <translation>Αυτόματη ολοκλήρωση παρενθέσεων</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="83"/>
         <source>Auto Remove Parentheses</source>
         <translation>Αυτόματη αφαίρεση παρενθέσεων</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="85"/>
         <source>Auto Indent</source>
         <translation>Αυτόματη εσοχή</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="85"/>
         <source>Add an indent when entering a new line after a &quot;{&quot;.</source>
         <translation>Εισαγωγή εσοχής όταν δημιουργείται νέα γραμμή μετά από τον χαρακτήρα &quot;{&quot;.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="86"/>
         <source>Enable Auto Save</source>
         <translation>Επιτροπή αυτόματης αποθήκευσης</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="89"/>
         <source>Wrap Text</source>
         <translation>Αναδίπλωση κειμένου</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="89"/>
         <source>Wrap a line into several lines if it doesn&apos;t fit into the screen.</source>
         <translation>Αναδήπλωση γραμμής σε αρκετές γραμμές αν δεν χωράνε στην οθόνη.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="91"/>
         <source>Use the beta version</source>
         <translation>Χρησιμοποιείστε την beta έκδοση</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="91"/>
         <source>Check for updates marked as pre-releases, which are considered not very stable but have more features.</source>
         <translation>Ελέγξτε για pre release ενημερώσεις. ΠΡΟΣΟΧΗ, αυτές οι εκδόσεις είναι ασταθείς αλλά έχουν περισσότερα χαρακτηριστικά.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="146"/>
         <source>Pairs of regular expressions used when adding pairs of test cases from files.
 Each pair of regular expressions represents a test case.</source>
         <translation>Τα ζευγάρια τακτικών εκφράσεων χρησιμοποιούνται όταν προστίθενται ζευγάρια δοκιμών από αρχεία.
 Κάθε ζευγάρι τακτικής έκφρασης αναπαριστά μια δοκιμή.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="82"/>
         <source>Automatically complete a pair of parentheses when typing the left element of it,
 and move out of it when typing the right element of it.
 This can be overridden for each parenthesis in each language.</source>
@@ -1816,34 +2172,76 @@ This can be overridden for each parenthesis in each language.</source>
 Αυτό μπορεί να αλλάξει για κάθε παράγραφο σε κάθε γλώσσα.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="40"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="60"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="70"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="77"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="79"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="86"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="94"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="97"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="98"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="99"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="107"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="108"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="109"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="110"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="111"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="112"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="113"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="117"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="160"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="161"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="176"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="177"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="178"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="180"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="181"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="183"/>
         <source></source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="53"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="61"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="71"/>
         <source>%1 Template Path</source>
         <translation>%1 Διαδρομή προτύπου</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="54"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="67"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="72"/>
         <source>%1 Template Cursor Position Regex</source>
         <translation>%1 Πρότυπο τοποθεσίας κέρσορα regex</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="55"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="68"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="73"/>
         <source>%1 Template Cursor Position Offset Type</source>
         <translation>%1 Πρότυπο τύπο αντισταθμίσματος τοποθεσίας κέρσορα</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="56"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="69"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="74"/>
         <source>%1 Template Cursor Position Offset Characters</source>
         <translation>%1 Πρότυπο αντισταθμίσματος τοποθεσίας κέρσορα χαρακτήρων</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="57"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="62"/>
         <source>%1 Compile Command</source>
         <translation>%1 Εντολή μεταγλώττισης</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="58"/>
         <source>%1 Executable File Path</source>
         <translation>%1 Διαδρομή εκτελέσιμου αρχείου</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="58"/>
         <source>The path of the compiled executable file.
 It&apos;s relative to the source file, or the temporary directory if the tab is untitled.
 No &quot;.exe&quot; is needed.
@@ -1858,14 +2256,19 @@ You can use &quot;${filename}&quot; for the complete file name,
 &quot;${tmpdir}&quot; ή &quot;${tempdir}&quot; για την απόλυτη διαδρομή του προσωρινού φακέλου.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="59"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="63"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="75"/>
         <source>%1 Run Arguments</source>
         <translation>%1 Παράμετροι εκτέλεσης</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="65"/>
         <source>The name of the main class of your solution.</source>
         <translation>Το όνομα της κύριας κλάσης για την λύση σας.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="83"/>
         <source>Automatically delete the whole pair of parentheses when deleting
 the left element of it if the two elements are adjacent.
 This can be overridden for each parenthesis in each language.</source>
@@ -1873,10 +2276,12 @@ This can be overridden for each parenthesis in each language.</source>
 Αυτό μπορεί να παρακαμψεί κάθε παρένθεση σε κάθε γλώσσα.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="84"/>
         <source>Jump out of a parenthesis by pressing Tab</source>
         <translation>Βγείτε από ένα ζευγάρι παρενθέσεων πατώντας Tab</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="84"/>
         <source>When this is enabled, you can use Tab instead of the
 closing parenthesis to jump out of a parenthesis.
 This can be overridden for each parenthesis in each language.</source>
@@ -1884,242 +2289,325 @@ This can be overridden for each parenthesis in each language.</source>
 Αυτό μπορεί να παρακαμπμφθεί για κάθε παρένθεση για κάθε γλώσσα.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="90"/>
+        <source>Enable Ctrl+Scroll to change font size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="90"/>
+        <source>Change the editor font size by scrolling the mouse wheel while holding the Ctrl key.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="92"/>
         <source>Use spaces instead of a tab character.</source>
         <translation>Χρησιμοποιήσει κενών εκτός από τον χαρακτήρα Tab.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="92"/>
         <source>Replace tabs by spaces</source>
         <translation>Αντικατάσταση Tabs με κενά</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="93"/>
         <source>Save Testcases on Save</source>
         <translation>Αποθήκευση δοκιμών κατά την αποθήκευση</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="93"/>
         <source>Save the test cases on the disk when saving a file, and load the saved test cases when opening a file.</source>
         <translation>Αποθήκευση τον δοκιμών στον δίσκο όταν απόθηκεύεται κάποιο αρχείο, και φώρτοση τον παλιών δοκιμών όταν ανοίξει κάποιο αρχείο.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="95"/>
         <source>Check for updates on startup</source>
         <translation>Έλεγχος για ενημερώσεις κατά την εκκίνηση</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="95"/>
         <source>Check whether there&apos;s a new version of CP Editor when starting CP Editor.</source>
         <translation>Έλεγχος αν υπάρχει νέα έκδοση του CP συντάκτη κατα την εκκίνηση.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="96"/>
         <source>Opacity</source>
         <translation>Αδιαφάνεια</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="96"/>
         <source>The opacity of the main window</source>
         <translation>Η αδιαφάνεια του κυρίου παραθύρου</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="100"/>
         <source>Enable Competitive Companion</source>
         <translation>Enable Competitive Companion</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="100"/>
         <source>Receive data sent by Competitive Companion and load the example test cases.</source>
         <translation>Λήψει δεδομένων που απόστάλθηκαν από το Competitive Companion και φόρτωση τον δοκιμών.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="101"/>
         <source>Connection Port</source>
         <translation>Θύρα σύνδεσης</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="101"/>
         <source>The port used to receive data from Competitive Companion</source>
         <translation>Η θύρα που χρησιμοποιείται για λήψει δεδομένων από το Competitive Companion σας</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="102"/>
         <source>Open New Tabs</source>
         <translation>Άνοιγμα νέων καρτελών</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="102"/>
         <source>Open a new tab for each problem parsed by Competitive Companion.</source>
         <translation>Άνοιγμα νέας καρτέλας για κάθε πρόβλημα του Competitive Companion σας.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="107"/>
         <source>Format Codes</source>
         <translation>Μορφοποίηση κωδικών</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="108"/>
         <source>Kill All Processes</source>
         <translation>Τερματισμός κάθε διεργασίας</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="109"/>
         <source>Compile and Run</source>
         <translation>Μεταγλώττιση και εκτέλεση</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="110"/>
         <source>Run Only</source>
         <translation>Εκτέλεση μόνο</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="111"/>
         <source>Compile Only</source>
         <translation>Μεταγλώττιση μόνο</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="112"/>
         <source>Change View Mode</source>
         <translation>Αλλαγή λειτουργία προβολής</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="113"/>
         <source>Use Snippets</source>
         <translation>Χρησιμοποίηση απόσπάσματος</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="118"/>
         <source>The path to the CF Tool executable file</source>
         <translation>Η διαδρομή του εκτελέσιμου CF εργαλείου</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="121"/>
         <source>Show Compile And Run Only</source>
         <translation>Δείξε το &quot;Μεταγλώττιση και εκτέλεση&quot; μόνο</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="121"/>
         <source>Hide the Compile Only button and the Run Only button under the code editor in the main window.</source>
         <translation>Κρύψε το &quot;Μεταγλώττιση μόνο&quot; κουμπί και το &quot;Εκτέλεση μόνο&quot; κάτω από τον συντάκτη κώδικα στο κύριο παράθυρο.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="122"/>
         <source>Display EOLN In Diff</source>
         <translation>Δείξε το EOLN στο Diff</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="122"/>
         <source>Use &quot;¶&quot; to represent for the new line character in the HTML Diff Viewer.</source>
         <translation>Χρησιμοποιήστε το χαρακτήρα &quot;¶&quot; για να αναφέρεται το \n χαρακτήρα μέσα στο HTML Diff Viewer.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="123"/>
         <source>Save Files Faster</source>
         <translation>Αποθήκευση αρχείων γρηγορότερα</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="123"/>
         <source>Always use QFile instead of QSaveFile to save files.
 This will be faster but with a little bit more risk of losing the file (with a very small possibility).</source>
         <translation>Πάντα χρησιμοποίησε το QFile αντί του QSaveFile για αποθήκευση αρχείων.
 Αυτό θα είναι πιο γρήγορο για την αποθήκευση αρχείων αλλά υπάρχει μια πιθανότητα να χαθεί το αρχείο (η πιθανότητα είναι πολύ μικρή).</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="125"/>
         <source>Output Length Limit</source>
         <translation>Όριο μήκους εξόδου</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="125"/>
         <source>The maximum number of characters in the output of the program.
 The program will be killed if either of its stdout or stderr is too long.</source>
         <translation>Ο μέγιστος αριθμός χαρακτήρων για την έξοδο του προγράμματος.
 Το πρόγραμμα θα τερματιστή αν το stdout ή το stderr είναι πολύ μεγάλο.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="127"/>
         <source>Message Length Limit</source>
         <translation>Όριο μήκους μυνύματος</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="127"/>
         <source>The maximum number of characters in each message in the top-right corner of the main window.
 The message will be elided if it&apos;s too long.</source>
         <translation>Ο μέγιστος αριθμός χαρακτήρων σε κάθε μύνυμα είναι στο πάνω δεξιά κομμάτι του κύριου παραθύρου.
 Το μύνημα θα εξαφανιστεί αν είναι πολύ μεγάλο.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="128"/>
         <source>HTML Diff Viewer Length Limit</source>
         <translation>HTML Diff Viewer όριο μήκους</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="128"/>
         <source>The maximum number of characters in the HTML Diff Viewer.
 The Diff Viewer will fall back to plain text if either of the output or the expected output is too long.</source>
         <translation>Ο μέγιστος αριθμός των χαρακτήρων μέσα στο HTML Diff Viewer.
 Το Diff Viewer θα χρησιμοποιήσει την κανονική γραμματοσειρά αν η έξοδος είναι πολύ μεγάλη.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="129"/>
         <source>Open File Length Limit</source>
         <translation>Όριο μήκους άνοιγμα αρχείου</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="129"/>
         <source>The maximum number of characters in a source file to open.
 A source file won&apos;t be opened if it&apos;s too long.</source>
         <translation>Ο μέγιστος αριθμός χαρακτήρων του πηγαίου αρχείου που θα ανοιχθεί.
 Το πηγαίο αρχείο δεν θα ανεχθεί αν είναι πολύ μεγάλο.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="131"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="132"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="133"/>
         <source>Path to LSP executable</source>
         <translation>Διαδρομή στο εκτελέσιμο LSP</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="131"/>
         <source>The path to the C++ Language Server executable</source>
         <translation>Η διαδρομή στο C++ Language Server</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="132"/>
         <source>The path to the Java Language Server executable</source>
         <translation>Η διαδρομή στο Java Language Server</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="133"/>
         <source>The path to the Python Language Server executable</source>
         <translation>Η διαδρομή στο Python Language Server</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="134"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="135"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="136"/>
         <source>Use Linting with Language Server</source>
         <translation>Χρησιμοποίησε Linting με το Language Server</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="134"/>
         <source>Show Error, Warning, Information and Hints in Code Editor for C++ Language</source>
         <translation>Εμφάνιση σφάλματος, προειδοποιήσεις και υποδείξεις στο συντάκτη κώδικα για την γλώσσα C++</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="135"/>
         <source>Show Error, Warning, Information and Hints in Code Editor for Java Language</source>
         <translation>Εμφάνιση σφάλματος, προειδοποιήσεις και υποδείξεις στο συντάκτη κώδικα για την γλώσσα Java</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="136"/>
         <source>Show Error, Warning, Information and Hints in Code Editor for Python Language</source>
         <translation>Εμφάνιση σφάλματος, προειδοποιήσεις και υποδείξεις στο συντάκτη κώδικα για την γλώσσα Python</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="137"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="138"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="139"/>
         <source>Use auto-complete with Language Server</source>
         <translation>Χρησιμοποίησε αυτόματη ολοκλήρωση με το Language Server</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="137"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="138"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="139"/>
         <source>Use autocomplete results from Language server</source>
         <translation>Χρησιμοποίησε τις απαντήσεις αυτόματης ολοκλήρωσης του Language Server</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="140"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="141"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="142"/>
         <source>Delay in Linting (ms)</source>
         <translation>Καθυστέρηση Linting σε ms</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="140"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="141"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="142"/>
         <source>Delay in linting in milliseconds after last modification to code</source>
         <translation>Καθυστέρηση Linting σε ms μετά από την τελευταόα αλλαγή στον κώδικα</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="143"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="144"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="145"/>
         <source>Arguments for Language Server</source>
         <translation>Παράμετροι για τον Language Server</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="143"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="144"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="145"/>
         <source>Arguments to pass to Language server executable</source>
         <translation>Παράμετροι που θα περάσουν στον Language Server</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="146"/>
         <source>Testcases Matching Rules</source>
         <translation>Δοκιμές για τους κανόνες αντιστοίχισης</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="146"/>
         <source>Input Regex</source>
         <translation>Είσοδος Regex</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="146"/>
         <source>The regular expression which matches the whole input file name</source>
         <translation>Η κοινή έκφραση που θα αντιστοιχηθούν σε όλη την είσοδο στο όνομα αρχείου</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="146"/>
         <source>Answer Replace</source>
         <translation>Απάντηση-Αντικατάσταση</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="146"/>
         <source>The replace expression for the answer file name.
 You can use &quot;\1&quot; for the first captured group.</source>
         <translation>Η έκφραση αντικατάστασης για την απάντηση του ονόματος αρχείου .
 Μπορείτε να χρησιμοποιήσετε &quot;\1&quot; για την πρώτη ομάδα.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="147"/>
         <source>Input File Save Path</source>
         <translation>Είσοδος διαδρομής αποθήκευσης αρχείου</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="147"/>
         <source>The path where the input files are saved.
 This setting is a relative path to the source file.
 You can use &quot;${filename}&quot; for the complete file name,
@@ -2134,10 +2622,12 @@ You can use &quot;${filename}&quot; for the complete file name,
 &quot;${0-index}&quot; Για τον δείκτη της δοκιμής που αρχίζει από το 1.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="148"/>
         <source>Answer File Save Path</source>
         <translation>Απάντηση διαδρομής αποθήκευσης αρχείου</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="148"/>
         <source>The path where the answer files are saved.
 This setting is a relative path to the source file.
 You can use &quot;${filename}&quot; for the complete file name,
@@ -2152,138 +2642,171 @@ You can use &quot;${filename}&quot; for the complete file name,
 &quot;${0-index}&quot; Για τον δείκτη της δοκιμής που αρχίζει από το 1.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="149"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="202"/>
         <source>Default File Paths For Problem URLs</source>
         <translation>Προκαθορισμένες διαδρομές αρχείων για τα URLs των προβλημάτων</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="149"/>
         <source>The default file path used when saving a new file while the problem URL is set</source>
         <translation>Η προκαθορισμένη διαδρομή που θα απόθηκεύονται νέα αρχεία όσο υπάρχει το URL του προβλήματος</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="149"/>
         <source>Problem URL</source>
         <translation>URL προβλήματος</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="149"/>
         <source>The regular expression which matches a part of the problem URL</source>
         <translation>Η κοινή έκφραση που θα αντιστοιχίσει το κομμάτι του URL προβλήματος</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="149"/>
         <source>File Path</source>
         <translation>Διαδρομή αρχείου</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="149"/>
         <source>The replace expression for the file path, without file name suffix.
 You can use &quot;\1&quot; for the first captured group.</source>
         <translation>Η έκφραση αντικατάστασης για την διαδρομή αρχείου, χωρίς την επέκταση αρχείου.
 Μπορείτε να χρησιμοποιήσετε το &quot;\1&quot; για την πρώτη ομάδα.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="150"/>
         <source>Test Cases Font</source>
         <translation>Γραμματοσειρά δοκιμών</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="150"/>
         <source>The font of test cases</source>
         <translation>Η γραμματοσειρά των δοκιμών</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="151"/>
         <source>Add extra margin at the bottom of the code editor</source>
         <translation>Εισάγεται ένα περιθώριο στο κάτω μέρος του συντάκτη κώδικα</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="151"/>
         <source>Add an extra margin with the height of a page at the bottom of the code editor.
 Due to technical reasons, changing the height of the margin affects the undo history.</source>
         <translation>Εισάγεται περιθώριο με το ύψος της σελίδας στο κάτω κομμάτι του συντάκτη κώδικα.
 Λόγο ενός τεχνικού προβλήματος, η αλλαγή του περιθωρίου θα επηρεάσει την ιστορίας αναίρεσης.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="152"/>
         <source>Message Logger Font</source>
         <translation>Γραμματοσειρά καταγραφέας μηνυμάτων</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="152"/>
         <source>The font of the message logger</source>
         <translation>Η γραμματοσειρά του καταγραφέα μηνυματών</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="153"/>
         <source>Save File On Compilation</source>
         <translation>Αποθήκευση αρχείου μετά την μεταγλώττιση</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="153"/>
         <source>Save the source file when compiling it. It won&apos;t be saved if the tab is untitled.</source>
         <translation>Αποθήκευση πηγαίου αρχείου κατα την μεταγλώττιση του. Το αρχείο δεν θα απόθηκευτή αν η καρτέλα δεν έχει όνομα.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="154"/>
         <source>Save File On Execution</source>
         <translation>Αποθήκευση αρχείου μετά την εκτέλεση</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="154"/>
         <source>Save the source file when running it. It won&apos;t be saved if the tab is untitled.</source>
         <translation>Αποθήκευση του πηγαίου αρχείου κατά την εκτέλεση του. Δεν θα απόθηκευτή αν η καρτέλα δεν έχει όνομα.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="155"/>
         <source>Restore the problem URL when opening a file</source>
         <translation>Επαναφορά του URL του προβλήματος όταν ανοίξει το αρχείο</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="155"/>
         <source>If a problem URL was set for a file, when you open
 that file again, the problem URL will be restored.</source>
         <translation>Αν το URL του προβλήματος έχει ρυθμιστεί σε ένα αρχείο, όταν ανοίξεται αυτο το αρχείο ξανά,
 το URL του προβλήματος θα επαναφορτωθεί.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="156"/>
         <source>If a problem URL was set for a file, when parsing that problem
 from Competitive Companion again, the old file will be opened.</source>
         <translation>Αν το URL του προβλήματος έχει ρυθμιστεί σε ένα αρχείο, όταν αναλύεται το πρόβλημα
 από ένα Competitive Companion πάλι, το παλιό αρχείο θα ανοιχθεί.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="156"/>
         <source>Open the old file when parsing an old problem URL</source>
         <translation>Άνοιτε το παλιό αρχείο όταν αναλύεται το παλιό URL πρόβλημα</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="157"/>
         <source>UI Language</source>
         <translation>UI γλώσσα</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="157"/>
         <source>The language displayed in the UI.</source>
         <translation>Η γλώσσα που εμφανίζεται στο UI.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="158"/>
         <source>UI Style</source>
         <translation>UI στύλ</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="158"/>
         <source>The style of the whole application.</source>
         <translation>Το στύλ της εφαρμογής.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="162"/>
         <source>Run your codes on empty test cases</source>
         <translation>Εκτελέστε τους κώδικες σας σε άδειες δοκιμές</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="162"/>
         <source>Run your code on all non-hidden test cases even if the input is empty.</source>
         <translation>Εκτελέστε των κώδικα σε όλες τις κρυφές δοκιμές ακόμα και αν οι είσοδοι είναι άδειοι.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="163"/>
         <source>Check your answer on test cases with empty output</source>
         <translation>Ελέγξτε την απάντηση σας στις δοκιμές με άδειες εισόδους</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="163"/>
         <source>Check your answer even if your output or the expected output is empty.</source>
         <translation>Ελέγξτε την απάντηση σας αν η έξοδος ή αν η αναμενόμενη έξοδο σας είναι άδεια.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="87"/>
         <source>Auto Save Interval (ms)</source>
         <translation>Διάστημα αυτόματης αποθήκευσης (ms)</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="87"/>
         <source>The time interval between a modification and an auto-save, or between two auto-saves.</source>
         <translation>Το χρονικό διάστημα ανάμεσα σε μια τροποποίηση και σε αυτόματη αποθήκευση, ή ανάμεσα σε δύο αυτόματες απόθηκεύσης.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="88"/>
         <source>Auto Save Interval Type</source>
         <translation>Τύπο αυτόματου διάστημα αποθήκευσης</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="88"/>
         <source>After the last modification: the timer will be reset after a modification to the code.
 After the first modification: the timer will start after a modification if at that time the timer is not running.
 Without modification: auto-save happens with a constant interval no matter there are modifications or not.</source>
@@ -2292,20 +2815,24 @@ Without modification: auto-save happens with a constant interval no matter there
 Χωρίς τροποποίηση μια αυτόματη αποθήκευση με σταθερό διάστημα ανεξαρτήτως αν υπάρχει τροποποίηση ή όχι.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="114"/>
         <source>Restore last session at startup</source>
         <translation>Επαναφορά της τελευταίας συνεδρίασης κατά την εκκίνηση</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="114"/>
         <source>Restore the last session when the application starts.
 When this is enabled, you won&apos;t be asked whether to save unsaved files when exiting.</source>
         <translation>Επαναφορά της τελευταίας συνεδρίασης κατά την εκκίνηση της εφαρμογής.
 Όταν αυτό είναι ενεργοποιημένο δεν θα σας ρωτάμε αν υπάρχουν αλλαγές που δεν έχουνε απόθηκευτεί.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="115"/>
         <source>Auto-save the current session periodically</source>
         <translation>Αυτόματη αποθήκευση τις τορινής συνεδρίασης περιοδικά</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="115"/>
         <source>Auto-save the current session periodically instead of only save when the application exists.
 This is useful if your computer is frozen and you have to cut off the power or
 kill the application with SIGKILL which could not be handled by the application.</source>
@@ -2314,90 +2841,114 @@ kill the application with SIGKILL which could not be handled by the application.
 να κλείσετε την εφαρμογή.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="116"/>
         <source>Auto-save Session Interval</source>
         <translation>Αυτόματη αποθήκευση συνεδρίασης περιοδικά</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="116"/>
         <source>The time interval between two auto-saves of the current session.</source>
         <translation>Το χρονικό διάστημα ανάμεσα σε δύο αυτόματες απόθηκεύσης της τορινής συνεδρίασης.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="164"/>
         <source>Test Case Maximum Height</source>
         <translation>Μέγιστο ύψος δοκιμών</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="164"/>
         <source>The maximum height of a test case without a scrollbar in pixels.</source>
         <translation>Το μέγιστο ύψος μιας δοκιμής χωρίς την γραμμή κύλισης σε εικονοστοιχεία.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="167"/>
         <source>The hostname of the proxy, e.g. 127.0.0.1</source>
         <translation>Το πληρεξούσιο όνομα κεντρικού υπολογιστή π.χ. 127.0.0.1</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="168"/>
         <source>The port of the proxy, e.g. 1080</source>
         <translation>Η θύρα του πληρεξούσιο π.χ. 1080</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="169"/>
         <source>The user of the proxy server. It can be empty if the proxy server doesn&apos;t require authentication.</source>
         <translation>Ο χρήστης του πληρεξούσιο server μπορεί να είναι άδειο αν ο πληρεξούσιος server δεν χεριάζεται αυθεντικοποίηση.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="170"/>
         <source>The password of the proxy server. It can be empty if the proxy server doesn&apos;t require authentication.</source>
         <translation>Ο κωδικός του πληρεξούσιο server μπορεί να είναι άδειο αν ο πληρεξούσιος server δεν χεριάζεται αυθεντικοποίηση.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="166"/>
         <source>Type</source>
         <translation>Τύπος</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="167"/>
         <source>Host Name</source>
         <translation>Όνομα κεντρικού υπολογιστή</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="168"/>
         <source>Port</source>
         <translation>Θύρα</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="169"/>
         <source>User</source>
         <translation>Χρήστης</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="170"/>
         <source>Password</source>
         <translation>Κωδικός</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="166"/>
         <source>The type of the proxy. &quot;System&quot; for using the system proxy.</source>
         <translation>Ο τύπος του πληρεξούσιου.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="42"/>
         <source>Use Custom Application Font</source>
         <translation>Χρησιμοποιήστε προσαρμοσμένη γραμματοσειρά για την εφαρμογή</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="42"/>
         <source>Use a custom font for the whole application instead of the default system font.</source>
         <translation>Χρησιμοποιήστε μια προσαρμοσμένη γραμματοσειρά για ολόκληρη την εφαρμογή αντιθέτος από την προκαθορισμένη γραμματοσειρά του συστηματός σας.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="43"/>
         <source>Custom Application Font</source>
         <translation>Εφαρμογή προσαρμοσμένης γραμματοσειράς</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="43"/>
         <source>The custom font for the whole application</source>
         <translation>Η προσαρμοσμένη γραμματοσειρά ολόκληρης της εφαρμογής</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="171"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="172"/>
         <source>%1 Compiler Output Codec</source>
         <translation>%1 Έξοδος μεταγλωττιστή Codec</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="171"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="172"/>
         <source>Text codec of the compiler output (errors, warnings, etc.)</source>
         <translation>Codec κειμένου για την έξοδο του μεταγλωττιστή (προβλήματα, προειδοποιήσεις κ.λ.π.)</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="173"/>
         <source>Default Path Names And Paths</source>
         <translation>Προκαθορισμένη διαδρομή για ονόματα και διαδρομές</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="173"/>
         <source>A list of default paths.
 They can be used in actions&apos; corresponding default paths by using ${&lt;default path name&gt;} as a place holder.
 They can be either manually set or automatically changed after choosing a path for an action.</source>
@@ -2406,98 +2957,185 @@ They can be either manually set or automatically changed after choosing a path f
 Μπορούν να οριστούν χειροκίνητα ή αυτόματα αφότου οριστεί μια διαδρομή για μια δράση.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="173"/>
         <source>Name</source>
         <translation>Όνομα</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="173"/>
         <source>The name of a default path</source>
         <translation>Το όνομα της προκαθορισμένης διαδρομής</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="173"/>
         <source>The path of a default path</source>
         <translation>Η διαδρομή της προκαθορισμένης διαδρομής</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="200"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="200"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="201"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="201"/>
         <source>Open File</source>
         <translation>Άνοιγμα αρχείου</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="200"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="202"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="204"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="206"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="208"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="210"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="212"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="214"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="216"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="218"/>
         <source>The default path used when choosing a path for %1.
 You can use ${&lt;default path name&gt;} as a place holder.</source>
         <translation>Η προκαθορισμένη διαδρομή χρησιμοποιείται όταν επιλέγεται μια διαδρομή για %1.
 Μπορείτε να χρησιμοποιήσετε ${&lt;default path name&gt;}.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="201"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="203"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="205"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="207"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="209"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="211"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="213"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="215"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="217"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="219"/>
         <source>The default paths changed after choosing a path for %1.
 It is a list of &lt;default path name&gt;s, separated by commas, and can be empty.</source>
         <translation>Η προκαθορισμένες διαδρομές άλλαξαν αφότου διαλέξατε την διαδρομή %1.
 Είναι μια λίστα του &lt;default path name&gt;, χωρισμένο από κόμματα (επίσης, η λίστα μπορει να είναι άδεια).</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="202"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="202"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="203"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="203"/>
         <source>Save File</source>
         <translation>Αποθήκευση αρχείου</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="204"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="204"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="205"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="205"/>
         <source>Open Contest</source>
         <translation>Ανοιχτός διαγωνισμός</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="206"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="206"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="207"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="207"/>
         <source>Load Single Test Case</source>
         <translation>Άνοιγμα αρχείου μιας δοκιμής</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="208"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="208"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="209"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="209"/>
         <source>Add Pairs Of Test Cases</source>
         <translation>Εισάγεται ζευγάρια από δοκιμές</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="212"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="212"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="213"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="213"/>
         <source>Custom Checker</source>
         <translation>Προσαρμοσμένος ελεγκτής</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="214"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="214"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="215"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="215"/>
         <source>Export And Import Settings</source>
         <translation>Εξαγωγή και εισαγωγή ρυθμίσεων</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="216"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="216"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="217"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="217"/>
         <source>Export And Load Session</source>
         <translation>Εξαγωγή και φόρτωση συνεδρίασης</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="218"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="218"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="219"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="219"/>
         <source>Extract And Load Snippets</source>
         <translation>Εξαγωγή και φόρτωση απόσπασμάτον</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="200"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="202"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="204"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="206"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="208"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="210"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="212"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="214"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="216"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="218"/>
         <source>Default path used for %1</source>
         <translation>Προκαθορισμένη διαδρομή που χρησιμοποιείται για %1</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="201"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="203"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="205"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="207"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="209"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="211"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="213"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="215"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="217"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="219"/>
         <source>Default paths changed by %1</source>
         <translation>Προκαθορισμένες διαδρομές άλλαξαν από %1</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="202"/>
         <source>It can be overridden by %1.</source>
         <translation>Μπορεί να παρακαμπτεί από %1.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="51"/>
         <source>Format code on manual save</source>
         <translation>Μορφοποίηση κώδικα από μη αυτόματη αποθήκευση</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="52"/>
         <source>Format code on auto-save</source>
         <translation>Μορφοποίηση κώδικα στην αυτόματη αποθήκευση</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="174"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="175"/>
         <source>Auto-load external file changes if there&apos;s no unsaved modification</source>
         <translation>Αυτόματη φόρτωση εξωτερικών αλλαγμένων αρχείων αν δεν υπάρχουνε μη απόθηκευμένες τροποποίηση</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="174"/>
         <source>Automatically load file changes that are not made in CP Editor if there&apos;s no unsaved modification in CP Editor.</source>
         <translation>Αυτόματη φόρτωση τροποποιημένων αρχείων που δεν τροποποιήθηκαν στον συντάκτη CP αν δεν υπάρχουνε μη απόθηκευμένες τροποποιήσης στην συντάκτη CP.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="175"/>
         <source>Ask whether to load external file changes</source>
         <translation>Να φορτώσουμε τα τροποποιημένα εξωτερικά αρχεία</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="175"/>
         <source>When there are file changes that are not made in CP Editor and is not automatically loaded by
 &quot;%1&quot;, ask for whether to load the changes.
 If this is disabled, external file changes will be ignored unless they are loaded by
@@ -2508,32 +3146,39 @@ If this is disabled, external file changes will be ignored unless they are loade
 &quot;%1&quot;.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="126"/>
         <source>Output Display Length Limit</source>
         <translation>Όριο εξόδου</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="126"/>
         <source>The maximum number of characters to be displayed for the output of the program.
 If the output is too long, it will be elided.</source>
         <translation>Ο μέγιστος αριθμός των χαρακτήρων που μπορεί να εμφανίσει το πρόγραμμα.
 Αν η έξοδος είναι πολύ μεγάλη, τότε η έξοδος θα εξαφανιστεί.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="119"/>
         <source>Show toast messages for submission verdicts</source>
         <translation>Εμφάνιση μηνύματος για ετυμηγορίες υποβολής</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="119"/>
         <source>Show a toast message when the verdict of a submission is known. You can see the message outside of CP Editor.</source>
         <translation>Εμφάνιση μηνύματος όταν η ετυμηγορία της υποβολής είναι γνωστής. Μπορείτε να δείτε αυτό το μύνημα έξω από τον συνακτη CP.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="81"/>
         <source>Terminal Arguments</source>
         <translation>Παράμετροι τερματικού</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="80"/>
         <source>Terminal Program</source>
         <translation>Πρόγραμμα τερματικού</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="80"/>
         <source>The terminal emulator to use when running in detached mode.
 This is usually the name or the path of the terminal emulator.
 Some possible values are konsole, gnome-terminal, xfce-terminal, xterm or any other terminal emulator program.</source>
@@ -2542,6 +3187,7 @@ Some possible values are konsole, gnome-terminal, xfce-terminal, xterm or any ot
 Κάποιες πιθανές τιμές είναι konsole, gnome-terminal, xfce-terminal, xterm ή οποιοσδήποτε προσομοιωτής τερματικού.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="81"/>
         <source>Arguments used to execute a given command in the terminal emulator.
 This is &quot;-e&quot; for most terminal emulators, including konsole, xterm, xfce-terminal but can be &quot;--&quot; for gnome-terminal.
 Consult your terminal emulator for the suitable arguments.</source>
@@ -2550,10 +3196,15 @@ Consult your terminal emulator for the suitable arguments.</source>
 Ψάξτε τις κατάλληλες εντολές για το τερματικό σας.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="210"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="210"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="211"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="211"/>
         <source>Save Test Case To A File</source>
         <translation>Αποθήκευση δοκιμών σε ένα αρχείο</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="104"/>
         <source>The comments added at the head of the code when parsing a problem.
 Available place holders are:
 ${time}: the time when parsing the problem
@@ -2564,10 +3215,12 @@ ${time}: ο χρόνος όταν αναλύεται το πρόβλημα
 ${json.X.Y}: αν η παράμετρος είναι από το Competitive Companion σας, μπορείτε να διαβάσετε παραπάνω στο https://github.com/jmerle/competitive-companion#explanation</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="105"/>
         <source>Time format for the head comments</source>
         <translation>Μορφοποίηση χρόνου για τα πάνω σχόλια</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="105"/>
         <source>The format of the ${time} place holder in the head comments.
 You can read the Qt documentation for available expressions:
 https://doc.qt.io/qt-5/qdate.html#toString
@@ -2578,281 +3231,368 @@ https://doc.qt.io/qt-5/qdate.html#toString
 https://doc.qt.io/qt-5/qtime.html#toString</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="106"/>
         <source>Add &quot;Powered By CP Editor&quot; in the head comments</source>
         <translation>Προσθέστε &quot;Powered By CP Editor&quot; στα πάνω σχόλια</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="106"/>
         <source>Add a line saying &quot;Powered By CP Editor&quot; in the head comments.
 This doesn&apos;t cost you anything, but helps more people to know CP Editor.</source>
         <translation>Προσθέστε την γραμμή &quot;Powered By CP Editor&quot; στα πάνω σχόλια
 Αυτό δεν σασ κοστίζει τίποτα, αλλα βοηθάει άτομα να μάθουν τον συντάκτη CP.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="124"/>
         <source>Default Time Limit (ms)</source>
         <translation>Προκαθορισμένο χρονικό περιθώριο (ms)</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="124"/>
         <source>The default time limit when executing the program.
 The program will be killed if it doesn&apos;t terminate in the time limit.</source>
         <translation>Το προκαθορισμένο χρονικό περιθώριο κατα την εκτέλεση του προγράμματος.
 Το πρόγραμμα θα τερματιστεί αν δεν τερματιστεί μέσα στο χρονικό περιθώριο.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="103"/>
         <source>Use the time limit from Competitive Companion</source>
         <translation>Χρησιμοποιήστε το χρονικό περιθώριο του Competitive Companion σας</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="103"/>
         <source>Use the time limit parsed by Competitive Companion as the time limit of the corresponding tab.</source>
         <translation>Χρησιμοποιήστε το χρονικό περιθώριο που αναλύθηκε από το Competitive Companion για το χρονικό περιθώριο την αντιστηχη καρτέλα.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="179"/>
         <source>Show Only Monospaced Font</source>
         <translation>Εμφανίστε μόνο την Monospaced γραμματοσειρά</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="157"/>
         <source>Change Locale</source>
         <translation>Αλλαγή τοπικού</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="157"/>
         <source>You need to restart the application to completely apply the locale change.</source>
         <translation>Πρέπει να ξανανοίξεται τον συντάκτη CP για να οριστούνε οι αλλαγές.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="179"/>
         <source>Show only monospaced fonts when choosing a font</source>
         <translation>Εμφάνιση μόνο monospaced γραμματοσειρών όταν επιλέγεται γραμματοσειρά</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="130"/>
         <source>Display Test Case Length Limit</source>
         <translation>Εμφάνιση μήκος δοκιμής</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="130"/>
         <source>The maximum number of characters in a test case to be displayed.
 A test case will be elided and read-only if it&apos;s too long.</source>
         <translation>Ο μέγιστος αριθμός των χαρακτήρων στη δοκιμή που είναι να εμφανιστεί.
 Η δοκιμή θα εξαφανιστεί και θα είναι μόνο για ανάγνωση αν είναι πολύ μεγάλη.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="45"/>
         <source>Clang Format Program</source>
         <translation>Πρόγραμμα μορφοποίησης Clang</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="46"/>
         <source>Clang Format Arguments</source>
         <translation>Παράμετροι μορφοποίησης Clang</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="46"/>
         <source>The arguments passed to clang-format. It should NOT contain &quot;-i&quot;.</source>
         <translation>Η παράμετροι που θα περάσουν στην μορφοποίηση Clang ΔΕΝ ΠΡΕΠΕΙ να έχουνε την τιμή&quot;-i&quot;.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="47"/>
         <source>Clang Format Style</source>
         <translation>Στύλ μορφοποίησης Clang</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="48"/>
         <source>YAPF Program</source>
         <translation>Πρόγραμμα YAPF</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="48"/>
         <source>The program of YAPF. It could be `yapf` (which doesn&apos;t need arguments) or `python` (which needs `-m yapf` as the arguments).</source>
         <translation>Το πρόγραμμα YAPF. Μπορεί να είναι &quot;yapf&quot; (που δεν χρειάζεται παραμέτρουσ) ή &quot;python&quot; (που χρειάζετε την παράμετρο &quot;-m yapf&quot;).</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="49"/>
         <source>YAPF Arguments</source>
         <translation>Παράμετροι YAPF</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="49"/>
         <source>The arguments passed to the YAPF program. It should NOT contain &quot;-i&quot;.</source>
         <translation>Η παράμετροι που θα περάσουν στο πρόγραμμα YAPF ΔΕΝ ΠΡΕΠΕΙ να έχουνε την τιμή&quot;-i&quot;.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="50"/>
         <source>YAPF Style</source>
         <translation>Στύλ YAPF</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="50"/>
         <source>The YAPF style options, which are usually saved in a .style.yapf or setup.conf configuration file.
 You can learn about it by running `yapf --style-help`.</source>
         <translation>Οι ρυθμίσεις του στύλ YAPF έιναι συνήθως απόθηκευμένες σε ένα αρχείο με το όνομα .style.yapf ή setup.conf.
 Μπορείτε να μάθετε περισσότερα για το YAPF αν τρέξεται την εντολή &quot;yapf --style-help&quot;.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="51"/>
         <source>Format the code when saving it manually.</source>
         <translation>Να γίνεται μορφοποίηση κώδικα όταν τον απόθηκεύεται χειροκείνειτα.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="52"/>
         <source>Format the code when auto-saving it.</source>
         <translation>Να γίνεται μορφοποίηση κώδικα όταν απόθηκεύεται αυτόματα.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="104"/>
         <source>Content of the head comments</source>
         <translation>Περιεχόμενα τον πάνω σχολίων</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="166"/>
         <source>network-proxy</source>
         <comment>the anchor of Type on the corresponding page of https://cpeditor.org/docs/preferences</comment>
         <translation>Πληρεξούσιο δικτύου</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="167"/>
         <source>network-proxy</source>
         <comment>the anchor of Host Name on the corresponding page of https://cpeditor.org/docs/preferences</comment>
         <translation>Πληρεξούσιο δικτύου</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="168"/>
         <source>network-proxy</source>
         <comment>the anchor of Port on the corresponding page of https://cpeditor.org/docs/preferences</comment>
         <translation>Πληρεξούσιο δικτύου</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="169"/>
         <source>network-proxy</source>
         <comment>the anchor of User on the corresponding page of https://cpeditor.org/docs/preferences</comment>
         <translation>Πληρεξούσιο δικτύου</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="170"/>
         <source>network-proxy</source>
         <comment>the anchor of Password on the corresponding page of https://cpeditor.org/docs/preferences</comment>
         <translation>Πληρεξούσιο δικτύου</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="182"/>
         <source>Auto Uncheck Accepted Testcases</source>
         <translation>Αυτόματη αναίρεση απόδεγμένων δοκιμών</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="182"/>
         <source>Automatically uncheck test cases when they get accepted.</source>
         <translation>Αυτόματη απόεπιλογή δοκιμών όταν γίνονται δεκτές.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="186"/>
         <source>The path to the WakaTime executable file</source>
         <translation>Η διαδρομή στο WakaTime εκτελέσιμο αρχείο</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="187"/>
         <source>Api Key</source>
         <translation>Κλειδί API</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="188"/>
         <source>Enable WakaTime</source>
         <translation>Επιτροπή WakaTime</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="165"/>
         <source>Enable proxy to connect to GitHub while checking updates</source>
         <translation>Επιτρέψτε την σύνδεση στο GitHub όσο ελέγχουμε για ενημερώσεις</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="187"/>
         <source>Can be found at https://wakatime.com/settings/account.
 It can be empty if you have the global wakatime config file ~/.wakatime.cfg.</source>
         <translation>Μπορεί να βρεθεί στο https://wakatime.com/settings/account.
 Μπορέι να είναι άδειο αν έχετε το παγκόσμιο αρχείο wakatime διαμόρφωση αρχείου ~/.wakatime.cfg.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="189"/>
         <source>Use Proxy</source>
         <translation>Χρησιμοποιήστε πληρεξούσιο</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="189"/>
         <source>Use Advanced-&gt;Network Proxy to send data to WakaTime.</source>
         <translation>Χρησιμοποιήστε Προχωρημένα-&gt;Δίκτυο Πληρεξούσιου για απόστολή δεδομένων στο WakaTime.</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="165"/>
         <source>Enable proxy for checking updates</source>
         <translation>Επιτρέψτε το πληρεξούσιο για έλεγχο ενημερώσεων</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="165"/>
         <source>network-proxy</source>
         <comment>the anchor of Enable proxy for checking updates on the corresponding page of https://cpeditor.org/docs/preferences</comment>
         <translation>Η άγκυρα για την επιτροπή του μεταξούσιου για έλεγχο ενημερώσεις στην αντίστοίχη σελίδα https://cpeditor.org/docs/preferences</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="190"/>
         <source>Display Stopwatch</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="191"/>
         <source>Start/Stop stopwatch on tab switch</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="191"/>
         <source>When switching to a different tab, automatically start the stopwatch
 on the current tab and pause the stopwatch on the previous tab.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="192"/>
         <source>Show stopwatch result only when the button is pressed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="192"/>
         <source>Hide the time of the stopwatch and only show the time when the &quot;Show&quot; button is pressed.
 This may reduce distractions caused by stopwatch updates.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="79"/>
         <source>Highlight lines containing diagnostics</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="193"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="193"/>
         <source>Color of error messages</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="194"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="194"/>
         <source>Color of warning messages</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="188"/>
         <source>Use WakaTime to track your time usage. The WakaTime CLI needs to be installed.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="190"/>
         <source>Show a stopwatch in the UI. You can use it to track your time spent on solving a problem.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="173"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="200"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="201"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="202"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="203"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="204"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="205"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="206"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="207"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="208"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="209"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="210"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="211"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="212"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="213"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="214"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="215"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="216"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="217"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="218"/>
+        <location filename="../build/generated/SettingsInfo.cpp" line="219"/>
         <source>default-paths</source>
         <comment>the anchor of Default Paths on https://cpeditor.org/docs/preferences/file-path</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="120"/>
         <source>Enable CF Tool</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="120"/>
         <source>Enable or disable CF Tool Integration.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="195"/>
         <source>The programming language used for the generator template.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="196"/>
         <source>The path to the generator template file.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="197"/>
         <source>Template Cursor Position Regex</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="198"/>
         <source>Template Cursor Position Offset Type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="199"/>
         <source>Template Cursor Position Offset Characters</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="195"/>
         <source>Programming language for the template</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="196"/>
         <source>Path to the template file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="184"/>
         <source>Enable Vim Emulation</source>
         <translation>Ενεργοποίηση εξομοίωσης Vim</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="184"/>
         <source>Enable vim emulation in Code Editor</source>
         <translation>Ενεργοποίηση εξομοίωσης Vim στον Επεξεργαστή Κώδικα</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="185"/>
         <source>Vim Configuration</source>
         <translation>Ρυθμίσεις Vim</translation>
     </message>
     <message>
+        <location filename="../build/generated/SettingsInfo.cpp" line="185"/>
         <source>The contents of Vim RC. It is loaded everytime vim emulation starts. 
 Not all vim commands are supported, please check https://github.com/cpeditor/FakeVim for list of supported commands</source>
         <translation>Το περιεχόμενο του Vim RC. Φορτώνεται κάθε φορά που ξεκινά η εξομοίωση Vim.
@@ -2862,6 +3602,7 @@ Not all vim commands are supported, please check https://github.com/cpeditor/Fak
 <context>
     <name>ShortcutItem</name>
     <message>
+        <location filename="../src/Settings/ShortcutItem.cpp" line="35"/>
         <source>Clear the shortcut</source>
         <translation>Καθαρισμός συντόμευσης</translation>
     </message>
@@ -2869,42 +3610,52 @@ Not all vim commands are supported, please check https://github.com/cpeditor/Fak
 <context>
     <name>StringListsItem</name>
     <message>
+        <location filename="../src/Settings/StringListsItem.cpp" line="51"/>
         <source>Add</source>
         <translation>Εισαγωγή</translation>
     </message>
     <message>
+        <location filename="../src/Settings/StringListsItem.cpp" line="53"/>
         <source>Insert a row (Ctrl+N)</source>
         <translation>Εισαγωγή σειράς (Ctrl+N)</translation>
     </message>
     <message>
+        <location filename="../src/Settings/StringListsItem.cpp" line="68"/>
         <source>Remove</source>
         <translation>Αφαίρεση</translation>
     </message>
     <message>
+        <location filename="../src/Settings/StringListsItem.cpp" line="70"/>
         <source>Delete the current row (Ctrl+W)</source>
         <translation>Διαγραφή της τορινής γραμμής (Ctrl+W)</translation>
     </message>
     <message>
+        <location filename="../src/Settings/StringListsItem.cpp" line="76"/>
         <source>Remove Item</source>
         <translation>Αφαίρεση αντικειμένου</translation>
     </message>
     <message>
+        <location filename="../src/Settings/StringListsItem.cpp" line="76"/>
         <source>Do you really want to delete the current row?</source>
         <translation>Είστε σίγουροι ότι θέλετε να διαγράψετε την τωρινή σειρά;</translation>
     </message>
     <message>
+        <location filename="../src/Settings/StringListsItem.cpp" line="87"/>
         <source>Move Up</source>
         <translation>Μετακίνηση πάνω</translation>
     </message>
     <message>
+        <location filename="../src/Settings/StringListsItem.cpp" line="89"/>
         <source>Move the current row up (Ctrl+Shift+Up)</source>
         <translation>Μετακίνησης της τωρινής γραμμής πάνω (Ctrl+Shift+Up)</translation>
     </message>
     <message>
+        <location filename="../src/Settings/StringListsItem.cpp" line="110"/>
         <source>Move Down</source>
         <translation>Μετακίνηση κάτω</translation>
     </message>
     <message>
+        <location filename="../src/Settings/StringListsItem.cpp" line="112"/>
         <source>Move the current row down (Ctrl+Shift+Down)</source>
         <translation>Μετακίνηση της τωρινής γραμμής κάτω (Ctrl+Shift+Down)</translation>
     </message>
@@ -2912,6 +3663,7 @@ Not all vim commands are supported, please check https://github.com/cpeditor/Fak
 <context>
     <name>SupportEntry</name>
     <message>
+        <location filename="../src/Widgets/SupportUsDialog.cpp" line="57"/>
         <source>Donate</source>
         <translation>Υποστήριξη / Προσφορά</translation>
     </message>
@@ -2919,34 +3671,42 @@ Not all vim commands are supported, please check https://github.com/cpeditor/Fak
 <context>
     <name>SupportUsDialog</name>
     <message>
+        <location filename="../src/Widgets/SupportUsDialog.cpp" line="72"/>
         <source>Like CP Editor?</source>
         <translation>Σας αρέσει ο συντάκτης CP;</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/SupportUsDialog.cpp" line="79"/>
         <source>Thank you for using CP Editor!</source>
         <translation>Ευχαριστώ που χρησιμοποιείτε τον συντάκτη CP!</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/SupportUsDialog.cpp" line="90"/>
         <source>To support us, you can:</source>
         <translation>Για να μας υποστειρίξετε μπορείτε να:</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/SupportUsDialog.cpp" line="95"/>
         <source>Give us a star on GitHub</source>
         <translation>Μας δώσετε ένα αστέρι στο GitHub</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/SupportUsDialog.cpp" line="100"/>
         <source>Share CP Editor with your friends</source>
         <translation>Μοιραστείτε τον συντάκτη CP στους φίλους σας</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/SupportUsDialog.cpp" line="107"/>
         <source>Financially support us</source>
         <translation>Να μας υποστηρίξετε οικονομικά</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/SupportUsDialog.cpp" line="110"/>
         <source>Provide some suggestions to help us do better</source>
         <translation>Να αναφέρεται τι μπορούμε να κάνουμε καλύτερα</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/SupportUsDialog.cpp" line="103"/>
         <source>I&apos;m using @cpeditor_, an IDE specially designed for competitive programmers, which is awesome!</source>
         <translation>Χρησιμοποιώ το @cpeditor_, είναι ένα IDE ειδικά σχεδιασμένο για competitive προγραμματιστές, που είναι τέλειο!</translation>
     </message>
@@ -2954,14 +3714,17 @@ Not all vim commands are supported, please check https://github.com/cpeditor/Fak
 <context>
     <name>Telemetry::UpdateChecker</name>
     <message>
+        <location filename="../src/Telemetry/UpdateChecker.cpp" line="153"/>
         <source>No release is found.</source>
         <translation>Δεν βρέθηκε η έκδοση.</translation>
     </message>
     <message>
+        <location filename="../src/Telemetry/UpdateChecker.cpp" line="168"/>
         <source>No download URL of the version [%1] is found.</source>
         <translation>Δεν βρέθηκε URL για την έκδοση [%1].</translation>
     </message>
     <message>
+        <location filename="../src/Telemetry/UpdateChecker.cpp" line="119"/>
         <source>This error is probably caused by the lack of the OpenSSL library. You can visit &lt;a href=&quot;https://wiki.openssl.org/index.php/Binaries&quot;&gt;the OpenSSLWiki&lt;/a&gt; to find a binary to install, or install it via your favourite package manager. You have to install a version compatible with this version: [%1]</source>
         <translation>Αυτό το πρόβλημα μάλλον είναι εξαιτίας της έλλιψης της βιβλιοθήκης OpenSSL. Μπορείτε να επησκεφθείτε την ιστοσελίδα &lt;a href=&quot;https://wiki.openssl.org/index.php/Binaries&quot;&gt;OpenSSLWiki&lt;/a&gt; για να βρείτε μια βιβλιοθήκη να εγκαθαστείσετε. Πρέπει να εγκαταστείσετε μια εφαρμογή κατάλληλη με: [%1]</translation>
     </message>
@@ -2969,50 +3732,64 @@ Not all vim commands are supported, please check https://github.com/cpeditor/Fak
 <context>
     <name>Util::FileUtil</name>
     <message>
+        <location filename="../src/Util/FileUtil.cpp" line="87"/>
+        <location filename="../src/Util/FileUtil.cpp" line="110"/>
         <source>Failed to open [%1]. Do I have write permission?</source>
         <translation>Απέτυχε να ανοίξει [%1]. Μήπως δεν έχετε άδεια εγγραφής;</translation>
     </message>
     <message>
+        <location filename="../src/Util/FileUtil.cpp" line="97"/>
+        <location filename="../src/Util/FileUtil.cpp" line="119"/>
         <source>Failed to save to [%1]. Do I have write permission?</source>
         <translation>Απέτυχε η αποθήκευση του [%1]. Έχετε άδεια εγγραφής;</translation>
     </message>
     <message>
+        <location filename="../src/Util/FileUtil.cpp" line="138"/>
         <source>The file [%1] does not exist</source>
         <translation>Το αρχείο [%1] δεν υπάρχει</translation>
     </message>
     <message>
+        <location filename="../src/Util/FileUtil.cpp" line="148"/>
         <source>Failed to open [%1]. Do I have read permission?</source>
         <translation>Απέτυχε να ανοίξει [%1]. Μήπως δεν έχετε άδεια εγγραφής;</translation>
     </message>
     <message>
+        <location filename="../src/Util/FileUtil.cpp" line="204"/>
         <source>Reveal %1 in Finder</source>
         <translation>Εμφάνιση %1 μέσα στο Finder</translation>
     </message>
     <message>
+        <location filename="../src/Util/FileUtil.cpp" line="211"/>
         <source>Reveal %1 in Explorer</source>
         <translation>Εμφάνιση %1 μέσα στον εξερευνητή</translation>
     </message>
     <message>
+        <location filename="../src/Util/FileUtil.cpp" line="188"/>
         <source>Open Containing Folder of %1</source>
         <translation>Άνοιγμα φακέλου που περιέχει το %1</translation>
     </message>
     <message>
+        <location filename="../src/Util/FileUtil.cpp" line="251"/>
         <source>Reveal %1 in File Manager</source>
         <translation>Εμφάνιση του %1 στον διαχειριστή αρχείων</translation>
     </message>
     <message>
+        <location filename="../src/Util/FileUtil.cpp" line="39"/>
         <source>C++ Source Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Util/FileUtil.cpp" line="41"/>
         <source>Java Source Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Util/FileUtil.cpp" line="43"/>
         <source>Python Source Files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Util/FileUtil.cpp" line="45"/>
         <source>Source Files</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3020,50 +3797,62 @@ Not all vim commands are supported, please check https://github.com/cpeditor/Fak
 <context>
     <name>Widgets::ContestDialog</name>
     <message>
+        <location filename="../src/Widgets/ContestDialog.cpp" line="42"/>
         <source>Create a new contest</source>
         <translation>Δημιουργία νέου διαγωνισμού</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/ContestDialog.cpp" line="53"/>
         <source>Main Directory</source>
         <translation>Κύριος φάκελος</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/ContestDialog.cpp" line="64"/>
         <source>Subdirectory</source>
         <translation>Υποφάκελος</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/ContestDialog.cpp" line="80"/>
         <source>Number of Problems</source>
         <translation>Αριθμός προβλημάτων</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/ContestDialog.cpp" line="120"/>
         <source>Main Directory doesn&apos;t exist</source>
         <translation>Ο κύριος φάκελος δεν υπάρχει</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/ContestDialog.cpp" line="121"/>
         <source>The Main Directory [%1] doesn&apos;t exist. Do you want to create it and continue?</source>
         <translation>Ο κύριος φάκελος [%1] δεν υπάρχει. Θέλετε να τον διμιουργήσετε και να συνεχίσετε;</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/ContestDialog.cpp" line="131"/>
         <source>Failed to create directory</source>
         <translation>Απέτυχε η δημιουργία φακέλου</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/ContestDialog.cpp" line="132"/>
         <source>Failed to create the directory [%1].</source>
         <translation>Απέτυχε η δημιουργία φακέλου [%1].</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/ContestDialog.cpp" line="46"/>
         <source>Contest Details</source>
         <translation>Λεπτομέρειες διαγωνισμού</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/ContestDialog.cpp" line="71"/>
         <source>Save Path</source>
         <translation>Αποθήκευση διαδρομής</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/ContestDialog.cpp" line="75"/>
         <source>Language</source>
         <translation>Γλώσσα</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/ContestDialog.cpp" line="144"/>
         <source>Choose Main Directory</source>
         <translation>Επιλέξτε κύριο φάκελο</translation>
     </message>
@@ -3071,14 +3860,17 @@ Not all vim commands are supported, please check https://github.com/cpeditor/Fak
 <context>
     <name>Widgets::DiffViewer</name>
     <message>
+        <location filename="../src/Widgets/DiffViewer.cpp" line="37"/>
         <source>Diff Viewer</source>
         <translation>Diff Viewer</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/DiffViewer.cpp" line="41"/>
         <source>Output</source>
         <translation>Έξοδος</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/DiffViewer.cpp" line="51"/>
         <source>Expected</source>
         <translation>Αναμενόμενα</translation>
     </message>
@@ -3086,26 +3878,33 @@ Not all vim commands are supported, please check https://github.com/cpeditor/Fak
 <context>
     <name>Widgets::Stopwatch</name>
     <message>
+        <location filename="../src/Widgets/Stopwatch.cpp" line="38"/>
+        <location filename="../src/Widgets/Stopwatch.cpp" line="159"/>
         <source>Start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Widgets/Stopwatch.cpp" line="162"/>
         <source>Pause</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Widgets/Stopwatch.cpp" line="165"/>
         <source>Resume</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Widgets/Stopwatch.cpp" line="39"/>
         <source>Reset</source>
         <translation type="unfinished">Επαναφόρτωση</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/Stopwatch.cpp" line="34"/>
         <source>Stopwatch</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Widgets/Stopwatch.cpp" line="37"/>
         <source>Show</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3113,162 +3912,222 @@ Not all vim commands are supported, please check https://github.com/cpeditor/Fak
 <context>
     <name>Widgets::StressTesting</name>
     <message>
+        <location filename="../src/Widgets/StressTesting.cpp" line="65"/>
+        <location filename="../src/Widgets/StressTesting.cpp" line="258"/>
+        <location filename="../src/Widgets/StressTesting.cpp" line="320"/>
+        <location filename="../src/Widgets/StressTesting.cpp" line="332"/>
+        <location filename="../src/Widgets/StressTesting.cpp" line="342"/>
+        <location filename="../src/Widgets/StressTesting.cpp" line="349"/>
+        <location filename="../src/Widgets/StressTesting.cpp" line="358"/>
+        <location filename="../src/Widgets/StressTesting.cpp" line="393"/>
+        <location filename="../src/Widgets/StressTesting.cpp" line="394"/>
+        <location filename="../src/Widgets/StressTesting.cpp" line="395"/>
+        <location filename="../src/Widgets/StressTesting.cpp" line="548"/>
+        <location filename="../src/Widgets/StressTesting.cpp" line="571"/>
+        <location filename="../src/Widgets/StressTesting.cpp" line="738"/>
         <source>Stress Testing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Widgets/StressTesting.cpp" line="72"/>
         <source>Generator Path:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Widgets/StressTesting.cpp" line="94"/>
         <source>Example: &quot;10 [5..100] abacaba&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Widgets/StressTesting.cpp" line="103"/>
         <source>Standard Program Path:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Widgets/StressTesting.cpp" line="122"/>
         <source>Start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Widgets/StressTesting.cpp" line="125"/>
         <source>Stop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Widgets/StressTesting.cpp" line="258"/>
         <source>Invalid arguments pattern</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Widgets/StressTesting.cpp" line="336"/>
         <source>Read Generator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Widgets/StressTesting.cpp" line="338"/>
         <source>Read Standard Program</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Widgets/StressTesting.cpp" line="342"/>
         <source>Failed to open generator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Widgets/StressTesting.cpp" line="349"/>
         <source>Failed to open standard program</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Widgets/StressTesting.cpp" line="358"/>
         <source>Failed to create temporary directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Widgets/StressTesting.cpp" line="398"/>
         <source>Read testlib.h</source>
         <translation type="unfinished">Ανάγνωση testlib.h</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/StressTesting.cpp" line="401"/>
         <source>Save testlib.h</source>
         <translation type="unfinished">Αποθήκευση testlib.h</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/StressTesting.cpp" line="422"/>
+        <location filename="../src/Widgets/StressTesting.cpp" line="427"/>
+        <location filename="../src/Widgets/StressTesting.cpp" line="436"/>
+        <location filename="../src/Widgets/StressTesting.cpp" line="443"/>
+        <location filename="../src/Widgets/StressTesting.cpp" line="450"/>
         <source>Compiler</source>
         <translation type="unfinished">Μεταγλωττιστής</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/StressTesting.cpp" line="571"/>
         <source>Running with arguments &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Widgets/StressTesting.cpp" line="412"/>
+        <location filename="../src/Widgets/StressTesting.cpp" line="755"/>
         <source>Generator</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Widgets/StressTesting.cpp" line="414"/>
+        <location filename="../src/Widgets/StressTesting.cpp" line="759"/>
         <source>User program</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Widgets/StressTesting.cpp" line="416"/>
+        <location filename="../src/Widgets/StressTesting.cpp" line="763"/>
         <source>Standard program</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Widgets/StressTesting.cpp" line="640"/>
         <source>Time Limit Exceeded</source>
         <translation type="unfinished">Ξεπεράστηκε το χρονικό περιθώριο (TLE)</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/StressTesting.cpp" line="643"/>
         <source>Execution has finished with non-zero exitcode %1 in %2ms</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Widgets/StressTesting.cpp" line="670"/>
         <source>The program was killed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Widgets/StressTesting.cpp" line="679"/>
         <source>Output limit exceeded</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Widgets/StressTesting.cpp" line="548"/>
         <source>All tests finished</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Widgets/StressTesting.cpp" line="422"/>
         <source>%1 compilation has started</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Widgets/StressTesting.cpp" line="427"/>
         <source>%1 compilation has finished</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Widgets/StressTesting.cpp" line="436"/>
         <source>%1 compilation error: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Widgets/StressTesting.cpp" line="443"/>
         <source>%1 compilation failed: %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Widgets/StressTesting.cpp" line="450"/>
         <source>%1 compilation killed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Widgets/StressTesting.cpp" line="700"/>
         <source>Counterexample Found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Widgets/StressTesting.cpp" line="67"/>
+        <location filename="../src/Widgets/StressTesting.cpp" line="172"/>
         <source>User Program: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Widgets/StressTesting.cpp" line="713"/>
         <source>Add to testcases</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Widgets/StressTesting.cpp" line="714"/>
         <source>Ignore</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Widgets/StressTesting.cpp" line="715"/>
         <source>Stop stress testing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Widgets/StressTesting.cpp" line="738"/>
         <source>Counterexample added to testcases</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Widgets/StressTesting.cpp" line="535"/>
         <source>Elapsed: %1:%2  |  Completed: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Widgets/StressTesting.cpp" line="772"/>
         <source>Select generator from opened files...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Widgets/StressTesting.cpp" line="776"/>
         <source>Select standard program from opened files...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Widgets/StressTesting.cpp" line="91"/>
         <source>Use Generator Arguments:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../src/Widgets/StressTesting.cpp" line="320"/>
         <source>Please select a generator and a standard program</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3276,58 +4135,72 @@ Not all vim commands are supported, please check https://github.com/cpeditor/Fak
 <context>
     <name>Widgets::TestCase</name>
     <message>
+        <location filename="../src/Widgets/TestCase.cpp" line="55"/>
         <source>Input</source>
         <translation>Είσοδος</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCase.cpp" line="56"/>
         <source>Output</source>
         <translation>Έξοδος</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCase.cpp" line="57"/>
         <source>Expected</source>
         <translation>Αναμενόμενα</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCase.cpp" line="59"/>
         <source>Run</source>
         <translation>Εκτέλεση</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCase.cpp" line="62"/>
         <source>Del</source>
         <translation>Διαγραφή</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCase.cpp" line="110"/>
         <source>Test on a single testcase</source>
         <translation>Δοκιμή μιας δοκιμής</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCase.cpp" line="111"/>
         <source>Open the Diff Viewer</source>
         <translation>Άνοιγμα του Diff Viewer</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCase.cpp" line="176"/>
         <source>Input #%1</source>
         <translation>Είσοδος #%1</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCase.cpp" line="177"/>
         <source>Output #%1</source>
         <translation>Έξοδος #%1</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCase.cpp" line="178"/>
         <source>Expected #%1</source>
         <translation>Αναμενόμενο #%1</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCase.cpp" line="293"/>
         <source>Delete Testcase</source>
         <translation>Διαγραφή δοκιμής</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCase.cpp" line="294"/>
         <source>Are you sure you want to delete test case #%1?</source>
         <translation>Είστε σίγουροι ότι θέλετε να διαγράψετε την δοκιμή #%1?</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCase.cpp" line="302"/>
         <source>Diff Viewer[%1]</source>
         <translation>Diff Viewer[%1]</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCase.cpp" line="303"/>
         <source>The output/expected contains more than %1 characters, HTML diff viewer is disabled. You can change the length limit at %2.</source>
         <translation>Η αναμενόμενη έξοδος μπορεί να είναι περισσότερο από %1 χαρακτήρες, ο HTML diff viewer είναι μη ενεργοποιημένος. Μπορείτε να αλλάξετε το όριο μήκους στο %2.</translation>
     </message>
@@ -3335,42 +4208,54 @@ Not all vim commands are supported, please check https://github.com/cpeditor/Fak
 <context>
     <name>Widgets::TestCaseEdit</name>
     <message>
+        <location filename="../src/Widgets/TestCaseEdit.cpp" line="187"/>
+        <location filename="../src/Widgets/TestCaseEdit.cpp" line="189"/>
         <source>Load From File</source>
         <translation>Φόρτωση αρχείου</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCaseEdit.cpp" line="194"/>
         <source>Edit in Bigger Window</source>
         <translation>Τροποποίηση σε μεγαλύτερο παράθυρο</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCaseEdit.cpp" line="197"/>
         <source>Edit Testcase</source>
         <translation>Αλλαγή δοκιμής</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCaseEdit.cpp" line="117"/>
         <source>Input</source>
         <translation>Είσοδος</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCaseEdit.cpp" line="122"/>
         <source>Output</source>
         <translation>Έξοδος</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCaseEdit.cpp" line="127"/>
         <source>Expected</source>
         <translation>Αναμενόμενα</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCaseEdit.cpp" line="177"/>
         <source>Save to file</source>
         <translation>Αποθήκευση σε αρχείο</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCaseEdit.cpp" line="180"/>
+        <location filename="../src/Widgets/TestCaseEdit.cpp" line="182"/>
         <source>Save test case to file</source>
         <translation>Αποθήκευση δοκιμής σε αρχείο</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCaseEdit.cpp" line="132"/>
         <source>Only the first %1 characters are shown. Now the test case editor is read-only. You can set the length limit at %2.</source>
         <translation>Μόνο οι πρώτοι %1 χαρακτήρες εμφανίζονται. Τώρα ο συντάκτης δοκιμών είναι για ανάγνωση μόνο. Μπορείτε να αλλάξετε το όριο μήκους στο %2.</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCaseEdit.cpp" line="205"/>
         <source>Copy Output to Expected</source>
         <translation>Αντιγραφή εξόδου στο αναμενόμενο</translation>
     </message>
@@ -3378,173 +4263,223 @@ Not all vim commands are supported, please check https://github.com/cpeditor/Fak
 <context>
     <name>Widgets::TestCases</name>
     <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="48"/>
         <source>Test Cases</source>
         <translation>Δοκιμές</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="50"/>
         <source>Checker:</source>
         <translation>Ελεγκτής:</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="51"/>
         <source>Add Test</source>
         <translation>Εισάγεται δοκιμή</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="52"/>
         <source>More</source>
         <translation>Περισσότερα</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="53"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="539"/>
         <source>Add Checker</source>
         <translation>Εισαγωγή ελεγκτή</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="73"/>
         <source>Add a custom testlib checker</source>
         <translation>Εισαγωγή προσαρμοσμένου testlib ελεκτή</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="79"/>
         <source>Add Pairs of Testcases From Files</source>
         <translation>Εισάγετε ζευγάρια δοκιμών απο αρχεία</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="81"/>
         <source>Choose Testcase Files</source>
         <translation>Επιλογή αρχείων δοκιμών</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="113"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="134"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="143"/>
         <source>Load Testcases</source>
         <translation>Φόρτωση δοκιμών</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="114"/>
         <source>A pair of testcases [%1] and [%2] is loaded</source>
         <translation>Ένα ζευγάρι απο δοκιμές [%1] και [%2] είναι φορτωμένο</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="134"/>
         <source>An input [%1] is loaded</source>
         <translation>Η είσοδος [%1] είναι φορτωμένη</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="144"/>
         <source>The following files are not loaded because they are not matched:%1. You can set the matching rules at %2.</source>
         <translation>Τα παρακάτω αρχεία δεν φορτώθηκαν επειδή δεν έχουνε ταυτοποιηθή:%1. Μπορείτε να αλλάξετε τους κανόνες ταυτοποίησης στο %2.</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="182"/>
         <source>Are you sure you want to delete all test cases?</source>
         <translation>Είστε σίγουροι ότι θέλετε να διαγράψετε όλες τις δοκιμές;</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="174"/>
         <source>Invert</source>
         <extracomment>This action checks the checkboxes which were not checked, and unchecks the ones which were checked</extracomment>
         <translation>Αντιστροφή</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="256"/>
         <source>Ignore trailing spaces</source>
         <translation>Αγνόηση επόμενων κενών</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="256"/>
         <source>Strictly the same</source>
         <translation>Απαραίτητως τα ίδια</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="256"/>
         <source>ncmp - Compare int64s</source>
         <translation>ncmp - Compare int64s</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="257"/>
         <source>rcmp4 - Compare doubles, max error 1e-4</source>
         <translation>rcmp4 - Compare doubles, max error 1e-4</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="258"/>
         <source>rcmp6 - Compare doubles, max error 1e-6</source>
         <translation>rcmp6 - Compare doubles, max error 1e-6</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="259"/>
         <source>rcmp9 - Compare doubles, max error 1e-9</source>
         <translation>rcmp9 - Compare doubles, max error 1e-9</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="259"/>
         <source>wcmp - Compare tokens</source>
         <translation>wcmp - Σύγκριση tokens</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="260"/>
         <source>nyesno - Compare YES/NOs, case insensitive</source>
         <translation>nyesno - Σύγκριση YES/NOs, case insensitive</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="291"/>
         <source>Add Test Case</source>
         <translation>Εισαγωγή δοκιμής</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="292"/>
         <source>There are already %1 test cases, you can&apos;t add more.</source>
         <translation>Υπάρχουνε ίδη οι %1 δοκιμές, δεν μπορείτε να προσθέσεται παραπάνω.</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="369"/>
         <source>Input #%1</source>
         <translation>Εισαγωγή #%1</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="370"/>
         <source>Expected #%1</source>
         <translation>Αναμενόμενο #%1</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="385"/>
         <source>Save Input #%1</source>
         <translation>Αποθήκευση εισόδου #%1</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="387"/>
         <source>Save Expected #%1</source>
         <translation>Αποθήκευση αναμενόμενων #%1</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="403"/>
         <source>Load %1</source>
         <translation>Φόρτωση %1</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="108"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="109"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="130"/>
         <source>Testcases</source>
         <translation>Δοκιμές</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="72"/>
         <source>Unaccepted / Accepted / Total</source>
         <translation>Μη αποδεκτές / Αποδεκτές / Συνολικά</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="154"/>
         <source>Check All</source>
         <extracomment>Here &quot;Check&quot; means to check the checkbox</extracomment>
         <translation>Τσεκάρισμα όλων</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="160"/>
         <source>Uncheck All</source>
         <translation>Uncheck All</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="166"/>
         <source>Uncheck Accepted</source>
         <translation>Uncheck αποδεγμένα</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="180"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="182"/>
         <source>Delete All</source>
         <translation>Διαγραφή όλων</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="193"/>
         <source>Delete Empty</source>
         <translation>Διαγραφή άδειων</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="205"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="208"/>
         <source>Delete Checked</source>
         <extracomment>Here &quot;checked&quot; means the checkbox is checked</extracomment>
         <translation>Διαγραφεί τσεκαρισμένο</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="209"/>
         <source>Are you sure you want to delete all checked test cases?</source>
         <translation>Είστε σίγουροι ότι θέλετε να διαγράψετε όλες τις τσεκαρισμένες δοκιμές;</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="223"/>
         <source>Copy Test Cases</source>
         <translation>Αντιγραφή δοκιμών</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="228"/>
         <source>Paste Test Cases</source>
         <translation>Επικόληση δοκιμών</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="233"/>
+        <location filename="../src/Widgets/TestCases.cpp" line="236"/>
         <source>Copy Output to Expected</source>
         <translation>Αντιγραφή εξόδου στο αναμενόμενο</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/TestCases.cpp" line="238"/>
         <source>Are you sure you want to copy all checked output to their corresponding expected?</source>
         <extracomment>Here &quot;checked&quot; means the checkbox is checked</extracomment>
         <translation>Είστε σίγουροι ότι θέλετε να αντιγράψετε όλη την τσεκαρισμένη έξοδο στα αντοίστιχα αναμενόμενα;</translation>
@@ -3553,26 +4488,32 @@ Not all vim commands are supported, please check https://github.com/cpeditor/Fak
 <context>
     <name>Widgets::UpdatePresenter</name>
     <message>
+        <location filename="../src/Widgets/UpdatePresenter.cpp" line="38"/>
         <source>Download</source>
         <translation>Λήψη</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/UpdatePresenter.cpp" line="39"/>
         <source>Close</source>
         <translation>Κλείσιμο</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/UpdatePresenter.cpp" line="52"/>
         <source>New update available</source>
         <translation>Υπάρχει νέα έκδοση</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/UpdatePresenter.cpp" line="65"/>
         <source>A new %1 update &lt;a href=&quot;%2&quot;&gt;%3&lt;/a&gt; is available. See below for the changelog.&lt;br /&gt;We highly recommend you keep the editor up to date so that you won&apos;t miss the awesome new features and bug fixes.</source>
         <translation>μια νέα %1 έκδωση &lt;a href=&quot;%2&quot;&gt;%3&lt;/a&gt; είναι διαθέσιμη. Δείτε παρακάτω για τις αλλαγε.&lt;br /&gt; Συστίνουμε να κρατήσετε τον συντάκτη ενημερομένο ώστε να μην χάσεται νέες λειτουργίες.</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/UpdatePresenter.cpp" line="67"/>
         <source>beta</source>
         <translation>Beta</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/UpdatePresenter.cpp" line="67"/>
         <source>stable</source>
         <translation>Stable</translation>
     </message>
@@ -3580,30 +4521,37 @@ Not all vim commands are supported, please check https://github.com/cpeditor/Fak
 <context>
     <name>Widgets::UpdateProgressDialog</name>
     <message>
+        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="38"/>
         <source>Cancel</source>
         <translation>Ακύρωση</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="39"/>
         <source>Close this dialog and abort the update check</source>
         <translation>Κλείστε αυτόν τον κατάλογο και ματαιώσετε τον έλεγχο ενημερόσεων</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="47"/>
         <source>Update Checker</source>
         <translation>Ελεχτής ενημερόσεων</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="57"/>
         <source>Fetching the list of releases...</source>
         <translation>Λήψη λίστα ενημερώσεων...</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="65"/>
         <source>Error: %1&lt;br /&gt;&lt;br /&gt;Updater failed to check for update. Please manually check for update at&lt;br /&gt;&lt;a href=&quot;https://cpeditor.org/download&quot;&gt;https://cpeditor.org/download&lt;/a&gt; or &lt;a href=&quot;https://github.com/cpeditor/cpeditor/releases&quot;&gt;https://github.com/cpeditor/cpeditor/releases&lt;/a&gt;.</source>
         <translation>Σφάλμα: %1&lt;br /&gt;&lt;br /&gt; Ο ενημερωτής απέτυχε να ελέξη για ενημερώσης. Παρακαλώ δείτε χειροκίνιτα τις ενημερώσεις στο &lt;br /&gt;&lt;a href=&quot;https://cpeditor.org/ru/download&quot;&gt;https://cpeditor.org/ru/download&lt;/a&gt; ή &lt;a href=&quot;https://github.com/cpeditor/cpeditor/releases&quot;&gt;https://github.com/cpeditor/cpeditor/releases&lt;/a&gt;.</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="75"/>
         <source>Close</source>
         <translation>Закрыть</translation>
     </message>
     <message>
+        <location filename="../src/Widgets/UpdateProgressDialog.cpp" line="76"/>
         <source>Hooray!! You are already using the latest release of CP Editor.</source>
         <translatorcomment>The most suitable translation</translatorcomment>
         <translation>Μπράβο, χρησομοποιήτε την τελευτέα έκδοση του CP συντάκτη.</translation>
