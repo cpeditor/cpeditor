@@ -189,7 +189,7 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
 
     AddPageHelper(this)
         .page(TRKEY("Code Edit"),
-              {"Tab Width", "Cursor Width", "Auto Indent", "Wrap Text", "Auto Complete Parentheses", "Auto Remove Parentheses",
+              {"Tab Width", "Cursor Width", "Auto Indent", "Wrap Text", "Ctrl Scroll Zoom", "Auto Complete Parentheses", "Auto Remove Parentheses",
                "Tab Jump Out Parentheses", "Replace Tabs", "FakeVim/Enable", "FakeVim/RC"})
         .dir(TRKEY("Language"))
             .page(TRKEY("General"), {"Default Language"})

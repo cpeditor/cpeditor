@@ -438,6 +438,13 @@
     "tip": "Wrap a line into several lines if it doesn't fit into the screen."
   },
   {
+    "name": "Ctrl Scroll Zoom",
+    "desc": "Enable Ctrl+Scroll to change font size",
+    "type": "bool",
+    "default": true,
+    "tip": "Change the editor font size by scrolling the mouse wheel while holding the Ctrl key."
+  },
+  {
     "name": "Beta",
     "desc": "Use the beta version",
     "type": "bool",
