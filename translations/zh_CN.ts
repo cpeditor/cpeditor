@@ -272,6 +272,18 @@
         <translation>在编辑器中打开一个新标签页</translation>
     </message>
     <message>
+        <source>C++</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Java</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Python</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Save the file on the disk</source>
         <translation>在磁盘上保存文件</translation>
     </message>
@@ -492,24 +504,12 @@ git 提交编号: %3
         <translation>从模板新建文件</translation>
     </message>
     <message>
-        <source>C++</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Open a new tab with C++ template</source>
         <translation>基于C++模版打开新标签页</translation>
     </message>
     <message>
-        <source>Java</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Open a new tab with Java template</source>
         <translation>基于Java模版打开新标签页</translation>
-    </message>
-    <message>
-        <source>Python</source>
-        <translation></translation>
     </message>
     <message>
         <source>Open a new tab with Python template</source>
@@ -943,7 +943,7 @@ Press any key to exit</source>
     <name>FindReplaceForm</name>
     <message>
         <source>Form</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Find:</source>
@@ -1220,7 +1220,7 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>CP Editor</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>cursor info</source>
@@ -1248,7 +1248,7 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>C++</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Auto Save</source>
@@ -1508,14 +1508,6 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation>扩展</translation>
     </message>
     <message>
-        <source>Clang Format</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Language Server</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>%1 Commands</source>
         <translation>%1 命令</translation>
     </message>
@@ -1532,16 +1524,32 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation>%1 括号</translation>
     </message>
     <message>
+        <source>Clang Format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>YAPF</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Language Server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>%1 Server</source>
         <translation></translation>
     </message>
     <message>
         <source>Competitive Companion</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>CF Tool</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>WakaTime</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>File Path</source>
@@ -1600,20 +1608,12 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation>字体</translation>
     </message>
     <message>
-        <source>YAPF</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Code Formatting</source>
         <translation>代码格式化</translation>
     </message>
     <message>
         <source>Test Cases</source>
         <translation>测试用例</translation>
-    </message>
-    <message>
-        <source>WakaTime</source>
-        <translation></translation>
     </message>
     <message>
         <source>Stopwatch</source>
@@ -1881,6 +1881,14 @@ closing parenthesis to jump out of a parenthesis.
 This can be overridden for each parenthesis in each language.</source>
         <translation>启用时可以使用 Tab 来代替对应右括号以跳出括号。
 此设置可以被各个语言的设置所覆盖。</translation>
+    </message>
+    <message>
+        <source>Enable Ctrl+Scroll to change font size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Change the editor font size by scrolling the mouse wheel while holding the Ctrl key.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Use spaces instead of a tab character.</source>

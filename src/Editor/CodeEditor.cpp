@@ -1399,4 +1399,27 @@ QColor CodeEditor::getTextColor(KSyntaxHighlighting::Theme::TextStyle style)
 {
     return QColor::fromRgba(theme.textColor(style));
 }
+void CodeEditor::wheelEvent(QWheelEvent *e)
+{
+    if (e->modifiers() & Qt::ControlModifier)
+    {
+
+        if (SettingsManager::get("Ctrl Scroll Zoom").toBool())
+        {
+            if (e->angleDelta().y() > 0)
+            {
+                zoomIn(1);
+            }
+            else if (e->angleDelta().y() < 0)
+            {
+                zoomOut(1);
+            }
+        }
+
+        e->accept();
+        return;
+    }
+
+    QPlainTextEdit::wheelEvent(e);
+}
 } // namespace Editor

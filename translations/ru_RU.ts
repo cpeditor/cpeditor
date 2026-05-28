@@ -248,6 +248,10 @@
         <translation>Найти и заменить</translation>
     </message>
     <message>
+        <source>Stress Testing...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Preferences</source>
         <translation>Параметры</translation>
     </message>
@@ -270,6 +274,26 @@
     <message>
         <source>Open a new tab in the editor</source>
         <translation>Открыть в новой вкладке редактора</translation>
+    </message>
+    <message>
+        <source>Generator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open a new tab with generator template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open a new tab with C++ template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open a new tab with Java template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open a new tab with Python template</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Save the file on the disk</source>
@@ -322,6 +346,10 @@
     <message>
         <source>&amp;File</source>
         <translation>&amp;Файл</translation>
+    </message>
+    <message>
+        <source>New File From Template</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&amp;Edit</source>
@@ -476,44 +504,16 @@ Git commit hash: %3
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Stress Testing...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Generator</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Open a new tab with generator template</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>New File From Template</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>C++</source>
         <translation type="unfinished">C++</translation>
-    </message>
-    <message>
-        <source>Open a new tab with C++ template</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Java</source>
         <translation type="unfinished">Java</translation>
     </message>
     <message>
-        <source>Open a new tab with Java template</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Python</source>
         <translation type="unfinished">Python</translation>
-    </message>
-    <message>
-        <source>Open a new tab with Python template</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1504,12 +1504,28 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation>Привязать файл и задачу</translation>
     </message>
     <message>
+        <source>Stopwatch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stress Testing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Generator Template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Extensions</source>
         <translation>Расширения</translation>
     </message>
     <message>
         <source>Clang Format</source>
         <translation>Clang Format</translation>
+    </message>
+    <message>
+        <source>YAPF</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Language Server</source>
@@ -1542,6 +1558,10 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <source>CF Tool</source>
         <translation>CF Tool</translation>
+    </message>
+    <message>
+        <source>WakaTime</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>File Path</source>
@@ -1600,32 +1620,12 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation>Шрифт</translation>
     </message>
     <message>
-        <source>YAPF</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Code Formatting</source>
         <translation>Форматирование кода</translation>
     </message>
     <message>
         <source>Test Cases</source>
         <translation type="unfinished">Тесткейсы</translation>
-    </message>
-    <message>
-        <source>WakaTime</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Stopwatch</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Stress Testing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Generator Template</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1885,6 +1885,14 @@ This can be overridden for each parenthesis in each language.</source>
         <translation>Когда это включено, вы можете использовать Tab вместо
 закрывающая скобки, чтобы переключаться на другой текст.
 Это может быть переопределено для каждой круглой скобки на каждом языке.</translation>
+    </message>
+    <message>
+        <source>Enable Ctrl+Scroll to change font size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Change the editor font size by scrolling the mouse wheel while holding the Ctrl key.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Use spaces instead of a tab character.</source>
