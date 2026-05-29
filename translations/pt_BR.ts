@@ -248,6 +248,10 @@
         <translation>Procurar e substituir</translation>
     </message>
     <message>
+        <source>Stress Testing...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Preferences</source>
         <translation>Preferências</translation>
     </message>
@@ -270,6 +274,26 @@
     <message>
         <source>Open a new tab in the editor</source>
         <translation>Abrir uma nova aba no editor</translation>
+    </message>
+    <message>
+        <source>Generator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open a new tab with generator template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open a new tab with C++ template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open a new tab with Java template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open a new tab with Python template</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Save the file on the disk</source>
@@ -322,6 +346,10 @@
     <message>
         <source>&amp;File</source>
         <translation>&amp;Arquivo</translation>
+    </message>
+    <message>
+        <source>New File From Template</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&amp;Edit</source>
@@ -476,44 +504,16 @@ Sistema Operacional: %5</translation>
         <translation>Pressionar a tecla F11 para sair do modo de tela inteira.</translation>
     </message>
     <message>
-        <source>Stress Testing...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Generator</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Open a new tab with generator template</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>New File From Template</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>C++</source>
         <translation type="unfinished">C++</translation>
-    </message>
-    <message>
-        <source>Open a new tab with C++ template</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Java</source>
         <translation type="unfinished">Java</translation>
     </message>
     <message>
-        <source>Open a new tab with Java template</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Python</source>
         <translation type="unfinished">Python</translation>
-    </message>
-    <message>
-        <source>Open a new tab with Python template</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1504,6 +1504,14 @@ Se for parcialmente desejada, a escolha em Editar Código será usada.</translat
         <translation>Associar arquivo e problema</translation>
     </message>
     <message>
+        <source>Stress Testing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Generator Template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Extensions</source>
         <translation>Extensões</translation>
     </message>
@@ -1618,14 +1626,6 @@ Se for parcialmente desejada, a escolha em Editar Código será usada.</translat
     <message>
         <source>Auto Save</source>
         <translation>Salvamento automático</translation>
-    </message>
-    <message>
-        <source>Stress Testing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Generator Template</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1884,6 +1884,14 @@ This can be overridden for each parenthesis in each language.</source>
         <translation>Quando habilitado, poderá usar Tab para fechar 
 os parênteses ao sair.
 Isso poderá ser substituído pelo símbolo correspondente em cada linguagem.</translation>
+    </message>
+    <message>
+        <source>Enable Ctrl+Scroll to change font size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Change the editor font size by scrolling the mouse wheel while holding the Ctrl key.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Use spaces instead of a tab character.</source>

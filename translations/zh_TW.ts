@@ -271,6 +271,38 @@ Git commit hash：%3
         <translation>在編輯器中開啟新分頁</translation>
     </message>
     <message>
+        <source>Generator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open a new tab with generator template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>C++</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open a new tab with C++ template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Java</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open a new tab with Java template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Python</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open a new tab with Python template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Save the file on the disk</source>
         <translation>將檔案儲存到磁碟</translation>
     </message>
@@ -387,6 +419,10 @@ Git commit hash：%3
         <translation>使用程式碼片段…</translation>
     </message>
     <message>
+        <source>Stress Testing...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Preferences</source>
         <translation>偏好設定</translation>
     </message>
@@ -460,6 +496,10 @@ Git commit hash：%3
         <translation>檔案(&amp;F)</translation>
     </message>
     <message>
+        <source>New File From Template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>&amp;Edit</source>
         <translation>編輯(&amp;E)</translation>
     </message>
@@ -478,46 +518,6 @@ Git commit hash：%3
     <message>
         <source>&amp;Help</source>
         <translation>說明(&amp;H)</translation>
-    </message>
-    <message>
-        <source>Stress Testing...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Generator</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Open a new tab with generator template</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>New File From Template</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>C++</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Open a new tab with C++ template</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Java</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Open a new tab with Java template</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Python</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Open a new tab with Python template</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1268,7 +1268,7 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>CP Editor</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>cursor info</source>
@@ -1296,7 +1296,7 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>C++</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1557,6 +1557,18 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation>載入外部的檔案變更</translation>
     </message>
     <message>
+        <source>Stopwatch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stress Testing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Generator Template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Extensions</source>
         <translation>擴充功能</translation>
     </message>
@@ -1566,15 +1578,15 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>Clang Format</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>YAPF</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Language Server</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>%1 Server</source>
@@ -1582,11 +1594,15 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source>Competitive Companion</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>CF Tool</source>
-        <translation></translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>WakaTime</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>File Path</source>
@@ -1623,22 +1639,6 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <source>Network Proxy</source>
         <translation>網路 Proxy</translation>
-    </message>
-    <message>
-        <source>WakaTime</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Stopwatch</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Stress Testing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Generator Template</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1999,6 +1999,14 @@ Without modification：不論程式碼是否被修改，每經一段時間自動
     <message>
         <source>Wrap a line into several lines if it doesn&apos;t fit into the screen.</source>
         <translation>當文字內容超出螢幕範圍時，將其分為幾列顯示。</translation>
+    </message>
+    <message>
+        <source>Enable Ctrl+Scroll to change font size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Change the editor font size by scrolling the mouse wheel while holding the Ctrl key.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Use the beta version</source>

@@ -248,6 +248,10 @@
         <translation>Εύρημα και αντικατάσταση</translation>
     </message>
     <message>
+        <source>Stress Testing...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Preferences</source>
         <translation>Προτιμήσεις</translation>
     </message>
@@ -270,6 +274,26 @@
     <message>
         <source>Open a new tab in the editor</source>
         <translation>Άνοιγμα νέας καρτέλας στον συντάκτη</translation>
+    </message>
+    <message>
+        <source>Generator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open a new tab with generator template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open a new tab with C++ template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open a new tab with Java template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open a new tab with Python template</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Save the file on the disk</source>
@@ -322,6 +346,10 @@
     <message>
         <source>&amp;File</source>
         <translation>&amp;Αρχείο</translation>
+    </message>
+    <message>
+        <source>New File From Template</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&amp;Edit</source>
@@ -476,44 +504,16 @@ Build time: %4
         <translation>Πατήστε το F11 κουμπί για να βγείτε από πλήρες οθόνη.</translation>
     </message>
     <message>
-        <source>Stress Testing...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Generator</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Open a new tab with generator template</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>New File From Template</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>C++</source>
         <translation type="unfinished">C++</translation>
-    </message>
-    <message>
-        <source>Open a new tab with C++ template</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Java</source>
         <translation type="unfinished">Java</translation>
     </message>
     <message>
-        <source>Open a new tab with Java template</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Python</source>
         <translation type="unfinished">Python</translation>
-    </message>
-    <message>
-        <source>Open a new tab with Python template</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1504,6 +1504,18 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <translation>Δέσμευση αρχείου και προβλήματος</translation>
     </message>
     <message>
+        <source>Stopwatch</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Stress Testing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Generator Template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Extensions</source>
         <translation>Επεκτάσεις</translation>
     </message>
@@ -1614,18 +1626,6 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     <message>
         <source>WakaTime</source>
         <translation>WakaTime</translation>
-    </message>
-    <message>
-        <source>Stopwatch</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Stress Testing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Generator Template</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1882,6 +1882,14 @@ closing parenthesis to jump out of a parenthesis.
 This can be overridden for each parenthesis in each language.</source>
         <translation>Όταν αυτό είναι ενεργοποιημένο, μπορείτε να χρησιμοποιήσετε το κουμπί Tab εκτός από το να κλείσετε τις παρενθέσεις για να βγείτε από αυτές τις παρενθέσεις.
 Αυτό μπορεί να παρακαμπμφθεί για κάθε παρένθεση για κάθε γλώσσα.</translation>
+    </message>
+    <message>
+        <source>Enable Ctrl+Scroll to change font size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Change the editor font size by scrolling the mouse wheel while holding the Ctrl key.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Use spaces instead of a tab character.</source>

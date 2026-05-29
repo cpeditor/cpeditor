@@ -268,6 +268,26 @@ Sistema Operativo: %5</translation>
         <translation>Abrir una nueva pestaña en el editor</translation>
     </message>
     <message>
+        <source>Generator</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open a new tab with generator template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open a new tab with C++ template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open a new tab with Java template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Open a new tab with Python template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Save the file on the disk</source>
         <translation>Guardar el archivo en el disco</translation>
     </message>
@@ -384,6 +404,10 @@ Sistema Operativo: %5</translation>
         <translation>Utilizar snippet...</translation>
     </message>
     <message>
+        <source>Stress Testing...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Preferences</source>
         <translation>Preferencias</translation>
     </message>
@@ -456,6 +480,10 @@ Sistema Operativo: %5</translation>
         <translation>&amp;Archivo</translation>
     </message>
     <message>
+        <source>New File From Template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>&amp;Edit</source>
         <translation>&amp;Editar</translation>
     </message>
@@ -476,44 +504,16 @@ Sistema Operativo: %5</translation>
         <translation>&amp;Ayuda</translation>
     </message>
     <message>
-        <source>Stress Testing...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Generator</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Open a new tab with generator template</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>New File From Template</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>C++</source>
         <translation type="unfinished">C++</translation>
-    </message>
-    <message>
-        <source>Open a new tab with C++ template</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Java</source>
         <translation type="unfinished">Java</translation>
     </message>
     <message>
-        <source>Open a new tab with Java template</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Python</source>
         <translation type="unfinished">Python</translation>
-    </message>
-    <message>
-        <source>Open a new tab with Python template</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1548,6 +1548,14 @@ Si está parcialmente marcado, la configuración global en Editar Código t se u
         <translation>Cronómetro</translation>
     </message>
     <message>
+        <source>Stress Testing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Generator Template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Extensions</source>
         <translation>Extensiones</translation>
     </message>
@@ -1618,14 +1626,6 @@ Si está parcialmente marcado, la configuración global en Editar Código t se u
     <message>
         <source>Network Proxy</source>
         <translation>Proxy de red</translation>
-    </message>
-    <message>
-        <source>Stress Testing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Generator Template</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1985,6 +1985,14 @@ Sin modificación: la auto-guardado ocurre con un intervalo constante independie
     <message>
         <source>Wrap a line into several lines if it doesn&apos;t fit into the screen.</source>
         <translation>Ajusta una línea en varias líneas si no cabe en la pantalla.</translation>
+    </message>
+    <message>
+        <source>Enable Ctrl+Scroll to change font size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Change the editor font size by scrolling the mouse wheel while holding the Ctrl key.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Use the beta version</source>
