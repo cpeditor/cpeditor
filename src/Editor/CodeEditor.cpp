@@ -59,6 +59,7 @@
 #include <QTextCharFormat>
 #include <QTextStream>
 #include <QToolTip>
+#include <algorithm>
 
 namespace Editor
 {
@@ -490,6 +491,152 @@ void CodeEditor::highlightOccurrences()
     updateExtraSelections();
 }
 
+void CodeEditor::selectNextOccurrence()
+{
+    auto cursor = textCursor();
+    
+    // Get the word to search for
+    QString searchWord;
+    int searchStartPos;
+    
+    if (cursor.hasSelection())
+    {
+        searchWord = cursor.selectedText();
+        searchStartPos = cursor.selectionEnd();
+    }
+    else
+    {
+        // Select the word at cursor
+        cursor.select(QTextCursor::WordUnderCursor);
+        searchWord = cursor.selectedText();
+        searchStartPos = cursor.position();
+    }
+    
+    // Validate that it's a valid identifier or number
+    if (!QRegularExpression(
+            R"((?:[_a-zA-Z][_a-zA-Z0-9]*)|(?<=\b|\s|^)(?i)(?:(?:(?:(?:(?:\d+(?:'\d+)*)?\.(?:\d+(?:'\d+)*)(?:e[+-]?(?:\d+(?:'\d+)*))?)|(?:(?:\d+(?:'\d+)*)\.(?:e[+-]?(?:\d+(?:'\d+)*))?)|(?:(?:\d+(?:'\d+)*)(?:e[+-]?(?:\d+(?:'\d+)*)))|(?:0x(?:[0-9a-f]+(?:'[0-9a-f]+)*)?\.(?:[0-9a-f]+(?:'[0-9a-f]+)*)(?:p[+-]?(?:\d+(?:'\d+)*)))|(?:0x(?:[0-9a-f]+(?:'[0-9a-f]+)*)\.?(?:p[+-]?(?:\d+(?:'\d+)*))))[lf]?)|(?:(?:(?:[1-9]\d*(?:'\d+)*)|(?:0[0-7]*(?:'[0-7]+)*)|(?:0x[0-9a-f]+(?:'[0-9a-f]+)*)|(?:0b[01]+(?:'[01]+)*))(?:u?l{0,2}|l{0,2}u?)))(?=\b|\s|$))")
+            .match(searchWord)
+            .captured() == searchWord)
+    {
+        return;
+    }
+    
+    // If this is a new word, clear the previous multi-selection
+    if (searchWord != lastSearchedWord)
+    {
+        multiCursorPositions.clear();
+        lastSearchedWord = searchWord;
+        lastSearchStartPosition = 0;
+        multiSelectionMode = true;
+        
+        // Add the current selection to the list
+        multiCursorPositions.push_back(cursor.selectionStart());
+        multiCursorPositions.push_back(cursor.selectionEnd());
+    }
+    
+    // Find the next occurrence
+    auto *doc = document();
+    cursor.setPosition(lastSearchStartPosition);
+    cursor = doc->find(searchWord, cursor, QTextDocument::FindWholeWords | QTextDocument::FindCaseSensitively);
+    
+    if (!cursor.isNull())
+    {
+        // Add this occurrence to multi-selection
+        multiCursorPositions.push_back(cursor.selectionStart());
+        multiCursorPositions.push_back(cursor.selectionEnd());
+        lastSearchStartPosition = cursor.selectionEnd();
+        
+        // Set the cursor to this occurrence
+        setTextCursor(cursor);
+        
+        // Update visual display
+        updateMultiSelectionDisplay();
+    }
+}
+
+void CodeEditor::selectAllOccurrences()
+{
+    auto cursor = textCursor();
+    
+    // Get the word to search for
+    QString searchWord;
+    if (cursor.hasSelection())
+    {
+        searchWord = cursor.selectedText();
+    }
+    else
+    {
+        // Select the word at cursor
+        cursor.select(QTextCursor::WordUnderCursor);
+        searchWord = cursor.selectedText();
+    }
+    
+    // Validate that it's a valid identifier or number
+    if (!QRegularExpression(
+            R"((?:[_a-zA-Z][_a-zA-Z0-9]*)|(?<=\b|\s|^)(?i)(?:(?:(?:(?:(?:\d+(?:'\d+)*)?\.(?:\d+(?:'\d+)*)(?:e[+-]?(?:\d+(?:'\d+)*))?)|(?:(?:\d+(?:'\d+)*)\.(?:e[+-]?(?:\d+(?:'\d+)*))?)|(?:(?:\d+(?:'\d+)*)(?:e[+-]?(?:\d+(?:'\d+)*)))|(?:0x(?:[0-9a-f]+(?:'[0-9a-f]+)*)?\.(?:[0-9a-f]+(?:'[0-9a-f]+)*)(?:p[+-]?(?:\d+(?:'\d+)*)))|(?:0x(?:[0-9a-f]+(?:'[0-9a-f]+)*)\.?(?:p[+-]?(?:\d+(?:'\d+)*))))[lf]?)|(?:(?:(?:[1-9]\d*(?:'\d+)*)|(?:0[0-7]*(?:'[0-7]+)*)|(?:0x[0-9a-f]+(?:'[0-9a-f]+)*)|(?:0b[01]+(?:'[01]+)*))(?:u?l{0,2}|l{0,2}u?)))(?=\b|\s|$))")
+            .match(searchWord)
+            .captured() == searchWord)
+    {
+        return;
+    }
+    
+    // Clear previous selections
+    multiCursorPositions.clear();
+    multiSelectionMode = true;
+    lastSearchedWord = searchWord;
+    
+    // Find all occurrences
+    auto *doc = document();
+    cursor.movePosition(QTextCursor::Start);
+    cursor = doc->find(searchWord, cursor, QTextDocument::FindWholeWords | QTextDocument::FindCaseSensitively);
+    
+    while (!cursor.isNull())
+    {
+        multiCursorPositions.push_back(cursor.selectionStart());
+        multiCursorPositions.push_back(cursor.selectionEnd());
+        cursor = doc->find(searchWord, cursor, QTextDocument::FindWholeWords | QTextDocument::FindCaseSensitively);
+    }
+    
+    // Update visual display
+    updateMultiSelectionDisplay();
+}
+
+void CodeEditor::clearMultiSelection()
+{
+    multiCursorPositions.clear();
+    multiSelectionMode = false;
+    lastSearchedWord.clear();
+    lastSearchStartPosition = 0;
+    updateMultiSelectionDisplay();
+}
+
+void CodeEditor::updateMultiSelectionDisplay()
+{
+    // Update the ExtraSelection list for visual display
+    occurrencesExtraSelections.clear();
+    
+    if (multiSelectionMode && !multiCursorPositions.isEmpty())
+    {
+        auto *doc = document();
+        for (int i = 0; i < multiCursorPositions.size(); i += 2)
+        {
+            if (i + 1 < multiCursorPositions.size())
+            {
+                QTextCursor c(doc);
+                c.setPosition(multiCursorPositions[i]);
+                c.setPosition(multiCursorPositions[i + 1], QTextCursor::KeepAnchor);
+                
+                QTextEdit::ExtraSelection e;
+                e.cursor = c;
+                e.format.setBackground(getEditorColor(KSyntaxHighlighting::Theme::TextSelection));
+                occurrencesExtraSelections.push_back(e);
+            }
+        }
+    }
+    
+    updateExtraSelections();
+}
+
 void CodeEditor::indent()
 {
     addInEachLineOfSelection(QRegularExpression("^"), SettingsHelper::isReplaceTabs() ? m_tabReplace : "\t");
@@ -847,6 +994,118 @@ void CodeEditor::keyPressEvent(QKeyEvent *e)
     /*     proceedCompleterEnd(); */
     /*     return; */
     /* } */
+
+    // Handle multi-cursor selection shortcuts
+    // Ctrl+D: Select next occurrence
+    if (e->key() == Qt::Key_D && e->modifiers() == Qt::ControlModifier)
+    {
+        selectNextOccurrence();
+        return;
+    }
+
+    // Ctrl+Shift+L: Select all occurrences
+    if (e->key() == Qt::Key_L && e->modifiers() == (Qt::ControlModifier | Qt::ShiftModifier))
+    {
+        selectAllOccurrences();
+        return;
+    }
+
+    // Escape: Clear multi-selection
+    if (e->key() == Qt::Key_Escape && multiSelectionMode)
+    {
+        clearMultiSelection();
+        return;
+    }
+
+    // Handle Backspace and Delete in multi-selection mode
+    if (multiSelectionMode && !multiCursorPositions.isEmpty() && 
+        (e->key() == Qt::Key_Backspace || e->key() == Qt::Key_Delete))
+    {
+        auto cursor = textCursor();
+        cursor.beginEditBlock();
+        
+        // Sort positions in descending order
+        QList<QPair<int, int>> positions;
+        for (int i = 0; i < multiCursorPositions.size(); i += 2)
+        {
+            if (i + 1 < multiCursorPositions.size())
+            {
+                positions.push_back({multiCursorPositions[i], multiCursorPositions[i + 1]});
+            }
+        }
+        
+        std::sort(positions.begin(), positions.end(), [](const auto &a, const auto &b) {
+            return a.first > b.first;
+        });
+        
+        // Delete at each position
+        for (const auto &pos : positions)
+        {
+            if (e->key() == Qt::Key_Backspace && pos.first > 0)
+            {
+                cursor.setPosition(pos.first - 1);
+                cursor.setPosition(pos.first, QTextCursor::KeepAnchor);
+                cursor.removeSelectedText();
+            }
+            else if (e->key() == Qt::Key_Delete && pos.second < document()->characterCount())
+            {
+                cursor.setPosition(pos.second);
+                cursor.setPosition(pos.second + 1, QTextCursor::KeepAnchor);
+                cursor.removeSelectedText();
+            }
+        }
+        
+        cursor.endEditBlock();
+        
+        // Clear multi-selection
+        clearMultiSelection();
+        return;
+    }
+
+    // Handle text input in multi-selection mode
+    if (multiSelectionMode && !multiCursorPositions.isEmpty() && 
+        e->text().length() > 0 && !e->text()[0].isControl())
+    {
+        // For regular text input in multi-selection mode, apply to all selections
+        if (!e->text().isEmpty())
+        {
+            QString insertText = e->text();
+            
+            // Apply text to all multi-cursor positions (in reverse order to maintain positions)
+            auto cursor = textCursor();
+            cursor.beginEditBlock();
+            
+            // Sort positions in descending order to avoid position shifting
+            QList<QPair<int, int>> positions;
+            for (int i = 0; i < multiCursorPositions.size(); i += 2)
+            {
+                if (i + 1 < multiCursorPositions.size())
+                {
+                    positions.push_back({multiCursorPositions[i], multiCursorPositions[i + 1]});
+                }
+            }
+            
+            // Sort in descending order
+            std::sort(positions.begin(), positions.end(), [](const auto &a, const auto &b) {
+                return a.first > b.first;
+            });
+            
+            // Apply text to each position
+            for (const auto &pos : positions)
+            {
+                cursor.setPosition(pos.first);
+                cursor.setPosition(pos.second, QTextCursor::KeepAnchor);
+                cursor.insertText(insertText);
+            }
+            
+            cursor.endEditBlock();
+            
+            // Update multi-cursor positions
+            clearMultiSelection();
+            return;
+        }
+    }
+
     if ((e->key() == Qt::Key_Return || e->key() == Qt::Key_Enter) && e->modifiers() != Qt::NoModifier)
     {
         QKeyEvent pureEnter(QEvent::KeyPress, Qt::Key_Enter, Qt::NoModifier);
