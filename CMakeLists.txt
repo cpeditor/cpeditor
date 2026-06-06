@@ -116,6 +116,7 @@ qt_standard_project_setup(I18N_TRANSLATED_LANGUAGES el_GR es_MX pt_BR ru_RU zh_C
 set(TS_FILES
     translations/el_GR.ts
     translations/es_MX.ts
+    translations/hi_IN.ts
     translations/pt_BR.ts
     translations/ru_RU.ts
     translations/zh_CN.ts
