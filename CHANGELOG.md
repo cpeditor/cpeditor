@@ -6,6 +6,8 @@
 -   Add an option to toggle Ctrl+Scroll font scaling (#1249)
 -   Add middle-click to close tabs. (#1351)
 -   Add vim emulation with [custom commands](https://cpeditor.org/docs/preferences/code-edit/#custom-vim-commands). (#220 and #1270)
+-   Add submit to cses button, with ability to set path in preferences/extensions similar to cf-tool
+-   Modified the file naming scheme as to auto name the files their problem name not task id
 
 ### Changed
 
