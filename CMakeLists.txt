@@ -110,7 +110,7 @@ add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMA
                    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
                    DEPENDS ${PROJECT_SOURCE_DIR}/src/Settings/settings.json ${PROJECT_SOURCE_DIR}/src/Settings/genSettings.py)
 
-qt_standard_project_setup(I18N_TRANSLATED_LANGUAGES el_GR es_MX pt_BR ru_RU zh_CN zh_TW)
+qt_standard_project_setup()
 
 # Define translation files
 set(TS_FILES
@@ -131,10 +131,10 @@ qt6_add_lupdate(cpeditor
 )
 
 # Create .qm files from .ts files and generate resource
-qt6_add_translations(cpeditor
-    TS_FILES ${TS_FILES}
-    RESOURCE_PREFIX "/translations"
-)
+# qt6_add_translations(cpeditor
+#     TS_FILES ${TS_FILES}
+#     RESOURCE_PREFIX "/translations"
+# )
 
 set_property(SOURCE ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMAKE_BINARY_DIR}/generated/SettingsInfo.cpp PROPERTY SKIP_AUTOGEN ON)
 
@@ -194,6 +194,8 @@ add_executable(cpeditor
 
     src/Extensions/CFTool.cpp
     src/Extensions/CFTool.hpp
+    src/Extensions/CSESTool.cpp
+    src/Extensions/CSESTool.hpp
     src/Extensions/ClangFormatter.cpp
     src/Extensions/ClangFormatter.hpp
     src/Extensions/CodeFormatter.cpp

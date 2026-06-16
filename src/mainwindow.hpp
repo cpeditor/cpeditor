@@ -50,6 +50,7 @@ namespace Extensions
 {
 class CFTool;
 struct CompanionData;
+class CSESTool;
 } // namespace Extensions
 
 namespace FakeVim
@@ -240,6 +241,7 @@ class MainWindow : public QMainWindow
     QString filePath;
     QString savedText;
     QString cftoolPath;
+    QString csesCliPath;
     QFileSystemWatcher *fileWatcher;
 
     std::atomic<bool> reloading;
@@ -247,6 +249,10 @@ class MainWindow : public QMainWindow
 
     QPushButton *submitToCodeforces = nullptr;
     Extensions::CFTool *cftool = nullptr;
+    QPushButton *submitToCses = nullptr;
+    Extensions::CSESTool *csestool = nullptr;
+    QString csesContest, csesTaskId;
+    QString companionName;
 
     Widgets::TestCases *testcases = nullptr;
     Widgets::Stopwatch *stopwatch = nullptr;
@@ -267,6 +273,8 @@ class MainWindow : public QMainWindow
     void saveTests(bool safe);
     void setCFToolUI();
     void removeCFToolUI(); // Delete cftool&submitToCodeforces pointers, and remove the button from ui
+    void setCSESToolUI();
+    void removeCSESToolUI();
     void setFilePath(QString path, bool updateBinder = true);
     void setText(const QString &text, bool keep = false);
     void updateWatcher();

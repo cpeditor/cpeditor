@@ -364,9 +364,9 @@ void FakeVimProxy::moveToMatchingParenthesis(bool *moved, bool *forward, QTextCu
     {
         position += direction;
         auto character = document()->characterAt(position);
-        if (character == "\"")
+        if (character == QChar('"'))
             doubleCounter++;
-        else if (character == "'")
+        else if (character == QChar('\''))
             singleCounter++;
         else if (character == underCursor && singleCounter % 2 == 0 && doubleCounter % 2 == 0)
             ++counter;
