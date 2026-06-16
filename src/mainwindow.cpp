@@ -25,6 +25,7 @@
 #include "Editor/CodeEditor.hpp"
 #include "Editor/FakeVimProxy.hpp"
 #include "Extensions/CFTool.hpp"
+#include "Extensions/CSESTool.hpp"
 #include "Extensions/ClangFormatter.hpp"
 #include "Extensions/CompanionServer.hpp"
 #include "Extensions/YAPFormatter.hpp"
@@ -346,6 +347,82 @@ void MainWindow::setCFToolUI()
     }
 }
 
+void MainWindow::setCSESToolUI()
+{
+    if (!SettingsHelper::isCSESCLIEnable())
+        return;
+    if (submitToCses == nullptr)
+    {
+        submitToCses = new QPushButton(tr("Submit to CSES"), this);
+        csestool = new Extensions::CSESTool(csesCliPath, log);
+        connect(csestool, &Extensions::CSESTool::requestToastMessage, this, &MainWindow::requestToastMessage);
+        ui->compileAndRunButtons->addWidget(submitToCses);
+        connect(submitToCses, &QPushButton::clicked, this, [this] {
+            emit confirmTriggered(this);
+            auto response = QMessageBox::warning(this, tr("Sure to submit"),
+                                                 tr("Are you sure you want to submit this solution to CSES?\n\n Contest: %1\n Task: %2\n Language: %3")
+                                                     .arg(csesContest, csesTaskId, language),
+                                                 QMessageBox::Yes | QMessageBox::No);
+
+            if (response == QMessageBox::Yes)
+            {
+                auto path = tmpPath();
+                if (path.isEmpty())
+                {
+                    QMessageBox::warning(this, tr("CSES CLI"),
+                                         tr("Failed to save the temp file, and the solution is not submitted."));
+                }
+                else
+                {
+                    log->clear();
+                    csestool->submit(tmpPath(), csesContest, csesTaskId);
+                }
+            }
+        });
+    }
+    
+    // Check CSES CLI installation
+    if (!Extensions::CSESTool::check(csesCliPath))
+    {
+        submitToCses->setEnabled(false);
+        QString tooltip = tr("CSES CLI not found at: %1\nSet correct path in Preferences → Extensions → CSES CLI")
+                             .arg(csesCliPath);
+        submitToCses->setToolTip(tooltip);
+        log->error(tr("CSES CLI"),
+                   tr("You need to install CSES CLI to submit your code to CSES. If already installed, you can "
+                      "add it in the PATH environment variable or check your settings at %1.")
+                       .arg(SettingsHelper::pathOfCSESCLIPath()),
+                   false);
+    }
+    // Check if contest and task ID are parsed
+    else if (csesContest.isEmpty() || csesTaskId.isEmpty())
+    {
+        submitToCses->setEnabled(false);
+        QString tooltip = tr("Could not parse CSES contest/task ID from URL.\nMake sure you're on a valid CSES problem page.");
+        submitToCses->setToolTip(tooltip);
+        log->warn(tr("CSES CLI"), tr("CSES contest or task ID not found in URL. Button disabled."));
+    }
+    else
+    {
+        submitToCses->setEnabled(true);
+        QString tooltip = tr("Submit to CSES\nContest: %1\nTask: %2").arg(csesContest, csesTaskId);
+        submitToCses->setToolTip(tooltip);
+    }
+}
+
+void MainWindow::removeCSESToolUI()
+{
+    if (submitToCses != nullptr)
+    {
+        submitToCses->setEnabled(false);
+        ui->compileAndRunButtons->removeWidget(submitToCses);
+        delete submitToCses;
+        submitToCses = nullptr;
+        delete csestool;
+        csestool = nullptr;
+    }
+}
+
 void MainWindow::removeCFToolUI()
 {
     if (submitToCodeforces != nullptr)
@@ -368,6 +445,8 @@ QString MainWindow::getFileName() const
 {
     if (!isUntitled())
         return QFileInfo(filePath).fileName();
+    if (!companionName.isEmpty())
+        return companionName;
     if (!problemURL.isEmpty())
         return QRegularExpression(R"(.*/([^\?#].*?)/?$)").match(problemURL).captured(1);
     return tr("Untitled-%1").arg(untitledIndex);
@@ -462,8 +541,38 @@ void MainWindow::setProblemURL(const QString &url)
         return;
     problemURL = url;
     FileProblemBinder::set(filePath, url);
+    
+    // Clear CSES identifiers when URL changes
+    // Note: companionName is NOT cleared here - it's preserved from applyCompanion()
+    // and only cleared in loadFile() and loadStatus()
+    csesContest.clear();
+    csesTaskId.clear();
+    
     if (problemURL.contains("codeforces.com"))
         setCFToolUI();
+    
+    if (problemURL.contains("cses.fi"))
+    {
+        // Parse contest and task ID from URL
+        QString contest, taskId;
+        if (Extensions::CSESTool::parseCsesUrl(url, contest, taskId))
+        {
+            csesContest = contest;
+            csesTaskId = taskId;
+        }
+        else
+        {
+            // Clear if URL is CSES but parsing failed
+            csesContest.clear();
+            csesTaskId.clear();
+        }
+        setCSESToolUI();
+    }
+    else
+    {
+        // Not a CSES URL, remove UI
+        removeCSESToolUI();
+    }
     emit editorFileChanged();
 }
 
@@ -563,6 +672,8 @@ void MainWindow::loadStatus(const EditorStatus &status, bool duplicate)
 {
     LOG_INFO("Requesting loadStatus");
     setProblemURL(status.problemURL);
+    // Clear companion name when loading a saved status
+    companionName.clear();
     if (status.isLanguageSet)
         setLanguage(status.language);
     customCompileCommand = status.customCompileCommand; // this must be after setLanguage
@@ -615,6 +726,17 @@ void MainWindow::loadStatus(const EditorStatus &status, bool duplicate)
 void MainWindow::applyCompanion(const Extensions::CompanionData &data)
 {
     LOG_INFO("Requesting apply from companion");
+
+    // Extract problem name from companion data for auto-naming
+    QString name = data.doc["name"].toString();
+    if (!name.isEmpty())
+    {
+        companionName = name.replace(" ", "_");
+    }
+    else
+    {
+        companionName.clear();
+    }
 
     if (isUntitled() && !isTextChanged())
     {
@@ -682,6 +804,56 @@ void MainWindow::applyCompanion(const Extensions::CompanionData &data)
     for (auto const &testcase : data.testcases)
         testcases->addTestCase(testcase.input, testcase.output);
 
+    // Try to extract CSES identifiers from companion data or head comments
+    csesContest.clear();
+    csesTaskId.clear();
+
+    // Prefer the provided URL in companion data
+    if (!data.url.isEmpty())
+    {
+        QString contest, task;
+        if (Extensions::CSESTool::parseCsesUrl(data.url, contest, task))
+        {
+            csesContest = contest;
+            csesTaskId = task;
+        }
+    }
+
+    // If not found, fall back to head comments in the editor
+    if (csesContest.isEmpty() || csesTaskId.isEmpty())
+    {
+        auto content = editor->toPlainText();
+        auto lines = content.split('\n');
+        int limit = qMin(lines.size(), 30);
+        for (int i = 0; i < limit && (csesContest.isEmpty() || csesTaskId.isEmpty()); ++i)
+        {
+            const QString &ln = lines[i];
+            // detect URL inside comments
+            // Changed R"(...)" to R"delim(...)delim" to avoid quote conflicts
+            QRegularExpression urlRe(R"delim((https?://cses\.fi[^\s)"']*))delim");
+            auto m = urlRe.match(ln);
+            if (m.hasMatch())
+            {
+                QString contest, task;
+                if (Extensions::CSESTool::parseCsesUrl(m.captured(1), contest, task))
+                {
+                    csesContest = contest;
+                    csesTaskId = task;
+                    break;
+                }
+            }
+
+            // detect explicit Contest: and Problem: lines
+            auto cMatch = QRegularExpression(R"(^\s*Contest:\s*(\S+))", QRegularExpression::CaseInsensitiveOption).match(ln);
+            auto pMatch = QRegularExpression(R"(^\s*Problem:\s*(\S+))", QRegularExpression::CaseInsensitiveOption).match(ln);
+            if (cMatch.hasMatch())
+                csesContest = cMatch.captured(1);
+            if (pMatch.hasMatch())
+                csesTaskId = pMatch.captured(1);
+        }
+    }
+
+    // setProblemURL will handle CSES UI based on URL and parsed identifiers
     setProblemURL(data.url);
 
     if (SettingsHelper::isCompetitiveCompanionSetTimeLimitForTab())
@@ -717,6 +889,33 @@ void MainWindow::applySettings(const QString &pagePath)
             else if (submitToCodeforces != nullptr && !SettingsHelper::isCFEnable())
             {
                 removeCFToolUI();
+            }
+        }
+    }
+
+    if (pageChanged("Extensions/CSES CLI"))
+    {
+        csesCliPath = SettingsHelper::getCSESCLIPath();
+
+        if (csestool != nullptr && Extensions::CSESTool::check(csesCliPath))
+        {
+            csestool->updatePath(csesCliPath);
+            // setCSESToolUI will update button state based on parsed IDs
+        }
+        if (problemURL.contains("cses.fi"))
+        {
+            if (submitToCses == nullptr && SettingsHelper::isCSESCLIEnable())
+            {
+                setCSESToolUI();
+            }
+            else if (submitToCses != nullptr && !SettingsHelper::isCSESCLIEnable())
+            {
+                removeCSESToolUI();
+            }
+            else if (submitToCses != nullptr)
+            {
+                // Update button state when CSES CLI path changes
+                setCSESToolUI();
             }
         }
     }
@@ -993,6 +1192,9 @@ void MainWindow::loadFile(const QString &loadPath)
     bool samePath = !isUntitled() && filePath == path;
     setFilePath(path, false);
 
+    // Clear companion name when loading a file directly
+    companionName.clear();
+
     bool isTemplate = false;
 
     if (!QFile::exists(path))
@@ -1085,8 +1287,15 @@ bool MainWindow::saveFile(SaveMode mode, const QString &head, bool safe)
 
             if (defaultPath.isEmpty())
             {
-                defaultPath =
-                    QDir(DefaultPathManager::defaultPathForAction("Save File")).filePath(getTabTitle(false, false));
+                if (!companionName.isEmpty())
+                {
+                    defaultPath = QDir(DefaultPathManager::defaultPathForAction("Save File")).filePath(companionName);
+                }
+                else
+                {
+                    defaultPath =
+                        QDir(DefaultPathManager::defaultPathForAction("Save File")).filePath(getTabTitle(false, false));
+                }
             }
 
             defaultPath = Util::fileNameWithSuffix(defaultPath, language);

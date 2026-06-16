@@ -132,10 +132,10 @@ qt6_add_lupdate(cpeditor
 )
 
 # Create .qm files from .ts files and generate resource
-qt6_add_translations(cpeditor
-    TS_FILES ${TS_FILES}
-    RESOURCE_PREFIX "/translations"
-)
+# qt6_add_translations(cpeditor
+#     TS_FILES ${TS_FILES}
+#     RESOURCE_PREFIX "/translations"
+# )
 
 set_property(SOURCE ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMAKE_BINARY_DIR}/generated/SettingsInfo.cpp PROPERTY SKIP_AUTOGEN ON)
 
@@ -195,6 +195,8 @@ add_executable(cpeditor
 
     src/Extensions/CFTool.cpp
     src/Extensions/CFTool.hpp
+    src/Extensions/CSESTool.cpp
+    src/Extensions/CSESTool.hpp
     src/Extensions/ClangFormatter.cpp
     src/Extensions/ClangFormatter.hpp
     src/Extensions/CodeFormatter.cpp

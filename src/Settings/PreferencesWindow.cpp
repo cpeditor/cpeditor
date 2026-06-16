@@ -271,6 +271,7 @@ PreferencesWindow::PreferencesWindow(QWidget *parent) : QMainWindow(parent)
                 "Competitive Companion/Head Comments", "Competitive Companion/Head Comments Time Format",
                 "Competitive Companion/Head Comments Powered By CP Editor"}, false)
             .page(TRKEY("CF Tool"), {"CF/Enable","CF/Path", "CF/Show Toast Messages"})
+            .page(TRKEY("CSES CLI"), {"CSES CLI/Enable", "CSES CLI/Path"})
             .page(TRKEY("WakaTime"),{"WakaTime/Enable", "WakaTime/Path", "WakaTime/Api Key", "WakaTime/Proxy"})
         .end()
         .dir(TRKEY("File Path"))

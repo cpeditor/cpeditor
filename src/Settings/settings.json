@@ -675,20 +675,46 @@
     "type": "bool",
     "notr": true
   },
-  {
-    "name": "CF/Path",
-    "desc": "Path",
-    "type": "QString",
-    "default": "cf",
-    "ui": "PathItem",
-    "param": "PathItem::Executable",
-    "tip": "The path to the CF Tool executable file",
-    "depends": [
-      {
-        "name": "CF/Enable"
-      }
-    ]
-  },
+    {
+      "name": "CF/Path",
+      "desc": "Path",
+      "type": "QString",
+      "default": "cf",
+      "ui": "PathItem",
+      "param": "PathItem::Executable",
+      "tip": "The path to the CF Tool executable file",
+      "depends": [
+        {
+          "name": "CF/Enable"
+        }
+      ]
+    },
+    {
+      "name": "CSES CLI/Path",
+      "desc": "Path",
+      "type": "QString",
+      "default": "cses-cli",
+      "ui": "PathItem",
+      "param": "PathItem::Executable",
+      "tip": "The path to the CSES CLI executable file",
+      "depends": [
+        {
+          "name": "CSES CLI/Enable"
+        }
+      ]
+    },
+    {
+      "name": "CSES CLI/Show Toast Messages",
+      "desc": "Show toast messages for submission verdicts",
+      "type": "bool",
+      "default": "true",
+      "tip": "Show a toast message when the verdict of a submission is known.",
+      "depends": [
+        {
+          "name": "CSES CLI/Enable"
+        }
+      ]
+    },
   {
     "name": "CF/Show Toast Messages",
     "desc": "Show toast messages for submission verdicts",
@@ -701,13 +727,20 @@
       }
     ]
   },
-  {
-    "name": "CF/Enable",
-    "desc": "Enable CF Tool",
-    "type": "bool",
-    "default": "true",
-    "tip": "Enable or disable CF Tool Integration."
-  },
+    {
+      "name": "CF/Enable",
+      "desc": "Enable CF Tool",
+      "type": "bool",
+      "default": "true",
+      "tip": "Enable or disable CF Tool Integration."
+    },
+    {
+      "name": "CSES CLI/Enable",
+      "desc": "Enable CSES CLI",
+      "type": "bool",
+      "default": "true",
+      "tip": "Enable or disable CSES CLI Integration."
+    },
   {
     "name": "Show Compile And Run Only",
     "type": "bool",

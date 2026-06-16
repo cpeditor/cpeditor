@@ -75,3 +75,9 @@ resources/translations/*.qm
 
 # Codespaces
 .venv
+.idea/
+.kilo/
+AGENTS.md
+AppDir/
+*.AppImage
+
