@@ -1,4 +1,5 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
 <TS version="2.1" language="hi_IN">
 <context>
     <name>AppWindow</name>
@@ -43,8 +44,8 @@
         <translation>CP Editor %1 के बारे में</translation>
     </message>
     <message>
-        <source>&lt;p&gt;&lt;b&gt;CP Editor&lt;/b&gt; is a native Qt-based code editor. It's specially designed for competitive programming, unlike other editors/IDEs which are mainly for developers. It helps you focus on your algorithm and automates the compilation, executing and testing. It even fetches test cases for you from different platforms and submits solutions to Codeforces!&lt;/p&gt;&lt;p&gt;Copyright (C) 2019-2021 Ashar Khan &amp;lt;ashar786khan@gmail.com&amp;gt;&lt;/p&gt;&lt;p&gt;This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. The source code for CP Editor is available at &lt;a href="https://github.com/cpeditor/cpeditor"&gt; https://github.com/cpeditor/cpeditor&lt;/a&gt;.&lt;/p&gt;</source>
-        <translation>&lt;p&gt;&lt;b&gt;CP Editor&lt;/b&gt; एक नेटिव Qt-आधारित कोड एडिटर है। इसे विशेष रूप से कॉम्पिटिटिव प्रोग्रामिंग के लिए डिज़ाइन किया गया है, जो अन्य एडिटर्स/IDE से अलग है जो मुख्य रूप से डेवलपर्स के लिए होते हैं। यह आपको अपने एल्गोरिदम पर ध्यान केंद्रित करने में मदद करता है और कंपाइलेशन, एग्जीक्यूटिंग और टेस्टिंग को ऑटोमेट करता है। यह आपके लिए विभिन्न प्लेटफॉर्म्स से टेस्ट केसेस भी फेच करता है और Codeforces पर सॉल्यूशन्स सबमिट करता है!&lt;/p&gt;&lt;p&gt;कॉपीराइट (C) 2019-2021 Ashar Khan &amp;lt;ashar786khan@gmail.com&amp;gt;&lt;/p&gt;&lt;p&gt;यह एक फ्री सॉफ्टवेयर है; कॉपी करने की शर्तों के लिए सोर्स देखें। इसकी कोई वारंटी नहीं है; यहाँ तक कि मर्चेंटेबिलिटी या किसी विशेष उद्देश्य के लिए फिटनेस के लिए भी नहीं। CP Editor का सोर्स कोड &lt;a href="https://github.com/cpeditor/cpeditor"&gt;https://github.com/cpeditor/cpeditor&lt;/a&gt; पर उपलब्ध है।&lt;/p&gt;</translation>
+        <source>&lt;p&gt;&lt;b&gt;CP Editor&lt;/b&gt; is a native Qt-based code editor. It&apos;s specially designed for competitive programming, unlike other editors/IDEs which are mainly for developers. It helps you focus on your algorithm and automates the compilation, executing and testing. It even fetches test cases for you from different platforms and submits solutions to Codeforces!&lt;/p&gt;&lt;p&gt;Copyright (C) 2019-2021 Ashar Khan &amp;lt;ashar786khan@gmail.com&amp;gt;&lt;/p&gt;&lt;p&gt;This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. The source code for CP Editor is available at &lt;a href=&quot;https://github.com/cpeditor/cpeditor&quot;&gt; https://github.com/cpeditor/cpeditor&lt;/a&gt;.&lt;/p&gt;</source>
+        <translation>&lt;p&gt;&lt;b&gt;CP Editor&lt;/b&gt; एक नेटिव Qt-आधारित कोड एडिटर है। इसे विशेष रूप से कॉम्पिटिटिव प्रोग्रामिंग के लिए डिज़ाइन किया गया है, जो अन्य एडिटर्स/IDE से अलग है जो मुख्य रूप से डेवलपर्स के लिए होते हैं। यह आपको अपने एल्गोरिदम पर ध्यान केंद्रित करने में मदद करता है और कंपाइलेशन, एग्जीक्यूटिंग और टेस्टिंग को ऑटोमेट करता है। यह आपके लिए विभिन्न प्लेटफॉर्म्स से टेस्ट केसेस भी फेच करता है और Codeforces पर सॉल्यूशन्स सबमिट करता है!&lt;/p&gt;&lt;p&gt;कॉपीराइट (C) 2019-2021 Ashar Khan &amp;lt;ashar786khan@gmail.com&amp;gt;&lt;/p&gt;&lt;p&gt;यह एक फ्री सॉफ्टवेयर है; कॉपी करने की शर्तों के लिए सोर्स देखें। इसकी कोई वारंटी नहीं है; यहाँ तक कि मर्चेंटेबिलिटी या किसी विशेष उद्देश्य के लिए फिटनेस के लिए भी नहीं। CP Editor का सोर्स कोड &lt;a href=&quot;https://github.com/cpeditor/cpeditor&quot;&gt;https://github.com/cpeditor/cpeditor&lt;/a&gt; पर उपलब्ध है।&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Build Info</source>
@@ -508,7 +509,7 @@ OS: %5</translation>
     </message>
     <message>
         <source>&amp;Options</source>
-        <translation>"&amp;ऑप्शन्स"</translation>
+        <translation>&quot;&amp;ऑप्शन्स&quot;</translation>
     </message>
     <message>
         <source>&amp;Help</source>
@@ -586,7 +587,7 @@ OS: %5</translation>
         <translation>[%1] में लिखने में विफल रहा। क्या मेरे पास राइट परमिशन है?</translation>
     </message>
     <message>
-        <source>Snippet name can't be empty.
+        <source>Snippet name can&apos;t be empty.
 </source>
         <translation>स्निपेट नेम खाली नहीं हो सकता।</translation>
     </message>
@@ -595,13 +596,13 @@ OS: %5</translation>
         <translation>स्निपेट नेम कॉन्फ्लिक्ट</translation>
     </message>
     <message>
-        <source>The name "%1" is already in use. Do you want to override it? (The old snippet with this name will be deleted.)</source>
-        <translation>"%1" नाम पहले से उपयोग में है। क्या आप इसे ओवरराइड करना चाहते हैं? (इस नाम वाला पुराना स्निपेट डिलीट हो जाएगा।)</translation>
+        <source>The name &quot;%1&quot; is already in use. Do you want to override it? (The old snippet with this name will be deleted.)</source>
+        <translation>&quot;%1&quot; नाम पहले से उपयोग में है। क्या आप इसे ओवरराइड करना चाहते हैं? (इस नाम वाला पुराना स्निपेट डिलीट हो जाएगा।)</translation>
     </message>
     <message>
-        <source>The name "%1" is already in use.
+        <source>The name &quot;%1&quot; is already in use.
 </source>
-        <translation>"%1" नाम पहले से ही उपयोग में है।</translation>
+        <translation>&quot;%1&quot; नाम पहले से ही उपयोग में है।</translation>
     </message>
     <message>
         <source>Add Snippet</source>
@@ -684,7 +685,7 @@ OS: %5</translation>
 <context>
     <name>Core::Compiler</name>
     <message>
-        <source>The source file [%1] doesn't exist</source>
+        <source>The source file [%1] doesn&apos;t exist</source>
         <translation>सोर्स फाइल [%1] मौजूद नहीं है।</translation>
     </message>
     <message>
@@ -692,8 +693,8 @@ OS: %5</translation>
         <translation>%1 खाली है</translation>
     </message>
     <message>
-        <source>Unsupported programming language "%1"</source>
-        <translation>असमर्थित प्रोग्रामिंग लैंग्वेज "%1"</translation>
+        <source>Unsupported programming language &quot;%1&quot;</source>
+        <translation>असमर्थित प्रोग्रामिंग लैंग्वेज &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Failed to start the compiler. Please check %1 or add the compiler in the PATH environment variable.</source>
@@ -703,11 +704,11 @@ OS: %5</translation>
 <context>
     <name>Core::Runner</name>
     <message>
-        <source>The source file %1 doesn't exist.</source>
+        <source>The source file %1 doesn&apos;t exist.</source>
         <translation>सोर्स फाइल %1 मौजूद नहीं है।</translation>
     </message>
     <message>
-        <source>Failed to get run command. It's probably a bug.</source>
+        <source>Failed to get run command. It&apos;s probably a bug.</source>
         <translation>रन कमांड प्राप्त करने में विफल। यह संभवतः एक बग है।</translation>
     </message>
     <message>
@@ -747,12 +748,12 @@ Press any key to exit</source>
 <context>
     <name>Editor::FakeVimCommands</name>
     <message>
-        <source>`new` requires no argument or one of 'cpp', 'java' and 'python', got [%1]</source>
-        <translation>`new` के लिए किसी आर्ग्युमेंट की आवश्यकता नहीं है या 'cpp', 'java' और 'python' में से एक की आवश्यकता है, [%1] प्राप्त हुआ</translation>
+        <source>`new` requires no argument or one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos;, got [%1]</source>
+        <translation>`new` के लिए किसी आर्ग्युमेंट की आवश्यकता नहीं है या &apos;cpp&apos;, &apos;java&apos; और &apos;python&apos; में से एक की आवश्यकता है, [%1] प्राप्त हुआ</translation>
     </message>
     <message>
         <source>[%1] is not C++, Python or Java source file</source>
-        <translation>"[%1] C++, Python या Java सोर्स फाइल नहीं है"</translation>
+        <translation>&quot;[%1] C++, Python या Java सोर्स फाइल नहीं है&quot;</translation>
     </message>
     <message>
         <source>[%1] does not exist. To open a tab with a non-existing file, use `open!` instead</source>
@@ -760,23 +761,23 @@ Press any key to exit</source>
     </message>
     <message>
         <source>[%1] is not a number</source>
-        <translation>"[%1] एक नंबर नहीं है"</translation>
+        <translation>&quot;[%1] एक नंबर नहीं है&quot;</translation>
     </message>
     <message>
         <source>%1 is out of range [1, %2]</source>
-        <translation>"%1, [1, %2] की रेंज से बाहर है"</translation>
+        <translation>&quot;%1, [1, %2] की रेंज से बाहर है&quot;</translation>
     </message>
     <message>
         <source>N/A</source>
         <translation>लागू नहीं</translation>
     </message>
     <message>
-        <source>[%1] is not a valid view mode. It should be one of 'split' and 'edit'</source>
-        <translation>"[%1] एक वैध व्यू मोड नहीं है। इसे 'split' और 'edit' में से एक होना चाहिए"</translation>
+        <source>[%1] is not a valid view mode. It should be one of &apos;split&apos; and &apos;edit&apos;</source>
+        <translation>&quot;[%1] एक वैध व्यू मोड नहीं है। इसे &apos;split&apos; और &apos;edit&apos; में से एक होना चाहिए&quot;</translation>
     </message>
     <message>
-        <source>%1 is not a valid language name. It should be one of 'cpp', 'java' and 'python'</source>
-        <translation>"%1 एक वैध लैंग्वेज नाम नहीं है। इसे 'cpp', 'java' या 'python' में से कोई एक होना चाहिए"</translation>
+        <source>%1 is not a valid language name. It should be one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos;</source>
+        <translation>&quot;%1 एक वैध लैंग्वेज नाम नहीं है। इसे &apos;cpp&apos;, &apos;java&apos; या &apos;python&apos; में से कोई एक होना चाहिए&quot;</translation>
     </message>
     <message>
         <source>No active tab to change language</source>
@@ -845,7 +846,7 @@ Press any key to exit</source>
         <translation>फॉर्मेटिंग पूरी हुई</translation>
     </message>
     <message>
-        <source>The format process didn't finish in 2 seconds. This is probably because the %1 program is not found by CP Editor. You can set the path to the program at %2.</source>
+        <source>The format process didn&apos;t finish in 2 seconds. This is probably because the %1 program is not found by CP Editor. You can set the path to the program at %2.</source>
         <translation>फॉर्मेट प्रोसेस 2 सेकंड में फिनिश नहीं हुई। यह शायद इसलिए है क्योंकि %1 प्रोग्राम CP Editor को नहीं मिल रहा है। आप %2 पर प्रोग्राम का पाथ सेट कर सकते हैं।</translation>
     </message>
     <message>
@@ -979,22 +980,22 @@ Press any key to exit</source>
         <translation>होल वर्ड्स ओनली</translation>
     </message>
     <message>
-        <source>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name="qrichtext" content="1" /&gt;&lt;style type="text/css"&gt;
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=" font-family:'Sans'; font-size:10pt; font-weight:400; font-style:normal;"&gt;
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;whether the text to search should be interpreted as a regular expression.&lt;/p&gt;
-&lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;&lt;/p&gt;
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;You may want to take a look at the syntax of regular expressions:&lt;/p&gt;
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;&lt;a href="http://doc.trolltech.com/qregexp.html"&gt;&lt;span style=" text-decoration: underline; color:#0000ff;"&gt;http://doc.trolltech.com/qregexp.html&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name="qrichtext" content="1" /&gt;&lt;style type="text/css"&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;whether the text to search should be interpreted as a regular expression.&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You may want to take a look at the syntax of regular expressions:&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://doc.trolltech.com/qregexp.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://doc.trolltech.com/qregexp.html&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=" font-family:'Sans'; font-size:10pt; font-weight:400; font-style:normal;"&gt;
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;क्या सर्च किए जाने वाले टेक्स्ट को रेगुलर एक्सप्रेशन के रूप में इंटरप्रेट किया जाना चाहिए।&lt;/p&gt;
-&lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;&lt;/p&gt;
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;आप रेगुलर एक्सप्रेशन्स के सिंटैक्स को देख सकते हैं:&lt;/p&gt;
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;&lt;a href="http://doc.trolltech.com/qregexp.html"&gt;&lt;span style=" text-decoration: underline; color:#0000ff;"&gt;http://doc.trolltech.com/qregexp.html&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;क्या सर्च किए जाने वाले टेक्स्ट को रेगुलर एक्सप्रेशन के रूप में इंटरप्रेट किया जाना चाहिए।&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;आप रेगुलर एक्सप्रेशन्स के सिंटैक्स को देख सकते हैं:&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://doc.trolltech.com/qregexp.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://doc.trolltech.com/qregexp.html&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Regular Expression</source>
@@ -1090,7 +1091,7 @@ p, li { white-space: pre-wrap; }
         <translation>फाइल खोलें</translation>
     </message>
     <message>
-        <source>The file [%1] contains more than %2 characters, so it's not opened. You can change the open file length limit at %3.</source>
+        <source>The file [%1] contains more than %2 characters, so it&apos;s not opened. You can change the open file length limit at %3.</source>
         <translation>फाइल [%1] में %2 से अधिक कैरेक्टर हैं, इसलिए इसे खोला नहीं गया है। आप %3 पर ओपन फाइल लेंथ लिमिट बदल सकते हैं।</translation>
     </message>
     <message>
@@ -1336,7 +1337,7 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>Enable %1 for %2 in %3.
-If it's partially checked, the global setting in Code Edit will be used.</source>
+If it&apos;s partially checked, the global setting in Code Edit will be used.</source>
         <translation>%3 में %2 के लिए %1 इनेबल करें।
 यदि यह आंशिक रूप से चेक किया गया है, तो कोड एडिट में ग्लोबल सेटिंग का उपयोग किया जाएगा।</translation>
     </message>
@@ -1375,7 +1376,7 @@ If it's partially checked, the global setting in Code Edit will be used.</source
 <context>
     <name>PreferencesHomePage</name>
     <message>
-        <source>Welcome to CP Editor! Let's get started.</source>
+        <source>Welcome to CP Editor! Let&apos;s get started.</source>
         <translation>CP Editor में आपका स्वागत है! आइए शुरू करें।</translation>
     </message>
     <message>
@@ -1403,8 +1404,8 @@ If it's partially checked, the global setting in Code Edit will be used.</source
         <translation>फॉन्ट सेटिंग्स</translation>
     </message>
     <message>
-        <source>You can read the &lt;a href="%1"&gt;documentation&lt;/a&gt; or go through the settings for more information.</source>
-        <translation>आप अधिक जानकारी के लिए &lt;a href="%1"&gt;डॉक्यूमेंटेशन&lt;/a&gt; पढ़ सकते हैं या सेटिंग्स देख सकते हैं।</translation>
+        <source>You can read the &lt;a href=&quot;%1&quot;&gt;documentation&lt;/a&gt; or go through the settings for more information.</source>
+        <translation>आप अधिक जानकारी के लिए &lt;a href=&quot;%1&quot;&gt;डॉक्यूमेंटेशन&lt;/a&gt; पढ़ सकते हैं या सेटिंग्स देख सकते हैं।</translation>
     </message>
 </context>
 <context>
@@ -1644,8 +1645,8 @@ If it's partially checked, the global setting in Code Edit will be used.</source
         <translation>पिक्सेल में कर्सर की चौड़ाई</translation>
     </message>
     <message>
-        <source />
-        <translation type="unfinished" />
+        <source></source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Editor Font</source>
@@ -1692,8 +1693,8 @@ If it's partially checked, the global setting in Code Edit will be used.</source
         <translation>क्लैंग फ़ॉर्मेट आर्गुमेंट्स</translation>
     </message>
     <message>
-        <source>The arguments passed to clang-format. It should NOT contain "-i".</source>
-        <translation>clang-format को पास किए जाने वाले आर्गुमेंट्स। इसमें "-i" शामिल नहीं होना चाहिए।</translation>
+        <source>The arguments passed to clang-format. It should NOT contain &quot;-i&quot;.</source>
+        <translation>clang-format को पास किए जाने वाले आर्गुमेंट्स। इसमें &quot;-i&quot; शामिल नहीं होना चाहिए।</translation>
     </message>
     <message>
         <source>Clang Format Style</source>
@@ -1710,7 +1711,7 @@ You can learn about it at &lt;https://clang.llvm.org/docs/ClangFormatStyleOption
         <translation>YAPF प्रोग्राम</translation>
     </message>
     <message>
-        <source>The program of YAPF. It could be `yapf` (which doesn't need arguments) or `python` (which needs `-m yapf` as the arguments).</source>
+        <source>The program of YAPF. It could be `yapf` (which doesn&apos;t need arguments) or `python` (which needs `-m yapf` as the arguments).</source>
         <translation>YAPF का प्रोग्राम। यह `yapf` हो सकता है (जिसे आर्गुमेंट्स की आवश्यकता नहीं होती है) या `python` (जिसे आर्गुमेंट्स के रूप में `-m yapf` की आवश्यकता होती है)।</translation>
     </message>
     <message>
@@ -1718,8 +1719,8 @@ You can learn about it at &lt;https://clang.llvm.org/docs/ClangFormatStyleOption
         <translation>YAPF आर्गुमेंट्स</translation>
     </message>
     <message>
-        <source>The arguments passed to the YAPF program. It should NOT contain "-i".</source>
-        <translation>YAPF प्रोग्राम को पास किए जाने वाले आर्गुमेंट्स। इसमें "-i" शामिल नहीं होना चाहिए।</translation>
+        <source>The arguments passed to the YAPF program. It should NOT contain &quot;-i&quot;.</source>
+        <translation>YAPF प्रोग्राम को पास किए जाने वाले आर्गुमेंट्स। इसमें &quot;-i&quot; शामिल नहीं होना चाहिए।</translation>
     </message>
     <message>
         <source>YAPF Style</source>
@@ -1762,7 +1763,7 @@ You can learn about it by running `yapf --style-help`.</source>
     <message>
         <source>The regular expression which matches a part of the code template.
 When opening a template, the position of the cursor is the position of the regex with an offset.
-The cursor will be at the end of the template if there's no match of the regex.</source>
+The cursor will be at the end of the template if there&apos;s no match of the regex.</source>
         <translation>रेगुलर एक्सप्रेशन जो कोड टैम्प्लेट के एक हिस्से से मैच करता है।
 टैम्प्लेट खोलते समय, कर्सर की पोजीशन एक ऑफसेट के साथ रिगेक्स की पोजीशन होती है।
 यदि रिगेक्स का कोई मैच नहीं मिलता है, तो कर्सर टैम्प्लेट के अंत में होगा।</translation>
@@ -1788,8 +1789,8 @@ The cursor will be at the end of the template if there's no match of the regex.<
         <translation>%1 कंपाइल कमांड</translation>
     </message>
     <message>
-        <source>The command used to compile C++. It should NOT include the path to the source file or "-o &lt;output file&gt;".</source>
-        <translation>C++ को कंपाइल करने के लिए उपयोग किया जाने वाला कमांड। इसमें सोर्स फाइल का पाथ या "-o &lt;आउटपुट फाइल&gt;" शामिल नहीं होना चाहिए।</translation>
+        <source>The command used to compile C++. It should NOT include the path to the source file or &quot;-o &lt;output file&gt;&quot;.</source>
+        <translation>C++ को कंपाइल करने के लिए उपयोग किया जाने वाला कमांड। इसमें सोर्स फाइल का पाथ या &quot;-o &lt;आउटपुट फाइल&gt;&quot; शामिल नहीं होना चाहिए।</translation>
     </message>
     <message>
         <source>%1 Executable File Path</source>
@@ -1797,17 +1798,17 @@ The cursor will be at the end of the template if there's no match of the regex.<
     </message>
     <message>
         <source>The path of the compiled executable file.
-It's relative to the source file, or the temporary directory if the tab is untitled.
-No ".exe" is needed.
-You can use "${filename}" for the complete file name,
-"${basename}" for the base file name without the suffix,
-"${tmpdir}" or "${tempdir}" for the absolute path of the temporary directory.</source>
+It&apos;s relative to the source file, or the temporary directory if the tab is untitled.
+No &quot;.exe&quot; is needed.
+You can use &quot;${filename}&quot; for the complete file name,
+&quot;${basename}&quot; for the base file name without the suffix,
+&quot;${tmpdir}&quot; or &quot;${tempdir}&quot; for the absolute path of the temporary directory.</source>
         <translation>कंपाइल्ड एक्ज़ीक्यूटेबल फाइल का पाथ।
 यह सोर्स फाइल के सापेक्ष है, या यदि टैब अनटाइटल्ड है तो टेम्परेरी डायरेक्टरी के सापेक्ष है।
-किसी ".exe" की आवश्यकता नहीं है।
-आप कम्पलीट फाइल नेम के लिए "${filename}" का उपयोग कर सकते हैं,
-बिना सफिक्स के बेस फाइल नेम के लिए "${basename}" का,
-टेम्परेरी डायरेक्टरी के एब्सोल्यूट पाथ के लिए "${tmpdir}" या "${tempdir}" का।</translation>
+किसी &quot;.exe&quot; की आवश्यकता नहीं है।
+आप कम्पलीट फाइल नेम के लिए &quot;${filename}&quot; का उपयोग कर सकते हैं,
+बिना सफिक्स के बेस फाइल नेम के लिए &quot;${basename}&quot; का,
+टेम्परेरी डायरेक्टरी के एब्सोल्यूट पाथ के लिए &quot;${tmpdir}&quot; या &quot;${tempdir}&quot; का।</translation>
     </message>
     <message>
         <source>%1 Run Arguments</source>
@@ -1836,8 +1837,8 @@ It should NOT include the path to the source file or the path of the compiled cl
         <translation>%1 रन कमांड</translation>
     </message>
     <message>
-        <source>The command to start a Java program. It should NOT include "-classpath &lt;path&gt; &lt;class name&gt;".</source>
-        <translation>Java प्रोग्राम को स्टार्ट करने का कमांड। इसमें "-classpath &lt;पाथ&gt; &lt;क्लास नेम&gt;" शामिल नहीं होना चाहिए।</translation>
+        <source>The command to start a Java program. It should NOT include &quot;-classpath &lt;path&gt; &lt;class name&gt;&quot;.</source>
+        <translation>Java प्रोग्राम को स्टार्ट करने का कमांड। इसमें &quot;-classpath &lt;पाथ&gt; &lt;क्लास नेम&gt;&quot; शामिल नहीं होना चाहिए।</translation>
     </message>
     <message>
         <source>%1 Class Name</source>
@@ -1853,15 +1854,15 @@ It should NOT include the path to the source file or the path of the compiled cl
     </message>
     <message>
         <source>The path of the parent directory of the compiled class file.
-It's relative to the source file, or the temporary directory if the tab is untitled.
-You can use "${filename}" for the complete file name,
-"${basename}" for the base file name without the suffix,
-"${tmpdir}" or "${tempdir}" for the absolute path of the temporary directory.</source>
+It&apos;s relative to the source file, or the temporary directory if the tab is untitled.
+You can use &quot;${filename}&quot; for the complete file name,
+&quot;${basename}&quot; for the base file name without the suffix,
+&quot;${tmpdir}&quot; or &quot;${tempdir}&quot; for the absolute path of the temporary directory.</source>
         <translation>कंपाइल की गई क्लास फाइल की पैरेंट डायरेक्टरी का पाथ।
 यह सोर्स फाइल के रिलेटिव होता है, या यदि टैब अनटाइटल्ड है तो टेम्परेरी डायरेक्टरी के।
-आप पूरी फाइल के नाम के लिए "${filename}" का उपयोग कर सकते हैं,
-बिना सफिक्स के बेस फाइल नाम के लिए "${basename}",
-टेम्परेरी डायरेक्टरी के एब्सोल्यूट पाथ के लिए "${tmpdir}" या "${tempdir}" का उपयोग कर सकते हैं।</translation>
+आप पूरी फाइल के नाम के लिए &quot;${filename}&quot; का उपयोग कर सकते हैं,
+बिना सफिक्स के बेस फाइल नाम के लिए &quot;${basename}&quot;,
+टेम्परेरी डायरेक्टरी के एब्सोल्यूट पाथ के लिए &quot;${tmpdir}&quot; या &quot;${tempdir}&quot; का उपयोग कर सकते हैं।</translation>
     </message>
     <message>
         <source>The template used when creating a new Python file</source>
@@ -1905,10 +1906,10 @@ Some possible values are konsole, gnome-terminal, xfce-terminal, xterm or any ot
     </message>
     <message>
         <source>Arguments used to execute a given command in the terminal emulator.
-This is "-e" for most terminal emulators, including konsole, xterm, xfce-terminal but can be "--" for gnome-terminal.
+This is &quot;-e&quot; for most terminal emulators, including konsole, xterm, xfce-terminal but can be &quot;--&quot; for gnome-terminal.
 Consult your terminal emulator for the suitable arguments.</source>
         <translation>टर्मिनल एमुलेटर में दी गई कमांड को एग्जीक्यूट करने के लिए उपयोग किए जाने वाले आर्ग्युमेंट्स।
-यह अधिकांश टर्मिनल एमुलेटर के लिए "-e" होता है, जिसमें konsole, xterm, xfce-terminal शामिल हैं, लेकिन gnome-terminal के लिए "--" हो सकता है।
+यह अधिकांश टर्मिनल एमुलेटर के लिए &quot;-e&quot; होता है, जिसमें konsole, xterm, xfce-terminal शामिल हैं, लेकिन gnome-terminal के लिए &quot;--&quot; हो सकता है।
 उपयुक्त आर्ग्युमेंट्स के लिए अपने टर्मिनल एमुलेटर को कंसल्ट करें।</translation>
     </message>
     <message>
@@ -1950,8 +1951,8 @@ This can be overridden for each parenthesis in each language.</source>
         <translation>ऑटो इंडेंट</translation>
     </message>
     <message>
-        <source>Add an indent when entering a new line after a "{".</source>
-        <translation>एक "{" के बाद न्यू लाइन एंटर करते समय एक इंडेंट जोड़ें।</translation>
+        <source>Add an indent when entering a new line after a &quot;{&quot;.</source>
+        <translation>एक &quot;{&quot; के बाद न्यू लाइन एंटर करते समय एक इंडेंट जोड़ें।</translation>
     </message>
     <message>
         <source>Enable Auto Save</source>
@@ -1982,7 +1983,7 @@ Without modification: auto-save happens with a constant interval no matter there
         <translation>रैप टेक्स्ट</translation>
     </message>
     <message>
-        <source>Wrap a line into several lines if it doesn't fit into the screen.</source>
+        <source>Wrap a line into several lines if it doesn&apos;t fit into the screen.</source>
         <translation>यदि कोई लाइन स्क्रीन में फिट नहीं होती है, तो उसे कई लाइनों में रैप करें।</translation>
     </message>
     <message>
@@ -2022,7 +2023,7 @@ Without modification: auto-save happens with a constant interval no matter there
         <translation>स्टार्टअप पर अपडेट्स के लिए जांच करें</translation>
     </message>
     <message>
-        <source>Check whether there's a new version of CP Editor when starting CP Editor.</source>
+        <source>Check whether there&apos;s a new version of CP Editor when starting CP Editor.</source>
         <translation>CP Editor शुरू करते समय जांचें कि क्या CP Editor का कोई नया वर्जन उपलब्ध है।</translation>
     </message>
     <message>
@@ -2094,13 +2095,13 @@ https://doc.qt.io/qt-5/qdate.html#toString
 https://doc.qt.io/qt-5/qtime.html#toString</translation>
     </message>
     <message>
-        <source>Add "Powered By CP Editor" in the head comments</source>
-        <translation>हेड कमेंट्स में "Powered By CP Editor" जोड़ें</translation>
+        <source>Add &quot;Powered By CP Editor&quot; in the head comments</source>
+        <translation>हेड कमेंट्स में &quot;Powered By CP Editor&quot; जोड़ें</translation>
     </message>
     <message>
-        <source>Add a line saying "Powered By CP Editor" in the head comments.
-This doesn't cost you anything, but helps more people to know CP Editor.</source>
-        <translation>हेड कमेंट्स में "Powered By CP Editor" वाली एक लाइन जोड़ें।
+        <source>Add a line saying &quot;Powered By CP Editor&quot; in the head comments.
+This doesn&apos;t cost you anything, but helps more people to know CP Editor.</source>
+        <translation>हेड कमेंट्स में &quot;Powered By CP Editor&quot; वाली एक लाइन जोड़ें।
 इससे आपको कुछ खर्च नहीं करना पड़ेगा, लेकिन अधिक लोगों को CP Editor के बारे में जानने में मदद मिलेगी।</translation>
     </message>
     <message>
@@ -2137,7 +2138,7 @@ This doesn't cost you anything, but helps more people to know CP Editor.</source
     </message>
     <message>
         <source>Restore the last session when the application starts.
-When this is enabled, you won't be asked whether to save unsaved files when exiting.</source>
+When this is enabled, you won&apos;t be asked whether to save unsaved files when exiting.</source>
         <translation>एप्लिकेशन शुरू होने पर पिछला सेशन रिस्टोर करें।
 जब यह इनेबल्ड होगा, तो बाहर निकलते समय आपसे अनसेव्ड फाइलों को सेव करने के लिए नहीं पूछा जाएगा।</translation>
     </message>
@@ -2198,8 +2199,8 @@ kill the application with SIGKILL which could not be handled by the application.
         <translation>डिफ में EOLN डिस्प्ले करें</translation>
     </message>
     <message>
-        <source>Use "¶" to represent for the new line character in the HTML Diff Viewer.</source>
-        <translation>HTML डिफ व्यूअर में न्यू लाइन कैरेक्टर को दर्शाने के लिए "¶" का उपयोग करें।</translation>
+        <source>Use &quot;¶&quot; to represent for the new line character in the HTML Diff Viewer.</source>
+        <translation>HTML डिफ व्यूअर में न्यू लाइन कैरेक्टर को दर्शाने के लिए &quot;¶&quot; का उपयोग करें।</translation>
     </message>
     <message>
         <source>Save Files Faster</source>
@@ -2217,7 +2218,7 @@ This will be faster but with a little bit more risk of losing the file (with a v
     </message>
     <message>
         <source>The default time limit when executing the program.
-The program will be killed if it doesn't terminate in the time limit.</source>
+The program will be killed if it doesn&apos;t terminate in the time limit.</source>
         <translation>प्रोग्राम को एक्जीक्यूट करते समय डिफ़ॉल्ट टाइम लिमिट।
 यदि प्रोग्राम टाइम लिमिट में टर्मिनेट नहीं होता है, तो उसे किल कर दिया जाएगा।</translation>
     </message>
@@ -2247,7 +2248,7 @@ If the output is too long, it will be elided.</source>
     </message>
     <message>
         <source>The maximum number of characters in each message in the top-right corner of the main window.
-The message will be elided if it's too long.</source>
+The message will be elided if it&apos;s too long.</source>
         <translation>मेन विंडो के ऊपरी-दाएं कोने में प्रत्येक मैसेज में कैरेक्टर्स की अधिकतम संख्या।
 यदि मैसेज बहुत लंबा है, तो इसे इलाइड कर दिया जाएगा।</translation>
     </message>
@@ -2267,7 +2268,7 @@ The Diff Viewer will fall back to plain text if either of the output or the expe
     </message>
     <message>
         <source>The maximum number of characters in a source file to open.
-A source file won't be opened if it's too long.</source>
+A source file won&apos;t be opened if it&apos;s too long.</source>
         <translation>खोलने के लिए किसी सोर्स फाइल में कैरेक्टर्स की अधिकतम संख्या।
 अगर सोर्स फाइल बहुत लंबी है, तो उसे नहीं खोला जाएगा।</translation>
     </message>
@@ -2277,7 +2278,7 @@ A source file won't be opened if it's too long.</source>
     </message>
     <message>
         <source>The maximum number of characters in a test case to be displayed.
-A test case will be elided and read-only if it's too long.</source>
+A test case will be elided and read-only if it&apos;s too long.</source>
         <translation>डिस्प्ले किए जाने वाले टेस्ट केस में कैरेक्टर्स की अधिकतम संख्या।
 अगर टेस्ट केस बहुत लंबा है, तो उसे एलाइड और रीड-ओनली कर दिया जाएगा।</translation>
     </message>
@@ -2361,9 +2362,9 @@ Each pair of regular expressions represents a test case.</source>
     </message>
     <message>
         <source>The replace expression for the answer file name.
-You can use "\1" for the first captured group.</source>
+You can use &quot;\1&quot; for the first captured group.</source>
         <translation>आंसर फाइल नेम के लिए रिप्लेस एक्सप्रेशन।
-आप पहले कैप्चर किए गए ग्रुप के लिए "\1" का उपयोग कर सकते हैं।</translation>
+आप पहले कैप्चर किए गए ग्रुप के लिए &quot;\1&quot; का उपयोग कर सकते हैं।</translation>
     </message>
     <message>
         <source>Input File Save Path</source>
@@ -2372,16 +2373,16 @@ You can use "\1" for the first captured group.</source>
     <message>
         <source>The path where the input files are saved.
 This setting is a relative path to the source file.
-You can use "${filename}" for the complete file name,
-"${basename}" for the base file name without the suffix,
-"${0-index}" for the index of the test case started from 0,
-"${1-index}" for the index of the test case started from 1.</source>
+You can use &quot;${filename}&quot; for the complete file name,
+&quot;${basename}&quot; for the base file name without the suffix,
+&quot;${0-index}&quot; for the index of the test case started from 0,
+&quot;${1-index}&quot; for the index of the test case started from 1.</source>
         <translation>वह पाथ जहाँ इनपुट फाइल्स सेव होती हैं।
 यह सेटिंग सोर्स फाइल का एक रिलेटिव पाथ है।
-आप पूरे फाइल नेम के लिए "${filename}",
-बिना सफिक्स के बेस फाइल नेम के लिए "${basename}",
-0 से शुरू होने वाले टेस्ट केस के इंडेक्स के लिए "${0-index}",
-1 से शुरू होने वाले टेस्ट केस के इंडेक्स के लिए "${1-index}" का उपयोग कर सकते हैं।</translation>
+आप पूरे फाइल नेम के लिए &quot;${filename}&quot;,
+बिना सफिक्स के बेस फाइल नेम के लिए &quot;${basename}&quot;,
+0 से शुरू होने वाले टेस्ट केस के इंडेक्स के लिए &quot;${0-index}&quot;,
+1 से शुरू होने वाले टेस्ट केस के इंडेक्स के लिए &quot;${1-index}&quot; का उपयोग कर सकते हैं।</translation>
     </message>
     <message>
         <source>Answer File Save Path</source>
@@ -2390,16 +2391,16 @@ You can use "${filename}" for the complete file name,
     <message>
         <source>The path where the answer files are saved.
 This setting is a relative path to the source file.
-You can use "${filename}" for the complete file name,
-"${basename}" for the base file name without the suffix,
-"${0-index}" for the index of the test case started from 0,
-"${1-index}" for the index of the test case started from 1.</source>
+You can use &quot;${filename}&quot; for the complete file name,
+&quot;${basename}&quot; for the base file name without the suffix,
+&quot;${0-index}&quot; for the index of the test case started from 0,
+&quot;${1-index}&quot; for the index of the test case started from 1.</source>
         <translation>वह पाथ जहाँ आंसर फाइल्स सेव होती हैं।
 यह सेटिंग सोर्स फाइल का एक रिलेटिव पाथ है।
-आप पूरे फाइल नेम के लिए "${filename}",
-बिना सफिक्स के बेस फाइल नेम के लिए "${basename}",
-0 से शुरू होने वाले टेस्ट केस के इंडेक्स के लिए "${0-index}",
-1 से शुरू होने वाले टेस्ट केस के इंडेक्स के लिए "${1-index}" का उपयोग कर सकते हैं।</translation>
+आप पूरे फाइल नेम के लिए &quot;${filename}&quot;,
+बिना सफिक्स के बेस फाइल नेम के लिए &quot;${basename}&quot;,
+0 से शुरू होने वाले टेस्ट केस के इंडेक्स के लिए &quot;${0-index}&quot;,
+1 से शुरू होने वाले टेस्ट केस के इंडेक्स के लिए &quot;${1-index}&quot; का उपयोग कर सकते हैं।</translation>
     </message>
     <message>
         <source>Default File Paths For Problem URLs</source>
@@ -2423,9 +2424,9 @@ You can use "${filename}" for the complete file name,
     </message>
     <message>
         <source>The replace expression for the file path, without file name suffix.
-You can use "\1" for the first captured group.</source>
+You can use &quot;\1&quot; for the first captured group.</source>
         <translation>फ़ाइल पाथ के लिए रिप्लेस एक्सप्रेशन, बिना फ़ाइल नेम सफिक्स के।
-आप पहले कैप्चर्ड ग्रुप के लिए "\1" का उपयोग कर सकते हैं।</translation>
+आप पहले कैप्चर्ड ग्रुप के लिए &quot;\1&quot; का उपयोग कर सकते हैं।</translation>
     </message>
     <message>
         <source>Test Cases Font</source>
@@ -2458,7 +2459,7 @@ Due to technical reasons, changing the height of the margin affects the undo his
         <translation>कम्पाइलेशन पर फ़ाइल सेव करें</translation>
     </message>
     <message>
-        <source>Save the source file when compiling it. It won't be saved if the tab is untitled.</source>
+        <source>Save the source file when compiling it. It won&apos;t be saved if the tab is untitled.</source>
         <translation>सोर्स फ़ाइल को कम्पाइल करते समय इसे सेव करें। यदि टैब अनटाइटल्ड है तो यह सेव नहीं होगी।</translation>
     </message>
     <message>
@@ -2466,7 +2467,7 @@ Due to technical reasons, changing the height of the margin affects the undo his
         <translation>एग्जीक्यूशन पर फ़ाइल सेव करें</translation>
     </message>
     <message>
-        <source>Save the source file when running it. It won't be saved if the tab is untitled.</source>
+        <source>Save the source file when running it. It won&apos;t be saved if the tab is untitled.</source>
         <translation>सोर्स फ़ाइल को रन करते समय इसे सेव करें। यदि टैब अनटाइटल्ड है तो यह सेव नहीं होगी।</translation>
     </message>
     <message>
@@ -2554,8 +2555,8 @@ from Competitive Companion again, the old file will be opened.</source>
         <translation>टाइप</translation>
     </message>
     <message>
-        <source>The type of the proxy. "System" for using the system proxy.</source>
-        <translation>प्रॉक्सी का टाइप। सिस्टम प्रॉक्सी का उपयोग करने के लिए "System" चुनें।</translation>
+        <source>The type of the proxy. &quot;System&quot; for using the system proxy.</source>
+        <translation>प्रॉक्सी का टाइप। सिस्टम प्रॉक्सी का उपयोग करने के लिए &quot;System&quot; चुनें।</translation>
     </message>
     <message>
         <source>network-proxy</source>
@@ -2593,7 +2594,7 @@ from Competitive Companion again, the old file will be opened.</source>
         <translation>यूजर</translation>
     </message>
     <message>
-        <source>The user of the proxy server. It can be empty if the proxy server doesn't require authentication.</source>
+        <source>The user of the proxy server. It can be empty if the proxy server doesn&apos;t require authentication.</source>
         <translation>प्रॉक्सी सर्वर का यूजर। यदि प्रॉक्सी सर्वर को ऑथेंटिकेशन की आवश्यकता नहीं है, तो इसे खाली छोड़ा जा सकता है।</translation>
     </message>
     <message>
@@ -2606,7 +2607,7 @@ from Competitive Companion again, the old file will be opened.</source>
         <translation>पासवर्ड</translation>
     </message>
     <message>
-        <source>The password of the proxy server. It can be empty if the proxy server doesn't require authentication.</source>
+        <source>The password of the proxy server. It can be empty if the proxy server doesn&apos;t require authentication.</source>
         <translation>प्रॉक्सी सर्वर का पासवर्ड। यदि प्रॉक्सी सर्वर को ऑथेंटिकेशन की आवश्यकता नहीं है, तो यह खाली हो सकता है।</translation>
     </message>
     <message>
@@ -2628,7 +2629,7 @@ from Competitive Companion again, the old file will be opened.</source>
     </message>
     <message>
         <source>A list of default paths.
-They can be used in actions' corresponding default paths by using ${&lt;default path name&gt;} as a place holder.
+They can be used in actions&apos; corresponding default paths by using ${&lt;default path name&gt;} as a place holder.
 They can be either manually set or automatically changed after choosing a path for an action.</source>
         <translation>डिफ़ॉल्ट पाथ्स की एक सूची।
 इन्हें एक्शन्स के संबंधित डिफ़ॉल्ट पाथ्स में प्लेसहोल्डर के रूप में ${&lt;default path name&gt;} का उपयोग करके इस्तेमाल किया जा सकता है।
@@ -2652,11 +2653,11 @@ They can be either manually set or automatically changed after choosing a path f
         <translation>एक डिफ़ॉल्ट पाथ का पाथ</translation>
     </message>
     <message>
-        <source>Auto-load external file changes if there's no unsaved modification</source>
+        <source>Auto-load external file changes if there&apos;s no unsaved modification</source>
         <translation>यदि कोई अनसेव्ड मॉडिफिकेशन नहीं है, तो एक्सटर्नल फ़ाइल परिवर्तनों को ऑटो-लोड करें</translation>
     </message>
     <message>
-        <source>Automatically load file changes that are not made in CP Editor if there's no unsaved modification in CP Editor.</source>
+        <source>Automatically load file changes that are not made in CP Editor if there&apos;s no unsaved modification in CP Editor.</source>
         <translation>यदि CP Editor में कोई अनसेव्ड मॉडिफिकेशन नहीं है, तो उन फ़ाइल परिवर्तनों को ऑटोमैटिकली लोड करें जो CP Editor में नहीं किए गए हैं।</translation>
     </message>
     <message>
@@ -2665,11 +2666,11 @@ They can be either manually set or automatically changed after choosing a path f
     </message>
     <message>
         <source>When there are file changes that are not made in CP Editor and is not automatically loaded by
-"%1", ask for whether to load the changes.
+&quot;%1&quot;, ask for whether to load the changes.
 If this is disabled, external file changes will be ignored unless they are loaded by
-"%1".</source>
-        <translation>जब ऐसी फ़ाइल में परिवर्तन हों जो CP Editor में नहीं किए गए हैं और "%1" द्वारा ऑटोमैटिकली लोड नहीं किए गए हैं, तो पूछें कि क्या परिवर्तनों को लोड करना है।
-यदि यह डिसेबल है, तो एक्सटर्नल फ़ाइल परिवर्तनों को इग्नोर कर दिया जाएगा जब तक कि उन्हें "%1" द्वारा लोड न किया जाए।</translation>
+&quot;%1&quot;.</source>
+        <translation>जब ऐसी फ़ाइल में परिवर्तन हों जो CP Editor में नहीं किए गए हैं और &quot;%1&quot; द्वारा ऑटोमैटिकली लोड नहीं किए गए हैं, तो पूछें कि क्या परिवर्तनों को लोड करना है।
+यदि यह डिसेबल है, तो एक्सटर्नल फ़ाइल परिवर्तनों को इग्नोर कर दिया जाएगा जब तक कि उन्हें &quot;%1&quot; द्वारा लोड न किया जाए।</translation>
     </message>
     <message>
         <source>Show Only Monospaced Font</source>
@@ -2757,9 +2758,9 @@ on the current tab and pause the stopwatch on the previous tab.</source>
         <translation>स्टॉपवॉच का रिज़ल्ट केवल बटन दबाने पर दिखाएं</translation>
     </message>
     <message>
-        <source>Hide the time of the stopwatch and only show the time when the "Show" button is pressed.
+        <source>Hide the time of the stopwatch and only show the time when the &quot;Show&quot; button is pressed.
 This may reduce distractions caused by stopwatch updates.</source>
-        <translation>स्टॉपवॉच का समय छिपाएं और केवल तभी समय दिखाएं जब "Show" बटन दबाया जाए।
+        <translation>स्टॉपवॉच का समय छिपाएं और केवल तभी समय दिखाएं जब &quot;Show&quot; बटन दबाया जाए।
 यह स्टॉपवॉच अपडेट के कारण होने वाले डिस्ट्रेक्शन को कम कर सकता है।</translation>
     </message>
     <message>
@@ -2943,7 +2944,7 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
         <translation>CP Editor को अपने दोस्तों के साथ शेयर करें</translation>
     </message>
     <message>
-        <source>I'm using @cpeditor_, an IDE specially designed for competitive programmers, which is awesome!</source>
+        <source>I&apos;m using @cpeditor_, an IDE specially designed for competitive programmers, which is awesome!</source>
         <translation>मैं @cpeditor_ का उपयोग कर रहा हूँ, जो खास तौर पर कॉम्पिटिटिव प्रोग्रामर्स के लिए बनाया गया एक IDE है, और यह बहुत बढ़िया है!</translation>
     </message>
     <message>
@@ -2958,8 +2959,8 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
 <context>
     <name>Telemetry::UpdateChecker</name>
     <message>
-        <source>This error is probably caused by the lack of the OpenSSL library. You can visit &lt;a href="https://wiki.openssl.org/index.php/Binaries"&gt;the OpenSSLWiki&lt;/a&gt; to find a binary to install, or install it via your favourite package manager. You have to install a version compatible with this version: [%1]</source>
-        <translation>यह एरर संभवतः OpenSSL लाइब्रेरी की कमी के कारण है। आप एक बाइनरी इंस्टॉल करने के लिए &lt;a href="https://wiki.openssl.org/index.php/Binaries"&gt;OpenSSLWiki&lt;/a&gt; पर जा सकते हैं, या इसे अपने पसंदीदा पैकेज मैनेजर के माध्यम से इंस्टॉल कर सकते हैं। आपको इस वर्ज़न के साथ संगत एक वर्ज़न इंस्टॉल करना होगा: [%1]</translation>
+        <source>This error is probably caused by the lack of the OpenSSL library. You can visit &lt;a href=&quot;https://wiki.openssl.org/index.php/Binaries&quot;&gt;the OpenSSLWiki&lt;/a&gt; to find a binary to install, or install it via your favourite package manager. You have to install a version compatible with this version: [%1]</source>
+        <translation>यह एरर संभवतः OpenSSL लाइब्रेरी की कमी के कारण है। आप एक बाइनरी इंस्टॉल करने के लिए &lt;a href=&quot;https://wiki.openssl.org/index.php/Binaries&quot;&gt;OpenSSLWiki&lt;/a&gt; पर जा सकते हैं, या इसे अपने पसंदीदा पैकेज मैनेजर के माध्यम से इंस्टॉल कर सकते हैं। आपको इस वर्ज़न के साथ संगत एक वर्ज़न इंस्टॉल करना होगा: [%1]</translation>
     </message>
     <message>
         <source>No release is found.</source>
@@ -3052,11 +3053,11 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
         <translation>नंबर ऑफ प्रॉब्लम्स</translation>
     </message>
     <message>
-        <source>Main Directory doesn't exist</source>
+        <source>Main Directory doesn&apos;t exist</source>
         <translation>मेन डायरेक्टरी मौजूद नहीं है</translation>
     </message>
     <message>
-        <source>The Main Directory [%1] doesn't exist. Do you want to create it and continue?</source>
+        <source>The Main Directory [%1] doesn&apos;t exist. Do you want to create it and continue?</source>
         <translation>मेन डायरेक्टरी [%1] मौजूद नहीं है। क्या आप इसे बनाना और जारी रखना चाहते हैं?</translation>
     </message>
     <message>
@@ -3133,8 +3134,8 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
         <translation>यूज़ जनरेटर आर्गुमेंट्स:</translation>
     </message>
     <message>
-        <source>Example: "10 [5..100] abacaba"</source>
-        <translation>उदाहरण: "10 [5..100] abacaba"</translation>
+        <source>Example: &quot;10 [5..100] abacaba&quot;</source>
+        <translation>उदाहरण: &quot;10 [5..100] abacaba&quot;</translation>
     </message>
     <message>
         <source>Standard Program Path:</source>
@@ -3229,8 +3230,8 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
         <translation>सभी टेस्ट्स फिनिश हो गए हैं</translation>
     </message>
     <message>
-        <source>Running with arguments "%1"</source>
-        <translation>आर्गुमेंट्स "%1" के साथ रन हो रहा है</translation>
+        <source>Running with arguments &quot;%1&quot;</source>
+        <translation>आर्गुमेंट्स &quot;%1&quot; के साथ रन हो रहा है</translation>
     </message>
     <message>
         <source>Time Limit Exceeded</source>
@@ -3439,7 +3440,7 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Check All</source>
-        <extracomment>Here "Check" means to check the checkbox</extracomment>
+        <extracomment>Here &quot;Check&quot; means to check the checkbox</extracomment>
         <translation>चेक ऑल</translation>
     </message>
     <message>
@@ -3469,7 +3470,7 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Delete Checked</source>
-        <extracomment>Here "checked" means the checkbox is checked</extracomment>
+        <extracomment>Here &quot;checked&quot; means the checkbox is checked</extracomment>
         <translation>डिलीट चेक्ड</translation>
     </message>
     <message>
@@ -3490,7 +3491,7 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Are you sure you want to copy all checked output to their corresponding expected?</source>
-        <extracomment>Here "checked" means the checkbox is checked</extracomment>
+        <extracomment>Here &quot;checked&quot; means the checkbox is checked</extracomment>
         <translation>क्या आप वाकई सभी चेक्ड आउटपुट को उनके संबंधित एक्सपेक्टेड में कॉपी करना चाहते हैं?</translation>
     </message>
     <message>
@@ -3530,7 +3531,7 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
         <translation>टेस्ट केस ऐड करें</translation>
     </message>
     <message>
-        <source>There are already %1 test cases, you can't add more.</source>
+        <source>There are already %1 test cases, you can&apos;t add more.</source>
         <translation>पहले से ही %1 टेस्ट केस मौजूद हैं, आप और ऐड नहीं कर सकते।</translation>
     </message>
     <message>
@@ -3569,8 +3570,8 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
         <translation>नया अपडेट उपलब्ध है</translation>
     </message>
     <message>
-        <source>A new %1 update &lt;a href="%2"&gt;%3&lt;/a&gt; is available. See below for the changelog.&lt;br /&gt;We highly recommend you keep the editor up to date so that you won't miss the awesome new features and bug fixes.</source>
-        <translation>एक नया %1 अपडेट &lt;a href="%2"&gt;%3&lt;/a&gt; उपलब्ध है। चेंजलॉग के लिए नीचे देखें।&lt;br /&gt;हम पुरजोर सलाह देते हैं कि आप एडिटर को अपडेट रखें ताकि आप शानदार नए फीचर्स और बग फिक्स का लाभ उठा सकें।</translation>
+        <source>A new %1 update &lt;a href=&quot;%2&quot;&gt;%3&lt;/a&gt; is available. See below for the changelog.&lt;br /&gt;We highly recommend you keep the editor up to date so that you won&apos;t miss the awesome new features and bug fixes.</source>
+        <translation>एक नया %1 अपडेट &lt;a href=&quot;%2&quot;&gt;%3&lt;/a&gt; उपलब्ध है। चेंजलॉग के लिए नीचे देखें।&lt;br /&gt;हम पुरजोर सलाह देते हैं कि आप एडिटर को अपडेट रखें ताकि आप शानदार नए फीचर्स और बग फिक्स का लाभ उठा सकें।</translation>
     </message>
     <message>
         <source>beta</source>
@@ -3600,8 +3601,8 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
         <translation>रिलीज़ की लिस्ट फेच की जा रही है...</translation>
     </message>
     <message>
-        <source>Error: %1&lt;br /&gt;&lt;br /&gt;Updater failed to check for update. Please manually check for update at&lt;br /&gt;&lt;a href="https://cpeditor.org/download"&gt;https://cpeditor.org/download&lt;/a&gt; or &lt;a href="https://github.com/cpeditor/cpeditor/releases"&gt;https://github.com/cpeditor/cpeditor/releases&lt;/a&gt;.</source>
-        <translation>एरर: %1&lt;br /&gt;&lt;br /&gt;अपडेटर अपडेट चेक करने में फेल हो गया। कृपया &lt;br /&gt;&lt;a href="https://cpeditor.org/download"&gt;https://cpeditor.org/download&lt;/a&gt; या &lt;a href="https://github.com/cpeditor/cpeditor/releases"&gt;https://github.com/cpeditor/cpeditor/releases&lt;/a&gt; पर मैन्युअल रूप से अपडेट चेक करें।</translation>
+        <source>Error: %1&lt;br /&gt;&lt;br /&gt;Updater failed to check for update. Please manually check for update at&lt;br /&gt;&lt;a href=&quot;https://cpeditor.org/download&quot;&gt;https://cpeditor.org/download&lt;/a&gt; or &lt;a href=&quot;https://github.com/cpeditor/cpeditor/releases&quot;&gt;https://github.com/cpeditor/cpeditor/releases&lt;/a&gt;.</source>
+        <translation>एरर: %1&lt;br /&gt;&lt;br /&gt;अपडेटर अपडेट चेक करने में फेल हो गया। कृपया &lt;br /&gt;&lt;a href=&quot;https://cpeditor.org/download&quot;&gt;https://cpeditor.org/download&lt;/a&gt; या &lt;a href=&quot;https://github.com/cpeditor/cpeditor/releases&quot;&gt;https://github.com/cpeditor/cpeditor/releases&lt;/a&gt; पर मैन्युअल रूप से अपडेट चेक करें।</translation>
     </message>
     <message>
         <source>Close</source>
