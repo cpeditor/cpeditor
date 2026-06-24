@@ -20,7 +20,7 @@ jobs:
       options: --privileged
     if: github.repository_owner == 'cpeditor'
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           submodules: recursive
           fetch-depth: 0
