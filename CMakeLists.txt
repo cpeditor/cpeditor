@@ -110,12 +110,14 @@ add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMA
                    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
                    DEPENDS ${PROJECT_SOURCE_DIR}/src/Settings/settings.json ${PROJECT_SOURCE_DIR}/src/Settings/genSettings.py)
 
-qt_standard_project_setup(I18N_TRANSLATED_LANGUAGES el_GR es_MX pt_BR ru_RU zh_CN zh_TW)
+qt_standard_project_setup(I18N_TRANSLATED_LANGUAGES el_GR es_MX pt_BR ru_RU zh_CN zh_TW ar_EG)
 
 # Define translation files
 set(TS_FILES
+    translations/ar_EG.ts
     translations/el_GR.ts
     translations/es_MX.ts
+    translations/hi_IN.ts
     translations/pt_BR.ts
     translations/ru_RU.ts
     translations/zh_CN.ts

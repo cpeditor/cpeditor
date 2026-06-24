@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           submodules: recursive
           fetch-depth: 0
@@ -24,12 +24,12 @@ jobs:
           modules: 'qt5compat'
           version: ${{ env.QT_VERSION }}
 
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           repository: KDE/extra-cmake-modules
           path: third_party/extra-cmake-modules
 
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           repository: KDE/syntax-highlighting
           path: third_party/syntax-highlighting

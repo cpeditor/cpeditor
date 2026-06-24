@@ -24,7 +24,7 @@ jobs:
             binary: cpeditor.app/Contents/MacOS/cpeditor
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           submodules: recursive
           fetch-depth: 0
@@ -52,12 +52,12 @@ jobs:
         if: startsWith(matrix.config.os, 'windows')
         run: choco install llvm -y
 
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           repository: KDE/extra-cmake-modules
           path: third_party/extra-cmake-modules
 
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           repository: KDE/syntax-highlighting
           path: third_party/syntax-highlighting
