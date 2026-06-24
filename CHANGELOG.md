@@ -2,6 +2,7 @@
 
 ### Added
 
+-   Add Arabic translation for Application (`ar_EG.ts`)
 -   Add Hindi translation for Application (`hi_IN.ts`)
 -   Add an option to toggle Ctrl+Scroll font scaling (#1249)
 -   Add middle-click to close tabs. (#1351)
