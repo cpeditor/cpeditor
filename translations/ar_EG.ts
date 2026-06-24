@@ -44,8 +44,8 @@
         <translation>حول CP Editor %1</translation>
     </message>
     <message>
-        <source>&lt;p&gt;&lt;b&gt;CP Editor&lt;/b&gt; is a native Qt-based code editor. It's specially designed for competitive programming, unlike other editors/IDEs which are mainly for developers. It helps you focus on your algorithm and automates the compilation, executing and testing. It even fetches test cases for you from different platforms and submits solutions to Codeforces!&lt;/p&gt;&lt;p&gt;Copyright (C) 2019-2021 Ashar Khan &amp;lt;ashar786khan@gmail.com&amp;gt;&lt;/p&gt;&lt;p&gt;This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. The source code for CP Editor is available at &lt;a href="https://github.com/cpeditor/cpeditor"&gt; https://github.com/cpeditor/cpeditor&lt;/a&gt;.&lt;/p&gt;</source>
-        <translation>&lt;p&gt;&lt;b&gt;CP Editor&lt;/b&gt; ?? ???? ??? ???? ???? ??? Qt. ???? ?????? ??????? ?????????? ????? ???????? ?????? ??????? ?????? ??????? ?????? ????????. ?????? ??? ??????? ??? ?????????? ?????? ??????? ???????? ?????????. ????? ??? ??? ????? ???????? ?? ????? ?????? ?????? ?????? ??? Codeforces!&lt;/p&gt;&lt;p&gt;Copyright (C) 2019-2021 Ashar Khan &amp;lt;ashar786khan@gmail.com&amp;gt;&lt;/p&gt;&lt;p&gt;??? ?????? ??? ???? ?????? ?????? ???? ?????. ?? ???? ?? ??????? ??? ??? ???? ???????? ??????? ?? ???????? ???? ????. ??? CP Editor ??????? ???? ??? &lt;a href="https://github.com/cpeditor/cpeditor"&gt; https://github.com/cpeditor/cpeditor&lt;/a&gt;.&lt;/p&gt;</translation>
+        <source>&lt;p&gt;&lt;b&gt;CP Editor&lt;/b&gt; is a native Qt-based code editor. It&apos;s specially designed for competitive programming, unlike other editors/IDEs which are mainly for developers. It helps you focus on your algorithm and automates the compilation, executing and testing. It even fetches test cases for you from different platforms and submits solutions to Codeforces!&lt;/p&gt;&lt;p&gt;Copyright (C) 2019-2021 Ashar Khan &amp;lt;ashar786khan@gmail.com&amp;gt;&lt;/p&gt;&lt;p&gt;This is free software; see the source for copying conditions. There is NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. The source code for CP Editor is available at &lt;a href=&quot;https://github.com/cpeditor/cpeditor&quot;&gt; https://github.com/cpeditor/cpeditor&lt;/a&gt;.&lt;/p&gt;</source>
+        <translation>&lt;p&gt;&lt;b&gt;CP Editor&lt;/b&gt; هو محرر أكواد برمجية معتمد على Qt. وهو مصمم خصيصاً للبرمجة التنافسية، على عكس المحررات/بيئات التطوير الأخرى التي تستهدف المطورين بشكل أساسي. يساعدك على التركيز على خوارزميتك ويقوم بأتمتة الترجمة والتشغيل والاختبار. بل ويجلب لك حالات الاختبار من منصات مختلفة ويرفع الحلول إلى Codeforces!&lt;/p&gt;&lt;p&gt;Copyright (C) 2019-2021 Ashar Khan &amp;lt;ashar786khan@gmail.com&amp;gt;&lt;/p&gt;&lt;p&gt;هذا برنامج حر؛ انظر المصدر لشروط النسخ. لا يوجد أي ضمان؛ ولا حتى ضمان صلاحية العرض في السوق أو الملاءمة لغرض معين. كود CP Editor المصدري متاح على &lt;a href=&quot;https://github.com/cpeditor/cpeditor&quot;&gt; https://github.com/cpeditor/cpeditor&lt;/a&gt;.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Build Info</source>
@@ -253,7 +253,7 @@ OS: %5</source>
     </message>
     <message>
         <source>EventLogger</source>
-        <translation>???? ???????</translation>
+        <translation>مسجل الأحداث</translation>
     </message>
     <message>
         <source>All logs except for current session has been deleted</source>
@@ -587,7 +587,7 @@ OS: %5</source>
         <translation>فشلت الكتابة إلى [%1]. هل لدي إذن بالكتابة؟</translation>
     </message>
     <message>
-        <source>Snippet name can't be empty.
+        <source>Snippet name can&apos;t be empty.
 </source>
         <translation>لا يمكن أن يكون اسم المقتطف فارغًا.</translation>
     </message>
@@ -596,13 +596,13 @@ OS: %5</source>
         <translation>تعارض اسم المقتطف</translation>
     </message>
     <message>
-        <source>The name "%1" is already in use. Do you want to override it? (The old snippet with this name will be deleted.)</source>
-        <translation>الاسم "%1" قيد الاستخدام بالفعل. هل تريد تجاوزه؟ (سيتم حذف المقتطف القديم الذي يحمل هذا الاسم.)</translation>
+        <source>The name &quot;%1&quot; is already in use. Do you want to override it? (The old snippet with this name will be deleted.)</source>
+        <translation>الاسم &quot;%1&quot; قيد الاستخدام بالفعل. هل تريد تجاوزه؟ (سيتم حذف المقتطف القديم الذي يحمل هذا الاسم.)</translation>
     </message>
     <message>
-        <source>The name "%1" is already in use.
+        <source>The name &quot;%1&quot; is already in use.
 </source>
-        <translation>الاسم "%1" قيد الاستخدام بالفعل.</translation>
+        <translation>الاسم &quot;%1&quot; قيد الاستخدام بالفعل.</translation>
     </message>
     <message>
         <source>Add Snippet</source>
@@ -685,7 +685,7 @@ OS: %5</source>
 <context>
     <name>Core::Compiler</name>
     <message>
-        <source>The source file [%1] doesn't exist</source>
+        <source>The source file [%1] doesn&apos;t exist</source>
         <translation>الملف المصدر [%1] غير موجود</translation>
     </message>
     <message>
@@ -693,8 +693,8 @@ OS: %5</source>
         <translation>%1 فارغ</translation>
     </message>
     <message>
-        <source>Unsupported programming language "%1"</source>
-        <translation>لغة برمجة غير مدعومة "%1"</translation>
+        <source>Unsupported programming language &quot;%1&quot;</source>
+        <translation>لغة برمجة غير مدعومة &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Failed to start the compiler. Please check %1 or add the compiler in the PATH environment variable.</source>
@@ -704,11 +704,11 @@ OS: %5</source>
 <context>
     <name>Core::Runner</name>
     <message>
-        <source>The source file %1 doesn't exist.</source>
+        <source>The source file %1 doesn&apos;t exist.</source>
         <translation>الملف المصدر%1غير موجود.</translation>
     </message>
     <message>
-        <source>Failed to get run command. It's probably a bug.</source>
+        <source>Failed to get run command. It&apos;s probably a bug.</source>
         <translation>فشل في الحصول على أمر التشغيل. من المحتمل أن يكون خطأ.</translation>
     </message>
     <message>
@@ -748,8 +748,8 @@ Press any key to exit</source>
 <context>
     <name>Editor::FakeVimCommands</name>
     <message>
-        <source>`new` requires no argument or one of 'cpp', 'java' and 'python', got [%1]</source>
-        <translation>`new` لا يتطلب أي وسيطة أو أي وسيطة من 'cpp' و'java' و'python'، حصلت على [%1]</translation>
+        <source>`new` requires no argument or one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos;, got [%1]</source>
+        <translation>`new` لا يتطلب أي وسيطة أو أي وسيطة من &apos;cpp&apos; و&apos;java&apos; و&apos;python&apos;، حصلت على [%1]</translation>
     </message>
     <message>
         <source>[%1] is not C++, Python or Java source file</source>
@@ -757,7 +757,7 @@ Press any key to exit</source>
     </message>
     <message>
         <source>[%1] does not exist. To open a tab with a non-existing file, use `open!` instead</source>
-        <translation>[%1] غير موجود. لفتح علامة تبويب تحتوي على ملف غير موجود، استخدم "فتح!" بدلاً من ذلك</translation>
+        <translation>[%1] غير موجود. لفتح علامة تبويب تحتوي على ملف غير موجود، استخدم &quot;فتح!&quot; بدلاً من ذلك</translation>
     </message>
     <message>
         <source>[%1] is not a number</source>
@@ -772,12 +772,12 @@ Press any key to exit</source>
         <translation>لا يوجد</translation>
     </message>
     <message>
-        <source>[%1] is not a valid view mode. It should be one of 'split' and 'edit'</source>
-        <translation>[%1] ليس وضع عرض صالحًا. يجب أن تكون واحدة من "تقسيم" و"تحرير"</translation>
+        <source>[%1] is not a valid view mode. It should be one of &apos;split&apos; and &apos;edit&apos;</source>
+        <translation>[%1] ليس وضع عرض صالحًا. يجب أن تكون واحدة من &quot;تقسيم&quot; و&quot;تحرير&quot;</translation>
     </message>
     <message>
-        <source>%1 is not a valid language name. It should be one of 'cpp', 'java' and 'python'</source>
-        <translation>%1 ليس اسم لغة صالحًا. يجب أن يكون واحدًا من "cpp" و"java" و"python"</translation>
+        <source>%1 is not a valid language name. It should be one of &apos;cpp&apos;, &apos;java&apos; and &apos;python&apos;</source>
+        <translation>%1 ليس اسم لغة صالحًا. يجب أن يكون واحدًا من &quot;cpp&quot; و&quot;java&quot; و&quot;python&quot;</translation>
     </message>
     <message>
         <source>No active tab to change language</source>
@@ -846,7 +846,7 @@ Press any key to exit</source>
         <translation>اكتمل التنسيق</translation>
     </message>
     <message>
-        <source>The format process didn't finish in 2 seconds. This is probably because the %1 program is not found by CP Editor. You can set the path to the program at %2.</source>
+        <source>The format process didn&apos;t finish in 2 seconds. This is probably because the %1 program is not found by CP Editor. You can set the path to the program at %2.</source>
         <translation>لم تنتهي عملية التنسيق خلال ثانيتين. ربما يكون هذا بسبب عدم العثور على برنامج%1بواسطة CP Editor. يمكنك ضبط المسار إلى البرنامج على%2.</translation>
     </message>
     <message>
@@ -980,22 +980,22 @@ Press any key to exit</source>
         <translation>كلام كامل فقط</translation>
     </message>
     <message>
-        <source>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name="qrichtext" content="1" /&gt;&lt;style type="text/css"&gt;
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=" font-family:'Sans'; font-size:10pt; font-weight:400; font-style:normal;"&gt;
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;whether the text to search should be interpreted as a regular expression.&lt;/p&gt;
-&lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;&lt;/p&gt;
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;You may want to take a look at the syntax of regular expressions:&lt;/p&gt;
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"&gt;&lt;a href="http://doc.trolltech.com/qregexp.html"&gt;&lt;span style=" text-decoration: underline; color:#0000ff;"&gt;http://doc.trolltech.com/qregexp.html&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name="qrichtext" content="1" /&gt;&lt;style type="text/css"&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;whether the text to search should be interpreted as a regular expression.&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You may want to take a look at the syntax of regular expressions:&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://doc.trolltech.com/qregexp.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://doc.trolltech.com/qregexp.html&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p، li { مسافة بيضاء: التفاف مسبق؛ }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=" Font-family:'Sans'; حجم الخط:10pt; وزن الخط:400; نمط الخط: عادي;"&gt;
-&lt;p style=" هامش-أعلى:0px; هامش-أسفل:0px; هامش-يسار:0px; هامش-يمين:0px; -qt-block-indent:0; text-indent:0px;"&gt;ما إذا كان يجب تفسير النص المطلوب البحث كتعبير عادي.&lt;/p&gt;
-&lt;p style="-qt-paragraph-type:empty; الهامش العلوي:0px; الهامش السفلي:0px; الهامش الأيسر:0px; الهامش الأيمن:0px; -qt-block-indent:0; text-indent:0px;"&gt;&lt;/p&gt;
-&lt;p style=" هامش-أعلى:0px; هامش-أسفل:0px; هامش-يسار:0px; هامش-يمين:0px; -qt-block-indent:0; text-indent:0px;"&gt;قد ترغب في إلقاء نظرة على بناء جملة التعبيرات العادية:&lt;/p&gt;
-&lt;p style =" هامش أعلى: 0px; هامش أسفل: 0px; هامش يسار: 0px; هامش يمين: 0px; -qt-block-indent:0; مسافة بادئة للنص: 0px;"&gt;&lt;a href="http://doc.trolltech.com/qregexp.html"&gt;&lt;span style=" text-decoration: underline; اللون:#0000ff;"&gt;http://doc.trolltech.com/qregexp.html&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; Font-family:&apos;Sans&apos;; حجم الخط:10pt; وزن الخط:400; نمط الخط: عادي;&quot;&gt;
+&lt;p style=&quot; هامش-أعلى:0px; هامش-أسفل:0px; هامش-يسار:0px; هامش-يمين:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;ما إذا كان يجب تفسير النص المطلوب البحث كتعبير عادي.&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; الهامش العلوي:0px; الهامش السفلي:0px; الهامش الأيسر:0px; الهامش الأيمن:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; هامش-أعلى:0px; هامش-أسفل:0px; هامش-يسار:0px; هامش-يمين:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;قد ترغب في إلقاء نظرة على بناء جملة التعبيرات العادية:&lt;/p&gt;
+&lt;p style =&quot; هامش أعلى: 0px; هامش أسفل: 0px; هامش يسار: 0px; هامش يمين: 0px; -qt-block-indent:0; مسافة بادئة للنص: 0px;&quot;&gt;&lt;a href=&quot;http://doc.trolltech.com/qregexp.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; اللون:#0000ff;&quot;&gt;http://doc.trolltech.com/qregexp.html&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Regular Expression</source>
@@ -1091,7 +1091,7 @@ p، li { مسافة بيضاء: التفاف مسبق؛ }
         <translation>افتح الملف</translation>
     </message>
     <message>
-        <source>The file [%1] contains more than %2 characters, so it's not opened. You can change the open file length limit at %3.</source>
+        <source>The file [%1] contains more than %2 characters, so it&apos;s not opened. You can change the open file length limit at %3.</source>
         <translation>يحتوي الملف [%1] على أكثر من أحرف %2، لذا لا يتم فتحه. يمكنك تغيير الحد الأقصى لطول الملف المفتوح على %3.</translation>
     </message>
     <message>
@@ -1336,7 +1336,7 @@ Do you want to reload it?</source>
     </message>
     <message>
         <source>Enable %1 for %2 in %3.
-If it's partially checked, the global setting in Code Edit will be used.</source>
+If it&apos;s partially checked, the global setting in Code Edit will be used.</source>
         <translation>تمكين%1لـ%2في%3.
 إذا تم تحديده جزئيًا، فسيتم استخدام الإعداد العام في Code Edit.</translation>
     </message>
@@ -1375,7 +1375,7 @@ If it's partially checked, the global setting in Code Edit will be used.</source
 <context>
     <name>PreferencesHomePage</name>
     <message>
-        <source>Welcome to CP Editor! Let's get started.</source>
+        <source>Welcome to CP Editor! Let&apos;s get started.</source>
         <translation>مرحبا بكم في محرر CP! دعونا نبدأ.</translation>
     </message>
     <message>
@@ -1403,8 +1403,8 @@ If it's partially checked, the global setting in Code Edit will be used.</source
         <translation>إعدادات الخط</translation>
     </message>
     <message>
-        <source>You can read the &lt;a href="%1"&gt;documentation&lt;/a&gt; or go through the settings for more information.</source>
-        <translation>يمكنك قراءة &lt;a href="%1"&gt;الوثائق&lt;/a&gt; أو الانتقال إلى الإعدادات للحصول على مزيد من المعلومات.</translation>
+        <source>You can read the &lt;a href=&quot;%1&quot;&gt;documentation&lt;/a&gt; or go through the settings for more information.</source>
+        <translation>يمكنك قراءة &lt;a href=&quot;%1&quot;&gt;الوثائق&lt;/a&gt; أو الانتقال إلى الإعدادات للحصول على مزيد من المعلومات.</translation>
     </message>
 </context>
 <context>
@@ -1644,7 +1644,7 @@ If it's partially checked, the global setting in Code Edit will be used.</source
         <translation>عرض المؤشر بالبكسل</translation>
     </message>
     <message>
-        <source />
+        <source></source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1692,8 +1692,8 @@ If it's partially checked, the global setting in Code Edit will be used.</source
         <translation>وسيطات تنسيق Clang</translation>
     </message>
     <message>
-        <source>The arguments passed to clang-format. It should NOT contain "-i".</source>
-        <translation>تم تمرير الوسائط إلى تنسيق clang. يجب ألا يحتوي على "-i".</translation>
+        <source>The arguments passed to clang-format. It should NOT contain &quot;-i&quot;.</source>
+        <translation>تم تمرير الوسائط إلى تنسيق clang. يجب ألا يحتوي على &quot;-i&quot;.</translation>
     </message>
     <message>
         <source>Clang Format Style</source>
@@ -1710,7 +1710,7 @@ You can learn about it at &lt;https://clang.llvm.org/docs/ClangFormatStyleOption
         <translation>برنامج يابف</translation>
     </message>
     <message>
-        <source>The program of YAPF. It could be `yapf` (which doesn't need arguments) or `python` (which needs `-m yapf` as the arguments).</source>
+        <source>The program of YAPF. It could be `yapf` (which doesn&apos;t need arguments) or `python` (which needs `-m yapf` as the arguments).</source>
         <translation>برنامج YAPF. يمكن أن يكون `yapf` (الذي لا يحتاج إلى وسيطات) أو `python` (الذي يحتاج إلى `-m yapf` كوسيطات).</translation>
     </message>
     <message>
@@ -1718,8 +1718,8 @@ You can learn about it at &lt;https://clang.llvm.org/docs/ClangFormatStyleOption
         <translation>حجج YAPF</translation>
     </message>
     <message>
-        <source>The arguments passed to the YAPF program. It should NOT contain "-i".</source>
-        <translation>تم تمرير الوسائط إلى برنامج YAPF. يجب ألا يحتوي على "-i".</translation>
+        <source>The arguments passed to the YAPF program. It should NOT contain &quot;-i&quot;.</source>
+        <translation>تم تمرير الوسائط إلى برنامج YAPF. يجب ألا يحتوي على &quot;-i&quot;.</translation>
     </message>
     <message>
         <source>YAPF Style</source>
@@ -1762,7 +1762,7 @@ You can learn about it by running `yapf --style-help`.</source>
     <message>
         <source>The regular expression which matches a part of the code template.
 When opening a template, the position of the cursor is the position of the regex with an offset.
-The cursor will be at the end of the template if there's no match of the regex.</source>
+The cursor will be at the end of the template if there&apos;s no match of the regex.</source>
         <translation>التعبير العادي الذي يطابق جزءًا من قالب الكود.
 عند فتح قالب، يكون موضع المؤشر هو موضع التعبير العادي مع إزاحة.
 سيكون المؤشر في نهاية القالب إذا لم يكن هناك تطابق مع التعبير العادي.</translation>
@@ -1788,8 +1788,8 @@ The cursor will be at the end of the template if there's no match of the regex.<
         <translation>أمر الترجمة %1</translation>
     </message>
     <message>
-        <source>The command used to compile C++. It should NOT include the path to the source file or "-o &lt;output file&gt;".</source>
-        <translation>الأمر المستخدم لتجميع C++. ويجب ألا يتضمن المسار إلى الملف المصدر أو "-o &lt;ملف الإخراج&gt;".</translation>
+        <source>The command used to compile C++. It should NOT include the path to the source file or &quot;-o &lt;output file&gt;&quot;.</source>
+        <translation>الأمر المستخدم لتجميع C++. ويجب ألا يتضمن المسار إلى الملف المصدر أو &quot;-o &lt;ملف الإخراج&gt;&quot;.</translation>
     </message>
     <message>
         <source>%1 Executable File Path</source>
@@ -1797,17 +1797,17 @@ The cursor will be at the end of the template if there's no match of the regex.<
     </message>
     <message>
         <source>The path of the compiled executable file.
-It's relative to the source file, or the temporary directory if the tab is untitled.
-No ".exe" is needed.
-You can use "${filename}" for the complete file name,
-"${basename}" for the base file name without the suffix,
-"${tmpdir}" or "${tempdir}" for the absolute path of the temporary directory.</source>
+It&apos;s relative to the source file, or the temporary directory if the tab is untitled.
+No &quot;.exe&quot; is needed.
+You can use &quot;${filename}&quot; for the complete file name,
+&quot;${basename}&quot; for the base file name without the suffix,
+&quot;${tmpdir}&quot; or &quot;${tempdir}&quot; for the absolute path of the temporary directory.</source>
         <translation>مسار الملف القابل للتنفيذ المترجمة.
 يتعلق الأمر بالملف المصدر، أو الدليل المؤقت إذا كانت علامة التبويب بلا عنوان.
-ليست هناك حاجة إلى ".exe".
-يمكنك استخدام "${filename}" لاسم الملف الكامل،
-"${basename}" لاسم الملف الأساسي بدون اللاحقة،
-"${tmpdir}" أو "${tempdir}" للمسار المطلق للدليل المؤقت.</translation>
+ليست هناك حاجة إلى &quot;.exe&quot;.
+يمكنك استخدام &quot;${filename}&quot; لاسم الملف الكامل،
+&quot;${basename}&quot; لاسم الملف الأساسي بدون اللاحقة،
+&quot;${tmpdir}&quot; أو &quot;${tempdir}&quot; للمسار المطلق للدليل المؤقت.</translation>
     </message>
     <message>
         <source>%1 Run Arguments</source>
@@ -1836,8 +1836,8 @@ It should NOT include the path to the source file or the path of the compiled cl
         <translation>أمر تشغيل %1</translation>
     </message>
     <message>
-        <source>The command to start a Java program. It should NOT include "-classpath &lt;path&gt; &lt;class name&gt;".</source>
-        <translation>الأمر لبدء برنامج جافا. يجب ألا يتضمن "-classpath &lt;path&gt; &lt;اسم الفئة&gt;".</translation>
+        <source>The command to start a Java program. It should NOT include &quot;-classpath &lt;path&gt; &lt;class name&gt;&quot;.</source>
+        <translation>الأمر لبدء برنامج جافا. يجب ألا يتضمن &quot;-classpath &lt;path&gt; &lt;اسم الفئة&gt;&quot;.</translation>
     </message>
     <message>
         <source>%1 Class Name</source>
@@ -1853,15 +1853,15 @@ It should NOT include the path to the source file or the path of the compiled cl
     </message>
     <message>
         <source>The path of the parent directory of the compiled class file.
-It's relative to the source file, or the temporary directory if the tab is untitled.
-You can use "${filename}" for the complete file name,
-"${basename}" for the base file name without the suffix,
-"${tmpdir}" or "${tempdir}" for the absolute path of the temporary directory.</source>
+It&apos;s relative to the source file, or the temporary directory if the tab is untitled.
+You can use &quot;${filename}&quot; for the complete file name,
+&quot;${basename}&quot; for the base file name without the suffix,
+&quot;${tmpdir}&quot; or &quot;${tempdir}&quot; for the absolute path of the temporary directory.</source>
         <translation>مسار الدليل الأصلي لملف الفئة المترجمة.
 يتعلق الأمر بالملف المصدر، أو الدليل المؤقت إذا كانت علامة التبويب بلا عنوان.
-يمكنك استخدام "${filename}" لاسم الملف الكامل،
-"${basename}" لاسم الملف الأساسي بدون اللاحقة،
-"${tmpdir}" أو "${tempdir}" للمسار المطلق للدليل المؤقت.</translation>
+يمكنك استخدام &quot;${filename}&quot; لاسم الملف الكامل،
+&quot;${basename}&quot; لاسم الملف الأساسي بدون اللاحقة،
+&quot;${tmpdir}&quot; أو &quot;${tempdir}&quot; للمسار المطلق للدليل المؤقت.</translation>
     </message>
     <message>
         <source>The template used when creating a new Python file</source>
@@ -1905,10 +1905,10 @@ Some possible values are konsole, gnome-terminal, xfce-terminal, xterm or any ot
     </message>
     <message>
         <source>Arguments used to execute a given command in the terminal emulator.
-This is "-e" for most terminal emulators, including konsole, xterm, xfce-terminal but can be "--" for gnome-terminal.
+This is &quot;-e&quot; for most terminal emulators, including konsole, xterm, xfce-terminal but can be &quot;--&quot; for gnome-terminal.
 Consult your terminal emulator for the suitable arguments.</source>
         <translation>الوسائط المستخدمة لتنفيذ أمر معين في المحاكي الطرفي.
-هذا هو "-e" لمعظم المحاكيات الطرفية، بما في ذلك konsole وxterm وxfce-terminal ولكن يمكن أن يكون "--" لمحطة gnome.
+هذا هو &quot;-e&quot; لمعظم المحاكيات الطرفية، بما في ذلك konsole وxterm وxfce-terminal ولكن يمكن أن يكون &quot;--&quot; لمحطة gnome.
 استشر المحاكي الطرفي الخاص بك للحصول على الوسائط المناسبة.</translation>
     </message>
     <message>
@@ -1952,8 +1952,8 @@ This can be overridden for each parenthesis in each language.</source>
         <translation>مسافة بادئة تلقائية</translation>
     </message>
     <message>
-        <source>Add an indent when entering a new line after a "{".</source>
-        <translation>أضف مسافة بادئة عند إدخال سطر جديد بعد "{".</translation>
+        <source>Add an indent when entering a new line after a &quot;{&quot;.</source>
+        <translation>أضف مسافة بادئة عند إدخال سطر جديد بعد &quot;{&quot;.</translation>
     </message>
     <message>
         <source>Enable Auto Save</source>
@@ -1984,7 +1984,7 @@ Without modification: auto-save happens with a constant interval no matter there
         <translation>التفاف النص</translation>
     </message>
     <message>
-        <source>Wrap a line into several lines if it doesn't fit into the screen.</source>
+        <source>Wrap a line into several lines if it doesn&apos;t fit into the screen.</source>
         <translation>قم بلف الخط إلى عدة أسطر إذا لم يكن مناسبًا للشاشة.</translation>
     </message>
     <message>
@@ -2024,7 +2024,7 @@ Without modification: auto-save happens with a constant interval no matter there
         <translation>التحقق من وجود تحديثات عند بدء التشغيل</translation>
     </message>
     <message>
-        <source>Check whether there's a new version of CP Editor when starting CP Editor.</source>
+        <source>Check whether there&apos;s a new version of CP Editor when starting CP Editor.</source>
         <translation>تحقق مما إذا كان هناك إصدار جديد من CP Editor عند بدء تشغيل CP Editor.</translation>
     </message>
     <message>
@@ -2096,13 +2096,13 @@ https://doc.qt.io/qt-5/qdate.html#toString
 https://doc.qt.io/qt-5/qtime.html#toString</translation>
     </message>
     <message>
-        <source>Add "Powered By CP Editor" in the head comments</source>
-        <translation>أضف "مدعوم من CP Editor" في التعليقات الرئيسية</translation>
+        <source>Add &quot;Powered By CP Editor&quot; in the head comments</source>
+        <translation>أضف &quot;مدعوم من CP Editor&quot; في التعليقات الرئيسية</translation>
     </message>
     <message>
-        <source>Add a line saying "Powered By CP Editor" in the head comments.
-This doesn't cost you anything, but helps more people to know CP Editor.</source>
-        <translation>أضف سطرًا يقول "Powered By CP Editor" في التعليقات الرئيسية.
+        <source>Add a line saying &quot;Powered By CP Editor&quot; in the head comments.
+This doesn&apos;t cost you anything, but helps more people to know CP Editor.</source>
+        <translation>أضف سطرًا يقول &quot;Powered By CP Editor&quot; في التعليقات الرئيسية.
 هذا لا يكلفك شيئًا، ولكنه يساعد المزيد من الأشخاص على معرفة CP Editor.</translation>
     </message>
     <message>
@@ -2139,7 +2139,7 @@ This doesn't cost you anything, but helps more people to know CP Editor.</source
     </message>
     <message>
         <source>Restore the last session when the application starts.
-When this is enabled, you won't be asked whether to save unsaved files when exiting.</source>
+When this is enabled, you won&apos;t be asked whether to save unsaved files when exiting.</source>
         <translation>استعادة الجلسة الأخيرة عند بدء تشغيل التطبيق.
 عند تمكين هذا الخيار، لن يتم سؤالك عما إذا كنت تريد حفظ الملفات غير المحفوظة عند الخروج أم لا.</translation>
     </message>
@@ -2200,7 +2200,7 @@ kill the application with SIGKILL which could not be handled by the application.
         <translation>عرض EOLN في فرق</translation>
     </message>
     <message>
-        <source>Use "¶" to represent for the new line character in the HTML Diff Viewer.</source>
+        <source>Use &quot;¶&quot; to represent for the new line character in the HTML Diff Viewer.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2219,7 +2219,7 @@ This will be faster but with a little bit more risk of losing the file (with a v
     </message>
     <message>
         <source>The default time limit when executing the program.
-The program will be killed if it doesn't terminate in the time limit.</source>
+The program will be killed if it doesn&apos;t terminate in the time limit.</source>
         <translation>الحد الزمني الافتراضي عند تنفيذ البرنامج.
 سيتم قتل البرنامج إذا لم ينته في الوقت المحدد.</translation>
     </message>
@@ -2249,7 +2249,7 @@ If the output is too long, it will be elided.</source>
     </message>
     <message>
         <source>The maximum number of characters in each message in the top-right corner of the main window.
-The message will be elided if it's too long.</source>
+The message will be elided if it&apos;s too long.</source>
         <translation>الحد الأقصى لعدد الأحرف في كل رسالة في الزاوية العلوية اليمنى من النافذة الرئيسية.
 سيتم حذف الرسالة إذا كانت طويلة جدًا.</translation>
     </message>
@@ -2269,7 +2269,7 @@ The Diff Viewer will fall back to plain text if either of the output or the expe
     </message>
     <message>
         <source>The maximum number of characters in a source file to open.
-A source file won't be opened if it's too long.</source>
+A source file won&apos;t be opened if it&apos;s too long.</source>
         <translation>الحد الأقصى لعدد الأحرف في الملف المصدر لفتحه.
 لن يتم فتح الملف المصدر إذا كان طويلاً جدًا.</translation>
     </message>
@@ -2279,7 +2279,7 @@ A source file won't be opened if it's too long.</source>
     </message>
     <message>
         <source>The maximum number of characters in a test case to be displayed.
-A test case will be elided and read-only if it's too long.</source>
+A test case will be elided and read-only if it&apos;s too long.</source>
         <translation>الحد الأقصى لعدد الأحرف التي سيتم عرضها في حالة الاختبار.
 سيتم حذف حالة الاختبار وقراءتها فقط إذا كانت طويلة جدًا.</translation>
     </message>
@@ -2363,9 +2363,9 @@ Each pair of regular expressions represents a test case.</source>
     </message>
     <message>
         <source>The replace expression for the answer file name.
-You can use "\1" for the first captured group.</source>
+You can use &quot;\1&quot; for the first captured group.</source>
         <translation>تعبير الاستبدال لاسم ملف الإجابات.
-يمكنك استخدام "\1" للمجموعة الأولى التي تم التقاطها.</translation>
+يمكنك استخدام &quot;\1&quot; للمجموعة الأولى التي تم التقاطها.</translation>
     </message>
     <message>
         <source>Input File Save Path</source>
@@ -2374,16 +2374,16 @@ You can use "\1" for the first captured group.</source>
     <message>
         <source>The path where the input files are saved.
 This setting is a relative path to the source file.
-You can use "${filename}" for the complete file name,
-"${basename}" for the base file name without the suffix,
-"${0-index}" for the index of the test case started from 0,
-"${1-index}" for the index of the test case started from 1.</source>
+You can use &quot;${filename}&quot; for the complete file name,
+&quot;${basename}&quot; for the base file name without the suffix,
+&quot;${0-index}&quot; for the index of the test case started from 0,
+&quot;${1-index}&quot; for the index of the test case started from 1.</source>
         <translation>المسار الذي يتم فيه حفظ ملفات الإدخال.
 هذا الإعداد هو مسار نسبي للملف المصدر.
-يمكنك استخدام "${filename}" لاسم الملف الكامل،
-"${basename}" لاسم الملف الأساسي بدون اللاحقة،
-بدأ "${0-index}" لفهرس حالة الاختبار من 0،
-بدأ "${1-index}" لفهرس حالة الاختبار من 1.</translation>
+يمكنك استخدام &quot;${filename}&quot; لاسم الملف الكامل،
+&quot;${basename}&quot; لاسم الملف الأساسي بدون اللاحقة،
+بدأ &quot;${0-index}&quot; لفهرس حالة الاختبار من 0،
+بدأ &quot;${1-index}&quot; لفهرس حالة الاختبار من 1.</translation>
     </message>
     <message>
         <source>Answer File Save Path</source>
@@ -2392,16 +2392,16 @@ You can use "${filename}" for the complete file name,
     <message>
         <source>The path where the answer files are saved.
 This setting is a relative path to the source file.
-You can use "${filename}" for the complete file name,
-"${basename}" for the base file name without the suffix,
-"${0-index}" for the index of the test case started from 0,
-"${1-index}" for the index of the test case started from 1.</source>
+You can use &quot;${filename}&quot; for the complete file name,
+&quot;${basename}&quot; for the base file name without the suffix,
+&quot;${0-index}&quot; for the index of the test case started from 0,
+&quot;${1-index}&quot; for the index of the test case started from 1.</source>
         <translation>المسار الذي يتم فيه حفظ ملفات الإجابات.
 هذا الإعداد هو مسار نسبي للملف المصدر.
-يمكنك استخدام "${filename}" لاسم الملف الكامل،
-"${basename}" لاسم الملف الأساسي بدون اللاحقة،
-بدأ "${0-index}" لفهرس حالة الاختبار من 0،
-بدأ "${1-index}" لفهرس حالة الاختبار من 1.</translation>
+يمكنك استخدام &quot;${filename}&quot; لاسم الملف الكامل،
+&quot;${basename}&quot; لاسم الملف الأساسي بدون اللاحقة،
+بدأ &quot;${0-index}&quot; لفهرس حالة الاختبار من 0،
+بدأ &quot;${1-index}&quot; لفهرس حالة الاختبار من 1.</translation>
     </message>
     <message>
         <source>Default File Paths For Problem URLs</source>
@@ -2425,9 +2425,9 @@ You can use "${filename}" for the complete file name,
     </message>
     <message>
         <source>The replace expression for the file path, without file name suffix.
-You can use "\1" for the first captured group.</source>
+You can use &quot;\1&quot; for the first captured group.</source>
         <translation>تعبير الاستبدال لمسار الملف، بدون لاحقة اسم الملف.
-يمكنك استخدام "\1" للمجموعة الأولى التي تم التقاطها.</translation>
+يمكنك استخدام &quot;\1&quot; للمجموعة الأولى التي تم التقاطها.</translation>
     </message>
     <message>
         <source>Test Cases Font</source>
@@ -2460,7 +2460,7 @@ Due to technical reasons, changing the height of the margin affects the undo his
         <translation>حفظ الملف عند التجميع</translation>
     </message>
     <message>
-        <source>Save the source file when compiling it. It won't be saved if the tab is untitled.</source>
+        <source>Save the source file when compiling it. It won&apos;t be saved if the tab is untitled.</source>
         <translation>احفظ الملف المصدر عند تجميعه. لن يتم حفظها إذا كانت علامة التبويب بلا عنوان.</translation>
     </message>
     <message>
@@ -2468,7 +2468,7 @@ Due to technical reasons, changing the height of the margin affects the undo his
         <translation>حفظ الملف عند التنفيذ</translation>
     </message>
     <message>
-        <source>Save the source file when running it. It won't be saved if the tab is untitled.</source>
+        <source>Save the source file when running it. It won&apos;t be saved if the tab is untitled.</source>
         <translation>احفظ الملف المصدر عند تشغيله. لن يتم حفظها إذا كانت علامة التبويب بلا عنوان.</translation>
     </message>
     <message>
@@ -2557,8 +2557,8 @@ from Competitive Companion again, the old file will be opened.</source>
         <translation>يكتب</translation>
     </message>
     <message>
-        <source>The type of the proxy. "System" for using the system proxy.</source>
-        <translation>نوع الوكيل . "النظام" لاستخدام وكيل النظام.</translation>
+        <source>The type of the proxy. &quot;System&quot; for using the system proxy.</source>
+        <translation>نوع الوكيل . &quot;النظام&quot; لاستخدام وكيل النظام.</translation>
     </message>
     <message>
         <source>network-proxy</source>
@@ -2596,7 +2596,7 @@ from Competitive Companion again, the old file will be opened.</source>
         <translation>مستخدم</translation>
     </message>
     <message>
-        <source>The user of the proxy server. It can be empty if the proxy server doesn't require authentication.</source>
+        <source>The user of the proxy server. It can be empty if the proxy server doesn&apos;t require authentication.</source>
         <translation>مستخدم الخادم الوكيل. يمكن أن يكون فارغًا إذا كان الخادم الوكيل لا يتطلب المصادقة.</translation>
     </message>
     <message>
@@ -2609,7 +2609,7 @@ from Competitive Companion again, the old file will be opened.</source>
         <translation>كلمة المرور</translation>
     </message>
     <message>
-        <source>The password of the proxy server. It can be empty if the proxy server doesn't require authentication.</source>
+        <source>The password of the proxy server. It can be empty if the proxy server doesn&apos;t require authentication.</source>
         <translation>كلمة المرور للخادم الوكيل. يمكن أن يكون فارغًا إذا كان الخادم الوكيل لا يتطلب المصادقة.</translation>
     </message>
     <message>
@@ -2631,7 +2631,7 @@ from Competitive Companion again, the old file will be opened.</source>
     </message>
     <message>
         <source>A list of default paths.
-They can be used in actions' corresponding default paths by using ${&lt;default path name&gt;} as a place holder.
+They can be used in actions&apos; corresponding default paths by using ${&lt;default path name&gt;} as a place holder.
 They can be either manually set or automatically changed after choosing a path for an action.</source>
         <translation>قائمة المسارات الافتراضية
 يمكن استخدامها في المسارات الافتراضية المقابلة للإجراءات باستخدام ${&lt;default path name&gt;} كعنصر نائب.
@@ -2655,11 +2655,11 @@ They can be either manually set or automatically changed after choosing a path f
         <translation>مسار المسار الافتراضي</translation>
     </message>
     <message>
-        <source>Auto-load external file changes if there's no unsaved modification</source>
+        <source>Auto-load external file changes if there&apos;s no unsaved modification</source>
         <translation>يتغير التحميل التلقائي للملف الخارجي في حالة عدم وجود تعديل غير محفوظ</translation>
     </message>
     <message>
-        <source>Automatically load file changes that are not made in CP Editor if there's no unsaved modification in CP Editor.</source>
+        <source>Automatically load file changes that are not made in CP Editor if there&apos;s no unsaved modification in CP Editor.</source>
         <translation>قم تلقائيًا بتحميل تغييرات الملف التي لم يتم إجراؤها في CP Editor إذا لم يكن هناك تعديل غير محفوظ في CP Editor.</translation>
     </message>
     <message>
@@ -2668,13 +2668,13 @@ They can be either manually set or automatically changed after choosing a path f
     </message>
     <message>
         <source>When there are file changes that are not made in CP Editor and is not automatically loaded by
-"%1", ask for whether to load the changes.
+&quot;%1&quot;, ask for whether to load the changes.
 If this is disabled, external file changes will be ignored unless they are loaded by
-"%1".</source>
+&quot;%1&quot;.</source>
         <translation>عندما تكون هناك تغييرات في الملف لم يتم إجراؤها في CP Editor ولم يتم تحميلها تلقائيًا بواسطة
-"%1"، اسأل عما إذا كان سيتم تحميل التغييرات.
+&quot;%1&quot;، اسأل عما إذا كان سيتم تحميل التغييرات.
 إذا تم تعطيل هذا الخيار، فسيتم تجاهل تغييرات الملفات الخارجية ما لم يتم تحميلها بواسطة
-"%1".</translation>
+&quot;%1&quot;.</translation>
     </message>
     <message>
         <source>Show Only Monospaced Font</source>
@@ -2763,9 +2763,9 @@ on the current tab and pause the stopwatch on the previous tab.</source>
         <translation>إظهار نتيجة ساعة الإيقاف فقط عند الضغط على الزر</translation>
     </message>
     <message>
-        <source>Hide the time of the stopwatch and only show the time when the "Show" button is pressed.
+        <source>Hide the time of the stopwatch and only show the time when the &quot;Show&quot; button is pressed.
 This may reduce distractions caused by stopwatch updates.</source>
-        <translation>إخفاء وقت ساعة الإيقاف وإظهار الوقت فقط عند الضغط على زر "إظهار".
+        <translation>إخفاء وقت ساعة الإيقاف وإظهار الوقت فقط عند الضغط على زر &quot;إظهار&quot;.
 قد يؤدي هذا إلى تقليل عوامل التشتيت الناتجة عن تحديثات ساعة الإيقاف.</translation>
     </message>
     <message>
@@ -2949,7 +2949,7 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
         <translation>شارك محرر CP مع أصدقائك</translation>
     </message>
     <message>
-        <source>I'm using @cpeditor_, an IDE specially designed for competitive programmers, which is awesome!</source>
+        <source>I&apos;m using @cpeditor_, an IDE specially designed for competitive programmers, which is awesome!</source>
         <translation>أنا أستخدم @cpeditor_، وهو بيئة تطوير متكاملة (IDE) مصممة خصيصًا للمبرمجين التنافسيين، وهو أمر رائع!</translation>
     </message>
     <message>
@@ -2964,8 +2964,8 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
 <context>
     <name>Telemetry::UpdateChecker</name>
     <message>
-        <source>This error is probably caused by the lack of the OpenSSL library. You can visit &lt;a href="https://wiki.openssl.org/index.php/Binaries"&gt;the OpenSSLWiki&lt;/a&gt; to find a binary to install, or install it via your favourite package manager. You have to install a version compatible with this version: [%1]</source>
-        <translation>من المحتمل أن يكون سبب هذا الخطأ هو عدم وجود مكتبة OpenSSL. يمكنك زيارة &lt;a href="https://wiki.openssl.org/index.php/Binaries"&gt;OpenSSLWiki&lt;/a&gt; للعثور على برنامج ثنائي لتثبيته، أو تثبيته عبر مدير الحزم المفضل لديك. يجب عليك تثبيت نسخة متوافقة مع هذا الإصدار: [%1]</translation>
+        <source>This error is probably caused by the lack of the OpenSSL library. You can visit &lt;a href=&quot;https://wiki.openssl.org/index.php/Binaries&quot;&gt;the OpenSSLWiki&lt;/a&gt; to find a binary to install, or install it via your favourite package manager. You have to install a version compatible with this version: [%1]</source>
+        <translation>من المحتمل أن يكون سبب هذا الخطأ هو عدم وجود مكتبة OpenSSL. يمكنك زيارة &lt;a href=&quot;https://wiki.openssl.org/index.php/Binaries&quot;&gt;OpenSSLWiki&lt;/a&gt; للعثور على برنامج ثنائي لتثبيته، أو تثبيته عبر مدير الحزم المفضل لديك. يجب عليك تثبيت نسخة متوافقة مع هذا الإصدار: [%1]</translation>
     </message>
     <message>
         <source>No release is found.</source>
@@ -3058,11 +3058,11 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
         <translation>عدد المشاكل</translation>
     </message>
     <message>
-        <source>Main Directory doesn't exist</source>
+        <source>Main Directory doesn&apos;t exist</source>
         <translation>الدليل الرئيسي غير موجود</translation>
     </message>
     <message>
-        <source>The Main Directory [%1] doesn't exist. Do you want to create it and continue?</source>
+        <source>The Main Directory [%1] doesn&apos;t exist. Do you want to create it and continue?</source>
         <translation>الدليل الرئيسي [%1] غير موجود. هل تريد إنشائه والمتابعة؟</translation>
     </message>
     <message>
@@ -3139,8 +3139,8 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
         <translation>استخدم وسيطات المولد:</translation>
     </message>
     <message>
-        <source>Example: "10 [5..100] abacaba"</source>
-        <translation>مثال: "10 [5..100] أباكابا"</translation>
+        <source>Example: &quot;10 [5..100] abacaba&quot;</source>
+        <translation>مثال: &quot;10 [5..100] أباكابا&quot;</translation>
     </message>
     <message>
         <source>Standard Program Path:</source>
@@ -3235,8 +3235,8 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
         <translation>انتهت جميع الاختبارات</translation>
     </message>
     <message>
-        <source>Running with arguments "%1"</source>
-        <translation>التشغيل باستخدام الوسائط "%1"</translation>
+        <source>Running with arguments &quot;%1&quot;</source>
+        <translation>التشغيل باستخدام الوسائط &quot;%1&quot;</translation>
     </message>
     <message>
         <source>Time Limit Exceeded</source>
@@ -3445,7 +3445,7 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Check All</source>
-        <extracomment>Here "Check" means to check the checkbox</extracomment>
+        <extracomment>Here &quot;Check&quot; means to check the checkbox</extracomment>
         <translation>تحقق من الكل</translation>
     </message>
     <message>
@@ -3475,7 +3475,7 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Delete Checked</source>
-        <extracomment>Here "checked" means the checkbox is checked</extracomment>
+        <extracomment>Here &quot;checked&quot; means the checkbox is checked</extracomment>
         <translation>حذف المحدد</translation>
     </message>
     <message>
@@ -3496,7 +3496,7 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     </message>
     <message>
         <source>Are you sure you want to copy all checked output to their corresponding expected?</source>
-        <extracomment>Here "checked" means the checkbox is checked</extracomment>
+        <extracomment>Here &quot;checked&quot; means the checkbox is checked</extracomment>
         <translation>هل أنت متأكد من أنك تريد نسخ كافة المخرجات المحددة إلى ما يقابلها من المتوقع؟</translation>
     </message>
     <message>
@@ -3536,7 +3536,7 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
         <translation>إضافة حالة اختبار</translation>
     </message>
     <message>
-        <source>There are already %1 test cases, you can't add more.</source>
+        <source>There are already %1 test cases, you can&apos;t add more.</source>
         <translation>توجد بالفعل حالات اختبار %1، ولا يمكنك إضافة المزيد.</translation>
     </message>
     <message>
@@ -3575,8 +3575,8 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
         <translation>التحديث الجديد متاح</translation>
     </message>
     <message>
-        <source>A new %1 update &lt;a href="%2"&gt;%3&lt;/a&gt; is available. See below for the changelog.&lt;br /&gt;We highly recommend you keep the editor up to date so that you won't miss the awesome new features and bug fixes.</source>
-        <translation>يتوفر تحديث جديد لـ%1&lt;a href="%2"&gt;%3&lt;/a&gt;. انظر أدناه للاطلاع على سجل التغيير.&lt;br /&gt;نوصي بشدة بإبقاء المحرر محدثًا حتى لا تفوتك الميزات الجديدة الرائعة وإصلاحات الأخطاء.</translation>
+        <source>A new %1 update &lt;a href=&quot;%2&quot;&gt;%3&lt;/a&gt; is available. See below for the changelog.&lt;br /&gt;We highly recommend you keep the editor up to date so that you won&apos;t miss the awesome new features and bug fixes.</source>
+        <translation>يتوفر تحديث جديد لـ%1&lt;a href=&quot;%2&quot;&gt;%3&lt;/a&gt;. انظر أدناه للاطلاع على سجل التغيير.&lt;br /&gt;نوصي بشدة بإبقاء المحرر محدثًا حتى لا تفوتك الميزات الجديدة الرائعة وإصلاحات الأخطاء.</translation>
     </message>
     <message>
         <source>beta</source>
@@ -3606,8 +3606,8 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
         <translation>جارٍ جلب قائمة الإصدارات...</translation>
     </message>
     <message>
-        <source>Error: %1&lt;br /&gt;&lt;br /&gt;Updater failed to check for update. Please manually check for update at&lt;br /&gt;&lt;a href="https://cpeditor.org/download"&gt;https://cpeditor.org/download&lt;/a&gt; or &lt;a href="https://github.com/cpeditor/cpeditor/releases"&gt;https://github.com/cpeditor/cpeditor/releases&lt;/a&gt;.</source>
-        <translation>خطأ:%1&lt;br /&gt;&lt;br /&gt;فشل برنامج التحديث في التحقق من وجود تحديث. الرجاء التحقق يدويًا من التحديث على&lt;br /&gt;&lt;a href="https://cpeditor.org/download"&gt;https://cpeditor.org/download&lt;/a&gt; أو &lt;a href="https://github.com/cpeditor/cpeditor/releases"&gt;https://github.com/cpeditor/cpeditor/releases&lt;/a&gt;.</translation>
+        <source>Error: %1&lt;br /&gt;&lt;br /&gt;Updater failed to check for update. Please manually check for update at&lt;br /&gt;&lt;a href=&quot;https://cpeditor.org/download&quot;&gt;https://cpeditor.org/download&lt;/a&gt; or &lt;a href=&quot;https://github.com/cpeditor/cpeditor/releases&quot;&gt;https://github.com/cpeditor/cpeditor/releases&lt;/a&gt;.</source>
+        <translation>خطأ:%1&lt;br /&gt;&lt;br /&gt;فشل برنامج التحديث في التحقق من وجود تحديث. الرجاء التحقق يدويًا من التحديث على&lt;br /&gt;&lt;a href=&quot;https://cpeditor.org/download&quot;&gt;https://cpeditor.org/download&lt;/a&gt; أو &lt;a href=&quot;https://github.com/cpeditor/cpeditor/releases&quot;&gt;https://github.com/cpeditor/cpeditor/releases&lt;/a&gt;.</translation>
     </message>
     <message>
         <source>Close</source>
