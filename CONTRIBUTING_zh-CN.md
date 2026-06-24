@@ -32,7 +32,7 @@
 
 翻译文本在 [translations](translations) 文件夹中。你应当用 Qt Linguist 编辑它们。只不过，如果你只是想修正一个笔误，你可以使用任何文本编辑器。在 Qt Linguist 中，当你完成了一条翻译，你可以按 <kbd>Ctrl + Enter</kbd> 来把当前条目标记为已完成并跳转到下一个未完成的条目。如果一个条目不需要翻译（例如，"C++"），你只需将翻译留空即可。你应当修复所有在 Qt Linguist 中显示的警告。
 
-如果你想更深入地了解：需翻译的文本在源代码中用 `tr()` 括起；在代码改变后，你可以运行 [updateTranslation.sh](tools/updateTranslation.sh) 或 [updateTranslation.bat](tools/updateTranslation.bat) 来更新翻译文本。如果感兴趣的话，你可以阅读 [Qt Linguist 使用手册](https://doc.qt.io/qt-5/qtlinguist-index.html)。
+如果你想更深入地了解：需翻译的文本在源代码中用 `tr()` 括起；在代码改变后，你可以运行 [updateTranslation.sh](tools/updateTranslation.sh) 或 [updateTranslation.bat](tools/updateTranslation.bat) 来更新翻译文本。如果感兴趣的话，你可以阅读 [Qt Linguist 使用手册](https://doc.qt.io/qt-6/qtlinguist-index.html)。
 
 ## 设置系统
 

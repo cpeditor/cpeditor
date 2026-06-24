@@ -167,6 +167,9 @@ void AppWindow::finishConstruction()
         openTab("");
     ui->tabWidget->tabBar()->installEventFilter(this);
 
+    // Prevent horizontal overflow when many tabs are open
+    ui->tabWidget->tabBar()->setExpanding(false);
+
 #ifdef Q_OS_WIN
     // This is necessary because of setWindowOpacity(0.99) earlier
     if (SettingsHelper::getOpacity() == 100)

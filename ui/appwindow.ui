@@ -21,7 +21,7 @@
        <enum>QTabWidget::Triangular</enum>
       </property>
       <property name="elideMode">
-       <enum>Qt::ElideNone</enum>
+       <enum>Qt::ElideMiddle</enum>
       </property>
       <property name="documentMode">
        <bool>false</bool>

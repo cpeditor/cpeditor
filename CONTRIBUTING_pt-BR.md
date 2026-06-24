@@ -35,7 +35,7 @@ As traduções estão no diretório [translations](translations). É recomendado
 
 Se quiser adicionar um novo idioma, peça ajuda aos desenvolvedores. Por exemplo, você pode abrir um problema solicitando o idioma desejado (será ainda melhor se você puder contribuir com as traduções após prepararmos tudo).
 
-Se quiser ir mais longe: As strings traduzidas estão envoltas em `tr()` no código-fonte. Quando o código é alterado, você pode executar [updateTranslation.sh](tools/updateTranslation.sh) ou [updateTranslation.bat](tools/updateTranslation.bat) para atualizar as traduções. Leia o [Manual do Qt Linguist](https://doc.qt.io/qt-5/qtlinguist-index.html) se estiver interessado.
+Se quiser ir mais longe: As strings traduzidas estão envoltas em `tr()` no código-fonte. Quando o código é alterado, você pode executar [updateTranslation.sh](tools/updateTranslation.sh) ou [updateTranslation.bat](tools/updateTranslation.bat) para atualizar as traduções. Leia o [Manual do Qt Linguist](https://doc.qt.io/qt-6/qtlinguist-index.html) se estiver interessado.
 
 ## O sistema de configurações
 
