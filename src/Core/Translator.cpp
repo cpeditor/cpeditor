@@ -25,17 +25,15 @@
 namespace Core
 {
 const static QMap<QString, QString> locales = {
-    {"العربية", "ar_EG"},      {"Νέα Ελληνικά", "el_GR"}, {"Español", "es_MX"},
-    {"Português brasileiro", "pt_BR"}, {"Русский", "ru_RU"},      {"简体中文", "zh_CN"},
-    {"正體中文", "zh_TW"},      {"हिन्दी", "hi_IN"}};
+    {"العربية", "ar_EG"}, {"Νέα Ελληνικά", "el_GR"}, {"Español", "es_MX"},  {"Português brasileiro", "pt_BR"},
+    {"Русский", "ru_RU"}, {"简体中文", "zh_CN"},     {"正體中文", "zh_TW"}, {"हिन्दी", "hi_IN"}};
 
 const static QMap<QString, QString> suffixes = {{"ar_EG", ""},       {"el_GR", ""},       {"es_MX", ""},
                                                 {"pt_BR", "_pt-BR"}, {"ru_RU", "_ru-RU"}, {"zh_CN", "_zh-CN"},
                                                 {"zh_TW", "_zh-TW"}, {"hi_IN", ""}};
 
-const static QMap<QString, QString> code = {{"ar_EG", ""},      {"el_GR", ""},   {"es_MX", ""},
-                                            {"pt_BR", ""},      {"ru_RU", "ru"}, {"zh_CN", "zh"},
-                                            {"zh_TW", "zh_TW"}, {"hi_IN", "hi"}};
+const static QMap<QString, QString> code = {{"ar_EG", ""},   {"el_GR", ""},   {"es_MX", ""},      {"pt_BR", ""},
+                                            {"ru_RU", "ru"}, {"zh_CN", "zh"}, {"zh_TW", "zh_TW"}, {"hi_IN", "hi"}};
 
 QTranslator *Translator::translator = nullptr;
 
