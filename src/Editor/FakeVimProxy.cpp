@@ -45,6 +45,7 @@
 #include <QStatusBar>
 #include <QTemporaryFile>
 #include <QTextBlock>
+#include <QTimer>
 
 namespace Editor
 {
@@ -463,12 +464,16 @@ bool FakeVimProxy::save()
 
 void FakeVimProxy::quit()
 {
-    m_appWindow->closeWindow(m_mainWindow);
+    auto *appWindow = m_appWindow;
+    auto *mainWindow = m_mainWindow;
+    QTimer::singleShot(0, this, [appWindow, mainWindow] { appWindow->closeWindow(mainWindow); });
 }
 
 void FakeVimProxy::forceQuit()
 {
-    m_appWindow->closeWindow(m_mainWindow, true);
+    auto *appWindow = m_appWindow;
+    auto *mainWindow = m_mainWindow;
+    QTimer::singleShot(0, this, [appWindow, mainWindow] { appWindow->closeWindow(mainWindow, true); });
 }
 
 bool FakeVimProxy::hasChanges()
