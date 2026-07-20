@@ -467,7 +467,7 @@ void FakeVimProxy::quit()
 {
     QPointer<AppWindow> appWindow = m_appWindow;
     QPointer<MainWindow> mainWindow = m_mainWindow;
-    QTimer::singleShot(0, this, [appWindow, mainWindow] {
+    QTimer::singleShot(0, [appWindow, mainWindow] {
         if (appWindow && mainWindow)
             appWindow->closeWindow(mainWindow);
     });
@@ -477,7 +477,7 @@ void FakeVimProxy::forceQuit()
 {
     QPointer<AppWindow> appWindow = m_appWindow;
     QPointer<MainWindow> mainWindow = m_mainWindow;
-    QTimer::singleShot(0, this, [appWindow, mainWindow] {
+    QTimer::singleShot(0, [appWindow, mainWindow] {
         if (appWindow && mainWindow)
             appWindow->closeWindow(mainWindow, true);
     });
