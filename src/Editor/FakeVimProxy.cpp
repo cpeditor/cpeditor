@@ -41,6 +41,7 @@
 #include <QLabel>
 #include <QMainWindow>
 #include <QPlainTextEdit>
+#include <QPointer>
 #include <QRegularExpression>
 #include <QStatusBar>
 #include <QTemporaryFile>
@@ -464,16 +465,22 @@ bool FakeVimProxy::save()
 
 void FakeVimProxy::quit()
 {
-    auto *appWindow = m_appWindow;
-    auto *mainWindow = m_mainWindow;
-    QTimer::singleShot(0, this, [appWindow, mainWindow] { appWindow->closeWindow(mainWindow); });
+    QPointer<AppWindow> appWindow = m_appWindow;
+    QPointer<MainWindow> mainWindow = m_mainWindow;
+    QTimer::singleShot(0, this, [appWindow, mainWindow] {
+        if (appWindow && mainWindow)
+            appWindow->closeWindow(mainWindow);
+    });
 }
 
 void FakeVimProxy::forceQuit()
 {
-    auto *appWindow = m_appWindow;
-    auto *mainWindow = m_mainWindow;
-    QTimer::singleShot(0, this, [appWindow, mainWindow] { appWindow->closeWindow(mainWindow, true); });
+    QPointer<AppWindow> appWindow = m_appWindow;
+    QPointer<MainWindow> mainWindow = m_mainWindow;
+    QTimer::singleShot(0, this, [appWindow, mainWindow] {
+        if (appWindow && mainWindow)
+            appWindow->closeWindow(mainWindow, true);
+    });
 }
 
 bool FakeVimProxy::hasChanges()
