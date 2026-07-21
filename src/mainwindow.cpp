@@ -362,10 +362,11 @@ void MainWindow::setCSESToolUI()
         ui->compileAndRunButtons->addWidget(submitToCses);
         connect(submitToCses, &QPushButton::clicked, this, [this] {
             emit confirmTriggered(this);
-            auto response = QMessageBox::warning(this, tr("Sure to submit"),
-                                                 tr("Are you sure you want to submit this solution to CSES?\n\n Contest: %1\n Task: %2\n Language: %3")
-                                                     .arg(csesContest, csesTaskId, language),
-                                                 QMessageBox::Yes | QMessageBox::No);
+            auto response = QMessageBox::warning(
+                this, tr("Sure to submit"),
+                tr("Are you sure you want to submit this solution to CSES?\n\n Contest: %1\n Task: %2\n Language: %3")
+                    .arg(csesContest, csesTaskId, language),
+                QMessageBox::Yes | QMessageBox::No);
 
             if (response == QMessageBox::Yes)
             {
@@ -383,13 +384,13 @@ void MainWindow::setCSESToolUI()
             }
         });
     }
-    
+
     // Check CSES CLI installation
     if (!Extensions::CSESTool::check(csesCliPath))
     {
         submitToCses->setEnabled(false);
-        QString tooltip = tr("CSES CLI not found at: %1\nSet correct path in Preferences → Extensions → CSES CLI")
-                             .arg(csesCliPath);
+        QString tooltip =
+            tr("CSES CLI not found at: %1\nSet correct path in Preferences → Extensions → CSES CLI").arg(csesCliPath);
         submitToCses->setToolTip(tooltip);
         log->error(tr("CSES CLI"),
                    tr("You need to install CSES CLI to submit your code to CSES. If already installed, you can "
@@ -401,7 +402,8 @@ void MainWindow::setCSESToolUI()
     else if (csesContest.isEmpty() || csesTaskId.isEmpty())
     {
         submitToCses->setEnabled(false);
-        QString tooltip = tr("Could not parse CSES contest/task ID from URL.\nMake sure you're on a valid CSES problem page.");
+        QString tooltip =
+            tr("Could not parse CSES contest/task ID from URL.\nMake sure you're on a valid CSES problem page.");
         submitToCses->setToolTip(tooltip);
         log->warn(tr("CSES CLI"), tr("CSES contest or task ID not found in URL. Button disabled."));
     }
@@ -544,16 +546,16 @@ void MainWindow::setProblemURL(const QString &url)
         return;
     problemURL = url;
     FileProblemBinder::set(filePath, url);
-    
+
     // Clear CSES identifiers when URL changes
     // Note: companionName is NOT cleared here - it's preserved from applyCompanion()
     // and only cleared in loadFile() and loadStatus()
     csesContest.clear();
     csesTaskId.clear();
-    
+
     if (problemURL.contains("codeforces.com"))
         setCFToolUI();
-    
+
     if (problemURL.contains("cses.fi"))
     {
         // Parse contest and task ID from URL
@@ -847,8 +849,10 @@ void MainWindow::applyCompanion(const Extensions::CompanionData &data)
             }
 
             // detect explicit Contest: and Problem: lines
-            auto cMatch = QRegularExpression(R"(^\s*Contest:\s*(\S+))", QRegularExpression::CaseInsensitiveOption).match(ln);
-            auto pMatch = QRegularExpression(R"(^\s*Problem:\s*(\S+))", QRegularExpression::CaseInsensitiveOption).match(ln);
+            auto cMatch =
+                QRegularExpression(R"(^\s*Contest:\s*(\S+))", QRegularExpression::CaseInsensitiveOption).match(ln);
+            auto pMatch =
+                QRegularExpression(R"(^\s*Problem:\s*(\S+))", QRegularExpression::CaseInsensitiveOption).match(ln);
             if (cMatch.hasMatch())
                 csesContest = cMatch.captured(1);
             if (pMatch.hasMatch())

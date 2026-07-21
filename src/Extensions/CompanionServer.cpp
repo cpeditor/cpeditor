@@ -110,7 +110,8 @@ void CompanionServer::updatePort(int port)
         else
         {
             if (log)
-            log->error("Companion", tr("Failed to listen to port %1. Is there another process listening?").arg(port));
+                log->error("Companion",
+                           tr("Failed to listen to port %1. Is there another process listening?").arg(port));
         }
     }
 }

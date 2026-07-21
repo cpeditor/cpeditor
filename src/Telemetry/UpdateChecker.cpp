@@ -177,10 +177,9 @@ void UpdateChecker::managerFinished(QNetworkReply *reply)
             if (currentVersion < version)
             {
                 if (!(version.majorVersion() == latestVersion.majorVersion() &&
-                      version.minorVersion() == latestVersion.minorVersion() &&
-                      !latestInfo.preview && release.second.preview) &&
-                    !(version.majorVersion() == last.majorVersion() &&
-                      version.minorVersion() == last.minorVersion()))
+                      version.minorVersion() == latestVersion.minorVersion() && !latestInfo.preview &&
+                      release.second.preview) &&
+                    !(version.majorVersion() == last.majorVersion() && version.minorVersion() == last.minorVersion()))
                 {
                     used = true;
                     last = version;

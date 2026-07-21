@@ -5,20 +5,18 @@
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
 #include "generated/SettingsHelper.hpp"
-#include <QString>
 #include <QFileInfo>
 #include <QProcess>
 #include <QRegularExpression>
+#include <QString>
 
 namespace Extensions
 {
 
-CSESTool::CSESTool(const QString &p, MessageLogger *logger) : log(logger), path(p)
-{
-    LOG_INFO(INFO_OF(p))
-}
+CSESTool::CSESTool(const QString &p, MessageLogger *logger)
+    : log(logger), path(p){LOG_INFO(INFO_OF(p))}
 
-CSESTool::~CSESTool()
+      CSESTool::~CSESTool()
 {
     delete process;
 }
@@ -56,7 +54,8 @@ void CSESTool::submit(const QString &filePath, const QString &contest, const QSt
     if (version.isEmpty())
     {
         if (log)
-            log->error(tr("CSES CLI"), tr("Failed to get the version of CSES CLI. Have you set the correct path in Preferences?"));
+            log->error(tr("CSES CLI"),
+                       tr("Failed to get the version of CSES CLI. Have you set the correct path in Preferences?"));
         return;
     }
 
@@ -76,32 +75,33 @@ void CSESTool::submit(const QString &filePath, const QString &contest, const QSt
     {
         process->kill();
         if (log)
-            log->error(tr("CSES CLI"), tr("Failed to start CSES CLI in 2 seconds. Have you set the correct path in Preferences?"));
+            log->error(tr("CSES CLI"),
+                       tr("Failed to start CSES CLI in 2 seconds. Have you set the correct path in Preferences?"));
     }
 }
 
 bool CSESTool::check(const QString &p)
 {
     LOG_INFO(INFO_OF(p));
-    if (p.isEmpty()) 
+    if (p.isEmpty())
     {
         LOG_WARN("CSES CLI path is empty");
         return false;
     }
-    
+
     QProcess check;
     // CSES CLI shows version info when run without arguments, not with --version
     check.start(p, {});
     bool finished = check.waitForFinished(2000);
-    LOG_INFO(BOOL_INFO_OF(finished) << INFO_OF(check.exitCode()) << INFO_OF(check.exitStatus()) 
-             << INFO_OF(check.error()) << INFO_OF(check.errorString()));
-    
+    LOG_INFO(BOOL_INFO_OF(finished) << INFO_OF(check.exitCode()) << INFO_OF(check.exitStatus())
+                                    << INFO_OF(check.error()) << INFO_OF(check.errorString()));
+
     if (!finished)
     {
         LOG_WARN("CSES CLI check timed out or failed to start");
         return false;
     }
-    
+
     // CSES CLI exits with 0 when showing help/version info
     return check.exitCode() == 0;
 }
@@ -112,7 +112,7 @@ void CSESTool::updatePath(const QString &p)
     path = p;
 }
 
-    bool CSESTool::parseCsesUrl(const QString &url, QString &contest, QString &taskId)
+bool CSESTool::parseCsesUrl(const QString &url, QString &contest, QString &taskId)
 {
     LOG_INFO(INFO_OF(url));
 
@@ -151,7 +151,7 @@ void CSESTool::onReadReady()
     }
 }
 
-void CSESTool::onFinished(int exitCode, QProcess::ExitStatus)
+void CSESTool::onFinished(int exitCode, QProcess::ExitStatus /*exitStatus*/)
 {
     if (exitCode == 0)
     {
