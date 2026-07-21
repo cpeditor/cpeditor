@@ -118,6 +118,9 @@ MainWindow::~MainWindow()
     }
 
     delete cftool;
+    delete csestool;
+    delete submitToCodeforces;
+    delete submitToCses;
     delete tmpDir;
 
     delete ui;

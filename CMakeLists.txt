@@ -119,14 +119,6 @@ set(TS_FILES
     translations/zh_TW.ts
 )
 
-# Create lupdate target to update .ts files
-qt6_add_lupdate(cpeditor
-    TS_FILES ${TS_FILES}
-    SOURCES src ui
-    NO_GLOBAL_TARGET
-)
-
-
 set_property(SOURCE ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMAKE_BINARY_DIR}/generated/SettingsInfo.cpp PROPERTY SKIP_AUTOGEN ON)
 
 if(USE_CLANG_TIDY)
@@ -308,6 +300,12 @@ if(APPLE)
     RESOURCE "dist/mac/cpeditor.icns"
   )
 endif()
+
+# Create .qm files from .ts files and generate resource
+qt6_add_translations(cpeditor
+    TS_FILES ${TS_FILES}
+    RESOURCE_PREFIX "/translations"
+)
 
 if(UNIX AND NOT APPLE)
   include(GNUInstallDirs)

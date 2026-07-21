@@ -32,7 +32,8 @@ void CSESTool::submit(const QString &filePath, const QString &contest, const QSt
             LOG_WARN("CSES CLI was already running, killing it now");
             process->kill();
             delete process;
-            log->error(tr("CSES CLI"), tr("CSES CLI was killed"));
+            if (log)
+                log->error(tr("CSES CLI"), tr("CSES CLI was killed"));
         }
         else
             delete process;
@@ -43,7 +44,8 @@ void CSESTool::submit(const QString &filePath, const QString &contest, const QSt
 
     if (contest.isEmpty() || taskId.isEmpty())
     {
-        log->error(tr("CSES CLI"), tr("Empty contest or task id"));
+        if (log)
+            log->error(tr("CSES CLI"), tr("Empty contest or task id"));
         return;
     }
 
@@ -53,7 +55,8 @@ void CSESTool::submit(const QString &filePath, const QString &contest, const QSt
     auto version = getVersion();
     if (version.isEmpty())
     {
-        log->error(tr("CSES CLI"), tr("Failed to get the version of CSES CLI. Have you set the correct path in Preferences?"));
+        if (log)
+            log->error(tr("CSES CLI"), tr("Failed to get the version of CSES CLI. Have you set the correct path in Preferences?"));
         return;
     }
 
@@ -66,12 +69,14 @@ void CSESTool::submit(const QString &filePath, const QString &contest, const QSt
     bool started = process->waitForStarted(2000);
     if (started)
     {
-        log->info(tr("CSES CLI"), tr("CSES CLI has started"));
+        if (log)
+            log->info(tr("CSES CLI"), tr("CSES CLI has started"));
     }
     else
     {
         process->kill();
-        log->error(tr("CSES CLI"), tr("Failed to start CSES CLI in 2 seconds. Have you set the correct path in Preferences?"));
+        if (log)
+            log->error(tr("CSES CLI"), tr("Failed to start CSES CLI in 2 seconds. Have you set the correct path in Preferences?"));
     }
 }
 
@@ -140,7 +145,8 @@ void CSESTool::onReadReady()
     if (!response.trimmed().isEmpty())
     {
         // log everything as info; CSES CLI output may contain useful info
-        log->info(tr("CSES CLI"), response);
+        if (log)
+            log->info(tr("CSES CLI"), response);
         lastStatus = response.left(response.indexOf('\n') >= 0 ? response.indexOf('\n') : response.length());
     }
 }
@@ -154,17 +160,19 @@ void CSESTool::onFinished(int exitCode, QProcess::ExitStatus)
     else
     {
         showToastMessage(tr("CSES CLI failed"));
-        log->error(tr("CSES CLI"), tr("CSES CLI finished with non-zero exit code %1").arg(exitCode));
+        if (log)
+            log->error(tr("CSES CLI"), tr("CSES CLI finished with non-zero exit code %1").arg(exitCode));
     }
     QString err = process->readAllStandardError();
     if (!err.trimmed().isEmpty())
-        log->error(tr("CSES CLI"), err);
+        if (log)
+            log->error(tr("CSES CLI"), err);
 }
 
 void CSESTool::showToastMessage(const QString &message)
 {
     // Use the existing CF toast setting for visibility to avoid depending on generated helpers.
-    if (SettingsHelper::isCFShowToastMessages())
+    if (SettingsHelper::isCSESCLIShowToastMessages())
         emit requestToastMessage(tr("CSES"), message);
 }
 
