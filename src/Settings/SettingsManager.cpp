@@ -22,7 +22,9 @@
 #include "Util/FileUtil.hpp"
 #include "generated/portable.hpp"
 #include <QDateTime>
+#include <QDir>
 #include <QFile>
+#include <QFileInfo>
 #include <QFont>
 #include <QRect>
 #include <QSettings>
@@ -69,7 +71,25 @@ void SettingsManager::load(QSettings &setting, const QString &prefix, const QLis
             setting.endGroup();
         }
         else if (setting.contains(si.key()) && setting.value(si.key()).isValid())
-            set(si.name, setting.value(si.key()));
+        {
+            QVariant val = setting.value(si.key());
+            if (val.metaType().id() == QMetaType::QString)
+            {
+                if (si.type == "int")
+                {
+                    bool ok;
+                    val = val.toInt(&ok);
+                    if (!ok)
+                        val = setting.value(si.key());
+                }
+                else if (si.type == "bool")
+                {
+                    auto s = val.toString();
+                    val = s.compare("true", Qt::CaseInsensitive) == 0 || s == "1";
+                }
+            }
+            set(prefix + si.name, val);
+        }
     }
 }
 
@@ -90,7 +110,7 @@ void SettingsManager::save(QSettings &setting, const QString &prefix, const QLis
                 setting.setValue(QString("%1%2/%3").arg(prefix, si.key(), key),
                                  get(QString("%1%2/%3").arg(prefix, si.name, key)));
         else
-            setting.setValue(QString("%1%2").arg(prefix, si.key()), get(si.name));
+            setting.setValue(QString("%1%2").arg(prefix, si.key()), get(prefix + si.name));
 }
 
 void SettingsManager::init()
@@ -162,6 +182,8 @@ void SettingsManager::loadSettings(const QString &path)
 void SettingsManager::saveSettings(const QString &path)
 {
     const auto savePath = path.isEmpty() ? Util::configFilePath(configFileLocations[0]) : path;
+
+    QDir().mkpath(QFileInfo(savePath).absolutePath());
 
     LOG_INFO("Start saving settings to " + savePath);
 

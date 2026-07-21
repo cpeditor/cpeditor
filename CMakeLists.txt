@@ -19,7 +19,6 @@ if(WIN32)
   set(GUI_TYPE WIN32)
 endif()
 
-set(QT_DEFAULT_QT_MAJOR_VERSION 6 CACHE STRING "Default Qt major version")
 find_package(Qt6 COMPONENTS Widgets REQUIRED)
 find_package(Qt6 COMPONENTS Network REQUIRED)
 find_package(Qt6 COMPONENTS Core5Compat REQUIRED)
@@ -53,15 +52,11 @@ else()
   message(STATUS "Will build the setup version")
 endif()
 
-# https://medium.com/@alasher/colored-c-compiler-output-with-ninja-clang-gcc-10bfe7f2b949
-option(FORCE_COLORED_OUTPUT "Always produce ANSI-colored output (GNU/Clang only)." On)
-if(${FORCE_COLORED_OUTPUT})
-  if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
+if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
     add_compile_options(-fdiagnostics-color=always)
   elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
     add_compile_options(-fcolor-diagnostics)
   endif()
-endif()
 
 if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/.git)
   find_package(Git)
@@ -131,11 +126,6 @@ qt6_add_lupdate(cpeditor
     NO_GLOBAL_TARGET
 )
 
-# Create .qm files from .ts files and generate resource
-# qt6_add_translations(cpeditor
-#     TS_FILES ${TS_FILES}
-#     RESOURCE_PREFIX "/translations"
-# )
 
 set_property(SOURCE ${CMAKE_BINARY_DIR}/generated/SettingsHelper.hpp ${CMAKE_BINARY_DIR}/generated/SettingsInfo.cpp PROPERTY SKIP_AUTOGEN ON)
 
@@ -301,16 +291,10 @@ add_executable(cpeditor
 include_directories("generated/")
 include_directories("src/")
 
-target_link_libraries(cpeditor PRIVATE LSPClient)
-target_link_libraries(cpeditor PRIVATE Qt6::Network)
-target_link_libraries(cpeditor PRIVATE Qt6::Widgets)
-target_link_libraries(cpeditor PRIVATE Qt6::Core5Compat)
-target_link_libraries(cpeditor PRIVATE QtFindReplaceDialog)
-target_link_libraries(cpeditor PRIVATE SingleApplication)
-target_link_libraries(cpeditor PRIVATE fakevim)
-target_link_libraries(cpeditor PRIVATE QHttp)
-target_link_libraries(cpeditor PRIVATE diff_match_patch)
-target_link_libraries(cpeditor PRIVATE KF6::SyntaxHighlighting)
+target_link_libraries(cpeditor PRIVATE
+    LSPClient Qt6::Network Qt6::Widgets Qt6::Core5Compat
+    QtFindReplaceDialog SingleApplication fakevim QHttp diff_match_patch
+    KF6::SyntaxHighlighting)
 
 if(MSVC)
   target_compile_options(cpeditor PUBLIC "/utf-8")

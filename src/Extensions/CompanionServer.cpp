@@ -26,18 +26,6 @@
 #include <QJsonArray>
 #include <QJsonObject>
 
-#define USER_INFO(x)                                                                                                   \
-    if (log)                                                                                                           \
-        log->info("Companion", x);
-
-#define USER_WARN(x)                                                                                                   \
-    if (log)                                                                                                           \
-        log->warn("Companion", x);
-
-#define USER_ERR(x)                                                                                                    \
-    if (log)                                                                                                           \
-        log->error("Companion", x);
-
 namespace Extensions
 {
 CompanionServer::CompanionServer(int port, QObject *parent) : QObject(parent)
@@ -72,11 +60,13 @@ bool CompanionServer::startListeningOn(int port)
 
             if (methodType != "POST")
             {
-                USER_WARN(tr("A %1 request is received and ignored").arg(methodType));
+                if (log)
+                    log->warn("Companion", tr("A %1 request is received and ignored").arg(methodType));
             }
             else if (!isJson)
             {
-                USER_ERR(tr("The request received is not JSON"));
+                if (log)
+                    log->error("Companion", tr("The request received is not JSON"));
             }
             else
             {
@@ -102,7 +92,8 @@ void CompanionServer::updatePort(int port)
     {
         delete server;
         server = nullptr;
-        USER_INFO(tr("Server is closed"));
+        if (log)
+            log->info("Companion", tr("Server is closed"));
         lastListeningPort = -1;
         return;
     }
@@ -113,11 +104,13 @@ void CompanionServer::updatePort(int port)
         if (started)
         {
             lastListeningPort = port;
-            USER_INFO(tr("Port is set to %1").arg(port));
+            if (log)
+                log->info("Companion", tr("Port is set to %1").arg(port));
         }
         else
         {
-            USER_ERR(tr("Failed to listen to port %1. Is there another process listening?").arg(port));
+            if (log)
+            log->error("Companion", tr("Failed to listen to port %1. Is there another process listening?").arg(port));
         }
     }
 }
@@ -146,14 +139,16 @@ void CompanionServer::parseAndEmit(QByteArray &data)
     }
     else
     {
-        USER_ERR(tr("JSON parser reported errors:\n%1").arg(error.errorString()));
+        if (log)
+            log->error("Companion", tr("JSON parser reported errors:\n%1").arg(error.errorString()));
         LOG_WARN("JSON parser reported error " << error.errorString());
     }
 }
 
 CompanionServer::~CompanionServer()
 {
-    USER_INFO(tr("Stopped Server"));
+    if (log)
+        log->info("Companion", tr("Stopped Server"));
     delete server;
 }
 

@@ -46,8 +46,6 @@ class LanguageServer : public QObject
 
   private slots:
     void onLSPServerNotificationArrived(QString const &method, QJsonObject const &param);
-    void onLSPServerResponseArrived(QJsonObject const &method, QJsonObject const &param);
-    void onLSPServerRequestArrived(QString const &method, QJsonObject const &param, QJsonObject const &id);
     void onLSPServerErrorArrived(QJsonObject const &id, QJsonObject const &error);
     void onLSPServerProcessError(QProcess::ProcessError const &error);
     void onLSPServerProcessFinished(int exitCode, QProcess::ExitStatus status);
