@@ -559,7 +559,8 @@ void MainWindow::setProblemURL(const QString &url)
     if (problemURL.contains("cses.fi"))
     {
         // Parse contest and task ID from URL
-        QString contest, taskId;
+        QString contest;
+        QString taskId;
         if (Extensions::CSESTool::parseCsesUrl(url, contest, taskId))
         {
             csesContest = contest;
@@ -816,7 +817,8 @@ void MainWindow::applyCompanion(const Extensions::CompanionData &data)
     // Prefer the provided URL in companion data
     if (!data.url.isEmpty())
     {
-        QString contest, task;
+        QString contest;
+        QString task;
         if (Extensions::CSESTool::parseCsesUrl(data.url, contest, task))
         {
             csesContest = contest;
@@ -839,7 +841,8 @@ void MainWindow::applyCompanion(const Extensions::CompanionData &data)
             auto m = urlRe.match(ln);
             if (m.hasMatch())
             {
-                QString contest, task;
+                QString contest;
+                QString task;
                 if (Extensions::CSESTool::parseCsesUrl(m.captured(1), contest, task))
                 {
                     csesContest = contest;
@@ -911,18 +914,13 @@ void MainWindow::applySettings(const QString &pagePath)
         }
         if (problemURL.contains("cses.fi"))
         {
-            if (submitToCses == nullptr && SettingsHelper::isCSESCLIEnable())
+            if (SettingsHelper::isCSESCLIEnable())
             {
                 setCSESToolUI();
-            }
-            else if (submitToCses != nullptr && !SettingsHelper::isCSESCLIEnable())
-            {
-                removeCSESToolUI();
             }
             else if (submitToCses != nullptr)
             {
-                // Update button state when CSES CLI path changes
-                setCSESToolUI();
+                removeCSESToolUI();
             }
         }
     }
