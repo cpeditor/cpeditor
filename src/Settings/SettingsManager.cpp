@@ -77,7 +77,7 @@ void SettingsManager::load(QSettings &setting, const QString &prefix, const QLis
             {
                 if (si.type == "int")
                 {
-                    bool ok;
+                    bool ok = false;
                     val = val.toInt(&ok);
                     if (!ok)
                         val = setting.value(si.key());
