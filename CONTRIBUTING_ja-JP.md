@@ -34,7 +34,7 @@
 
 新しい言語を追加したい場合、開発者に助けを求めることができます。例えば、希望する言語について issue を開くことができます（私たちが準備を終えた後に、あなたが翻訳を提供してくれるとよりよいでしょう）。
 
-さらにもう一歩踏み込むなら 翻訳された文字列は、ソースコード中で `tr()` でラップされます。コードが変更されたら、 [updateTranslation.sh](tools/updateTranslation.sh) または [updateTranslation.bat](tools/updateTranslation.bat) を実行して翻訳を更新することができます。興味のある方は [Qt Linguist Manual](https://doc.qt.io/qt-5/qtlinguist-index.html) を読んでみてください。
+さらにもう一歩踏み込むなら 翻訳された文字列は、ソースコード中で `tr()` でラップされます。コードが変更されたら、 [updateTranslation.sh](tools/updateTranslation.sh) または [updateTranslation.bat](tools/updateTranslation.bat) を実行して翻訳を更新することができます。興味のある方は [Qt Linguist Manual](https://doc.qt.io/qt-6/qtlinguist-index.html) を読んでみてください。
 
 ## 設定システム
 
