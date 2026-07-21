@@ -834,6 +834,45 @@ Press any key to exit</source>
     </message>
 </context>
 <context>
+    <name>Extensions::CSESTool</name>
+    <message>
+        <source>CSES CLI</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CSES CLI was killed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Empty contest or task id</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to get the version of CSES CLI. Have you set the correct path in Preferences?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CSES CLI has started</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to start CSES CLI in 2 seconds. Have you set the correct path in Preferences?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CSES CLI failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CSES CLI finished with non-zero exit code %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CSES</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Extensions::CodeFormatter</name>
     <message>
         <source>Formatter</source>
@@ -1286,6 +1325,46 @@ Do you want to reload it?</source>
         <source>Failed to start compilation: %1</source>
         <translation>Ошибка старта компиляции: %1</translation>
     </message>
+    <message>
+        <source>Submit to CSES</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to submit this solution to CSES?
+
+ Contest: %1
+ Task: %2
+ Language: %3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CSES CLI</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CSES CLI not found at: %1
+Set correct path in Preferences → Extensions → CSES CLI</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You need to install CSES CLI to submit your code to CSES. If already installed, you can add it in the PATH environment variable or check your settings at %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not parse CSES contest/task ID from URL.
+Make sure you&apos;re on a valid CSES problem page.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CSES contest or task ID not found in URL. Button disabled.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Submit to CSES
+Contest: %1
+Task: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MessageLogger</name>
@@ -1627,6 +1706,10 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <source>Test Cases</source>
         <translation type="unfinished">Тесткейсы</translation>
     </message>
+    <message>
+        <source>CSES CLI</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsInfo</name>
@@ -1818,7 +1901,7 @@ This can be overridden for each parenthesis in each language.</source>
     </message>
     <message>
         <source></source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>%1 Template Path</source>
@@ -2867,6 +2950,22 @@ This may reduce distractions caused by stopwatch updates.</source>
 Not all vim commands are supported, please check https://github.com/cpeditor/FakeVim for list of supported commands</source>
         <translation>Содержимое Vim RC. Загружается при каждом запуске эмуляции Vim.
 Поддерживаются не все команды Vim, см. https://github.com/cpeditor/FakeVim для списка поддерживаемых команд</translation>
+    </message>
+    <message>
+        <source>The path to the CSES CLI executable file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show a toast message when the verdict of a submission is known.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable CSES CLI</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable or disable CSES CLI Integration.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
