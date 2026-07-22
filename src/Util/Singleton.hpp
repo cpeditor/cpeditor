@@ -18,20 +18,17 @@
 #ifndef SINGLETON_HPP
 #define SINGLETON_HPP
 
-#include <type_traits>
-
 namespace Util
 {
 
-template <typename T, typename D = T> class Singleton
+template <typename T> class Singleton
 {
-    static_assert(std::is_base_of<T, D>::value, "T should be a base type for D");
-    friend D;
+    friend T;
 
   public:
     static T &instance()
     {
-        static D inst;
+        static T inst;
         return inst;
     }
 

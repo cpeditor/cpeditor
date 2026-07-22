@@ -1,19 +1,13 @@
 import json
 import re
-import requests
 import sys
+from urllib.request import Request, urlopen
 
 def queryGitHub(q):
-    print('GitHub query:')
-    print(q)
-    res = requests.post("https://api.github.com/graphql",
-        data = json.dumps({"query": q}),
-        headers = {
-            "Authorization": "token " + sys.argv[1]
-        })
-    print('GitHub response:')
-    print(res.text)
-    return res.json()["data"]
+    req = Request("https://api.github.com/graphql",
+        data=json.dumps({"query": q}).encode(),
+        headers={"Authorization": "token " + sys.argv[1]})
+    return json.loads(urlopen(req).read())["data"]
 
 def getGitHub(donors):
     after = ""
@@ -52,16 +46,10 @@ def getGitHub(donors):
         after = sponsors["pageInfo"]["endCursor"]
 
 def queryOpenCollective(q):
-    print('OpenCollective query:')
-    print(q)
-    res = requests.post("https://opencollective.com/api/graphql/v2",
-        data = json.dumps({"query": q}),
-        headers = {
-            "content-type": "application/json"
-        })
-    print('OpenCollective response:')
-    print(res.text)
-    return res.json()["data"]
+    req = Request("https://opencollective.com/api/graphql/v2",
+        data=json.dumps({"query": q}).encode(),
+        headers={"content-type": "application/json"})
+    return json.loads(urlopen(req).read())["data"]
 
 def getOpenCollective(donors):
     data = queryOpenCollective('''
@@ -110,5 +98,5 @@ for i in range(2):
 newContent = re.sub(r"(?<=<!\-\- START: GitHub Sponsors \-\->)[\s\S]*(?=<!\-\- END: GitHub Sponsors \-\->)", newMarkdown[0], content)
 newContent = re.sub(r"(?<=<!\-\- START: OpenCollective Contributors \-\->)[\s\S]*(?=<!\-\- END: OpenCollective Contributors \-\->)", newMarkdown[1], newContent)
 
-with open("DONORS.md", "w") as donors:
-    donors.write(newContent)
+with open("DONORS.md", "w") as donorsF:
+    donorsF.write(newContent)

@@ -134,31 +134,9 @@ RichTextCheckBox::RichTextCheckBox(const QString &text, QWidget *parent) : QWidg
     connect(label, &ClickableLabel::released, this, &RichTextCheckBox::clicked);
 }
 
-QCheckBox *RichTextCheckBox::getCheckBox()
-{
-    return checkBox;
-}
-
 bool RichTextCheckBox::isChecked() const
 {
     return checkBox->isChecked();
-}
-
-Qt::CheckState RichTextCheckBox::checkState() const
-{
-    return checkBox->checkState();
-}
-
-QString RichTextCheckBox::text() const
-{
-    return label->text();
-}
-
-QString RichTextCheckBox::plainText() const
-{
-    QTextDocument doc;
-    doc.setHtml(label->text());
-    return doc.toPlainText();
 }
 
 void RichTextCheckBox::clearStates()

@@ -189,9 +189,7 @@ void LanguageServer::performConnection()
         return;
     }
     connect(lsp, &LSPClient::onError, this, &LanguageServer::onLSPServerErrorArrived);
-    connect(lsp, &LSPClient::onRequest, this, &LanguageServer::onLSPServerRequestArrived);
     connect(lsp, &LSPClient::onServerError, this, &LanguageServer::onLSPServerProcessError);
-    connect(lsp, &LSPClient::onResponse, this, &LanguageServer::onLSPServerResponseArrived);
     connect(lsp, &LSPClient::onNotify, this, &LanguageServer::onLSPServerNotificationArrived);
     connect(lsp, &LSPClient::onServerFinished, this, &LanguageServer::onLSPServerProcessFinished);
     connect(lsp, &LSPClient::newStderr, this, &LanguageServer::onLSPServerNewStderr);
@@ -214,8 +212,6 @@ Editor::CodeEditor::SeverityLevel LanguageServer::lspSeverity(int in)
     default:
         return Editor::CodeEditor::SeverityLevel::Error;
     }
-    // Nothing matched
-    return Editor::CodeEditor::SeverityLevel::Error;
 }
 
 void LanguageServer::initializeLSP(QString const &filePath)
@@ -256,18 +252,6 @@ void LanguageServer::onLSPServerNotificationArrived(QString const &method, QJson
         }
         m_editor->highlightAllSquiggle();
     }
-}
-
-void LanguageServer::onLSPServerResponseArrived(QJsonObject const &method, // NOLINT: It can be made static.
-                                                QJsonObject const &param)
-{
-    LOG_INFO("Response from Server has arrived");
-}
-
-void LanguageServer::onLSPServerRequestArrived(QString const &method, // NOLINT: It can be made static.
-                                               QJsonObject const &param, QJsonObject const &id)
-{
-    LOG_INFO("Request from Sever has arrived. " << INFO_OF(method));
 }
 
 void LanguageServer::onLSPServerErrorArrived(QJsonObject const &id, QJsonObject const &error)

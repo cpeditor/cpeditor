@@ -78,7 +78,7 @@ SignalHandler::SignalHandler(int mask) : _mask(mask)
             connect(sn, &QSocketNotifier::activated, this, [sn, logical, this] {
                 sn->setEnabled(false);
                 char tmp = 0;
-                ::read(socketFd[logical][1], &tmp, sizeof(tmp));
+                (void)::read(socketFd[logical][1], &tmp, sizeof(tmp));
                 handleSignal(logical);
                 sn->setEnabled(true);
             });
@@ -200,7 +200,7 @@ void POSIX_handleFunc(int signal)
     {
         int signo = POSIX_physicalToLogical(signal);
         char a = 1;
-        ::write(socketFd[signo][0], &a, sizeof(a));
+        (void)::write(socketFd[signo][0], &a, sizeof(a));
     }
 }
 #endif //_WIN32

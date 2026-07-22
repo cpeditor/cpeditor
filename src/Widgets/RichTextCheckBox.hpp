@@ -68,9 +68,7 @@ class RichTextCheckBox : public QWidget
 
   public:
     explicit RichTextCheckBox(const QString &text, QWidget *parent = nullptr);
-    QCheckBox *getCheckBox();
     QString text() const;
-    QString plainText() const;
     Qt::CheckState checkState() const;
     bool isChecked() const;
     void clearStates();
