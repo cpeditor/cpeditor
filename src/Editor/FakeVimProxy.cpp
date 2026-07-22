@@ -41,10 +41,12 @@
 #include <QLabel>
 #include <QMainWindow>
 #include <QPlainTextEdit>
+#include <QPointer>
 #include <QRegularExpression>
 #include <QStatusBar>
 #include <QTemporaryFile>
 #include <QTextBlock>
+#include <QTimer>
 
 namespace Editor
 {
@@ -463,12 +465,22 @@ bool FakeVimProxy::save()
 
 void FakeVimProxy::quit()
 {
-    m_appWindow->closeWindow(m_mainWindow);
+    QPointer<AppWindow> appWindow = m_appWindow;
+    QPointer<MainWindow> mainWindow = m_mainWindow;
+    QTimer::singleShot(0, [appWindow, mainWindow] {
+        if (appWindow && mainWindow)
+            appWindow->closeWindow(mainWindow);
+    });
 }
 
 void FakeVimProxy::forceQuit()
 {
-    m_appWindow->closeWindow(m_mainWindow, true);
+    QPointer<AppWindow> appWindow = m_appWindow;
+    QPointer<MainWindow> mainWindow = m_mainWindow;
+    QTimer::singleShot(0, [appWindow, mainWindow] {
+        if (appWindow && mainWindow)
+            appWindow->closeWindow(mainWindow, true);
+    });
 }
 
 bool FakeVimProxy::hasChanges()
