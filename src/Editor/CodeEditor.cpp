@@ -58,6 +58,7 @@
 #include <QTextBlock>
 #include <QTextCharFormat>
 #include <QTextStream>
+#include <QTimer>
 #include <QToolTip>
 
 namespace Editor
@@ -76,6 +77,12 @@ CodeEditor::CodeEditor(QWidget *widget) : QPlainTextEdit(widget)
 
     setCenterOnScroll(true);
     setMouseTracking(true);
+
+    QTimer::singleShot(0, [this] {
+        updateSidebarGeometry();
+        sideBar->update();
+        viewport()->update();
+    });
 }
 
 void CodeEditor::applySettings(const QString &lang)

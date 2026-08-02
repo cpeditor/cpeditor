@@ -88,7 +88,6 @@ MainWindow::MainWindow(int index, AppWindow *parent)
             &MainWindow::onCompilationErrorOccurred);
     connect(stressTesting, &Widgets::StressTesting::compilationKilled, this, &MainWindow::onCompilationKilled);
     connect(stressTesting, &Widgets::StressTesting::compilationFailed, this, &MainWindow::onCompilationFailed);
-    QTimer::singleShot(0, [this] { editor->resize(0, 0); }); // refresh editor geometry
 }
 
 MainWindow::MainWindow(const QString &fileOpen, int index, AppWindow *parent) : MainWindow(index, parent)
