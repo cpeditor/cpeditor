@@ -206,13 +206,10 @@ void Highlighter::highlightBlock(const QString &text)
         const QPointer<QTextDocument> guardedDocument(currentDocument);
         const QPointer<Highlighter> guardedHighlighter(this);
         const int blockNumber = nextBlock.blockNumber();
-        const int documentRevision = currentDocument->revision();
         QMetaObject::invokeMethod(
             this,
-            [guardedHighlighter, guardedDocument, blockNumber, documentRevision]() {
-                if (!guardedHighlighter || !guardedDocument ||
-                    guardedHighlighter->document() != guardedDocument.data() ||
-                    guardedDocument->revision() != documentRevision)
+            [guardedHighlighter, guardedDocument, blockNumber]() {
+                if (!guardedHighlighter || !guardedDocument || guardedHighlighter->document() != guardedDocument.data())
                 {
                     return;
                 }
