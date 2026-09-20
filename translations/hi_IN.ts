@@ -832,6 +832,25 @@ Press any key to exit</source>
     </message>
 </context>
 <context>
+    <name>Extensions::CSESTool</name>
+    <message>
+        <source>Invalid API key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid response from the server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Login timed out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The login is not confirmed yet</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Extensions::CodeFormatter</name>
     <message>
         <source>Formatter</source>
@@ -1284,6 +1303,69 @@ Do you want to reload it?</source>
         <source>C++</source>
         <translation>C++</translation>
     </message>
+    <message>
+        <source>Submit to CSES</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CSES</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Opening authentication URL in browser...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Logged in as %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Waiting for authentication...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Login failed: %1. The saved token is invalid, please click &quot;Submit to CSES&quot; again to log in.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Submission created (ID: %1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Testing: %1/%2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Accepted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Submission finished: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Submit error: %1 - %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Network error: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not logged in. Starting login flow...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to parse CSES URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to submit this solution to CSES?
+
+ Problem: %1
+ Language: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MessageLogger</name>
@@ -1625,6 +1707,10 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
         <source>Network Proxy</source>
         <translation>नेटवर्क प्रॉक्सी</translation>
     </message>
+    <message>
+        <source>CSES</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsInfo</name>
@@ -1646,7 +1732,7 @@ If it&apos;s partially checked, the global setting in Code Edit will be used.</s
     </message>
     <message>
         <source></source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Editor Font</source>
@@ -2862,6 +2948,18 @@ It is a list of &lt;default path name&gt;s, separated by commas, and can be empt
     <message>
         <source>Extract And Load Snippets</source>
         <translation>एक्सट्रैक्ट एंड लोड स्निपेट्स</translation>
+    </message>
+    <message>
+        <source>Enable CSES Integration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable or disable CSES Integration.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show a toast message when the verdict of a submission is known.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

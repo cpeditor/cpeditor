@@ -709,6 +709,30 @@
     "tip": "Enable or disable CF Tool Integration."
   },
   {
+    "name": "CSES/Enable",
+    "desc": "Enable CSES Integration",
+    "type": "bool",
+    "default": "true",
+    "tip": "Enable or disable CSES Integration."
+  },
+  {
+    "name": "CSES/Show Toast Messages",
+    "desc": "Show toast messages for submission verdicts",
+    "type": "bool",
+    "default": "true",
+    "tip": "Show a toast message when the verdict of a submission is known.",
+    "depends": [
+      {
+        "name": "CSES/Enable"
+      }
+    ]
+  },
+  {
+    "name": "CSES/Token",
+    "type": "QString",
+    "notr": true
+  },
+  {
     "name": "Show Compile And Run Only",
     "type": "bool",
     "tip": "Hide the Compile Only button and the Run Only button under the code editor in the main window."

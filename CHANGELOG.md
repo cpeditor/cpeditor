@@ -2,6 +2,7 @@
 
 ### Added
 
+-   Add CSES "Submit to CSES" button on autodetected cses.fi problems. (#1522)
 -   Add Arabic translation for Application (`ar_EG.ts`)
 -   Add Hindi translation for Application (`hi_IN.ts`)
 -   Add an option to toggle Ctrl+Scroll font scaling (#1249)

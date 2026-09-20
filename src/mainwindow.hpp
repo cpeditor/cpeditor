@@ -49,6 +49,7 @@ class Runner;
 namespace Extensions
 {
 class CFTool;
+class CSESTool;
 struct CompanionData;
 } // namespace Extensions
 
@@ -237,6 +238,8 @@ class MainWindow : public QMainWindow
 
     int untitledIndex;
     QString problemURL;
+    QString csesProblemName;
+    QString csesGroupName;
     QString filePath;
     QString savedText;
     QString cftoolPath;
@@ -247,6 +250,9 @@ class MainWindow : public QMainWindow
 
     QPushButton *submitToCodeforces = nullptr;
     Extensions::CFTool *cftool = nullptr;
+
+    QPushButton *submitToCSES = nullptr;
+    Extensions::CSESTool *csesTool = nullptr;
 
     Widgets::TestCases *testcases = nullptr;
     Widgets::Stopwatch *stopwatch = nullptr;
@@ -267,6 +273,8 @@ class MainWindow : public QMainWindow
     void saveTests(bool safe);
     void setCFToolUI();
     void removeCFToolUI(); // Delete cftool&submitToCodeforces pointers, and remove the button from ui
+    void setCSESToolUI();
+    void removeCSESToolUI();
     void setFilePath(QString path, bool updateBinder = true);
     void setText(const QString &text, bool keep = false);
     void updateWatcher();

@@ -834,6 +834,25 @@ Pressionar qualquer tecla para sair</translation>
     </message>
 </context>
 <context>
+    <name>Extensions::CSESTool</name>
+    <message>
+        <source>Invalid API key</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invalid response from the server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Login timed out</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The login is not confirmed yet</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Extensions::CodeFormatter</name>
     <message>
         <source>Formatter</source>
@@ -1286,6 +1305,69 @@ Quer recarregar?</translation>
         <source>Failed to start compilation: %1</source>
         <translation>Falha ao iniciar a compilação: %1</translation>
     </message>
+    <message>
+        <source>Submit to CSES</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CSES</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Opening authentication URL in browser...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Logged in as %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Waiting for authentication...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Login failed: %1. The saved token is invalid, please click &quot;Submit to CSES&quot; again to log in.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Submission created (ID: %1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Testing: %1/%2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Accepted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Submission finished: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Submit error: %1 - %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Network error: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not logged in. Starting login flow...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Failed to parse CSES URL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to submit this solution to CSES?
+
+ Problem: %1
+ Language: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MessageLogger</name>
@@ -1627,6 +1709,10 @@ Se for parcialmente desejada, a escolha em Editar Código será usada.</translat
         <source>Auto Save</source>
         <translation>Salvamento automático</translation>
     </message>
+    <message>
+        <source>CSES</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SettingsInfo</name>
@@ -1817,7 +1903,7 @@ e deslocar-se ao digitar o elemento mais à direita.</translation>
     </message>
     <message>
         <source></source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>%1 Template Path</source>
@@ -2869,6 +2955,18 @@ Isso pode reduzir distrações causadas pelas atualizações do cronômetro.</tr
 Not all vim commands are supported, please check https://github.com/cpeditor/FakeVim for list of supported commands</source>
         <translation>Conteúdo do Vim RC. É carregado toda vez que a emulação do Vim é iniciada.
 Nem todos os comandos do Vim são suportados, consulte https://github.com/cpeditor/FakeVim para a lista de comandos suportados</translation>
+    </message>
+    <message>
+        <source>Enable CSES Integration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable or disable CSES Integration.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show a toast message when the verdict of a submission is known.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
