@@ -7,20 +7,23 @@ env:
 
 jobs:
   build:
-    name: "${{ matrix.config.os }}"
+    name: "${{ matrix.config.name }}"
     runs-on: ${{ matrix.config.os }}
     strategy:
       fail-fast: false
       matrix:
         config:
-          - os: windows-latest
+          - name: windows-latest
+            os: windows-2022
             arch: x64
             platform: x64
             binary: Release/cpeditor.exe
             ecm-path: "C:/Program Files/ECM/"
-          - os: ubuntu-latest
+          - name: ubuntu-latest
+            os: ubuntu-22.04
             binary: cpeditor
-          - os: macos-latest
+          - name: macos-latest
+            os: macos-15-intel
             binary: cpeditor.app/Contents/MacOS/cpeditor
 
     steps:

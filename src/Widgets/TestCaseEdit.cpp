@@ -110,7 +110,13 @@ void TestCaseEdit::modifyText(const QString &text, bool keepHistory)
 
         displayText = text.left(limit) + "...";
 
-        const QString name = role == Input ? tr("Input") : (role == Output ? tr("Output") : tr("Expected"));
+        QString name;
+        if (role == Input)
+            name = tr("Input");
+        else if (role == Output)
+            name = tr("Output");
+        else
+            name = tr("Expected");
         const QString setLimitPlace = role == Output ? SettingsHelper::pathOfOutputDisplayLengthLimit()
                                                      : SettingsHelper::pathOfDisplayTestCaseLengthLimit();
 
