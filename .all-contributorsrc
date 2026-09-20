@@ -673,6 +673,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "sea1dream",
+      "name": "李毅杰",
+      "avatar_url": "https://avatars.githubusercontent.com/u/180516193?v=4",
+      "profile": "https://github.com/sea1dream",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 6,
