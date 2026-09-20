@@ -184,6 +184,23 @@ class CodeEditor : public QPlainTextEdit
      */
     void toggleBlockComment();
 
+    /**
+     * @brief Slot, that select the next occurrence of the current word (Ctrl+D).
+     * @note Similar to VS Code's multi-cursor selection feature.
+     */
+    void selectNextOccurrence();
+
+    /**
+     * @brief Slot, that select all occurrences of the current word (Ctrl+Shift+L).
+     * @note Similar to VS Code's select all occurrences feature.
+     */
+    void selectAllOccurrences();
+
+    /**
+     * @brief Slot, that clear the multi-selection mode.
+     */
+    void clearMultiSelection();
+
   protected:
     /**
      * @brief Method, that's called on any text insertion of
@@ -265,6 +282,10 @@ class CodeEditor : public QPlainTextEdit
 
   private:
     /**
+     * @brief Update the visual display of multi-cursor selections
+     */
+    void updateMultiSelectionDisplay();
+    /**
      * @brief Method for getting character under
      * cursor.
      * @param offset Offset to cursor.
@@ -323,6 +344,12 @@ class CodeEditor : public QPlainTextEdit
 
     QList<QTextEdit::ExtraSelection> currentLineExtraSelections, parenthesesExtraSelections, occurrencesExtraSelections,
         squigglesExtraSelections, squigglesLineExtraSelections, fakeVimExtraSelections;
+
+    // Multi-cursor selection state tracking
+    QList<int> multiCursorPositions;
+    bool multiSelectionMode = false;
+    QString lastSearchedWord;
+    int lastSearchStartPosition = 0;
 
     QString m_tabReplace;
 
