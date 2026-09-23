@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+## 7.0.3
+
 ### Fixed
 
 -   Fix a startup crash when restoring an untitled tab created from a C++ template. (#1513)
