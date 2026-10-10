@@ -45,10 +45,9 @@
 #include <KSyntaxHighlighting/Definition>
 #include <KSyntaxHighlighting/FoldingRegion>
 #include <KSyntaxHighlighting/Format>
+#include <QPointer>
 #include <QTextDocument>
 #include <utility>
-
-Q_DECLARE_METATYPE(QTextBlock)
 
 namespace KSH = KSyntaxHighlighting;
 
@@ -74,12 +73,10 @@ KSH::FoldingRegion Highlighter::foldingRegion(const QTextBlock &startBlock)
 
 Highlighter::Highlighter(QObject *parent) : QSyntaxHighlighter(parent)
 {
-    qRegisterMetaType<QTextBlock>();
 }
 
 Highlighter::Highlighter(QTextDocument *document) : QSyntaxHighlighter(document)
 {
-    qRegisterMetaType<QTextBlock>();
 }
 
 Highlighter::~Highlighter() = default;
@@ -198,9 +195,33 @@ void Highlighter::highlightBlock(const QString &text)
     data->foldingRegions = foldingRegions;
 
     const auto nextBlock = currentBlock().next();
-    if (nextBlock.isValid())
+    auto *const currentDocument = document();
+    if (nextBlock.isValid() && currentDocument)
     {
-        QMetaObject::invokeMethod(this, "rehighlightBlock", Qt::QueuedConnection, Q_ARG(QTextBlock, nextBlock));
+        // QTextBlock is only a lightweight handle into QTextDocument's private
+        // storage. Keeping it in a queued invocation can leave the callback with
+        // a stale handle when the document is replaced or edited before the
+        // event is delivered. Store stable identifiers instead and resolve the
+        // block again when the callback runs.
+        const QPointer<QTextDocument> guardedDocument(currentDocument);
+        const QPointer<Highlighter> guardedHighlighter(this);
+        const int blockNumber = nextBlock.blockNumber();
+        QMetaObject::invokeMethod(
+            this,
+            [guardedHighlighter, guardedDocument, blockNumber]() {
+                if (!guardedHighlighter || !guardedDocument || guardedHighlighter->document() != guardedDocument.data())
+                {
+                    return;
+                }
+
+                const QTextBlock block = guardedDocument->findBlockByNumber(blockNumber);
+                if (!block.isValid() || block.document() != guardedDocument.data())
+                {
+                    return;
+                }
+                guardedHighlighter->rehighlightBlock(block);
+            },
+            Qt::QueuedConnection);
     }
 }
 
