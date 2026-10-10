@@ -15,6 +15,10 @@
 -   Snap package now uses `core26` base (Ubuntu 26.04), providing Qt 6.8+. (#1489)
 -   Improved snippet search with token-based prefix matching.
 
+### Fixed
+
+-   Fix a startup crash when restoring an untitled tab created from a C++ template. (#1513)
+
 ## v7.1
 
 ### Added
