@@ -131,9 +131,9 @@ void Runner::runDetached(const QString &tmpFilePath, const QString &sourceFilePa
     // use cmd on Windows
     runProcess->setProgram("cmd");
     runProcess->setArguments({"/C"});
-    const auto nativeArguments =
-        QString(" \"start cmd /C ") +
-        getCommand(tmpFilePath, sourceFilePath, lang, runCommand, args).replace("\"", "^\"") + " ^& pause\"";
+    const auto nativeArguments = QString(" \"start cmd /C ") +
+                                 getCommand(tmpFilePath, sourceFilePath, lang, runCommand, args).replace("\"", "^\"") +
+                                 " ^& pause\"";
     runProcess->setNativeArguments(nativeArguments);
     runProcess->start();
     LOG_INFO("CMD Arguments " << runProcess->arguments().join(" ") << nativeArguments);
