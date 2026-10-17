@@ -136,7 +136,7 @@ void Runner::runDetached(const QString &tmpFilePath, const QString &sourceFilePa
         getCommand(tmpFilePath, sourceFilePath, lang, runCommand, args).replace("\"", "^\"") + " ^& pause\"";
     runProcess->setNativeArguments(nativeArguments);
     runProcess->start();
-    LOG_INFO("CMD Arguemnts " << runProcess->arguments().join(" "));
+    LOG_INFO("CMD Arguments " << runProcess->arguments().join(" ") << nativeArguments);
 #elif defined(Q_OS_UNIX)
     auto terminal = SettingsHelper::getDetachedRunTerminalProgram();
     LOG_INFO("Using: " << terminal << " on UNIX");
