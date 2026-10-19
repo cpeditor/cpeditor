@@ -17,6 +17,7 @@
 
 #include "Extensions/WakaTime.hpp"
 #include "Core/EventLogger.hpp"
+#include "Util/ProcessUtil.hpp"
 #include "generated/SettingsHelper.hpp"
 #include "generated/version.hpp"
 #include <QProcess>
@@ -97,6 +98,6 @@ void WakaTime::onDebounceTimeout()
     auto *wakaTimeProcess = new QProcess();
     connect(wakaTimeProcess, qOverload<int, QProcess::ExitStatus>(&QProcess::finished), wakaTimeProcess,
             &QObject::deleteLater);
-    wakaTimeProcess->start(SettingsHelper::getWakaTimePath(), arguments);
+    Util::startProcess(wakaTimeProcess, SettingsHelper::getWakaTimePath(), arguments);
 }
 } // namespace Extensions

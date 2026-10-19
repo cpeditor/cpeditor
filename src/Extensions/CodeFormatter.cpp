@@ -21,6 +21,7 @@
 #include "Editor/CodeEditor.hpp"
 #include "Settings/SettingsManager.hpp"
 #include "Util/FileUtil.hpp"
+#include "Util/ProcessUtil.hpp"
 #include <QProcess>
 #include <QTemporaryDir>
 
@@ -94,7 +95,7 @@ void CodeFormatter::format() const
 QString CodeFormatter::runProcess(const QStringList &args) const
 {
     QProcess formatProcess;
-    formatProcess.start(getSetting("Program").toString(), args);
+    Util::startProcess(&formatProcess, getSetting("Program").toString(), args);
     LOG_INFO(INFO_OF(formatProcess.program()) << INFO_OF(formatProcess.arguments().join(' ')));
 
     bool finished = formatProcess.waitForFinished(2000); // blocks main Thread

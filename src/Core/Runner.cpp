@@ -19,6 +19,7 @@
 #include "Core/Compiler.hpp"
 #include "Core/EventLogger.hpp"
 #include "Util/FileUtil.hpp"
+#include "Util/ProcessUtil.hpp"
 #include <QElapsedTimer>
 #include <QFileInfo>
 #include <QTemporaryFile>
@@ -106,7 +107,7 @@ void Runner::run(const QString &tmpFilePath, const QString &sourceFilePath, cons
 
     killTimer->start();
 
-    runProcess->start(program, command);
+    Util::startProcess(runProcess, program, command);
 }
 
 void Runner::runDetached(const QString &tmpFilePath, const QString &sourceFilePath, const QString &lang,
@@ -146,7 +147,7 @@ void Runner::runDetached(const QString &tmpFilePath, const QString &sourceFilePa
                                 QStringLiteral("%1 ; echo \"\n%2\" ; read -n 1")
                                     .arg(quotedCommand)
                                     .arg(tr("Program finished with exit code %1\nPress any key to exit").arg("$?"))};
-    runProcess->start(terminal, execArgs);
+    Util::startProcess(runProcess, terminal, execArgs);
 #else
     emit failedToStartRun(runnerIndex, tr("Detached execution is not supported on your platform"));
 #endif

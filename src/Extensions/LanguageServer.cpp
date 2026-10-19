@@ -18,6 +18,7 @@
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
 #include "Settings/SettingsManager.hpp"
+#include "Util/ProcessUtil.hpp"
 #include "Util/Util.hpp"
 #include "third_party/lsp-cpp/include/LSPClient.hpp"
 #include <QDir>
@@ -178,7 +179,8 @@ void LanguageServer::createClient()
     delete lsp;
     auto program = SettingsManager::get("LSP/Path " + language).toString();
     auto args = QProcess::splitCommand(SettingsManager::get("LSP/Args " + language).toString().trimmed());
-    lsp = new LSPClient(program, args);
+    const auto command = Util::hostCommand(program, args);
+    lsp = new LSPClient(command.first, command.second);
 }
 
 void LanguageServer::performConnection()

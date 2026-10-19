@@ -18,6 +18,7 @@
 #include "Util/FileUtil.hpp"
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
+#include "Util/ProcessUtil.hpp"
 #include "generated/SettingsHelper.hpp"
 #include <QCoreApplication>
 #include <QDesktopServices>
@@ -211,7 +212,7 @@ QPair<std::function<void()>, QString> revealInFileManager(const QString &filePat
             QCoreApplication::translate("Util::FileUtil", "Reveal %1 in Explorer").arg(name)};
 #elif defined(Q_OS_UNIX)
     QProcess proc;
-    proc.start("xdg-mime", QStringList() << "query" << "default" << "inode/directory");
+    Util::startProcess(&proc, "xdg-mime", QStringList() << "query" << "default" << "inode/directory");
     auto finished = proc.waitForFinished(2000);
     if (finished)
     {
@@ -247,7 +248,10 @@ QPair<std::function<void()>, QString> revealInFileManager(const QString &filePat
         }
         if (program.isEmpty())
             return fallBack;
-        return {[program, args] { QProcess::startDetached(program, args); },
+        return {[program, args] {
+                    const auto command = Util::hostCommand(program, args);
+                    QProcess::startDetached(command.first, command.second);
+                },
                 QCoreApplication::translate("Util::FileUtil", "Reveal %1 in File Manager").arg(name)};
     }
     return fallBack;

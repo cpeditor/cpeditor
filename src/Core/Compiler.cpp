@@ -19,6 +19,7 @@
 #include "Core/EventLogger.hpp"
 #include "Settings/SettingsManager.hpp"
 #include "Util/FileUtil.hpp"
+#include "Util/ProcessUtil.hpp"
 #include "generated/SettingsHelper.hpp"
 #include <QDir>
 #include <QFileInfo>
@@ -102,7 +103,7 @@ void Compiler::start(const QString &tmpFilePath, const QString &sourceFilePath, 
     compileProcess->setWorkingDirectory(
         QFileInfo(QFile::exists(sourceFilePath) ? sourceFilePath : tmpFilePath).canonicalPath());
 
-    compileProcess->start(program, args);
+    Util::startProcess(compileProcess, program, args);
 }
 
 QString Compiler::outputPath(const QString &tmpFilePath, const QString &sourceFilePath, const QString &lang,

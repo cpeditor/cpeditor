@@ -18,6 +18,7 @@
 #include "Extensions/CFTool.hpp"
 #include "Core/EventLogger.hpp"
 #include "Core/MessageLogger.hpp"
+#include "Util/ProcessUtil.hpp"
 #include "generated/SettingsHelper.hpp"
 #include <QFileInfo>
 #include <QProcess>
@@ -67,7 +68,6 @@ void CFTool::submit(const QString &filePath, const QString &url)
         }
         lastStatus = "Unknown"; // No tr here. We don't know what we'll get from network. Maybe a array for mapping.
         CFToolProcess = new QProcess();
-        CFToolProcess->setProgram(CFToolPath);
         auto version = getCFToolVersion();
         if (version.isEmpty())
         {
@@ -76,16 +76,18 @@ void CFTool::submit(const QString &filePath, const QString &url)
                 tr("Failed to get the version of CF Tool. Have you set the correct path to CF Tool in Preferences?"));
             return;
         }
-        if (version.split('.')[0] == "0")
-            CFToolProcess->setArguments({"submit", problemContestId, problemCode, filePath});
-        else
-            CFToolProcess->setArguments({"submit", "-f", filePath, url});
 
-        LOG_INFO(INFO_OF(CFToolProcess->arguments().join(' ')));
+        QStringList arguments;
+        if (version.split('.')[0] == "0")
+            arguments = {"submit", problemContestId, problemCode, filePath};
+        else
+            arguments = {"submit", "-f", filePath, url};
+
+        LOG_INFO(INFO_OF(arguments.join(' ')));
 
         connect(CFToolProcess, &QProcess::readyReadStandardOutput, this, &CFTool::onReadReady);
         connect(CFToolProcess, qOverload<int, QProcess::ExitStatus>(&QProcess::finished), this, &CFTool::onFinished);
-        CFToolProcess->start();
+        Util::startProcess(CFToolProcess, CFToolPath, arguments);
         bool started = CFToolProcess->waitForStarted(2000);
         if (started)
         {
@@ -109,7 +111,7 @@ bool CFTool::check(const QString &path)
 {
     LOG_INFO(INFO_OF(path));
     QProcess checkProcess;
-    checkProcess.start(path, {"--version"});
+    Util::startProcess(&checkProcess, path, {"--version"});
     bool finished = checkProcess.waitForFinished(2000);
     LOG_INFO(BOOL_INFO_OF(finished) << INFO_OF(checkProcess.exitCode()) << INFO_OF(checkProcess.exitStatus()));
     return finished && checkProcess.exitCode() == 0;
@@ -191,7 +193,7 @@ void CFTool::showToastMessage(const QString &message)
 QString CFTool::getCFToolVersion() const
 {
     QProcess process;
-    process.start(CFToolPath, {"--version"});
+    Util::startProcess(&process, CFToolPath, {"--version"});
     if (!process.waitForFinished(2000))
     {
         LOG_WARN("CF Tool didn't finish after 2 second");
