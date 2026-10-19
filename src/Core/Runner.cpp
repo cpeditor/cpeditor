@@ -129,11 +129,14 @@ void Runner::runDetached(const QString &tmpFilePath, const QString &sourceFilePa
     runProcess->closeWriteChannel();
 #elif defined(Q_OS_WIN)
     // use cmd on Windows
-    runProcess->start("cmd", QProcess::splitCommand(
-                                 "/C \"start cmd /C " +
+    runProcess->setProgram("cmd");
+    runProcess->setArguments({"/C"});
+    const auto nativeArguments = QString(" \"start cmd /C ") +
                                  getCommand(tmpFilePath, sourceFilePath, lang, runCommand, args).replace("\"", "^\"") +
-                                 " ^& pause\""));
-    LOG_INFO("CMD Arguemnts " << runProcess->arguments().join(" "));
+                                 " ^& pause\"";
+    runProcess->setNativeArguments(nativeArguments);
+    runProcess->start();
+    LOG_INFO("CMD Arguments " << runProcess->arguments().join(" ") << nativeArguments);
 #elif defined(Q_OS_UNIX)
     auto terminal = SettingsHelper::getDetachedRunTerminalProgram();
     LOG_INFO("Using: " << terminal << " on UNIX");
