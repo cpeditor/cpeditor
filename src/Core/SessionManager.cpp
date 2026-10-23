@@ -37,7 +37,8 @@ const static QStringList sessionFileLocations = {
 #endif
     "$APPCONFIG/session.json", "$OLDAPPCONFIG/cp_editor_session.json"};
 
-SessionManager::SessionManager(AppWindow *appwindow) : QObject(appwindow), app(appwindow)
+SessionManager::SessionManager(AppWindow *appwindow, bool preserveLastSession)
+    : QObject(appwindow), app(appwindow), preserveLastSession(preserveLastSession)
 {
     timer = new QTimer(this);
 
@@ -111,7 +112,7 @@ void SessionManager::restoreSession(const QString &path)
 
 void SessionManager::setAutoUpdateSession(bool shouldAutoUpdate)
 {
-    if (shouldAutoUpdate)
+    if (shouldAutoUpdate && !preserveLastSession)
         timer->start();
     else
         timer->stop();
@@ -150,6 +151,9 @@ void SessionManager::saveSession(const QString &sessionText)
 
 void SessionManager::updateSession()
 {
+    if (preserveLastSession)
+        return;
+
     saveSession(currentSessionText());
 }
 } // namespace Core

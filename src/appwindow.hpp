@@ -277,7 +277,7 @@ class AppWindow : public QMainWindow
     void finishConstruction();
 
     void setConnections();
-    void allocate();
+    void allocate(bool preserveLastSession);
     void applySettings();
     void saveSettings();
     QVector<QShortcut *> hotkeyObjects;
