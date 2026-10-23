@@ -18,7 +18,6 @@
 ### Fixed
 
 -   Fix a startup crash when restoring an untitled tab created from a C++ template. (#1513)
--   Run user-configured programs (compilers, runners, language servers, formatters, CF Tool and WakaTime) on the host when running as a Flatpak, so custom tool paths and names work without wrapper scripts. (#1495)
 
 ## v7.1
 
