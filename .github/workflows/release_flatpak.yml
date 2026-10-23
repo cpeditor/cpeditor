@@ -28,6 +28,16 @@ jobs:
           submodules: recursive
           fetch-depth: 0
 
+      - name: Check Flatpak manifest
+        id: manifest
+        run: |
+          if [ -f dist/flatpak/org.cpeditor.CPEditor.yml ]; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+            echo "Skipping Flatpak: the manifest is not present in this tag."
+          fi
+
       - name: Get version
         id: get_version
         run: |
@@ -45,7 +55,7 @@ jobs:
           fi
 
       - name: Build Flatpak
-        if: steps.get_version.outputs.ISSTABLE == 'true'
+        if: steps.get_version.outputs.ISSTABLE == 'true' && steps.manifest.outputs.exists == 'true'
         uses: flatpak/flatpak-github-actions/flatpak-builder@v6
         with:
           bundle: cpeditor-${{ steps.get_version.outputs.version }}.flatpak
@@ -53,7 +63,7 @@ jobs:
           cache-key: flatpak-builder-${{ github.sha }}
 
       - name: Upload Flatpak Release Asset
-        if: steps.get_version.outputs.ISSTABLE == 'true' && github.event_name == 'release'
+        if: steps.get_version.outputs.ISSTABLE == 'true' && steps.manifest.outputs.exists == 'true' && github.event_name == 'release'
         uses: softprops/action-gh-release@v3
         with:
           files: cpeditor-${{ steps.get_version.outputs.version }}.flatpak
