@@ -62,6 +62,7 @@ jobs:
         id: build
         with:
           path: cpeditor-${{ steps.get_version.outputs.version }}-full-source
+          snapcraft-channel: 8.x
 
       - uses: snapcore/action-publish@v1
         if: steps.get_version.outputs.ISSTABLE == 'true'
