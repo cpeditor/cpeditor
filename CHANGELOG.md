@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+## 7.2.1 (Beta)
+
 ### Added
 
 -   Add Arabic translation for Application (`ar_EG.ts`)
@@ -19,6 +21,7 @@
 ### Fixed
 
 -   Fix a startup crash when restoring an untitled tab created from a C++ template. (#1513)
+-   Flatpak builds now run external programs on the host via `flatpak-spawn`. (#1495 and #1541)
 
 ## v7.1
 
