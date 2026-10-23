@@ -56,6 +56,12 @@ jobs:
           tar -xvf cpeditor-${{ steps.get_version.outputs.version }}-full-source.tar.gz
           cd cpeditor-${{ steps.get_version.outputs.version }}-full-source
           cp dist/snap/snapcraft.yaml snapcraft.yaml
+          if [ ! -d third_party/extra-cmake-modules ]; then
+            git clone --depth 1 --branch kf5 https://github.com/KDE/extra-cmake-modules third_party/extra-cmake-modules
+          fi
+          if [ ! -d third_party/syntax-highlighting ]; then
+            git clone --depth 1 --branch kf5 https://github.com/KDE/syntax-highlighting third_party/syntax-highlighting
+          fi
 
       - uses: snapcore/action-build@v1
         if: steps.get_version.outputs.ISSTABLE == 'true'
