@@ -1,0 +1,42 @@
+name: Arch session recovery
+
+on:
+  push:
+    paths:
+      - .github/workflows/session-recovery-arch.yml
+      - tests/session_recovery.py
+      - src/Core/SessionManager.*
+      - src/appwindow.*
+      - src/main.cpp
+  pull_request:
+    paths:
+      - .github/workflows/session-recovery-arch.yml
+      - tests/session_recovery.py
+      - src/Core/SessionManager.*
+      - src/appwindow.*
+      - src/main.cpp
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  recovery:
+    runs-on: ubuntu-latest
+    container: archlinux:base-devel
+    steps:
+      - name: Install Arch build dependencies
+        run: pacman -Syu --noconfirm --needed git cmake ninja python qt6-base qt6-svg qt6-5compat qt6-tools syntax-highlighting hicolor-icon-theme
+
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Build CP Editor
+        run: |
+          cmake -S . -B build-arch -G Ninja -DPORTABLE_VERSION=OFF -DCMAKE_BUILD_TYPE=Release
+          cmake --build build-arch --parallel 2
+
+      - name: Test session recovery
+        run: python tests/session_recovery.py build-arch/cpeditor
