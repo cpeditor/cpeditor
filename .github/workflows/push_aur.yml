@@ -31,7 +31,10 @@ jobs:
           known_hosts: ${{ secrets.KNOWN_HOST }}
 
       - name: Fetch AUR Remote
-        run: git clone ssh://aur@aur.archlinux.org/cpeditor-git.git
+        run: |
+          git clone ssh://aur@aur.archlinux.org/cpeditor-git.git
+          cd cpeditor-git
+          git checkout -B master origin/master
 
       - name: Update files
         id: update-files
