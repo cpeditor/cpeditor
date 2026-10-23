@@ -1,6 +1,6 @@
 ## UNRELEASED
 
-## 7.2.1 (Beta)
+## v7.2
 
 ### Added
 
@@ -15,6 +15,7 @@
 -   Migrate from Qt5 to Qt6 and KF5 to KF6 Syntax Highlighting. (#1449)
 -   Switch macOS release builds to ARM (Apple Silicon). (#1449)
 -   Snap package now uses `core26` base (Ubuntu 26.04), providing Qt 6.8+. (#1489)
+-   The AppImage is no longer built for Qt6; Linux users can use the `.deb` package. (#1449)
 -   Improved snippet search with token-based prefix matching.
 -   `--no-restore-session` now keeps the saved session intact for the next launch instead of allowing hot exit to overwrite it. (#1542 and #1543)
 
