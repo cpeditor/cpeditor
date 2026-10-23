@@ -1,5 +1,7 @@
 ## UNRELEASED
 
+## v7.2
+
 ### Added
 
 -   Add Arabic translation for Application (`ar_EG.ts`)
@@ -12,13 +14,16 @@
 
 -   Migrate from Qt5 to Qt6 and KF5 to KF6 Syntax Highlighting. (#1449)
 -   Switch macOS release builds to ARM (Apple Silicon). (#1449)
+-   Windows releases are now x64-only; the x86 builds are no longer provided. (#1449)
 -   Snap package now uses `core26` base (Ubuntu 26.04), providing Qt 6.8+. (#1489)
+-   The AppImage is no longer built for Qt6; Linux users can use the `.deb` package. (#1449)
 -   Improved snippet search with token-based prefix matching.
 -   `--no-restore-session` now keeps the saved session intact for the next launch instead of allowing hot exit to overwrite it. (#1542 and #1543)
 
 ### Fixed
 
 -   Fix a startup crash when restoring an untitled tab created from a C++ template. (#1513)
+-   Flatpak builds now run external programs on the host via `flatpak-spawn`. (#1495 and #1541)
 
 ## v7.1
 
