@@ -86,7 +86,7 @@ jobs:
         if: startsWith(matrix.config.os, 'windows')
         run: |
           cd third_party/syntax-highlighting
-          cmake -B build -S . -G Ninja -DCMAKE_BUILD_TYPE=Release -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF -DQRC_SYNTAX=OFF
+          cmake -B build -S . -G Ninja -DCMAKE_BUILD_TYPE=Release -DBUILD_HTML_DOCS=OFF -DBUILD_MAN_DOCS=OFF -DBUILD_QTHELP_DOCS=OFF -DBUILD_TESTING=OFF -DQRC_SYNTAX=ON
           cmake --build build
           cmake --install build
 
