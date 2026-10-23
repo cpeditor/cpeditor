@@ -1,5 +1,8 @@
 name: "Release Flatpak"
 
+permissions:
+  contents: write
+
 on:
   release:
     types:
