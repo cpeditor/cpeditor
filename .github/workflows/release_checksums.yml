@@ -1,5 +1,8 @@
 name: "Release checksums"
 
+permissions:
+  contents: write
+
 on:
   release:
     types:
@@ -16,7 +19,7 @@ jobs:
       - name: Get the version
         id: get_version
         run: |
-          VERSION=${GITHUB_REF/refs\/tags\//}
+          VERSION=${{ github.event.release.tag_name }}
           echo "VERSION=$VERSION" >> "$GITHUB_OUTPUT"
           STABLE_VERSION=$(cat dist/STABLE_VERSION)
           if [[ $VERSION == "$STABLE_VERSION"* ]]; then
@@ -26,9 +29,11 @@ jobs:
           fi
 
       - name: Download assets
-        uses: hecrj/download-release-action@ef523a951deebec6b821266175f7547906d87073
-        with:
-          output: downloads
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p downloads
+          gh release download "${{ github.event.release.tag_name }}" --repo "${{ github.repository }}" --dir downloads
 
       - name: Download assets and generate checksums
         run: |
