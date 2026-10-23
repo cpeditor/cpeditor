@@ -60,6 +60,8 @@ def main():
     binary = pathlib.Path(sys.argv[1]).resolve()
     if not binary.is_file():
         raise SystemExit(f"CP Editor binary does not exist: {binary}")
+    log_dir = binary.parent / "session-recovery-logs"
+    log_dir.mkdir(exist_ok=True)
 
     with tempfile.TemporaryDirectory(prefix="cpeditor-session-recovery-") as temporary:
         root = pathlib.Path(temporary)
@@ -95,7 +97,7 @@ def main():
 
         # Let this build generate its own complete session schema, then make
         # the tab contain an unsaved edit that would be lost if overwritten.
-        run_editor(binary, environment, root / "seed.log", session_path, False, False)
+        run_editor(binary, environment, log_dir / "seed.log", session_path, False, False)
         session = json.loads(session_path.read_text(encoding="utf-8"))
         if len(session["tabs"]) != 1:
             raise RuntimeError("The seed launch did not create one editor tab")
@@ -104,11 +106,11 @@ def main():
         original = json.dumps(session, ensure_ascii=False).encode("utf-8")
         session_path.write_bytes(original)
 
-        run_editor(binary, environment, root / "no-restore.log", session_path, True, False, original)
+        run_editor(binary, environment, log_dir / "no-restore.log", session_path, True, False, original)
         if session_path.read_bytes() != original:
             raise RuntimeError("--no-restore-session changed the saved session")
 
-        run_editor(binary, environment, root / "normal.log", session_path, False, True)
+        run_editor(binary, environment, log_dir / "normal.log", session_path, False, True)
         restored = json.loads(session_path.read_text(encoding="utf-8"))
         if not restored["tabs"] or restored["tabs"][0]["editorText"] != MARKER:
             raise RuntimeError("An ordinary launch did not restore the preserved editor text")
