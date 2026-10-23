@@ -61,7 +61,7 @@ AppWindow::AppWindow(bool noRestoreSession, QWidget *parent) : QMainWindow(paren
     LOG_INFO(BOOL_INFO_OF(noRestoreSession))
     ui->setupUi(this);
     setAcceptDrops(true);
-    allocate();
+    allocate(noRestoreSession);
     setConnections();
 
 #ifdef Q_OS_MACOS
@@ -294,7 +294,7 @@ void AppWindow::setConnections()
             [this](const QString &path) { openTab(path); });
 }
 
-void AppWindow::allocate()
+void AppWindow::allocate(bool preserveLastSession)
 {
     lspTimerCpp = new QTimer();
     lspTimerJava = new QTimer();
@@ -326,7 +326,7 @@ void AppWindow::allocate()
     trayIcon->setContextMenu(trayIconMenu);
     trayIcon->show();
 
-    sessionManager = new Core::SessionManager(this);
+    sessionManager = new Core::SessionManager(this, preserveLastSession);
 
     wakaTime = new Extensions::WakaTime(this);
 }
@@ -555,7 +555,8 @@ bool AppWindow::quit()
 {
     if (preferencesWindow->isVisible() && !preferencesWindow->close())
         return false;
-    if (SettingsHelper::isHotExitEnable() || SettingsHelper::isForceClose())
+    if (!sessionManager->isPreservingLastSession() &&
+        (SettingsHelper::isHotExitEnable() || SettingsHelper::isForceClose()))
     {
         LOG_INFO("quit() with hotexit");
         sessionManager->updateSession();

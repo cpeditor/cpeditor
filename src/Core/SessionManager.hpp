@@ -30,13 +30,18 @@ class SessionManager : public QObject
     Q_OBJECT
 
   public:
-    explicit SessionManager(AppWindow *appwindow);
+    explicit SessionManager(AppWindow *appwindow, bool preserveLastSession);
 
     void restoreSession(const QString &path);
 
     void setAutoUpdateSession(bool shouldAutoUpdate);
 
     void setAutoUpdateDuration(int duration);
+
+    bool isPreservingLastSession() const
+    {
+        return preserveLastSession;
+    }
 
     QString currentSessionText();
 
@@ -50,6 +55,7 @@ class SessionManager : public QObject
   private:
     QTimer *timer = nullptr;
     AppWindow *app = nullptr;
+    bool preserveLastSession = false;
 };
 } // namespace Core
 

@@ -132,7 +132,7 @@ int main(int argc, char *argv[])
          {"python", "Open Python files in given directories. / Use Python for open contests."},
          {"verbose", "Dump all logs to stderr of the application. (use only for debug purpose)"},
          {"no-restore-session",
-          "Do not load hot exit in this session. You won't be able to load the last session again."}});
+          "Start without restoring the last session. Keep the saved session for the next launch."}});
     parser.setOptionsAfterPositionalArgumentsMode(QCommandLineParser::ParseAsOptions);
     parser.setSingleDashWordOptionMode(QCommandLineParser::ParseAsLongOptions);
     parser.process(app);
