@@ -45,11 +45,12 @@ Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescrip
 
 [Files]
 Source: "{#MyOutRoot}\cpeditor.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#MyOutRoot}\bearer\*"; DestDir: "{app}\bearer\"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "{#MyOutRoot}\iconengines\*"; DestDir: "{app}\iconengines\"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "{#MyOutRoot}\imageformats\*"; DestDir: "{app}\imageformats\"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "{#MyOutRoot}\networkinformation\*"; DestDir: "{app}\networkinformation\"; Flags: ignoreversion recursesubdirs createallsubdirs skipifsourcedoesntexist
 Source: "{#MyOutRoot}\platforms\*"; DestDir: "{app}\platforms\"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "{#MyOutRoot}\styles\*"; DestDir: "{app}\styles\"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "{#MyOutRoot}\tls\*"; DestDir: "{app}\tls\"; Flags: ignoreversion recursesubdirs createallsubdirs skipifsourcedoesntexist
 Source: "{#MyOutRoot}\*.dll"; DestDir: "{app}"; Flags: ignoreversion
 
 ; VC++ redistributable runtime. Extracted by VC2019RedistNeedsInstall(), if needed.
