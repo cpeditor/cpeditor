@@ -246,6 +246,8 @@ add_executable(cpeditor
 
     src/Util/FileUtil.cpp
     src/Util/FileUtil.hpp
+    src/Util/ProcessUtil.cpp
+    src/Util/ProcessUtil.hpp
     src/Util/Singleton.hpp
     src/Util/Util.cpp
     src/Util/Util.hpp
