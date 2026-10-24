@@ -304,6 +304,9 @@
       <td align="center" valign="top" width="16.66%">
       <a href="https://github.com/sea1dream"><img src="https://avatars.githubusercontent.com/u/180516193?v=4" width="100px;" alt=""/></a><br /><a href="https://github.com/sea1dream"><sub><b>李毅杰</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/commits?author=sea1dream" title="Code">💻</a>
     </td>
+      <td align="center" valign="top" width="16.66%">
+      <a href="https://github.com/tangyixiao"><img src="https://avatars.githubusercontent.com/u/115929632?v=4" width="100px;" alt=""/></a><br /><a href="http://www.sxyz.net/"><sub><b>Tang Yixiao</b></sub></a><br /><a href="https://github.com/cpeditor/cpeditor/commits?author=tangyixiao" title="Code">💻</a>
+    </td>
     </tr>
   </tbody>
 </table>
