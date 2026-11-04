@@ -46,11 +46,18 @@ QFont FontItem::getFont()
 
 void FontItem::onButtonClicked()
 {
+    QFontDialog::FontDialogOptions options;
+    if (SettingsHelper::isShowOnlyMonospacedFont())
+        options |= QFontDialog::MonospacedFonts;
+
+#ifdef Q_OS_MACOS
+    options |= QFontDialog::DontUseNativeDialog;
+#endif
+
     bool ok = false;
-    QFont newFont = QFontDialog::getFont(&ok, font, this, QString(),
-                                         SettingsHelper::isShowOnlyMonospacedFont() ? QFontDialog::MonospacedFonts
-                                                                                    : QFontDialog::FontDialogOption());
+    const QFont newFont = QFontDialog::getFont(&ok, font, this, QString(), options);
     if (ok)
         setFont(newFont);
+
     parentWidget()->raise();
 }
