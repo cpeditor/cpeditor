@@ -116,18 +116,13 @@ RichTextCheckBox::RichTextCheckBox(const QString &text, QWidget *parent) : QWidg
 {
     setMouseTracking(true);
     checkBox = new HoverCheckBox();
+    checkBox->setAttribute(Qt::WA_LayoutUsesWidgetRect);
     label = new ClickableLabel();
     label->setTextFormat(Qt::RichText);
     label->setText(text);
     auto *layout = new QHBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
-
-#ifdef Q_OS_MACOS
-    layout->setSpacing(4);
-#else
     layout->setSpacing(0);
-#endif
-
     layout->addWidget(checkBox);
     layout->addWidget(label);
     layout->setAlignment(Qt::AlignLeft);
