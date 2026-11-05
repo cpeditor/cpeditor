@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+### Fixed
+
+-   Fix insufficient spacing between checkboxes and their labels in the native macOS theme. (#871 and #1552)
+
 ## v7.2
 
 ### Added
