@@ -87,6 +87,11 @@ void CodeFormatter::format() const
     cursor.select(QTextCursor::Document);
     cursor.insertText(source);
 
+    // the replacement unfolds all folded blocks and usually keeps the block
+    // count, in which case Qt doesn't emit documentSizeChanged and the
+    // scrollbars would keep the range of the folded document
+    m_editor->updateScrollbars();
+
     m_editor->setTextCursor(newCursor(res, args));
 
     log->info(tr("Formatter"), tr("Formatting completed"));

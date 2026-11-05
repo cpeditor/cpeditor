@@ -170,6 +170,9 @@ void CodeSnippetsPage::makeUITheSameAsSettings()
         auto cursor = editor->textCursor();
         cursor.select(QTextCursor::Document);
         cursor.insertText(SettingsHelper::getLanguageConfig(lang).getSnippet(currentItem->text()));
+        // the replacement can unfold folded blocks without changing the block
+        // count, so the scrollbars may not be updated automatically
+        editor->updateScrollbars();
     }
 }
 
