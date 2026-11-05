@@ -96,6 +96,18 @@ class CodeEditor : public QPlainTextEdit
     int getFirstVisibleBlock();
 
     /**
+     * @brief Requests a recalculation of the scrollbars' ranges.
+     *
+     * Qt only recalculates them when the block count changes or a block's
+     * visibility is changed through the layout. Operations that replace whole
+     * blocks of text (e.g. formatting or swapping lines) can change the
+     * number of visible lines while keeping the block count, which leaves
+     * stale scrollbars when the document contains folded blocks. Call this
+     * after such operations to force an update.
+     */
+    void updateScrollbars();
+
+    /**
      * @brief squiggle Puts a underline squiggle under text ranges in Editor
      * @param level defines the color of the underline depending upon the severity
      * @param tooltipMessage The tooltip hover message to show when over selection.

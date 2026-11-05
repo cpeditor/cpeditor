@@ -3,6 +3,8 @@
 ### Fixed
 
 -   Fix insufficient spacing between checkboxes and their labels in the native macOS theme. (#871 and #1552)
+-   Fix font selection on macOS by using Qt's font dialog instead of the native font panel. (#1553)
+-   Fix the editor becoming unscrollable after formatting a folded code block. (#1551)
 
 ## v7.2
 

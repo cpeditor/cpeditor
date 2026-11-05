@@ -972,6 +972,9 @@ void MainWindow::setText(const QString &text, bool keep)
         cursor.insertText(text);
         cursor.setPosition(oldPos);
         editor->setTextCursor(cursor);
+        // the replacement can unfold folded blocks without changing the block
+        // count, so the scrollbars may not be updated automatically
+        editor->updateScrollbars();
     }
     else
         editor->setPlainText(text);
