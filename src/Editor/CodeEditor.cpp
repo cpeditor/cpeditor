@@ -345,6 +345,16 @@ void CodeEditor::toggleFold(const QTextBlock &startBlock)
     document()->markContentsDirty(startBlock.position(), endBlock.position() - startBlock.position() + 1);
 
     // update scrollbars
+    updateScrollbars();
+}
+
+void CodeEditor::updateScrollbars()
+{
+    // QPlainTextDocumentLayout only emits documentSizeChanged when the block
+    // count changes, but replacing blocks of the document can change the
+    // number of visible lines (e.g. by destroying folded blocks) without
+    // changing the block count. Emit the signal manually so that the view
+    // recalculates the scrollbar ranges.
     auto *docLayout = document()->documentLayout();
     emit docLayout->documentSizeChanged(docLayout->documentSize());
 }
@@ -528,6 +538,10 @@ void CodeEditor::swapLineUp()
     cursor.select(QTextCursor::Document);
     cursor.insertText(lines.join('\n'));
 
+    // the replacement can unfold folded blocks without changing the block
+    // count, so the scrollbars may not be updated automatically
+    updateScrollbars();
+
     if (cursorAtEnd)
     {
         cursor.setPosition(selectionStart);
@@ -562,6 +576,10 @@ void CodeEditor::swapLineDown()
 
     cursor.select(QTextCursor::Document);
     cursor.insertText(lines.join('\n'));
+
+    // the replacement can unfold folded blocks without changing the block
+    // count, so the scrollbars may not be updated automatically
+    updateScrollbars();
 
     if (cursorAtEnd)
     {

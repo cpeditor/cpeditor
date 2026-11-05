@@ -3,6 +3,7 @@
 ### Fixed
 
 -   Fix font selection on macOS by using Qt's font dialog instead of the native font panel. (#1553)
+-   Fix the editor becoming unscrollable after formatting a folded code block. (#1551)
 
 ## v7.2
 
