@@ -116,6 +116,7 @@ RichTextCheckBox::RichTextCheckBox(const QString &text, QWidget *parent) : QWidg
 {
     setMouseTracking(true);
     checkBox = new HoverCheckBox();
+    checkBox->setAttribute(Qt::WA_LayoutUsesWidgetRect);
     label = new ClickableLabel();
     label->setTextFormat(Qt::RichText);
     label->setText(text);
