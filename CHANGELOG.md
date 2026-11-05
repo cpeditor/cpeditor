@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+### Fixed
+
+-   Fix font selection on macOS by using Qt's font dialog instead of the native font panel. (#1553)
+
 ## v7.2
 
 ### Added
