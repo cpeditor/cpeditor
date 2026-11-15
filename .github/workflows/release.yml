@@ -101,8 +101,8 @@ jobs:
           # The prebuilt Qt is linked against ICU 73, but aqt does not install
           # the matching ICU archive by default. Install it explicitly so it
           # can be bundled into the .deb.
-          python -m aqt --help > /dev/null 2>&1 || python -m pip install --quiet 'aqtinstall==3.3.*'
-          python -m aqt install-qt linux desktop "$QT_VERSION" linux_gcc_64 \
+          python3 -m aqt --help > /dev/null 2>&1 || python3 -m pip install --quiet 'aqtinstall==3.3.*'
+          python3 -m aqt install-qt linux desktop "$QT_VERSION" linux_gcc_64 \
             --archives icu --outputdir "$RUNNER_TEMP/qt-icu"
           cp -a "$RUNNER_TEMP"/qt-icu/*/gcc_64/lib/libicu*.so* "$QT_ROOT_DIR"/lib/
 
