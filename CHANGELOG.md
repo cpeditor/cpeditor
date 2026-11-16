@@ -5,6 +5,7 @@
 -   Fix insufficient spacing between checkboxes and their labels in the native macOS theme. (#871 and #1552)
 -   Fix font selection on macOS by using Qt's font dialog instead of the native font panel. (#1553)
 -   Fix the editor becoming unscrollable after formatting a folded code block. (#1551)
+-   Fix the Linux `.deb` package failing to start because of missing ICU/XCB runtime libraries, and build it with GCC 12 so it also works on Ubuntu 22.04 and Debian 12. (#1549)
 
 ## v7.2
 
