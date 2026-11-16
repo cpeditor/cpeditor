@@ -1,5 +1,9 @@
 ## UNRELEASED
 
+### Fixed
+
+-   Fix the Linux `.deb` package failing to start because of missing ICU/XCB runtime libraries, and build it with GCC 12 so it also works on Ubuntu 22.04 and Debian 12. (#1549)
+
 ## 7.2.1 (Beta)
 
 ### Added
