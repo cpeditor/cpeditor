@@ -972,7 +972,9 @@ void CodeEditor::keyPressEvent(QKeyEvent *e)
     }
 
     // Toggle Overwrite and insert mode in non-vim modes.
-    if (e->key() == Qt::Key_Insert && !m_vimCursor)
+    // Insert with modifiers is a standard editing shortcut (Ctrl+Insert to copy, Shift+Insert to paste), so only a
+    // bare Insert toggles the mode and the modified ones are left to QPlainTextEdit.
+    if (e->key() == Qt::Key_Insert && e->modifiers() == Qt::NoModifier && !m_vimCursor)
     {
         setOverwriteMode(!overwriteMode());
         updateCursorWidth();
