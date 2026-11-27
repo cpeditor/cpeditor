@@ -25,6 +25,7 @@
 #include "Editor/CodeEditor.hpp"
 #include "Editor/FakeVimProxy.hpp"
 #include "Extensions/CFTool.hpp"
+#include "Extensions/CSESTool.hpp"
 #include "Extensions/ClangFormatter.hpp"
 #include "Extensions/CompanionServer.hpp"
 #include "Extensions/YAPFormatter.hpp"
@@ -40,6 +41,7 @@
 #include "appwindow.hpp"
 #include "generated/SettingsHelper.hpp"
 #include "generated/version.hpp"
+#include <QDesktopServices>
 #include <QFileSystemWatcher>
 #include <QInputDialog>
 #include <QJsonValue>
@@ -117,6 +119,7 @@ MainWindow::~MainWindow()
     }
 
     delete cftool;
+    delete csesTool;
     delete tmpDir;
 
     delete ui;
@@ -359,6 +362,119 @@ void MainWindow::removeCFToolUI()
     }
 }
 
+void MainWindow::setCSESToolUI()
+{
+    if (!SettingsHelper::isCSESEnable())
+        return;
+    if (submitToCSES == nullptr)
+    {
+        submitToCSES = new QPushButton(tr("Submit to CSES"), this);
+        csesTool = new Extensions::CSESTool(this);
+        ui->compileAndRunButtons->addWidget(submitToCSES);
+        connect(csesTool, &Extensions::CSESTool::loginFlowStarted, this, [this](const QString &authUrl) {
+            log->info(tr("CSES"), tr("Opening authentication URL in browser..."));
+            QDesktopServices::openUrl(QUrl(authUrl));
+        });
+        connect(csesTool, &Extensions::CSESTool::loginSucceeded, this, [this](const QString &username) {
+            log->message(tr("CSES"), tr("Logged in as %1").arg(username), "green");
+            if (SettingsHelper::isCSESShowToastMessages())
+                emit requestToastMessage(tr("CSES"), tr("Logged in as %1").arg(username));
+        });
+        connect(csesTool, &Extensions::CSESTool::loginPending, this,
+                [this] { log->info(tr("CSES"), tr("Waiting for authentication...")); });
+        connect(csesTool, &Extensions::CSESTool::loginFailed, this, [this](const QString &reason) {
+            log->error(tr("CSES"),
+                       tr("Login failed: %1. The saved token is invalid, please click \"Submit to CSES\" again to "
+                          "log in.")
+                           .arg(reason));
+            csesTool->clearToken();
+        });
+        connect(csesTool, &Extensions::CSESTool::submissionCreated, this,
+                [this](qint64 id) { log->info(tr("CSES"), tr("Submission created (ID: %1)").arg(id)); });
+        connect(csesTool, &Extensions::CSESTool::submissionUpdated, this, [this](const QJsonObject &info) {
+            if (info.contains("test_progress") && info["test_progress"].isObject())
+            {
+                auto progress = info["test_progress"].toObject();
+                int finished = progress["finished_tests"].toInt();
+                int total = progress["total_tests"].toInt();
+                log->info(tr("CSES"), tr("Testing: %1/%2").arg(finished).arg(total));
+            }
+        });
+        connect(csesTool, &Extensions::CSESTool::submissionFinished, this, [this](const QJsonObject &info) {
+            QString result = info["result"].toString();
+            if (result == "ACCEPTED")
+            {
+                log->message(tr("CSES"), tr("Accepted"), "green");
+                if (SettingsHelper::isCSESShowToastMessages())
+                    emit requestToastMessage(tr("CSES"), tr("Accepted"));
+            }
+            else
+            {
+                log->error(tr("CSES"), tr("Submission finished: %1").arg(result));
+                if (SettingsHelper::isCSESShowToastMessages())
+                    emit requestToastMessage(tr("CSES"), result);
+            }
+        });
+        connect(csesTool, &Extensions::CSESTool::submitError, this, [this](const QString &code, const QString &msg) {
+            log->error(tr("CSES"), tr("Submit error: %1 - %2").arg(code, msg));
+        });
+        connect(csesTool, &Extensions::CSESTool::networkError, this,
+                [this](const QString &msg) { log->error(tr("CSES"), tr("Network error: %1").arg(msg)); });
+        connect(submitToCSES, &QPushButton::clicked, this, [this] {
+            if (!csesTool->isLoggedIn())
+            {
+                log->info(tr("CSES"), tr("Not logged in. Starting login flow..."));
+                csesTool->login();
+                return;
+            }
+            QString scope;
+            QString taskId;
+            if (!Extensions::CSESTool::parseCsesUrl(problemURL, scope, taskId))
+            {
+                log->error(tr("CSES"), tr("Failed to parse CSES URL"));
+                return;
+            }
+            emit confirmTriggered(this);
+            QString problemInfo = csesProblemName.isEmpty() ? problemURL : csesProblemName;
+            if (!csesGroupName.isEmpty())
+                problemInfo = csesGroupName + " - " + problemInfo;
+            auto response = QMessageBox::warning(
+                this, tr("Sure to submit"),
+                tr("Are you sure you want to submit this solution to CSES?\n\n Problem: %1\n Language: %2")
+                    .arg(problemInfo, language),
+                QMessageBox::Yes | QMessageBox::No);
+
+            if (response == QMessageBox::Yes)
+            {
+                auto path = tmpPath();
+                if (path.isEmpty())
+                {
+                    QMessageBox::warning(this, tr("CSES"),
+                                         tr("Failed to save the temp file, and the solution is not submitted."));
+                }
+                else
+                {
+                    log->clear();
+                    csesTool->submitFile(scope, path, language, taskId);
+                }
+            }
+        });
+    }
+}
+
+void MainWindow::removeCSESToolUI()
+{
+    if (submitToCSES != nullptr)
+    {
+        submitToCSES->setEnabled(false);
+        ui->compileAndRunButtons->removeWidget(submitToCSES);
+        delete submitToCSES;
+        submitToCSES = nullptr;
+        delete csesTool;
+        csesTool = nullptr;
+    }
+}
+
 int MainWindow::getUntitledIndex() const
 {
     return untitledIndex;
@@ -463,7 +579,17 @@ void MainWindow::setProblemURL(const QString &url)
     problemURL = url;
     FileProblemBinder::set(filePath, url);
     if (problemURL.contains("codeforces.com"))
+    {
         setCFToolUI();
+        removeCSESToolUI();
+    }
+    else
+    {
+        if (problemURL.contains("cses.fi"))
+            setCSESToolUI();
+        else
+            removeCSESToolUI();
+    }
     emit editorFileChanged();
 }
 
@@ -682,6 +808,18 @@ void MainWindow::applyCompanion(const Extensions::CompanionData &data)
     for (auto const &testcase : data.testcases)
         testcases->addTestCase(testcase.input, testcase.output);
 
+    // Extract CSES metadata from JSON if available
+    if (data.url.contains("cses.fi"))
+    {
+        csesProblemName = data.doc.object()["name"].toString();
+        csesGroupName = data.doc.object()["group"].toString();
+    }
+    else
+    {
+        csesProblemName.clear();
+        csesGroupName.clear();
+    }
+
     setProblemURL(data.url);
 
     if (SettingsHelper::isCompetitiveCompanionSetTimeLimitForTab())
@@ -717,6 +855,21 @@ void MainWindow::applySettings(const QString &pagePath)
             else if (submitToCodeforces != nullptr && !SettingsHelper::isCFEnable())
             {
                 removeCFToolUI();
+            }
+        }
+    }
+
+    if (pageChanged("Extensions/CSES"))
+    {
+        if (problemURL.contains("cses.fi"))
+        {
+            if (submitToCSES == nullptr && SettingsHelper::isCSESEnable())
+            {
+                setCSESToolUI();
+            }
+            else if (submitToCSES != nullptr && !SettingsHelper::isCSESEnable())
+            {
+                removeCSESToolUI();
             }
         }
     }

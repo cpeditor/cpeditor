@@ -75,3 +75,6 @@ resources/translations/*.qm
 
 # Codespaces
 .venv
+
+# Zed Editor
+.zed/

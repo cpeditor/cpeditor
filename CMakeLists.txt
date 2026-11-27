@@ -195,6 +195,8 @@ add_executable(cpeditor
 
     src/Extensions/CFTool.cpp
     src/Extensions/CFTool.hpp
+    src/Extensions/CSESTool.cpp
+    src/Extensions/CSESTool.hpp
     src/Extensions/ClangFormatter.cpp
     src/Extensions/ClangFormatter.hpp
     src/Extensions/CodeFormatter.cpp
